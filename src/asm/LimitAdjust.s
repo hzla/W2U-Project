@@ -1,7 +1,7 @@
 .thumb
 
 .equ PkmnCnt, 721
-.equ RegionalDexFile, 302
+.equ RegionalDexPkmCnt, 302
 .equ RegionalDexFile, 826
 
 .equ ALWAYS_HAVE_NATL_DEX, 1
