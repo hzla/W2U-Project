@@ -1,3 +1,6 @@
 [submodule "include/swan"]
 	path = include/swan
 	url = git@github.com:kingdom-of-ds-hacking/swan.git
+[submodule "include/extlib"]
+	path = include/extlib
+	url = https://github.com/HelloOO7/ExtLib.git
