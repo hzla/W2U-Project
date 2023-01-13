@@ -1,3 +1,6 @@
 build
-tools/blz/blz.c
+tools/blz/blz
+tools/CTRMap/CTRMap.jar
 *.nds
+*.o
+*.d

@@ -349,5 +349,6 @@ UNCOMPRESSED equ 0x02000000
 /* overlay 341 */ .word 341, 0x021FB8C0, filesize("build/IRDO/exefs/overlay/overlay_0341.bin"), 0x00000000, 0x021FB8C0, 0x021FB8C4, 341, UNCOMPRESSED
 /* overlay 342 */ .word 342, 0x021FB8C0, filesize("build/IRDO/exefs/overlay/overlay_0342.bin"), 0x00000000, 0x021FB8C0, 0x021FB8C4, 342, UNCOMPRESSED
 /* overlay 343 */ .word 343, 0x021FB8C0, filesize("build/IRDO/exefs/overlay/overlay_0343.bin"), 0x00000000, 0x021FB8C0, 0x021FB8C4, 343, UNCOMPRESSED
+/* overlay 344 */ .word 344, 0x021FD0C0, filesize("build/IRDO/exefs/overlay/overlay_0344.bin"), 0x00000000, 0x021FD0C0, 0x021FD0C0, 344, UNCOMPRESSED
 
 .close
