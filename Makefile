@@ -21,9 +21,11 @@ tools			:= tools
 ignore_objs		:= $(c_build)/Personal.o
 asm_srcs  		:= $(wildcard $(asm_src_dir)/*.s)
 asm_objs  		:= $(patsubst $(asm_src_dir)/%.s, $(asm_build)/%.d, $(asm_srcs)) 
+cpp_srcs    	:= $(wildcard $(c_src_dir)/*.cpp)
 c_srcs    		:= $(wildcard $(c_src_dir)/*.c)
+cpp_objs    	:= $(filter-out $(ignore_objs), $(patsubst $(c_src_dir)/%.cpp, $(c_build)/%.o, $(cpp_srcs))) 
 c_objs    		:= $(filter-out $(ignore_objs), $(patsubst $(c_src_dir)/%.c, $(c_build)/%.o, $(c_srcs))) 
-objs      		:= $(asm_objs) $(c_objs)
+objs      		:= $(asm_objs) $(c_objs) $(cpp_objs)
 
 # Tools
 CTRMap			:= tools/CTRMap/CTRMap.jar
@@ -31,6 +33,8 @@ as 	  			:= arm-none-eabi-as
 armips 			:= armips
 blz				:= tools/blz/blz 
 gcc 	  		:= arm-none-eabi-gcc
+g++		  		:= arm-none-eabi-g++
+knarc			:= tools/knarc/knarc
 ld				:= arm-none-eabi-ld
 ndstool   		:= ndstool
 o2narc			:= tools/o2narc/o2narc
@@ -81,20 +85,30 @@ $(asm_build)/%.d : $(asm_src_dir)/%.s
 $(c_build)/%.o : $(c_src_dir)/%.c
 	@ echo "[+] Compiling $<..."
 	@ mkdir -p $(c_build) 
-	@ $(gcc) $(c_flags) -I$(incl_dir) -c $< -o $@
+	@ $(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -I$(incl_dir)/NitroKernel -c $< -o $@
+$(c_build)/%.o : $(c_src_dir)/%.cpp
+	@ echo "[+] Compiling $<..."
+	@ mkdir -p $(c_build) 
+	@ $(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -I$(incl_dir)/NitroKernel -c $< -o $@
 
 make_narcs: make_personal_data
 	@ echo "[+] Updating NARCs..."
 	@ # TODO: Make a bit cleaner.
 	@ python3 tools/NARCUpdater.py build/$(rom_code)
+	@ echo "[+] Making icons..."
+	@ python vfs/graphics/make.py
+	@ $(knarc) -d $(game_base)/narcs/a/0/0/7 -p $(romfs)/a/0/0/7
 make_personal_data: $(c_build)/Personal.o
 	@ echo "[+] Making Personal ARC..."
 	@ $(o2narc) $< $(romfs)/a/0/1/6
+
 make_tools:
 	@ echo [+] Building blz...
 	@ gcc -o tools/blz/blz tools/blz/blz.c
 	@ echo [+] Building knarc...
 	@ make --silent -C tools/knarc
+	@ echo [+] Building nitrogfx...
+	@ make --silent -C tools/nitrogfx
 	@ echo [+] Building o2narc...
 	@ make --silent -C tools/o2narc
 

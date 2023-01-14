@@ -8,6 +8,7 @@ You will need the following tools to use this repository:
 - gcc
 - GNU Make (anything over 3.81)
 - Java 1.8
+- Python 3.4+
 - [ndstool (2.2.0)](https://github.com/devkitPro/ndstool)
 - A Linux environment (native or Windows Subsystem for Linux)
 

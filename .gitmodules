@@ -4,3 +4,6 @@
 [submodule "include/extlib"]
 	path = include/extlib
 	url = https://github.com/HelloOO7/ExtLib.git
+[submodule "include/NitroKernel"]
+	path = include/NitroKernel
+	url = git@github.com:HelloOO7/NitroKernel.git

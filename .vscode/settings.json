@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "swantypes.h": "c",
+        "poke_param.h": "c",
+        "gamesystem.h": "c",
+        "personal.h": "c"
+    }
+}

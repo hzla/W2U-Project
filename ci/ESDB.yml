@@ -3730,6 +3730,9 @@ Symbols:
   - Name: PokeParty_RecoverAll
     Segment: 0x0
     Address: 0x2020f39
+  - Name: PokeParty_GetIconIndex
+    Segment: 0x0
+    Address: 0x2020FC0
   - Name: getOBJTileMapping_MainEng
     Segment: 0x0
     Address: 0x20211bd
