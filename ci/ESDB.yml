@@ -77,6 +77,24 @@ Segments:
   - ID: 0x19
     Name: 302
     Type: OVERLAY
+  - ID: 0x1A
+    Name: 255
+    Type: OVERLAY
+  - ID: 0x1B
+    Name: 207
+    Type: OVERLAY
+  - ID: 0x1C
+    Name: 165
+    Type: OVERLAY
+  - ID: 0x1D
+    Name: 167
+    Type: OVERLAY
+  - ID: 0x1E
+    Name: 168
+    Type: OVERLAY
+  - ID: 0x1F
+    Name: 169
+    Type: OVERLAY
 
 Symbols:
   - Name: mainRenderer
