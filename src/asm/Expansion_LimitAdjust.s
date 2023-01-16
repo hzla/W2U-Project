@@ -6,14 +6,10 @@
 
 .equ ALWAYS_HAVE_NATL_DEX, 1
 
-@ when clicking on dex in the menu:
-@ 302, 301
-@ sliding animation:
-@ 299, 139
+@ when clicking on dex in the menu: 302, 301
+@ sliding animation: 299, 139
 @ blah blah unnecessary
-@ habitat:
-@ 304, 139
-
+@ habitat: 304, 139
 
 @ ARM9 Patches
 FULL_COPY_ARM9_0x0200C1C4: @ Based on what?
@@ -73,39 +69,68 @@ FULL_COPY_ARM9_0x02033CFC:
     .size FULL_COPY_ARM9_0x02033CFC, . - FULL_COPY_ARM9_0x02033CFC
 
 @ Overlay 299 patches
-FULL_COPY_OVL299_0x0219FC12: @ Expand structure 
+FULL_COPY_299_0x0219FC12: @ Expand structure 
     mov r6, #0x1B
     lsl r6, #8
-    .size FULL_COPY_OVL299_0x0219FC12, . - FULL_COPY_OVL299_0x0219FC12
+    .size FULL_COPY_299_0x0219FC12, . - FULL_COPY_299_0x0219FC12
 
-FULL_COPY_OVL299_0x021A0520: @ Expand structure 
+FULL_COPY_299_0x021A0520: @ Expand structure 
     .word PkmnCnt
-    .size FULL_COPY_OVL299_0x021A0520, . - FULL_COPY_OVL299_0x021A0520
+    .size FULL_COPY_299_0x021A0520, . - FULL_COPY_299_0x021A0520
 
-FULL_COPY_OVL299_0x021A0550:
+FULL_COPY_299_0x021A0550:
     .word PkmnCnt
-    .size FULL_COPY_OVL299_0x021A0550, . - FULL_COPY_OVL299_0x021A0550
-
+    .size FULL_COPY_299_0x021A0550, . - FULL_COPY_299_0x021A0550
+    
 @ basically all the fucking names are baked into the structure because of course.  we move them to the end here
-THUMB_BRANCH_LINK_OVL299_0x021A0488:
-    bl GetPkmName
-    .size THUMB_BRANCH_LINK_OVL299_0x021A0488, . - THUMB_BRANCH_LINK_OVL299_0x021A0488
+THUMB_BRANCH_LINK_299_0x021A0488:
+    b GetPkmName
+    .size THUMB_BRANCH_LINK_299_0x021A0488, . - THUMB_BRANCH_LINK_299_0x021A0488
 
-THUMB_BRANCH_LINK_OVL299_0x021A04CA:
-    bl GetPkmName
-    .size THUMB_BRANCH_LINK_OVL299_0x021A04CA, . - THUMB_BRANCH_LINK_OVL299_0x021A04CA
+THUMB_BRANCH_LINK_299_0x021A04CA:
+    b GetPkmName
+    .size THUMB_BRANCH_LINK_299_0x021A04CA, . - THUMB_BRANCH_LINK_299_0x021A04CA
 
-THUMB_BRANCH_LINK_OVL299_0x021A04F2:
-    bl GetPkmName
-    .size THUMB_BRANCH_LINK_OVL299_0x021A04F2, . - THUMB_BRANCH_LINK_OVL299_0x021A04F2
+THUMB_BRANCH_LINK_299_0x021A04F2:
+    b GetPkmName
+    .size THUMB_BRANCH_LINK_299_0x021A04F2, . - THUMB_BRANCH_LINK_299_0x021A04F2
 
-THUMB_BRANCH_LINK_OVL299_0x021A053C:
-    bl ReadPkmName
-    .size THUMB_BRANCH_LINK_OVL299_0x021A053C, . - THUMB_BRANCH_LINK_OVL299_0x021A053C
+THUMB_BRANCH_LINK_299_0x021A053C:
+    b ReadPkmName
+    .size THUMB_BRANCH_LINK_299_0x021A053C, . - THUMB_BRANCH_LINK_299_0x021A053C
 
-THUMB_BRANCH_LINK_OVL299_0x021A0578:
-    bl ReadPkm
-    .size THUMB_BRANCH_LINK_OVL299_0x021A0578, . - THUMB_BRANCH_LINK_OVL299_0x021A0578
+THUMB_BRANCH_LINK_299_0x021A0578:
+    b ReadPkm
+    .size THUMB_BRANCH_LINK_299_0x021A0578, . - THUMB_BRANCH_LINK_299_0x021A0578
+
+@ mon search lists down
+
+@ .org 0x021ACF2C
+@ lsl r2, r6, #0x11
+
+FULL_COPY_302_0x021AE244:
+    .word PkmnCnt
+    .size FULL_COPY_302_0x021AE244, . - FULL_COPY_302_0x021AE244
+
+FULL_COPY_302_0x021AE310: @ Space Limiter
+    .word 2 * PkmnCnt
+    .size FULL_COPY_302_0x021AE310, . - FULL_COPY_302_0x021AE310
+
+FULL_COPY_302_0x021AE318: @ what the fuck
+    .word PkmnCnt
+    .size FULL_COPY_302_0x021AE318, . - FULL_COPY_302_0x021AE318
+
+FULL_COPY_302_0x021AE37C: @ a sort of species limiter
+    .word 2 * PkmnCnt
+    .size FULL_COPY_302_0x021AE37C, . - FULL_COPY_302_0x021AE37C
+
+FULL_COPY_302_0x021AE384:
+    .word PkmnCnt
+    .size FULL_COPY_302_0x021AE384, . - FULL_COPY_302_0x021AE384
+
+@ .org 0x021AE3F8
+@ 
+@ .word PkmnCnt + 1 // file size 
 
 GetPkmName:
     add r1, r5, r1
@@ -116,6 +141,8 @@ GetPkmName:
     pop {r0}
     str r0, [r1, #0x4]
     bx lr
+    .size GetPkmName, . - GetPkmName
+
 ReadPkmName:
     add r0, r5, r0
     push {r1}
@@ -125,6 +152,8 @@ ReadPkmName:
     pop {r1}
     ldr r0, [r0, #0x4]
     bx lr
+    .size ReadPkmName, . - ReadPkmName
+    
 ReadPkm:
     mov r0, #0xC7
     lsl r0, r0, #0x4
@@ -132,36 +161,7 @@ ReadPkm:
     ldr r2, [r2, #0x4]
     mov r0, r5
     bx lr
-
-@ mon search lists down
-
-@ .org 0x021ACF2C
-@ lsl r2, r6, #0x11
-
-FULL_COPY_OVL302_0x021AE244:
-    .word PkmnCnt
-    .size FULL_COPY_OVL302_0x021AE244, . - FULL_COPY_OVL302_0x021AE244
-
-FULL_COPY_OVL302_0x021AE310: @ Space Limiter
-    .word 2 * PkmnCnt
-    .size FULL_COPY_OVL302_0x021AE310, . - FULL_COPY_OVL302_0x021AE310
-
-FULL_COPY_OVL302_0x021AE318: @ what the fuck
-    .word PkmnCnt
-    .size FULL_COPY_OVL302_0x021AE318, . - FULL_COPY_OVL302_0x021AE318
-
-FULL_COPY_OVL302_0x021AE37C: @ a sort of species limiter
-    .word 2 * PkmnCnt
-    .size FULL_COPY_OVL302_0x021AE37C, . - FULL_COPY_OVL302_0x021AE37C
-
-FULL_COPY_OVL302_0x021AE384:
-    .word PkmnCnt
-    .size FULL_COPY_OVL302_0x021AE384, . - FULL_COPY_OVL302_0x021AE384
-
-@ .org 0x021AE3F8
-@ 
-@ .word PkmnCnt + 1 // file size 
-
+    .size ReadPkm, . - ReadPkm
 
 @ grabbing regional dex indices is done 1x when clicking pokedex from the start menu
 @ the first is from sub_21AE250 in overlay 302, specifically 021AE290
@@ -173,4 +173,4 @@ FULL_COPY_OVL302_0x021AE384:
 @ 0x021A0254 again
 @ switching over to regional dex, it appears that 0x021AE290 is responsible for making the lists
 @ 0x021A0255 is called then.  it dumps the list of regional dex mons to +C5C of the dex structure
-@ followed by the counting functions again
+@ followed by the counting functions agai

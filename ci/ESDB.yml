@@ -25633,4 +25633,6 @@ Symbols:
   - Name: VRAM_I
     Segment: 0x17
     Address: 0x68a0000
-
+  - Name: sub_21CF55C
+    Segment: 0x1A
+    Address: 0x21CF55D
