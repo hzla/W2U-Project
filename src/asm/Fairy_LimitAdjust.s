@@ -1,3 +1,5 @@
+.type	THUMB_BRANCH_LINK_255_0x21CF574, %function
+
 .thumb
 
 .equ TypeCnt, 0x12
@@ -24,24 +26,23 @@ FULL_COPY_255_0x21D0A0A:
     cmp r4, #TypeCnt
     .size FULL_COPY_255_0x21D0A0A, . - FULL_COPY_255_0x21D0A0A
 
-@THUMB_BRANCH_sub_21CF55C_0x18:
-@   push {r2-r3, lr}
-@     ldr r1, =0xA0DC
-@     add r2, r1
-@     sub r2, r4
-@     ldr r3, =0xA268
-@     cmp r2, r3
-@     blt keep_r1_A0DC
-@     ldr r3, =0xA2AC
-@     cmp r2, r3
-@     bhi keep_r1_A0DC
-@     ldr r1, =0xA5BC-0x18C
-@ keep_r1_A0DC:
-@     ldr r0, =0x9E94
-@    pop {r2-r3, pc}
-@    bx lr
-@    .size THUMB_BRANCH_sub_21CF55C_0x18, . - THUMB_BRANCH_sub_21CF55C_0x18
-
+THUMB_BRANCH_LINK_255_0x21CF574:
+    push {r2-r3, lr}
+    ldr r1, =0xA0DC
+    add r2, r1
+    sub r2, r4
+    ldr r3, =0xA268
+    cmp r2, r3
+    blt keep_r1_A0DC
+    ldr r3, =0xA2AC
+    cmp r2, r3
+    bhi keep_r1_A0DC
+    ldr r1, =0xA5BC-0x18C
+keep_r1_A0DC:
+    ldr r0, =0x9E94
+    pop {r2-r3, pc}
+   .size THUMB_BRANCH_LINK_255_0x21CF574, . - THUMB_BRANCH_LINK_255_0x21CF574
+ 
 FULL_COPY_255_0x21BF2F0:
     mov r4, #NewTagStart
     .size FULL_COPY_255_0x21BF2F0, . - FULL_COPY_255_0x21BF2F0
@@ -67,8 +68,9 @@ FULL_COPY_255_0x21D0A4A:
     .size FULL_COPY_255_0x21D0A4A, . - FULL_COPY_255_0x21D0A4A
 
 @ BluRose's Hall of Fame fix
-FULL_COPY_265_0x2199FB4:
+THUMB_BRANCH_LINK_265_0x2199FB4:
     LDR R1, =HOF_SPA_LUT
+    bx lr
     .size FULL_COPY_265_0x2199FB4, . - FULL_COPY_265_0x2199FB4
 
 FULL_COPY_265_0x219DB2C:

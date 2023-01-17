@@ -1,5 +1,11 @@
 .thumb
 
+.type	THUMB_BRANCH_LINK_299_0x021A0488, %function
+.type	THUMB_BRANCH_LINK_299_0x021A04CA, %function
+.type	THUMB_BRANCH_LINK_299_0x021A04F2, %function
+.type	THUMB_BRANCH_LINK_299_0x021A053C, %function
+.type	THUMB_BRANCH_LINK_299_0x021A0578, %function
+
 .equ PkmnCnt, 721
 .equ RegionalDexPkmCnt, 302
 .equ RegionalDexFile, 826
@@ -84,23 +90,38 @@ FULL_COPY_299_0x021A0550:
     
 @ basically all the fucking names are baked into the structure because of course.  we move them to the end here
 THUMB_BRANCH_LINK_299_0x021A0488:
-    b GetPkmName
-    .size THUMB_BRANCH_LINK_299_0x021A0488, . - THUMB_BRANCH_LINK_299_0x021A0488
-
 THUMB_BRANCH_LINK_299_0x021A04CA:
-    b GetPkmName
-    .size THUMB_BRANCH_LINK_299_0x021A04CA, . - THUMB_BRANCH_LINK_299_0x021A04CA
-
 THUMB_BRANCH_LINK_299_0x021A04F2:
-    b GetPkmName
+    add r1, r5, r1
+    push {r0}
+    mov r0, #0xC7
+    lsl r0, r0, #0x4
+    add r1, r1, r0
+    pop {r0}
+    str r0, [r1, #0x4]
+    bx lr
+    .size THUMB_BRANCH_LINK_299_0x021A0488, . - THUMB_BRANCH_LINK_299_0x021A0488
+    .size THUMB_BRANCH_LINK_299_0x021A04CA, . - THUMB_BRANCH_LINK_299_0x021A04CA
     .size THUMB_BRANCH_LINK_299_0x021A04F2, . - THUMB_BRANCH_LINK_299_0x021A04F2
 
 THUMB_BRANCH_LINK_299_0x021A053C:
-    b ReadPkmName
+    add r0, r5, r0
+    push {r1}
+    mov r1, #0xC7
+    lsl r1, r1, #0x4
+    add r0, r1, r0
+    pop {r1}
+    ldr r0, [r0, #0x4]
+    bx lr
     .size THUMB_BRANCH_LINK_299_0x021A053C, . - THUMB_BRANCH_LINK_299_0x021A053C
 
 THUMB_BRANCH_LINK_299_0x021A0578:
-    b ReadPkm
+    mov r0, #0xC7
+    lsl r0, r0, #0x4
+    add r2, r0, r2
+    ldr r2, [r2, #0x4]
+    mov r0, r5
+    bx lr
     .size THUMB_BRANCH_LINK_299_0x021A0578, . - THUMB_BRANCH_LINK_299_0x021A0578
 
 @ mon search lists down
@@ -131,37 +152,6 @@ FULL_COPY_302_0x021AE384:
 @ .org 0x021AE3F8
 @ 
 @ .word PkmnCnt + 1 // file size 
-
-GetPkmName:
-    add r1, r5, r1
-    push {r0}
-    mov r0, #0xC7
-    lsl r0, r0, #0x4
-    add r1, r1, r0
-    pop {r0}
-    str r0, [r1, #0x4]
-    bx lr
-    .size GetPkmName, . - GetPkmName
-
-ReadPkmName:
-    add r0, r5, r0
-    push {r1}
-    mov r1, #0xC7
-    lsl r1, r1, #0x4
-    add r0, r1, r0
-    pop {r1}
-    ldr r0, [r0, #0x4]
-    bx lr
-    .size ReadPkmName, . - ReadPkmName
-    
-ReadPkm:
-    mov r0, #0xC7
-    lsl r0, r0, #0x4
-    add r2, r0, r2
-    ldr r2, [r2, #0x4]
-    mov r0, r5
-    bx lr
-    .size ReadPkm, . - ReadPkm
 
 @ grabbing regional dex indices is done 1x when clicking pokedex from the start menu
 @ the first is from sub_21AE250 in overlay 302, specifically 021AE290
