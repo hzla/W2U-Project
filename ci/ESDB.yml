@@ -33,13 +33,13 @@ Segments:
     Name: 76
     Type: OVERLAY
   - ID: 0xb
-    Name: ARM9_DATA
+    Name: ARM9DATA
     Type: null
   - ID: 0xc
     Name: 279
     Type: OVERLAY
   - ID: 0xd
-    Name: ARM9_BSS
+    Name: ARM9BSS
     Type: null
   - ID: 0xe
     Name: 33

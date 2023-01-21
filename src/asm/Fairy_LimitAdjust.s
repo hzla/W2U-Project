@@ -68,18 +68,53 @@ FULL_COPY_255_0x21D0A4A:
     .size FULL_COPY_255_0x21D0A4A, . - FULL_COPY_255_0x21D0A4A
 
 @ BluRose's Hall of Fame fix
-THUMB_BRANCH_LINK_265_0x2199FB4:
-    LDR R1, =HOF_SPA_LUT
-    bx lr
-    .size FULL_COPY_265_0x2199FB4, . - FULL_COPY_265_0x2199FB4
 
-FULL_COPY_265_0x219DB2C:
+FULL_COPY_255_0x0219B908:
+    @ TYPE_NORMAL   
+    .word 0x2D
+    @ TYPE_FIGHTING 
+    .word 0x26
+    @ TYPE_FLYING   
+    .word 0x28
+    @ TYPE_POISON   
+    .word 0x2E
+    @ TYPE_GROUND   
+    .word 0x2B
+    @ TYPE_ROCK     
+    .word 0x30
+    @ TYPE_BUG      
+    .word 0x22
+    @ TYPE_GHOST    
+    .word 0x29
+    @ TYPE_STEEL    
+    .word 0x31
+    @ TYPE_FIRE     
+    .word 0x27
+    @ TYPE_WATER    
+    .word 0x32
+    @ TYPE_GRASS    
+    .word 0x2A
+    @ TYPE_ELECTRIC 
+    .word 0x25
+    @ TYPE_PSYCHIC  
+    .word 0x2F
+    @ TYPE_ICE      
+    .word 0x2C
+    @ TYPE_DRAGON   
+    .word 0x24
+    @ TYPE_DARK     
+    .word 0x23
+    @ TYPE_FAIRY. TODO: Make SPA for this guy, currently loads the same as NORMAL.
+    .word 0x2D 
+    .size FULL_COPY_255_0x0219B908, . - FULL_COPY_255_0x0219B908
+
+FULL_COPY_265_0x219BADC:
     .word 4
-    .size FULL_COPY_265_0x219DB2C, . - FULL_COPY_265_0x219DB2C
+    .size FULL_COPY_265_0x219BADC, . - FULL_COPY_265_0x219BADC
 
-FULL_COPY_265_0x219FD4C:
+FULL_COPY_265_0x219BB1C:
     .word 0
-    .size FULL_COPY_265_0x219FD4C, . - FULL_COPY_265_0x219FD4C
+    .size FULL_COPY_265_0x219BB1C, . - FULL_COPY_265_0x219BB1C
 
 @ Summary Screen Fixes?
 FULL_COPY_207_0x021B5110:
@@ -231,45 +266,6 @@ FULL_COPY_167_0x21C9FF6:
     .byte TypeCnt
     .size FULL_COPY_167_0x21C9FF6, . - FULL_COPY_167_0x21C9FF6
 
-FULL_COPY_ARM9_0x20920C9:
-    .byte 2
-    .size FULL_COPY_ARM9_0x20920C9, . - FULL_COPY_ARM9_0x20920C9
-
-HOF_SPA_LUT:
-    @ TYPE_NORMAL   
-    .word 0x2D
-    @ TYPE_FIGHTING 
-    .word 0x26
-    @ TYPE_FLYING   
-    .word 0x28
-    @ TYPE_POISON   
-    .word 0x2E
-    @ TYPE_GROUND   
-    .word 0x2B
-    @ TYPE_ROCK     
-    .word 0x30
-    @ TYPE_BUG      
-    .word 0x22
-    @ TYPE_GHOST    
-    .word 0x29
-    @ TYPE_STEEL    
-    .word 0x31
-    @ TYPE_FIRE     
-    .word 0x27
-    @ TYPE_WATER    
-    .word 0x32
-    @ TYPE_GRASS    
-    .word 0x2A
-    @ TYPE_ELECTRIC 
-    .word 0x25
-    @ TYPE_PSYCHIC  
-    .word 0x2F
-    @ TYPE_ICE      
-    .word 0x2C
-    @ TYPE_DRAGON   
-    .word 0x24
-    @ TYPE_DARK     
-    .word 0x23
-    @ TYPE_FAIRY. TODO: Make SPA for this guy, currently loads the same as NORMAL.
-    .word 0x2D 
-.size HOF_SPA_LUT, . - HOF_SPA_LUT
+FULL_COPY_ARM9_0x20920B8:
+    .byte 0, 0, 1, 1, 0, 0, 2, 1, 0, 0, 1,  2,  0,  1,  1,  2,  0,  2,  1,  1,  2,  0,  0,  0
+    .size FULL_COPY_ARM9_0x20920B8, . - FULL_COPY_ARM9_0x20920B8
