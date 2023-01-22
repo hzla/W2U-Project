@@ -3,6 +3,8 @@
         "swantypes.h": "c",
         "poke_param.h": "c",
         "gamesystem.h": "c",
-        "personal.h": "c"
+        "personal.h": "c",
+        "field_sound_system.h": "c",
+        "game_data.h": "c"
     }
 }

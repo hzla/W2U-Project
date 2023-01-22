@@ -75,7 +75,7 @@ $(romfs)/patches/$(project).dll: $(code_build_dir)/$(project).elf
 
 $(code_build_dir)/$(project).elf : $(objs)
 	@ echo "[+] Linking all objects into $@..."
-	@ $(ld) -o $@ -r $(c_objs) $(asm_objs)
+	@ $(ld) -o $@ -r $(c_objs) $(cpp_objs) $(asm_objs)
 
 # Code compilation/assembly.
 $(asm_build)/%.d : $(asm_src_dir)/%.s

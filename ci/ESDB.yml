@@ -340,6 +340,12 @@ Symbols:
   - Name: GFL_SndBGMPlayCore
     Segment: 0x0
     Address: 0x2005d99
+  - Name: sub_2005D6C
+    Segment: 0x0
+    Address: 0x2005D6D
+  - Name: sub_202EF60
+    Segment: 0x0
+    Address: 0x202EF61
   - Name: GFL_SndBGMPlay
     Segment: 0x0
     Address: 0x2005df5
@@ -4810,6 +4816,9 @@ Symbols:
   - Name: GetZoneBGMOverrideID
     Segment: 0x0
     Address: 0x20300ed
+  - Name: RingtoneSys_Create
+    Segment: 0x0
+    Address: 0x20301F1
   - Name: GetMapBGMIDByPlayerState
     Segment: 0x0
     Address: 0x2030191
