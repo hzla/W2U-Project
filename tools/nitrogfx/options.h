@@ -33,6 +33,7 @@ struct PngToNtrOptions {
     bool sopc;
     uint32_t scanMode;
     bool handleEmpty;
+    bool bitmap;
 };
 
 struct NtrToPngOptions {

@@ -81,7 +81,7 @@ void ConvertNtrToPng(char *inputPath, char *outputPath, struct NtrToPngOptions *
         image.hasPalette = false;
     }
 
-    uint32_t key = ReadNtrImage(inputPath, options->width, 0, options->metatileWidth, options->metatileHeight, &image, !image.hasPalette, options->scanFrontToBack);
+    uint32_t key = ReadNtrImage(inputPath, options->width, 0, options->metatileWidth, options->metatileHeight, &image, !image.hasPalette);
 
     if (key)
     {
@@ -158,7 +158,7 @@ void ConvertPngToNtr(char *inputPath, char *outputPath, struct PngToNtrOptions *
         fclose(fp2);
     }
 
-    WriteNtrImage(outputPath, options->numTiles, image.bitDepth, options->metatileWidth, options->metatileHeight, &image, !image.hasPalette, options->clobberSize, options->byteOrder, options->version101, options->sopc, options->scanMode, key);
+    WriteNtrImage(outputPath, options->numTiles, image.bitDepth, options->metatileWidth, options->metatileHeight, &image, !image.hasPalette, options->clobberSize, options->byteOrder, options->version101, options->sopc, options->scanMode, key, options->bitmap);
 
     FreeImage(&image);
 }
@@ -513,6 +513,10 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
         else if (strcmp(option, "-handleempty") == 0)
         {
             options.handleEmpty = true;
+        }
+        else if (strcmp(option, "-bitmap") == 0)
+        {
+            options.bitmap = true;
         }
         else
         {
@@ -990,20 +994,20 @@ int main(int argc, char **argv)
         { "4bpp", "png", HandleGbaToPngCommand },
         { "8bpp", "png", HandleGbaToPngCommand },
         { "nbfc", "png", HandleGbaToPngCommand },
-        { "NCGR", "png", HandleNtrToPngCommand },
+        { "ncgr", "png", HandleNtrToPngCommand },
         { "png", "1bpp", HandlePngToGbaCommand },
         { "png", "4bpp", HandlePngToGbaCommand },
         { "png", "nbfc", HandlePngToGbaCommand },
         { "png", "8bpp", HandlePngToGbaCommand },
-        { "png", "NCGR", HandlePngToNtrCommand },
+        { "png", "ncgr", HandlePngToNtrCommand },
         { "png", "gbapal", HandlePngToGbaPaletteCommand },
         { "png", "nbfp", HandlePngToGbaPaletteCommand },
-        { "png", "NCLR", HandlePngToNtrPaletteCommand },
+        { "png", "nclr", HandlePngToNtrPaletteCommand },
         { "gbapal", "pal", HandleGbaToJascPaletteCommand },
-        { "NCLR", "pal", HandleNtrToJascPaletteCommand },
-        { "NCPR", "pal", HandleNtrToJascPaletteCommand },
+        { "nclr", "pal", HandleNtrToJascPaletteCommand },
+        { "ncpr", "pal", HandleNtrToJascPaletteCommand },
         { "pal", "gbapal", HandleJascToGbaPaletteCommand },
-        { "pal", "NCLR", HandleJascToNtrPaletteCommand },
+        { "pal", "nclr", HandleJascToNtrPaletteCommand },
         { "latfont", "png", HandleLatinFontToPngCommand },
         { "png", "latfont", HandlePngToLatinFontCommand },
         { "hwjpnfont", "png", HandleHalfwidthJapaneseFontToPngCommand },

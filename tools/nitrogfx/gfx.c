@@ -93,47 +93,72 @@ static void ConvertFromTiles4Bpp(unsigned char *src, unsigned char *dest, int nu
 	}
 }
 
-static uint32_t ConvertFromScanned4Bpp(unsigned char *src, unsigned char *dest, int fileSize, bool invertColours, bool scanFrontToBack)
-{
-    uint32_t encValue = 0;
-    if (scanFrontToBack) {
-        encValue = (src[1] << 8) | src[0];
-        for (int i = 0; i < fileSize; i += 2)
-        {
-            uint16_t val = src[i] | (src[i + 1] << 8);
-            val ^= (encValue & 0xFFFF);
-            src[i] = val;
-            src[i + 1] = val >> 8;
-            encValue = encValue * 1103515245;
-            encValue = encValue + 24691;
-        }
-    } else {
-        encValue = (src[fileSize - 1] << 8) | src[fileSize - 2];
-        for (int i = fileSize; i > 0; i -= 2)
-        {
-            uint16_t val = (src[i - 1] << 8) | src[i - 2];
-            val ^= (encValue & 0xFFFF);
-            src[i - 1] = (val >> 8);
-            src[i - 2] = val;
-            encValue = encValue * 1103515245;
-            encValue = encValue + 24691;
-        }
-    }
-    for (int i = 0; i < fileSize; i++)
-    {
-        unsigned char srcPixelPair = src[i];
-        unsigned char leftPixel = srcPixelPair & 0xF;
-        unsigned char rightPixel = srcPixelPair >> 4;
+static void ConvertFromTiles4BppBitmap(unsigned char *src, unsigned char *dest, int width, int height, bool invertColors) {
+    int Pitch = width << 3;
+	for (int TileY = 0; TileY < height; TileY++) {
+        for (int TileX = 0; TileX < width; ++TileX) {
+            uint32_t IndexOffset = 4 * TileX + 32 * TileY * width;
+            for (int y = 0; y < 8; y++) {
+                for (int x = 0; x < 4; x++) {
+                    int destX = (TileX * 8 + 2 * x), destY = (TileY * 8 + y);
+                    unsigned char srcPixelPair = src[IndexOffset + x + 4 * y * width];
+                    unsigned char leftPixel = srcPixelPair & 0xF;
+                    unsigned char rightPixel = srcPixelPair >> 4;
 
-        if (invertColours) {
-            leftPixel = 15 - leftPixel;
-            rightPixel = 15 - rightPixel;
-        }
+                    if (invertColors) {
+                        leftPixel = 15 - leftPixel;
+                        rightPixel = 15 - rightPixel;
+                    }
 
-        dest[i] = (leftPixel << 4) | rightPixel;
-    }
-    return encValue;
+                    dest[(destY * Pitch + destX++) >> 1] = (leftPixel << 0x4) | rightPixel;
+                    dest[(destY * Pitch + destX) >> 1] = (leftPixel << 0x4) | rightPixel;
+                }
+            }
+        }
+	}
 }
+
+// static uint32_t ConvertFromScanned4Bpp(unsigned char *src, unsigned char *dest, int fileSize, bool invertColours, bool scanFrontToBack)
+// {
+//     uint32_t encValue = 0;
+//     if (scanFrontToBack) {
+//         encValue = (src[1] << 8) | src[0];
+//         for (int i = 0; i < fileSize; i += 2)
+//         {
+//             uint16_t val = src[i] | (src[i + 1] << 8);
+//             val ^= (encValue & 0xFFFF);
+//             src[i] = val;
+//             src[i + 1] = val >> 8;
+//             encValue = encValue * 1103515245;
+//             encValue = encValue + 24691;
+//         }
+//     } else {
+//         encValue = (src[fileSize - 1] << 8) | src[fileSize - 2];
+//         for (int i = fileSize; i > 0; i -= 2)
+//         {
+//             uint16_t val = (src[i - 1] << 8) | src[i - 2];
+//             val ^= (encValue & 0xFFFF);
+//             src[i - 1] = (val >> 8);
+//             src[i - 2] = val;
+//             encValue = encValue * 1103515245;
+//             encValue = encValue + 24691;
+//         }
+//     }
+//     for (int i = 0; i < fileSize; i++)
+//     {
+//         unsigned char srcPixelPair = src[i];
+//         unsigned char leftPixel = srcPixelPair & 0xF;
+//         unsigned char rightPixel = srcPixelPair >> 4;
+
+//         if (invertColours) {
+//             leftPixel = 15 - leftPixel;
+//             rightPixel = 15 - rightPixel;
+//         }
+
+//         dest[i] = (leftPixel << 4) | rightPixel;
+//     }
+//     return encValue;
+// }
 
 static void ConvertFromTiles8Bpp(unsigned char *src, unsigned char *dest, int numTiles, int metatilesWide, int metatileWidth, int metatileHeight, bool invertColors)
 {
@@ -154,6 +179,7 @@ static void ConvertFromTiles8Bpp(unsigned char *src, unsigned char *dest, int nu
 				if (invertColors)
 					srcPixel = 255 - srcPixel;
 
+                
 				dest[destY * pitch + destX] = srcPixel;
 			}
 		}
@@ -216,6 +242,31 @@ static void ConvertToTiles4Bpp(unsigned char *src, unsigned char *dest, int numT
 		}
 
 		AdvanceMetatilePosition(&subTileX, &subTileY, &metatileX, &metatileY, metatilesWide, metatileWidth, metatileHeight);
+	}
+}
+
+static void ConvertToTiles4BppBitmap(unsigned char *src, unsigned char *dest, int width, int height, bool invertColors) {
+    int Pitch = (width << 3);
+    printf("Height: %d\n", height);
+    printf("Width: %d\n", width);
+	for (int TileY = 0; TileY < height; TileY++) {
+        for (int TileX = 0; TileX < width; ++TileX) {
+            uint32_t IndexOffset = 4 * TileX + 32 * TileY * width;
+            for (int y = 0; y < 8; y++) {
+                for (int x = 0; x < 4; x++) {
+                    int srcX = (TileX * 8 + 2 * x), srcY = (TileY * 8 + y);
+                    unsigned char srcPixelPair = src[(srcY * Pitch + srcX) >> 1];
+                    unsigned char leftPixel = srcPixelPair >> 0x4;
+                    unsigned char rightPixel = srcPixelPair & 0xF;
+
+                    if (invertColors) {
+                        leftPixel = 15 - leftPixel;
+                        rightPixel = 15 - rightPixel;
+                    }
+                    dest[IndexOffset + x + 4 * y * width] = (rightPixel << 0x4) | leftPixel;
+                }
+            }
+        }
 	}
 }
 
@@ -324,34 +375,30 @@ void ReadImage(char *path, int tilesWidth, int bitDepth, int metatileWidth, int 
 	free(buffer);
 }
 
-uint32_t ReadNtrImage(char *path, int tilesWidth, int bitDepth, int metatileWidth, int metatileHeight, struct Image *image, bool invertColors, bool scanFrontToBack)
+uint32_t ReadNtrImage(char *path, int tilesWidth, int bitDepth, int metatileWidth, int metatileHeight, struct Image *image, bool invertColors)
 {
     int fileSize;
     unsigned char *buffer = ReadWholeFile(path, &fileSize);
 
-    if (memcmp(buffer, "RGCN", 4) != 0)
-    {
+    if (memcmp(buffer, "RGCN", 4) != 0) {
         FATAL_ERROR("Not a valid NCGR character file.\n");
     }
 
     unsigned char *charHeader = buffer + 0x10;
 
-    if (memcmp(charHeader, "RAHC", 4) != 0)
-    {
+    if (memcmp(charHeader, "RAHC", 4) != 0) {
         FATAL_ERROR("No valid CHAR file after NCLR header.\n");
     }
 
     bitDepth = bitDepth ? bitDepth : (charHeader[0xC] == 3 ? 4 : 8);
 
-    if (bitDepth == 4)
-    {
+    if (bitDepth == 4) {
         image->palette.numColors = 16;
     }
 
-    unsigned char *imageData = charHeader + 0x20;
+    unsigned char *imageData = charHeader + ReadS32(charHeader, 0x1C) + 0x8;
 
-    bool scanned = charHeader[0x14];
-
+    int char_type = ReadS32(charHeader, 0x14);
     int tileSize = bitDepth * 8;
 
     if (tilesWidth == 0) {
@@ -385,20 +432,17 @@ uint32_t ReadNtrImage(char *path, int tilesWidth, int bitDepth, int metatileWidt
     int metatilesWide = tilesWidth / metatileWidth;
 
     uint32_t key = 0;
-    if (scanned)
-    {
-        switch (bitDepth)
-        {
+    if (char_type) {
+        switch (bitDepth) {
             case 4:
-                key = ConvertFromScanned4Bpp(imageData, image->pixels, fileSize - 0x30, invertColors, scanFrontToBack);
+                image->pixels = calloc(image->width * image->height, sizeof(uint8_t));
+                ConvertFromTiles4BppBitmap(imageData, image->pixels, tilesWidth, tilesHeight, invertColors);
                 break;
             case 8:
                 FATAL_ERROR("8bpp is not implemented yet\n");
                 break;
         }
-    }
-    else
-    {
+    } else {
         switch (bitDepth)
         {
             case 4:
@@ -467,7 +511,7 @@ void WriteImage(char *path, int numTiles, int bitDepth, int metatileWidth, int m
 	free(buffer);
 }
 
-void WriteNtrImage(char *path, int numTiles, int bitDepth, int metatileWidth, int metatileHeight, struct Image *image, bool invertColors, bool clobberSize, bool byteOrder, bool version101, bool sopc, uint32_t scanMode, uint32_t key)
+void WriteNtrImage(char *path, int numTiles, int bitDepth, int metatileWidth, int metatileHeight, struct Image *image, bool invertColors, bool clobberSize, bool byteOrder, bool version101, bool sopc, uint32_t scanMode, uint32_t key, bool bitmap)
 {
     FILE *fp = fopen(path, "wb");
 
@@ -506,12 +550,20 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int metatileWidth, in
 
     int metatilesWide = tilesWidth / metatileWidth;
 
-    if (scanMode)
-    {
-        switch (bitDepth)
-        {
+    if (scanMode) {
+        switch (bitDepth) {
             case 4:
                 ConvertToScanned4Bpp(image->pixels, pixelBuffer, bufferSize, invertColors, key, scanMode);
+                break;
+            case 8:
+                FATAL_ERROR("8Bpp not supported yet.\n");
+                break;
+        }
+    }
+    else if (bitmap) {
+        switch (bitDepth) {
+            case 4:
+                ConvertToTiles4BppBitmap(image->pixels, pixelBuffer, tilesWidth, tilesHeight, invertColors);
                 break;
             case 8:
                 FATAL_ERROR("8Bpp not supported yet.\n");
@@ -536,7 +588,7 @@ void WriteNtrImage(char *path, int numTiles, int bitDepth, int metatileWidth, in
     WriteGenericNtrHeader(fp, "RGCN", bufferSize + (sopc ? 0x30 : 0x20), byteOrder, version101, sopc ? 2 : 1);
 
     unsigned char charHeader[0x20] = { 0x52, 0x41, 0x48, 0x43, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00 };
+                                       0x00, 0x00, 0x00, 0x00, bitmap ? 0x1 : 0x00, 0x00, 0x00, 0x00, 0x00, bitmap ? 0x40 : 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00 };
 
     charHeader[4] = (bufferSize + 0x20) & 0xFF;
     charHeader[5] = ((bufferSize + 0x20) >> 8) & 0xFF;

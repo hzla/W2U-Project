@@ -3,7 +3,7 @@
 
 #define FORM_START 1522
 
-namespace W2U_Expansion
+namespace W2U
 {
     extern "C"
     {

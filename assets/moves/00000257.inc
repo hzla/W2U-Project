@@ -1,0 +1,25 @@
+.align 4
+
+Move257:
+	Type 9
+	Quality 4
+	Category 2
+	Power 95
+	Accuracy 90
+	BasePP 10
+	Priority 0
+	HitMinMax 0
+	InflictStatus 4
+	InflictChance 10
+	InflictDuration 1
+	TurnMin 0
+	TurnMax 0
+	CritStage 0
+	FlinchRate 0
+	MoveAnimationID 4
+	Recoil 0
+	Target 0
+	StatChangeStats 5, 0, 0
+	StatChangeStages 0, 0, 0
+	StatChangeChances 0, 0, 0
+	Flags 0x535348

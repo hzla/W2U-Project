@@ -4,3 +4,5 @@ tools/CTRMap/CTRMap.jar
 *.nds
 *.o
 *.d
+*.nclr
+*.ncgr

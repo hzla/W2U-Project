@@ -1,0 +1,17 @@
+Species_125:
+	LearnsetEntry 98, 1
+	LearnsetEntry 43, 1
+	LearnsetEntry 84, 1
+	LearnsetEntry 84, 5
+	LearnsetEntry 67, 8
+	LearnsetEntry 129, 12
+	LearnsetEntry 351, 15
+	LearnsetEntry 86, 19
+	LearnsetEntry 486, 22
+	LearnsetEntry 113, 26
+	LearnsetEntry 9, 29
+	LearnsetEntry 435, 36
+	LearnsetEntry 103, 42
+	LearnsetEntry 85, 49
+	LearnsetEntry 87, 55
+	LearnsetEntry 65535, 65535
