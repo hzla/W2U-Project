@@ -44,7 +44,7 @@ struct PersonalData {
 Count = -1
 PersonalExt = Path('build/IRDO/narcs/a/0/1/6')
 
-with open('assets/Personal.cpp', 'w') as Personal:
+with open('src/c/Personal.cpp', 'w') as Personal:
     Personal.write('u32 __size = sizeof(PERSONAL_DATA);\n\n')
     Personal.write('const PERSONAL_DATA __data[] = {\n')
     for Entry in sorted(PersonalExt.glob('*')):

@@ -12,7 +12,7 @@ with open('txtdmp/Items.txt', 'r') as NamesRAW:
     else:
       break
 Count = 0
-with open('assets/Items.h', 'w') as Personal:
+with open('include/Items.h', 'w') as Personal:
   Personal.write(f'#ifndef __ITEMS_H\n#define __ITEMS_H\n\n')
   Personal.write(f'#include \"swan/swantypes.h\"\n\n')
   for Entry in sorted(PersonalExt.glob('*')):
@@ -61,7 +61,7 @@ struct ItemBattleStats
 ''')
   Personal.write(f'#endif\n')
 Count = 0
-with open('assets/Items.cpp', 'w') as Personal:
+with open('src/c/Items.cpp', 'w') as Personal:
   Personal.write(f'#include "Items.h"\n\nu32 __size = sizeof(ITEM_DATA);\n\nconst ITEM_DATA __data[] = {{\n')
   for Entry in sorted(PersonalExt.glob('*')):
     Personal.write(f'\t[ITEM_{Names[Count]}] = {{\n') # Header

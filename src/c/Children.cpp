@@ -1,2061 +1,2062 @@
+#include "Species.h"
 #include "Children.h"
 
 u32 __size = sizeof(CHILD_DATA);
 
 const CHILD_DATA __data[] = {
-	[CHILDREN_NONE] = {
+	[SPECIES_NONE] = {
 		.ID = 0,
 	},
-	[CHILDREN_BULBASAUR] = {
+	[SPECIES_BULBASAUR] = {
 		.ID = 1,
 	},
-	[CHILDREN_IVYSAUR] = {
-		.ID = 10,
-	},
-	[CHILDREN_VENUSAUR] = {
-		.ID = 100,
-	},
-	[CHILDREN_CHARMANDER] = {
-		.ID = 100,
-	},
-	[CHILDREN_CHARMELEON] = {
-		.ID = 102,
-	},
-	[CHILDREN_CHARIZARD] = {
-		.ID = 102,
-	},
-	[CHILDREN_SQUIRTLE] = {
-		.ID = 104,
-	},
-	[CHILDREN_WARTORTLE] = {
-		.ID = 104,
-	},
-	[CHILDREN_BLASTOISE] = {
-		.ID = 236,
-	},
-	[CHILDREN_CATERPIE] = {
-		.ID = 236,
-	},
-	[CHILDREN_METAPOD] = {
-		.ID = 108,
-	},
-	[CHILDREN_BUTTERFREE] = {
-		.ID = 109,
-	},
-	[CHILDREN_WEEDLE] = {
-		.ID = 10,
-	},
-	[CHILDREN_KAKUNA] = {
-		.ID = 109,
-	},
-	[CHILDREN_BEEDRILL] = {
-		.ID = 111,
-	},
-	[CHILDREN_PIDGEY] = {
-		.ID = 111,
-	},
-	[CHILDREN_PIDGEOTTO] = {
-		.ID = 440,
-	},
-	[CHILDREN_PIDGEOT] = {
-		.ID = 114,
-	},
-	[CHILDREN_RATTATA] = {
-		.ID = 115,
-	},
-	[CHILDREN_RATICATE] = {
-		.ID = 116,
-	},
-	[CHILDREN_SPEAROW] = {
-		.ID = 116,
-	},
-	[CHILDREN_FEAROW] = {
-		.ID = 118,
-	},
-	[CHILDREN_EKANS] = {
-		.ID = 118,
-	},
-	[CHILDREN_ARBOK] = {
-		.ID = 10,
-	},
-	[CHILDREN_PIKACHU] = {
-		.ID = 120,
-	},
-	[CHILDREN_RAICHU] = {
-		.ID = 120,
-	},
-	[CHILDREN_SANDSHREW] = {
-		.ID = 439,
-	},
-	[CHILDREN_SANDSLASH] = {
-		.ID = 123,
-	},
-	[CHILDREN_NIDORAN♀] = {
-		.ID = 238,
-	},
-	[CHILDREN_NIDORINA] = {
-		.ID = 239,
-	},
-	[CHILDREN_NIDOQUEEN] = {
-		.ID = 240,
-	},
-	[CHILDREN_NIDORAN♂] = {
-		.ID = 127,
-	},
-	[CHILDREN_NIDORINO] = {
-		.ID = 128,
-	},
-	[CHILDREN_NIDOKING] = {
-		.ID = 129,
-	},
-	[CHILDREN_CLEFAIRY] = {
-		.ID = 13,
-	},
-	[CHILDREN_CLEFABLE] = {
-		.ID = 129,
-	},
-	[CHILDREN_VULPIX] = {
-		.ID = 131,
-	},
-	[CHILDREN_NINETALES] = {
-		.ID = 132,
-	},
-	[CHILDREN_JIGGLYPUFF] = {
-		.ID = 133,
-	},
-	[CHILDREN_WIGGLYTUFF] = {
-		.ID = 133,
-	},
-	[CHILDREN_ZUBAT] = {
-		.ID = 133,
-	},
-	[CHILDREN_GOLBAT] = {
-		.ID = 133,
-	},
-	[CHILDREN_ODDISH] = {
-		.ID = 137,
-	},
-	[CHILDREN_GLOOM] = {
-		.ID = 138,
-	},
-	[CHILDREN_VILEPLUME] = {
-		.ID = 138,
-	},
-	[CHILDREN_PARAS] = {
-		.ID = 13,
-	},
-	[CHILDREN_PARASECT] = {
-		.ID = 140,
-	},
-	[CHILDREN_VENONAT] = {
-		.ID = 140,
-	},
-	[CHILDREN_VENOMOTH] = {
-		.ID = 142,
-	},
-	[CHILDREN_DIGLETT] = {
-		.ID = 446,
-	},
-	[CHILDREN_DUGTRIO] = {
-		.ID = 144,
-	},
-	[CHILDREN_MEOWTH] = {
-		.ID = 145,
-	},
-	[CHILDREN_PERSIAN] = {
-		.ID = 146,
-	},
-	[CHILDREN_PSYDUCK] = {
-		.ID = 147,
-	},
-	[CHILDREN_GOLDUCK] = {
-		.ID = 147,
-	},
-	[CHILDREN_MANKEY] = {
-		.ID = 147,
-	},
-	[CHILDREN_PRIMEAPE] = {
-		.ID = 13,
-	},
-	[CHILDREN_GROWLITHE] = {
-		.ID = 150,
-	},
-	[CHILDREN_ARCANINE] = {
-		.ID = 151,
-	},
-	[CHILDREN_POLIWAG] = {
-		.ID = 152,
-	},
-	[CHILDREN_POLIWHIRL] = {
-		.ID = 152,
-	},
-	[CHILDREN_POLIWRATH] = {
-		.ID = 152,
-	},
-	[CHILDREN_ABRA] = {
-		.ID = 155,
-	},
-	[CHILDREN_KADABRA] = {
-		.ID = 155,
-	},
-	[CHILDREN_ALAKAZAM] = {
-		.ID = 155,
-	},
-	[CHILDREN_MACHOP] = {
-		.ID = 158,
-	},
-	[CHILDREN_MACHOKE] = {
-		.ID = 158,
-	},
-	[CHILDREN_MACHAMP] = {
-		.ID = 16,
-	},
-	[CHILDREN_BELLSPROUT] = {
-		.ID = 158,
-	},
-	[CHILDREN_WEEPINBELL] = {
-		.ID = 161,
-	},
-	[CHILDREN_VICTREEBEL] = {
-		.ID = 161,
-	},
-	[CHILDREN_TENTACOOL] = {
-		.ID = 163,
-	},
-	[CHILDREN_TENTACRUEL] = {
-		.ID = 163,
-	},
-	[CHILDREN_GEODUDE] = {
-		.ID = 165,
-	},
-	[CHILDREN_GRAVELER] = {
-		.ID = 165,
-	},
-	[CHILDREN_GOLEM] = {
-		.ID = 167,
-	},
-	[CHILDREN_PONYTA] = {
-		.ID = 167,
-	},
-	[CHILDREN_RAPIDASH] = {
-		.ID = 41,
-	},
-	[CHILDREN_SLOWPOKE] = {
-		.ID = 16,
-	},
-	[CHILDREN_SLOWBRO] = {
-		.ID = 170,
-	},
-	[CHILDREN_MAGNEMITE] = {
-		.ID = 170,
-	},
-	[CHILDREN_MAGNETON] = {
-		.ID = 172,
-	},
-	[CHILDREN_FARFETCHD] = {
-		.ID = 173,
-	},
-	[CHILDREN_DODUO] = {
-		.ID = 174,
-	},
-	[CHILDREN_DODRIO] = {
-		.ID = 175,
-	},
-	[CHILDREN_SEEL] = {
-		.ID = 175,
-	},
-	[CHILDREN_DEWGONG] = {
-		.ID = 177,
-	},
-	[CHILDREN_GRIMER] = {
-		.ID = 177,
-	},
-	[CHILDREN_MUK] = {
-		.ID = 179,
-	},
-	[CHILDREN_SHELLDER] = {
-		.ID = 16,
-	},
-	[CHILDREN_CLOYSTER] = {
-		.ID = 179,
-	},
-	[CHILDREN_GASTLY] = {
-		.ID = 179,
-	},
-	[CHILDREN_HAUNTER] = {
-		.ID = 43,
-	},
-	[CHILDREN_GENGAR] = {
-		.ID = 298,
-	},
-	[CHILDREN_ONIX] = {
-		.ID = 298,
-	},
-	[CHILDREN_DROWZEE] = {
-		.ID = 438,
-	},
-	[CHILDREN_HYPNO] = {
-		.ID = 60,
-	},
-	[CHILDREN_KRABBY] = {
-		.ID = 187,
-	},
-	[CHILDREN_KINGLER] = {
-		.ID = 187,
-	},
-	[CHILDREN_VOLTORB] = {
-		.ID = 187,
-	},
-	[CHILDREN_ELECTRODE] = {
-		.ID = 19,
-	},
-	[CHILDREN_EXEGGCUTE] = {
-		.ID = 190,
-	},
-	[CHILDREN_EXEGGUTOR] = {
-		.ID = 191,
-	},
-	[CHILDREN_CUBONE] = {
-		.ID = 191,
-	},
-	[CHILDREN_MAROWAK] = {
-		.ID = 193,
-	},
-	[CHILDREN_HITMONLEE] = {
-		.ID = 194,
-	},
-	[CHILDREN_HITMONCHAN] = {
-		.ID = 194,
-	},
-	[CHILDREN_LICKITUNG] = {
-		.ID = 133,
-	},
-	[CHILDREN_KOFFING] = {
-		.ID = 133,
-	},
-	[CHILDREN_WEEZING] = {
-		.ID = 198,
-	},
-	[CHILDREN_RHYHORN] = {
-		.ID = 79,
-	},
-	[CHILDREN_RHYDON] = {
+	[SPECIES_IVYSAUR] = {
 		.ID = 1,
 	},
-	[CHILDREN_CHANSEY] = {
-		.ID = 19,
-	},
-	[CHILDREN_TANGELA] = {
-		.ID = 200,
-	},
-	[CHILDREN_KANGASKHAN] = {
-		.ID = 201,
-	},
-	[CHILDREN_HORSEA] = {
-		.ID = 360,
-	},
-	[CHILDREN_SEADRA] = {
-		.ID = 203,
-	},
-	[CHILDREN_GOLDEEN] = {
-		.ID = 204,
-	},
-	[CHILDREN_SEAKING] = {
-		.ID = 204,
-	},
-	[CHILDREN_STARYU] = {
-		.ID = 206,
-	},
-	[CHILDREN_STARMIE] = {
-		.ID = 207,
-	},
-	[CHILDREN_MR_MIME] = {
-		.ID = 95,
-	},
-	[CHILDREN_SCYTHER] = {
-		.ID = 209,
-	},
-	[CHILDREN_JYNX] = {
-		.ID = 21,
-	},
-	[CHILDREN_ELECTABUZZ] = {
-		.ID = 209,
-	},
-	[CHILDREN_MAGMAR] = {
-		.ID = 211,
-	},
-	[CHILDREN_PINSIR] = {
-		.ID = 123,
-	},
-	[CHILDREN_TAUROS] = {
-		.ID = 213,
-	},
-	[CHILDREN_MAGIKARP] = {
-		.ID = 214,
-	},
-	[CHILDREN_GYARADOS] = {
-		.ID = 215,
-	},
-	[CHILDREN_LAPRAS] = {
-		.ID = 216,
-	},
-	[CHILDREN_DITTO] = {
-		.ID = 216,
-	},
-	[CHILDREN_EEVEE] = {
-		.ID = 218,
-	},
-	[CHILDREN_VAPOREON] = {
-		.ID = 218,
-	},
-	[CHILDREN_JOLTEON] = {
-		.ID = 21,
-	},
-	[CHILDREN_FLAREON] = {
-		.ID = 220,
-	},
-	[CHILDREN_PORYGON] = {
-		.ID = 220,
-	},
-	[CHILDREN_OMANYTE] = {
-		.ID = 222,
-	},
-	[CHILDREN_OMASTAR] = {
-		.ID = 223,
-	},
-	[CHILDREN_KABUTO] = {
-		.ID = 223,
-	},
-	[CHILDREN_KABUTOPS] = {
-		.ID = 225,
-	},
-	[CHILDREN_AERODACTYL] = {
-		.ID = 458,
-	},
-	[CHILDREN_SNORLAX] = {
-		.ID = 227,
-	},
-	[CHILDREN_ARTICUNO] = {
-		.ID = 228,
-	},
-	[CHILDREN_ZAPDOS] = {
-		.ID = 228,
-	},
-	[CHILDREN_MOLTRES] = {
-		.ID = 23,
-	},
-	[CHILDREN_DRATINI] = {
-		.ID = 116,
-	},
-	[CHILDREN_DRAGONAIR] = {
-		.ID = 231,
-	},
-	[CHILDREN_DRAGONITE] = {
-		.ID = 231,
-	},
-	[CHILDREN_MEWTWO] = {
-		.ID = 137,
-	},
-	[CHILDREN_MEW] = {
-		.ID = 234,
-	},
-	[CHILDREN_CHIKORITA] = {
-		.ID = 235,
-	},
-	[CHILDREN_BAYLEEF] = {
-		.ID = 236,
-	},
-	[CHILDREN_MEGANIUM] = {
-		.ID = 236,
-	},
-	[CHILDREN_CYNDAQUIL] = {
-		.ID = 238,
-	},
-	[CHILDREN_QUILAVA] = {
-		.ID = 239,
-	},
-	[CHILDREN_TYPHLOSION] = {
-		.ID = 23,
-	},
-	[CHILDREN_TOTODILE] = {
-		.ID = 240,
-	},
-	[CHILDREN_CROCONAW] = {
-		.ID = 241,
-	},
-	[CHILDREN_FERALIGATR] = {
-		.ID = 440,
-	},
-	[CHILDREN_SENTRET] = {
-		.ID = 243,
-	},
-	[CHILDREN_FURRET] = {
-		.ID = 244,
-	},
-	[CHILDREN_HOOTHOOT] = {
-		.ID = 245,
-	},
-	[CHILDREN_NOCTOWL] = {
-		.ID = 246,
-	},
-	[CHILDREN_LEDYBA] = {
-		.ID = 246,
-	},
-	[CHILDREN_LEDIAN] = {
-		.ID = 246,
-	},
-	[CHILDREN_SPINARAK] = {
-		.ID = 249,
-	},
-	[CHILDREN_ARIADOS] = {
-		.ID = 172,
-	},
-	[CHILDREN_CROBAT] = {
-		.ID = 250,
-	},
-	[CHILDREN_CHINCHOU] = {
-		.ID = 251,
-	},
-	[CHILDREN_LANTURN] = {
-		.ID = 252,
-	},
-	[CHILDREN_PICHU] = {
-		.ID = 252,
-	},
-	[CHILDREN_CLEFFA] = {
-		.ID = 252,
-	},
-	[CHILDREN_IGGLYBUFF] = {
-		.ID = 255,
-	},
-	[CHILDREN_TOGEPI] = {
-		.ID = 255,
-	},
-	[CHILDREN_TOGETIC] = {
-		.ID = 255,
-	},
-	[CHILDREN_NATU] = {
-		.ID = 258,
-	},
-	[CHILDREN_XATU] = {
-		.ID = 258,
-	},
-	[CHILDREN_MAREEP] = {
-		.ID = 172,
-	},
-	[CHILDREN_FLAAFFY] = {
-		.ID = 258,
-	},
-	[CHILDREN_AMPHAROS] = {
-		.ID = 261,
-	},
-	[CHILDREN_BELLOSSOM] = {
-		.ID = 261,
-	},
-	[CHILDREN_MARILL] = {
-		.ID = 263,
-	},
-	[CHILDREN_AZUMARILL] = {
-		.ID = 263,
-	},
-	[CHILDREN_SUDOWOODO] = {
-		.ID = 265,
-	},
-	[CHILDREN_POLITOED] = {
-		.ID = 265,
-	},
-	[CHILDREN_HOPPIP] = {
-		.ID = 265,
-	},
-	[CHILDREN_SKIPLOOM] = {
-		.ID = 265,
-	},
-	[CHILDREN_JUMPLUFF] = {
-		.ID = 265,
-	},
-	[CHILDREN_AIPOM] = {
-		.ID = 27,
-	},
-	[CHILDREN_SUNKERN] = {
-		.ID = 270,
-	},
-	[CHILDREN_SUNFLORA] = {
-		.ID = 270,
-	},
-	[CHILDREN_YANMA] = {
-		.ID = 270,
-	},
-	[CHILDREN_WOOPER] = {
-		.ID = 273,
-	},
-	[CHILDREN_QUAGSIRE] = {
-		.ID = 273,
-	},
-	[CHILDREN_ESPEON] = {
-		.ID = 273,
-	},
-	[CHILDREN_UMBREON] = {
-		.ID = 276,
-	},
-	[CHILDREN_MURKROW] = {
-		.ID = 276,
-	},
-	[CHILDREN_SLOWKING] = {
-		.ID = 278,
-	},
-	[CHILDREN_MISDREAVUS] = {
-		.ID = 278,
-	},
-	[CHILDREN_UNOWN] = {
-		.ID = 27,
-	},
-	[CHILDREN_WOBBUFFET] = {
-		.ID = 280,
-	},
-	[CHILDREN_GIRAFARIG] = {
-		.ID = 280,
-	},
-	[CHILDREN_PINECO] = {
-		.ID = 280,
-	},
-	[CHILDREN_FORRETRESS] = {
-		.ID = 283,
-	},
-	[CHILDREN_DUNSPARCE] = {
-		.ID = 283,
-	},
-	[CHILDREN_GLIGAR] = {
-		.ID = 285,
-	},
-	[CHILDREN_STEELIX] = {
-		.ID = 285,
-	},
-	[CHILDREN_SNUBBULL] = {
-		.ID = 287,
-	},
-	[CHILDREN_GRANBULL] = {
-		.ID = 287,
-	},
-	[CHILDREN_QWILFISH] = {
-		.ID = 287,
-	},
-	[CHILDREN_SCIZOR] = {
-		.ID = 29,
-	},
-	[CHILDREN_SHUCKLE] = {
-		.ID = 290,
-	},
-	[CHILDREN_HERACROSS] = {
-		.ID = 290,
-	},
-	[CHILDREN_SNEASEL] = {
-		.ID = 290,
-	},
-	[CHILDREN_TEDDIURSA] = {
-		.ID = 293,
-	},
-	[CHILDREN_URSARING] = {
-		.ID = 293,
-	},
-	[CHILDREN_SLUGMA] = {
-		.ID = 293,
-	},
-	[CHILDREN_MAGCARGO] = {
-		.ID = 296,
-	},
-	[CHILDREN_SWINUB] = {
-		.ID = 296,
-	},
-	[CHILDREN_PILOSWINE] = {
-		.ID = 298,
-	},
-	[CHILDREN_CORSOLA] = {
-		.ID = 299,
-	},
-	[CHILDREN_REMORAID] = {
+	[SPECIES_VENUSAUR] = {
 		.ID = 1,
 	},
-	[CHILDREN_OCTILLERY] = {
-		.ID = 29,
-	},
-	[CHILDREN_DELIBIRD] = {
-		.ID = 300,
-	},
-	[CHILDREN_MANTINE] = {
-		.ID = 300,
-	},
-	[CHILDREN_SKARMORY] = {
-		.ID = 302,
-	},
-	[CHILDREN_HOUNDOUR] = {
-		.ID = 303,
-	},
-	[CHILDREN_HOUNDOOM] = {
-		.ID = 304,
-	},
-	[CHILDREN_KINGDRA] = {
-		.ID = 304,
-	},
-	[CHILDREN_PHANPY] = {
-		.ID = 304,
-	},
-	[CHILDREN_DONPHAN] = {
-		.ID = 307,
-	},
-	[CHILDREN_PORYGON2] = {
-		.ID = 307,
-	},
-	[CHILDREN_STANTLER] = {
-		.ID = 309,
-	},
-	[CHILDREN_SMEARGLE] = {
-		.ID = 29,
-	},
-	[CHILDREN_TYROGUE] = {
-		.ID = 309,
-	},
-	[CHILDREN_HITMONTOP] = {
-		.ID = 311,
-	},
-	[CHILDREN_SMOOCHUM] = {
-		.ID = 312,
-	},
-	[CHILDREN_ELEKID] = {
-		.ID = 313,
-	},
-	[CHILDREN_MAGBY] = {
-		.ID = 314,
-	},
-	[CHILDREN_MILTANK] = {
-		.ID = 406,
-	},
-	[CHILDREN_BLISSEY] = {
-		.ID = 316,
-	},
-	[CHILDREN_RAIKOU] = {
-		.ID = 316,
-	},
-	[CHILDREN_ENTEI] = {
-		.ID = 318,
-	},
-	[CHILDREN_SUICUNE] = {
-		.ID = 318,
-	},
-	[CHILDREN_LARVITAR] = {
-		.ID = 32,
-	},
-	[CHILDREN_PUPITAR] = {
-		.ID = 320,
-	},
-	[CHILDREN_TYRANITAR] = {
-		.ID = 320,
-	},
-	[CHILDREN_LUGIA] = {
-		.ID = 322,
-	},
-	[CHILDREN_HOOH] = {
-		.ID = 322,
-	},
-	[CHILDREN_CELEBI] = {
-		.ID = 324,
-	},
-	[CHILDREN_TREECKO] = {
-		.ID = 325,
-	},
-	[CHILDREN_GROVYLE] = {
-		.ID = 325,
-	},
-	[CHILDREN_SCEPTILE] = {
-		.ID = 327,
-	},
-	[CHILDREN_TORCHIC] = {
-		.ID = 328,
-	},
-	[CHILDREN_COMBUSKEN] = {
-		.ID = 328,
-	},
-	[CHILDREN_BLAZIKEN] = {
-		.ID = 32,
-	},
-	[CHILDREN_MUDKIP] = {
-		.ID = 328,
-	},
-	[CHILDREN_MARSHTOMP] = {
-		.ID = 331,
-	},
-	[CHILDREN_SWAMPERT] = {
-		.ID = 331,
-	},
-	[CHILDREN_POOCHYENA] = {
-		.ID = 333,
-	},
-	[CHILDREN_MIGHTYENA] = {
-		.ID = 333,
-	},
-	[CHILDREN_ZIGZAGOON] = {
-		.ID = 335,
-	},
-	[CHILDREN_LINOONE] = {
-		.ID = 336,
-	},
-	[CHILDREN_WURMPLE] = {
-		.ID = 337,
-	},
-	[CHILDREN_SILCOON] = {
-		.ID = 338,
-	},
-	[CHILDREN_BEAUTIFLY] = {
-		.ID = 339,
-	},
-	[CHILDREN_CASCOON] = {
-		.ID = 32,
-	},
-	[CHILDREN_DUSTOX] = {
-		.ID = 339,
-	},
-	[CHILDREN_LOTAD] = {
-		.ID = 341,
-	},
-	[CHILDREN_LOMBRE] = {
-		.ID = 341,
-	},
-	[CHILDREN_LUDICOLO] = {
-		.ID = 343,
-	},
-	[CHILDREN_SEEDOT] = {
-		.ID = 343,
-	},
-	[CHILDREN_NUZLEAF] = {
-		.ID = 345,
-	},
-	[CHILDREN_SHIFTRY] = {
-		.ID = 345,
-	},
-	[CHILDREN_TAILLOW] = {
-		.ID = 347,
-	},
-	[CHILDREN_SWELLOW] = {
-		.ID = 347,
-	},
-	[CHILDREN_WINGULL] = {
-		.ID = 349,
-	},
-	[CHILDREN_PELIPPER] = {
-		.ID = 173,
-	},
-	[CHILDREN_RALTS] = {
-		.ID = 349,
-	},
-	[CHILDREN_KIRLIA] = {
-		.ID = 351,
-	},
-	[CHILDREN_GARDEVOIR] = {
-		.ID = 352,
-	},
-	[CHILDREN_SURSKIT] = {
-		.ID = 353,
-	},
-	[CHILDREN_MASQUERAIN] = {
-		.ID = 353,
-	},
-	[CHILDREN_SHROOMISH] = {
-		.ID = 355,
-	},
-	[CHILDREN_BRELOOM] = {
-		.ID = 355,
-	},
-	[CHILDREN_SLAKOTH] = {
-		.ID = 357,
-	},
-	[CHILDREN_VIGOROTH] = {
-		.ID = 433,
-	},
-	[CHILDREN_SLAKING] = {
-		.ID = 359,
-	},
-	[CHILDREN_NINCADA] = {
-		.ID = 173,
-	},
-	[CHILDREN_NINJASK] = {
-		.ID = 360,
-	},
-	[CHILDREN_SHEDINJA] = {
-		.ID = 361,
-	},
-	[CHILDREN_WHISMUR] = {
-		.ID = 361,
-	},
-	[CHILDREN_LOUDRED] = {
-		.ID = 363,
-	},
-	[CHILDREN_EXPLOUD] = {
-		.ID = 363,
-	},
-	[CHILDREN_MAKUHITA] = {
-		.ID = 363,
-	},
-	[CHILDREN_HARIYAMA] = {
-		.ID = 366,
-	},
-	[CHILDREN_AZURILL] = {
-		.ID = 366,
-	},
-	[CHILDREN_NOSEPASS] = {
-		.ID = 366,
-	},
-	[CHILDREN_SKITTY] = {
-		.ID = 369,
-	},
-	[CHILDREN_DELCATTY] = {
-		.ID = 37,
-	},
-	[CHILDREN_SABLEYE] = {
-		.ID = 370,
-	},
-	[CHILDREN_MAWILE] = {
-		.ID = 371,
-	},
-	[CHILDREN_ARON] = {
-		.ID = 371,
-	},
-	[CHILDREN_LAIRON] = {
-		.ID = 371,
-	},
-	[CHILDREN_AGGRON] = {
-		.ID = 374,
-	},
-	[CHILDREN_MEDITITE] = {
-		.ID = 374,
-	},
-	[CHILDREN_MEDICHAM] = {
-		.ID = 374,
-	},
-	[CHILDREN_ELECTRIKE] = {
-		.ID = 377,
-	},
-	[CHILDREN_MANECTRIC] = {
-		.ID = 378,
-	},
-	[CHILDREN_PLUSLE] = {
-		.ID = 379,
-	},
-	[CHILDREN_MINUN] = {
-		.ID = 37,
-	},
-	[CHILDREN_VOLBEAT] = {
-		.ID = 380,
-	},
-	[CHILDREN_ILLUMISE] = {
-		.ID = 381,
-	},
-	[CHILDREN_ROSELIA] = {
-		.ID = 382,
-	},
-	[CHILDREN_GULPIN] = {
-		.ID = 383,
-	},
-	[CHILDREN_SWALOT] = {
-		.ID = 384,
-	},
-	[CHILDREN_CARVANHA] = {
-		.ID = 385,
-	},
-	[CHILDREN_SHARPEDO] = {
-		.ID = 386,
-	},
-	[CHILDREN_WAILMER] = {
-		.ID = 387,
-	},
-	[CHILDREN_WAILORD] = {
-		.ID = 387,
-	},
-	[CHILDREN_NUMEL] = {
-		.ID = 387,
-	},
-	[CHILDREN_CAMERUPT] = {
-		.ID = 174,
-	},
-	[CHILDREN_TORKOAL] = {
-		.ID = 390,
-	},
-	[CHILDREN_SPOINK] = {
-		.ID = 390,
-	},
-	[CHILDREN_GRUMPIG] = {
-		.ID = 390,
-	},
-	[CHILDREN_SPINDA] = {
-		.ID = 393,
-	},
-	[CHILDREN_TRAPINCH] = {
-		.ID = 393,
-	},
-	[CHILDREN_VIBRAVA] = {
-		.ID = 393,
-	},
-	[CHILDREN_FLYGON] = {
-		.ID = 396,
-	},
-	[CHILDREN_CACNEA] = {
-		.ID = 396,
-	},
-	[CHILDREN_CACTURNE] = {
-		.ID = 396,
-	},
-	[CHILDREN_SWABLU] = {
-		.ID = 399,
-	},
-	[CHILDREN_ALTARIA] = {
+	[SPECIES_CHARMANDER] = {
 		.ID = 4,
 	},
-	[CHILDREN_ZANGOOSE] = {
-		.ID = 174,
-	},
-	[CHILDREN_SEVIPER] = {
-		.ID = 399,
-	},
-	[CHILDREN_LUNATONE] = {
-		.ID = 401,
-	},
-	[CHILDREN_SOLROCK] = {
-		.ID = 401,
-	},
-	[CHILDREN_BARBOACH] = {
-		.ID = 403,
-	},
-	[CHILDREN_WHISCASH] = {
-		.ID = 403,
-	},
-	[CHILDREN_CORPHISH] = {
-		.ID = 403,
-	},
-	[CHILDREN_CRAWDAUNT] = {
-		.ID = 406,
-	},
-	[CHILDREN_BALTOY] = {
-		.ID = 406,
-	},
-	[CHILDREN_CLAYDOL] = {
-		.ID = 408,
-	},
-	[CHILDREN_LILEEP] = {
-		.ID = 408,
-	},
-	[CHILDREN_CRADILY] = {
-		.ID = 41,
-	},
-	[CHILDREN_ANORITH] = {
-		.ID = 410,
-	},
-	[CHILDREN_ARMALDO] = {
-		.ID = 410,
-	},
-	[CHILDREN_FEEBAS] = {
-		.ID = 412,
-	},
-	[CHILDREN_MILOTIC] = {
-		.ID = 412,
-	},
-	[CHILDREN_CASTFORM] = {
-		.ID = 412,
-	},
-	[CHILDREN_KECLEON] = {
-		.ID = 415,
-	},
-	[CHILDREN_SHUPPET] = {
-		.ID = 415,
-	},
-	[CHILDREN_BANETTE] = {
-		.ID = 417,
-	},
-	[CHILDREN_DUSKULL] = {
-		.ID = 418,
-	},
-	[CHILDREN_DUSCLOPS] = {
-		.ID = 418,
-	},
-	[CHILDREN_TROPIUS] = {
-		.ID = 41,
-	},
-	[CHILDREN_CHIMECHO] = {
-		.ID = 420,
-	},
-	[CHILDREN_ABSOL] = {
-		.ID = 420,
-	},
-	[CHILDREN_WYNAUT] = {
-		.ID = 422,
-	},
-	[CHILDREN_SNORUNT] = {
-		.ID = 422,
-	},
-	[CHILDREN_GLALIE] = {
-		.ID = 190,
-	},
-	[CHILDREN_SPHEAL] = {
-		.ID = 425,
-	},
-	[CHILDREN_SEALEO] = {
-		.ID = 425,
-	},
-	[CHILDREN_WALREIN] = {
-		.ID = 427,
-	},
-	[CHILDREN_CLAMPERL] = {
-		.ID = 427,
-	},
-	[CHILDREN_HUNTAIL] = {
-		.ID = 200,
-	},
-	[CHILDREN_GOREBYSS] = {
-		.ID = 43,
-	},
-	[CHILDREN_RELICANTH] = {
-		.ID = 198,
-	},
-	[CHILDREN_LUVDISC] = {
-		.ID = 431,
-	},
-	[CHILDREN_BAGON] = {
-		.ID = 431,
-	},
-	[CHILDREN_SHELGON] = {
-		.ID = 433,
-	},
-	[CHILDREN_SALAMENCE] = {
-		.ID = 434,
-	},
-	[CHILDREN_BELDUM] = {
-		.ID = 434,
-	},
-	[CHILDREN_METANG] = {
-		.ID = 436,
-	},
-	[CHILDREN_METAGROSS] = {
-		.ID = 436,
-	},
-	[CHILDREN_REGIROCK] = {
-		.ID = 438,
-	},
-	[CHILDREN_REGICE] = {
-		.ID = 439,
-	},
-	[CHILDREN_REGISTEEL] = {
-		.ID = 43,
-	},
-	[CHILDREN_LATIAS] = {
-		.ID = 440,
-	},
-	[CHILDREN_LATIOS] = {
-		.ID = 441,
-	},
-	[CHILDREN_KYOGRE] = {
-		.ID = 442,
-	},
-	[CHILDREN_GROUDON] = {
-		.ID = 443,
-	},
-	[CHILDREN_RAYQUAZA] = {
-		.ID = 443,
-	},
-	[CHILDREN_JIRACHI] = {
-		.ID = 443,
-	},
-	[CHILDREN_DEOXYS] = {
-		.ID = 446,
-	},
-	[CHILDREN_TURTWIG] = {
-		.ID = 447,
-	},
-	[CHILDREN_GROTLE] = {
-		.ID = 447,
-	},
-	[CHILDREN_TORTERRA] = {
-		.ID = 449,
-	},
-	[CHILDREN_CHIMCHAR] = {
-		.ID = 43,
-	},
-	[CHILDREN_MONFERNO] = {
-		.ID = 449,
-	},
-	[CHILDREN_INFERNAPE] = {
-		.ID = 451,
-	},
-	[CHILDREN_PIPLUP] = {
-		.ID = 451,
-	},
-	[CHILDREN_PRINPLUP] = {
-		.ID = 453,
-	},
-	[CHILDREN_EMPOLEON] = {
-		.ID = 453,
-	},
-	[CHILDREN_STARLY] = {
-		.ID = 455,
-	},
-	[CHILDREN_STARAVIA] = {
-		.ID = 456,
-	},
-	[CHILDREN_STARAPTOR] = {
-		.ID = 456,
-	},
-	[CHILDREN_BIDOOF] = {
-		.ID = 458,
-	},
-	[CHILDREN_BIBAREL] = {
-		.ID = 459,
-	},
-	[CHILDREN_KRICKETOT] = {
-		.ID = 46,
-	},
-	[CHILDREN_KRICKETUNE] = {
-		.ID = 459,
-	},
-	[CHILDREN_SHINX] = {
-		.ID = 215,
-	},
-	[CHILDREN_LUXIO] = {
-		.ID = 81,
-	},
-	[CHILDREN_LUXRAY] = {
-		.ID = 108,
-	},
-	[CHILDREN_BUDEW] = {
-		.ID = 111,
-	},
-	[CHILDREN_ROSERADE] = {
-		.ID = 114,
-	},
-	[CHILDREN_CRANIDOS] = {
-		.ID = 239,
-	},
-	[CHILDREN_RAMPARDOS] = {
-		.ID = 240,
-	},
-	[CHILDREN_SHIELDON] = {
-		.ID = 175,
-	},
-	[CHILDREN_BASTIODON] = {
-		.ID = 193,
-	},
-	[CHILDREN_BURMY] = {
-		.ID = 46,
-	},
-	[CHILDREN_WORMADAM] = {
-		.ID = 133,
-	},
-	[CHILDREN_MOTHIM] = {
-		.ID = 133,
-	},
-	[CHILDREN_COMBEE] = {
-		.ID = 207,
-	},
-	[CHILDREN_VESPIQUEN] = {
-		.ID = 220,
-	},
-	[CHILDREN_PACHIRISU] = {
-		.ID = 137,
-	},
-	[CHILDREN_BUIZEL] = {
-		.ID = 280,
-	},
-	[CHILDREN_FLOATZEL] = {
-		.ID = 299,
-	},
-	[CHILDREN_CHERUBI] = {
-		.ID = 355,
-	},
-	[CHILDREN_CHERRIM] = {
-		.ID = 361,
-	},
-	[CHILDREN_SHELLOS] = {
-		.ID = 479,
-	},
-	[CHILDREN_GASTRODON] = {
-		.ID = 48,
-	},
-	[CHILDREN_AMBIPOM] = {
-		.ID = 480,
-	},
-	[CHILDREN_DRIFLOON] = {
-		.ID = 481,
-	},
-	[CHILDREN_DRIFBLIM] = {
-		.ID = 482,
-	},
-	[CHILDREN_BUNEARY] = {
-		.ID = 483,
-	},
-	[CHILDREN_LOPUNNY] = {
-		.ID = 484,
-	},
-	[CHILDREN_MISMAGIUS] = {
-		.ID = 485,
-	},
-	[CHILDREN_HONCHKROW] = {
-		.ID = 486,
-	},
-	[CHILDREN_GLAMEOW] = {
-		.ID = 487,
-	},
-	[CHILDREN_PURUGLY] = {
-		.ID = 488,
-	},
-	[CHILDREN_CHINGLING] = {
-		.ID = 489,
-	},
-	[CHILDREN_STUNKY] = {
-		.ID = 48,
-	},
-	[CHILDREN_SKUNTANK] = {
-		.ID = 490,
-	},
-	[CHILDREN_BRONZOR] = {
-		.ID = 491,
-	},
-	[CHILDREN_BRONZONG] = {
-		.ID = 492,
-	},
-	[CHILDREN_BONSLY] = {
-		.ID = 493,
-	},
-	[CHILDREN_MIME_JR] = {
-		.ID = 494,
-	},
-	[CHILDREN_HAPPINY] = {
-		.ID = 495,
-	},
-	[CHILDREN_CHATOT] = {
-		.ID = 495,
-	},
-	[CHILDREN_SPIRITOMB] = {
-		.ID = 495,
-	},
-	[CHILDREN_GIBLE] = {
-		.ID = 498,
-	},
-	[CHILDREN_GABITE] = {
-		.ID = 498,
-	},
-	[CHILDREN_GARCHOMP] = {
+	[SPECIES_CHARMELEON] = {
 		.ID = 4,
 	},
-	[CHILDREN_MUNCHLAX] = {
-		.ID = 50,
-	},
-	[CHILDREN_RIOLU] = {
-		.ID = 498,
-	},
-	[CHILDREN_LUCARIO] = {
-		.ID = 501,
-	},
-	[CHILDREN_HIPPOPOTAS] = {
-		.ID = 501,
-	},
-	[CHILDREN_HIPPOWDON] = {
-		.ID = 501,
-	},
-	[CHILDREN_SKORUPI] = {
-		.ID = 504,
-	},
-	[CHILDREN_DRAPION] = {
-		.ID = 504,
-	},
-	[CHILDREN_CROAGUNK] = {
-		.ID = 506,
-	},
-	[CHILDREN_TOXICROAK] = {
-		.ID = 506,
-	},
-	[CHILDREN_CARNIVINE] = {
-		.ID = 506,
-	},
-	[CHILDREN_FINNEON] = {
-		.ID = 509,
-	},
-	[CHILDREN_LUMINEON] = {
-		.ID = 50,
-	},
-	[CHILDREN_MANTYKE] = {
-		.ID = 509,
-	},
-	[CHILDREN_SNOVER] = {
-		.ID = 511,
-	},
-	[CHILDREN_ABOMASNOW] = {
-		.ID = 511,
-	},
-	[CHILDREN_WEAVILE] = {
-		.ID = 513,
-	},
-	[CHILDREN_MAGNEZONE] = {
-		.ID = 513,
-	},
-	[CHILDREN_LICKILICKY] = {
-		.ID = 515,
-	},
-	[CHILDREN_RHYPERIOR] = {
-		.ID = 515,
-	},
-	[CHILDREN_TANGROWTH] = {
-		.ID = 517,
-	},
-	[CHILDREN_ELECTIVIRE] = {
-		.ID = 517,
-	},
-	[CHILDREN_MAGMORTAR] = {
-		.ID = 519,
-	},
-	[CHILDREN_TOGEKISS] = {
-		.ID = 52,
-	},
-	[CHILDREN_YANMEGA] = {
-		.ID = 519,
-	},
-	[CHILDREN_LEAFEON] = {
-		.ID = 519,
-	},
-	[CHILDREN_GLACEON] = {
-		.ID = 522,
-	},
-	[CHILDREN_GLISCOR] = {
-		.ID = 522,
-	},
-	[CHILDREN_MAMOSWINE] = {
-		.ID = 524,
-	},
-	[CHILDREN_PORYGONZ] = {
-		.ID = 524,
-	},
-	[CHILDREN_GALLADE] = {
-		.ID = 524,
-	},
-	[CHILDREN_PROBOPASS] = {
-		.ID = 527,
-	},
-	[CHILDREN_DUSKNOIR] = {
-		.ID = 527,
-	},
-	[CHILDREN_FROSLASS] = {
-		.ID = 529,
-	},
-	[CHILDREN_ROTOM] = {
-		.ID = 52,
-	},
-	[CHILDREN_UXIE] = {
-		.ID = 529,
-	},
-	[CHILDREN_MESPRIT] = {
-		.ID = 531,
-	},
-	[CHILDREN_AZELF] = {
-		.ID = 532,
-	},
-	[CHILDREN_DIALGA] = {
-		.ID = 532,
-	},
-	[CHILDREN_PALKIA] = {
-		.ID = 532,
-	},
-	[CHILDREN_HEATRAN] = {
-		.ID = 535,
-	},
-	[CHILDREN_REGIGIGAS] = {
-		.ID = 535,
-	},
-	[CHILDREN_GIRATINA] = {
-		.ID = 535,
-	},
-	[CHILDREN_CRESSELIA] = {
-		.ID = 538,
-	},
-	[CHILDREN_PHIONE] = {
-		.ID = 539,
-	},
-	[CHILDREN_MANAPHY] = {
-		.ID = 54,
-	},
-	[CHILDREN_DARKRAI] = {
-		.ID = 540,
-	},
-	[CHILDREN_SHAYMIN] = {
-		.ID = 540,
-	},
-	[CHILDREN_ARCEUS] = {
-		.ID = 540,
-	},
-	[CHILDREN_VICTINI] = {
-		.ID = 543,
-	},
-	[CHILDREN_SNIVY] = {
-		.ID = 543,
-	},
-	[CHILDREN_SERVINE] = {
-		.ID = 543,
-	},
-	[CHILDREN_SERPERIOR] = {
-		.ID = 546,
-	},
-	[CHILDREN_TEPIG] = {
-		.ID = 546,
-	},
-	[CHILDREN_PIGNITE] = {
-		.ID = 548,
-	},
-	[CHILDREN_EMBOAR] = {
-		.ID = 548,
-	},
-	[CHILDREN_OSHAWOTT] = {
-		.ID = 54,
-	},
-	[CHILDREN_DEWOTT] = {
-		.ID = 550,
-	},
-	[CHILDREN_SAMUROTT] = {
-		.ID = 551,
-	},
-	[CHILDREN_PATRAT] = {
-		.ID = 551,
-	},
-	[CHILDREN_WATCHOG] = {
-		.ID = 551,
-	},
-	[CHILDREN_LILLIPUP] = {
-		.ID = 554,
-	},
-	[CHILDREN_HERDIER] = {
-		.ID = 554,
-	},
-	[CHILDREN_STOUTLAND] = {
-		.ID = 556,
-	},
-	[CHILDREN_PURRLOIN] = {
-		.ID = 557,
-	},
-	[CHILDREN_LIEPARD] = {
-		.ID = 557,
-	},
-	[CHILDREN_PANSAGE] = {
-		.ID = 559,
-	},
-	[CHILDREN_SIMISAGE] = {
-		.ID = 56,
-	},
-	[CHILDREN_PANSEAR] = {
-		.ID = 559,
-	},
-	[CHILDREN_SIMISEAR] = {
-		.ID = 561,
-	},
-	[CHILDREN_PANPOUR] = {
-		.ID = 562,
-	},
-	[CHILDREN_SIMIPOUR] = {
-		.ID = 562,
-	},
-	[CHILDREN_MUNNA] = {
-		.ID = 564,
-	},
-	[CHILDREN_MUSHARNA] = {
-		.ID = 564,
-	},
-	[CHILDREN_PIDOVE] = {
-		.ID = 566,
-	},
-	[CHILDREN_TRANQUILL] = {
-		.ID = 566,
-	},
-	[CHILDREN_UNFEZANT] = {
-		.ID = 568,
-	},
-	[CHILDREN_BLITZLE] = {
-		.ID = 568,
-	},
-	[CHILDREN_ZEBSTRIKA] = {
-		.ID = 56,
-	},
-	[CHILDREN_ROGGENROLA] = {
-		.ID = 570,
-	},
-	[CHILDREN_BOLDORE] = {
-		.ID = 570,
-	},
-	[CHILDREN_GIGALITH] = {
-		.ID = 572,
-	},
-	[CHILDREN_WOOBAT] = {
-		.ID = 572,
-	},
-	[CHILDREN_SWOOBAT] = {
-		.ID = 574,
-	},
-	[CHILDREN_DRILBUR] = {
-		.ID = 574,
-	},
-	[CHILDREN_EXCADRILL] = {
-		.ID = 574,
-	},
-	[CHILDREN_AUDINO] = {
-		.ID = 577,
-	},
-	[CHILDREN_TIMBURR] = {
-		.ID = 577,
-	},
-	[CHILDREN_GURDURR] = {
-		.ID = 577,
-	},
-	[CHILDREN_CONKELDURR] = {
-		.ID = 58,
-	},
-	[CHILDREN_TYMPOLE] = {
-		.ID = 580,
-	},
-	[CHILDREN_PALPITOAD] = {
-		.ID = 580,
-	},
-	[CHILDREN_SEISMITOAD] = {
-		.ID = 582,
-	},
-	[CHILDREN_THROH] = {
-		.ID = 582,
-	},
-	[CHILDREN_SAWK] = {
-		.ID = 582,
-	},
-	[CHILDREN_SEWADDLE] = {
-		.ID = 585,
-	},
-	[CHILDREN_SWADLOON] = {
-		.ID = 585,
-	},
-	[CHILDREN_LEAVANNY] = {
-		.ID = 587,
-	},
-	[CHILDREN_VENIPEDE] = {
-		.ID = 588,
-	},
-	[CHILDREN_WHIRLIPEDE] = {
-		.ID = 588,
-	},
-	[CHILDREN_SCOLIPEDE] = {
-		.ID = 58,
-	},
-	[CHILDREN_COTTONEE] = {
-		.ID = 590,
-	},
-	[CHILDREN_WHIMSICOTT] = {
-		.ID = 590,
-	},
-	[CHILDREN_PETILIL] = {
-		.ID = 592,
-	},
-	[CHILDREN_LILLIGANT] = {
-		.ID = 592,
-	},
-	[CHILDREN_BASCULIN] = {
-		.ID = 594,
-	},
-	[CHILDREN_SANDILE] = {
-		.ID = 595,
-	},
-	[CHILDREN_KROKOROK] = {
-		.ID = 595,
-	},
-	[CHILDREN_KROOKODILE] = {
-		.ID = 597,
-	},
-	[CHILDREN_DARUMAKA] = {
-		.ID = 597,
-	},
-	[CHILDREN_DARMANITAN] = {
-		.ID = 599,
-	},
-	[CHILDREN_MARACTUS] = {
+	[SPECIES_CHARIZARD] = {
 		.ID = 4,
 	},
-	[CHILDREN_DWEBBLE] = {
-		.ID = 60,
-	},
-	[CHILDREN_CRUSTLE] = {
-		.ID = 599,
-	},
-	[CHILDREN_SCRAGGY] = {
-		.ID = 599,
-	},
-	[CHILDREN_SCRAFTY] = {
-		.ID = 602,
-	},
-	[CHILDREN_SIGILYPH] = {
-		.ID = 602,
-	},
-	[CHILDREN_YAMASK] = {
-		.ID = 602,
-	},
-	[CHILDREN_COFAGRIGUS] = {
-		.ID = 605,
-	},
-	[CHILDREN_TIRTOUGA] = {
-		.ID = 605,
-	},
-	[CHILDREN_CARRACOSTA] = {
-		.ID = 607,
-	},
-	[CHILDREN_ARCHEN] = {
-		.ID = 607,
-	},
-	[CHILDREN_ARCHEOPS] = {
-		.ID = 607,
-	},
-	[CHILDREN_TRUBBISH] = {
-		.ID = 60,
-	},
-	[CHILDREN_GARBODOR] = {
-		.ID = 610,
-	},
-	[CHILDREN_ZORUA] = {
-		.ID = 610,
-	},
-	[CHILDREN_ZOROARK] = {
-		.ID = 610,
-	},
-	[CHILDREN_MINCCINO] = {
-		.ID = 613,
-	},
-	[CHILDREN_CINCCINO] = {
-		.ID = 613,
-	},
-	[CHILDREN_GOTHITA] = {
-		.ID = 615,
-	},
-	[CHILDREN_GOTHORITA] = {
-		.ID = 616,
-	},
-	[CHILDREN_GOTHITELLE] = {
-		.ID = 616,
-	},
-	[CHILDREN_SOLOSIS] = {
-		.ID = 618,
-	},
-	[CHILDREN_DUOSION] = {
-		.ID = 619,
-	},
-	[CHILDREN_REUNICLUS] = {
-		.ID = 60,
-	},
-	[CHILDREN_DUCKLETT] = {
-		.ID = 619,
-	},
-	[CHILDREN_SWANNA] = {
-		.ID = 621,
-	},
-	[CHILDREN_VANILLITE] = {
-		.ID = 622,
-	},
-	[CHILDREN_VANILLISH] = {
-		.ID = 622,
-	},
-	[CHILDREN_VANILLUXE] = {
-		.ID = 624,
-	},
-	[CHILDREN_DEERLING] = {
-		.ID = 624,
-	},
-	[CHILDREN_SAWSBUCK] = {
-		.ID = 626,
-	},
-	[CHILDREN_EMOLGA] = {
-		.ID = 627,
-	},
-	[CHILDREN_KARRABLAST] = {
-		.ID = 627,
-	},
-	[CHILDREN_ESCAVALIER] = {
-		.ID = 629,
-	},
-	[CHILDREN_FOONGUS] = {
-		.ID = 63,
-	},
-	[CHILDREN_AMOONGUSS] = {
-		.ID = 629,
-	},
-	[CHILDREN_FRILLISH] = {
-		.ID = 631,
-	},
-	[CHILDREN_JELLICENT] = {
-		.ID = 632,
-	},
-	[CHILDREN_ALOMOMOLA] = {
-		.ID = 633,
-	},
-	[CHILDREN_JOLTIK] = {
-		.ID = 633,
-	},
-	[CHILDREN_GALVANTULA] = {
-		.ID = 633,
-	},
-	[CHILDREN_FERROSEED] = {
-		.ID = 636,
-	},
-	[CHILDREN_FERROTHORN] = {
-		.ID = 636,
-	},
-	[CHILDREN_KLINK] = {
-		.ID = 638,
-	},
-	[CHILDREN_KLANG] = {
-		.ID = 639,
-	},
-	[CHILDREN_KLINKLANG] = {
-		.ID = 63,
-	},
-	[CHILDREN_TYNAMO] = {
-		.ID = 640,
-	},
-	[CHILDREN_EELEKTRIK] = {
-		.ID = 641,
-	},
-	[CHILDREN_EELEKTROSS] = {
-		.ID = 642,
-	},
-	[CHILDREN_ELGYEM] = {
-		.ID = 643,
-	},
-	[CHILDREN_BEHEEYEM] = {
-		.ID = 644,
-	},
-	[CHILDREN_LITWICK] = {
-		.ID = 645,
-	},
-	[CHILDREN_LAMPENT] = {
-		.ID = 646,
-	},
-	[CHILDREN_CHANDELURE] = {
-		.ID = 647,
-	},
-	[CHILDREN_AXEW] = {
-		.ID = 648,
-	},
-	[CHILDREN_FRAXURE] = {
-		.ID = 649,
-	},
-	[CHILDREN_HAXORUS] = {
-		.ID = 63,
-	},
-	[CHILDREN_CUBCHOO] = {
-		.ID = 650,
-	},
-	[CHILDREN_BEARTIC] = {
-		.ID = 651,
-	},
-	[CHILDREN_CRYOGONAL] = {
-		.ID = 652,
-	},
-	[CHILDREN_SHELMET] = {
-		.ID = 653,
-	},
-	[CHILDREN_ACCELGOR] = {
-		.ID = 654,
-	},
-	[CHILDREN_STUNFISK] = {
-		.ID = 655,
-	},
-	[CHILDREN_MIENFOO] = {
-		.ID = 656,
-	},
-	[CHILDREN_MIENSHAO] = {
-		.ID = 657,
-	},
-	[CHILDREN_DRUDDIGON] = {
-		.ID = 658,
-	},
-	[CHILDREN_GOLETT] = {
-		.ID = 659,
-	},
-	[CHILDREN_GOLURK] = {
-		.ID = 66,
-	},
-	[CHILDREN_PAWNIARD] = {
-		.ID = 660,
-	},
-	[CHILDREN_BISHARP] = {
-		.ID = 661,
-	},
-	[CHILDREN_BOUFFALANT] = {
-		.ID = 662,
-	},
-	[CHILDREN_RUFFLET] = {
-		.ID = 663,
-	},
-	[CHILDREN_BRAVIARY] = {
-		.ID = 664,
-	},
-	[CHILDREN_VULLABY] = {
-		.ID = 665,
-	},
-	[CHILDREN_MANDIBUZZ] = {
-		.ID = 666,
-	},
-	[CHILDREN_HEATMOR] = {
-		.ID = 667,
-	},
-	[CHILDREN_DURANT] = {
-		.ID = 668,
-	},
-	[CHILDREN_DEINO] = {
-		.ID = 669,
-	},
-	[CHILDREN_ZWEILOUS] = {
-		.ID = 66,
-	},
-	[CHILDREN_HYDREIGON] = {
-		.ID = 670,
-	},
-	[CHILDREN_LARVESTA] = {
-		.ID = 671,
-	},
-	[CHILDREN_VOLCARONA] = {
-		.ID = 672,
-	},
-	[CHILDREN_COBALION] = {
-		.ID = 673,
-	},
-	[CHILDREN_TERRAKION] = {
-		.ID = 674,
-	},
-	[CHILDREN_VIRIZION] = {
-		.ID = 675,
-	},
-	[CHILDREN_TORNADUS] = {
-		.ID = 676,
-	},
-	[CHILDREN_THUNDURUS] = {
-		.ID = 677,
-	},
-	[CHILDREN_RESHIRAM] = {
-		.ID = 678,
-	},
-	[CHILDREN_ZEKROM] = {
-		.ID = 679,
-	},
-	[CHILDREN_LANDORUS] = {
-		.ID = 66,
-	},
-	[CHILDREN_KYUREM] = {
-		.ID = 680,
-	},
-	[CHILDREN_KELDEO] = {
-		.ID = 681,
-	},
-	[CHILDREN_MELOETTA] = {
-		.ID = 682,
-	},
-	[CHILDREN_GENESECT] = {
-		.ID = 683,
-	},
-	[CHILDREN_CHESPIN] = {
-		.ID = 684,
-	},
-	[CHILDREN_QUILLADIN] = {
-		.ID = 69,
-	},
-	[CHILDREN_CHESNAUGHT] = {
+	[SPECIES_SQUIRTLE] = {
 		.ID = 7,
 	},
-	[CHILDREN_FENNEKIN] = {
-		.ID = 69,
-	},
-	[CHILDREN_BRAIXEN] = {
-		.ID = 69,
-	},
-	[CHILDREN_DELPHOX] = {
-		.ID = 72,
-	},
-	[CHILDREN_FROAKIE] = {
-		.ID = 72,
-	},
-	[CHILDREN_FROGADIER] = {
-		.ID = 74,
-	},
-	[CHILDREN_GRENINJA] = {
-		.ID = 74,
-	},
-	[CHILDREN_BUNNELBY] = {
-		.ID = 74,
-	},
-	[CHILDREN_DIGGERSBY] = {
-		.ID = 77,
-	},
-	[CHILDREN_FLETCHLING] = {
-		.ID = 77,
-	},
-	[CHILDREN_FLETCHINDER] = {
-		.ID = 79,
-	},
-	[CHILDREN_TALONFLAME] = {
+	[SPECIES_WARTORTLE] = {
 		.ID = 7,
 	},
-	[CHILDREN_SCATTERBUG] = {
+	[SPECIES_BLASTOISE] = {
+		.ID = 7,
+	},
+	[SPECIES_CATERPIE] = {
+		.ID = 10,
+	},
+	[SPECIES_METAPOD] = {
+		.ID = 10,
+	},
+	[SPECIES_BUTTERFREE] = {
+		.ID = 10,
+	},
+	[SPECIES_WEEDLE] = {
+		.ID = 13,
+	},
+	[SPECIES_KAKUNA] = {
+		.ID = 13,
+	},
+	[SPECIES_BEEDRILL] = {
+		.ID = 13,
+	},
+	[SPECIES_PIDGEY] = {
+		.ID = 16,
+	},
+	[SPECIES_PIDGEOTTO] = {
+		.ID = 16,
+	},
+	[SPECIES_PIDGEOT] = {
+		.ID = 16,
+	},
+	[SPECIES_RATTATA] = {
+		.ID = 19,
+	},
+	[SPECIES_RATICATE] = {
+		.ID = 19,
+	},
+	[SPECIES_SPEAROW] = {
+		.ID = 21,
+	},
+	[SPECIES_FEAROW] = {
+		.ID = 21,
+	},
+	[SPECIES_EKANS] = {
+		.ID = 23,
+	},
+	[SPECIES_ARBOK] = {
+		.ID = 23,
+	},
+	[SPECIES_PIKACHU] = {
+		.ID = 172,
+	},
+	[SPECIES_RAICHU] = {
+		.ID = 172,
+	},
+	[SPECIES_SANDSHREW] = {
+		.ID = 27,
+	},
+	[SPECIES_SANDSLASH] = {
+		.ID = 27,
+	},
+	[SPECIES_NIDORAN♀] = {
+		.ID = 29,
+	},
+	[SPECIES_NIDORINA] = {
+		.ID = 29,
+	},
+	[SPECIES_NIDOQUEEN] = {
+		.ID = 29,
+	},
+	[SPECIES_NIDORAN♂] = {
+		.ID = 32,
+	},
+	[SPECIES_NIDORINO] = {
+		.ID = 32,
+	},
+	[SPECIES_NIDOKING] = {
+		.ID = 32,
+	},
+	[SPECIES_CLEFAIRY] = {
+		.ID = 173,
+	},
+	[SPECIES_CLEFABLE] = {
+		.ID = 173,
+	},
+	[SPECIES_VULPIX] = {
+		.ID = 37,
+	},
+	[SPECIES_NINETALES] = {
+		.ID = 37,
+	},
+	[SPECIES_JIGGLYPUFF] = {
+		.ID = 174,
+	},
+	[SPECIES_WIGGLYTUFF] = {
+		.ID = 174,
+	},
+	[SPECIES_ZUBAT] = {
+		.ID = 41,
+	},
+	[SPECIES_GOLBAT] = {
+		.ID = 41,
+	},
+	[SPECIES_ODDISH] = {
+		.ID = 43,
+	},
+	[SPECIES_GLOOM] = {
+		.ID = 43,
+	},
+	[SPECIES_VILEPLUME] = {
+		.ID = 43,
+	},
+	[SPECIES_PARAS] = {
+		.ID = 46,
+	},
+	[SPECIES_PARASECT] = {
+		.ID = 46,
+	},
+	[SPECIES_VENONAT] = {
+		.ID = 48,
+	},
+	[SPECIES_VENOMOTH] = {
+		.ID = 48,
+	},
+	[SPECIES_DIGLETT] = {
+		.ID = 50,
+	},
+	[SPECIES_DUGTRIO] = {
+		.ID = 50,
+	},
+	[SPECIES_MEOWTH] = {
+		.ID = 52,
+	},
+	[SPECIES_PERSIAN] = {
+		.ID = 52,
+	},
+	[SPECIES_PSYDUCK] = {
+		.ID = 54,
+	},
+	[SPECIES_GOLDUCK] = {
+		.ID = 54,
+	},
+	[SPECIES_MANKEY] = {
+		.ID = 56,
+	},
+	[SPECIES_PRIMEAPE] = {
+		.ID = 56,
+	},
+	[SPECIES_GROWLITHE] = {
+		.ID = 58,
+	},
+	[SPECIES_ARCANINE] = {
+		.ID = 58,
+	},
+	[SPECIES_POLIWAG] = {
+		.ID = 60,
+	},
+	[SPECIES_POLIWHIRL] = {
+		.ID = 60,
+	},
+	[SPECIES_POLIWRATH] = {
+		.ID = 60,
+	},
+	[SPECIES_ABRA] = {
+		.ID = 63,
+	},
+	[SPECIES_KADABRA] = {
+		.ID = 63,
+	},
+	[SPECIES_ALAKAZAM] = {
+		.ID = 63,
+	},
+	[SPECIES_MACHOP] = {
+		.ID = 66,
+	},
+	[SPECIES_MACHOKE] = {
+		.ID = 66,
+	},
+	[SPECIES_MACHAMP] = {
+		.ID = 66,
+	},
+	[SPECIES_BELLSPROUT] = {
+		.ID = 69,
+	},
+	[SPECIES_WEEPINBELL] = {
+		.ID = 69,
+	},
+	[SPECIES_VICTREEBEL] = {
+		.ID = 69,
+	},
+	[SPECIES_TENTACOOL] = {
+		.ID = 72,
+	},
+	[SPECIES_TENTACRUEL] = {
+		.ID = 72,
+	},
+	[SPECIES_GEODUDE] = {
+		.ID = 74,
+	},
+	[SPECIES_GRAVELER] = {
+		.ID = 74,
+	},
+	[SPECIES_GOLEM] = {
+		.ID = 74,
+	},
+	[SPECIES_PONYTA] = {
+		.ID = 77,
+	},
+	[SPECIES_RAPIDASH] = {
+		.ID = 77,
+	},
+	[SPECIES_SLOWPOKE] = {
 		.ID = 79,
 	},
-	[CHILDREN_SPEWPA] = {
+	[SPECIES_SLOWBRO] = {
+		.ID = 79,
+	},
+	[SPECIES_MAGNEMITE] = {
 		.ID = 81,
 	},
-	[CHILDREN_VIVILLON] = {
+	[SPECIES_MAGNETON] = {
 		.ID = 81,
 	},
-	[CHILDREN_LITLEO] = {
+	[SPECIES_FARFETCHD] = {
 		.ID = 83,
 	},
-	[CHILDREN_PYROAR] = {
+	[SPECIES_DODUO] = {
 		.ID = 84,
 	},
-	[CHILDREN_FLABEBE] = {
+	[SPECIES_DODRIO] = {
 		.ID = 84,
 	},
-	[CHILDREN_FLOETTE] = {
+	[SPECIES_SEEL] = {
 		.ID = 86,
 	},
-	[CHILDREN_FLORGES] = {
+	[SPECIES_DEWGONG] = {
 		.ID = 86,
 	},
-	[CHILDREN_SKIDDO] = {
+	[SPECIES_GRIMER] = {
 		.ID = 88,
 	},
-	[CHILDREN_GOGOAT] = {
+	[SPECIES_MUK] = {
 		.ID = 88,
 	},
-	[CHILDREN_PANCHAM] = {
-		.ID = 7,
-	},
-	[CHILDREN_PANGORO] = {
+	[SPECIES_SHELLDER] = {
 		.ID = 90,
 	},
-	[CHILDREN_FURFROU] = {
+	[SPECIES_CLOYSTER] = {
 		.ID = 90,
 	},
-	[CHILDREN_ESPURR] = {
+	[SPECIES_GASTLY] = {
 		.ID = 92,
 	},
-	[CHILDREN_MEOWSTIC] = {
+	[SPECIES_HAUNTER] = {
 		.ID = 92,
 	},
-	[CHILDREN_HONEDGE] = {
+	[SPECIES_GENGAR] = {
 		.ID = 92,
 	},
-	[CHILDREN_DOUBLADE] = {
+	[SPECIES_ONIX] = {
 		.ID = 95,
 	},
-	[CHILDREN_AEGISLASH] = {
+	[SPECIES_DROWZEE] = {
 		.ID = 96,
 	},
-	[CHILDREN_SPRITZEE] = {
+	[SPECIES_HYPNO] = {
 		.ID = 96,
 	},
-	[CHILDREN_AROMATISSE] = {
+	[SPECIES_KRABBY] = {
 		.ID = 98,
 	},
-	[CHILDREN_SWIRLIX] = {
+	[SPECIES_KINGLER] = {
 		.ID = 98,
+	},
+	[SPECIES_VOLTORB] = {
+		.ID = 100,
+	},
+	[SPECIES_ELECTRODE] = {
+		.ID = 100,
+	},
+	[SPECIES_EXEGGCUTE] = {
+		.ID = 102,
+	},
+	[SPECIES_EXEGGUTOR] = {
+		.ID = 102,
+	},
+	[SPECIES_CUBONE] = {
+		.ID = 104,
+	},
+	[SPECIES_MAROWAK] = {
+		.ID = 104,
+	},
+	[SPECIES_HITMONLEE] = {
+		.ID = 236,
+	},
+	[SPECIES_HITMONCHAN] = {
+		.ID = 236,
+	},
+	[SPECIES_LICKITUNG] = {
+		.ID = 108,
+	},
+	[SPECIES_KOFFING] = {
+		.ID = 109,
+	},
+	[SPECIES_WEEZING] = {
+		.ID = 109,
+	},
+	[SPECIES_RHYHORN] = {
+		.ID = 111,
+	},
+	[SPECIES_RHYDON] = {
+		.ID = 111,
+	},
+	[SPECIES_CHANSEY] = {
+		.ID = 440,
+	},
+	[SPECIES_TANGELA] = {
+		.ID = 114,
+	},
+	[SPECIES_KANGASKHAN] = {
+		.ID = 115,
+	},
+	[SPECIES_HORSEA] = {
+		.ID = 116,
+	},
+	[SPECIES_SEADRA] = {
+		.ID = 116,
+	},
+	[SPECIES_GOLDEEN] = {
+		.ID = 118,
+	},
+	[SPECIES_SEAKING] = {
+		.ID = 118,
+	},
+	[SPECIES_STARYU] = {
+		.ID = 120,
+	},
+	[SPECIES_STARMIE] = {
+		.ID = 120,
+	},
+	[SPECIES_MR_MIME] = {
+		.ID = 439,
+	},
+	[SPECIES_SCYTHER] = {
+		.ID = 123,
+	},
+	[SPECIES_JYNX] = {
+		.ID = 238,
+	},
+	[SPECIES_ELECTABUZZ] = {
+		.ID = 239,
+	},
+	[SPECIES_MAGMAR] = {
+		.ID = 240,
+	},
+	[SPECIES_PINSIR] = {
+		.ID = 127,
+	},
+	[SPECIES_TAUROS] = {
+		.ID = 128,
+	},
+	[SPECIES_MAGIKARP] = {
+		.ID = 129,
+	},
+	[SPECIES_GYARADOS] = {
+		.ID = 129,
+	},
+	[SPECIES_LAPRAS] = {
+		.ID = 131,
+	},
+	[SPECIES_DITTO] = {
+		.ID = 132,
+	},
+	[SPECIES_EEVEE] = {
+		.ID = 133,
+	},
+	[SPECIES_VAPOREON] = {
+		.ID = 133,
+	},
+	[SPECIES_JOLTEON] = {
+		.ID = 133,
+	},
+	[SPECIES_FLAREON] = {
+		.ID = 133,
+	},
+	[SPECIES_PORYGON] = {
+		.ID = 137,
+	},
+	[SPECIES_OMANYTE] = {
+		.ID = 138,
+	},
+	[SPECIES_OMASTAR] = {
+		.ID = 138,
+	},
+	[SPECIES_KABUTO] = {
+		.ID = 140,
+	},
+	[SPECIES_KABUTOPS] = {
+		.ID = 140,
+	},
+	[SPECIES_AERODACTYL] = {
+		.ID = 142,
+	},
+	[SPECIES_SNORLAX] = {
+		.ID = 446,
+	},
+	[SPECIES_ARTICUNO] = {
+		.ID = 144,
+	},
+	[SPECIES_ZAPDOS] = {
+		.ID = 145,
+	},
+	[SPECIES_MOLTRES] = {
+		.ID = 146,
+	},
+	[SPECIES_DRATINI] = {
+		.ID = 147,
+	},
+	[SPECIES_DRAGONAIR] = {
+		.ID = 147,
+	},
+	[SPECIES_DRAGONITE] = {
+		.ID = 147,
+	},
+	[SPECIES_MEWTWO] = {
+		.ID = 150,
+	},
+	[SPECIES_MEW] = {
+		.ID = 151,
+	},
+	[SPECIES_CHIKORITA] = {
+		.ID = 152,
+	},
+	[SPECIES_BAYLEEF] = {
+		.ID = 152,
+	},
+	[SPECIES_MEGANIUM] = {
+		.ID = 152,
+	},
+	[SPECIES_CYNDAQUIL] = {
+		.ID = 155,
+	},
+	[SPECIES_QUILAVA] = {
+		.ID = 155,
+	},
+	[SPECIES_TYPHLOSION] = {
+		.ID = 155,
+	},
+	[SPECIES_TOTODILE] = {
+		.ID = 158,
+	},
+	[SPECIES_CROCONAW] = {
+		.ID = 158,
+	},
+	[SPECIES_FERALIGATR] = {
+		.ID = 158,
+	},
+	[SPECIES_SENTRET] = {
+		.ID = 161,
+	},
+	[SPECIES_FURRET] = {
+		.ID = 161,
+	},
+	[SPECIES_HOOTHOOT] = {
+		.ID = 163,
+	},
+	[SPECIES_NOCTOWL] = {
+		.ID = 163,
+	},
+	[SPECIES_LEDYBA] = {
+		.ID = 165,
+	},
+	[SPECIES_LEDIAN] = {
+		.ID = 165,
+	},
+	[SPECIES_SPINARAK] = {
+		.ID = 167,
+	},
+	[SPECIES_ARIADOS] = {
+		.ID = 167,
+	},
+	[SPECIES_CROBAT] = {
+		.ID = 41,
+	},
+	[SPECIES_CHINCHOU] = {
+		.ID = 170,
+	},
+	[SPECIES_LANTURN] = {
+		.ID = 170,
+	},
+	[SPECIES_PICHU] = {
+		.ID = 172,
+	},
+	[SPECIES_CLEFFA] = {
+		.ID = 173,
+	},
+	[SPECIES_IGGLYBUFF] = {
+		.ID = 174,
+	},
+	[SPECIES_TOGEPI] = {
+		.ID = 175,
+	},
+	[SPECIES_TOGETIC] = {
+		.ID = 175,
+	},
+	[SPECIES_NATU] = {
+		.ID = 177,
+	},
+	[SPECIES_XATU] = {
+		.ID = 177,
+	},
+	[SPECIES_MAREEP] = {
+		.ID = 179,
+	},
+	[SPECIES_FLAAFFY] = {
+		.ID = 179,
+	},
+	[SPECIES_AMPHAROS] = {
+		.ID = 179,
+	},
+	[SPECIES_BELLOSSOM] = {
+		.ID = 43,
+	},
+	[SPECIES_MARILL] = {
+		.ID = 298,
+	},
+	[SPECIES_AZUMARILL] = {
+		.ID = 298,
+	},
+	[SPECIES_SUDOWOODO] = {
+		.ID = 438,
+	},
+	[SPECIES_POLITOED] = {
+		.ID = 60,
+	},
+	[SPECIES_HOPPIP] = {
+		.ID = 187,
+	},
+	[SPECIES_SKIPLOOM] = {
+		.ID = 187,
+	},
+	[SPECIES_JUMPLUFF] = {
+		.ID = 187,
+	},
+	[SPECIES_AIPOM] = {
+		.ID = 190,
+	},
+	[SPECIES_SUNKERN] = {
+		.ID = 191,
+	},
+	[SPECIES_SUNFLORA] = {
+		.ID = 191,
+	},
+	[SPECIES_YANMA] = {
+		.ID = 193,
+	},
+	[SPECIES_WOOPER] = {
+		.ID = 194,
+	},
+	[SPECIES_QUAGSIRE] = {
+		.ID = 194,
+	},
+	[SPECIES_ESPEON] = {
+		.ID = 133,
+	},
+	[SPECIES_UMBREON] = {
+		.ID = 133,
+	},
+	[SPECIES_MURKROW] = {
+		.ID = 198,
+	},
+	[SPECIES_SLOWKING] = {
+		.ID = 79,
+	},
+	[SPECIES_MISDREAVUS] = {
+		.ID = 200,
+	},
+	[SPECIES_UNOWN] = {
+		.ID = 201,
+	},
+	[SPECIES_WOBBUFFET] = {
+		.ID = 360,
+	},
+	[SPECIES_GIRAFARIG] = {
+		.ID = 203,
+	},
+	[SPECIES_PINECO] = {
+		.ID = 204,
+	},
+	[SPECIES_FORRETRESS] = {
+		.ID = 204,
+	},
+	[SPECIES_DUNSPARCE] = {
+		.ID = 206,
+	},
+	[SPECIES_GLIGAR] = {
+		.ID = 207,
+	},
+	[SPECIES_STEELIX] = {
+		.ID = 95,
+	},
+	[SPECIES_SNUBBULL] = {
+		.ID = 209,
+	},
+	[SPECIES_GRANBULL] = {
+		.ID = 209,
+	},
+	[SPECIES_QWILFISH] = {
+		.ID = 211,
+	},
+	[SPECIES_SCIZOR] = {
+		.ID = 123,
+	},
+	[SPECIES_SHUCKLE] = {
+		.ID = 213,
+	},
+	[SPECIES_HERACROSS] = {
+		.ID = 214,
+	},
+	[SPECIES_SNEASEL] = {
+		.ID = 215,
+	},
+	[SPECIES_TEDDIURSA] = {
+		.ID = 216,
+	},
+	[SPECIES_URSARING] = {
+		.ID = 216,
+	},
+	[SPECIES_SLUGMA] = {
+		.ID = 218,
+	},
+	[SPECIES_MAGCARGO] = {
+		.ID = 218,
+	},
+	[SPECIES_SWINUB] = {
+		.ID = 220,
+	},
+	[SPECIES_PILOSWINE] = {
+		.ID = 220,
+	},
+	[SPECIES_CORSOLA] = {
+		.ID = 222,
+	},
+	[SPECIES_REMORAID] = {
+		.ID = 223,
+	},
+	[SPECIES_OCTILLERY] = {
+		.ID = 223,
+	},
+	[SPECIES_DELIBIRD] = {
+		.ID = 225,
+	},
+	[SPECIES_MANTINE] = {
+		.ID = 458,
+	},
+	[SPECIES_SKARMORY] = {
+		.ID = 227,
+	},
+	[SPECIES_HOUNDOUR] = {
+		.ID = 228,
+	},
+	[SPECIES_HOUNDOOM] = {
+		.ID = 228,
+	},
+	[SPECIES_KINGDRA] = {
+		.ID = 116,
+	},
+	[SPECIES_PHANPY] = {
+		.ID = 231,
+	},
+	[SPECIES_DONPHAN] = {
+		.ID = 231,
+	},
+	[SPECIES_PORYGON2] = {
+		.ID = 137,
+	},
+	[SPECIES_STANTLER] = {
+		.ID = 234,
+	},
+	[SPECIES_SMEARGLE] = {
+		.ID = 235,
+	},
+	[SPECIES_TYROGUE] = {
+		.ID = 236,
+	},
+	[SPECIES_HITMONTOP] = {
+		.ID = 236,
+	},
+	[SPECIES_SMOOCHUM] = {
+		.ID = 238,
+	},
+	[SPECIES_ELEKID] = {
+		.ID = 239,
+	},
+	[SPECIES_MAGBY] = {
+		.ID = 240,
+	},
+	[SPECIES_MILTANK] = {
+		.ID = 241,
+	},
+	[SPECIES_BLISSEY] = {
+		.ID = 440,
+	},
+	[SPECIES_RAIKOU] = {
+		.ID = 243,
+	},
+	[SPECIES_ENTEI] = {
+		.ID = 244,
+	},
+	[SPECIES_SUICUNE] = {
+		.ID = 245,
+	},
+	[SPECIES_LARVITAR] = {
+		.ID = 246,
+	},
+	[SPECIES_PUPITAR] = {
+		.ID = 246,
+	},
+	[SPECIES_TYRANITAR] = {
+		.ID = 246,
+	},
+	[SPECIES_LUGIA] = {
+		.ID = 249,
+	},
+	[SPECIES_HOOH] = {
+		.ID = 250,
+	},
+	[SPECIES_CELEBI] = {
+		.ID = 251,
+	},
+	[SPECIES_TREECKO] = {
+		.ID = 252,
+	},
+	[SPECIES_GROVYLE] = {
+		.ID = 252,
+	},
+	[SPECIES_SCEPTILE] = {
+		.ID = 252,
+	},
+	[SPECIES_TORCHIC] = {
+		.ID = 255,
+	},
+	[SPECIES_COMBUSKEN] = {
+		.ID = 255,
+	},
+	[SPECIES_BLAZIKEN] = {
+		.ID = 255,
+	},
+	[SPECIES_MUDKIP] = {
+		.ID = 258,
+	},
+	[SPECIES_MARSHTOMP] = {
+		.ID = 258,
+	},
+	[SPECIES_SWAMPERT] = {
+		.ID = 258,
+	},
+	[SPECIES_POOCHYENA] = {
+		.ID = 261,
+	},
+	[SPECIES_MIGHTYENA] = {
+		.ID = 261,
+	},
+	[SPECIES_ZIGZAGOON] = {
+		.ID = 263,
+	},
+	[SPECIES_LINOONE] = {
+		.ID = 263,
+	},
+	[SPECIES_WURMPLE] = {
+		.ID = 265,
+	},
+	[SPECIES_SILCOON] = {
+		.ID = 265,
+	},
+	[SPECIES_BEAUTIFLY] = {
+		.ID = 265,
+	},
+	[SPECIES_CASCOON] = {
+		.ID = 265,
+	},
+	[SPECIES_DUSTOX] = {
+		.ID = 265,
+	},
+	[SPECIES_LOTAD] = {
+		.ID = 270,
+	},
+	[SPECIES_LOMBRE] = {
+		.ID = 270,
+	},
+	[SPECIES_LUDICOLO] = {
+		.ID = 270,
+	},
+	[SPECIES_SEEDOT] = {
+		.ID = 273,
+	},
+	[SPECIES_NUZLEAF] = {
+		.ID = 273,
+	},
+	[SPECIES_SHIFTRY] = {
+		.ID = 273,
+	},
+	[SPECIES_TAILLOW] = {
+		.ID = 276,
+	},
+	[SPECIES_SWELLOW] = {
+		.ID = 276,
+	},
+	[SPECIES_WINGULL] = {
+		.ID = 278,
+	},
+	[SPECIES_PELIPPER] = {
+		.ID = 278,
+	},
+	[SPECIES_RALTS] = {
+		.ID = 280,
+	},
+	[SPECIES_KIRLIA] = {
+		.ID = 280,
+	},
+	[SPECIES_GARDEVOIR] = {
+		.ID = 280,
+	},
+	[SPECIES_SURSKIT] = {
+		.ID = 283,
+	},
+	[SPECIES_MASQUERAIN] = {
+		.ID = 283,
+	},
+	[SPECIES_SHROOMISH] = {
+		.ID = 285,
+	},
+	[SPECIES_BRELOOM] = {
+		.ID = 285,
+	},
+	[SPECIES_SLAKOTH] = {
+		.ID = 287,
+	},
+	[SPECIES_VIGOROTH] = {
+		.ID = 287,
+	},
+	[SPECIES_SLAKING] = {
+		.ID = 287,
+	},
+	[SPECIES_NINCADA] = {
+		.ID = 290,
+	},
+	[SPECIES_NINJASK] = {
+		.ID = 290,
+	},
+	[SPECIES_SHEDINJA] = {
+		.ID = 290,
+	},
+	[SPECIES_WHISMUR] = {
+		.ID = 293,
+	},
+	[SPECIES_LOUDRED] = {
+		.ID = 293,
+	},
+	[SPECIES_EXPLOUD] = {
+		.ID = 293,
+	},
+	[SPECIES_MAKUHITA] = {
+		.ID = 296,
+	},
+	[SPECIES_HARIYAMA] = {
+		.ID = 296,
+	},
+	[SPECIES_AZURILL] = {
+		.ID = 298,
+	},
+	[SPECIES_NOSEPASS] = {
+		.ID = 299,
+	},
+	[SPECIES_SKITTY] = {
+		.ID = 300,
+	},
+	[SPECIES_DELCATTY] = {
+		.ID = 300,
+	},
+	[SPECIES_SABLEYE] = {
+		.ID = 302,
+	},
+	[SPECIES_MAWILE] = {
+		.ID = 303,
+	},
+	[SPECIES_ARON] = {
+		.ID = 304,
+	},
+	[SPECIES_LAIRON] = {
+		.ID = 304,
+	},
+	[SPECIES_AGGRON] = {
+		.ID = 304,
+	},
+	[SPECIES_MEDITITE] = {
+		.ID = 307,
+	},
+	[SPECIES_MEDICHAM] = {
+		.ID = 307,
+	},
+	[SPECIES_ELECTRIKE] = {
+		.ID = 309,
+	},
+	[SPECIES_MANECTRIC] = {
+		.ID = 309,
+	},
+	[SPECIES_PLUSLE] = {
+		.ID = 311,
+	},
+	[SPECIES_MINUN] = {
+		.ID = 312,
+	},
+	[SPECIES_VOLBEAT] = {
+		.ID = 313,
+	},
+	[SPECIES_ILLUMISE] = {
+		.ID = 314,
+	},
+	[SPECIES_ROSELIA] = {
+		.ID = 406,
+	},
+	[SPECIES_GULPIN] = {
+		.ID = 316,
+	},
+	[SPECIES_SWALOT] = {
+		.ID = 316,
+	},
+	[SPECIES_CARVANHA] = {
+		.ID = 318,
+	},
+	[SPECIES_SHARPEDO] = {
+		.ID = 318,
+	},
+	[SPECIES_WAILMER] = {
+		.ID = 320,
+	},
+	[SPECIES_WAILORD] = {
+		.ID = 320,
+	},
+	[SPECIES_NUMEL] = {
+		.ID = 322,
+	},
+	[SPECIES_CAMERUPT] = {
+		.ID = 322,
+	},
+	[SPECIES_TORKOAL] = {
+		.ID = 324,
+	},
+	[SPECIES_SPOINK] = {
+		.ID = 325,
+	},
+	[SPECIES_GRUMPIG] = {
+		.ID = 325,
+	},
+	[SPECIES_SPINDA] = {
+		.ID = 327,
+	},
+	[SPECIES_TRAPINCH] = {
+		.ID = 328,
+	},
+	[SPECIES_VIBRAVA] = {
+		.ID = 328,
+	},
+	[SPECIES_FLYGON] = {
+		.ID = 328,
+	},
+	[SPECIES_CACNEA] = {
+		.ID = 331,
+	},
+	[SPECIES_CACTURNE] = {
+		.ID = 331,
+	},
+	[SPECIES_SWABLU] = {
+		.ID = 333,
+	},
+	[SPECIES_ALTARIA] = {
+		.ID = 333,
+	},
+	[SPECIES_ZANGOOSE] = {
+		.ID = 335,
+	},
+	[SPECIES_SEVIPER] = {
+		.ID = 336,
+	},
+	[SPECIES_LUNATONE] = {
+		.ID = 337,
+	},
+	[SPECIES_SOLROCK] = {
+		.ID = 338,
+	},
+	[SPECIES_BARBOACH] = {
+		.ID = 339,
+	},
+	[SPECIES_WHISCASH] = {
+		.ID = 339,
+	},
+	[SPECIES_CORPHISH] = {
+		.ID = 341,
+	},
+	[SPECIES_CRAWDAUNT] = {
+		.ID = 341,
+	},
+	[SPECIES_BALTOY] = {
+		.ID = 343,
+	},
+	[SPECIES_CLAYDOL] = {
+		.ID = 343,
+	},
+	[SPECIES_LILEEP] = {
+		.ID = 345,
+	},
+	[SPECIES_CRADILY] = {
+		.ID = 345,
+	},
+	[SPECIES_ANORITH] = {
+		.ID = 347,
+	},
+	[SPECIES_ARMALDO] = {
+		.ID = 347,
+	},
+	[SPECIES_FEEBAS] = {
+		.ID = 349,
+	},
+	[SPECIES_MILOTIC] = {
+		.ID = 349,
+	},
+	[SPECIES_CASTFORM] = {
+		.ID = 351,
+	},
+	[SPECIES_KECLEON] = {
+		.ID = 352,
+	},
+	[SPECIES_SHUPPET] = {
+		.ID = 353,
+	},
+	[SPECIES_BANETTE] = {
+		.ID = 353,
+	},
+	[SPECIES_DUSKULL] = {
+		.ID = 355,
+	},
+	[SPECIES_DUSCLOPS] = {
+		.ID = 355,
+	},
+	[SPECIES_TROPIUS] = {
+		.ID = 357,
+	},
+	[SPECIES_CHIMECHO] = {
+		.ID = 433,
+	},
+	[SPECIES_ABSOL] = {
+		.ID = 359,
+	},
+	[SPECIES_WYNAUT] = {
+		.ID = 360,
+	},
+	[SPECIES_SNORUNT] = {
+		.ID = 361,
+	},
+	[SPECIES_GLALIE] = {
+		.ID = 361,
+	},
+	[SPECIES_SPHEAL] = {
+		.ID = 363,
+	},
+	[SPECIES_SEALEO] = {
+		.ID = 363,
+	},
+	[SPECIES_WALREIN] = {
+		.ID = 363,
+	},
+	[SPECIES_CLAMPERL] = {
+		.ID = 366,
+	},
+	[SPECIES_HUNTAIL] = {
+		.ID = 366,
+	},
+	[SPECIES_GOREBYSS] = {
+		.ID = 366,
+	},
+	[SPECIES_RELICANTH] = {
+		.ID = 369,
+	},
+	[SPECIES_LUVDISC] = {
+		.ID = 370,
+	},
+	[SPECIES_BAGON] = {
+		.ID = 371,
+	},
+	[SPECIES_SHELGON] = {
+		.ID = 371,
+	},
+	[SPECIES_SALAMENCE] = {
+		.ID = 371,
+	},
+	[SPECIES_BELDUM] = {
+		.ID = 374,
+	},
+	[SPECIES_METANG] = {
+		.ID = 374,
+	},
+	[SPECIES_METAGROSS] = {
+		.ID = 374,
+	},
+	[SPECIES_REGIROCK] = {
+		.ID = 377,
+	},
+	[SPECIES_REGICE] = {
+		.ID = 378,
+	},
+	[SPECIES_REGISTEEL] = {
+		.ID = 379,
+	},
+	[SPECIES_LATIAS] = {
+		.ID = 380,
+	},
+	[SPECIES_LATIOS] = {
+		.ID = 381,
+	},
+	[SPECIES_KYOGRE] = {
+		.ID = 382,
+	},
+	[SPECIES_GROUDON] = {
+		.ID = 383,
+	},
+	[SPECIES_RAYQUAZA] = {
+		.ID = 384,
+	},
+	[SPECIES_JIRACHI] = {
+		.ID = 385,
+	},
+	[SPECIES_DEOXYS] = {
+		.ID = 386,
+	},
+	[SPECIES_TURTWIG] = {
+		.ID = 387,
+	},
+	[SPECIES_GROTLE] = {
+		.ID = 387,
+	},
+	[SPECIES_TORTERRA] = {
+		.ID = 387,
+	},
+	[SPECIES_CHIMCHAR] = {
+		.ID = 390,
+	},
+	[SPECIES_MONFERNO] = {
+		.ID = 390,
+	},
+	[SPECIES_INFERNAPE] = {
+		.ID = 390,
+	},
+	[SPECIES_PIPLUP] = {
+		.ID = 393,
+	},
+	[SPECIES_PRINPLUP] = {
+		.ID = 393,
+	},
+	[SPECIES_EMPOLEON] = {
+		.ID = 393,
+	},
+	[SPECIES_STARLY] = {
+		.ID = 396,
+	},
+	[SPECIES_STARAVIA] = {
+		.ID = 396,
+	},
+	[SPECIES_STARAPTOR] = {
+		.ID = 396,
+	},
+	[SPECIES_BIDOOF] = {
+		.ID = 399,
+	},
+	[SPECIES_BIBAREL] = {
+		.ID = 399,
+	},
+	[SPECIES_KRICKETOT] = {
+		.ID = 401,
+	},
+	[SPECIES_KRICKETUNE] = {
+		.ID = 401,
+	},
+	[SPECIES_SHINX] = {
+		.ID = 403,
+	},
+	[SPECIES_LUXIO] = {
+		.ID = 403,
+	},
+	[SPECIES_LUXRAY] = {
+		.ID = 403,
+	},
+	[SPECIES_BUDEW] = {
+		.ID = 406,
+	},
+	[SPECIES_ROSERADE] = {
+		.ID = 406,
+	},
+	[SPECIES_CRANIDOS] = {
+		.ID = 408,
+	},
+	[SPECIES_RAMPARDOS] = {
+		.ID = 408,
+	},
+	[SPECIES_SHIELDON] = {
+		.ID = 410,
+	},
+	[SPECIES_BASTIODON] = {
+		.ID = 410,
+	},
+	[SPECIES_BURMY] = {
+		.ID = 412,
+	},
+	[SPECIES_WORMADAM] = {
+		.ID = 412,
+	},
+	[SPECIES_MOTHIM] = {
+		.ID = 412,
+	},
+	[SPECIES_COMBEE] = {
+		.ID = 415,
+	},
+	[SPECIES_VESPIQUEN] = {
+		.ID = 415,
+	},
+	[SPECIES_PACHIRISU] = {
+		.ID = 417,
+	},
+	[SPECIES_BUIZEL] = {
+		.ID = 418,
+	},
+	[SPECIES_FLOATZEL] = {
+		.ID = 418,
+	},
+	[SPECIES_CHERUBI] = {
+		.ID = 420,
+	},
+	[SPECIES_CHERRIM] = {
+		.ID = 420,
+	},
+	[SPECIES_SHELLOS] = {
+		.ID = 422,
+	},
+	[SPECIES_GASTRODON] = {
+		.ID = 422,
+	},
+	[SPECIES_AMBIPOM] = {
+		.ID = 190,
+	},
+	[SPECIES_DRIFLOON] = {
+		.ID = 425,
+	},
+	[SPECIES_DRIFBLIM] = {
+		.ID = 425,
+	},
+	[SPECIES_BUNEARY] = {
+		.ID = 427,
+	},
+	[SPECIES_LOPUNNY] = {
+		.ID = 427,
+	},
+	[SPECIES_MISMAGIUS] = {
+		.ID = 200,
+	},
+	[SPECIES_HONCHKROW] = {
+		.ID = 198,
+	},
+	[SPECIES_GLAMEOW] = {
+		.ID = 431,
+	},
+	[SPECIES_PURUGLY] = {
+		.ID = 431,
+	},
+	[SPECIES_CHINGLING] = {
+		.ID = 433,
+	},
+	[SPECIES_STUNKY] = {
+		.ID = 434,
+	},
+	[SPECIES_SKUNTANK] = {
+		.ID = 434,
+	},
+	[SPECIES_BRONZOR] = {
+		.ID = 436,
+	},
+	[SPECIES_BRONZONG] = {
+		.ID = 436,
+	},
+	[SPECIES_BONSLY] = {
+		.ID = 438,
+	},
+	[SPECIES_MIME_JR] = {
+		.ID = 439,
+	},
+	[SPECIES_HAPPINY] = {
+		.ID = 440,
+	},
+	[SPECIES_CHATOT] = {
+		.ID = 441,
+	},
+	[SPECIES_SPIRITOMB] = {
+		.ID = 442,
+	},
+	[SPECIES_GIBLE] = {
+		.ID = 443,
+	},
+	[SPECIES_GABITE] = {
+		.ID = 443,
+	},
+	[SPECIES_GARCHOMP] = {
+		.ID = 443,
+	},
+	[SPECIES_MUNCHLAX] = {
+		.ID = 446,
+	},
+	[SPECIES_RIOLU] = {
+		.ID = 447,
+	},
+	[SPECIES_LUCARIO] = {
+		.ID = 447,
+	},
+	[SPECIES_HIPPOPOTAS] = {
+		.ID = 449,
+	},
+	[SPECIES_HIPPOWDON] = {
+		.ID = 449,
+	},
+	[SPECIES_SKORUPI] = {
+		.ID = 451,
+	},
+	[SPECIES_DRAPION] = {
+		.ID = 451,
+	},
+	[SPECIES_CROAGUNK] = {
+		.ID = 453,
+	},
+	[SPECIES_TOXICROAK] = {
+		.ID = 453,
+	},
+	[SPECIES_CARNIVINE] = {
+		.ID = 455,
+	},
+	[SPECIES_FINNEON] = {
+		.ID = 456,
+	},
+	[SPECIES_LUMINEON] = {
+		.ID = 456,
+	},
+	[SPECIES_MANTYKE] = {
+		.ID = 458,
+	},
+	[SPECIES_SNOVER] = {
+		.ID = 459,
+	},
+	[SPECIES_ABOMASNOW] = {
+		.ID = 459,
+	},
+	[SPECIES_WEAVILE] = {
+		.ID = 215,
+	},
+	[SPECIES_MAGNEZONE] = {
+		.ID = 81,
+	},
+	[SPECIES_LICKILICKY] = {
+		.ID = 108,
+	},
+	[SPECIES_RHYPERIOR] = {
+		.ID = 111,
+	},
+	[SPECIES_TANGROWTH] = {
+		.ID = 114,
+	},
+	[SPECIES_ELECTIVIRE] = {
+		.ID = 239,
+	},
+	[SPECIES_MAGMORTAR] = {
+		.ID = 240,
+	},
+	[SPECIES_TOGEKISS] = {
+		.ID = 175,
+	},
+	[SPECIES_YANMEGA] = {
+		.ID = 193,
+	},
+	[SPECIES_LEAFEON] = {
+		.ID = 133,
+	},
+	[SPECIES_GLACEON] = {
+		.ID = 133,
+	},
+	[SPECIES_GLISCOR] = {
+		.ID = 207,
+	},
+	[SPECIES_MAMOSWINE] = {
+		.ID = 220,
+	},
+	[SPECIES_PORYGONZ] = {
+		.ID = 137,
+	},
+	[SPECIES_GALLADE] = {
+		.ID = 280,
+	},
+	[SPECIES_PROBOPASS] = {
+		.ID = 299,
+	},
+	[SPECIES_DUSKNOIR] = {
+		.ID = 355,
+	},
+	[SPECIES_FROSLASS] = {
+		.ID = 361,
+	},
+	[SPECIES_ROTOM] = {
+		.ID = 479,
+	},
+	[SPECIES_UXIE] = {
+		.ID = 480,
+	},
+	[SPECIES_MESPRIT] = {
+		.ID = 481,
+	},
+	[SPECIES_AZELF] = {
+		.ID = 482,
+	},
+	[SPECIES_DIALGA] = {
+		.ID = 483,
+	},
+	[SPECIES_PALKIA] = {
+		.ID = 484,
+	},
+	[SPECIES_HEATRAN] = {
+		.ID = 485,
+	},
+	[SPECIES_REGIGIGAS] = {
+		.ID = 486,
+	},
+	[SPECIES_GIRATINA] = {
+		.ID = 487,
+	},
+	[SPECIES_CRESSELIA] = {
+		.ID = 488,
+	},
+	[SPECIES_PHIONE] = {
+		.ID = 489,
+	},
+	[SPECIES_MANAPHY] = {
+		.ID = 490,
+	},
+	[SPECIES_DARKRAI] = {
+		.ID = 491,
+	},
+	[SPECIES_SHAYMIN] = {
+		.ID = 492,
+	},
+	[SPECIES_ARCEUS] = {
+		.ID = 493,
+	},
+	[SPECIES_VICTINI] = {
+		.ID = 494,
+	},
+	[SPECIES_SNIVY] = {
+		.ID = 495,
+	},
+	[SPECIES_SERVINE] = {
+		.ID = 495,
+	},
+	[SPECIES_SERPERIOR] = {
+		.ID = 495,
+	},
+	[SPECIES_TEPIG] = {
+		.ID = 498,
+	},
+	[SPECIES_PIGNITE] = {
+		.ID = 498,
+	},
+	[SPECIES_EMBOAR] = {
+		.ID = 498,
+	},
+	[SPECIES_OSHAWOTT] = {
+		.ID = 501,
+	},
+	[SPECIES_DEWOTT] = {
+		.ID = 501,
+	},
+	[SPECIES_SAMUROTT] = {
+		.ID = 501,
+	},
+	[SPECIES_PATRAT] = {
+		.ID = 504,
+	},
+	[SPECIES_WATCHOG] = {
+		.ID = 504,
+	},
+	[SPECIES_LILLIPUP] = {
+		.ID = 506,
+	},
+	[SPECIES_HERDIER] = {
+		.ID = 506,
+	},
+	[SPECIES_STOUTLAND] = {
+		.ID = 506,
+	},
+	[SPECIES_PURRLOIN] = {
+		.ID = 509,
+	},
+	[SPECIES_LIEPARD] = {
+		.ID = 509,
+	},
+	[SPECIES_PANSAGE] = {
+		.ID = 511,
+	},
+	[SPECIES_SIMISAGE] = {
+		.ID = 511,
+	},
+	[SPECIES_PANSEAR] = {
+		.ID = 513,
+	},
+	[SPECIES_SIMISEAR] = {
+		.ID = 513,
+	},
+	[SPECIES_PANPOUR] = {
+		.ID = 515,
+	},
+	[SPECIES_SIMIPOUR] = {
+		.ID = 515,
+	},
+	[SPECIES_MUNNA] = {
+		.ID = 517,
+	},
+	[SPECIES_MUSHARNA] = {
+		.ID = 517,
+	},
+	[SPECIES_PIDOVE] = {
+		.ID = 519,
+	},
+	[SPECIES_TRANQUILL] = {
+		.ID = 519,
+	},
+	[SPECIES_UNFEZANT] = {
+		.ID = 519,
+	},
+	[SPECIES_BLITZLE] = {
+		.ID = 522,
+	},
+	[SPECIES_ZEBSTRIKA] = {
+		.ID = 522,
+	},
+	[SPECIES_ROGGENROLA] = {
+		.ID = 524,
+	},
+	[SPECIES_BOLDORE] = {
+		.ID = 524,
+	},
+	[SPECIES_GIGALITH] = {
+		.ID = 524,
+	},
+	[SPECIES_WOOBAT] = {
+		.ID = 527,
+	},
+	[SPECIES_SWOOBAT] = {
+		.ID = 527,
+	},
+	[SPECIES_DRILBUR] = {
+		.ID = 529,
+	},
+	[SPECIES_EXCADRILL] = {
+		.ID = 529,
+	},
+	[SPECIES_AUDINO] = {
+		.ID = 531,
+	},
+	[SPECIES_TIMBURR] = {
+		.ID = 532,
+	},
+	[SPECIES_GURDURR] = {
+		.ID = 532,
+	},
+	[SPECIES_CONKELDURR] = {
+		.ID = 532,
+	},
+	[SPECIES_TYMPOLE] = {
+		.ID = 535,
+	},
+	[SPECIES_PALPITOAD] = {
+		.ID = 535,
+	},
+	[SPECIES_SEISMITOAD] = {
+		.ID = 535,
+	},
+	[SPECIES_THROH] = {
+		.ID = 538,
+	},
+	[SPECIES_SAWK] = {
+		.ID = 539,
+	},
+	[SPECIES_SEWADDLE] = {
+		.ID = 540,
+	},
+	[SPECIES_SWADLOON] = {
+		.ID = 540,
+	},
+	[SPECIES_LEAVANNY] = {
+		.ID = 540,
+	},
+	[SPECIES_VENIPEDE] = {
+		.ID = 543,
+	},
+	[SPECIES_WHIRLIPEDE] = {
+		.ID = 543,
+	},
+	[SPECIES_SCOLIPEDE] = {
+		.ID = 543,
+	},
+	[SPECIES_COTTONEE] = {
+		.ID = 546,
+	},
+	[SPECIES_WHIMSICOTT] = {
+		.ID = 546,
+	},
+	[SPECIES_PETILIL] = {
+		.ID = 548,
+	},
+	[SPECIES_LILLIGANT] = {
+		.ID = 548,
+	},
+	[SPECIES_BASCULIN] = {
+		.ID = 550,
+	},
+	[SPECIES_SANDILE] = {
+		.ID = 551,
+	},
+	[SPECIES_KROKOROK] = {
+		.ID = 551,
+	},
+	[SPECIES_KROOKODILE] = {
+		.ID = 551,
+	},
+	[SPECIES_DARUMAKA] = {
+		.ID = 554,
+	},
+	[SPECIES_DARMANITAN] = {
+		.ID = 554,
+	},
+	[SPECIES_MARACTUS] = {
+		.ID = 556,
+	},
+	[SPECIES_DWEBBLE] = {
+		.ID = 557,
+	},
+	[SPECIES_CRUSTLE] = {
+		.ID = 557,
+	},
+	[SPECIES_SCRAGGY] = {
+		.ID = 559,
+	},
+	[SPECIES_SCRAFTY] = {
+		.ID = 559,
+	},
+	[SPECIES_SIGILYPH] = {
+		.ID = 561,
+	},
+	[SPECIES_YAMASK] = {
+		.ID = 562,
+	},
+	[SPECIES_COFAGRIGUS] = {
+		.ID = 562,
+	},
+	[SPECIES_TIRTOUGA] = {
+		.ID = 564,
+	},
+	[SPECIES_CARRACOSTA] = {
+		.ID = 564,
+	},
+	[SPECIES_ARCHEN] = {
+		.ID = 566,
+	},
+	[SPECIES_ARCHEOPS] = {
+		.ID = 566,
+	},
+	[SPECIES_TRUBBISH] = {
+		.ID = 568,
+	},
+	[SPECIES_GARBODOR] = {
+		.ID = 568,
+	},
+	[SPECIES_ZORUA] = {
+		.ID = 570,
+	},
+	[SPECIES_ZOROARK] = {
+		.ID = 570,
+	},
+	[SPECIES_MINCCINO] = {
+		.ID = 572,
+	},
+	[SPECIES_CINCCINO] = {
+		.ID = 572,
+	},
+	[SPECIES_GOTHITA] = {
+		.ID = 574,
+	},
+	[SPECIES_GOTHORITA] = {
+		.ID = 574,
+	},
+	[SPECIES_GOTHITELLE] = {
+		.ID = 574,
+	},
+	[SPECIES_SOLOSIS] = {
+		.ID = 577,
+	},
+	[SPECIES_DUOSION] = {
+		.ID = 577,
+	},
+	[SPECIES_REUNICLUS] = {
+		.ID = 577,
+	},
+	[SPECIES_DUCKLETT] = {
+		.ID = 580,
+	},
+	[SPECIES_SWANNA] = {
+		.ID = 580,
+	},
+	[SPECIES_VANILLITE] = {
+		.ID = 582,
+	},
+	[SPECIES_VANILLISH] = {
+		.ID = 582,
+	},
+	[SPECIES_VANILLUXE] = {
+		.ID = 582,
+	},
+	[SPECIES_DEERLING] = {
+		.ID = 585,
+	},
+	[SPECIES_SAWSBUCK] = {
+		.ID = 585,
+	},
+	[SPECIES_EMOLGA] = {
+		.ID = 587,
+	},
+	[SPECIES_KARRABLAST] = {
+		.ID = 588,
+	},
+	[SPECIES_ESCAVALIER] = {
+		.ID = 588,
+	},
+	[SPECIES_FOONGUS] = {
+		.ID = 590,
+	},
+	[SPECIES_AMOONGUSS] = {
+		.ID = 590,
+	},
+	[SPECIES_FRILLISH] = {
+		.ID = 592,
+	},
+	[SPECIES_JELLICENT] = {
+		.ID = 592,
+	},
+	[SPECIES_ALOMOMOLA] = {
+		.ID = 594,
+	},
+	[SPECIES_JOLTIK] = {
+		.ID = 595,
+	},
+	[SPECIES_GALVANTULA] = {
+		.ID = 595,
+	},
+	[SPECIES_FERROSEED] = {
+		.ID = 597,
+	},
+	[SPECIES_FERROTHORN] = {
+		.ID = 597,
+	},
+	[SPECIES_KLINK] = {
+		.ID = 599,
+	},
+	[SPECIES_KLANG] = {
+		.ID = 599,
+	},
+	[SPECIES_KLINKLANG] = {
+		.ID = 599,
+	},
+	[SPECIES_TYNAMO] = {
+		.ID = 602,
+	},
+	[SPECIES_EELEKTRIK] = {
+		.ID = 602,
+	},
+	[SPECIES_EELEKTROSS] = {
+		.ID = 602,
+	},
+	[SPECIES_ELGYEM] = {
+		.ID = 605,
+	},
+	[SPECIES_BEHEEYEM] = {
+		.ID = 605,
+	},
+	[SPECIES_LITWICK] = {
+		.ID = 607,
+	},
+	[SPECIES_LAMPENT] = {
+		.ID = 607,
+	},
+	[SPECIES_CHANDELURE] = {
+		.ID = 607,
+	},
+	[SPECIES_AXEW] = {
+		.ID = 610,
+	},
+	[SPECIES_FRAXURE] = {
+		.ID = 610,
+	},
+	[SPECIES_HAXORUS] = {
+		.ID = 610,
+	},
+	[SPECIES_CUBCHOO] = {
+		.ID = 613,
+	},
+	[SPECIES_BEARTIC] = {
+		.ID = 613,
+	},
+	[SPECIES_CRYOGONAL] = {
+		.ID = 615,
+	},
+	[SPECIES_SHELMET] = {
+		.ID = 616,
+	},
+	[SPECIES_ACCELGOR] = {
+		.ID = 616,
+	},
+	[SPECIES_STUNFISK] = {
+		.ID = 618,
+	},
+	[SPECIES_MIENFOO] = {
+		.ID = 619,
+	},
+	[SPECIES_MIENSHAO] = {
+		.ID = 619,
+	},
+	[SPECIES_DRUDDIGON] = {
+		.ID = 621,
+	},
+	[SPECIES_GOLETT] = {
+		.ID = 622,
+	},
+	[SPECIES_GOLURK] = {
+		.ID = 622,
+	},
+	[SPECIES_PAWNIARD] = {
+		.ID = 624,
+	},
+	[SPECIES_BISHARP] = {
+		.ID = 624,
+	},
+	[SPECIES_BOUFFALANT] = {
+		.ID = 626,
+	},
+	[SPECIES_RUFFLET] = {
+		.ID = 627,
+	},
+	[SPECIES_BRAVIARY] = {
+		.ID = 627,
+	},
+	[SPECIES_VULLABY] = {
+		.ID = 629,
+	},
+	[SPECIES_MANDIBUZZ] = {
+		.ID = 629,
+	},
+	[SPECIES_HEATMOR] = {
+		.ID = 631,
+	},
+	[SPECIES_DURANT] = {
+		.ID = 632,
+	},
+	[SPECIES_DEINO] = {
+		.ID = 633,
+	},
+	[SPECIES_ZWEILOUS] = {
+		.ID = 633,
+	},
+	[SPECIES_HYDREIGON] = {
+		.ID = 633,
+	},
+	[SPECIES_LARVESTA] = {
+		.ID = 636,
+	},
+	[SPECIES_VOLCARONA] = {
+		.ID = 636,
+	},
+	[SPECIES_COBALION] = {
+		.ID = 638,
+	},
+	[SPECIES_TERRAKION] = {
+		.ID = 639,
+	},
+	[SPECIES_VIRIZION] = {
+		.ID = 640,
+	},
+	[SPECIES_TORNADUS] = {
+		.ID = 641,
+	},
+	[SPECIES_THUNDURUS] = {
+		.ID = 642,
+	},
+	[SPECIES_RESHIRAM] = {
+		.ID = 643,
+	},
+	[SPECIES_ZEKROM] = {
+		.ID = 644,
+	},
+	[SPECIES_LANDORUS] = {
+		.ID = 645,
+	},
+	[SPECIES_KYUREM] = {
+		.ID = 646,
+	},
+	[SPECIES_KELDEO] = {
+		.ID = 647,
+	},
+	[SPECIES_MELOETTA] = {
+		.ID = 648,
+	},
+	[SPECIES_GENESECT] = {
+		.ID = 649,
+	},
+	[SPECIES_EGG] = {
+		.ID = 650,
+	},
+	[SPECIES_BAD_EGG] = {
+		.ID = 651,
+	},
+	[SPECIES_UFO] = {
+		.ID = 652,
+	},
+	[SPECIES_BRYCENMAN] = {
+		.ID = 653,
+	},
+	[SPECIES_MT] = {
+		.ID = 654,
+	},
+	[SPECIES_MT2] = {
+		.ID = 655,
+	},
+	[SPECIES_TRANSPORT] = {
+		.ID = 656,
+	},
+	[SPECIES_GIANT_15] = {
+		.ID = 657,
+	},
+	[SPECIES_HUMANOID] = {
+		.ID = 658,
+	},
+	[SPECIES_MONSTER] = {
+		.ID = 659,
+	},
+	[SPECIES_F00] = {
+		.ID = 660,
+	},
+	[SPECIES_SPIRIT] = {
+		.ID = 661,
+	},
+	[SPECIES_WHITE_DOOR] = {
+		.ID = 662,
+	},
+	[SPECIES_BLACK_DOOR] = {
+		.ID = 663,
+	},
+	[SPECIES_PROP_U1] = {
+		.ID = 664,
+	},
+	[SPECIES_PROP_U2] = {
+		.ID = 665,
+	},
+	[SPECIES_PROP_H1] = {
+		.ID = 666,
+	},
+	[SPECIES_PROP_M1] = {
+		.ID = 667,
+	},
+	[SPECIES_PROP_M2] = {
+		.ID = 668,
+	},
+	[SPECIES_PROP_T1] = {
+		.ID = 669,
+	},
+	[SPECIES_PROP_O1] = {
+		.ID = 670,
+	},
+	[SPECIES_PROP_O2] = {
+		.ID = 671,
+	},
+	[SPECIES_PROP_C1] = {
+		.ID = 672,
+	},
+	[SPECIES_PROP_C2] = {
+		.ID = 673,
+	},
+	[SPECIES_PROP_G1] = {
+		.ID = 674,
+	},
+	[SPECIES_PROP_W1] = {
+		.ID = 675,
+	},
+	[SPECIES_PROP_W2] = {
+		.ID = 676,
+	},
+	[SPECIES_PROP_R1] = {
+		.ID = 677,
+	},
+	[SPECIES_PROP_R2] = {
+		.ID = 678,
+	},
+	[SPECIES_PROP_K1] = {
+		.ID = 679,
+	},
+	[SPECIES_UFO_2] = {
+		.ID = 680,
+	},
+	[SPECIES_GIANT_15_2] = {
+		.ID = 681,
+	},
+	[SPECIES_F002] = {
+		.ID = 682,
+	},
+	[SPECIES_BLACK_BELT] = {
+		.ID = 683,
+	},
+	[SPECIES_SMEARGLE_2] = {
+		.ID = 684,
 	},
 };

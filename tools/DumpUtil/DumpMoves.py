@@ -13,7 +13,7 @@ with open('txtdmp/Moves.txt') as Moves:
     while (CurrMove := Moves.readline()) != '':
         MoveNames.append(CurrMove.upper().replace('\X2019', '').replace('É', 'E').replace('.', '').replace('-', '').replace(' ', '_').replace('\'', '')[:-1])
 
-with open('assets/Moves.h', 'w') as Personal:
+with open('include/Moves.h', 'w') as Personal:
   Personal.write(f'#ifndef __MOVES_H\n#define __MOVES_H\n\n')
   Personal.write(f'#include "swan/swantypes.h"\n')
   Personal.write('''
@@ -47,7 +47,7 @@ typedef struct {
     Personal.write(f'#define MOVE_{MoveNames[x]} {x}\n')
   Personal.write(f'\n#endif\n')
 
-with open(f'assets/Moves.cpp', 'w') as Personal:
+with open(f'src/c/Moves.cpp', 'w') as Personal:
   Personal.write(f'#include "Moves.h"\n\nu32 __size = sizeof(MOVE_DATA);\n\nconst MOVE_DATA __data[] = {{\n')
   for Entry in sorted(PersonalExt.glob('*')):
     Personal.write(f'\t[MOVE_{MoveNames[Count]}] = {{\n') # Header
@@ -68,7 +68,7 @@ with open(f'assets/Moves.cpp', 'w') as Personal:
         Personal.write(f'\t\t.TurnMax = {unpack("B", PersonalRAW.read(1))[0]},\n')
         Personal.write(f'\t\t.CritStage = {unpack("B", PersonalRAW.read(1))[0]},\n')
         Personal.write(f'\t\t.FlinchRate = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.MoveAnimationID = {unpack("<H", PersonalRAW.read(2))[0]},\n')
+        Personal.write(f'\t\t.WazaSeqID = {unpack("<H", PersonalRAW.read(2))[0]},\n')
         Personal.write(f'\t\t.Recoil = {unpack("B", PersonalRAW.read(1))[0]},\n')
         Personal.write(f'\t\t.Target = {unpack("B", PersonalRAW.read(1))[0]},\n')
 
