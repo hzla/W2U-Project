@@ -1,7 +1,7 @@
 from struct import unpack
 from pathlib import Path
 
-PersonalExt = Path('build/IRDO/narcs/a/0/1/8')
+PersonalExt = Path('/home/platinum/Desktop/W2Res/018')
 
 MoveNames = []
 SpeciesNames = []
@@ -27,7 +27,7 @@ struct LearnsetEntry {
 typedef struct {
     LearnsetEntry Entries[0x20];
 } LEARNSET_DATA;
-\n''')
+''')
   Personal.write(f'\n#endif\n')
 
 with open('src/c/Learnsets.cpp', 'w') as Personal:
@@ -35,15 +35,17 @@ with open('src/c/Learnsets.cpp', 'w') as Personal:
   Index = 0
   for Entry in sorted(PersonalExt.glob('*')):
     Personal.write(f'\t[SPECIES_{SpeciesNames[Index] if Index < len(SpeciesNames) else str(Index)}] = {{\n') # Header
+    Personal.write(f'\t\t.Entries = {{\n')
     with Entry.open('rb') as PersonalRAW:
         while True:
             Mv, Lvl = unpack("<HH", PersonalRAW.read(4))
             if Lvl == 0xFFFF and Mv == 0xFFFF:
-              Personal.write(f'\t\tLEVEL_UP_END\n')
+              Personal.write(f'\t\t\tLEVEL_UP_END\n')
               break
-            Personal.write(f'\t\tLEVEL_UP_MOVE(MOVE_{MoveNames[Mv]}, {Lvl}),\n')
+            Personal.write(f'\t\t\tLEVEL_UP_MOVE(MOVE_{MoveNames[Mv]}, {Lvl}),\n')
 
         PersonalRAW.close()
+    Personal.write(f'\t\t}},\n')
     Personal.write(f'\t}},\n')
     PersonalRAW.close()
     Index += 1

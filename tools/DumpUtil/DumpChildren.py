@@ -6,7 +6,7 @@ typedef struct {
 } CHILD_DATA;
 '''
 
-PersonalExt = Path('build/IRDO/narcs/a/0/2/0')
+PersonalExt = Path('/home/platinum/Desktop/W2Res/020')
 
 SpeciesNames = []
 

@@ -41,15 +41,20 @@ struct PersonalData {
   int SpecialTutors[4];
 };
 '''
-Count = -1
-PersonalExt = Path('build/IRDO/narcs/a/0/1/6')
+Count = 0
+PersonalExt = Path('/home/platinum/Desktop/W2Res/016')
+SpeciesNames = []
+
+with open('txtdmp/Species.txt') as Species:
+    while (CurrSpecies := Species.readline()) != '':
+        SpeciesNames.append(CurrSpecies.upper().replace('É', 'E').replace('.', '').replace('-', '').replace(' ', '_').replace('\'', '')[:-1])
 
 with open('src/c/Personal.cpp', 'w') as Personal:
-    Personal.write('u32 __size = sizeof(PERSONAL_DATA);\n\n')
+    Personal.write('#include "Species.h"\n#include "Personal.h"\nu32 __size = sizeof(PERSONAL_DATA);\n\n')
     Personal.write('const PERSONAL_DATA __data[] = {\n')
     for Entry in sorted(PersonalExt.glob('*')):
-        print(Entry.as_posix())
-        Personal.write(f'\t[{(Count := Count + 1)}] = {{\n') # Header
+        Personal.write(f'\t[SPECIES_{SpeciesNames[Count] if Count < len(SpeciesNames) else Count}] = {{\n') # Header
+        Count += 1
         # Write EntryData
         with Entry.open('rb') as PersonalRAW:
             Personal.write(f'\t\t.BaseHP = {unpack("B", PersonalRAW.read(1))[0]},\n')

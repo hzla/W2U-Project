@@ -4523,7 +4523,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 2829,
 		.HeldEffect = 0,
 		.HeldArgument = 0,
@@ -4563,7 +4563,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 2574,
 		.HeldEffect = 0,
 		.HeldArgument = 0,
@@ -4603,7 +4603,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 2829,
 		.HeldEffect = 0,
 		.HeldArgument = 0,
@@ -4803,7 +4803,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 0,
 		.HeldEffect = 1,
 		.HeldArgument = 200,
@@ -4843,7 +4843,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 0,
 		.HeldEffect = 1,
 		.HeldArgument = 100,
@@ -4883,7 +4883,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 1031,
 		.HeldEffect = 1,
 		.HeldArgument = 30,
@@ -4923,7 +4923,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 1027,
 		.HeldEffect = 2,
 		.HeldArgument = 30,
@@ -4963,7 +4963,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 1027,
 		.HeldEffect = 2,
 		.HeldArgument = 65,
@@ -5003,7 +5003,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 4,
 		.HeldEffect = 1,
 		.HeldArgument = 65,
@@ -5043,7 +5043,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 1033,
 		.HeldEffect = 2,
 		.HeldArgument = 110,
@@ -5083,7 +5083,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 10,
 		.HeldEffect = 1,
 		.HeldArgument = 80,
@@ -5123,7 +5123,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 1034,
 		.HeldEffect = 1,
 		.HeldArgument = 35,
@@ -5163,7 +5163,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 0,
 		.HeldEffect = 2,
 		.HeldArgument = 60,
@@ -5203,7 +5203,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 0,
 		.HeldEffect = 1,
 		.HeldArgument = 130,
@@ -5243,7 +5243,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 0,
 		.HeldEffect = 1,
 		.HeldArgument = 20,
@@ -5283,7 +5283,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 1536,
 		.HeldEffect = 1,
 		.HeldArgument = 10,
@@ -5323,7 +5323,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 525,
 		.HeldEffect = 0,
 		.HeldArgument = 0,
@@ -17043,7 +17043,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 1540,
 		.HeldEffect = 2,
 		.HeldArgument = 65,
@@ -17083,7 +17083,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_???] = {
+	[ITEM_UNK] = {
 		.Price = 13,
 		.HeldEffect = 1,
 		.HeldArgument = 70,

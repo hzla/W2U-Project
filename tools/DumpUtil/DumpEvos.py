@@ -2,7 +2,7 @@ from struct import unpack
 from pathlib import Path
 
 
-PersonalExt = Path('/home/platinum/w2d/019')
+PersonalExt = Path('/home/platinum/Desktop/W2Res/019')
 
 MoveNames = []
 SpeciesNames = []
@@ -34,17 +34,19 @@ typedef struct {
 Count = 0
 with open('src/c/Evolutions.cpp', 'w') as Personal:
     Personal.write(f'#include "Species.h"\n#include "Evolutions.h"\n\nu32 __size = sizeof(EVOLUTION_DATA);\n\nconst EVOLUTION_DATA __data[] = {{\n')
-    for Entry in sorted(PersonalExt.glob('*'), key=lambda x: int(x.stem[2:])):
+    for Entry in sorted(PersonalExt.glob('*'), key=lambda x: int(x.stem[4:])):
         print(Entry)
         Personal.write(f'\t[SPECIES_{SpeciesNames[Count] if Count < len(SpeciesNames) else str(Count)}] = {{\n') # Header
         with Entry.open('rb') as PersonalRAW:
+            Personal.write(f'\t\t .Entries = {{\n')
             for x in range(7):
-                Personal.write(f'\t\t{{\n')
+                Personal.write(f'\t\t\t{{\n')
                 Method, Param, Target = unpack("<HHH", PersonalRAW.read(6))
-                Personal.write(f'\t\t\t.Method = {Method},\n')
-                Personal.write(f'\t\t\t.Parameter = {Param},\n')
-                Personal.write(f'\t\t\t.TargetSpecies = SPECIES_{SpeciesNames[Target] if Target < len(SpeciesNames) else Target},\n')
-                Personal.write(f'\t\t}},\n')
+                Personal.write(f'\t\t\t\t.Method = {Method},\n')
+                Personal.write(f'\t\t\t\t.Parameter = {Param},\n')
+                Personal.write(f'\t\t\t\t.TargetSpecies = SPECIES_{SpeciesNames[Target] if Target < len(SpeciesNames) else Target},\n')
+                Personal.write(f'\t\t\t}},\n')   
+            Personal.write(f'\t\t }},\n')
             PersonalRAW.close()
         Personal.write(f'\t}},\n')
         Count += 1

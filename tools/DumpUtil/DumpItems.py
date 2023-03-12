@@ -2,7 +2,7 @@ from struct import unpack
 from pathlib import Path
 
 
-PersonalExt = Path('build/IRDO/narcs/a/0/2/1')
+PersonalExt = Path('/home/platinum/Desktop/W2Res/024')
 Names = []
 with open('txtdmp/Items.txt', 'r') as NamesRAW:
   while True:
