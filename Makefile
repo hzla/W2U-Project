@@ -10,6 +10,7 @@ c_build 	    =  $(code_build_dir)/c
 src_dir         =  src
 asm_src_dir		:= $(src_dir)/asm
 c_src_dir		:= $(src_dir)/c
+arc_dir		    := $(src_dir)/arc
 incl_dir 		:= include
 ci_res			:= ci
 game_base       := $(build_dir)/$(rom_code)
@@ -23,6 +24,7 @@ asm_srcs  		:= $(wildcard $(asm_src_dir)/*.s)
 asm_objs  		:= $(patsubst $(asm_src_dir)/%.s, $(asm_build)/%.d, $(asm_srcs)) 
 cpp_srcs    	:= $(wildcard $(c_src_dir)/*.cpp)
 c_srcs    		:= $(wildcard $(c_src_dir)/*.c)
+arc_srcs    	:= $(wildcard $(arc_dir)/*.c)
 cpp_objs    	:= $(filter-out $(ignore_objs), $(patsubst $(c_src_dir)/%.cpp, $(c_build)/%.o, $(cpp_srcs))) 
 c_objs    		:= $(filter-out $(ignore_objs), $(patsubst $(c_src_dir)/%.c, $(c_build)/%.o, $(c_srcs))) 
 objs      		:= $(asm_objs) $(c_objs) $(cpp_objs)
@@ -41,7 +43,7 @@ o2narc			:= tools/o2narc/o2narc
 
 # Flags
 as_flags := -mthumb -march=armv5t -r
-c_flags  := -mthumb -mno-thumb-interwork -march=armv5t -mno-long-calls -Wall -Wextra -Os -fira-loop-pressure -fipa-pta -r
+c_flags  := -mthumb -mno-thumb-interwork -march=armv5t -mno-long-calls -Wall -Wextra -Os -fira-loop-pressure -fipa-pta 
 
 .PHONY: clean all
 
@@ -58,14 +60,15 @@ $(game_base): make_tools
 	@ echo "[+] Extracting game to $@..."
 	@ $(ndstool) -x $(rom_code).nds -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
 	
-	@ echo "[+] Decompressing all overlays..."
-	@ $(blz) -d $(exefs)/overlay/*
+	# @ echo "[+] Decompressing all overlays..."
+	# @ $(blz) -d $(exefs)/overlay/*
 
 	@ echo "[+] Installing PMC..."
-	@ cp data/ARM9PMC.bin $(exefs)/ARM9.bin # Replace ARM9 with PMC ARM9
-	@ cp data/OVL344.bin $(exefs)/overlay/overlay_0344.bin # Replace with PMC Overlay 344
-	@ armips src/ARM9OVT.s
-	@ cp -r data/codeinjection $(romfs) # Copy PMC SYM-0
+	@ cp pmc/ARM9PMC.bin $(exefs)/ARM9.bin # Replace ARM9 with PMC ARM9
+	@ cp pmc/OVL344.bin $(exefs)/overlay/overlay_0344.bin # Replace with PMC Overlay 344
+	# @ armips src/ARM9OVT.s
+	@ mkdir -p $(romfs)/data/codeinjection
+	@ cp -r pmc/RPMSYM-PMC.rpm $(romfs)/data/codeinjection # Copy PMC SYM-0
 
 $(romfs)/patches/$(project).dll: $(code_build_dir)/$(project).elf 
 	@ mkdir -p $(romfs)/patches
@@ -82,38 +85,54 @@ $(asm_build)/%.d : $(asm_src_dir)/%.s
 	@ echo "[+] Assembling $<..."
 	@ mkdir -p $(asm_build)
 	@ $(as) $(as_flags) -c $< -o $@
+
 $(c_build)/%.o : $(c_src_dir)/%.c
 	@ echo "[+] Compiling $<..."
 	@ mkdir -p $(c_build) 
 	@ $(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -I$(incl_dir)/NitroKernel -c $< -o $@
+
+$(c_build)/%.o : $(arc_dir)/%.c
+	@ echo "[+] Compiling $<..."
+	@ mkdir -p $(c_build) 
+	@ $(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -I$(incl_dir)/NitroKernel -c $< -o $@
+	
 $(c_build)/%.o : $(c_src_dir)/%.cpp
 	@ echo "[+] Compiling $<..."
 	@ mkdir -p $(c_build) 
 	@ $(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -I$(incl_dir)/NitroKernel -c $< -o $@
 
+$(arc_dir)/graphics/%.ncgr : $(arc_dir)/graphics/%.png
+	$(nitrogfx) $^ $@
+
 make_narcs: make_personal_data make_evo_data make_learnset_data make_move_data make_item_data make_children_data
 	@ echo "[+] Making icons..."
-	@ python data/graphics/make.py
+	@ $(knarc) -d $(game_base)/narcs/a/0/0/7 -u $(romfs)/a/0/0/7
+	@ python $(arc_dir)/graphics/make.py
 	@ $(knarc) -d $(game_base)/narcs/a/0/0/7 -p $(romfs)/a/0/0/7
 
 make_personal_data: $(c_build)/Personal.o
 	@ echo "[+] Making Personal ARC..."
 	@ $(o2narc) $< $(romfs)/a/0/1/6
-make_evo_data: $(c_build)/Evolutions.o
-	@ echo "[+] Making Evolutions ARC..."
-	@ $(o2narc) $< $(romfs)/a/0/1/9
+
 make_learnset_data: $(c_build)/Learnsets.o
 	@ echo "[+] Making Learnsets ARC..."
 	@ $(o2narc) $< $(romfs)/a/0/1/8
-make_move_data: $(c_build)/Moves.o
-	@ echo "[+] Making Moves ARC..."
-	@ $(o2narc) $< $(romfs)/a/0/2/1
-make_item_data: $(c_build)/Items.o
-	@ echo "[+] Making Items ARC..."
-	@ $(o2narc) $< $(romfs)/a/0/2/4
+
+make_evo_data: $(c_build)/Evolutions.o
+	@ echo "[+] Making Evolutions ARC..."
+	@ $(o2narc) $< $(romfs)/a/0/1/9
+
 make_children_data: $(c_build)/Children.o
 	@ echo "[+] Making Child Pokemon ARC..."
 	@ $(o2narc) $< $(romfs)/a/0/2/0
+
+make_move_data: $(c_build)/Moves.o
+	@ echo "[+] Making Moves ARC..."
+	@ $(o2narc) $< $(romfs)/a/0/2/1
+
+make_item_data: $(c_build)/Items.o
+	@ echo "[+] Making Items ARC..."
+	@ $(o2narc) $< $(romfs)/a/0/2/4
 
 make_tools:
 	@ echo [+] Building blz...

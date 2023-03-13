@@ -134,7 +134,8 @@ int Options::main() {
     vector<unsigned char> rodata;
 
     ReadObjectFile(rodata, sizes);
-    OverwritePadding(rodata, sizes);
+    // OverwritePadding(rodata, sizes);
+
     WriteNarc(rodata, sizes);
     WriteNaix(sizes);
     return 0;

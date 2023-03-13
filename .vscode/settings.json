@@ -60,6 +60,7 @@
         "typeinfo": "c",
         "utility": "c",
         "valarray": "c",
-        "variant": "c"
+        "variant": "c",
+        "children.h": "c"
     }
 }
