@@ -6,6 +6,7 @@ rom_code 		:= IRDO
 build_dir 		:= build
 game_base       := $(build_dir)/$(rom_code)
 incl_dir 		:= include
+ci_res 			:= pmc
 
 src_dir         =  src
 arc_dir		    := $(src_dir)/arc
@@ -44,10 +45,12 @@ c_flags  := -mthumb -mno-thumb-interwork -march=armv5t -mno-long-calls -Wall -We
 
 .PHONY: all clean
 
-all: $(project).nds 
+all: $(project).nds
 	@ echo "[!] Done!"
 
-$(project).nds: $(game_base) $(romfs)/patches/$(project).dll
+include $(arc_dir)/ARC.mk
+
+$(project).nds: make_tools $(game_base) $(romfs)/patches/$(project).dll $(romfs)/a/0/1/6 $(romfs)/a/0/1/8 $(romfs)/a/0/1/9 $(romfs)/a/0/2/0 $(romfs)/a/0/2/1 $(romfs)/a/0/2/4
 	@ echo "[+] Making $@..."
 	@ $(ndstool) -c $@ -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
 
@@ -77,7 +80,7 @@ $(build_dir)/code/%.o : $(code_dir)/%.cpp
 	@ mkdir -p $(@D)
 	@ $(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -I$(incl_dir)/NitroKernel -c $< -o $@
 	
-$(game_base): make_tools
+$(game_base):
 	@ mkdir -p $(exefs)
 	@ mkdir -p $(romfs)
 	@ echo "[+] Extracting game to $@..."
