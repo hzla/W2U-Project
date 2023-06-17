@@ -2,7 +2,6 @@
 
 ## Setup
 You will need the following tools to use this repository:
-- [armips](https://github.com/Kingcom/armips/releases)
 - [arm-none-eabi-{as, gcc, ld}](https://developer.arm.com/downloads/-/gnu-rm)
 - [CTRMap (Community Edition)](https://github.com/kingdom-of-ds-hacking/CTRMap-CE/releases)
 - gcc
