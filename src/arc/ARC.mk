@@ -22,4 +22,4 @@ $(romfs)/a/0/2/4: $(arc_dir)/pml/Items.c
 	@ $(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -c $< -o $(build_dir)/Items.o
 	@ $(o2narc) $(build_dir)/Items.o $@
 
-	
+include $(arc_dir)/graphics/pokegra.mk	

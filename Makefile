@@ -37,6 +37,7 @@ g++		  		:= arm-none-eabi-g++
 knarc			:= tools/knarc/knarc
 ld				:= arm-none-eabi-ld
 ndstool   		:= ndstool
+nitrogfx		:= tools/nitrogfx/nitrogfx
 o2narc			:= tools/o2narc/o2narc
 
 # Flags
@@ -50,7 +51,7 @@ all: $(project).nds
 
 include $(arc_dir)/ARC.mk
 
-$(project).nds: make_tools $(game_base) $(romfs)/patches/$(project).dll $(romfs)/a/0/1/6 $(romfs)/a/0/1/8 $(romfs)/a/0/1/9 $(romfs)/a/0/2/0 $(romfs)/a/0/2/1 $(romfs)/a/0/2/4
+$(project).nds: make_tools $(game_base) $(romfs)/patches/$(project).dll $(romfs)/a/0/1/6 $(romfs)/a/0/1/8 $(romfs)/a/0/1/9 $(romfs)/a/0/2/0 $(romfs)/a/0/2/1 $(romfs)/a/0/2/4 $(POKEGRA_SPR_TARGET)
 	@ echo "[+] Making $@..."
 	@ $(ndstool) -c $@ -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
 
@@ -96,16 +97,27 @@ $(game_base):
 	@ mkdir -p $(romfs)/data/codeinjection
 	@ cp -r pmc/RPMSYM-PMC.rpm $(romfs)/data/codeinjection # Copy PMC SYM-0
 
-make_tools:
+make_tools : $(blz) $(nitrogfx) $(knarc) $(o2narc)
+$(blz) : tools/blz/blz.c
 	@ echo [+] Building blz...
 	@ gcc -o tools/blz/blz tools/blz/blz.c
-	@ echo [+] Building knarc...
-	@ make --silent -C tools/knarc
+
+$(nitrogfx) : $(wildcard tools/nitrogfx)
 	@ echo [+] Building nitrogfx...
 	@ make --silent -C tools/nitrogfx
+
+$(knarc) : $(wildcard tools/knarc)
+	@ echo [+] Building knarc...
+	@ make --silent -C tools/knarc
+
+$(o2narc) : $(wildcard tools/o2narc)
 	@ echo [+] Building o2narc...
 	@ make --silent -C tools/o2narc
 
 clean: 
 	rm -rf $(project).nds
 	rm -rf $(build_dir)
+	rm -rf $(nitrogfx)
+	rm -rf $(blz)
+	rm -rf $(knarc)
+	rm -rf $(o2narc)
