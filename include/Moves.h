@@ -42,7 +42,8 @@
 #define TYPE_ICE              14
 #define TYPE_DRAGON           15
 #define TYPE_DARK             16
-#define TYPE_MYSTERY          17
+#define TYPE_FAIRY            17
+#define TYPE_NONE             18
 
 #define EFFECT_NO_SPECIAL_EFFECT              0
 #define EFFECT_STATUS_INFLICTING              1
@@ -111,10 +112,14 @@
 #define STATUS_BLOCK_ITEM           19
 #define STATUS_PERISH_SONG          20
 #define STATUS_INGRAIN              21
-
-// did't test
 #define STATUS_CANT_ESCAPE          22
 #define STATUS_ENCORE               23
+#define STATUS_ROOST_TYPE_LOSS      24
+
+// did't test
+#define STATUS_MOVE_LOCKED          25
+#define STATUS_GRAVITY              31
+
 
 #define STATUS_SPECIAL_CODE         0xFFFF
 
