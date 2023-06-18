@@ -6274,7 +6274,7 @@ const MOVE_DATA __data[] = {
 		.Flags = FLAG_STOLEN_BY_SNATCH,
 	},
 	[MOVE_STRUGGLE] = {
-		.Type = TYPE_NORMAL,
+		.Type = TYPE_NONE,
 		.Quality = EFFECT_NO_SPECIAL_EFFECT,
 		.Category = SPLIT_PHYSICAL,
 		.Power = 50,
