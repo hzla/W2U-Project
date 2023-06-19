@@ -51,7 +51,7 @@ all: $(project).nds
 
 include $(arc_dir)/ARC.mk
 
-$(project).nds: make_tools $(game_base) $(romfs)/patches/$(project).dll $(romfs)/a/0/1/6 $(romfs)/a/0/1/8 $(romfs)/a/0/1/9 $(romfs)/a/0/2/0 $(romfs)/a/0/2/1 $(romfs)/a/0/2/4 $(POKEGRA_SPR_TARGET)
+$(project).nds: make_tools $(game_base) $(romfs)/patches/$(project).dll $(romfs)/a/0/1/6 $(romfs)/a/0/1/8 $(romfs)/a/0/1/9 $(romfs)/a/0/2/0 $(romfs)/a/0/2/1 $(romfs)/a/0/2/4 $(POKEGRA_ICONS_TARGET) $(POKEGRA_FB_TARGET)
 	@ echo "[+] Making $@..."
 	@ $(ndstool) -c $@ -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
 
