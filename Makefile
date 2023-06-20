@@ -36,6 +36,7 @@ gcc 	  		:= arm-none-eabi-gcc
 g++		  		:= arm-none-eabi-g++
 knarc			:= tools/knarc/knarc
 ld				:= arm-none-eabi-ld
+lzcmp			:= tools/lzss/compress.py
 ndstool   		:= ndstool
 nitrogfx		:= tools/nitrogfx/nitrogfx
 o2narc			:= tools/o2narc/o2narc

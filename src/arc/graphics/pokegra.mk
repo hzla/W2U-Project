@@ -23,7 +23,7 @@ POKEGRA_ICONS_OBJ_PAL	 	     := $(patsubst $(POKEGRA_ICONS_DIR)/%.pal, $(POKEGRA
 POKEGRA_ICONS_OBJ			 	 := $(POKEGRA_ICONS_OBJ_CHAR) $(POKEGRA_ICONS_OBJ_CELL) $(POKEGRA_ICONS_OBJ_ANIM) $(POKEGRA_ICONS_OBJ_MCELL_ANIM) $(POKEGRA_ICONS_OBJ_MCELL) $(POKEGRA_ICONS_OBJ_BIN) $(POKEGRA_ICONS_OBJ_PAL)
 
 POKEGRA_FB_TARGET   	 	 	 := $(romfs)/a/0/0/4
-# POKEGRA_ICONS_TARGET 	 	 	 := $(romfs)/a/0/0/7
+POKEGRA_ICONS_TARGET 	 	 	 := $(romfs)/a/0/0/7
 
 $(POKEGRA_FB_TARGET) : $(POKEGRA_FB_OBJ)
 	$(knarc) -d $(POKEGRA_SPRITES_BUILD) -p $@
@@ -34,6 +34,7 @@ $(POKEGRA_ICONS_TARGET) : $(POKEGRA_ICONS_OBJ)
 $(POKEGRA_SPRITES_BUILD)/%.ncgr : $(POKEGRA_SPRITES_DIR)/%.png
 	@ mkdir -p $(@D)
 	$(nitrogfx) $^ $@ 
+	python3 $(lzcmp) $@ $@
 
 $(POKEGRA_SPRITES_BUILD)/%.ncer : $(POKEGRA_SPRITES_DIR)/%.ncer
 	@ mkdir -p $(@D)
@@ -42,6 +43,7 @@ $(POKEGRA_SPRITES_BUILD)/%.ncer : $(POKEGRA_SPRITES_DIR)/%.ncer
 $(POKEGRA_SPRITES_BUILD)/%.nanr : $(POKEGRA_SPRITES_DIR)/%.nanr
 	@ mkdir -p $(@D)
 	cp $^ $@ 
+	python3 $(lzcmp) $@ $@
 
 $(POKEGRA_SPRITES_BUILD)/%.bin : $(POKEGRA_SPRITES_DIR)/%.bin
 	@ mkdir -p $(@D)
@@ -85,6 +87,6 @@ $(POKEGRA_ICONS_BUILD)/%.nmar : $(POKEGRA_ICONS_DIR)/%.nmar
 	@ mkdir -p $(@D)
 	cp $^ $@ 
 
-$(POKEGRA_ICONS_BUILD)/%.nclr : $(POKEGRA_ICONS_DIR)/%.pal
+$(POKEGRA_ICONS_BUILD)/%.nclr : $(POKEGRA_ICONS_DIR)/%.nclr
 	@ mkdir -p $(@D)
-	$(nitrogfx) $^ $@ 
+	cp $^ $@ 
