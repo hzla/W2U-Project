@@ -7,8 +7,8 @@ POKEGRA_ICONS_BUILD	         	 := $(build_dir)/pokegra_icons
 POKEGRA_FB_OBJ_CHAR	             := $(patsubst $(POKEGRA_SPRITES_DIR)/%.png, $(POKEGRA_SPRITES_BUILD)/%.ncgr, $(wildcard $(POKEGRA_SPRITES_DIR)/*.png))
 POKEGRA_FB_OBJ_CELL	 	 	     := $(patsubst $(POKEGRA_SPRITES_DIR)/%.ncer, $(POKEGRA_SPRITES_BUILD)/%.ncer, $(wildcard $(POKEGRA_SPRITES_DIR)/*.ncer))
 POKEGRA_FB_OBJ_ANIM	 	 	     := $(patsubst $(POKEGRA_SPRITES_DIR)/%.nanr, $(POKEGRA_SPRITES_BUILD)/%.nanr, $(wildcard $(POKEGRA_SPRITES_DIR)/*.nanr))
-POKEGRA_FB_OBJ_MCELL_ANIM	     := $(patsubst $(POKEGRA_SPRITES_DIR)/%.nmcr, $(POKEGRA_SPRITES_BUILD)/%.nmcr, $(wildcard $(POKEGRA_SPRITES_DIR)/*.nmcr))
-POKEGRA_FB_OBJ_MCELL	 	     := $(patsubst $(POKEGRA_SPRITES_DIR)/%.nmcr, $(POKEGRA_SPRITES_BUILD)/%.nmcr, $(wildcard $(POKEGRA_SPRITES_DIR)/*.nmar))
+POKEGRA_FB_OBJ_MCELL_ANIM	     := $(patsubst $(POKEGRA_SPRITES_DIR)/%.nmar, $(POKEGRA_SPRITES_BUILD)/%.nmar, $(wildcard $(POKEGRA_SPRITES_DIR)/*.nmar))
+POKEGRA_FB_OBJ_MCELL	 	     := $(patsubst $(POKEGRA_SPRITES_DIR)/%.nmcr, $(POKEGRA_SPRITES_BUILD)/%.nmcr, $(wildcard $(POKEGRA_SPRITES_DIR)/*.nmcr))
 POKEGRA_FB_OBJ_BIN	 	         := $(patsubst $(POKEGRA_SPRITES_DIR)/%.bin, $(POKEGRA_SPRITES_BUILD)/%.bin, $(wildcard $(POKEGRA_SPRITES_DIR)/*.bin))
 POKEGRA_FB_OBJ_PAL	 	         := $(patsubst $(POKEGRA_SPRITES_DIR)/%.pal, $(POKEGRA_SPRITES_BUILD)/%.nclr, $(wildcard $(POKEGRA_SPRITES_DIR)/*.pal))
 POKEGRA_FB_OBJ			 	     := $(POKEGRA_FB_OBJ_CHAR) $(POKEGRA_FB_OBJ_CELL) $(POKEGRA_FB_OBJ_ANIM) $(POKEGRA_FB_OBJ_MCELL_ANIM) $(POKEGRA_FB_OBJ_MCELL) $(POKEGRA_FB_OBJ_BIN) $(POKEGRA_FB_OBJ_PAL)
@@ -19,7 +19,7 @@ POKEGRA_ICONS_OBJ_ANIM	 	 	 := $(patsubst $(POKEGRA_ICONS_DIR)/%.nanr, $(POKEGRA
 POKEGRA_ICONS_OBJ_MCELL_ANIM	 := $(patsubst $(POKEGRA_ICONS_DIR)/%.nmcr, $(POKEGRA_ICONS_BUILD)/%.nmcr, $(wildcard $(POKEGRA_ICONS_DIR)/*.nmcr))
 POKEGRA_ICONS_OBJ_MCELL	 	 	 := $(patsubst $(POKEGRA_ICONS_DIR)/%.nmcr, $(POKEGRA_ICONS_BUILD)/%.nmcr, $(wildcard $(POKEGRA_ICONS_DIR)/*.nmar))
 POKEGRA_ICONS_OBJ_BIN	 	     := $(patsubst $(POKEGRA_ICONS_DIR)/%.bin, $(POKEGRA_ICONS_BUILD)/%.bin, $(wildcard $(POKEGRA_ICONS_DIR)/*.bin))
-POKEGRA_ICONS_OBJ_PAL	 	     := $(patsubst $(POKEGRA_ICONS_DIR)/%.pal, $(POKEGRA_ICONS_BUILD)/%.nclr, $(wildcard $(POKEGRA_ICONS_DIR)/*.pal))
+POKEGRA_ICONS_OBJ_PAL	 	     := $(patsubst $(POKEGRA_ICONS_DIR)/%.nclr, $(POKEGRA_ICONS_BUILD)/%.nclr, $(wildcard $(POKEGRA_ICONS_DIR)/*.nclr))
 POKEGRA_ICONS_OBJ			 	 := $(POKEGRA_ICONS_OBJ_CHAR) $(POKEGRA_ICONS_OBJ_CELL) $(POKEGRA_ICONS_OBJ_ANIM) $(POKEGRA_ICONS_OBJ_MCELL_ANIM) $(POKEGRA_ICONS_OBJ_MCELL) $(POKEGRA_ICONS_OBJ_BIN) $(POKEGRA_ICONS_OBJ_PAL)
 
 POKEGRA_FB_TARGET   	 	 	 := $(romfs)/a/0/0/4
@@ -60,8 +60,6 @@ $(POKEGRA_SPRITES_BUILD)/%.nmar : $(POKEGRA_SPRITES_DIR)/%.nmar
 $(POKEGRA_SPRITES_BUILD)/%.nclr : $(POKEGRA_SPRITES_DIR)/%.pal
 	@ mkdir -p $(@D)
 	$(nitrogfx) $^ $@ 
-
-# 
 
 $(POKEGRA_ICONS_BUILD)/%.ncgr : $(POKEGRA_ICONS_DIR)/%.png
 	@ mkdir -p $(@D)

@@ -54,7 +54,7 @@ include $(arc_dir)/ARC.mk
 
 $(project).nds: make_tools $(game_base) $(romfs)/patches/$(project).dll $(romfs)/a/0/1/6 $(romfs)/a/0/1/8 $(romfs)/a/0/1/9 $(romfs)/a/0/2/0 $(romfs)/a/0/2/1 $(romfs)/a/0/2/4 $(POKEGRA_ICONS_TARGET) $(POKEGRA_FB_TARGET)
 	@ echo "[+] Making $@..."
-	@ $(ndstool) -c $@ -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
+	$(ndstool) -c $@ -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -9i $(exefs)/ARM9i.bin -7i $(exefs)/ARM7i.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
 
 $(romfs)/patches/$(project).dll: $(build_dir)/$(project).elf 
 	@ mkdir -p $(romfs)/patches
@@ -86,7 +86,7 @@ $(game_base):
 	@ mkdir -p $(exefs)
 	@ mkdir -p $(romfs)
 	@ echo "[+] Extracting game to $@..."
-	@ $(ndstool) -x $(rom_code).nds -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
+	@ $(ndstool) -x $(rom_code).nds -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -9i $(exefs)/ARM9i.bin -7i $(exefs)/ARM7i.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
 	
 	@ echo "[+] Decompressing all overlays..."
 	@ $(blz) -d $(exefs)/overlay/*
@@ -99,6 +99,7 @@ $(game_base):
 	@ cp -r pmc/RPMSYM-PMC.rpm $(romfs)/data/codeinjection # Copy PMC SYM-0
 
 make_tools : $(blz) $(nitrogfx) $(knarc) $(o2narc)
+
 $(blz) : tools/blz/blz.c
 	@ echo [+] Building blz...
 	@ gcc -o tools/blz/blz tools/blz/blz.c
