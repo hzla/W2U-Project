@@ -1,7 +1,7 @@
 from struct import unpack
 from pathlib import Path
 
-PersonalExt = Path('/home/platinum/Desktop/W2Res/018')
+PersonalExt = Path('learnsets')
 
 MoveNames = []
 SpeciesNames = []
@@ -30,7 +30,7 @@ typedef struct {
 ''')
   Personal.write(f'\n#endif\n')
 
-with open('src/c/Learnsets.cpp', 'w') as Personal:
+with open('src/arc/pml/Learnsets.c', 'w') as Personal:
   Personal.write(f'#include "Moves.h"\n#include "Learnsets.h"\n#include "Species.h"\n\nu32 __size = sizeof(LEARNSET_DATA);\n\nconst LEARNSET_DATA __data[] = {{\n')
   Index = 0
   for Entry in sorted(PersonalExt.glob('*')):

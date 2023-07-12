@@ -7,7 +7,7 @@
 #define ITEM_MASTER_BALL 1
 #define ITEM_ULTRA_BALL 2
 #define ITEM_GREAT_BALL 3
-#define ITEM_POKE_BALL 4
+#define ITEM_POKé_BALL 4
 #define ITEM_SAFARI_BALL 5
 #define ITEM_NET_BALL 6
 #define ITEM_DIVE_BALL 7
@@ -66,7 +66,7 @@
 #define ITEM_X_ACCURACY 60
 #define ITEM_X_SPECIAL 61
 #define ITEM_X_SP_DEF 62
-#define ITEM_POKE_DOLL 63
+#define ITEM_POKé_DOLL 63
 #define ITEM_FLUFFY_TAIL 64
 #define ITEM_BLUE_FLUTE 65
 #define ITEM_YELLOW_FLUTE 66
@@ -116,27 +116,27 @@
 #define ITEM_OVAL_STONE 110
 #define ITEM_ODD_KEYSTONE 111
 #define ITEM_GRISEOUS_ORB 112
-#define ITEM_UNK 113
-#define ITEM_UNK2 114
-#define ITEM_UNK3 115
+#define ITEM_UNKNOWN_0 113
+#define ITEM_UNKNOWN_1 114
+#define ITEM_UNKNOWN_2 115
 #define ITEM_DOUSE_DRIVE 116
 #define ITEM_SHOCK_DRIVE 117
 #define ITEM_BURN_DRIVE 118
 #define ITEM_CHILL_DRIVE 119
-#define ITEM_UNK4 120
-#define ITEM_UNK5 121
-#define ITEM_UNK6 122
-#define ITEM_UNK7 123
-#define ITEM_UNK8 124
-#define ITEM_UNK9 125
-#define ITEM_UNK10 126
-#define ITEM_UNK11 127
-#define ITEM_UNK12 128
-#define ITEM_UNK13 129
-#define ITEM_UNK14 130
-#define ITEM_UNK15 131
-#define ITEM_UNK16 132
-#define ITEM_UNK17 133
+#define ITEM_UNKNOWN_3 120
+#define ITEM_UNKNOWN_4 121
+#define ITEM_UNKNOWN_5 122
+#define ITEM_UNKNOWN_6 123
+#define ITEM_UNKNOWN_7 124
+#define ITEM_UNKNOWN_8 125
+#define ITEM_UNKNOWN_9 126
+#define ITEM_UNKNOWN_10 127
+#define ITEM_UNKNOWN_11 128
+#define ITEM_UNKNOWN_12 129
+#define ITEM_UNKNOWN_13 130
+#define ITEM_UNKNOWN_14 131
+#define ITEM_UNKNOWN_15 132
+#define ITEM_UNKNOWN_16 133
 #define ITEM_SWEET_HEART 134
 #define ITEM_ADAMANT_ORB 135
 #define ITEM_LUSTROUS_ORB 136
@@ -429,12 +429,12 @@
 #define ITEM_HM04 423
 #define ITEM_HM05 424
 #define ITEM_HM06 425
-#define ITEM_UNK1 426
-#define ITEM_UNK2 427
+#define ITEM_UNKNOWN_17 426
+#define ITEM_UNKNOWN_18 427
 #define ITEM_EXPLORER_KIT 428
 #define ITEM_LOOT_SACK 429
 #define ITEM_RULE_BOOK 430
-#define ITEM_POKE_RADAR 431
+#define ITEM_POKé_RADAR 431
 #define ITEM_POINT_CARD 432
 #define ITEM_JOURNAL 433
 #define ITEM_SEAL_CASE 434
@@ -580,7 +580,7 @@
 #define ITEM_LIBERTY_PASS 574
 #define ITEM_PASS_ORB 575
 #define ITEM_DREAM_BALL 576
-#define ITEM_POKE_TOY 577
+#define ITEM_POKé_TOY 577
 #define ITEM_PROP_CASE 578
 #define ITEM_DRAGON_SKULL 579
 #define ITEM_BALMMUSHROOM 580
@@ -625,44 +625,63 @@
 #define ITEM_TM94 619
 #define ITEM_TM95 620
 #define ITEM_XTRANSCEIVER 621
+#define ITEM_UNKNOWN_19 622
+#define ITEM_GRAM_1 623
+#define ITEM_GRAM_2 624
+#define ITEM_GRAM_3 625
+#define ITEM_XTRANSCEIVER 626
+#define ITEM_MEDAL_BOX 627
+#define ITEM_DNA_SPLICERS 628
+#define ITEM_DNA_SPLICERS 629
+#define ITEM_PERMIT 630
+#define ITEM_OVAL_CHARM 631
+#define ITEM_SHINY_CHARM 632
+#define ITEM_PLASMA_CARD 633
+#define ITEM_GRUBBY_HANKY 634
+#define ITEM_COLRESS_MCHN 635
+#define ITEM_DROPPED_ITEM 636
+#define ITEM_DROPPED_ITEM 637
+#define ITEM_REVEAL_GLASS 638
 
-typedef struct {
-    u8 CureInflict;
-    u8 Boost[4];
-    u8 FunctionFlags0;
-    u8 FunctionFlags1;
-    char EVHP;
-    char EVATK;
-    char EVDEF;
-    char EVSPE;
-    char EVSPA;
-    char EVSPD;
-    u8 HealAmount;
-    u8 PPGain;
-    char Friendship1;
-    char Friendship2;
-    char Friendship3;
-    char field_1F;
-    char field_20;
+                 
+typedef struct
+{
+  u8 CureInflict;
+  u8 Boost[4];
+  u8 FunctionFlags0;
+  u8 FunctionFlags1;
+  char EVHP;
+  char EVATK;
+  char EVDEF;
+  char EVSPE;
+  char EVSPA;
+  char EVSPD;
+  u8 HealAmount;
+  u8 PPGain;
+  char Friendship1;
+  char Friendship2;
+  char Friendship3;
+  char field_1F;
+  char field_20;
 } ItemBattleStats;
-
-typedef struct {
-    u16 Price;
-    u8 HeldEffect;
-    u8 HeldArgument;
-    u8 NaturalGiftEffect;
-    u8 FlingEffect;
-    u8 FlingPower;
-    u8 NaturalGiftPower;
-    u16 Packed;
-    u8 EffectField;
-    u8 EffectBattle;
-    u8 HasBattleStats;
-    u8 ItemClass;
-    u8 Consumable;
-    u8 SortIndex;
-    ItemBattleStats BattleStats;
+                 
+typedef struct
+{
+  u16 Price;
+  u8 HeldEffect;
+  u8 HeldArgument;
+  u8 NaturalGiftEffect;
+  u8 FlingEffect;
+  u8 FlingPower;
+  u8 NaturalGiftPower;
+  u16 Packed;
+  u8 EffectField;
+  u8 EffectBattle;
+  u8 HasBattleStats;
+  u8 ItemClass;
+  u8 Consumable;
+  u8 SortIndex;
+  ItemBattleStats BattleStats;
 } ITEM_DATA;
-
 
 #endif

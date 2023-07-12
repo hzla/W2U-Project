@@ -6,7 +6,7 @@ typedef struct {
 } CHILD_DATA;
 '''
 
-PersonalExt = Path('/home/platinum/Desktop/W2Res/020')
+PersonalExt = Path('children')
 
 SpeciesNames = []
 
@@ -25,9 +25,9 @@ typedef struct {
   Personal.write(f'\n#endif\n')
 
 Count = 0
-with open(f'src/c/Children.cpp', 'w') as Personal:
+with open(f'src/arc/pml/Children.c', 'w') as Personal:
   Personal.write(f'#include "Species.h"\n#include "Children.h"\n\nu32 __size = sizeof(CHILD_DATA);\n\nconst CHILD_DATA __data[] = {{\n')
-  for Entry in sorted(PersonalExt.glob('*'), key=lambda x: int(x.stem[2:])):
+  for Entry in sorted(PersonalExt.glob('*'), key=lambda x: int(x.stem[13:])):
     Personal.write(f'\t[SPECIES_{SpeciesNames[Count]}] = {{\n') # Header
     # Write EntryData
     with Entry.open('rb') as PersonalRAW:

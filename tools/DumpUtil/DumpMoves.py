@@ -5,7 +5,7 @@ from pathlib import Path
 '''
 
 Count = 0
-PersonalExt = Path('build/')
+PersonalExt = Path('moves')
 
 MoveNames = []
 SplitNames = ["SPLIT_STATUS", "SPLIT_PHYSICAL", "SPLIT_SPECIAL"]
@@ -28,7 +28,7 @@ FlagTable = ["FLAG_CONTACT","FLAG_REQUIRES_CHARGE","FLAG_RECHARGE_TURN","FLAG_BL
 Target = ["TARGET_OTHER_SELECT","TARGET_FRIEND_AND_USER","TARGET_FRIEND_SELECT","TARGET_ENEMY_SELECT","TARGET_OTHER_ALL","TARGET_ENEMY_ALL","TARGET_FRIEND_ALL","TARGET_USER","TARGET_ALL",
            "TARGET_ENEMY_RANDOM","TARGET_FIELD","TARGET_FIELD_SIDE_ENEMY","TARGET_FIELD_SIDE_FRIEND","TARGET_UNKNOWN"]
 
-with open('Moves.txt') as Moves:
+with open('txtdmp/Moves.txt') as Moves:
     while (CurrMove := Moves.readline()) != '':
         MoveNames.append(CurrMove.upper().replace('\X2019', '').replace('É', 'E').replace('.', '').replace('-', '').replace(' ', '_').replace('\'', '')[:-1])
 
@@ -183,7 +183,7 @@ typedef struct {
     Personal.write(f'#define MOVE_{MoveNames[x]} {x}\n')
   Personal.write(f'\n#endif\n')
 
-with open(f'src/arc/Moves.c', 'w') as Personal:
+with open(f'src/arc/pml/Moves.c', 'w') as Personal:
   Personal.write(f'#include "Moves.h"\n\nu32 __size = sizeof(MOVE_DATA);\n\nconst MOVE_DATA __data[] = {{\n')
   for Entry in sorted(PersonalExt.glob('*')):
     Personal.write(f'\t[MOVE_{MoveNames[Count]}] = {{\n') # Header
@@ -237,10 +237,11 @@ with open(f'src/arc/Moves.c', 'w') as Personal:
         flag = unpack("<L", PersonalRAW.read(4))[0]
         flagString = ""
         if flag != 0:
-          for i in range(32):
-            if (flag >> i) & 1:
-                flagString += f"{FlagTable[i]} | "
-          Personal.write(f'\t\t.Flags = {flagString[:-3]},\n')
+          # for i in range(32):
+          #   if (flag >> i) & 1:
+          #     print(i)
+          #     flagString += f"{FlagTable[i]} | "
+          Personal.write(f'\t\t.Flags = {flag},\n')
         else:
           Personal.write(f'\t\t.Flags = 0,\n')
         PersonalRAW.close()

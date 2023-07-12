@@ -86,8 +86,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_VENUSAUR,
+				.Parameter = 7,
+				.TargetSpecies = SPECIES_METAPOD,
 			},
 			{
 				.Method = 0,
@@ -124,9 +124,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_VENUSAUR] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_ELECTRODE,
 			},
 			{
 				.Method = 0,
@@ -163,9 +163,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CHARMANDER] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 16,
-				.TargetSpecies = SPECIES_CHARMELEON,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -202,9 +202,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CHARMELEON] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_CHARIZARD,
+				.Method = 8,
+				.Parameter = 85,
+				.TargetSpecies = SPECIES_EXEGGUTOR,
 			},
 			{
 				.Method = 0,
@@ -281,8 +281,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 16,
-				.TargetSpecies = SPECIES_WARTORTLE,
+				.Parameter = 28,
+				.TargetSpecies = SPECIES_MAROWAK,
 			},
 			{
 				.Method = 0,
@@ -319,9 +319,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WARTORTLE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_BLASTOISE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -397,9 +397,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CATERPIE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 7,
-				.TargetSpecies = SPECIES_METAPOD,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -434,6 +434,84 @@ const EVOLUTION_DATA __data[] = {
 		 },
 	},
 	[SPECIES_METAPOD] = {
+		 .Entries = {
+			{
+				.Method = 21,
+				.Parameter = 205,
+				.TargetSpecies = SPECIES_LICKILICKY,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_BUTTERFREE] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 35,
+				.TargetSpecies = SPECIES_WEEZING,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_WEEDLE] = {
 		 .Entries = {
 			{
 				.Method = 4,
@@ -472,90 +550,12 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_BUTTERFREE] = {
-		 .Entries = {
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-		 },
-	},
-	[SPECIES_WEEDLE] = {
-		 .Entries = {
-			{
-				.Method = 4,
-				.Parameter = 7,
-				.TargetSpecies = SPECIES_KAKUNA,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-		 },
-	},
 	[SPECIES_KAKUNA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 10,
-				.TargetSpecies = SPECIES_BEEDRILL,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -592,9 +592,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BEEDRILL] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 42,
+				.TargetSpecies = SPECIES_RHYDON,
 			},
 			{
 				.Method = 0,
@@ -631,9 +631,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PIDGEY] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 18,
-				.TargetSpecies = SPECIES_PIDGEOTTO,
+				.Method = 6,
+				.Parameter = 321,
+				.TargetSpecies = SPECIES_RHYPERIOR,
 			},
 			{
 				.Method = 0,
@@ -670,9 +670,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PIDGEOTTO] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_PIDGEOT,
+				.Method = 1,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_BLISSEY,
 			},
 			{
 				.Method = 0,
@@ -709,9 +709,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PIDGEOT] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 21,
+				.Parameter = 246,
+				.TargetSpecies = SPECIES_TANGROWTH,
 			},
 			{
 				.Method = 0,
@@ -748,9 +748,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_RATTATA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_RATICATE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -787,9 +787,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_RATICATE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_SEADRA,
 			},
 			{
 				.Method = 0,
@@ -826,9 +826,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SPEAROW] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_FEAROW,
+				.Method = 6,
+				.Parameter = 235,
+				.TargetSpecies = SPECIES_KINGDRA,
 			},
 			{
 				.Method = 0,
@@ -865,9 +865,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_FEAROW] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 33,
+				.TargetSpecies = SPECIES_SEAKING,
 			},
 			{
 				.Method = 0,
@@ -904,9 +904,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_EKANS] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 22,
-				.TargetSpecies = SPECIES_ARBOK,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -983,8 +983,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 8,
-				.Parameter = 83,
-				.TargetSpecies = SPECIES_RAICHU,
+				.Parameter = 84,
+				.TargetSpecies = SPECIES_STARMIE,
 			},
 			{
 				.Method = 0,
@@ -1060,9 +1060,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SANDSHREW] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 22,
-				.TargetSpecies = SPECIES_SANDSLASH,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -1099,9 +1099,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SANDSLASH] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 6,
+				.Parameter = 233,
+				.TargetSpecies = SPECIES_SCIZOR,
 			},
 			{
 				.Method = 0,
@@ -1138,9 +1138,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NIDORAN_M] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 16,
-				.TargetSpecies = SPECIES_NIDORINA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -1177,9 +1177,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NIDORINA] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 81,
-				.TargetSpecies = SPECIES_NIDOQUEEN,
+				.Method = 6,
+				.Parameter = 322,
+				.TargetSpecies = SPECIES_ELECTIVIRE,
 			},
 			{
 				.Method = 0,
@@ -1216,9 +1216,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NIDOQUEEN] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 6,
+				.Parameter = 323,
+				.TargetSpecies = SPECIES_MAGMORTAR,
 			},
 			{
 				.Method = 0,
@@ -1255,9 +1255,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NIDORAN_F] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 16,
-				.TargetSpecies = SPECIES_NIDORINO,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -1294,9 +1294,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NIDORINO] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 81,
-				.TargetSpecies = SPECIES_NIDOKING,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -1333,9 +1333,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NIDOKING] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_GYARADOS,
 			},
 			{
 				.Method = 0,
@@ -1372,9 +1372,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CLEFAIRY] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 81,
-				.TargetSpecies = SPECIES_CLEFABLE,
+				.Method = 4,
+				.Parameter = 7,
+				.TargetSpecies = SPECIES_KAKUNA,
 			},
 			{
 				.Method = 0,
@@ -1450,9 +1450,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_VULPIX] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 82,
-				.TargetSpecies = SPECIES_NINETALES,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -1528,39 +1528,39 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_JIGGLYPUFF] = {
 		 .Entries = {
 			{
+				.Method = 26,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_LEAFEON,
+			},
+			{
+				.Method = 27,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_GLACEON,
+			},
+			{
 				.Method = 8,
-				.Parameter = 81,
-				.TargetSpecies = SPECIES_WIGGLYTUFF,
+				.Parameter = 83,
+				.TargetSpecies = SPECIES_JOLTEON,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 84,
+				.TargetSpecies = SPECIES_VAPOREON,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 82,
+				.TargetSpecies = SPECIES_FLAREON,
 			},
 			{
-				.Method = 0,
+				.Method = 2,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_ESPEON,
 			},
 			{
-				.Method = 0,
+				.Method = 3,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
-			},
-			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_UMBREON,
 			},
 		 },
 	},
@@ -1606,9 +1606,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ZUBAT] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 22,
-				.TargetSpecies = SPECIES_GOLBAT,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -1645,9 +1645,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GOLBAT] = {
 		 .Entries = {
 			{
-				.Method = 1,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_CROBAT,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -1684,9 +1684,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ODDISH] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 21,
-				.TargetSpecies = SPECIES_GLOOM,
+				.Method = 6,
+				.Parameter = 252,
+				.TargetSpecies = SPECIES_PORYGON2,
 			},
 			{
 				.Method = 0,
@@ -1723,14 +1723,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GLOOM] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 85,
-				.TargetSpecies = SPECIES_VILEPLUME,
+				.Method = 4,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_OMASTAR,
 			},
 			{
-				.Method = 8,
-				.Parameter = 80,
-				.TargetSpecies = SPECIES_BELLOSSOM,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -1802,8 +1802,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 24,
-				.TargetSpecies = SPECIES_PARASECT,
+				.Parameter = 10,
+				.TargetSpecies = SPECIES_BEEDRILL,
 			},
 			{
 				.Method = 0,
@@ -1840,9 +1840,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PARASECT] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_KABUTOPS,
 			},
 			{
 				.Method = 0,
@@ -1879,9 +1879,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_VENONAT] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 31,
-				.TargetSpecies = SPECIES_VENOMOTH,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -1957,9 +1957,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DIGLETT] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 26,
-				.TargetSpecies = SPECIES_DUGTRIO,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -2035,9 +2035,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MEOWTH] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 28,
-				.TargetSpecies = SPECIES_PERSIAN,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -2114,8 +2114,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 33,
-				.TargetSpecies = SPECIES_GOLDUCK,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_DRAGONAIR,
 			},
 			{
 				.Method = 0,
@@ -2152,9 +2152,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GOLDUCK] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 55,
+				.TargetSpecies = SPECIES_DRAGONITE,
 			},
 			{
 				.Method = 0,
@@ -2191,9 +2191,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MANKEY] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 28,
-				.TargetSpecies = SPECIES_PRIMEAPE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -2269,9 +2269,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GROWLITHE] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 82,
-				.TargetSpecies = SPECIES_ARCANINE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -2348,8 +2348,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 25,
-				.TargetSpecies = SPECIES_POLIWHIRL,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_BAYLEEF,
 			},
 			{
 				.Method = 0,
@@ -2386,14 +2386,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_POLIWHIRL] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 84,
-				.TargetSpecies = SPECIES_POLIWRATH,
+				.Method = 4,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_MEGANIUM,
 			},
 			{
-				.Method = 6,
-				.Parameter = 221,
-				.TargetSpecies = SPECIES_POLITOED,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -2465,8 +2465,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 16,
-				.TargetSpecies = SPECIES_KADABRA,
+				.Parameter = 14,
+				.TargetSpecies = SPECIES_QUILAVA,
 			},
 			{
 				.Method = 0,
@@ -2503,9 +2503,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KADABRA] = {
 		 .Entries = {
 			{
-				.Method = 5,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_ALAKAZAM,
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_TYPHLOSION,
 			},
 			{
 				.Method = 0,
@@ -2582,8 +2582,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 28,
-				.TargetSpecies = SPECIES_MACHOKE,
+				.Parameter = 18,
+				.TargetSpecies = SPECIES_CROCONAW,
 			},
 			{
 				.Method = 0,
@@ -2620,9 +2620,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MACHOKE] = {
 		 .Entries = {
 			{
-				.Method = 5,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_MACHAMP,
+				.Method = 4,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_FERALIGATR,
 			},
 			{
 				.Method = 0,
@@ -2659,9 +2659,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MACHAMP] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 18,
+				.TargetSpecies = SPECIES_PIDGEOTTO,
 			},
 			{
 				.Method = 0,
@@ -2698,9 +2698,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BELLSPROUT] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 21,
-				.TargetSpecies = SPECIES_WEEPINBELL,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -2737,9 +2737,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WEEPINBELL] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 85,
-				.TargetSpecies = SPECIES_VICTREEBEL,
+				.Method = 4,
+				.Parameter = 15,
+				.TargetSpecies = SPECIES_FURRET,
 			},
 			{
 				.Method = 0,
@@ -2816,8 +2816,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_TENTACRUEL,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_NOCTOWL,
 			},
 			{
 				.Method = 0,
@@ -2894,8 +2894,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 25,
-				.TargetSpecies = SPECIES_GRAVELER,
+				.Parameter = 18,
+				.TargetSpecies = SPECIES_LEDIAN,
 			},
 			{
 				.Method = 0,
@@ -2932,9 +2932,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GRAVELER] = {
 		 .Entries = {
 			{
-				.Method = 5,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_GOLEM,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -2971,9 +2971,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GOLEM] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 22,
+				.TargetSpecies = SPECIES_ARIADOS,
 			},
 			{
 				.Method = 0,
@@ -3010,9 +3010,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PONYTA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_RAPIDASH,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -3089,13 +3089,13 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 37,
-				.TargetSpecies = SPECIES_SLOWBRO,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_PIDGEOT,
 			},
 			{
-				.Method = 6,
-				.Parameter = 221,
-				.TargetSpecies = SPECIES_SLOWKING,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -3127,9 +3127,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SLOWBRO] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 27,
+				.TargetSpecies = SPECIES_LANTURN,
 			},
 			{
 				.Method = 0,
@@ -3166,9 +3166,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAGNEMITE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_MAGNETON,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -3205,9 +3205,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAGNETON] = {
 		 .Entries = {
 			{
-				.Method = 25,
+				.Method = 1,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_MAGNEZONE,
+				.TargetSpecies = SPECIES_PIKACHU,
 			},
 			{
 				.Method = 0,
@@ -3244,9 +3244,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_FARFETCHD] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 1,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_CLEFAIRY,
 			},
 			{
 				.Method = 0,
@@ -3283,9 +3283,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DODUO] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 31,
-				.TargetSpecies = SPECIES_DODRIO,
+				.Method = 1,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_JIGGLYPUFF,
 			},
 			{
 				.Method = 0,
@@ -3322,9 +3322,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DODRIO] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 1,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_TOGETIC,
 			},
 			{
 				.Method = 0,
@@ -3361,9 +3361,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SEEL] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 34,
-				.TargetSpecies = SPECIES_DEWGONG,
+				.Method = 8,
+				.Parameter = 107,
+				.TargetSpecies = SPECIES_TOGEKISS,
 			},
 			{
 				.Method = 0,
@@ -3400,9 +3400,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DEWGONG] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 25,
+				.TargetSpecies = SPECIES_XATU,
 			},
 			{
 				.Method = 0,
@@ -3439,9 +3439,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GRIMER] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 38,
-				.TargetSpecies = SPECIES_MUK,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -3478,9 +3478,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MUK] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 15,
+				.TargetSpecies = SPECIES_FLAAFFY,
 			},
 			{
 				.Method = 0,
@@ -3517,9 +3517,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SHELLDER] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 84,
-				.TargetSpecies = SPECIES_CLOYSTER,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -3556,9 +3556,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CLOYSTER] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_AMPHAROS,
 			},
 			{
 				.Method = 0,
@@ -3595,9 +3595,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GASTLY] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 25,
-				.TargetSpecies = SPECIES_HAUNTER,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -3634,9 +3634,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_HAUNTER] = {
 		 .Entries = {
 			{
-				.Method = 5,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_GENGAR,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -3673,9 +3673,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GENGAR] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 18,
+				.TargetSpecies = SPECIES_AZUMARILL,
 			},
 			{
 				.Method = 0,
@@ -3712,9 +3712,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ONIX] = {
 		 .Entries = {
 			{
-				.Method = 6,
-				.Parameter = 233,
-				.TargetSpecies = SPECIES_STEELIX,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -3751,9 +3751,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DROWZEE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 26,
-				.TargetSpecies = SPECIES_HYPNO,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -3830,8 +3830,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 28,
-				.TargetSpecies = SPECIES_KINGLER,
+				.Parameter = 18,
+				.TargetSpecies = SPECIES_SKIPLOOM,
 			},
 			{
 				.Method = 0,
@@ -3868,9 +3868,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KINGLER] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 27,
+				.TargetSpecies = SPECIES_JUMPLUFF,
 			},
 			{
 				.Method = 0,
@@ -3907,9 +3907,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_VOLTORB] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_ELECTRODE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -3946,9 +3946,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ELECTRODE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_RATICATE,
 			},
 			{
 				.Method = 0,
@@ -3985,9 +3985,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_EXEGGCUTE] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 85,
-				.TargetSpecies = SPECIES_EXEGGUTOR,
+				.Method = 21,
+				.Parameter = 458,
+				.TargetSpecies = SPECIES_AMBIPOM,
 			},
 			{
 				.Method = 0,
@@ -4024,9 +4024,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_EXEGGUTOR] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 80,
+				.TargetSpecies = SPECIES_SUNFLORA,
 			},
 			{
 				.Method = 0,
@@ -4063,9 +4063,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CUBONE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 28,
-				.TargetSpecies = SPECIES_MAROWAK,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -4102,9 +4102,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAROWAK] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 21,
+				.Parameter = 246,
+				.TargetSpecies = SPECIES_YANMEGA,
 			},
 			{
 				.Method = 0,
@@ -4141,9 +4141,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_HITMONLEE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_QUAGSIRE,
 			},
 			{
 				.Method = 0,
@@ -4219,9 +4219,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LICKITUNG] = {
 		 .Entries = {
 			{
-				.Method = 21,
-				.Parameter = 205,
-				.TargetSpecies = SPECIES_LICKILICKY,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -4258,9 +4258,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KOFFING] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 35,
-				.TargetSpecies = SPECIES_WEEZING,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -4297,9 +4297,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WEEZING] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 108,
+				.TargetSpecies = SPECIES_HONCHKROW,
 			},
 			{
 				.Method = 0,
@@ -4336,9 +4336,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_RHYHORN] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 42,
-				.TargetSpecies = SPECIES_RHYDON,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -4375,9 +4375,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_RHYDON] = {
 		 .Entries = {
 			{
-				.Method = 6,
-				.Parameter = 321,
-				.TargetSpecies = SPECIES_RHYPERIOR,
+				.Method = 4,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_VENUSAUR,
 			},
 			{
 				.Method = 0,
@@ -4414,9 +4414,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CHANSEY] = {
 		 .Entries = {
 			{
-				.Method = 1,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_BLISSEY,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -4453,9 +4453,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TANGELA] = {
 		 .Entries = {
 			{
-				.Method = 21,
-				.Parameter = 246,
-				.TargetSpecies = SPECIES_TANGROWTH,
+				.Method = 8,
+				.Parameter = 108,
+				.TargetSpecies = SPECIES_MISMAGIUS,
 			},
 			{
 				.Method = 0,
@@ -4531,9 +4531,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_HORSEA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_SEADRA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -4570,9 +4570,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SEADRA] = {
 		 .Entries = {
 			{
-				.Method = 6,
-				.Parameter = 235,
-				.TargetSpecies = SPECIES_KINGDRA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -4610,8 +4610,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 33,
-				.TargetSpecies = SPECIES_SEAKING,
+				.Parameter = 31,
+				.TargetSpecies = SPECIES_FORRETRESS,
 			},
 			{
 				.Method = 0,
@@ -4687,9 +4687,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_STARYU] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 84,
-				.TargetSpecies = SPECIES_STARMIE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -4726,9 +4726,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_STARMIE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 20,
+				.Parameter = 327,
+				.TargetSpecies = SPECIES_GLISCOR,
 			},
 			{
 				.Method = 0,
@@ -4804,9 +4804,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SCYTHER] = {
 		 .Entries = {
 			{
-				.Method = 6,
-				.Parameter = 233,
-				.TargetSpecies = SPECIES_SCIZOR,
+				.Method = 4,
+				.Parameter = 23,
+				.TargetSpecies = SPECIES_GRANBULL,
 			},
 			{
 				.Method = 0,
@@ -4843,9 +4843,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_JYNX] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_FEAROW,
 			},
 			{
 				.Method = 0,
@@ -4882,9 +4882,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ELECTABUZZ] = {
 		 .Entries = {
 			{
-				.Method = 6,
-				.Parameter = 322,
-				.TargetSpecies = SPECIES_ELECTIVIRE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -4921,9 +4921,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAGMAR] = {
 		 .Entries = {
 			{
-				.Method = 6,
-				.Parameter = 323,
-				.TargetSpecies = SPECIES_MAGMORTAR,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -5038,9 +5038,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAGIKARP] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_GYARADOS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -5077,9 +5077,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GYARADOS] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 20,
+				.Parameter = 326,
+				.TargetSpecies = SPECIES_WEAVILE,
 			},
 			{
 				.Method = 0,
@@ -5116,9 +5116,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LAPRAS] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_URSARING,
 			},
 			{
 				.Method = 0,
@@ -5194,39 +5194,39 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_EEVEE] = {
 		 .Entries = {
 			{
-				.Method = 26,
+				.Method = 4,
+				.Parameter = 38,
+				.TargetSpecies = SPECIES_MAGCARGO,
+			},
+			{
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_LEAFEON,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
-				.Method = 27,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_GLACEON,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
-				.Method = 8,
-				.Parameter = 83,
-				.TargetSpecies = SPECIES_JOLTEON,
-			},
-			{
-				.Method = 8,
-				.Parameter = 84,
-				.TargetSpecies = SPECIES_VAPOREON,
-			},
-			{
-				.Method = 8,
-				.Parameter = 82,
-				.TargetSpecies = SPECIES_FLAREON,
-			},
-			{
-				.Method = 2,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_ESPEON,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
-				.Method = 3,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_UMBREON,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 		 },
 	},
@@ -5311,9 +5311,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_FLAREON] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 33,
+				.TargetSpecies = SPECIES_PILOSWINE,
 			},
 			{
 				.Method = 0,
@@ -5350,9 +5350,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PORYGON] = {
 		 .Entries = {
 			{
-				.Method = 6,
-				.Parameter = 252,
-				.TargetSpecies = SPECIES_PORYGON2,
+				.Method = 21,
+				.Parameter = 246,
+				.TargetSpecies = SPECIES_MAMOSWINE,
 			},
 			{
 				.Method = 0,
@@ -5389,9 +5389,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_OMANYTE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_OMASTAR,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -5428,9 +5428,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_OMASTAR] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 25,
+				.TargetSpecies = SPECIES_OCTILLERY,
 			},
 			{
 				.Method = 0,
@@ -5467,9 +5467,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KABUTO] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_KABUTOPS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -5623,9 +5623,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ARTICUNO] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 24,
+				.TargetSpecies = SPECIES_HOUNDOOM,
 			},
 			{
 				.Method = 0,
@@ -5701,9 +5701,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MOLTRES] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 22,
+				.TargetSpecies = SPECIES_ARBOK,
 			},
 			{
 				.Method = 0,
@@ -5740,9 +5740,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DRATINI] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_DRAGONAIR,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -5780,8 +5780,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 55,
-				.TargetSpecies = SPECIES_DRAGONITE,
+				.Parameter = 25,
+				.TargetSpecies = SPECIES_DONPHAN,
 			},
 			{
 				.Method = 0,
@@ -5857,9 +5857,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MEWTWO] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 6,
+				.Parameter = 324,
+				.TargetSpecies = SPECIES_PORYGONZ,
 			},
 			{
 				.Method = 0,
@@ -5935,9 +5935,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CHIKORITA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 16,
-				.TargetSpecies = SPECIES_BAYLEEF,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -5974,19 +5974,19 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BAYLEEF] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_MEGANIUM,
+				.Method = 11,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_HITMONCHAN,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 9,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_HITMONLEE,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 10,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_HITMONTOP,
 			},
 			{
 				.Method = 0,
@@ -6053,8 +6053,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 14,
-				.TargetSpecies = SPECIES_QUILAVA,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_JYNX,
 			},
 			{
 				.Method = 0,
@@ -6092,8 +6092,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_TYPHLOSION,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_ELECTABUZZ,
 			},
 			{
 				.Method = 0,
@@ -6170,8 +6170,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 18,
-				.TargetSpecies = SPECIES_CROCONAW,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_MAGMAR,
 			},
 			{
 				.Method = 0,
@@ -6208,9 +6208,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CROCONAW] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_FERALIGATR,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -6286,9 +6286,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SENTRET] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 15,
-				.TargetSpecies = SPECIES_FURRET,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -6364,9 +6364,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_HOOTHOOT] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_NOCTOWL,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -6403,9 +6403,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NOCTOWL] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_PUPITAR,
 			},
 			{
 				.Method = 0,
@@ -6443,8 +6443,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 18,
-				.TargetSpecies = SPECIES_LEDIAN,
+				.Parameter = 55,
+				.TargetSpecies = SPECIES_TYRANITAR,
 			},
 			{
 				.Method = 0,
@@ -6520,9 +6520,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SPINARAK] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 22,
-				.TargetSpecies = SPECIES_ARIADOS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -6559,9 +6559,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ARIADOS] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 83,
+				.TargetSpecies = SPECIES_RAICHU,
 			},
 			{
 				.Method = 0,
@@ -6637,9 +6637,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CHINCHOU] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 27,
-				.TargetSpecies = SPECIES_LANTURN,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -6676,9 +6676,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LANTURN] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_GROVYLE,
 			},
 			{
 				.Method = 0,
@@ -6715,9 +6715,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PICHU] = {
 		 .Entries = {
 			{
-				.Method = 1,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_PIKACHU,
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_SCEPTILE,
 			},
 			{
 				.Method = 0,
@@ -6754,9 +6754,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CLEFFA] = {
 		 .Entries = {
 			{
-				.Method = 1,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_CLEFAIRY,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -6793,9 +6793,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_IGGLYBUFF] = {
 		 .Entries = {
 			{
-				.Method = 1,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_JIGGLYPUFF,
+				.Method = 4,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_COMBUSKEN,
 			},
 			{
 				.Method = 0,
@@ -6832,9 +6832,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TOGEPI] = {
 		 .Entries = {
 			{
-				.Method = 1,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_TOGETIC,
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_BLAZIKEN,
 			},
 			{
 				.Method = 0,
@@ -6871,9 +6871,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TOGETIC] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 107,
-				.TargetSpecies = SPECIES_TOGEKISS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -6911,8 +6911,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 25,
-				.TargetSpecies = SPECIES_XATU,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_MARSHTOMP,
 			},
 			{
 				.Method = 0,
@@ -6949,9 +6949,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_XATU] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_SWAMPERT,
 			},
 			{
 				.Method = 0,
@@ -6988,9 +6988,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAREEP] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 15,
-				.TargetSpecies = SPECIES_FLAAFFY,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -7027,9 +7027,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_FLAAFFY] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_AMPHAROS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -7066,9 +7066,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_AMPHAROS] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 18,
+				.TargetSpecies = SPECIES_MIGHTYENA,
 			},
 			{
 				.Method = 0,
@@ -7145,8 +7145,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 18,
-				.TargetSpecies = SPECIES_AZUMARILL,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_LINOONE,
 			},
 			{
 				.Method = 0,
@@ -7222,14 +7222,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SUDOWOODO] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 12,
+				.Parameter = 7,
+				.TargetSpecies = SPECIES_SILCOON,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 13,
+				.Parameter = 7,
+				.TargetSpecies = SPECIES_CASCOON,
 			},
 			{
 				.Method = 0,
@@ -7261,9 +7261,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_POLITOED] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 10,
+				.TargetSpecies = SPECIES_BEAUTIFLY,
 			},
 			{
 				.Method = 0,
@@ -7300,9 +7300,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_HOPPIP] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 18,
-				.TargetSpecies = SPECIES_SKIPLOOM,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -7340,8 +7340,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 27,
-				.TargetSpecies = SPECIES_JUMPLUFF,
+				.Parameter = 10,
+				.TargetSpecies = SPECIES_DUSTOX,
 			},
 			{
 				.Method = 0,
@@ -7417,9 +7417,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_AIPOM] = {
 		 .Entries = {
 			{
-				.Method = 21,
-				.Parameter = 458,
-				.TargetSpecies = SPECIES_AMBIPOM,
+				.Method = 4,
+				.Parameter = 22,
+				.TargetSpecies = SPECIES_SANDSLASH,
 			},
 			{
 				.Method = 0,
@@ -7456,9 +7456,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SUNKERN] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 80,
-				.TargetSpecies = SPECIES_SUNFLORA,
+				.Method = 4,
+				.Parameter = 14,
+				.TargetSpecies = SPECIES_LOMBRE,
 			},
 			{
 				.Method = 0,
@@ -7495,9 +7495,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SUNFLORA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 84,
+				.TargetSpecies = SPECIES_LUDICOLO,
 			},
 			{
 				.Method = 0,
@@ -7534,9 +7534,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_YANMA] = {
 		 .Entries = {
 			{
-				.Method = 21,
-				.Parameter = 246,
-				.TargetSpecies = SPECIES_YANMEGA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -7574,8 +7574,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_QUAGSIRE,
+				.Parameter = 14,
+				.TargetSpecies = SPECIES_NUZLEAF,
 			},
 			{
 				.Method = 0,
@@ -7612,9 +7612,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_QUAGSIRE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 85,
+				.TargetSpecies = SPECIES_SHIFTRY,
 			},
 			{
 				.Method = 0,
@@ -7690,9 +7690,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_UMBREON] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 22,
+				.TargetSpecies = SPECIES_SWELLOW,
 			},
 			{
 				.Method = 0,
@@ -7729,9 +7729,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MURKROW] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 108,
-				.TargetSpecies = SPECIES_HONCHKROW,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -7768,9 +7768,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SLOWKING] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 25,
+				.TargetSpecies = SPECIES_PELIPPER,
 			},
 			{
 				.Method = 0,
@@ -7807,9 +7807,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MISDREAVUS] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 108,
-				.TargetSpecies = SPECIES_MISMAGIUS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -7885,9 +7885,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WOBBUFFET] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_KIRLIA,
 			},
 			{
 				.Method = 0,
@@ -7924,14 +7924,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GIRAFARIG] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_GARDEVOIR,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 17,
+				.Parameter = 109,
+				.TargetSpecies = SPECIES_GALLADE,
 			},
 			{
 				.Method = 0,
@@ -7963,9 +7963,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PINECO] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 31,
-				.TargetSpecies = SPECIES_FORRETRESS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -8002,9 +8002,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_FORRETRESS] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 22,
+				.TargetSpecies = SPECIES_MASQUERAIN,
 			},
 			{
 				.Method = 0,
@@ -8080,9 +8080,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GLIGAR] = {
 		 .Entries = {
 			{
-				.Method = 20,
-				.Parameter = 327,
-				.TargetSpecies = SPECIES_GLISCOR,
+				.Method = 4,
+				.Parameter = 23,
+				.TargetSpecies = SPECIES_BRELOOM,
 			},
 			{
 				.Method = 0,
@@ -8159,8 +8159,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 23,
-				.TargetSpecies = SPECIES_GRANBULL,
+				.Parameter = 18,
+				.TargetSpecies = SPECIES_VIGOROTH,
 			},
 			{
 				.Method = 0,
@@ -8197,9 +8197,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GRANBULL] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_SLAKING,
 			},
 			{
 				.Method = 0,
@@ -8275,9 +8275,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SCIZOR] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_NIDORINA,
 			},
 			{
 				.Method = 0,
@@ -8314,14 +8314,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SHUCKLE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 14,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_NINJASK,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 15,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_SHEDINJA,
 			},
 			{
 				.Method = 0,
@@ -8392,9 +8392,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SNEASEL] = {
 		 .Entries = {
 			{
-				.Method = 20,
-				.Parameter = 326,
-				.TargetSpecies = SPECIES_WEAVILE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -8432,8 +8432,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_URSARING,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_LOUDRED,
 			},
 			{
 				.Method = 0,
@@ -8470,9 +8470,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_URSARING] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_EXPLOUD,
 			},
 			{
 				.Method = 0,
@@ -8509,9 +8509,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SLUGMA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 38,
-				.TargetSpecies = SPECIES_MAGCARGO,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -8548,9 +8548,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAGCARGO] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 24,
+				.TargetSpecies = SPECIES_HARIYAMA,
 			},
 			{
 				.Method = 0,
@@ -8587,9 +8587,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SWINUB] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 33,
-				.TargetSpecies = SPECIES_PILOSWINE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -8626,9 +8626,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PILOSWINE] = {
 		 .Entries = {
 			{
-				.Method = 21,
-				.Parameter = 246,
-				.TargetSpecies = SPECIES_MAMOSWINE,
+				.Method = 1,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_MARILL,
 			},
 			{
 				.Method = 0,
@@ -8665,9 +8665,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CORSOLA] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 25,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_PROBOPASS,
 			},
 			{
 				.Method = 0,
@@ -8704,9 +8704,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_REMORAID] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 25,
-				.TargetSpecies = SPECIES_OCTILLERY,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -8743,9 +8743,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_OCTILLERY] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 81,
+				.TargetSpecies = SPECIES_NIDOQUEEN,
 			},
 			{
 				.Method = 0,
@@ -8782,9 +8782,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DELIBIRD] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 81,
+				.TargetSpecies = SPECIES_DELCATTY,
 			},
 			{
 				.Method = 0,
@@ -8899,9 +8899,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_HOUNDOUR] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 24,
-				.TargetSpecies = SPECIES_HOUNDOOM,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -8938,9 +8938,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_HOUNDOOM] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_LAIRON,
 			},
 			{
 				.Method = 0,
@@ -8977,9 +8977,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KINGDRA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 42,
+				.TargetSpecies = SPECIES_AGGRON,
 			},
 			{
 				.Method = 0,
@@ -9016,9 +9016,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PHANPY] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 25,
-				.TargetSpecies = SPECIES_DONPHAN,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -9055,9 +9055,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DONPHAN] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 37,
+				.TargetSpecies = SPECIES_MEDICHAM,
 			},
 			{
 				.Method = 0,
@@ -9094,9 +9094,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PORYGON2] = {
 		 .Entries = {
 			{
-				.Method = 6,
-				.Parameter = 324,
-				.TargetSpecies = SPECIES_PORYGONZ,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -9133,9 +9133,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_STANTLER] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 26,
+				.TargetSpecies = SPECIES_MANECTRIC,
 			},
 			{
 				.Method = 0,
@@ -9211,19 +9211,19 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TYROGUE] = {
 		 .Entries = {
 			{
-				.Method = 11,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_HITMONCHAN,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
-				.Method = 9,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_HITMONLEE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
-				.Method = 10,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_HITMONTOP,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -9289,9 +9289,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SMOOCHUM] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_JYNX,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -9328,9 +9328,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ELEKID] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_ELECTABUZZ,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -9367,9 +9367,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAGBY] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_MAGMAR,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -9406,9 +9406,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MILTANK] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 107,
+				.TargetSpecies = SPECIES_ROSERADE,
 			},
 			{
 				.Method = 0,
@@ -9445,9 +9445,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BLISSEY] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 26,
+				.TargetSpecies = SPECIES_SWALOT,
 			},
 			{
 				.Method = 0,
@@ -9523,9 +9523,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ENTEI] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_SHARPEDO,
 			},
 			{
 				.Method = 0,
@@ -9602,8 +9602,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_PUPITAR,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_NIDORINO,
 			},
 			{
 				.Method = 0,
@@ -9641,8 +9641,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 55,
-				.TargetSpecies = SPECIES_TYRANITAR,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_WAILORD,
 			},
 			{
 				.Method = 0,
@@ -9718,9 +9718,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LUGIA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 33,
+				.TargetSpecies = SPECIES_CAMERUPT,
 			},
 			{
 				.Method = 0,
@@ -9836,8 +9836,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 16,
-				.TargetSpecies = SPECIES_GROVYLE,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_GRUMPIG,
 			},
 			{
 				.Method = 0,
@@ -9874,9 +9874,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GROVYLE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_SCEPTILE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -9953,8 +9953,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 16,
-				.TargetSpecies = SPECIES_COMBUSKEN,
+				.Parameter = 35,
+				.TargetSpecies = SPECIES_VIBRAVA,
 			},
 			{
 				.Method = 0,
@@ -9992,8 +9992,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_BLAZIKEN,
+				.Parameter = 45,
+				.TargetSpecies = SPECIES_FLYGON,
 			},
 			{
 				.Method = 0,
@@ -10030,9 +10030,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BLAZIKEN] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 81,
+				.TargetSpecies = SPECIES_NIDOKING,
 			},
 			{
 				.Method = 0,
@@ -10069,9 +10069,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MUDKIP] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 16,
-				.TargetSpecies = SPECIES_MARSHTOMP,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -10109,8 +10109,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_SWAMPERT,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_CACTURNE,
 			},
 			{
 				.Method = 0,
@@ -10187,8 +10187,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 18,
-				.TargetSpecies = SPECIES_MIGHTYENA,
+				.Parameter = 35,
+				.TargetSpecies = SPECIES_ALTARIA,
 			},
 			{
 				.Method = 0,
@@ -10264,9 +10264,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ZIGZAGOON] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_LINOONE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -10342,14 +10342,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WURMPLE] = {
 		 .Entries = {
 			{
-				.Method = 12,
-				.Parameter = 7,
-				.TargetSpecies = SPECIES_SILCOON,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
-				.Method = 13,
-				.Parameter = 7,
-				.TargetSpecies = SPECIES_CASCOON,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -10381,9 +10381,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SILCOON] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 10,
-				.TargetSpecies = SPECIES_BEAUTIFLY,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -10420,9 +10420,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BEAUTIFLY] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_WHISCASH,
 			},
 			{
 				.Method = 0,
@@ -10459,9 +10459,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CASCOON] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 10,
-				.TargetSpecies = SPECIES_DUSTOX,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -10538,8 +10538,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 14,
-				.TargetSpecies = SPECIES_LOMBRE,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_CRAWDAUNT,
 			},
 			{
 				.Method = 0,
@@ -10576,9 +10576,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LOMBRE] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 84,
-				.TargetSpecies = SPECIES_LUDICOLO,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -10615,9 +10615,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LUDICOLO] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_CLAYDOL,
 			},
 			{
 				.Method = 0,
@@ -10654,9 +10654,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SEEDOT] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 14,
-				.TargetSpecies = SPECIES_NUZLEAF,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -10693,9 +10693,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NUZLEAF] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 85,
-				.TargetSpecies = SPECIES_SHIFTRY,
+				.Method = 4,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_CRADILY,
 			},
 			{
 				.Method = 0,
@@ -10772,8 +10772,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 22,
-				.TargetSpecies = SPECIES_SWELLOW,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_ARMALDO,
 			},
 			{
 				.Method = 0,
@@ -10849,14 +10849,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WINGULL] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 25,
-				.TargetSpecies = SPECIES_PELIPPER,
+				.Method = 16,
+				.Parameter = 170,
+				.TargetSpecies = SPECIES_MILOTIC,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 6,
+				.Parameter = 537,
+				.TargetSpecies = SPECIES_MILOTIC,
 			},
 			{
 				.Method = 0,
@@ -10888,9 +10888,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PELIPPER] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 81,
+				.TargetSpecies = SPECIES_CLEFABLE,
 			},
 			{
 				.Method = 0,
@@ -10927,9 +10927,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_RALTS] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_KIRLIA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -10966,14 +10966,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KIRLIA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_GARDEVOIR,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
-				.Method = 17,
-				.Parameter = 109,
-				.TargetSpecies = SPECIES_GALLADE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -11045,8 +11045,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 22,
-				.TargetSpecies = SPECIES_MASQUERAIN,
+				.Parameter = 37,
+				.TargetSpecies = SPECIES_BANETTE,
 			},
 			{
 				.Method = 0,
@@ -11123,8 +11123,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 23,
-				.TargetSpecies = SPECIES_BRELOOM,
+				.Parameter = 37,
+				.TargetSpecies = SPECIES_DUSCLOPS,
 			},
 			{
 				.Method = 0,
@@ -11161,9 +11161,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BRELOOM] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 6,
+				.Parameter = 325,
+				.TargetSpecies = SPECIES_DUSKNOIR,
 			},
 			{
 				.Method = 0,
@@ -11200,9 +11200,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SLAKOTH] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 18,
-				.TargetSpecies = SPECIES_VIGOROTH,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -11239,9 +11239,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_VIGOROTH] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_SLAKING,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -11317,14 +11317,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NINCADA] = {
 		 .Entries = {
 			{
-				.Method = 14,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_NINJASK,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
-				.Method = 15,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_SHEDINJA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -11356,9 +11356,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NINJASK] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 15,
+				.TargetSpecies = SPECIES_WOBBUFFET,
 			},
 			{
 				.Method = 0,
@@ -11395,14 +11395,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SHEDINJA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 42,
+				.TargetSpecies = SPECIES_GLALIE,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 18,
+				.Parameter = 109,
+				.TargetSpecies = SPECIES_FROSLASS,
 			},
 			{
 				.Method = 0,
@@ -11434,9 +11434,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WHISMUR] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_LOUDRED,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -11474,8 +11474,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_EXPLOUD,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_SEALEO,
 			},
 			{
 				.Method = 0,
@@ -11512,9 +11512,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_EXPLOUD] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 44,
+				.TargetSpecies = SPECIES_WALREIN,
 			},
 			{
 				.Method = 0,
@@ -11551,9 +11551,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAKUHITA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 24,
-				.TargetSpecies = SPECIES_HARIYAMA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -11590,14 +11590,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_HARIYAMA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 6,
+				.Parameter = 226,
+				.TargetSpecies = SPECIES_HUNTAIL,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 6,
+				.Parameter = 227,
+				.TargetSpecies = SPECIES_GOREBYSS,
 			},
 			{
 				.Method = 0,
@@ -11629,9 +11629,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_AZURILL] = {
 		 .Entries = {
 			{
-				.Method = 1,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_MARILL,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -11668,9 +11668,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NOSEPASS] = {
 		 .Entries = {
 			{
-				.Method = 25,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_PROBOPASS,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -11707,9 +11707,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SKITTY] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 81,
-				.TargetSpecies = SPECIES_DELCATTY,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -11746,9 +11746,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DELCATTY] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 82,
+				.TargetSpecies = SPECIES_NINETALES,
 			},
 			{
 				.Method = 0,
@@ -11824,9 +11824,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAWILE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_SHELGON,
 			},
 			{
 				.Method = 0,
@@ -11864,8 +11864,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_LAIRON,
+				.Parameter = 50,
+				.TargetSpecies = SPECIES_SALAMENCE,
 			},
 			{
 				.Method = 0,
@@ -11902,9 +11902,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LAIRON] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 42,
-				.TargetSpecies = SPECIES_AGGRON,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -11941,9 +11941,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_AGGRON] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_METANG,
 			},
 			{
 				.Method = 0,
@@ -11981,8 +11981,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 37,
-				.TargetSpecies = SPECIES_MEDICHAM,
+				.Parameter = 45,
+				.TargetSpecies = SPECIES_METAGROSS,
 			},
 			{
 				.Method = 0,
@@ -12058,9 +12058,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ELECTRIKE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 26,
-				.TargetSpecies = SPECIES_MANECTRIC,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -12292,9 +12292,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ROSELIA] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 107,
-				.TargetSpecies = SPECIES_ROSERADE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -12331,9 +12331,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GULPIN] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 26,
-				.TargetSpecies = SPECIES_SWALOT,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -12409,9 +12409,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CARVANHA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_SHARPEDO,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -12488,8 +12488,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_WAILORD,
+				.Parameter = 18,
+				.TargetSpecies = SPECIES_GROTLE,
 			},
 			{
 				.Method = 0,
@@ -12526,9 +12526,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WAILORD] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_TORTERRA,
 			},
 			{
 				.Method = 0,
@@ -12565,9 +12565,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_NUMEL] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 33,
-				.TargetSpecies = SPECIES_CAMERUPT,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -12604,9 +12604,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CAMERUPT] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 81,
+				.TargetSpecies = SPECIES_WIGGLYTUFF,
 			},
 			{
 				.Method = 0,
@@ -12643,9 +12643,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TORKOAL] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 14,
+				.TargetSpecies = SPECIES_MONFERNO,
 			},
 			{
 				.Method = 0,
@@ -12683,8 +12683,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_GRUMPIG,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_INFERNAPE,
 			},
 			{
 				.Method = 0,
@@ -12760,9 +12760,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SPINDA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_PRINPLUP,
 			},
 			{
 				.Method = 0,
@@ -12800,8 +12800,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 35,
-				.TargetSpecies = SPECIES_VIBRAVA,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_EMPOLEON,
 			},
 			{
 				.Method = 0,
@@ -12838,9 +12838,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_VIBRAVA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 45,
-				.TargetSpecies = SPECIES_FLYGON,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -12877,9 +12877,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_FLYGON] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 14,
+				.TargetSpecies = SPECIES_STARAVIA,
 			},
 			{
 				.Method = 0,
@@ -12917,8 +12917,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_CACTURNE,
+				.Parameter = 34,
+				.TargetSpecies = SPECIES_STARAPTOR,
 			},
 			{
 				.Method = 0,
@@ -12995,8 +12995,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 35,
-				.TargetSpecies = SPECIES_ALTARIA,
+				.Parameter = 15,
+				.TargetSpecies = SPECIES_BIBAREL,
 			},
 			{
 				.Method = 0,
@@ -13033,9 +13033,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ALTARIA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_CHARMELEON,
 			},
 			{
 				.Method = 0,
@@ -13150,9 +13150,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LUNATONE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 10,
+				.TargetSpecies = SPECIES_KRICKETUNE,
 			},
 			{
 				.Method = 0,
@@ -13229,8 +13229,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_WHISCASH,
+				.Parameter = 15,
+				.TargetSpecies = SPECIES_LUXIO,
 			},
 			{
 				.Method = 0,
@@ -13267,9 +13267,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WHISCASH] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_LUXRAY,
 			},
 			{
 				.Method = 0,
@@ -13306,9 +13306,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CORPHISH] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_CRAWDAUNT,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -13345,9 +13345,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CRAWDAUNT] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 2,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_ROSELIA,
 			},
 			{
 				.Method = 0,
@@ -13384,9 +13384,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BALTOY] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_CLAYDOL,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -13423,9 +13423,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CLAYDOL] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_RAMPARDOS,
 			},
 			{
 				.Method = 0,
@@ -13462,9 +13462,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LILEEP] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_CRADILY,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -13501,9 +13501,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CRADILY] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 22,
+				.TargetSpecies = SPECIES_GOLBAT,
 			},
 			{
 				.Method = 0,
@@ -13541,8 +13541,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_ARMALDO,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_BASTIODON,
 			},
 			{
 				.Method = 0,
@@ -13618,14 +13618,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_FEEBAS] = {
 		 .Entries = {
 			{
-				.Method = 16,
-				.Parameter = 170,
-				.TargetSpecies = SPECIES_MILOTIC,
+				.Method = 24,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_WORMADAM,
 			},
 			{
-				.Method = 6,
-				.Parameter = 537,
-				.TargetSpecies = SPECIES_MILOTIC,
+				.Method = 23,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_MOTHIM,
 			},
 			{
 				.Method = 0,
@@ -13735,9 +13735,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KECLEON] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 24,
+				.Parameter = 21,
+				.TargetSpecies = SPECIES_VESPIQUEN,
 			},
 			{
 				.Method = 0,
@@ -13774,9 +13774,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SHUPPET] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 37,
-				.TargetSpecies = SPECIES_BANETTE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -13853,8 +13853,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 37,
-				.TargetSpecies = SPECIES_DUSCLOPS,
+				.Parameter = 26,
+				.TargetSpecies = SPECIES_FLOATZEL,
 			},
 			{
 				.Method = 0,
@@ -13891,9 +13891,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DUSCLOPS] = {
 		 .Entries = {
 			{
-				.Method = 6,
-				.Parameter = 325,
-				.TargetSpecies = SPECIES_DUSKNOIR,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -13930,9 +13930,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TROPIUS] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 1,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_CROBAT,
 			},
 			{
 				.Method = 0,
@@ -13969,9 +13969,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CHIMECHO] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 25,
+				.TargetSpecies = SPECIES_CHERRIM,
 			},
 			{
 				.Method = 0,
@@ -14048,8 +14048,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 15,
-				.TargetSpecies = SPECIES_WOBBUFFET,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_GASTRODON,
 			},
 			{
 				.Method = 0,
@@ -14086,14 +14086,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SNORUNT] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 42,
-				.TargetSpecies = SPECIES_GLALIE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
-				.Method = 18,
-				.Parameter = 109,
-				.TargetSpecies = SPECIES_FROSLASS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -14165,8 +14165,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_SEALEO,
+				.Parameter = 28,
+				.TargetSpecies = SPECIES_DRIFBLIM,
 			},
 			{
 				.Method = 0,
@@ -14203,9 +14203,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SEALEO] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 44,
-				.TargetSpecies = SPECIES_WALREIN,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -14242,9 +14242,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WALREIN] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 1,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_LOPUNNY,
 			},
 			{
 				.Method = 0,
@@ -14281,14 +14281,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CLAMPERL] = {
 		 .Entries = {
 			{
-				.Method = 6,
-				.Parameter = 226,
-				.TargetSpecies = SPECIES_HUNTAIL,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
-				.Method = 6,
-				.Parameter = 227,
-				.TargetSpecies = SPECIES_GOREBYSS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -14359,9 +14359,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GOREBYSS] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 21,
+				.TargetSpecies = SPECIES_GLOOM,
 			},
 			{
 				.Method = 0,
@@ -14437,9 +14437,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LUVDISC] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 38,
+				.TargetSpecies = SPECIES_PURUGLY,
 			},
 			{
 				.Method = 0,
@@ -14476,9 +14476,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BAGON] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_SHELGON,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -14515,9 +14515,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SHELGON] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 50,
-				.TargetSpecies = SPECIES_SALAMENCE,
+				.Method = 3,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_CHIMECHO,
 			},
 			{
 				.Method = 0,
@@ -14554,9 +14554,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SALAMENCE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 34,
+				.TargetSpecies = SPECIES_SKUNTANK,
 			},
 			{
 				.Method = 0,
@@ -14593,9 +14593,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BELDUM] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_METANG,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -14633,8 +14633,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 45,
-				.TargetSpecies = SPECIES_METAGROSS,
+				.Parameter = 33,
+				.TargetSpecies = SPECIES_BRONZONG,
 			},
 			{
 				.Method = 0,
@@ -14710,9 +14710,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_REGIROCK] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 21,
+				.Parameter = 102,
+				.TargetSpecies = SPECIES_SUDOWOODO,
 			},
 			{
 				.Method = 0,
@@ -14749,9 +14749,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_REGICE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 21,
+				.Parameter = 102,
+				.TargetSpecies = SPECIES_MR_MIME,
 			},
 			{
 				.Method = 0,
@@ -14788,14 +14788,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_REGISTEEL] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 85,
+				.TargetSpecies = SPECIES_VILEPLUME,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 80,
+				.TargetSpecies = SPECIES_BELLOSSOM,
 			},
 			{
 				.Method = 0,
@@ -14827,9 +14827,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LATIAS] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 19,
+				.Parameter = 110,
+				.TargetSpecies = SPECIES_CHANSEY,
 			},
 			{
 				.Method = 0,
@@ -14944,9 +14944,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GROUDON] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 24,
+				.TargetSpecies = SPECIES_GABITE,
 			},
 			{
 				.Method = 0,
@@ -14983,9 +14983,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_RAYQUAZA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 48,
+				.TargetSpecies = SPECIES_GARCHOMP,
 			},
 			{
 				.Method = 0,
@@ -15061,9 +15061,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DEOXYS] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 1,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_SNORLAX,
 			},
 			{
 				.Method = 0,
@@ -15100,9 +15100,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TURTWIG] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 18,
-				.TargetSpecies = SPECIES_GROTLE,
+				.Method = 2,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_LUCARIO,
 			},
 			{
 				.Method = 0,
@@ -15139,9 +15139,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GROTLE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_TORTERRA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -15178,9 +15178,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TORTERRA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 34,
+				.TargetSpecies = SPECIES_HIPPOWDON,
 			},
 			{
 				.Method = 0,
@@ -15217,9 +15217,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CHIMCHAR] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 14,
-				.TargetSpecies = SPECIES_MONFERNO,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -15256,9 +15256,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MONFERNO] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_INFERNAPE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -15295,9 +15295,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_INFERNAPE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_DRAPION,
 			},
 			{
 				.Method = 0,
@@ -15334,9 +15334,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PIPLUP] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 16,
-				.TargetSpecies = SPECIES_PRINPLUP,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -15374,8 +15374,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_EMPOLEON,
+				.Parameter = 37,
+				.TargetSpecies = SPECIES_TOXICROAK,
 			},
 			{
 				.Method = 0,
@@ -15451,9 +15451,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_STARLY] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 14,
-				.TargetSpecies = SPECIES_STARAVIA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -15491,8 +15491,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 34,
-				.TargetSpecies = SPECIES_STARAPTOR,
+				.Parameter = 31,
+				.TargetSpecies = SPECIES_LUMINEON,
 			},
 			{
 				.Method = 0,
@@ -15568,9 +15568,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BIDOOF] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 15,
-				.TargetSpecies = SPECIES_BIBAREL,
+				.Method = 22,
+				.Parameter = 223,
+				.TargetSpecies = SPECIES_MANTINE,
 			},
 			{
 				.Method = 0,
@@ -15607,9 +15607,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BIBAREL] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_ABOMASNOW,
 			},
 			{
 				.Method = 0,
@@ -15647,8 +15647,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 10,
-				.TargetSpecies = SPECIES_KRICKETUNE,
+				.Parameter = 24,
+				.TargetSpecies = SPECIES_PARASECT,
 			},
 			{
 				.Method = 0,
@@ -15724,9 +15724,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SHINX] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 15,
-				.TargetSpecies = SPECIES_LUXIO,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -15763,9 +15763,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LUXIO] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_LUXRAY,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -15841,9 +15841,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BUDEW] = {
 		 .Entries = {
 			{
-				.Method = 2,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_ROSELIA,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -15919,9 +15919,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CRANIDOS] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_RAMPARDOS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -15997,9 +15997,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SHIELDON] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_BASTIODON,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -16075,14 +16075,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BURMY] = {
 		 .Entries = {
 			{
-				.Method = 24,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_WORMADAM,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
-				.Method = 23,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_MOTHIM,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -16192,9 +16192,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_COMBEE] = {
 		 .Entries = {
 			{
-				.Method = 24,
-				.Parameter = 21,
-				.TargetSpecies = SPECIES_VESPIQUEN,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -16309,9 +16309,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BUIZEL] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 26,
-				.TargetSpecies = SPECIES_FLOATZEL,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -16387,9 +16387,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CHERUBI] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 25,
-				.TargetSpecies = SPECIES_CHERRIM,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -16465,9 +16465,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SHELLOS] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_GASTRODON,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -16504,9 +16504,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GASTRODON] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 31,
+				.TargetSpecies = SPECIES_VENOMOTH,
 			},
 			{
 				.Method = 0,
@@ -16582,9 +16582,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DRIFLOON] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 28,
-				.TargetSpecies = SPECIES_DRIFBLIM,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -16660,9 +16660,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BUNEARY] = {
 		 .Entries = {
 			{
-				.Method = 1,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_LOPUNNY,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -16816,9 +16816,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GLAMEOW] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 38,
-				.TargetSpecies = SPECIES_PURUGLY,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -16894,9 +16894,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CHINGLING] = {
 		 .Entries = {
 			{
-				.Method = 3,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_CHIMECHO,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -16933,9 +16933,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_STUNKY] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 34,
-				.TargetSpecies = SPECIES_SKUNTANK,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -17011,9 +17011,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BRONZOR] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 33,
-				.TargetSpecies = SPECIES_BRONZONG,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -17089,9 +17089,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BONSLY] = {
 		 .Entries = {
 			{
-				.Method = 21,
-				.Parameter = 102,
-				.TargetSpecies = SPECIES_SUDOWOODO,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -17128,9 +17128,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MIME_JR] = {
 		 .Entries = {
 			{
-				.Method = 21,
-				.Parameter = 102,
-				.TargetSpecies = SPECIES_MR_MIME,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -17167,9 +17167,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_HAPPINY] = {
 		 .Entries = {
 			{
-				.Method = 19,
-				.Parameter = 110,
-				.TargetSpecies = SPECIES_CHANSEY,
+				.Method = 4,
+				.Parameter = 17,
+				.TargetSpecies = SPECIES_SERVINE,
 			},
 			{
 				.Method = 0,
@@ -17206,9 +17206,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CHATOT] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_SERPERIOR,
 			},
 			{
 				.Method = 0,
@@ -17285,8 +17285,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 24,
-				.TargetSpecies = SPECIES_GABITE,
+				.Parameter = 17,
+				.TargetSpecies = SPECIES_PIGNITE,
 			},
 			{
 				.Method = 0,
@@ -17324,8 +17324,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 48,
-				.TargetSpecies = SPECIES_GARCHOMP,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_EMBOAR,
 			},
 			{
 				.Method = 0,
@@ -17362,9 +17362,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GARCHOMP] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_CHARIZARD,
 			},
 			{
 				.Method = 0,
@@ -17401,9 +17401,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MUNCHLAX] = {
 		 .Entries = {
 			{
-				.Method = 1,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_SNORLAX,
+				.Method = 4,
+				.Parameter = 26,
+				.TargetSpecies = SPECIES_DUGTRIO,
 			},
 			{
 				.Method = 0,
@@ -17440,9 +17440,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_RIOLU] = {
 		 .Entries = {
 			{
-				.Method = 2,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_LUCARIO,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -17479,9 +17479,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LUCARIO] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 17,
+				.TargetSpecies = SPECIES_DEWOTT,
 			},
 			{
 				.Method = 0,
@@ -17519,8 +17519,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 34,
-				.TargetSpecies = SPECIES_HIPPOWDON,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_SAMUROTT,
 			},
 			{
 				.Method = 0,
@@ -17597,8 +17597,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_DRAPION,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_WATCHOG,
 			},
 			{
 				.Method = 0,
@@ -17675,8 +17675,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 37,
-				.TargetSpecies = SPECIES_TOXICROAK,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_HERDIER,
 			},
 			{
 				.Method = 0,
@@ -17713,9 +17713,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TOXICROAK] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_STOUTLAND,
 			},
 			{
 				.Method = 0,
@@ -17792,8 +17792,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 31,
-				.TargetSpecies = SPECIES_LUMINEON,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_LIEPARD,
 			},
 			{
 				.Method = 0,
@@ -17869,9 +17869,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MANTYKE] = {
 		 .Entries = {
 			{
-				.Method = 22,
-				.Parameter = 223,
-				.TargetSpecies = SPECIES_MANTINE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -17908,9 +17908,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SNOVER] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_ABOMASNOW,
+				.Method = 8,
+				.Parameter = 85,
+				.TargetSpecies = SPECIES_SIMISAGE,
 			},
 			{
 				.Method = 0,
@@ -17986,9 +17986,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WEAVILE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 82,
+				.TargetSpecies = SPECIES_SIMISEAR,
 			},
 			{
 				.Method = 0,
@@ -18064,9 +18064,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LICKILICKY] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 84,
+				.TargetSpecies = SPECIES_SIMIPOUR,
 			},
 			{
 				.Method = 0,
@@ -18142,9 +18142,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TANGROWTH] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 81,
+				.TargetSpecies = SPECIES_MUSHARNA,
 			},
 			{
 				.Method = 0,
@@ -18220,9 +18220,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAGMORTAR] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 21,
+				.TargetSpecies = SPECIES_TRANQUILL,
 			},
 			{
 				.Method = 0,
@@ -18259,9 +18259,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TOGEKISS] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 28,
+				.TargetSpecies = SPECIES_PERSIAN,
 			},
 			{
 				.Method = 0,
@@ -18298,9 +18298,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_YANMEGA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_UNFEZANT,
 			},
 			{
 				.Method = 0,
@@ -18376,9 +18376,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GLACEON] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 27,
+				.TargetSpecies = SPECIES_ZEBSTRIKA,
 			},
 			{
 				.Method = 0,
@@ -18454,9 +18454,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MAMOSWINE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 25,
+				.TargetSpecies = SPECIES_BOLDORE,
 			},
 			{
 				.Method = 0,
@@ -18493,9 +18493,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PORYGONZ] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 5,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_GIGALITH,
 			},
 			{
 				.Method = 0,
@@ -18571,9 +18571,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PROBOPASS] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 1,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_SWOOBAT,
 			},
 			{
 				.Method = 0,
@@ -18649,9 +18649,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_FROSLASS] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 31,
+				.TargetSpecies = SPECIES_EXCADRILL,
 			},
 			{
 				.Method = 0,
@@ -18805,9 +18805,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_AZELF] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 25,
+				.TargetSpecies = SPECIES_GURDURR,
 			},
 			{
 				.Method = 0,
@@ -18844,9 +18844,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DIALGA] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 5,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_CONKELDURR,
 			},
 			{
 				.Method = 0,
@@ -18922,9 +18922,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_HEATRAN] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 25,
+				.TargetSpecies = SPECIES_PALPITOAD,
 			},
 			{
 				.Method = 0,
@@ -18961,9 +18961,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_REGIGIGAS] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_SEISMITOAD,
 			},
 			{
 				.Method = 0,
@@ -19117,9 +19117,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MANAPHY] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 33,
+				.TargetSpecies = SPECIES_GOLDUCK,
 			},
 			{
 				.Method = 0,
@@ -19156,9 +19156,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DARKRAI] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_SWADLOON,
 			},
 			{
 				.Method = 0,
@@ -19195,9 +19195,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SHAYMIN] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 1,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_LEAVANNY,
 			},
 			{
 				.Method = 0,
@@ -19273,9 +19273,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_VICTINI] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 22,
+				.TargetSpecies = SPECIES_WHIRLIPEDE,
 			},
 			{
 				.Method = 0,
@@ -19313,8 +19313,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 17,
-				.TargetSpecies = SPECIES_SERVINE,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_SCOLIPEDE,
 			},
 			{
 				.Method = 0,
@@ -19351,9 +19351,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SERVINE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_SERPERIOR,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -19390,9 +19390,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SERPERIOR] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 80,
+				.TargetSpecies = SPECIES_WHIMSICOTT,
 			},
 			{
 				.Method = 0,
@@ -19429,9 +19429,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TEPIG] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 17,
-				.TargetSpecies = SPECIES_PIGNITE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -19468,9 +19468,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PIGNITE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_EMBOAR,
+				.Method = 8,
+				.Parameter = 80,
+				.TargetSpecies = SPECIES_LILLIGANT,
 			},
 			{
 				.Method = 0,
@@ -19546,9 +19546,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_OSHAWOTT] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 17,
-				.TargetSpecies = SPECIES_DEWOTT,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -19585,9 +19585,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DEWOTT] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_SAMUROTT,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -19624,9 +19624,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SAMUROTT] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 29,
+				.TargetSpecies = SPECIES_KROKOROK,
 			},
 			{
 				.Method = 0,
@@ -19664,8 +19664,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_WATCHOG,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_KROOKODILE,
 			},
 			{
 				.Method = 0,
@@ -19742,8 +19742,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 16,
-				.TargetSpecies = SPECIES_HERDIER,
+				.Parameter = 35,
+				.TargetSpecies = SPECIES_DARMANITAN,
 			},
 			{
 				.Method = 0,
@@ -19780,9 +19780,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_HERDIER] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_STOUTLAND,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -19859,8 +19859,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_LIEPARD,
+				.Parameter = 34,
+				.TargetSpecies = SPECIES_CRUSTLE,
 			},
 			{
 				.Method = 0,
@@ -19936,9 +19936,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PANSAGE] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 85,
-				.TargetSpecies = SPECIES_SIMISAGE,
+				.Method = 4,
+				.Parameter = 39,
+				.TargetSpecies = SPECIES_SCRAFTY,
 			},
 			{
 				.Method = 0,
@@ -19975,9 +19975,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SIMISAGE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 28,
+				.TargetSpecies = SPECIES_PRIMEAPE,
 			},
 			{
 				.Method = 0,
@@ -20014,9 +20014,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PANSEAR] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 82,
-				.TargetSpecies = SPECIES_SIMISEAR,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -20092,9 +20092,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PANPOUR] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 84,
-				.TargetSpecies = SPECIES_SIMIPOUR,
+				.Method = 4,
+				.Parameter = 34,
+				.TargetSpecies = SPECIES_COFAGRIGUS,
 			},
 			{
 				.Method = 0,
@@ -20170,9 +20170,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MUNNA] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 81,
-				.TargetSpecies = SPECIES_MUSHARNA,
+				.Method = 4,
+				.Parameter = 37,
+				.TargetSpecies = SPECIES_CARRACOSTA,
 			},
 			{
 				.Method = 0,
@@ -20249,8 +20249,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 21,
-				.TargetSpecies = SPECIES_TRANQUILL,
+				.Parameter = 37,
+				.TargetSpecies = SPECIES_ARCHEOPS,
 			},
 			{
 				.Method = 0,
@@ -20287,9 +20287,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TRANQUILL] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_UNFEZANT,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -20326,9 +20326,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_UNFEZANT] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_GARBODOR,
 			},
 			{
 				.Method = 0,
@@ -20365,9 +20365,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BLITZLE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 27,
-				.TargetSpecies = SPECIES_ZEBSTRIKA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -20444,8 +20444,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 25,
-				.TargetSpecies = SPECIES_BOLDORE,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_ZOROARK,
 			},
 			{
 				.Method = 0,
@@ -20482,9 +20482,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_BOLDORE] = {
 		 .Entries = {
 			{
-				.Method = 5,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_GIGALITH,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -20521,9 +20521,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GIGALITH] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 107,
+				.TargetSpecies = SPECIES_CINCCINO,
 			},
 			{
 				.Method = 0,
@@ -20560,9 +20560,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WOOBAT] = {
 		 .Entries = {
 			{
-				.Method = 1,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_SWOOBAT,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -20599,9 +20599,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SWOOBAT] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_GOTHORITA,
 			},
 			{
 				.Method = 0,
@@ -20639,8 +20639,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 31,
-				.TargetSpecies = SPECIES_EXCADRILL,
+				.Parameter = 41,
+				.TargetSpecies = SPECIES_GOTHITELLE,
 			},
 			{
 				.Method = 0,
@@ -20716,9 +20716,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_AUDINO] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_DUOSION,
 			},
 			{
 				.Method = 0,
@@ -20756,8 +20756,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 25,
-				.TargetSpecies = SPECIES_GURDURR,
+				.Parameter = 41,
+				.TargetSpecies = SPECIES_REUNICLUS,
 			},
 			{
 				.Method = 0,
@@ -20794,9 +20794,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GURDURR] = {
 		 .Entries = {
 			{
-				.Method = 5,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_CONKELDURR,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -20833,9 +20833,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CONKELDURR] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 82,
+				.TargetSpecies = SPECIES_ARCANINE,
 			},
 			{
 				.Method = 0,
@@ -20873,8 +20873,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 25,
-				.TargetSpecies = SPECIES_PALPITOAD,
+				.Parameter = 35,
+				.TargetSpecies = SPECIES_SWANNA,
 			},
 			{
 				.Method = 0,
@@ -20911,9 +20911,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PALPITOAD] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_SEISMITOAD,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -20950,9 +20950,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SEISMITOAD] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 35,
+				.TargetSpecies = SPECIES_VANILLISH,
 			},
 			{
 				.Method = 0,
@@ -20989,9 +20989,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_THROH] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 47,
+				.TargetSpecies = SPECIES_VANILLUXE,
 			},
 			{
 				.Method = 0,
@@ -21068,8 +21068,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 20,
-				.TargetSpecies = SPECIES_SWADLOON,
+				.Parameter = 34,
+				.TargetSpecies = SPECIES_SAWSBUCK,
 			},
 			{
 				.Method = 0,
@@ -21106,9 +21106,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SWADLOON] = {
 		 .Entries = {
 			{
-				.Method = 1,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_LEAVANNY,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -21184,9 +21184,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_VENIPEDE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 22,
-				.TargetSpecies = SPECIES_WHIRLIPEDE,
+				.Method = 7,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_ESCAVALIER,
 			},
 			{
 				.Method = 0,
@@ -21223,9 +21223,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_WHIRLIPEDE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_SCOLIPEDE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -21301,9 +21301,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_COTTONEE] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 80,
-				.TargetSpecies = SPECIES_WHIMSICOTT,
+				.Method = 4,
+				.Parameter = 39,
+				.TargetSpecies = SPECIES_AMOONGUSS,
 			},
 			{
 				.Method = 0,
@@ -21379,9 +21379,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PETILIL] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 80,
-				.TargetSpecies = SPECIES_LILLIGANT,
+				.Method = 4,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_JELLICENT,
 			},
 			{
 				.Method = 0,
@@ -21497,8 +21497,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 29,
-				.TargetSpecies = SPECIES_KROKOROK,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_GALVANTULA,
 			},
 			{
 				.Method = 0,
@@ -21535,9 +21535,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KROKOROK] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_KROOKODILE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -21574,9 +21574,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KROOKODILE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_FERROTHORN,
 			},
 			{
 				.Method = 0,
@@ -21613,9 +21613,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DARUMAKA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 35,
-				.TargetSpecies = SPECIES_DARMANITAN,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -21652,9 +21652,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DARMANITAN] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 38,
+				.TargetSpecies = SPECIES_KLANG,
 			},
 			{
 				.Method = 0,
@@ -21731,8 +21731,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 34,
-				.TargetSpecies = SPECIES_CRUSTLE,
+				.Parameter = 25,
+				.TargetSpecies = SPECIES_POLIWHIRL,
 			},
 			{
 				.Method = 0,
@@ -21769,9 +21769,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CRUSTLE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 49,
+				.TargetSpecies = SPECIES_KLINKLANG,
 			},
 			{
 				.Method = 0,
@@ -21808,9 +21808,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SCRAGGY] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 39,
-				.TargetSpecies = SPECIES_SCRAFTY,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -21847,9 +21847,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SCRAFTY] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 39,
+				.TargetSpecies = SPECIES_EELEKTRIK,
 			},
 			{
 				.Method = 0,
@@ -21886,9 +21886,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SIGILYPH] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 8,
+				.Parameter = 83,
+				.TargetSpecies = SPECIES_EELEKTROSS,
 			},
 			{
 				.Method = 0,
@@ -21925,9 +21925,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_YAMASK] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 34,
-				.TargetSpecies = SPECIES_COFAGRIGUS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -21964,9 +21964,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_COFAGRIGUS] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 42,
+				.TargetSpecies = SPECIES_BEHEEYEM,
 			},
 			{
 				.Method = 0,
@@ -22003,9 +22003,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TIRTOUGA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 37,
-				.TargetSpecies = SPECIES_CARRACOSTA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -22042,9 +22042,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CARRACOSTA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 41,
+				.TargetSpecies = SPECIES_LAMPENT,
 			},
 			{
 				.Method = 0,
@@ -22081,9 +22081,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ARCHEN] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 37,
-				.TargetSpecies = SPECIES_ARCHEOPS,
+				.Method = 8,
+				.Parameter = 108,
+				.TargetSpecies = SPECIES_CHANDELURE,
 			},
 			{
 				.Method = 0,
@@ -22159,14 +22159,14 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TRUBBISH] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_GARBODOR,
+				.Method = 8,
+				.Parameter = 84,
+				.TargetSpecies = SPECIES_POLIWRATH,
 			},
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 6,
+				.Parameter = 221,
+				.TargetSpecies = SPECIES_POLITOED,
 			},
 			{
 				.Method = 0,
@@ -22198,9 +22198,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GARBODOR] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 38,
+				.TargetSpecies = SPECIES_FRAXURE,
 			},
 			{
 				.Method = 0,
@@ -22238,8 +22238,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 30,
-				.TargetSpecies = SPECIES_ZOROARK,
+				.Parameter = 48,
+				.TargetSpecies = SPECIES_HAXORUS,
 			},
 			{
 				.Method = 0,
@@ -22315,9 +22315,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MINCCINO] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 107,
-				.TargetSpecies = SPECIES_CINCCINO,
+				.Method = 4,
+				.Parameter = 37,
+				.TargetSpecies = SPECIES_BEARTIC,
 			},
 			{
 				.Method = 0,
@@ -22393,9 +22393,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GOTHITA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_GOTHORITA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -22432,9 +22432,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GOTHORITA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 41,
-				.TargetSpecies = SPECIES_GOTHITELLE,
+				.Method = 7,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_ACCELGOR,
 			},
 			{
 				.Method = 0,
@@ -22510,9 +22510,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SOLOSIS] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 32,
-				.TargetSpecies = SPECIES_DUOSION,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -22550,8 +22550,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 41,
-				.TargetSpecies = SPECIES_REUNICLUS,
+				.Parameter = 50,
+				.TargetSpecies = SPECIES_MIENSHAO,
 			},
 			{
 				.Method = 0,
@@ -22627,9 +22627,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DUCKLETT] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 35,
-				.TargetSpecies = SPECIES_SWANNA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -22706,8 +22706,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 35,
-				.TargetSpecies = SPECIES_VANILLISH,
+				.Parameter = 43,
+				.TargetSpecies = SPECIES_GOLURK,
 			},
 			{
 				.Method = 0,
@@ -22744,9 +22744,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_VANILLISH] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 47,
-				.TargetSpecies = SPECIES_VANILLUXE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -22783,9 +22783,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_VANILLUXE] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 52,
+				.TargetSpecies = SPECIES_BISHARP,
 			},
 			{
 				.Method = 0,
@@ -22822,9 +22822,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DEERLING] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 34,
-				.TargetSpecies = SPECIES_SAWSBUCK,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -22900,9 +22900,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_EMOLGA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 54,
+				.TargetSpecies = SPECIES_BRAVIARY,
 			},
 			{
 				.Method = 0,
@@ -22939,9 +22939,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KARRABLAST] = {
 		 .Entries = {
 			{
-				.Method = 7,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_ESCAVALIER,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -22978,9 +22978,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ESCAVALIER] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 54,
+				.TargetSpecies = SPECIES_MANDIBUZZ,
 			},
 			{
 				.Method = 0,
@@ -23018,8 +23018,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 39,
-				.TargetSpecies = SPECIES_AMOONGUSS,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_KADABRA,
 			},
 			{
 				.Method = 0,
@@ -23095,9 +23095,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_FRILLISH] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_JELLICENT,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -23173,9 +23173,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ALOMOMOLA] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 50,
+				.TargetSpecies = SPECIES_ZWEILOUS,
 			},
 			{
 				.Method = 0,
@@ -23213,8 +23213,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 36,
-				.TargetSpecies = SPECIES_GALVANTULA,
+				.Parameter = 64,
+				.TargetSpecies = SPECIES_HYDREIGON,
 			},
 			{
 				.Method = 0,
@@ -23291,8 +23291,8 @@ const EVOLUTION_DATA __data[] = {
 		 .Entries = {
 			{
 				.Method = 4,
-				.Parameter = 40,
-				.TargetSpecies = SPECIES_FERROTHORN,
+				.Parameter = 59,
+				.TargetSpecies = SPECIES_VOLCARONA,
 			},
 			{
 				.Method = 0,
@@ -23368,9 +23368,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KLINK] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 38,
-				.TargetSpecies = SPECIES_KLANG,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -23407,9 +23407,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KLANG] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 49,
-				.TargetSpecies = SPECIES_KLINKLANG,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -23446,9 +23446,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_KLINKLANG] = {
 		 .Entries = {
 			{
-				.Method = 0,
+				.Method = 5,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.TargetSpecies = SPECIES_ALAKAZAM,
 			},
 			{
 				.Method = 0,
@@ -23485,9 +23485,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_TYNAMO] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 39,
-				.TargetSpecies = SPECIES_EELEKTRIK,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -23524,9 +23524,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_EELEKTRIK] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 83,
-				.TargetSpecies = SPECIES_EELEKTROSS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -23602,9 +23602,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ELGYEM] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 42,
-				.TargetSpecies = SPECIES_BEHEEYEM,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -23680,9 +23680,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LITWICK] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 41,
-				.TargetSpecies = SPECIES_LAMPENT,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -23719,9 +23719,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LAMPENT] = {
 		 .Entries = {
 			{
-				.Method = 8,
-				.Parameter = 108,
-				.TargetSpecies = SPECIES_CHANDELURE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -23797,9 +23797,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_AXEW] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 38,
-				.TargetSpecies = SPECIES_FRAXURE,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -23836,9 +23836,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_FRAXURE] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 48,
-				.TargetSpecies = SPECIES_HAXORUS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -23914,9 +23914,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_CUBCHOO] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 37,
-				.TargetSpecies = SPECIES_BEARTIC,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -24031,9 +24031,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_SHELMET] = {
 		 .Entries = {
 			{
-				.Method = 7,
+				.Method = 0,
 				.Parameter = 0,
-				.TargetSpecies = SPECIES_ACCELGOR,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -24148,9 +24148,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_MIENFOO] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 50,
-				.TargetSpecies = SPECIES_MIENSHAO,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -24265,9 +24265,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GOLETT] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 43,
-				.TargetSpecies = SPECIES_GOLURK,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -24304,9 +24304,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_GOLURK] = {
 		 .Entries = {
 			{
-				.Method = 0,
-				.Parameter = 0,
-				.TargetSpecies = SPECIES_NONE,
+				.Method = 4,
+				.Parameter = 28,
+				.TargetSpecies = SPECIES_MACHOKE,
 			},
 			{
 				.Method = 0,
@@ -24343,9 +24343,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_PAWNIARD] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 52,
-				.TargetSpecies = SPECIES_BISHARP,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -24460,9 +24460,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_RUFFLET] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 54,
-				.TargetSpecies = SPECIES_BRAVIARY,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -24538,9 +24538,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_VULLABY] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 54,
-				.TargetSpecies = SPECIES_MANDIBUZZ,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -24694,9 +24694,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_DEINO] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 50,
-				.TargetSpecies = SPECIES_ZWEILOUS,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -24733,9 +24733,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_ZWEILOUS] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 64,
-				.TargetSpecies = SPECIES_HYDREIGON,
+				.Method = 5,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_MACHAMP,
 			},
 			{
 				.Method = 0,
@@ -24811,9 +24811,9 @@ const EVOLUTION_DATA __data[] = {
 	[SPECIES_LARVESTA] = {
 		 .Entries = {
 			{
-				.Method = 4,
-				.Parameter = 59,
-				.TargetSpecies = SPECIES_VOLCARONA,
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
 			},
 			{
 				.Method = 0,
@@ -25354,6 +25354,2814 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
+	[SPECIES_CHESPIN] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_QUILLADIN,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_QUILLADIN] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_CHESNAUGHT,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_CHESNAUGHT] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_FENNEKIN] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_BRAIXEN,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_BRAIXEN] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_DELPHOX,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_DELPHOX] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_FROAKIE] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 16,
+				.TargetSpecies = SPECIES_FROGADIER,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_FROGADIER] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 36,
+				.TargetSpecies = SPECIES_GRENINJA,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_GRENINJA] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_BUNNELBY] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 20,
+				.TargetSpecies = SPECIES_DIGGERSBY,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_DIGGERSBY] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_FLETCHLING] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 17,
+				.TargetSpecies = SPECIES_FLETCHINDER,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_FLETCHINDER] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 35,
+				.TargetSpecies = SPECIES_TALONFLAME,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_TALONFLAME] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_SCATTERBUG] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 9,
+				.TargetSpecies = SPECIES_SPEWPA,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_SPEWPA] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 12,
+				.TargetSpecies = SPECIES_VIVILLON,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_VIVILLON] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_LITLEO] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 35,
+				.TargetSpecies = SPECIES_PYROAR,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_PYROAR] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_FLABéBé] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 19,
+				.TargetSpecies = SPECIES_FLOETTE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_FLOETTE] = {
+		 .Entries = {
+			{
+				.Method = 8,
+				.Parameter = 107,
+				.TargetSpecies = SPECIES_FLORGES,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_FLORGES] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_SKIDDO] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_GOGOAT,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_GOGOAT] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_PANCHAM] = {
+		 .Entries = {
+			{
+				.Method = 30,
+				.Parameter = 32,
+				.TargetSpecies = SPECIES_PANGORO,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_PANGORO] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_FURFROU] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_ESPURR] = {
+		 .Entries = {
+			{
+				.Method = 23,
+				.Parameter = 25,
+				.TargetSpecies = SPECIES_MEOWSTIC,
+			},
+			{
+				.Method = 34,
+				.Parameter = 25,
+				.TargetSpecies = SPECIES_MEOWSTIC,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_MEOWSTIC] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_HONEDGE] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 35,
+				.TargetSpecies = SPECIES_DOUBLADE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_DOUBLADE] = {
+		 .Entries = {
+			{
+				.Method = 8,
+				.Parameter = 108,
+				.TargetSpecies = SPECIES_AEGISLASH,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_AEGISLASH] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_SPRITZEE] = {
+		 .Entries = {
+			{
+				.Method = 6,
+				.Parameter = 647,
+				.TargetSpecies = SPECIES_AROMATISSE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_AROMATISSE] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_SWIRLIX] = {
+		 .Entries = {
+			{
+				.Method = 6,
+				.Parameter = 646,
+				.TargetSpecies = SPECIES_SLURPUFF,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_SLURPUFF] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_INKAY] = {
+		 .Entries = {
+			{
+				.Method = 28,
+				.Parameter = 30,
+				.TargetSpecies = SPECIES_MALAMAR,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_MALAMAR] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_BINACLE] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 39,
+				.TargetSpecies = SPECIES_BARBARACLE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_BARBARACLE] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_SKRELP] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 48,
+				.TargetSpecies = SPECIES_DRAGALGE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_DRAGALGE] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_CLAUNCHER] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 37,
+				.TargetSpecies = SPECIES_CLAWITZER,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_CLAWITZER] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_HELIOPTILE] = {
+		 .Entries = {
+			{
+				.Method = 8,
+				.Parameter = 80,
+				.TargetSpecies = SPECIES_HELIOLISK,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_HELIOLISK] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_TYRUNT] = {
+		 .Entries = {
+			{
+				.Method = 32,
+				.Parameter = 39,
+				.TargetSpecies = SPECIES_TYRANTRUM,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_TYRANTRUM] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_AMAURA] = {
+		 .Entries = {
+			{
+				.Method = 33,
+				.Parameter = 39,
+				.TargetSpecies = SPECIES_AURORUS,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_AURORUS] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_SYLVEON] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_HAWLUCHA] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_DEDENNE] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_CARBINK] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_GOOMY] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 40,
+				.TargetSpecies = SPECIES_SLIGGOO,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_SLIGGOO] = {
+		 .Entries = {
+			{
+				.Method = 31,
+				.Parameter = 50,
+				.TargetSpecies = SPECIES_GOODRA,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_GOODRA] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_KLEFKI] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_PHANTUMP] = {
+		 .Entries = {
+			{
+				.Method = 5,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_TREVENANT,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_TREVENANT] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_PUMPKABOO] = {
+		 .Entries = {
+			{
+				.Method = 5,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_GOURGEIST,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_GOURGEIST] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_BERGMITE] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 37,
+				.TargetSpecies = SPECIES_AVALUGG,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_AVALUGG] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_NOIBAT] = {
+		 .Entries = {
+			{
+				.Method = 4,
+				.Parameter = 48,
+				.TargetSpecies = SPECIES_NOIVERN,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_NOIVERN] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_XERNEAS] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_YVELTAL] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_ZYGARDE] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_DIANCIE] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_HOOPA] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_VOLCANION] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
 	[SPECIES_EGG] = {
 		 .Entries = {
 			{
@@ -25393,7 +28201,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_BAD_EGG] = {
+	[SPECIES_BAD_EG] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25432,7 +28240,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_UFO] = {
+	[SPECIES_724] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25471,7 +28279,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_BRYCENMAN] = {
+	[SPECIES_725] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25510,7 +28318,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_MT] = {
+	[SPECIES_726] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25549,7 +28357,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_MT2] = {
+	[SPECIES_727] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25588,7 +28396,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_TRANSPORT] = {
+	[SPECIES_728] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25627,7 +28435,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_GIANT_15] = {
+	[SPECIES_729] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25666,7 +28474,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_HUMANOID] = {
+	[SPECIES_730] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25705,7 +28513,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_MONSTER] = {
+	[SPECIES_731] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25744,7 +28552,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_F00] = {
+	[SPECIES_732] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25783,7 +28591,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_SPIRIT] = {
+	[SPECIES_733] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25822,7 +28630,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_WHITE_DOOR] = {
+	[SPECIES_734] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25861,7 +28669,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_BLACK_DOOR] = {
+	[SPECIES_735] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25900,7 +28708,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_U1] = {
+	[SPECIES_736] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25939,7 +28747,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_U2] = {
+	[SPECIES_737] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -25978,7 +28786,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_H1] = {
+	[SPECIES_738] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26017,7 +28825,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_M1] = {
+	[SPECIES_739] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26056,7 +28864,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_M2] = {
+	[SPECIES_740] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26095,7 +28903,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_T1] = {
+	[SPECIES_741] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26134,7 +28942,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_O1] = {
+	[SPECIES_742] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26173,7 +28981,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_O2] = {
+	[SPECIES_743] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26212,7 +29020,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_C1] = {
+	[SPECIES_744] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26251,7 +29059,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_C2] = {
+	[SPECIES_745] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26290,7 +29098,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_G1] = {
+	[SPECIES_746] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26329,7 +29137,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_W1] = {
+	[SPECIES_747] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26368,7 +29176,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_W2] = {
+	[SPECIES_748] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26407,7 +29215,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_R1] = {
+	[SPECIES_749] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26446,7 +29254,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_R2] = {
+	[SPECIES_750] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26485,7 +29293,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_PROP_K1] = {
+	[SPECIES_751] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26524,7 +29332,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_UFO_2] = {
+	[SPECIES_752] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26563,7 +29371,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_GIANT_15_2] = {
+	[SPECIES_753] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26602,7 +29410,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_F002] = {
+	[SPECIES_754] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26641,7 +29449,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_BLACK_BELT] = {
+	[SPECIES_755] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26680,7 +29488,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_SMEARGLE_2] = {
+	[SPECIES_756] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26719,7 +29527,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_EGG_2] = {
+	[SPECIES_757] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26758,7 +29566,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_EGG_3] = {
+	[SPECIES_758] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26797,7 +29605,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_687] = {
+	[SPECIES_759] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26836,7 +29644,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_688] = {
+	[SPECIES_760] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26875,7 +29683,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_689] = {
+	[SPECIES_761] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26914,7 +29722,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_690] = {
+	[SPECIES_762] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26953,7 +29761,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_691] = {
+	[SPECIES_763] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -26992,7 +29800,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_692] = {
+	[SPECIES_764] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27031,7 +29839,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_693] = {
+	[SPECIES_765] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27070,7 +29878,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_694] = {
+	[SPECIES_766] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27109,7 +29917,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_695] = {
+	[SPECIES_767] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27148,7 +29956,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_696] = {
+	[SPECIES_768] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27187,7 +29995,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_697] = {
+	[SPECIES_769] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27226,7 +30034,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_698] = {
+	[SPECIES_770] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27265,7 +30073,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_699] = {
+	[SPECIES_771] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27304,7 +30112,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_700] = {
+	[SPECIES_772] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27343,7 +30151,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_701] = {
+	[SPECIES_773] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27382,7 +30190,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_702] = {
+	[SPECIES_774] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27421,7 +30229,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_703] = {
+	[SPECIES_775] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27460,7 +30268,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_704] = {
+	[SPECIES_776] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27499,7 +30307,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_705] = {
+	[SPECIES_777] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27538,7 +30346,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_706] = {
+	[SPECIES_778] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27577,7 +30385,7 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_707] = {
+	[SPECIES_779] = {
 		 .Entries = {
 			{
 				.Method = 0,
@@ -27616,7 +30424,1762 @@ const EVOLUTION_DATA __data[] = {
 			},
 		 },
 	},
-	[SPECIES_708] = {
+	[SPECIES_780] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_781] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_782] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_783] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_784] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_785] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_786] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_787] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_788] = {
+		 .Entries = {
+			{
+				.Method = 5,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_GOURGEIST,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_789] = {
+		 .Entries = {
+			{
+				.Method = 5,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_GOURGEIST,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_790] = {
+		 .Entries = {
+			{
+				.Method = 5,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_GOURGEIST,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_791] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_792] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_793] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_794] = {
+		 .Entries = {
+			{
+				.Method = 8,
+				.Parameter = 107,
+				.TargetSpecies = SPECIES_FLORGES,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_795] = {
+		 .Entries = {
+			{
+				.Method = 8,
+				.Parameter = 107,
+				.TargetSpecies = SPECIES_FLORGES,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_796] = {
+		 .Entries = {
+			{
+				.Method = 8,
+				.Parameter = 107,
+				.TargetSpecies = SPECIES_FLORGES,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_797] = {
+		 .Entries = {
+			{
+				.Method = 8,
+				.Parameter = 107,
+				.TargetSpecies = SPECIES_FLORGES,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_798] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_799] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_800] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_801] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_802] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_803] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_804] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_805] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_806] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_807] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_808] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_809] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_810] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_811] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_812] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_813] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_814] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_815] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_816] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_817] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_818] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_819] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_820] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_821] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_822] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_823] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_824] = {
+		 .Entries = {
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+			{
+				.Method = 0,
+				.Parameter = 0,
+				.TargetSpecies = SPECIES_NONE,
+			},
+		 },
+	},
+	[SPECIES_825] = {
 		 .Entries = {
 			{
 				.Method = 0,

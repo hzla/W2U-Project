@@ -2,7 +2,7 @@ from struct import unpack
 from pathlib import Path
 
 
-PersonalExt = Path('/home/platinum/Desktop/W2Res/019')
+PersonalExt = Path('evolutions')
 
 MoveNames = []
 SpeciesNames = []
@@ -32,9 +32,9 @@ typedef struct {
   Personal.write(f'\n#endif\n')
 
 Count = 0
-with open('src/c/Evolutions.cpp', 'w') as Personal:
+with open('src/arc/pml/Evolutions.c', 'w') as Personal:
     Personal.write(f'#include "Species.h"\n#include "Evolutions.h"\n\nu32 __size = sizeof(EVOLUTION_DATA);\n\nconst EVOLUTION_DATA __data[] = {{\n')
-    for Entry in sorted(PersonalExt.glob('*'), key=lambda x: int(x.stem[4:])):
+    for Entry in sorted(PersonalExt.glob('*'), key=lambda x: int(x.stem[15:])):
         print(Entry)
         Personal.write(f'\t[SPECIES_{SpeciesNames[Count] if Count < len(SpeciesNames) else str(Count)}] = {{\n') # Header
         with Entry.open('rb') as PersonalRAW:

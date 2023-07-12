@@ -2,13 +2,17 @@ from struct import unpack
 from pathlib import Path
 
 
-PersonalExt = Path('/home/platinum/Desktop/W2Res/024')
+PersonalExt = Path('items')
 Names = []
 with open('txtdmp/Items.txt', 'r') as NamesRAW:
+  UNKCOUNT = 0
   while True:
     Name = NamesRAW.readline()
     if Name != "":
       Names.append(Name.upper().replace('É', 'E').replace('.', '').replace('-', '').replace(' ', '_').replace('\'', '')[:-1])
+      if '???' in Names[-1]:
+        Names[-1] = Names[-1].replace('???', f'UNKNOWN_{UNKCOUNT}')
+        UNKCOUNT += 1
     else:
       break
 Count = 0
@@ -19,6 +23,28 @@ with open('include/Items.h', 'w') as Personal:
       Personal.write(f'#define ITEM_{Names[Count]} {Count}\n')
       Count += 1
   Personal.write('''
+                 
+typedef struct
+{
+  u8 CureInflict;
+  u8 Boost[4];
+  u8 FunctionFlags0;
+  u8 FunctionFlags1;
+  char EVHP;
+  char EVATK;
+  char EVDEF;
+  char EVSPE;
+  char EVSPA;
+  char EVSPD;
+  u8 HealAmount;
+  u8 PPGain;
+  char Friendship1;
+  char Friendship2;
+  char Friendship3;
+  char field_1F;
+  char field_20;
+} ItemBattleStats;
+                 
 typedef struct
 {
   u16 Price;
@@ -38,30 +64,10 @@ typedef struct
   ItemBattleStats BattleStats;
 } ITEM_DATA;
 
-struct ItemBattleStats
-{
-  u8 CureInflict;
-  u8 Boost[4];
-  u8 FunctionFlags0;
-  u8 FunctionFlags1;
-  char EVHP;
-  char EVATK;
-  char EVDEF;
-  char EVSPE;
-  char EVSPA;
-  char EVSPD;
-  u8 HealAmount;
-  u8 PPGain;
-  char Friendship1;
-  char Friendship2;
-  char Friendship3;
-  char field_1F;
-  char field_20;
-};
 ''')
   Personal.write(f'#endif\n')
 Count = 0
-with open('src/c/Items.cpp', 'w') as Personal:
+with open('src/arc/pml/Items.c', 'w') as Personal:
   Personal.write(f'#include "Items.h"\n\nu32 __size = sizeof(ITEM_DATA);\n\nconst ITEM_DATA __data[] = {{\n')
   for Entry in sorted(PersonalExt.glob('*')):
     Personal.write(f'\t[ITEM_{Names[Count]}] = {{\n') # Header

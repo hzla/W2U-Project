@@ -42,14 +42,14 @@ struct PersonalData {
 };
 '''
 Count = 0
-PersonalExt = Path('/home/platinum/Desktop/W2Res/016')
+PersonalExt = Path('personal')
 SpeciesNames = []
 
 with open('txtdmp/Species.txt') as Species:
     while (CurrSpecies := Species.readline()) != '':
         SpeciesNames.append(CurrSpecies.upper().replace('É', 'E').replace('.', '').replace('-', '').replace(' ', '_').replace('\'', '')[:-1])
 
-with open('src/c/Personal.cpp', 'w') as Personal:
+with open('src/arc/pml/Personal.c', 'w') as Personal:
     Personal.write('#include "Species.h"\n#include "Personal.h"\nu32 __size = sizeof(PERSONAL_DATA);\n\n')
     Personal.write('const PERSONAL_DATA __data[] = {\n')
     for Entry in sorted(PersonalExt.glob('*')):
