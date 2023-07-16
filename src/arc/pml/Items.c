@@ -25043,7 +25043,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_XTRANSCEIVER] = {
+	[ITEM_XTRANSCEIVER2] = {
 		.Price = 0,
 		.HeldEffect = 0,
 		.HeldArgument = 0,
@@ -25163,7 +25163,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_DNA_SPLICERS] = {
+	[ITEM_DNA_SPLICERS_2] = {
 		.Price = 0,
 		.HeldEffect = 0,
 		.HeldArgument = 0,
@@ -25483,7 +25483,7 @@ const ITEM_DATA __data[] = {
 			.field_20 = 0,
 		}
 	},
-	[ITEM_DROPPED_ITEM] = {
+	[ITEM_DROPPED_ITEM_2] = {
 		.Price = 0,
 		.HeldEffect = 0,
 		.HeldArgument = 0,

@@ -52,7 +52,7 @@ all: $(project).nds
 
 include $(arc_dir)/ARC.mk
 
-$(project).nds: make_tools $(game_base) $(romfs)/patches/$(project).dll $(romfs)/a/0/1/6 $(romfs)/a/0/1/8 $(romfs)/a/0/1/9 $(romfs)/a/0/2/0 $(romfs)/a/0/2/1 $(romfs)/a/0/2/4 $(POKEGRA_ICONS_TARGET) $(POKEGRA_FB_TARGET)
+$(project).nds: make_tools $(game_base) arcs
 	@ echo "[+] Making $@..."
 	$(ndstool) -c $@ -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -9i $(exefs)/ARM9i.bin -7i $(exefs)/ARM7i.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
 
@@ -82,7 +82,7 @@ $(build_dir)/code/%.o : $(code_dir)/%.cpp
 	@ mkdir -p $(@D)
 	@ $(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -I$(incl_dir)/NitroKernel -c $< -o $@
 	
-$(game_base):
+$(game_base): 
 	@ mkdir -p $(exefs)
 	@ mkdir -p $(romfs)
 	@ echo "[+] Extracting game to $@..."
@@ -97,6 +97,7 @@ $(game_base):
 	@ python3 tools/OVTMK.py src/OVT.yml $(exefs)/ARM9OVT.bin
 	@ mkdir -p $(romfs)/data/codeinjection
 	@ cp -r pmc/RPMSYM-PMC.rpm $(romfs)/data/codeinjection # Copy PMC SYM-0
+
 
 make_tools : $(blz) $(nitrogfx) $(knarc) $(o2narc)
 
