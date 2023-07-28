@@ -50,9 +50,15 @@ c_flags  := -mthumb -mno-thumb-interwork -march=armv5t -mno-long-calls -Wall -We
 all: $(project).nds
 	@ echo "[!] Done!"
 
-include $(arc_dir)/ARC.mk
+$(project).nds: make_tools $(game_base) $(romfs)/patches/$(project).dll
+	cp $(arc_dir)/raw/002 $(romfs)/a/0/0/2
+	cp $(arc_dir)/raw/004 $(romfs)/a/0/0/4
+	cp $(arc_dir)/raw/007 $(romfs)/a/0/0/7
+	cp $(arc_dir)/raw/016 $(romfs)/a/0/1/6
+	cp $(arc_dir)/raw/018 $(romfs)/a/0/1/8
+	cp $(arc_dir)/raw/019 $(romfs)/a/0/1/9
+	cp $(arc_dir)/raw/021 $(romfs)/a/0/2/1
 
-$(project).nds: make_tools $(game_base) arcs
 	@ echo "[+] Making $@..."
 	$(ndstool) -c $@ -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -9i $(exefs)/ARM9i.bin -7i $(exefs)/ARM7i.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
 
@@ -97,7 +103,6 @@ $(game_base):
 	@ python3 tools/OVTMK.py src/OVT.yml $(exefs)/ARM9OVT.bin
 	@ mkdir -p $(romfs)/data/codeinjection
 	@ cp -r pmc/RPMSYM-PMC.rpm $(romfs)/data/codeinjection # Copy PMC SYM-0
-
 
 make_tools : $(blz) $(nitrogfx) $(knarc) $(o2narc)
 
