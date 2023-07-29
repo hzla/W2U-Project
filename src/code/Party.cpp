@@ -3,8 +3,10 @@
 
 #define FORM_START 1378
 
-namespace W2U {
-    extern "C" {
+namespace W2U
+{
+    extern "C"
+    {
         extern u32 PML_PersonalGetParamSingle(u32, u32, u32);
         extern u32 GFL_ArcSysGetDataLength(u32, u32);
         int THUMB_BRANCH_PokeParty_GetIconIndex(int Species, u32 Form, int Gender, int Egg) {
@@ -31,15 +33,19 @@ namespace W2U {
                     return v7;
                 }
             }
-            if (Gender) {
-                if (Gender != 1) {
-                    if (Gender != 2) {
+            if (Gender)
+            {
+                if (Gender != 1)
+                {
+                    if (Gender != 2)
+                    {
                         return v7 + Gender;
                     }
                     goto LABEL_14;
                 }
                 Gender = 1;
-                if (!GFL_ArcSysGetDataLength(7u, v7 + 1)) {
+                if (!GFL_ArcSysGetDataLength(7u, v7 + 1))
+                {
                 LABEL_14:
                     Gender = 0;
                 }
@@ -47,4 +53,4 @@ namespace W2U {
             return v7 + Gender;
         }
     }
-};  // namespace W2U
+}; // namespace W2U

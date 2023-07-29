@@ -50,7 +50,7 @@ c_flags  := -mthumb -mno-thumb-interwork -march=armv5t -mno-long-calls -Wall -We
 all: $(project).nds
 	@ echo "[!] Done!"
 
-$(project).nds: $(game_base) $(romfs)/patches/$(project).dll $(ARC_TARGETS)
+$(project).nds: $(romfs)/patches/$(project).dll $(ARC_TARGETS)
 	@ echo "[+] Copying build NARCs..."
 	cp $(build_dir)/system_text.arc $(romfs)/a/0/0/2
 	cp $(build_dir)/pokegra_fb.arc $(romfs)/a/0/0/4
@@ -60,7 +60,12 @@ $(project).nds: $(game_base) $(romfs)/patches/$(project).dll $(ARC_TARGETS)
 	cp $(build_dir)/ui_assets2.arc $(romfs)/a/1/2/5
 	cp $(build_dir)/hall_of_fame_assets.arc $(romfs)/a/2/1/3
 
+	$(knarc) -d $(build_dir)/Personal -u $(build_dir)/Personal.arc
+	cp $(arc_dir)/pml/RegionalDex.bin $(build_dir)/Personal/Personal_00000826.bin
+	$(knarc) -d $(build_dir)/Personal -p $(build_dir)/Personal.arc
+	rm -rf $(build_dir)/Personal
 	cp $(build_dir)/Personal.arc $(romfs)/a/0/1/6
+
 	cp $(build_dir)/Learnsets.arc $(romfs)/a/0/1/8
 	cp $(build_dir)/Evolutions.arc $(romfs)/a/0/1/9
 	cp $(build_dir)/Children.arc $(romfs)/a/0/2/0
@@ -97,10 +102,10 @@ $(build_dir)/code/%.o : $(code_dir)/%.cpp
 	@ $(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -I$(incl_dir)/NitroKernel -c $< -o $@
 	
 # Extraction of the base game content.
-$(game_base): make_tools 
+base: 
 	@ mkdir -p $(exefs)
 	@ mkdir -p $(romfs)
-	@ echo "[+] Extracting game to $@..."
+	@ echo "[+] Extracting game to $(game_base)..."
 	@ $(ndstool) -x $(rom_code).nds -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -9i $(exefs)/ARM9i.bin -7i $(exefs)/ARM7i.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
 	
 	@ echo "[+] Decompressing all overlays..."
@@ -114,7 +119,7 @@ $(game_base): make_tools
 	@ cp -r pmc/RPMSYM-PMC.rpm $(romfs)/data/codeinjection # Copy PMC SYM-0
 
 # Tool building.
-make_tools : $(blz) $(nitrogfx) $(knarc) $(o2narc)
+tools : $(blz) $(nitrogfx) $(knarc) $(o2narc)
 
 $(blz) : tools/blz/blz.c
 	@ echo [+] Building blz...
