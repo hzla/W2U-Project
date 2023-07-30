@@ -50,7 +50,7 @@ c_flags  := -mthumb -mno-thumb-interwork -march=armv5t -mno-long-calls -Wall -We
 all: $(project).nds
 	@ echo "[!] Done!"
 
-$(project).nds: $(romfs)/patches/$(project).dll $(ARC_TARGETS)
+$(project).nds: $(romfs)/patches/$(project).dll $(POKEGRA_ICON_SPRITES_NTR) $(ARC_TARGETS)
 	@ echo "[+] Copying build NARCs..."
 	cp $(build_dir)/system_text.arc $(romfs)/a/0/0/2
 	cp $(build_dir)/pokegra_fb.arc $(romfs)/a/0/0/4
