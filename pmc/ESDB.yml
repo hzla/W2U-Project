@@ -25645,3 +25645,9 @@ Symbols:
   - Name: sub_21CF55C
     Segment: 0x1A
     Address: 0x21CF55D
+  - Name: GetTypeEffectiveness
+    Segment: 0x1D
+    Address: 0x21BD1A1
+  - Name: GetTypeWeaknesses
+    Segment: 0x1D
+    Address: 0x21BD2F1

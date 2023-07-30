@@ -181,37 +181,6 @@ FULL_COPY_168_0x021F38E8:
     .word 572
     .size FULL_COPY_168_0x021F38E8, . - FULL_COPY_168_0x021F38E8
 
-@ Type Table Adjustment
-TypeEffectivenessLUT:
-    // atk \ def                NORMAL,  FIGHT, FLYING, POISON, GROUND,   ROCK,   BUG,  GHOST,  STEEL,   FIRE,  WATER, GRASS,   ELECTRC, PSYCHIC, ICE, DRAGON,   DARK,  FAIRY
-    .byte /* TYPE_NORMAL   */      4,      4,      4,      4,      4,      2,      4,      0,      2,      4,      4,      4,      4,      4,      4,      4,      4,      4
-    .byte /* TYPE_FIGHTING */      8,      4,      2,      2,      4,      8,      2,      0,      8,      4,      4,      4,      4,      2,      8,      4,      8,      2
-    .byte /* TYPE_FLYING   */      4,      8,      4,      4,      4,      2,      8,      4,      2,      4,      4,      8,      2,      4,      4,      4,      4,      4
-    .byte /* TYPE_POISON   */      4,      4,      4,      2,      2,      2,      4,      2,      0,      4,      4,      8,      4,      4,      4,      4,      4,      8
-    .byte /* TYPE_GROUND   */      4,      4,      0,      8,      4,      8,      2,      4,      8,      8,      4,      2,      8,      4,      4,      4,      4,      4
-    .byte /* TYPE_ROCK     */      4,      2,      8,      4,      2,      4,      8,      4,      2,      8,      4,      4,      4,      4,      8,      4,      4,      4
-    .byte /* TYPE_BUG      */      4,      2,      2,      2,      4,      4,      4,      2,      2,      2,      4,      8,      4,      8,      4,      4,      8,      2
-    .byte /* TYPE_GHOST    */      0,      4,      4,      4,      4,      4,      4,      8,      4,      4,      4,      4,      4,      8,      4,      4,      2,      4
-    .byte /* TYPE_STEEL    */      4,      4,      4,      4,      4,      8,      4,      4,      2,      2,      2,      4,      2,      4,      8,      4,      4,      8
-    .byte /* TYPE_FIRE     */      4,      4,      4,      4,      4,      2,      8,      4,      8,      2,      2,      8,      4,      4,      8,      2,      4,      4
-    .byte /* TYPE_WATER    */      4,      4,      4,      4,      8,      8,      4,      4,      4,      8,      2,      2,      4,      4,      4,      2,      4,      4
-    .byte /* TYPE_GRASS    */      4,      4,      2,      2,      8,      8,      2,      4,      2,      2,      8,      2,      4,      4,      4,      2,      4,      4
-    .byte /* TYPE_ELECTRIC */      4,      4,      8,      4,      0,      4,      4,      4,      4,      4,      8,      2,      2,      4,      4,      2,      4,      4
-    .byte /* TYPE_PSYCHIC  */      4,      8,      4,      8,      4,      4,      4,      4,      2,      4,      4,      4,      4,      2,      4,      4,      0,      4
-    .byte /* TYPE_ICE      */      4,      4,      8,      4,      8,      4,      4,      4,      2,      2,      2,      8,      4,      4,      2,      8,      4,      4
-    .byte /* TYPE_DRAGON   */      4,      4,      4,      4,      4,      4,      4,      4,      2,      4,      4,      4,      4,      4,      4,      8,      4,      0
-    .byte /* TYPE_DARK     */      4,      2,      4,      4,      4,      4,      4,      8,      4,      4,      4,      4,      4,      8,      4,      4,      2,      2
-    .byte /* TYPE_FAIRY    */      4,      8,      4,      2,      4,      4,      4,      4,      2,      2,      4,      4,      4,      4,      4,      8,      8,      4
-    .size TypeEffectivenessLUT, . - TypeEffectivenessLUT
-
-FULL_COPY_167_0x21BD1EC:
-    .word TypeEffectivenessLUT
-    .size FULL_COPY_167_0x21BD1EC, . - FULL_COPY_167_0x21BD1EC
-
-FULL_COPY_167_0x21BD324:
-    .word TypeEffectivenessLUT
-    .size FULL_COPY_167_0x21BD324, . - FULL_COPY_167_0x21BD324
-
 FULL_COPY_167_0x21A5A92:
     .byte TypeCnt, 0x2A, 0x08, 0xDA
     .size FULL_COPY_167_0x21A5A92, . - FULL_COPY_167_0x21A5A92

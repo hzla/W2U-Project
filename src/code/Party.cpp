@@ -3,12 +3,8 @@
 
 #define FORM_START 1378
 
-namespace W2U
-{
-    extern "C"
-    {
-        extern u32 PML_PersonalGetParamSingle(u32, u32, u32);
-        extern u32 GFL_ArcSysGetDataLength(u32, u32);
+namespace w2u {
+    extern "C" {
         int THUMB_BRANCH_PokeParty_GetIconIndex(int Species, u32 Form, int Gender, int Egg) {
             u16 v4 = Species;
             u32 v5 = Form;

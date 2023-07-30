@@ -72,6 +72,8 @@ $(project).nds: $(romfs)/patches/$(project).dll $(ARC_TARGETS)
 	cp $(build_dir)/Moves.arc $(romfs)/a/0/2/1
 	cp $(build_dir)/Items.arc $(romfs)/a/0/2/4
 
+	cp $(src_dir)/type_chart.bin $(romfs)/type_chart.bin
+
 	@ echo "[+] Making $@..."
 	$(ndstool) -c $@ -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -9i $(exefs)/ARM9i.bin -7i $(exefs)/ARM7i.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin
 
