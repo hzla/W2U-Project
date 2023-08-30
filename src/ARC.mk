@@ -10,7 +10,7 @@ ARC_TARGETS 	  := $(PML_ARC_TARGETS) $(ASSET_ARC_TARGETS)
 
 # other rules
 %.bin : %.png
-	$(nitrogfx) $^ $*.ncgr
+	$(nitrogfx) $^ $*.ncgr -mwidth 4 -mheight 8
 	mv $*.ncgr $@
 
 # o2narc rules

@@ -32,220 +32,171 @@ with open('txtdmp/Moves.txt') as Moves:
     while (CurrMove := Moves.readline()) != '':
         MoveNames.append(CurrMove.upper().replace('\X2019', '').replace('É', 'E').replace('.', '').replace('-', '').replace(' ', '_').replace('\'', '')[:-1])
 
-with open('include/Moves.h', 'w') as Personal:
-  Personal.write(f'#ifndef __MOVES_H\n#define __MOVES_H\n\n')
-  Personal.write(f'#include "swan/swantypes.h"\n')
+with open('moves.yml', 'w') as Personal:
   Personal.write('''
-#define MUST_HIT   101
+DEFINE:
+  - MUST_HIT: 101
+                
+  - INFLICT_DURATION_NONE: 0
+  - INFLICT_DURATION_PERMANENT: 1 // permanent status
+  - INFLICT_DURATION_TURN: 2 // minturn ~ maxturn status
+  - INFLICT_DURATION_POKE: 3
+  - INFLICT_DURATION_POKE_TURN: 4
+                
+  - STAT_NONE: 0
+  - STAT_ATK: 1
+  - STAT_DEF: 2
+  - STAT_SPATK: 3
+  - STAT_SPDEF: 4
+  - STAT_SPEED: 5
+  - STAT_ACCURACY: 6
+  - STAT_EVASION: 7
+  - STAT_ALL: 8
+  - SPLIT_STATUS: 0x0
+  - SPLIT_PHYSICAL: 0x1
+  - SPLIT_SPECIAL: 0x2
 
-#define INFLICT_DURATION_NONE        0
-#define INFLICT_DURATION_PERMANENT   1 // permanent status
-#define INFLICT_DURATION_TRUN        2 // minturn ~ maxturn status
-#define INFLICT_DURATION_POKE        3
-#define INFLICT_DURATION_POKE_TURN   4
+  - EFFECT_NO_SPECIAL_EFFECT: 0
+  - EFFECT_STATUS_INFLICTING: 1
+  - EFFECT_TARGET_STAT_CHANGING: 2
+  - EFFECT_HEALING: 3
+  - EFFECT_CHANCE_TO_INFLICT_STATUS: 4
+  - EFFECT_RAISING_TARGET_STAT: 5
+  - EFFECT_DAMAGE_AND_TARGET_STAT_EFFECT: 6
+  - EFFECT_DAMAGE_AND_USER_STAT_EFFECT: 7
+  - EFFECT_LIFE_STEAL: 8
+  - EFFECT_OHKO: 9
+  - EFFECT_FIELD_EFFCT: 10
+  - EFFECT_SIDE_EFFCT: 11
+  - EFFECT_FORCE_SWITCH_OUT: 12
+  - EFFECT_OTHERS: 13
 
-#define STAT_NONE       0
-#define STAT_ATK        1
-#define STAT_DEF        2
-#define STAT_SPATK      3
-#define STAT_SPDEF      4
-#define STAT_SPEED      5
-#define STAT_ACCURACY   6
-#define STAT_EVASION    7
-#define STAT_ALL        8
+  - FLAG_CONTACT: 1
+  - FLAG_REQUIRES_CHARGE: 2
+  - FLAG_RECHARGE_TURN: 4
+  - FLAG_BLOCKED_BY_PROTECT: 8
+  - FLAG_REFLECTED_BY_MAGIC_COAT: 16
+  - FLAG_STOLEN_BY_SNATCH: 32
+  - FLAG_COPIED_BY_MIRROR_MOVE: 64
+  - FLAG_PUNCH_MOVE: 128
+  - FLAG_SOUND_MOVE: 256
+  - FLAG_GROUNDED_BY_GRAVITY: 512
+  - FLAG_DEFROSTS_TARGETS: 1024
+  - FLAG_HITS_NON_ADJACENT_OPPONENTS: 2048
+  - FLAG_HEALING_MOVE: 4096
+  - FLAG_HITS_THROUGH_SUBSTITUTE: 8192
 
-#define SPLIT_STATUS    0x0
-#define SPLIT_PHYSICAL  0x1
-#define SPLIT_SPECIAL   0x2
+  - TARGET_OTHER_SELECT: 0
+  - TARGET_FRIEND_AND_USER: 1
+  - TARGET_FRIEND_SELECT: 2
+  - TARGET_ENEMY_SELECT: 3
+  - TARGET_OTHER_ALL: 4
+  - TARGET_ENEMY_ALL: 5
+  - TARGET_FRIEND_ALL: 6
+  - TARGET_USER: 7
+  - TARGET_ALL: 8
+  - TARGET_ENEMY_RANDOM: 9
+  - TARGET_FIELD: 10
+  - TARGET_FIELD_SIDE_ENEMY: 11
+  - TARGET_FIELD_SIDE_FRIEND: 12
+  - TARGET_UNKNOWN: 13
 
-#define TYPE_NORMAL           0
-#define TYPE_FIGHTING         1
-#define TYPE_FLYING           2
-#define TYPE_POISON           3
-#define TYPE_GROUND           4
-#define TYPE_ROCK             5
-#define TYPE_BUG              6
-#define TYPE_GHOST            7
-#define TYPE_STEEL            8
-#define TYPE_FIRE             9
-#define TYPE_WATER            10
-#define TYPE_GRASS            11
-#define TYPE_ELECTRIC         12
-#define TYPE_PSYCHIC          13
-#define TYPE_ICE              14
-#define TYPE_DRAGON           15
-#define TYPE_DARK             16
-#define TYPE_MYSTERY          17
+  - STATUS_NONE: 0
+  - STATUS_PARALYZE: 1
+  - STATUS_SLEEP: 2
+  - STATUS_FREEZE: 3
+  - STATUS_BURN: 4
+  - STATUS_POSION: 5
+  - STATUS_CONFUSE: 6
+  - STATUS_INFATUATE: 7
+  - STATUS_BINDING: 8
+  - STATUS_NIGHTMARE: 9
+  - STATUS_CURSED: 10
+  - STATUS_TAUNT: 11
+  - STATUS_TORMENT: 12
+  - STATUS_DISABLE_LAST_MOVE: 13
+  - STATUS_NEXT_TURN_SLEEP: 14
+  - STATUS_HEAL_BLOCK: 15
+  - STATUS_DISBALE_ABILITY: 16
+  - STATUS_FORESIGHT: 17
+  - STATUS_LEECH_SEED: 18
+  - STATUS_BLOCK_ITEM: 19
+  - STATUS_PERISH_SONG: 20
+  - STATUS_INGRAIN: 21
 
-#define EFFECT_NO_SPECIAL_EFFECT              0
-#define EFFECT_STATUS_INFLICTING              1
-#define EFFECT_TARGET_STAT_CHANGING           2
-#define EFFECT_HEALING                        3
-#define EFFECT_CHANCE_TO_INFLICT_STATUS       4
-#define EFFECT_RAISING_TARGET_STAT            5
-#define EFFECT_DAMAGE_AND_TARGET_STAT_EFFECT  6
-#define EFFECT_DAMAGE_AND_USER_STAT_EFFECT    7
-#define EFFECT_LIFE_STEAL                     8
-#define EFFECT_OHKO                           9
-#define EFFECT_FIELD_EFFCT                    10
-#define EFFECT_SIDE_EFFCT                     11
-#define EFFECT_FORCE_SWITCH_OUT               12
-#define EFFECT_OTHERS                         13
+  # did't test
+  - STATUS_CANT_ESCAPE: 22
+  - STATUS_ENCORE: 23
 
-#define FLAG_CONTACT                            (1 << 0)
-#define FLAG_REQUIRES_CHARGE                    (1 << 1)
-#define FLAG_RECHARGE_TURN                      (1 << 2)
-#define FLAG_BLOCKED_BY_PROTECT                 (1 << 3)
-#define FLAG_REFLECTED_BY_MAGIC_COAT            (1 << 4)
-#define FLAG_STOLEN_BY_SNATCH                   (1 << 5)
-#define FLAG_COPIED_BY_MIRROR_MOVE              (1 << 6)
-#define FLAG_PUNCH_MOVE                         (1 << 7)
-#define FLAG_SOUND_MOVE                         (1 << 8)
-#define FLAG_GROUNDED_BY_GRAVITY                (1 << 9)
-#define FLAG_DEFROSTS_TARGETS                   (1 << 10)
-#define FLAG_HITS_NON_ADJACENT_OPPONENTS        (1 << 11)
-#define FLAG_HEALING_MOVE                       (1 << 12)
-#define FLAG_HITS_THROUGH_SUBSTITUTE            (1 << 13)
-
-#define TARGET_OTHER_SELECT         0
-#define TARGET_FRIEND_AND_USER      1
-#define TARGET_FRIEND_SELECT        2
-#define TARGET_ENEMY_SELECT         3
-#define TARGET_OTHER_ALL            4
-#define TARGET_ENEMY_ALL            5
-#define TARGET_FRIEND_ALL           6
-#define TARGET_USER                 7
-#define TARGET_ALL                  8
-#define TARGET_ENEMY_RANDOM         9
-#define TARGET_FIELD                10
-#define TARGET_FIELD_SIDE_ENEMY     11
-#define TARGET_FIELD_SIDE_FRIEND    12
-#define TARGET_UNKNOWN              13
-
-#define STATUS_NONE                 0
-#define STATUS_PARALYZE             1
-#define STATUS_SLEEP                2
-#define STATUS_FREEZE               3
-#define STATUS_BURN                 4
-#define STATUS_POSION               5
-#define STATUS_CONFUSE              6
-#define STATUS_INFATUATE            7
-#define STATUS_BINDING              8
-#define STATUS_NIGHTMARE            9
-#define STATUS_CURSED               10
-#define STATUS_TAUNT                11
-#define STATUS_TORMENT              12
-#define STATUS_DISABLE_LAST_MOVE    13
-#define STATUS_NEXT_TURN_SLEEP      14
-#define STATUS_HEAL_BLOCK           15
-#define STATUS_DISBALE_ABILITY      16
-#define STATUS_FORESIGHT            17
-#define STATUS_LEECH_SEED           18
-#define STATUS_BLOCK_ITEM           19
-#define STATUS_PERISH_SONG          20
-#define STATUS_INGRAIN              21
-
-// did't test
-#define STATUS_CANT_ESCAPE          22
-#define STATUS_ENCORE               23
-
-#define STATUS_SPECIAL_CODE         0xFFFF
-
-typedef struct {
-  u8 Type;
-  u8 Quality;
-  u8 Category;
-  u8 Power;
-  u8 Accuracy;
-  u8 BasePP;
-  char Priority;
-  u8 HitMin :4;
-  u8 HitMax :4;
-  u16 InflictStatus;
-  u8 InflictChance;
-  u8 InflictDuration;
-  u8 TurnMin;
-  u8 TurnMax;
-  u8 CritStage;
-  u8 FlinchRate;
-  u16 WazaSeqID;
-  char Recoil;
-  char Heal;
-  u8 Target;
-  char StatChangeStats[3];
-  char StatChangeStages[3];
-  char StatChangeChances[3];
-  // u16 pad;
-  int Flags;
-} MOVE_DATA;
-\n''')
+  - STATUS_SPECIAL_CODE: 0xFFFF
+ ''')
   for x in range(len(MoveNames)):
-    Personal.write(f'#define MOVE_{MoveNames[x]} {x}\n')
-  Personal.write(f'\n#endif\n')
+    Personal.write(f'- MOVE_{MoveNames[x]}: {x}\n')
 
-with open(f'src/arc/pml/Moves.c', 'w') as Personal:
-  Personal.write(f'#include "Moves.h"\n\nu32 __size = sizeof(MOVE_DATA);\n\nconst MOVE_DATA __data[] = {{\n')
-  for Entry in sorted(PersonalExt.glob('*')):
-    Personal.write(f'\t[MOVE_{MoveNames[Count]}] = {{\n') # Header
+for Entry in sorted(PersonalExt.glob('*')):
+  with open(f'move_txt/{Entry.stem[-3:]}.yml', 'w') as Personal:
+    Personal.write(f'MOVE_{MoveNames[Count]}:\n') # Header
     # Write EntryData
     with Entry.open('rb') as PersonalRAW:
-        Personal.write(f'\t\t.Type = {TypeNames[unpack("B", PersonalRAW.read(1))[0]]},\n')
-        Personal.write(f'\t\t.Quality = {QualityNames[unpack("B", PersonalRAW.read(1))[0]]},\n')
-        Personal.write(f'\t\t.Category = {SplitNames[unpack("B", PersonalRAW.read(1))[0]]},\n')
-        Personal.write(f'\t\t.Power = {unpack("B", PersonalRAW.read(1))[0]},\n')
+        Personal.write(f'- Type: {TypeNames[unpack("B", PersonalRAW.read(1))[0]]}\n')
+        Personal.write(f'- Quality: {QualityNames[unpack("B", PersonalRAW.read(1))[0]]}\n')
+        Personal.write(f'- Category: {SplitNames[unpack("B", PersonalRAW.read(1))[0]]}\n')
+        Personal.write(f'- Power: {unpack("B", PersonalRAW.read(1))[0]}\n')
         acc = str(unpack("B", PersonalRAW.read(1))[0]).replace("101","MUST_HIT")
-        Personal.write(f'\t\t.Accuracy = {acc},\n')
-        Personal.write(f'\t\t.BasePP = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.Priority = {unpack("b", PersonalRAW.read(1))[0]},\n')
+        Personal.write(f'- Accuracy: {acc}\n')
+        Personal.write(f'- Base PP: {unpack("B", PersonalRAW.read(1))[0]}\n')
+        Personal.write(f'- Priority: {unpack("b", PersonalRAW.read(1))[0]}\n')
         HitMinMax = unpack("B", PersonalRAW.read(1))[0]
-        Personal.write(f'\t\t.HitMin = {HitMinMax & 0xF},\n')
-        Personal.write(f'\t\t.HitMax = {HitMinMax >> 4},\n')
+        Personal.write(f'- Hit: {HitMinMax & 0xF} | {HitMinMax >> 4}\n')
         status = unpack("<H", PersonalRAW.read(2))[0]
         if status == 0xFFFF:
           InflictStatus = "STATUS_SPECIAL_CODE"
         else:
           InflictStatus = StatusNames[status]
-        Personal.write(f'\t\t.InflictStatus = {InflictStatus},\n')
-        Personal.write(f'\t\t.InflictChance = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.InflictDuration = {Duration[unpack("B", PersonalRAW.read(1))[0]]},\n')
-        Personal.write(f'\t\t.TurnMin = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.TurnMax = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.CritStage = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.FlinchRate = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.WazaSeqID = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-        Personal.write(f'\t\t.Recoil = {unpack("b", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.Heal = {unpack("b", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.Target = {Target[unpack("B", PersonalRAW.read(1))[0]]},\n')
-        Personal.write(f'\t\t.StatChangeStats = {{\n')
+        Personal.write(f'- Inflict Status: {InflictStatus}\n')
+        Personal.write(f'- Inflict Chance: {unpack("B", PersonalRAW.read(1))[0]}\n')
+        Personal.write(f'- Inflict Duration: {Duration[unpack("B", PersonalRAW.read(1))[0]]}\n')
+        Personal.write(f'- Turn (min): {unpack("B", PersonalRAW.read(1))[0]}\n')
+        Personal.write(f'- Turn (max): {unpack("B", PersonalRAW.read(1))[0]}\n')
+        Personal.write(f'- Critical Hit Stage: {unpack("B", PersonalRAW.read(1))[0]}\n')
+        Personal.write(f'- Flinch Rate: {unpack("B", PersonalRAW.read(1))[0]}\n')
+        Personal.write(f'- Move Animation ID: {unpack("<H", PersonalRAW.read(2))[0]}\n')
+        Personal.write(f'- Recoil: {unpack("b", PersonalRAW.read(1))[0]}\n')
+        Personal.write(f'- Heal: {unpack("b", PersonalRAW.read(1))[0]}\n')
+        Personal.write(f'- Target: {Target[unpack("B", PersonalRAW.read(1))[0]]}\n')
+        
+        Personal.write(f'- Status Change Stats:\n')
         for x in range(3):
-          Personal.write(f'\t\t\t{Stats[unpack("B", PersonalRAW.read(1))[0]]},\n')
-        Personal.write(f'\t\t}},\n')
+          Personal.write(f'  - {Stats[unpack("B", PersonalRAW.read(1))[0]]}\n')
 
-        Personal.write(f'\t\t.StatChangeStages = {{\n')
+        Personal.write(f'- Status Change Stages:\n')
         for x in range(3):
-          Personal.write(f'\t\t\t{unpack("b", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t}},\n')
+          Personal.write(f'  - {unpack("b", PersonalRAW.read(1))[0]}\n')
 
-        Personal.write(f'\t\t.StatChangeChances = {{\n')
+        Personal.write(f'- Status Change Chances:\n')
         for x in range(3):
-          Personal.write(f'\t\t\t{unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t}},\n')
+          Personal.write(f'  - {unpack("B", PersonalRAW.read(1))[0]}\n')
 
         pad = unpack("H", PersonalRAW.read(2))[0]
-        # Personal.write(f'\t\t.padding = {pad},\n')
+        Personal.write(f'- Padding: 0x5353\n')
 
-        flag = unpack("<L", PersonalRAW.read(4))[0]
+        flag = unpack("<L", PersonalRAW.read(4))[0] & 0xFFFFFFFF
         flagString = ""
-        if flag != 0:
-          # for i in range(32):
-          #   if (flag >> i) & 1:
-          #     print(i)
-          #     flagString += f"{FlagTable[i]} | "
-          Personal.write(f'\t\t.Flags = {flag},\n')
+        flag_idx = 0
+        if flag > 0:
+          while flag != 0:
+            if flag & 1 != 0:
+              if len(flagString) != 0:
+                flagString += ' | '
+
+              if flag_idx < len(FlagTable):
+                flagString += FlagTable[flag_idx]
+              else:
+                print((flag & 1) << flag_idx)
+                flagString += str((flag & 1) << flag_idx)
+            flag_idx += 1
+            flag >>= 1
+          Personal.write(f'- Flags: {flagString}\n')
         else:
-          Personal.write(f'\t\t.Flags = 0,\n')
-        PersonalRAW.close()
-    Personal.write(f'\t}},\n')
+          Personal.write(f'- Flags: 0\n')
     Count += 1
-  Personal.write(f'}};\n')
-  Personal.close()

@@ -37,9 +37,9 @@ Once the repository is setup, run `make -j$(nproc)`. If all goes well, you shall
 
 ## Credits
 - [Bond697](https://github.com/Bond697) - Initial Generation V research.
-- [MeroMero]() - Initial fairy type implementation.
-- [KazoWAR]() - Project 721 (which this was based on).
+- [KazoWAR](https://projectpokemon.org/home/forums/topic/33493-project-721/) - Project 721 (which this was based on).
+- [MeroMero](https://projectpokemon.org/home/profile/50874-meromero/?tab=activity#) - Initial fairy type implementation.
 - [Hello007](https://github.com/HelloOO7) - CTRMap, PMC, code injection tools, Generation V research.
-- [BluRose]() - Fairy type fixes, expansion fixes.
+- [BluRose](https://github.com/BluRosie) - Fairy type fixes, expansion fixes.
 - [PlatinumMaster](https://github.com/PlatinumMaster) - Expansion fixes, PMC, code injection tools, Generation V research, build system.
 

@@ -30,6 +30,9 @@ typedef struct {
 ''')
   Personal.write(f'\n#endif\n')
 
+for Entry in sorted(PersonalExt.glob('*')):
+    with open(f'learnset_txt/{Entry.stem[-3:]}.yml', 'w') as PERSONAL_ENTRY:
+       
 with open('src/arc/pml/Learnsets.c', 'w') as Personal:
   Personal.write(f'#include "Moves.h"\n#include "Learnsets.h"\n#include "Species.h"\n\nu32 __size = sizeof(LEARNSET_DATA);\n\nconst LEARNSET_DATA __data[] = {{\n')
   Index = 0

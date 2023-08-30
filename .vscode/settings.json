@@ -62,5 +62,6 @@
         "valarray": "c",
         "variant": "c",
         "children.h": "c"
-    }
+    },
+    "cmake.sourceDirectory": "C:/Users/L33TG/Documents/White2Upgrade/include/extlib"
 }

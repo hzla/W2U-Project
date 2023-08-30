@@ -44,60 +44,63 @@ struct PersonalData {
 Count = 0
 PersonalExt = Path('personal')
 SpeciesNames = []
+TypeNames = []
 
 with open('txtdmp/Species.txt') as Species:
     while (CurrSpecies := Species.readline()) != '':
         SpeciesNames.append(CurrSpecies.upper().replace('É', 'E').replace('.', '').replace('-', '').replace(' ', '_').replace('\'', '')[:-1])
 
-with open('src/arc/pml/Personal.c', 'w') as Personal:
-    Personal.write('#include "Species.h"\n#include "Personal.h"\nu32 __size = sizeof(PERSONAL_DATA);\n\n')
-    Personal.write('const PERSONAL_DATA __data[] = {\n')
-    for Entry in sorted(PersonalExt.glob('*')):
-        Personal.write(f'\t[SPECIES_{SpeciesNames[Count] if Count < len(SpeciesNames) else Count}] = {{\n') # Header
+with open('txtdmp/Types.txt') as Types:
+    while (CurrType := Types.readline()) != '':
+        TypeNames.append(CurrType.upper().replace('É', 'E').replace('.', '').replace('-', '').replace(' ', '_').replace('\'', '')[:-1])
+
+print(TypeNames)
+Path('personal_txt').mkdir(exist_ok=True)
+
+for Entry in sorted(PersonalExt.glob('*')):
+    with open(f'personal_txt/{Entry.stem[-3:]}.yml', 'w') as PERSONAL_ENTRY:
+        PERSONAL_ENTRY.write(f'SPECIES_{SpeciesNames[Count] if Count < len(SpeciesNames) else Count}:\n') # Header
         Count += 1
         # Write EntryData
         with Entry.open('rb') as PersonalRAW:
-            Personal.write(f'\t\t.BaseHP = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.BaseATK = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.BaseDEF = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.BaseSPE = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.BaseSPA = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.BaseSPD = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.Type1 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.Type2 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.CaptureRate = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.EvoStage = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.EVYield = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-            Personal.write(f'\t\t.WildItem50 = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-            Personal.write(f'\t\t.WildItem5 = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-            Personal.write(f'\t\t.WildItem1 = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-            Personal.write(f'\t\t.GenderProb = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.EggHappiness = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.BaseHappiness = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.ExpGroup = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.EggGroup1 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.EggGroup2 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.Abil1 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.Abil2 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.AbilHidden = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.EscapeRate = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.FormeDataOffs = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-            Personal.write(f'\t\t.FormeSpriteOffs = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-            Personal.write(f'\t\t.FormeCount = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.Color = {unpack("B", PersonalRAW.read(1))[0]},\n')
-            Personal.write(f'\t\t.BaseEXP = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-            Personal.write(f'\t\t.HeightCm = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-            Personal.write(f'\t\t.WeightCg = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-            Personal.write(f'\t\t.TMHM1 = {unpack("<L", PersonalRAW.read(4))[0]},\n')
-            Personal.write(f'\t\t.TMHM2 = {unpack("<L", PersonalRAW.read(4))[0]},\n')
-            Personal.write(f'\t\t.TMHM3 = {unpack("<L", PersonalRAW.read(4))[0]},\n')
-            Personal.write(f'\t\t.TMHM4 = {unpack("<L", PersonalRAW.read(4))[0]},\n')
-            Personal.write(f'\t\t.TypeTutors = {unpack("<L", PersonalRAW.read(4))[0]},\n')
-            Personal.write(f'\t\t.SpecialTutors = {{\n')
+            PERSONAL_ENTRY.write(f'- Base HP: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Base Attack: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Base Defense: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Base Speed: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Base Special Attack: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Base Special Defense: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Primary Type: {TypeNames[unpack("B", PersonalRAW.read(1))[0]]}\n')
+            PERSONAL_ENTRY.write(f'- Secondary Type: {TypeNames[unpack("B", PersonalRAW.read(1))[0]]}\n')
+            PERSONAL_ENTRY.write(f'- Capture Rate: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Evolution Stage: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- EV Yield: {unpack("<H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Wild Item (50%): {unpack("<H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Wild Item (5%): {unpack("<H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Wild Item (1%): {unpack("<H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Gender Probability: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Egg Happiness: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Base Happiness: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Experience Group: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Egg Group 1: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Egg Group 2: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Primary Ability : {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Secondary Ability: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Hidden Ability: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Escape Rate: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Form Data Offset: {unpack("<H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Form Sprite Offset: {unpack("<H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Form Count: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Color: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Base Experience: {unpack("<H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Height (cm): {unpack("<H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Weight (cg): {unpack("<H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'- TM HM 1: {unpack("<i", PersonalRAW.read(4))[0]}\n')
+            PERSONAL_ENTRY.write(f'- TM HM 2: {unpack("<i", PersonalRAW.read(4))[0]}\n')
+            PERSONAL_ENTRY.write(f'- TM HM 3: {unpack("<i", PersonalRAW.read(4))[0]}\n')
+            PERSONAL_ENTRY.write(f'- TM HM 4: {unpack("<i", PersonalRAW.read(4))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Type Tutors: {unpack("<i", PersonalRAW.read(4))[0]}\n')
+            PERSONAL_ENTRY.write(f'- Special Tutors: \n')
             for x in range(4):
-                Personal.write(f'\t\t\t{unpack("<L", PersonalRAW.read(4))[0]},\n')
-            Personal.write(f'\t\t}},\n')
+                PERSONAL_ENTRY.write(f'  - {unpack("<i", PersonalRAW.read(4))[0]}\n')
             PersonalRAW.close()
-        Personal.write(f'\t}},\n')
-    Personal.write(f'}};\n')
-    Personal.close()
+    PERSONAL_ENTRY.close()
