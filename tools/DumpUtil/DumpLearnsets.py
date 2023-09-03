@@ -30,27 +30,22 @@ typedef struct {
 ''')
   Personal.write(f'\n#endif\n')
 
+Index = 0
 for Entry in sorted(PersonalExt.glob('*')):
-    with open(f'learnset_txt/{Entry.stem[-3:]}.yml', 'w') as PERSONAL_ENTRY:
-       
-with open('src/arc/pml/Learnsets.c', 'w') as Personal:
-  Personal.write(f'#include "Moves.h"\n#include "Learnsets.h"\n#include "Species.h"\n\nu32 __size = sizeof(LEARNSET_DATA);\n\nconst LEARNSET_DATA __data[] = {{\n')
-  Index = 0
-  for Entry in sorted(PersonalExt.glob('*')):
-    Personal.write(f'\t[SPECIES_{SpeciesNames[Index] if Index < len(SpeciesNames) else str(Index)}] = {{\n') # Header
-    Personal.write(f'\t\t.Entries = {{\n')
-    with Entry.open('rb') as PersonalRAW:
-        while True:
-            Mv, Lvl = unpack("<HH", PersonalRAW.read(4))
-            if Lvl == 0xFFFF and Mv == 0xFFFF:
-              Personal.write(f'\t\t\tLEVEL_UP_END\n')
-              break
-            Personal.write(f'\t\t\tLEVEL_UP_MOVE(MOVE_{MoveNames[Mv]}, {Lvl}),\n')
-
-        PersonalRAW.close()
-    Personal.write(f'\t\t}},\n')
-    Personal.write(f'\t}},\n')
-    PersonalRAW.close()
-    Index += 1
-  Personal.write(f'}};')
-  Personal.close()
+    with open(f'learnset_txt/{Entry.stem[-3:]}.yml', 'w') as PERSONAL_ENTRY:      
+      PERSONAL_ENTRY.write(f'SPECIES_{SpeciesNames[Index] if Index < len(SpeciesNames) else str(Index)}:\n') # Header
+      with Entry.open('rb') as PersonalRAW:
+          LEARN_CNT = 0
+          while True:
+              Mv, Lvl = unpack("<HH", PersonalRAW.read(4))
+              if Lvl == 0xFFFF and Mv == 0xFFFF:
+                PERSONAL_ENTRY.write(f'  - LEARNSET_END:\n')
+                PERSONAL_ENTRY.write(f'    - MOVE: 0xFFFF\n')
+                PERSONAL_ENTRY.write(f'    - LEVEL: 0xFFFF\n')
+                break
+              
+              PERSONAL_ENTRY.write(f'  - LEARNSET_ENTRY_{LEARN_CNT}:\n')
+              PERSONAL_ENTRY.write(f'    - MOVE: MOVE_{MoveNames[Mv]}\n')
+              PERSONAL_ENTRY.write(f'    - LEVEL: {Lvl}\n')
+              LEARN_CNT += 1
+      Index += 1

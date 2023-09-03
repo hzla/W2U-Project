@@ -4,11 +4,31 @@ import yaml
 import collections.abc
 import struct
 
-def flatten(iterable):
+def flatten_dict(iterable):
     flat = {}
     for e in iterable:
         flat |= e
     return flat
+
+def flatten_yaml_tree(items):
+    data = []
+    if len(items) == 0:
+        return data
+    for item in items:
+        flatten_yaml_tree_helper(item, data)
+    return data
+
+def flatten_yaml_tree_helper(item, data):
+    # Check if we are working with a scalar type (string/number in this case).
+    seq_type = type(item)
+    if seq_type == list:
+        # Call unroll sequence again on "item".
+        data += flatten_yaml_tree(item)
+    elif seq_type == dict:
+        # Treat as a sequence. 
+        data += flatten_yaml_tree(list(item.values()))
+    else:
+        data.append(item)
 
 def main():
     Parser = ArgumentParser()
@@ -31,17 +51,18 @@ def main():
             print(f'Invalid number of keys in "{Arguments.type}.yml"!')
             return 1
         
-        structure, includes = flatten(Configuration['STRUCTURE']), Configuration['INCLUDE'] 
+        structure = flatten_dict(Configuration['STRUCTURE'])
+        
         defines = {}
-        for include in includes:
-            with Path(f'tools/mkdata/{include}').open('r') as INCLUDE_RAW:
-                INCLUDE = yaml.safe_load(INCLUDE_RAW)
-                defines |= flatten(INCLUDE['DEFINE'])
-                
+        if 'INCLUDE' in Configuration.keys():
+            for include in Configuration['INCLUDE']:
+                with Path(f'tools/mkdata/{include}').open('r') as INCLUDE_RAW:
+                    INCLUDE = yaml.safe_load(INCLUDE_RAW)
+                    defines |= flatten_dict(INCLUDE['DEFINE'])
+
         format_string = ''
         def add_field(size):
             nonlocal format_string
-            # print(size)
             match size:
                 case 's8':
                     format_string += 'b'
@@ -57,13 +78,8 @@ def main():
                     format_string += 'I'
                 case _:
                     format_string += 'X'
-            
-        for field, size in structure.items():
-            if isinstance(size, collections.abc.Sequence) and type(size) != str:
-                # Unroll
-                [add_field(e) for e in size]
-            else:
-                add_field(size)
+        
+        [add_field(e) for e in flatten_yaml_tree(structure.values())]
 
     with Input.open('r') as IN_DATA, Output.open('wb') as OUT_DATA:
         IN_DATA_RAW = yaml.safe_load(IN_DATA)
@@ -90,17 +106,15 @@ def main():
                 return final_value
             return -1
 
-        OUT_DATA_BUFFER = []
-        IN_DATA_FLAT = flatten(IN_DATA_RAW[IN_DATA_RAW_KEYS[0]])
-        for key, value in IN_DATA_FLAT.items():
-            if isinstance(value, collections.abc.Sequence) and type(value) != str:
-                [OUT_DATA_BUFFER.append(resolve(e)) for e in value]
-            else:
-                OUT_DATA_BUFFER.append(resolve(value))
-        print(OUT_DATA_BUFFER)
-        print(format_string)
-        print(struct.calcsize(format_string))
+        
+        IN_DATA_FLAT = flatten_yaml_tree(flatten_dict(IN_DATA_RAW[IN_DATA_RAW_KEYS[0]]).values())
+        OUT_DATA_BUFFER = [resolve(item) for item in IN_DATA_FLAT]
+
+        while len(format_string) != len(OUT_DATA_BUFFER):
+            format_string = format_string[:-1]
+
         OUT_DATA.write(struct.pack('<' + format_string, *OUT_DATA_BUFFER))
+
         
 if __name__ == '__main__':
     exit(main())

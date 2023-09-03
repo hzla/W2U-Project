@@ -1,0 +1,8 @@
+STRUCTURE:
+  - Node1: Val1
+  - Node2: 
+    - Val2
+    - Node3: 
+      - Val3
+      - Val4
+      - Val5

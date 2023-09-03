@@ -16,101 +16,47 @@ with open('txtdmp/Items.txt', 'r') as NamesRAW:
     else:
       break
 Count = 0
-with open('include/Items.h', 'w') as Personal:
-  Personal.write(f'#ifndef __ITEMS_H\n#define __ITEMS_H\n\n')
-  Personal.write(f'#include \"swan/swantypes.h\"\n\n')
-  for Entry in sorted(PersonalExt.glob('*')):
-      Personal.write(f'#define ITEM_{Names[Count]} {Count}\n')
-      Count += 1
-  Personal.write('''
-                 
-typedef struct
-{
-  u8 CureInflict;
-  u8 Boost[4];
-  u8 FunctionFlags0;
-  u8 FunctionFlags1;
-  char EVHP;
-  char EVATK;
-  char EVDEF;
-  char EVSPE;
-  char EVSPA;
-  char EVSPD;
-  u8 HealAmount;
-  u8 PPGain;
-  char Friendship1;
-  char Friendship2;
-  char Friendship3;
-  char field_1F;
-  char field_20;
-} ItemBattleStats;
-                 
-typedef struct
-{
-  u16 Price;
-  u8 HeldEffect;
-  u8 HeldArgument;
-  u8 NaturalGiftEffect;
-  u8 FlingEffect;
-  u8 FlingPower;
-  u8 NaturalGiftPower;
-  u16 Packed;
-  u8 EffectField;
-  u8 EffectBattle;
-  u8 HasBattleStats;
-  u8 ItemClass;
-  u8 Consumable;
-  u8 SortIndex;
-  ItemBattleStats BattleStats;
-} ITEM_DATA;
-
-''')
-  Personal.write(f'#endif\n')
+# 
 Count = 0
-with open('src/arc/pml/Items.c', 'w') as Personal:
-  Personal.write(f'#include "Items.h"\n\nu32 __size = sizeof(ITEM_DATA);\n\nconst ITEM_DATA __data[] = {{\n')
-  for Entry in sorted(PersonalExt.glob('*')):
-    Personal.write(f'\t[ITEM_{Names[Count]}] = {{\n') # Header
-    # Write EntryData
-    with Entry.open('rb') as PersonalRAW:
-        Personal.write(f'\t\t.Price = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-        Personal.write(f'\t\t.HeldEffect = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.HeldArgument = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.NaturalGiftEffect = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.FlingEffect = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.FlingPower = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.NaturalGiftPower = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.Packed = {unpack("<H", PersonalRAW.read(2))[0]},\n')
-        Personal.write(f'\t\t.EffectField = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.EffectBattle = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.HasBattleStats = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.ItemClass = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.Consumable = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.SortIndex = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t.BattleStats = {{\n')
-        Personal.write(f'\t\t\t.CureInflict = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.Boost = {{\n')
-        for x in range(4):
-          Personal.write(f'\t\t\t\t{unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t}},\n')
-        Personal.write(f'\t\t\t.FunctionFlags0 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.FunctionFlags1 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.EVHP = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.EVATK = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.EVDEF = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.EVSPE = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.EVSPA = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.EVSPD = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.HealAmount = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.PPGain = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.Friendship1 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.Friendship2 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.Friendship3 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.field_1F = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t\t.field_20 = {unpack("B", PersonalRAW.read(1))[0]},\n')
-        Personal.write(f'\t\t}}\n')
-        Personal.write(f'\t}},\n')
-        PersonalRAW.close()
-    Count += 1
-  Personal.write(f'}};')
-  Personal.close()
+for Entry in sorted(PersonalExt.glob('*')):
+    with open(f'items_txt/{Entry.stem[-3:]}.yml', 'w') as PERSONAL_ENTRY:      
+      PERSONAL_ENTRY.write(f'ITEM_{Names[Count]}:\n') # Header
+      with Entry.open('rb') as PersonalRAW:
+        # Write EntryData
+        with Entry.open('rb') as PersonalRAW:
+            PERSONAL_ENTRY.write(f'  - Price: {unpack("<H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Held Effect: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Held Argument: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Natural Gift Effect: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Fling Effect: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Fling Power: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Natural Gift Power: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Packed: {unpack("<H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Effect Field: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Effect Battle: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Has Battle Stats: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Item Class: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Consumable: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Sort Index: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'  - Battle Stats:\n')
+            PERSONAL_ENTRY.write(f'    - Cure Inflict: {unpack("B", PersonalRAW.read(1))[0]}\n')
+          
+            PERSONAL_ENTRY.write(f'    - Boost:\n')
+            for x in range(4):
+              PERSONAL_ENTRY.write(f'      - {unpack("B", PersonalRAW.read(1))[0]}\n')
+            
+            PERSONAL_ENTRY.write(f'    - Function Flags: {unpack("H", PersonalRAW.read(2))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - EV (HP): {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - EV (ATK): {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - EV (DEF): {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - EV (SPE): {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - EV (SPA): {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - EV (SPD): {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - Heal Amount: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - PP Gain: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - Friendship 1: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - Friendship 2: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - Friendship 3: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - field_1F: {unpack("B", PersonalRAW.read(1))[0]}\n')
+            PERSONAL_ENTRY.write(f'    - field_20: {unpack("B", PersonalRAW.read(1))[0]}\n')
+        Count += 1

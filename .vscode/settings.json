@@ -63,5 +63,9 @@
         "variant": "c",
         "children.h": "c"
     },
-    "cmake.sourceDirectory": "C:/Users/L33TG/Documents/White2Upgrade/include/extlib"
+    "cmake.sourceDirectory": "C:/Users/L33TG/Documents/White2Upgrade/include/extlib",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
 }

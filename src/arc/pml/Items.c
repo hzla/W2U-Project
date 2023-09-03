@@ -2,25565 +2,23009 @@
 
 u32 __size = sizeof(ITEM_DATA);
 
-const ITEM_DATA __data[] = {
-	[ITEM_NONE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MASTER_BALL] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 3,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ULTRA_BALL] = {
-		.Price = 120,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 2,
-		.BattleStats = {
-			.CureInflict = 1,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GREAT_BALL] = {
-		.Price = 60,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 1,
-		.BattleStats = {
-			.CureInflict = 2,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POKé_BALL] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 3,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SAFARI_BALL] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 15,
-		.BattleStats = {
-			.CureInflict = 4,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_NET_BALL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 7,
-		.BattleStats = {
-			.CureInflict = 5,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DIVE_BALL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 13,
-		.BattleStats = {
-			.CureInflict = 6,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_NEST_BALL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 8,
-		.BattleStats = {
-			.CureInflict = 7,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_REPEAT_BALL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 12,
-		.BattleStats = {
-			.CureInflict = 8,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TIMER_BALL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 11,
-		.BattleStats = {
-			.CureInflict = 9,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LUXURY_BALL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 14,
-		.BattleStats = {
-			.CureInflict = 10,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PREMIER_BALL] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 4,
-		.BattleStats = {
-			.CureInflict = 11,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DUSK_BALL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 10,
-		.BattleStats = {
-			.CureInflict = 12,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HEAL_BALL] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 6,
-		.BattleStats = {
-			.CureInflict = 13,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_QUICK_BALL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 9,
-		.BattleStats = {
-			.CureInflict = 14,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CHERISH_BALL] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 5,
-		.BattleStats = {
-			.CureInflict = 15,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POTION] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 20,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ANTIDOTE] = {
-		.Price = 10,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 21,
-		.BattleStats = {
-			.CureInflict = 2,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BURN_HEAL] = {
-		.Price = 25,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 23,
-		.BattleStats = {
-			.CureInflict = 4,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ICE_HEAL] = {
-		.Price = 25,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 24,
-		.BattleStats = {
-			.CureInflict = 8,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_AWAKENING] = {
-		.Price = 25,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 25,
-		.BattleStats = {
-			.CureInflict = 1,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PARLYZ_HEAL] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 22,
-		.BattleStats = {
-			.CureInflict = 16,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FULL_RESTORE] = {
-		.Price = 300,
-		.HeldEffect = 0,
-		.HeldArgument = 255,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 24735,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 4,
-		.BattleStats = {
-			.CureInflict = 63,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 255,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MAX_POTION] = {
-		.Price = 250,
-		.HeldEffect = 0,
-		.HeldArgument = 255,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 3,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 255,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HYPER_POTION] = {
-		.Price = 120,
-		.HeldEffect = 0,
-		.HeldArgument = 200,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 2,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 200,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SUPER_POTION] = {
-		.Price = 70,
-		.HeldEffect = 0,
-		.HeldArgument = 50,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 1,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 50,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FULL_HEAL] = {
-		.Price = 60,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 26,
-		.BattleStats = {
-			.CureInflict = 63,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_REVIVE] = {
-		.Price = 150,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 5,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				1,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 254,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MAX_REVIVE] = {
-		.Price = 400,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 6,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				1,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 255,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FRESH_WATER] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 50,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 9,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 50,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SODA_POP] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 60,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 10,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 60,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LEMONADE] = {
-		.Price = 35,
-		.HeldEffect = 0,
-		.HeldArgument = 80,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 11,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 80,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MOOMOO_MILK] = {
-		.Price = 50,
-		.HeldEffect = 0,
-		.HeldArgument = 100,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 12,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 100,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ENERGYPOWDER] = {
-		.Price = 50,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 13,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 50,
-			.PPGain = 0,
-			.Friendship1 = 251,
-			.Friendship2 = 251,
-			.Friendship3 = 246,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ENERGY_ROOT] = {
-		.Price = 80,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 14,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 200,
-			.PPGain = 0,
-			.Friendship1 = 246,
-			.Friendship2 = 246,
-			.Friendship3 = 241,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HEAL_POWDER] = {
-		.Price = 45,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 27,
-		.BattleStats = {
-			.CureInflict = 63,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 251,
-			.Friendship2 = 251,
-			.Friendship3 = 246,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_REVIVAL_HERB] = {
-		.Price = 280,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 15,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				1,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 255,
-			.PPGain = 0,
-			.Friendship1 = 241,
-			.Friendship2 = 241,
-			.Friendship3 = 236,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ETHER] = {
-		.Price = 120,
-		.HeldEffect = 0,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 41,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 1,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 10,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MAX_ETHER] = {
-		.Price = 200,
-		.HeldEffect = 0,
-		.HeldArgument = 255,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 42,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 1,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 127,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ELIXIR] = {
-		.Price = 300,
-		.HeldEffect = 0,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 43,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 2,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 10,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MAX_ELIXIR] = {
-		.Price = 450,
-		.HeldEffect = 0,
-		.HeldArgument = 255,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 50,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 2,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 127,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LAVA_COOKIE] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 28,
-		.BattleStats = {
-			.CureInflict = 63,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BERRY_JUICE] = {
-		.Price = 10,
-		.HeldEffect = 1,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 7,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 20,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SACRED_ASH] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 20,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				3,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 255,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HP_UP] = {
-		.Price = 980,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 51,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 8,
-			.FunctionFlags1 = 28,
-			.EVHP = 10,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 5,
-			.Friendship2 = 3,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PROTEIN] = {
-		.Price = 980,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 52,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 16,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 10,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 5,
-			.Friendship2 = 3,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_IRON] = {
-		.Price = 980,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 53,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 32,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 10,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 5,
-			.Friendship2 = 3,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CARBOS] = {
-		.Price = 980,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 56,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 64,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 10,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 5,
-			.Friendship2 = 3,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CALCIUM] = {
-		.Price = 980,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 54,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 128,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 10,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 5,
-			.Friendship2 = 3,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RARE_CANDY] = {
-		.Price = 480,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 70,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				5,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 5,
-			.Friendship2 = 3,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PP_UP] = {
-		.Price = 980,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 63,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				64,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 5,
-			.Friendship2 = 3,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ZINC] = {
-		.Price = 980,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 55,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 29,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 10,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 5,
-			.Friendship2 = 3,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PP_MAX] = {
-		.Price = 980,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 64,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				128,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 5,
-			.Friendship2 = 3,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_OLD_GATEAU] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 29,
-		.BattleStats = {
-			.CureInflict = 63,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GUARD_SPEC] = {
-		.Price = 70,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 4127,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 7,
-		.BattleStats = {
-			.CureInflict = 128,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 12,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 1,
-			.Friendship2 = 1,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DIRE_HIT] = {
-		.Price = 65,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 4127,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 6,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				16,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 12,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 1,
-			.Friendship2 = 1,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_ATTACK] = {
-		.Price = 50,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 4127,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				16,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 12,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 1,
-			.Friendship2 = 1,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_DEFEND] = {
-		.Price = 55,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 4127,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 1,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				1,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 12,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 1,
-			.Friendship2 = 1,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SPEED] = {
-		.Price = 35,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 4127,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 2,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				16,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 12,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 1,
-			.Friendship2 = 1,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_ACCURACY] = {
-		.Price = 95,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 4127,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 5,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				1,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 12,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 1,
-			.Friendship2 = 1,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SPECIAL] = {
-		.Price = 35,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 4127,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 3,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				16,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 12,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 1,
-			.Friendship2 = 1,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SP_DEF] = {
-		.Price = 35,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 4127,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 4,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				1,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 12,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 1,
-			.Friendship2 = 1,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POKé_DOLL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 4127,
-		.EffectField = 0,
-		.EffectBattle = 3,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 8,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FLUFFY_TAIL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 4127,
-		.EffectField = 0,
-		.EffectBattle = 3,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 9,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLUE_FLUTE] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 21,
-		.BattleStats = {
-			.CureInflict = 1,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_YELLOW_FLUTE] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 75,
-		.BattleStats = {
-			.CureInflict = 32,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RED_FLUTE] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 51,
-		.BattleStats = {
-			.CureInflict = 64,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLACK_FLUTE] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 20,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WHITE_FLUTE] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 74,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SHOAL_SALT] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 63,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SHOAL_SHELL] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 64,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RED_SHARD] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 52,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLUE_SHARD] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 22,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_YELLOW_SHARD] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 76,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GREEN_SHARD] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 33,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SUPER_REPEL] = {
-		.Price = 50,
-		.HeldEffect = 0,
-		.HeldArgument = 200,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 19,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 70,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MAX_REPEL] = {
-		.Price = 70,
-		.HeldEffect = 0,
-		.HeldArgument = 250,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 19,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 39,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ESCAPE_ROPE] = {
-		.Price = 55,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 21,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 30,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_REPEL] = {
-		.Price = 35,
-		.HeldEffect = 0,
-		.HeldArgument = 100,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 19,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 60,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SUN_STONE] = {
-		.Price = 210,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 20,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 69,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				8,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MOON_STONE] = {
-		.Price = 210,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 20,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 40,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				8,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FIRE_STONE] = {
-		.Price = 210,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 20,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 31,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				8,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_THUNDERSTONE] = {
-		.Price = 210,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 20,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 71,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				8,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WATER_STONE] = {
-		.Price = 210,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 20,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 73,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				8,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LEAF_STONE] = {
-		.Price = 210,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 20,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 38,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				8,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TINYMUSHROOM] = {
-		.Price = 50,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 72,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BIG_MUSHROOM] = {
-		.Price = 500,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 17,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PEARL] = {
-		.Price = 140,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 46,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BIG_PEARL] = {
-		.Price = 750,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 19,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_STARDUST] = {
-		.Price = 200,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 67,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_STAR_PIECE] = {
-		.Price = 980,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 68,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_NUGGET] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 41,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HEART_SCALE] = {
-		.Price = 10,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 35,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HONEY] = {
-		.Price = 10,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 14,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 37,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GROWTH_MULCH] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 34,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DAMP_MULCH] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 26,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_STABLE_MULCH] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 66,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GOOEY_MULCH] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 32,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ROOT_FOSSIL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 100,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 61,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CLAW_FOSSIL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 100,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 23,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HELIX_FOSSIL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 100,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 36,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DOME_FOSSIL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 100,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 28,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_OLD_AMBER] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 100,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 43,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ARMOR_FOSSIL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 100,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 15,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SKULL_FOSSIL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 100,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 65,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RARE_BONE] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 100,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 50,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SHINY_STONE] = {
-		.Price = 210,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 80,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 20,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 62,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				8,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DUSK_STONE] = {
-		.Price = 210,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 80,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 20,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 29,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				8,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DAWN_STONE] = {
-		.Price = 210,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 80,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 20,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 27,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				8,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_OVAL_STONE] = {
-		.Price = 210,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 80,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 20,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 44,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				8,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ODD_KEYSTONE] = {
-		.Price = 210,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 80,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 42,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GRISEOUS_ORB] = {
-		.Price = 1000,
-		.HeldEffect = 2,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 60,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 54,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_0] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_1] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DOUSE_DRIVE] = {
-		.Price = 100,
-		.HeldEffect = 3,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 25,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SHOCK_DRIVE] = {
-		.Price = 100,
-		.HeldEffect = 3,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 121,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BURN_DRIVE] = {
-		.Price = 100,
-		.HeldEffect = 3,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 12,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CHILL_DRIVE] = {
-		.Price = 100,
-		.HeldEffect = 3,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 15,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_3] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_4] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 1,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_5] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 2,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_6] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 3,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_7] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 4,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_8] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 5,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_9] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_10] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 6,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_11] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 7,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_12] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 8,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_13] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 9,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_14] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 10,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_15] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 11,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_16] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 12,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SWEET_HEART] = {
-		.Price = 10,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 8,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 20,
-			.PPGain = 0,
-			.Friendship1 = 1,
-			.Friendship2 = 1,
-			.Friendship3 = 1,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ADAMANT_ORB] = {
-		.Price = 1000,
-		.HeldEffect = 3,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 60,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 1,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LUSTROUS_ORB] = {
-		.Price = 1000,
-		.HeldEffect = 4,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 60,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 74,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GREET_MAIL] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FAVORED_MAIL] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 1,
-		.BattleStats = {
-			.CureInflict = 1,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RSVP_MAIL] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 2,
-		.BattleStats = {
-			.CureInflict = 2,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_THANKS_MAIL] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 3,
-		.BattleStats = {
-			.CureInflict = 3,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_INQUIRY_MAIL] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 4,
-		.BattleStats = {
-			.CureInflict = 4,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LIKE_MAIL] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 5,
-		.BattleStats = {
-			.CureInflict = 5,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_REPLY_MAIL] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 6,
-		.BattleStats = {
-			.CureInflict = 6,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BRIDGEMAIL_S] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 7,
-		.BattleStats = {
-			.CureInflict = 7,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BRIDGEMAIL_D] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 8,
-		.BattleStats = {
-			.CureInflict = 8,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BRIDGEMAIL_T] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 9,
-		.BattleStats = {
-			.CureInflict = 9,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BRIDGEMAIL_V] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 10,
-		.BattleStats = {
-			.CureInflict = 10,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BRIDGEMAIL_M] = {
-		.Price = 5,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 7,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 5,
-		.Consumable = 0,
-		.SortIndex = 11,
-		.BattleStats = {
-			.CureInflict = 11,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CHERI_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 5,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 1,
-		.FlingEffect = 1,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 16777,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 16,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CHESTO_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 6,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 2,
-		.FlingEffect = 2,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 16778,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 1,
-		.BattleStats = {
-			.CureInflict = 1,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PECHA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 7,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 3,
-		.FlingEffect = 3,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 16780,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 2,
-		.BattleStats = {
-			.CureInflict = 2,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RAWST_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 8,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 4,
-		.FlingEffect = 4,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 16779,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 3,
-		.BattleStats = {
-			.CureInflict = 4,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ASPEAR_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 9,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 5,
-		.FlingEffect = 5,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 16782,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 4,
-		.BattleStats = {
-			.CureInflict = 8,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LEPPA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 10,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 6,
-		.FlingEffect = 6,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 8577,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 5,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 1,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 10,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ORAN_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 1,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 7,
-		.FlingEffect = 7,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 8579,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 6,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 10,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PERSIM_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 11,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 8,
-		.FlingEffect = 8,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 16772,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 7,
-		.BattleStats = {
-			.CureInflict = 32,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LUM_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 12,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 9,
-		.FlingEffect = 9,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 16770,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 8,
-		.BattleStats = {
-			.CureInflict = 63,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SITRUS_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 13,
-		.HeldArgument = 25,
-		.NaturalGiftEffect = 10,
-		.FlingEffect = 10,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 8589,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 9,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 253,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FIGY_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 14,
-		.HeldArgument = 8,
-		.NaturalGiftEffect = 11,
-		.FlingEffect = 11,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 390,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 10,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WIKI_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 15,
-		.HeldArgument = 8,
-		.NaturalGiftEffect = 12,
-		.FlingEffect = 12,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 389,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 11,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MAGO_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 16,
-		.HeldArgument = 8,
-		.NaturalGiftEffect = 13,
-		.FlingEffect = 13,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 391,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 12,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_AGUAV_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 17,
-		.HeldArgument = 8,
-		.NaturalGiftEffect = 14,
-		.FlingEffect = 14,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 399,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 13,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_IAPAPA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 18,
-		.HeldArgument = 8,
-		.NaturalGiftEffect = 15,
-		.FlingEffect = 15,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 400,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 14,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RAZZ_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 392,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 50,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLUK_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 393,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 51,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_NANAB_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 394,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 52,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WEPEAR_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 396,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 53,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PINAP_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 395,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 54,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POMEG_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 398,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 15,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 8,
-			.FunctionFlags1 = 28,
-			.EVHP = 246,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 10,
-			.Friendship2 = 5,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_KELPSY_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 385,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 16,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 16,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 246,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 10,
-			.Friendship2 = 5,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_QUALOT_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 387,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 17,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 32,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 246,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 10,
-			.Friendship2 = 5,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HONDEW_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 388,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 18,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 128,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 246,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 10,
-			.Friendship2 = 5,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GREPA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 386,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 19,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 29,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 246,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 10,
-			.Friendship2 = 5,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TAMATO_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 397,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 20,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 64,
-			.FunctionFlags1 = 28,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 246,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 10,
-			.Friendship2 = 5,
-			.Friendship3 = 2,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CORNN_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 390,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 55,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MAGOST_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 389,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 56,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RABUTA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 391,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 57,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_NOMEL_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 399,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 58,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SPELON_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 400,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 59,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PAMTRE_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 70,
-		.Packed = 392,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 60,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WATMEL_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 393,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 61,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DURIN_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 394,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 62,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BELUE_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 396,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 63,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_OCCA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 19,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 393,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 21,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PASSHO_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 20,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 394,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 22,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WACAN_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 21,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 396,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 23,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RINDO_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 22,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 395,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 24,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_YACHE_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 23,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 398,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 25,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CHOPLE_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 24,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 385,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 26,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_KEBIA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 25,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 387,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 27,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SHUCA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 26,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 388,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 28,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_COBA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 27,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 386,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 29,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PAYAPA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 28,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 397,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 30,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TANGA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 29,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 390,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 31,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CHARTI_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 30,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 389,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 32,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_KASIB_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 31,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 391,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 33,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HABAN_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 32,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 399,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 34,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_COLBUR_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 33,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 400,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 35,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BABIRI_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 34,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 392,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 36,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CHILAN_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 35,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 60,
-		.Packed = 384,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 37,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LIECHI_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 36,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 16,
-		.FlingEffect = 16,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 395,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 38,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GANLON_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 37,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 17,
-		.FlingEffect = 17,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 398,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 39,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SALAC_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 38,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 18,
-		.FlingEffect = 18,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 385,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 40,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PETAYA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 39,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 19,
-		.FlingEffect = 19,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 387,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 41,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_APICOT_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 40,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 20,
-		.FlingEffect = 20,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 388,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 42,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LANSAT_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 41,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 21,
-		.FlingEffect = 21,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 386,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 43,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_STARF_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 42,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 22,
-		.FlingEffect = 22,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 397,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 44,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ENIGMA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 43,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 390,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 45,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MICLE_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 44,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 23,
-		.FlingEffect = 23,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 389,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 46,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CUSTAP_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 45,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 391,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 47,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_JABOCA_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 46,
-		.HeldArgument = 8,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 399,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 48,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ROWAP_BERRY] = {
-		.Price = 2,
-		.HeldEffect = 47,
-		.HeldArgument = 8,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 80,
-		.Packed = 400,
-		.EffectField = 8,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 1,
-		.SortIndex = 49,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BRIGHTPOWDER] = {
-		.Price = 1,
-		.HeldEffect = 48,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 10,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WHITE_HERB] = {
-		.Price = 10,
-		.HeldEffect = 49,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 24,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 144,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MACHO_BRACE] = {
-		.Price = 300,
-		.HeldEffect = 50,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 60,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 75,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_EXP_SHARE] = {
-		.Price = 300,
-		.HeldEffect = 51,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 39,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_QUICK_CLAW] = {
-		.Price = 10,
-		.HeldEffect = 52,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 80,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 104,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SOOTHE_BELL] = {
-		.Price = 10,
-		.HeldEffect = 53,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 128,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MENTAL_HERB] = {
-		.Price = 10,
-		.HeldEffect = 54,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 25,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 79,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CHOICE_BAND] = {
-		.Price = 10,
-		.HeldEffect = 55,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 16,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_KINGS_ROCK] = {
-		.Price = 10,
-		.HeldEffect = 56,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 26,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 64,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SILVERPOWDER] = {
-		.Price = 10,
-		.HeldEffect = 57,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 123,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_AMULET_COIN] = {
-		.Price = 10,
-		.HeldEffect = 58,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 3,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CLEANSE_TAG] = {
-		.Price = 20,
-		.HeldEffect = 59,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 19,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SOUL_DEW] = {
-		.Price = 20,
-		.HeldEffect = 60,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 129,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DEEPSEATOOTH] = {
-		.Price = 20,
-		.HeldEffect = 61,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 23,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DEEPSEASCALE] = {
-		.Price = 20,
-		.HeldEffect = 62,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 22,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SMOKE_BALL] = {
-		.Price = 20,
-		.HeldEffect = 63,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 125,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_EVERSTONE] = {
-		.Price = 20,
-		.HeldEffect = 64,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 36,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FOCUS_BAND] = {
-		.Price = 20,
-		.HeldEffect = 65,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 47,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LUCKY_EGG] = {
-		.Price = 20,
-		.HeldEffect = 66,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 72,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SCOPE_LENS] = {
-		.Price = 20,
-		.HeldEffect = 67,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 116,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_METAL_COAT] = {
-		.Price = 10,
-		.HeldEffect = 68,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 80,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LEFTOVERS] = {
-		.Price = 20,
-		.HeldEffect = 69,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 67,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DRAGON_SCALE] = {
-		.Price = 210,
-		.HeldEffect = 70,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 29,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LIGHT_BALL] = {
-		.Price = 10,
-		.HeldEffect = 71,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 27,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 69,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SOFT_SAND] = {
-		.Price = 10,
-		.HeldEffect = 72,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 127,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HARD_STONE] = {
-		.Price = 10,
-		.HeldEffect = 73,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 100,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 56,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MIRACLE_SEED] = {
-		.Price = 10,
-		.HeldEffect = 74,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 84,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLACKGLASSES] = {
-		.Price = 10,
-		.HeldEffect = 75,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 7,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLACK_BELT] = {
-		.Price = 10,
-		.HeldEffect = 76,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 6,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MAGNET] = {
-		.Price = 10,
-		.HeldEffect = 77,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 77,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MYSTIC_WATER] = {
-		.Price = 10,
-		.HeldEffect = 78,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 86,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SHARP_BEAK] = {
-		.Price = 10,
-		.HeldEffect = 79,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 50,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 118,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POISON_BARB] = {
-		.Price = 10,
-		.HeldEffect = 80,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 28,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 91,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_NEVERMELTICE] = {
-		.Price = 10,
-		.HeldEffect = 81,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 87,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SPELL_TAG] = {
-		.Price = 10,
-		.HeldEffect = 82,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 130,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TWISTEDSPOON] = {
-		.Price = 10,
-		.HeldEffect = 83,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 140,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CHARCOAL] = {
-		.Price = 980,
-		.HeldEffect = 84,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 14,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DRAGON_FANG] = {
-		.Price = 10,
-		.HeldEffect = 85,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 27,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SILK_SCARF] = {
-		.Price = 10,
-		.HeldEffect = 86,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 122,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UPGRADE] = {
-		.Price = 210,
-		.HeldEffect = 87,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 141,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SHELL_BELL] = {
-		.Price = 20,
-		.HeldEffect = 88,
-		.HeldArgument = 8,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 120,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SEA_INCENSE] = {
-		.Price = 960,
-		.HeldEffect = 78,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 117,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LAX_INCENSE] = {
-		.Price = 960,
-		.HeldEffect = 48,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 66,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LUCKY_PUNCH] = {
-		.Price = 1,
-		.HeldEffect = 89,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 40,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 73,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_METAL_POWDER] = {
-		.Price = 1,
-		.HeldEffect = 90,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 81,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_THICK_CLUB] = {
-		.Price = 50,
-		.HeldEffect = 91,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 137,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_STICK] = {
-		.Price = 20,
-		.HeldEffect = 92,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 60,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 134,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RED_SCARF] = {
-		.Price = 10,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 110,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLUE_SCARF] = {
-		.Price = 10,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 9,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PINK_SCARF] = {
-		.Price = 10,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 90,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GREEN_SCARF] = {
-		.Price = 10,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 52,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_YELLOW_SCARF] = {
-		.Price = 10,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 147,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WIDE_LENS] = {
-		.Price = 20,
-		.HeldEffect = 93,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 145,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MUSCLE_BAND] = {
-		.Price = 20,
-		.HeldEffect = 94,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 85,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WISE_GLASSES] = {
-		.Price = 20,
-		.HeldEffect = 95,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 146,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_EXPERT_BELT] = {
-		.Price = 20,
-		.HeldEffect = 96,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 38,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LIGHT_CLAY] = {
-		.Price = 20,
-		.HeldEffect = 97,
-		.HeldArgument = 3,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 70,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LIFE_ORB] = {
-		.Price = 20,
-		.HeldEffect = 98,
-		.HeldArgument = 30,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 68,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POWER_HERB] = {
-		.Price = 10,
-		.HeldEffect = 99,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 97,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TOXIC_ORB] = {
-		.Price = 10,
-		.HeldEffect = 100,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 29,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 138,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FLAME_ORB] = {
-		.Price = 10,
-		.HeldEffect = 101,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 30,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 43,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_QUICK_POWDER] = {
-		.Price = 1,
-		.HeldEffect = 102,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 105,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FOCUS_SASH] = {
-		.Price = 20,
-		.HeldEffect = 103,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 48,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ZOOM_LENS] = {
-		.Price = 20,
-		.HeldEffect = 104,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 149,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_METRONOME] = {
-		.Price = 20,
-		.HeldEffect = 105,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 82,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_IRON_BALL] = {
-		.Price = 20,
-		.HeldEffect = 106,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 130,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 62,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LAGGING_TAIL] = {
-		.Price = 20,
-		.HeldEffect = 107,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 65,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DESTINY_KNOT] = {
-		.Price = 20,
-		.HeldEffect = 108,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 24,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLACK_SLUDGE] = {
-		.Price = 20,
-		.HeldEffect = 109,
-		.HeldArgument = 16,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 8,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ICY_ROCK] = {
-		.Price = 20,
-		.HeldEffect = 110,
-		.HeldArgument = 3,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 40,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 60,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SMOOTH_ROCK] = {
-		.Price = 20,
-		.HeldEffect = 111,
-		.HeldArgument = 3,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 126,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HEAT_ROCK] = {
-		.Price = 20,
-		.HeldEffect = 112,
-		.HeldArgument = 3,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 60,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 57,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DAMP_ROCK] = {
-		.Price = 20,
-		.HeldEffect = 113,
-		.HeldArgument = 3,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 60,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 20,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GRIP_CLAW] = {
-		.Price = 20,
-		.HeldEffect = 114,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 53,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CHOICE_SCARF] = {
-		.Price = 20,
-		.HeldEffect = 115,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 17,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_STICKY_BARB] = {
-		.Price = 20,
-		.HeldEffect = 116,
-		.HeldArgument = 8,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 80,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 135,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POWER_BRACER] = {
-		.Price = 300,
-		.HeldEffect = 117,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 96,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POWER_BELT] = {
-		.Price = 300,
-		.HeldEffect = 118,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 95,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POWER_LENS] = {
-		.Price = 300,
-		.HeldEffect = 119,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 98,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POWER_BAND] = {
-		.Price = 300,
-		.HeldEffect = 120,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 94,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POWER_ANKLET] = {
-		.Price = 300,
-		.HeldEffect = 121,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 93,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POWER_WEIGHT] = {
-		.Price = 300,
-		.HeldEffect = 122,
-		.HeldArgument = 4,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 70,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 99,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SHED_SHELL] = {
-		.Price = 10,
-		.HeldEffect = 123,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 119,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BIG_ROOT] = {
-		.Price = 20,
-		.HeldEffect = 124,
-		.HeldArgument = 30,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 4,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CHOICE_SPECS] = {
-		.Price = 20,
-		.HeldEffect = 125,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 18,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FLAME_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 126,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 44,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SPLASH_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 127,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 131,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ZAP_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 128,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 148,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MEADOW_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 129,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 78,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ICICLE_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 130,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 59,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FIST_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 131,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 42,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TOXIC_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 132,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 139,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_EARTH_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 133,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 32,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SKY_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 134,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 124,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MIND_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 135,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 83,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_INSECT_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 136,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 61,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_STONE_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 137,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 136,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SPOOKY_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 138,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 132,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DRACO_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 139,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 26,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DREAD_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 140,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 30,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_IRON_PLATE] = {
-		.Price = 100,
-		.HeldEffect = 141,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 90,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 63,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ODD_INCENSE] = {
-		.Price = 960,
-		.HeldEffect = 83,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 89,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ROCK_INCENSE] = {
-		.Price = 960,
-		.HeldEffect = 73,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 113,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FULL_INCENSE] = {
-		.Price = 960,
-		.HeldEffect = 107,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 49,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WAVE_INCENSE] = {
-		.Price = 960,
-		.HeldEffect = 78,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 143,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ROSE_INCENSE] = {
-		.Price = 960,
-		.HeldEffect = 74,
-		.HeldArgument = 20,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 115,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LUCK_INCENSE] = {
-		.Price = 960,
-		.HeldEffect = 58,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 71,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PURE_INCENSE] = {
-		.Price = 960,
-		.HeldEffect = 59,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 103,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PROTECTOR] = {
-		.Price = 210,
-		.HeldEffect = 142,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 80,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 101,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ELECTIRIZER] = {
-		.Price = 210,
-		.HeldEffect = 143,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 80,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 34,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MAGMARIZER] = {
-		.Price = 210,
-		.HeldEffect = 144,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 80,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 76,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DUBIOUS_DISC] = {
-		.Price = 210,
-		.HeldEffect = 145,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 50,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 31,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_REAPER_CLOTH] = {
-		.Price = 210,
-		.HeldEffect = 146,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 108,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RAZOR_CLAW] = {
-		.Price = 210,
-		.HeldEffect = 67,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 80,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 106,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RAZOR_FANG] = {
-		.Price = 210,
-		.HeldEffect = 56,
-		.HeldArgument = 10,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 26,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 107,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM01] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM02] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 1,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM03] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 2,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM04] = {
-		.Price = 8000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 3,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM05] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 4,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM06] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 5,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM07] = {
-		.Price = 5000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 6,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM08] = {
-		.Price = 8000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 7,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM09] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 8,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM10] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 9,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM11] = {
-		.Price = 5000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 10,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM12] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 11,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM13] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 12,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM14] = {
-		.Price = 7000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 13,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM15] = {
-		.Price = 9000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 14,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM16] = {
-		.Price = 3000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 15,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM17] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 16,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM18] = {
-		.Price = 5000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 17,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM19] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 18,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM20] = {
-		.Price = 3000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 19,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM21] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 20,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM22] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 21,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM23] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 22,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM24] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 23,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM25] = {
-		.Price = 7000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 24,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM26] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 25,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM27] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 26,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM28] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 27,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM29] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 28,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM30] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 29,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM31] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 30,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM32] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 31,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM33] = {
-		.Price = 3000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 32,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM34] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 33,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM35] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 34,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM36] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 35,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM37] = {
-		.Price = 5000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 36,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM38] = {
-		.Price = 7000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 37,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM39] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 38,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM40] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 39,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM41] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 40,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM42] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 41,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM43] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 42,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM44] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 43,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM45] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 44,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM46] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 45,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM47] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 46,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM48] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 47,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM49] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 48,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM50] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 49,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM51] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 50,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM52] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 51,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM53] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 52,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM54] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 53,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM55] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 54,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM56] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 55,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM57] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 56,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM58] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 57,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM59] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 58,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM60] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 59,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM61] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 60,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM62] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 61,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM63] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 62,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM64] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 63,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM65] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 64,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM66] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 65,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM67] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 66,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM68] = {
-		.Price = 9000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 67,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM69] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 68,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM70] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 69,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM71] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 70,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM72] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 71,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM73] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 72,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM74] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 73,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM75] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 74,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM76] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 75,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM77] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 76,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM78] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 77,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM79] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 78,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM80] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 79,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM81] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 80,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM82] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 81,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM83] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 82,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM84] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 83,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM85] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 84,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM86] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 85,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM87] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 86,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM88] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 87,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM89] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 88,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM90] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 89,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM91] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 90,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM92] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 91,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HM01] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 95,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HM02] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 96,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HM03] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 97,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HM04] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 98,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HM05] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 99,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HM06] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 100,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_17] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 13,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_18] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 0,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 14,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_EXPLORER_KIT] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LOOT_SACK] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RULE_BOOK] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POKé_RADAR] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POINT_CARD] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_JOURNAL] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SEAL_CASE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FASHION_CASE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SEAL_BAG] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PAL_PAD] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 10,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 7,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WORKS_KEY] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_OLD_CHARM] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GALACTIC_KEY] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RED_CHAIN] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TOWN_MAP] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 2,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 3,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_VS_SEEKER] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_COIN_CASE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_OLD_ROD] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GOOD_ROD] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 1,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SUPER_ROD] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 18,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 1,
-		.BattleStats = {
-			.CureInflict = 2,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SPRAYDUCK] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POFFIN_CASE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BICYCLE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 4,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SUITE_KEY] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_OAKS_LETTER] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LUNAR_WING] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 22,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MEMBER_CARD] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_AZURE_FLUTE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SS_TICKET] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CONTEST_PASS] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MAGMA_STONE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 23,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PARCEL] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_COUPON_1] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_COUPON_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_COUPON_3] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_STORAGE_KEY] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SECRETPOTION] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_VS_RECORDER] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 23,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 6,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GRACIDEA] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 24,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 21,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SECRET_KEY] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_APRICORN_BOX] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNOWN_REPORT] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BERRY_POTS] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DOWSING_MCHN] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 25,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 2,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLUE_CARD] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SLOWPOKETAIL] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CLEAR_BELL] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CARD_KEY] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BASEMENT_KEY] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SQUIRTBOTTLE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RED_SCALE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LOST_ITEM] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PASS] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MACHINE_PART] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SILVER_WING] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RAINBOW_WING] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MYSTERY_EGG] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RED_APRICORN] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLU_APRICORN] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_YLW_APRICORN] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GRN_APRICORN] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PNK_APRICORN] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WHT_APRICORN] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLK_APRICORN] = {
-		.Price = 2,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FAST_BALL] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 16,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LEVEL_BALL] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 17,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LURE_BALL] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 18,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HEAVY_BALL] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 19,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LOVE_BALL] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 20,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FRIEND_BALL] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 21,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MOON_BALL] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 22,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SPORT_BALL] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 23,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PARK_BALL] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PHOTO_ALBUM] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GB_SOUNDS] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TIDAL_BELL] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RAGECANDYBAR] = {
-		.Price = 30,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 8351,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 40,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 4,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 20,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_01] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_02] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_03] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_04] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_05] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_06] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_07] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_08] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_09] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_10] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_11] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_12] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_13] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_14] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_15] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_16] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_17] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_18] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_19] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_20] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_21] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_22] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_23] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_24] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_25] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_26] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DATA_CARD_27] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_JADE_ORB] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LOCK_CAPSULE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RED_ORB] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BLUE_ORB] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ENIGMA_STONE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PRISM_SCALE] = {
-		.Price = 50,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 100,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_EVIOLITE] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 40,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 37,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FLOAT_STONE] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 45,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ROCKY_HELMET] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 6,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 60,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 114,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_AIR_BALLOON] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 2,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RED_CARD] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 109,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RING_TARGET] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 10,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 111,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BINDING_BAND] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 0,
-		.SortIndex = 5,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ABSORB_BULB] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 0,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CELL_BATTERY] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 13,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_EJECT_BUTTON] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 33,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FIRE_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 41,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_WATER_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 142,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ELECTRIC_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 35,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GRASS_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 51,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ICE_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 58,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FIGHTING_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 40,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POISON_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 92,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GROUND_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 55,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_FLYING_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 46,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PSYCHIC_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 102,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BUG_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 11,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ROCK_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 112,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GHOST_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 50,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DRAGON_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 28,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DARK_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 21,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_STEEL_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 133,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_NORMAL_GEM] = {
-		.Price = 20,
-		.HeldEffect = 147,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 1,
-		.Consumable = 1,
-		.SortIndex = 88,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_HEALTH_WING] = {
-		.Price = 300,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 20,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 57,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 8,
-			.FunctionFlags1 = 30,
-			.EVHP = 1,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 3,
-			.Friendship2 = 2,
-			.Friendship3 = 1,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MUSCLE_WING] = {
-		.Price = 300,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 20,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 58,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 16,
-			.FunctionFlags1 = 30,
-			.EVHP = 0,
-			.EVATK = 1,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 3,
-			.Friendship2 = 2,
-			.Friendship3 = 1,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RESIST_WING] = {
-		.Price = 300,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 20,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 59,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 32,
-			.FunctionFlags1 = 30,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 1,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 3,
-			.Friendship2 = 2,
-			.Friendship3 = 1,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GENIUS_WING] = {
-		.Price = 300,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 20,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 60,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 128,
-			.FunctionFlags1 = 30,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 1,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 3,
-			.Friendship2 = 2,
-			.Friendship3 = 1,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CLEVER_WING] = {
-		.Price = 300,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 20,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 61,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 31,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 1,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 3,
-			.Friendship2 = 2,
-			.Friendship3 = 1,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SWIFT_WING] = {
-		.Price = 300,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 20,
-		.NaturalGiftPower = 0,
-		.Packed = 159,
-		.EffectField = 1,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 62,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 64,
-			.FunctionFlags1 = 30,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 1,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 3,
-			.Friendship2 = 2,
-			.Friendship3 = 1,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PRETTY_WING] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 20,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 49,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_COVER_FOSSIL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 100,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 25,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PLUME_FOSSIL] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 100,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 48,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LIBERTY_PASS] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PASS_ORB] = {
-		.Price = 20,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 45,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DREAM_BALL] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 2079,
-		.EffectField = 0,
-		.EffectBattle = 1,
-		.HasBattleStats = 0,
-		.ItemClass = 4,
-		.Consumable = 0,
-		.SortIndex = 16,
-		.BattleStats = {
-			.CureInflict = 24,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_POKé_TOY] = {
-		.Price = 100,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 4127,
-		.EffectField = 0,
-		.EffectBattle = 3,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 10,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PROP_CASE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 8,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DRAGON_SKULL] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BALMMUSHROOM] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 16,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_BIG_NUGGET] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 18,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PEARL_STRING] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 47,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_COMET_SHARD] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 24,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RELIC_COPPER] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 54,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RELIC_SILVER] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 57,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RELIC_GOLD] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 56,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RELIC_VASE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 59,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RELIC_BAND] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 53,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RELIC_STATUE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 58,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RELIC_CROWN] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 2,
-		.Consumable = 0,
-		.SortIndex = 55,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_CASTELIACONE] = {
-		.Price = 10,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 30,
-		.NaturalGiftPower = 0,
-		.Packed = 16543,
-		.EffectField = 1,
-		.EffectBattle = 2,
-		.HasBattleStats = 1,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 30,
-		.BattleStats = {
-			.CureInflict = 63,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DIRE_HIT_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				32,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SPEED_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				32,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SPECIAL_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				32,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SP_DEF_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				2,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_DEFEND_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				2,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_ATTACK_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				32,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_ACCURACY_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				2,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SPEED_3] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				48,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SPECIAL_3] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				48,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SP_DEF_3] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				3,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_DEFEND_3] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				3,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_ATTACK_3] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				48,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_ACCURACY_3] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				3,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SPEED_6] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				96,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SPECIAL_6] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				96,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_SP_DEF_6] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				6,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_DEFEND_6] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				6,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_ATTACK_6] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				96,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_X_ACCURACY_6] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				6,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ABILITY_URGE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ITEM_DROP] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_ITEM_URGE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_RESET_URGE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DIRE_HIT_3] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 31,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 1,
-		.ItemClass = 3,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				48,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_LIGHT_STONE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 9,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DARK_STONE] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 10,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM93] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 92,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM94] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 93,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_TM95] = {
-		.Price = 1000,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 319,
-		.EffectField = 6,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 94,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_XTRANSCEIVER] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 26,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 5,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_UNKNOWN_19] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GRAM_1] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GRAM_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GRAM_3] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 543,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 255,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_XTRANSCEIVER2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 26,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 5,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_MEDAL_BOX] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 27,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 4,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DNA_SPLICERS] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 28,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 11,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DNA_SPLICERS_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 29,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 11,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PERMIT] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 12,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_OVAL_CHARM] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 13,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_SHINY_CHARM] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 14,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_PLASMA_CARD] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 15,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_GRUBBY_HANKY] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 16,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_COLRESS_MCHN] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 17,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DROPPED_ITEM] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 18,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_DROPPED_ITEM_2] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 575,
-		.EffectField = 0,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 19,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
-	[ITEM_REVEAL_GLASS] = {
-		.Price = 0,
-		.HeldEffect = 0,
-		.HeldArgument = 0,
-		.NaturalGiftEffect = 0,
-		.FlingEffect = 0,
-		.FlingPower = 0,
-		.NaturalGiftPower = 0,
-		.Packed = 639,
-		.EffectField = 30,
-		.EffectBattle = 0,
-		.HasBattleStats = 0,
-		.ItemClass = 0,
-		.Consumable = 0,
-		.SortIndex = 20,
-		.BattleStats = {
-			.CureInflict = 0,
-			.Boost = {
-				0,
-				0,
-				0,
-				0,
-			},
-			.FunctionFlags0 = 0,
-			.FunctionFlags1 = 0,
-			.EVHP = 0,
-			.EVATK = 0,
-			.EVDEF = 0,
-			.EVSPE = 0,
-			.EVSPA = 0,
-			.EVSPD = 0,
-			.HealAmount = 0,
-			.PPGain = 0,
-			.Friendship1 = 0,
-			.Friendship2 = 0,
-			.Friendship3 = 0,
-			.field_1F = 0,
-			.field_20 = 0,
-		}
-	},
+const ITEM_DATA __data[]: {
+ITEM_NONE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MASTER_BALL:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 3
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ULTRA_BALL:
+- Price: 120
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 2
+- Battle Stats:
+  - Cure Inflict: 1
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GREAT_BALL:
+- Price: 60
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 1
+- Battle Stats:
+  - Cure Inflict: 2
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POKé_BALL:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 3
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SAFARI_BALL:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 15
+- Battle Stats:
+  - Cure Inflict: 4
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_NET_BALL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 7
+- Battle Stats:
+  - Cure Inflict: 5
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DIVE_BALL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 13
+- Battle Stats:
+  - Cure Inflict: 6
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_NEST_BALL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 8
+- Battle Stats:
+  - Cure Inflict: 7
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_REPEAT_BALL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 12
+- Battle Stats:
+  - Cure Inflict: 8
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TIMER_BALL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 11
+- Battle Stats:
+  - Cure Inflict: 9
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LUXURY_BALL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 14
+- Battle Stats:
+  - Cure Inflict: 10
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PREMIER_BALL:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 4
+- Battle Stats:
+  - Cure Inflict: 11
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DUSK_BALL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 10
+- Battle Stats:
+  - Cure Inflict: 12
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HEAL_BALL:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 6
+- Battle Stats:
+  - Cure Inflict: 13
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_QUICK_BALL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 9
+- Battle Stats:
+  - Cure Inflict: 14
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CHERISH_BALL:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 5
+- Battle Stats:
+  - Cure Inflict: 15
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POTION:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 20
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ANTIDOTE:
+- Price: 10
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 21
+- Battle Stats:
+  - Cure Inflict: 2
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BURN_HEAL:
+- Price: 25
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 23
+- Battle Stats:
+  - Cure Inflict: 4
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ICE_HEAL:
+- Price: 25
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 24
+- Battle Stats:
+  - Cure Inflict: 8
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_AWAKENING:
+- Price: 25
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 25
+- Battle Stats:
+  - Cure Inflict: 1
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PARLYZ_HEAL:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 22
+- Battle Stats:
+  - Cure Inflict: 16
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FULL_RESTORE:
+- Price: 300
+- Held Effect: 0
+- Held Argument: 255
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 24735
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 4
+- Battle Stats:
+  - Cure Inflict: 63
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 255
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MAX_POTION:
+- Price: 250
+- Held Effect: 0
+- Held Argument: 255
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 3
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 255
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HYPER_POTION:
+- Price: 120
+- Held Effect: 0
+- Held Argument: 200
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 2
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 200
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SUPER_POTION:
+- Price: 70
+- Held Effect: 0
+- Held Argument: 50
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 1
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 50
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FULL_HEAL:
+- Price: 60
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 26
+- Battle Stats:
+  - Cure Inflict: 63
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_REVIVE:
+- Price: 150
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 5
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 1
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 254
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MAX_REVIVE:
+- Price: 400
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 6
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 1
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 255
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FRESH_WATER:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 50
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 9
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 50
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SODA_POP:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 60
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 10
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 60
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LEMONADE:
+- Price: 35
+- Held Effect: 0
+- Held Argument: 80
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 11
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 80
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MOOMOO_MILK:
+- Price: 50
+- Held Effect: 0
+- Held Argument: 100
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 12
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 100
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ENERGYPOWDER:
+- Price: 50
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 13
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7172
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 50
+  - PPGain: 0
+  - Friendship1: 251
+  - Friendship2: 251
+  - Friendship3: 246
+  - field_1F: 0
+  - field_20: 0
+ITEM_ENERGY_ROOT:
+- Price: 80
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 14
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7172
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 200
+  - PPGain: 0
+  - Friendship1: 246
+  - Friendship2: 246
+  - Friendship3: 241
+  - field_1F: 0
+  - field_20: 0
+ITEM_HEAL_POWDER:
+- Price: 45
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 27
+- Battle Stats:
+  - Cure Inflict: 63
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7168
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 251
+  - Friendship2: 251
+  - Friendship3: 246
+  - field_1F: 0
+  - field_20: 0
+ITEM_REVIVAL_HERB:
+- Price: 280
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 15
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 1
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7168
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 255
+  - PPGain: 0
+  - Friendship1: 241
+  - Friendship2: 241
+  - Friendship3: 236
+  - field_1F: 0
+  - field_20: 0
+ITEM_ETHER:
+- Price: 120
+- Held Effect: 0
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 41
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 1
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 10
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MAX_ETHER:
+- Price: 200
+- Held Effect: 0
+- Held Argument: 255
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 42
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 1
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 127
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ELIXIR:
+- Price: 300
+- Held Effect: 0
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 43
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 2
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 10
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MAX_ELIXIR:
+- Price: 450
+- Held Effect: 0
+- Held Argument: 255
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 50
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 2
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 127
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LAVA_COOKIE:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 28
+- Battle Stats:
+  - Cure Inflict: 63
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BERRY_JUICE:
+- Price: 10
+- Held Effect: 1
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 7
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 20
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SACRED_ASH:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 20
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 3
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 255
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HP_UP:
+- Price: 980
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 51
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7176
+  - EV HP: 10
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 5
+  - Friendship2: 3
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_PROTEIN:
+- Price: 980
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 52
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7184
+  - EV HP: 0
+  - EVATK: 10
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 5
+  - Friendship2: 3
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_IRON:
+- Price: 980
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 53
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7200
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 10
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 5
+  - Friendship2: 3
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_CARBOS:
+- Price: 980
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 56
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7232
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 10
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 5
+  - Friendship2: 3
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_CALCIUM:
+- Price: 980
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 54
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7296
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 10
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 5
+  - Friendship2: 3
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_RARE_CANDY:
+- Price: 480
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 70
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 5
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7168
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 5
+  - Friendship2: 3
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_PP_UP:
+- Price: 980
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 63
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 64
+  - Function Flags: 7168
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 5
+  - Friendship2: 3
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_ZINC:
+- Price: 980
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 55
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7424
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 10
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 5
+  - Friendship2: 3
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_PP_MAX:
+- Price: 980
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 64
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 128
+  - Function Flags: 7168
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 5
+  - Friendship2: 3
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_OLD_GATEAU:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 29
+- Battle Stats:
+  - Cure Inflict: 63
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GUARD_SPEC:
+- Price: 70
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 4127
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 7
+- Battle Stats:
+  - Cure Inflict: 128
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 3072
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 1
+  - Friendship2: 1
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DIRE_HIT:
+- Price: 65
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 4127
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 6
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 16
+  - Function Flags: 3072
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 1
+  - Friendship2: 1
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_ATTACK:
+- Price: 50
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 4127
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 16
+      - 0
+      - 0
+      - 0
+  - Function Flags: 3072
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 1
+  - Friendship2: 1
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_DEFEND:
+- Price: 55
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 4127
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 1
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 1
+      - 0
+      - 0
+  - Function Flags: 3072
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 1
+  - Friendship2: 1
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SPEED:
+- Price: 35
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 4127
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 2
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 16
+      - 0
+  - Function Flags: 3072
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 1
+  - Friendship2: 1
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_ACCURACY:
+- Price: 95
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 4127
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 5
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 1
+  - Function Flags: 3072
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 1
+  - Friendship2: 1
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SPECIAL:
+- Price: 35
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 4127
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 3
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 16
+      - 0
+      - 0
+  - Function Flags: 3072
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 1
+  - Friendship2: 1
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SP_DEF:
+- Price: 35
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 4127
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 4
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 1
+      - 0
+  - Function Flags: 3072
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 1
+  - Friendship2: 1
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POKé_DOLL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 4127
+- Effect Field: 0
+- Effect Battle: 3
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 8
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FLUFFY_TAIL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 4127
+- Effect Field: 0
+- Effect Battle: 3
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 9
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLUE_FLUTE:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 21
+- Battle Stats:
+  - Cure Inflict: 1
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_YELLOW_FLUTE:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 75
+- Battle Stats:
+  - Cure Inflict: 32
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RED_FLUTE:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 51
+- Battle Stats:
+  - Cure Inflict: 64
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLACK_FLUTE:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 20
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WHITE_FLUTE:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 74
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SHOAL_SALT:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 63
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SHOAL_SHELL:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 64
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RED_SHARD:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 52
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLUE_SHARD:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 22
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_YELLOW_SHARD:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 76
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GREEN_SHARD:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 33
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SUPER_REPEL:
+- Price: 50
+- Held Effect: 0
+- Held Argument: 200
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 19
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 70
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MAX_REPEL:
+- Price: 70
+- Held Effect: 0
+- Held Argument: 250
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 19
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 39
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ESCAPE_ROPE:
+- Price: 55
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 21
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 30
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_REPEL:
+- Price: 35
+- Held Effect: 0
+- Held Argument: 100
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 19
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 60
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SUN_STONE:
+- Price: 210
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 20
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 69
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 8
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MOON_STONE:
+- Price: 210
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 20
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 40
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 8
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FIRE_STONE:
+- Price: 210
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 20
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 31
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 8
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_THUNDERSTONE:
+- Price: 210
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 20
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 71
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 8
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WATER_STONE:
+- Price: 210
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 20
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 73
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 8
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LEAF_STONE:
+- Price: 210
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 20
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 38
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 8
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TINYMUSHROOM:
+- Price: 50
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 72
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BIG_MUSHROOM:
+- Price: 500
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 17
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PEARL:
+- Price: 140
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 46
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BIG_PEARL:
+- Price: 750
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 19
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_STARDUST:
+- Price: 200
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 67
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_STAR_PIECE:
+- Price: 980
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 68
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_NUGGET:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 41
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HEART_SCALE:
+- Price: 10
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 35
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HONEY:
+- Price: 10
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 14
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 37
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GROWTH_MULCH:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 34
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DAMP_MULCH:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 26
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_STABLE_MULCH:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 66
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GOOEY_MULCH:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 32
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ROOT_FOSSIL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 100
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 61
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CLAW_FOSSIL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 100
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 23
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HELIX_FOSSIL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 100
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 36
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DOME_FOSSIL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 100
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 28
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_OLD_AMBER:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 100
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 43
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ARMOR_FOSSIL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 100
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 15
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SKULL_FOSSIL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 100
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 65
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RARE_BONE:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 100
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 50
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SHINY_STONE:
+- Price: 210
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 80
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 20
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 62
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 8
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DUSK_STONE:
+- Price: 210
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 80
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 20
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 29
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 8
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DAWN_STONE:
+- Price: 210
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 80
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 20
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 27
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 8
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_OVAL_STONE:
+- Price: 210
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 80
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 20
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 44
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 8
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ODD_KEYSTONE:
+- Price: 210
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 80
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 42
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GRISEOUS_ORB:
+- Price: 1000
+- Held Effect: 2
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 60
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 54
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_0:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_1:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_2:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DOUSE_DRIVE:
+- Price: 100
+- Held Effect: 3
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 25
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SHOCK_DRIVE:
+- Price: 100
+- Held Effect: 3
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 121
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BURN_DRIVE:
+- Price: 100
+- Held Effect: 3
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 12
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CHILL_DRIVE:
+- Price: 100
+- Held Effect: 3
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 15
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_3:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_4:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 1
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_5:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 2
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_6:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 3
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_7:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 4
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_8:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 5
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_9:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_10:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 6
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_11:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 7
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_12:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 8
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_13:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 9
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_14:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 10
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_15:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 11
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_16:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 12
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SWEET_HEART:
+- Price: 10
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 8
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7172
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 20
+  - PPGain: 0
+  - Friendship1: 1
+  - Friendship2: 1
+  - Friendship3: 1
+  - field_1F: 0
+  - field_20: 0
+ITEM_ADAMANT_ORB:
+- Price: 1000
+- Held Effect: 3
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 60
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 1
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LUSTROUS_ORB:
+- Price: 1000
+- Held Effect: 4
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 60
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 74
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GREET_MAIL:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FAVORED_MAIL:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 1
+- Battle Stats:
+  - Cure Inflict: 1
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RSVP_MAIL:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 2
+- Battle Stats:
+  - Cure Inflict: 2
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_THANKS_MAIL:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 3
+- Battle Stats:
+  - Cure Inflict: 3
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_INQUIRY_MAIL:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 4
+- Battle Stats:
+  - Cure Inflict: 4
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LIKE_MAIL:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 5
+- Battle Stats:
+  - Cure Inflict: 5
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_REPLY_MAIL:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 6
+- Battle Stats:
+  - Cure Inflict: 6
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BRIDGEMAIL_S:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 7
+- Battle Stats:
+  - Cure Inflict: 7
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BRIDGEMAIL_D:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 8
+- Battle Stats:
+  - Cure Inflict: 8
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BRIDGEMAIL_T:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 9
+- Battle Stats:
+  - Cure Inflict: 9
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BRIDGEMAIL_V:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 10
+- Battle Stats:
+  - Cure Inflict: 10
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BRIDGEMAIL_M:
+- Price: 5
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 7
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 5
+- Consumable: 0
+- Sort Index: 11
+- Battle Stats:
+  - Cure Inflict: 11
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CHERI_BERRY:
+- Price: 2
+- Held Effect: 5
+- Held Argument: 0
+- Natural Gift Effect: 1
+- Fling Effect: 1
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 16777
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 16
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CHESTO_BERRY:
+- Price: 2
+- Held Effect: 6
+- Held Argument: 0
+- Natural Gift Effect: 2
+- Fling Effect: 2
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 16778
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 1
+- Battle Stats:
+  - Cure Inflict: 1
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PECHA_BERRY:
+- Price: 2
+- Held Effect: 7
+- Held Argument: 0
+- Natural Gift Effect: 3
+- Fling Effect: 3
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 16780
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 2
+- Battle Stats:
+  - Cure Inflict: 2
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RAWST_BERRY:
+- Price: 2
+- Held Effect: 8
+- Held Argument: 0
+- Natural Gift Effect: 4
+- Fling Effect: 4
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 16779
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 3
+- Battle Stats:
+  - Cure Inflict: 4
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ASPEAR_BERRY:
+- Price: 2
+- Held Effect: 9
+- Held Argument: 0
+- Natural Gift Effect: 5
+- Fling Effect: 5
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 16782
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 4
+- Battle Stats:
+  - Cure Inflict: 8
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LEPPA_BERRY:
+- Price: 2
+- Held Effect: 10
+- Held Argument: 10
+- Natural Gift Effect: 6
+- Fling Effect: 6
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 8577
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 5
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 1
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 10
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ORAN_BERRY:
+- Price: 2
+- Held Effect: 1
+- Held Argument: 10
+- Natural Gift Effect: 7
+- Fling Effect: 7
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 8579
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 6
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 10
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PERSIM_BERRY:
+- Price: 2
+- Held Effect: 11
+- Held Argument: 0
+- Natural Gift Effect: 8
+- Fling Effect: 8
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 16772
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 7
+- Battle Stats:
+  - Cure Inflict: 32
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LUM_BERRY:
+- Price: 2
+- Held Effect: 12
+- Held Argument: 0
+- Natural Gift Effect: 9
+- Fling Effect: 9
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 16770
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 8
+- Battle Stats:
+  - Cure Inflict: 63
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SITRUS_BERRY:
+- Price: 2
+- Held Effect: 13
+- Held Argument: 25
+- Natural Gift Effect: 10
+- Fling Effect: 10
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 8589
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 9
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 253
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FIGY_BERRY:
+- Price: 2
+- Held Effect: 14
+- Held Argument: 8
+- Natural Gift Effect: 11
+- Fling Effect: 11
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 390
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 10
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WIKI_BERRY:
+- Price: 2
+- Held Effect: 15
+- Held Argument: 8
+- Natural Gift Effect: 12
+- Fling Effect: 12
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 389
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 11
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MAGO_BERRY:
+- Price: 2
+- Held Effect: 16
+- Held Argument: 8
+- Natural Gift Effect: 13
+- Fling Effect: 13
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 391
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 12
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_AGUAV_BERRY:
+- Price: 2
+- Held Effect: 17
+- Held Argument: 8
+- Natural Gift Effect: 14
+- Fling Effect: 14
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 399
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 13
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_IAPAPA_BERRY:
+- Price: 2
+- Held Effect: 18
+- Held Argument: 8
+- Natural Gift Effect: 15
+- Fling Effect: 15
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 400
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 14
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RAZZ_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 392
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 50
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLUK_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 393
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 51
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_NANAB_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 394
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 52
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WEPEAR_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 396
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 53
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PINAP_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 395
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 54
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POMEG_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 398
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 15
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7176
+  - EV HP: 246
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 10
+  - Friendship2: 5
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_KELPSY_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 385
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 16
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7184
+  - EV HP: 0
+  - EVATK: 246
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 10
+  - Friendship2: 5
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_QUALOT_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 387
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 17
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7200
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 246
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 10
+  - Friendship2: 5
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_HONDEW_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 388
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 18
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7296
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 246
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 10
+  - Friendship2: 5
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_GREPA_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 386
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 19
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7424
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 246
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 10
+  - Friendship2: 5
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_TAMATO_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 397
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 20
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7232
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 246
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 10
+  - Friendship2: 5
+  - Friendship3: 2
+  - field_1F: 0
+  - field_20: 0
+ITEM_CORNN_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 390
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 55
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MAGOST_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 389
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 56
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RABUTA_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 391
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 57
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_NOMEL_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 399
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 58
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SPELON_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 400
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 59
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PAMTRE_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 70
+- Packed: 392
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 60
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WATMEL_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 393
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 61
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DURIN_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 394
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 62
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BELUE_BERRY:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 396
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 63
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_OCCA_BERRY:
+- Price: 2
+- Held Effect: 19
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 393
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 21
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PASSHO_BERRY:
+- Price: 2
+- Held Effect: 20
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 394
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 22
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WACAN_BERRY:
+- Price: 2
+- Held Effect: 21
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 396
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 23
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RINDO_BERRY:
+- Price: 2
+- Held Effect: 22
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 395
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 24
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_YACHE_BERRY:
+- Price: 2
+- Held Effect: 23
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 398
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 25
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CHOPLE_BERRY:
+- Price: 2
+- Held Effect: 24
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 385
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 26
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_KEBIA_BERRY:
+- Price: 2
+- Held Effect: 25
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 387
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 27
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SHUCA_BERRY:
+- Price: 2
+- Held Effect: 26
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 388
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 28
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_COBA_BERRY:
+- Price: 2
+- Held Effect: 27
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 386
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 29
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PAYAPA_BERRY:
+- Price: 2
+- Held Effect: 28
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 397
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 30
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TANGA_BERRY:
+- Price: 2
+- Held Effect: 29
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 390
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 31
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CHARTI_BERRY:
+- Price: 2
+- Held Effect: 30
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 389
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 32
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_KASIB_BERRY:
+- Price: 2
+- Held Effect: 31
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 391
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 33
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HABAN_BERRY:
+- Price: 2
+- Held Effect: 32
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 399
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 34
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_COLBUR_BERRY:
+- Price: 2
+- Held Effect: 33
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 400
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 35
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BABIRI_BERRY:
+- Price: 2
+- Held Effect: 34
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 392
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 36
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CHILAN_BERRY:
+- Price: 2
+- Held Effect: 35
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 60
+- Packed: 384
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 37
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LIECHI_BERRY:
+- Price: 2
+- Held Effect: 36
+- Held Argument: 4
+- Natural Gift Effect: 16
+- Fling Effect: 16
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 395
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 38
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GANLON_BERRY:
+- Price: 2
+- Held Effect: 37
+- Held Argument: 4
+- Natural Gift Effect: 17
+- Fling Effect: 17
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 398
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 39
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SALAC_BERRY:
+- Price: 2
+- Held Effect: 38
+- Held Argument: 4
+- Natural Gift Effect: 18
+- Fling Effect: 18
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 385
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 40
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PETAYA_BERRY:
+- Price: 2
+- Held Effect: 39
+- Held Argument: 4
+- Natural Gift Effect: 19
+- Fling Effect: 19
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 387
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 41
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_APICOT_BERRY:
+- Price: 2
+- Held Effect: 40
+- Held Argument: 4
+- Natural Gift Effect: 20
+- Fling Effect: 20
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 388
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 42
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LANSAT_BERRY:
+- Price: 2
+- Held Effect: 41
+- Held Argument: 4
+- Natural Gift Effect: 21
+- Fling Effect: 21
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 386
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 43
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_STARF_BERRY:
+- Price: 2
+- Held Effect: 42
+- Held Argument: 4
+- Natural Gift Effect: 22
+- Fling Effect: 22
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 397
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 44
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ENIGMA_BERRY:
+- Price: 2
+- Held Effect: 43
+- Held Argument: 4
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 390
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 45
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MICLE_BERRY:
+- Price: 2
+- Held Effect: 44
+- Held Argument: 4
+- Natural Gift Effect: 23
+- Fling Effect: 23
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 389
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 46
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CUSTAP_BERRY:
+- Price: 2
+- Held Effect: 45
+- Held Argument: 4
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 391
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 47
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_JABOCA_BERRY:
+- Price: 2
+- Held Effect: 46
+- Held Argument: 8
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 399
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 48
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ROWAP_BERRY:
+- Price: 2
+- Held Effect: 47
+- Held Argument: 8
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 80
+- Packed: 400
+- Effect Field: 8
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 1
+- Sort Index: 49
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BRIGHTPOWDER:
+- Price: 1
+- Held Effect: 48
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 10
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WHITE_HERB:
+- Price: 10
+- Held Effect: 49
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 24
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 144
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MACHO_BRACE:
+- Price: 300
+- Held Effect: 50
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 60
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 75
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_EXP_SHARE:
+- Price: 300
+- Held Effect: 51
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 39
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_QUICK_CLAW:
+- Price: 10
+- Held Effect: 52
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 80
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 104
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SOOTHE_BELL:
+- Price: 10
+- Held Effect: 53
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 128
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MENTAL_HERB:
+- Price: 10
+- Held Effect: 54
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 25
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 79
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CHOICE_BAND:
+- Price: 10
+- Held Effect: 55
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 16
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_KINGS_ROCK:
+- Price: 10
+- Held Effect: 56
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 26
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 64
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SILVERPOWDER:
+- Price: 10
+- Held Effect: 57
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 123
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_AMULET_COIN:
+- Price: 10
+- Held Effect: 58
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 3
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CLEANSE_TAG:
+- Price: 20
+- Held Effect: 59
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 19
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SOUL_DEW:
+- Price: 20
+- Held Effect: 60
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 129
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DEEPSEATOOTH:
+- Price: 20
+- Held Effect: 61
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 23
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DEEPSEASCALE:
+- Price: 20
+- Held Effect: 62
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 22
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SMOKE_BALL:
+- Price: 20
+- Held Effect: 63
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 125
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_EVERSTONE:
+- Price: 20
+- Held Effect: 64
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 36
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FOCUS_BAND:
+- Price: 20
+- Held Effect: 65
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 47
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LUCKY_EGG:
+- Price: 20
+- Held Effect: 66
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 72
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SCOPE_LENS:
+- Price: 20
+- Held Effect: 67
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 116
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_METAL_COAT:
+- Price: 10
+- Held Effect: 68
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 80
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LEFTOVERS:
+- Price: 20
+- Held Effect: 69
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 67
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DRAGON_SCALE:
+- Price: 210
+- Held Effect: 70
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 29
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LIGHT_BALL:
+- Price: 10
+- Held Effect: 71
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 27
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 69
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SOFT_SAND:
+- Price: 10
+- Held Effect: 72
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 127
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HARD_STONE:
+- Price: 10
+- Held Effect: 73
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 100
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 56
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MIRACLE_SEED:
+- Price: 10
+- Held Effect: 74
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 84
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLACKGLASSES:
+- Price: 10
+- Held Effect: 75
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 7
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLACK_BELT:
+- Price: 10
+- Held Effect: 76
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 6
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MAGNET:
+- Price: 10
+- Held Effect: 77
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 77
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MYSTIC_WATER:
+- Price: 10
+- Held Effect: 78
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 86
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SHARP_BEAK:
+- Price: 10
+- Held Effect: 79
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 50
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 118
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POISON_BARB:
+- Price: 10
+- Held Effect: 80
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 28
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 91
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_NEVERMELTICE:
+- Price: 10
+- Held Effect: 81
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 87
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SPELL_TAG:
+- Price: 10
+- Held Effect: 82
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 130
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TWISTEDSPOON:
+- Price: 10
+- Held Effect: 83
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 140
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CHARCOAL:
+- Price: 980
+- Held Effect: 84
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 14
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DRAGON_FANG:
+- Price: 10
+- Held Effect: 85
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 27
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SILK_SCARF:
+- Price: 10
+- Held Effect: 86
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 122
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UPGRADE:
+- Price: 210
+- Held Effect: 87
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 141
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SHELL_BELL:
+- Price: 20
+- Held Effect: 88
+- Held Argument: 8
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 120
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SEA_INCENSE:
+- Price: 960
+- Held Effect: 78
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 117
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LAX_INCENSE:
+- Price: 960
+- Held Effect: 48
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 66
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LUCKY_PUNCH:
+- Price: 1
+- Held Effect: 89
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 40
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 73
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_METAL_POWDER:
+- Price: 1
+- Held Effect: 90
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 81
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_THICK_CLUB:
+- Price: 50
+- Held Effect: 91
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 137
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_STICK:
+- Price: 20
+- Held Effect: 92
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 60
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 134
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RED_SCARF:
+- Price: 10
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 110
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLUE_SCARF:
+- Price: 10
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 9
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PINK_SCARF:
+- Price: 10
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 90
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GREEN_SCARF:
+- Price: 10
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 52
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_YELLOW_SCARF:
+- Price: 10
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 147
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WIDE_LENS:
+- Price: 20
+- Held Effect: 93
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 145
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MUSCLE_BAND:
+- Price: 20
+- Held Effect: 94
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 85
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WISE_GLASSES:
+- Price: 20
+- Held Effect: 95
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 146
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_EXPERT_BELT:
+- Price: 20
+- Held Effect: 96
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 38
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LIGHT_CLAY:
+- Price: 20
+- Held Effect: 97
+- Held Argument: 3
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 70
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LIFE_ORB:
+- Price: 20
+- Held Effect: 98
+- Held Argument: 30
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 68
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POWER_HERB:
+- Price: 10
+- Held Effect: 99
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 97
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TOXIC_ORB:
+- Price: 10
+- Held Effect: 100
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 29
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 138
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FLAME_ORB:
+- Price: 10
+- Held Effect: 101
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 30
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 43
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_QUICK_POWDER:
+- Price: 1
+- Held Effect: 102
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 105
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FOCUS_SASH:
+- Price: 20
+- Held Effect: 103
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 48
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ZOOM_LENS:
+- Price: 20
+- Held Effect: 104
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 149
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_METRONOME:
+- Price: 20
+- Held Effect: 105
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 82
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_IRON_BALL:
+- Price: 20
+- Held Effect: 106
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 130
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 62
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LAGGING_TAIL:
+- Price: 20
+- Held Effect: 107
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 65
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DESTINY_KNOT:
+- Price: 20
+- Held Effect: 108
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 24
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLACK_SLUDGE:
+- Price: 20
+- Held Effect: 109
+- Held Argument: 16
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 8
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ICY_ROCK:
+- Price: 20
+- Held Effect: 110
+- Held Argument: 3
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 40
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 60
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SMOOTH_ROCK:
+- Price: 20
+- Held Effect: 111
+- Held Argument: 3
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 126
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HEAT_ROCK:
+- Price: 20
+- Held Effect: 112
+- Held Argument: 3
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 60
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 57
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DAMP_ROCK:
+- Price: 20
+- Held Effect: 113
+- Held Argument: 3
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 60
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 20
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GRIP_CLAW:
+- Price: 20
+- Held Effect: 114
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 53
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CHOICE_SCARF:
+- Price: 20
+- Held Effect: 115
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 17
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_STICKY_BARB:
+- Price: 20
+- Held Effect: 116
+- Held Argument: 8
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 80
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 135
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POWER_BRACER:
+- Price: 300
+- Held Effect: 117
+- Held Argument: 4
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 96
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POWER_BELT:
+- Price: 300
+- Held Effect: 118
+- Held Argument: 4
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 95
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POWER_LENS:
+- Price: 300
+- Held Effect: 119
+- Held Argument: 4
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 98
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POWER_BAND:
+- Price: 300
+- Held Effect: 120
+- Held Argument: 4
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 94
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POWER_ANKLET:
+- Price: 300
+- Held Effect: 121
+- Held Argument: 4
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 93
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POWER_WEIGHT:
+- Price: 300
+- Held Effect: 122
+- Held Argument: 4
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 70
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 99
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SHED_SHELL:
+- Price: 10
+- Held Effect: 123
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 119
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BIG_ROOT:
+- Price: 20
+- Held Effect: 124
+- Held Argument: 30
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 4
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CHOICE_SPECS:
+- Price: 20
+- Held Effect: 125
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 18
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FLAME_PLATE:
+- Price: 100
+- Held Effect: 126
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 44
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SPLASH_PLATE:
+- Price: 100
+- Held Effect: 127
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 131
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ZAP_PLATE:
+- Price: 100
+- Held Effect: 128
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 148
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MEADOW_PLATE:
+- Price: 100
+- Held Effect: 129
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 78
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ICICLE_PLATE:
+- Price: 100
+- Held Effect: 130
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 59
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FIST_PLATE:
+- Price: 100
+- Held Effect: 131
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 42
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TOXIC_PLATE:
+- Price: 100
+- Held Effect: 132
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 139
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_EARTH_PLATE:
+- Price: 100
+- Held Effect: 133
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 32
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SKY_PLATE:
+- Price: 100
+- Held Effect: 134
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 124
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MIND_PLATE:
+- Price: 100
+- Held Effect: 135
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 83
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_INSECT_PLATE:
+- Price: 100
+- Held Effect: 136
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 61
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_STONE_PLATE:
+- Price: 100
+- Held Effect: 137
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 136
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SPOOKY_PLATE:
+- Price: 100
+- Held Effect: 138
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 132
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DRACO_PLATE:
+- Price: 100
+- Held Effect: 139
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 26
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DREAD_PLATE:
+- Price: 100
+- Held Effect: 140
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 30
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_IRON_PLATE:
+- Price: 100
+- Held Effect: 141
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 90
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 63
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ODD_INCENSE:
+- Price: 960
+- Held Effect: 83
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 89
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ROCK_INCENSE:
+- Price: 960
+- Held Effect: 73
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 113
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FULL_INCENSE:
+- Price: 960
+- Held Effect: 107
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 49
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WAVE_INCENSE:
+- Price: 960
+- Held Effect: 78
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 143
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ROSE_INCENSE:
+- Price: 960
+- Held Effect: 74
+- Held Argument: 20
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 115
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LUCK_INCENSE:
+- Price: 960
+- Held Effect: 58
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 71
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PURE_INCENSE:
+- Price: 960
+- Held Effect: 59
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 103
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PROTECTOR:
+- Price: 210
+- Held Effect: 142
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 80
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 101
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ELECTIRIZER:
+- Price: 210
+- Held Effect: 143
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 80
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 34
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MAGMARIZER:
+- Price: 210
+- Held Effect: 144
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 80
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 76
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DUBIOUS_DISC:
+- Price: 210
+- Held Effect: 145
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 50
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 31
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_REAPER_CLOTH:
+- Price: 210
+- Held Effect: 146
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 108
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RAZOR_CLAW:
+- Price: 210
+- Held Effect: 67
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 80
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 106
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RAZOR_FANG:
+- Price: 210
+- Held Effect: 56
+- Held Argument: 10
+- Natural Gift Effect: 0
+- Fling Effect: 26
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 107
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM01:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM02:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 1
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM03:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 2
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM04:
+- Price: 8000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 3
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM05:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 4
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM06:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 5
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM07:
+- Price: 5000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 6
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM08:
+- Price: 8000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 7
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM09:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 8
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM10:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 9
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM11:
+- Price: 5000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 10
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM12:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 11
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM13:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 12
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM14:
+- Price: 7000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 13
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM15:
+- Price: 9000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 14
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM16:
+- Price: 3000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 15
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM17:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 16
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM18:
+- Price: 5000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 17
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM19:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 18
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM20:
+- Price: 3000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 19
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM21:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 20
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM22:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 21
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM23:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 22
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM24:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 23
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM25:
+- Price: 7000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 24
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM26:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 25
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM27:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 26
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM28:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 27
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM29:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 28
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM30:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 29
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM31:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 30
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM32:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 31
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM33:
+- Price: 3000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 32
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM34:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 33
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM35:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 34
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM36:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 35
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM37:
+- Price: 5000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 36
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM38:
+- Price: 7000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 37
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM39:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 38
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM40:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 39
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM41:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 40
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM42:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 41
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM43:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 42
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM44:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 43
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM45:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 44
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM46:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 45
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM47:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 46
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM48:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 47
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM49:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 48
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM50:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 49
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM51:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 50
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM52:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 51
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM53:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 52
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM54:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 53
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM55:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 54
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM56:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 55
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM57:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 56
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM58:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 57
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM59:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 58
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM60:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 59
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM61:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 60
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM62:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 61
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM63:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 62
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM64:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 63
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM65:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 64
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM66:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 65
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM67:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 66
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM68:
+- Price: 9000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 67
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM69:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 68
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM70:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 69
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM71:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 70
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM72:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 71
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM73:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 72
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM74:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 73
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM75:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 74
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM76:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 75
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM77:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 76
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM78:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 77
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM79:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 78
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM80:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 79
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM81:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 80
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM82:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 81
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM83:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 82
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM84:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 83
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM85:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 84
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM86:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 85
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM87:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 86
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM88:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 87
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM89:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 88
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM90:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 89
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM91:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 90
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM92:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 91
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HM01:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 95
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HM02:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 96
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HM03:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 97
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HM04:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 98
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HM05:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 99
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HM06:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 100
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_17:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 13
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_18:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 0
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 14
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_EXPLORER_KIT:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LOOT_SACK:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RULE_BOOK:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POKé_RADAR:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POINT_CARD:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_JOURNAL:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SEAL_CASE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FASHION_CASE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SEAL_BAG:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PAL_PAD:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 10
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 7
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WORKS_KEY:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_OLD_CHARM:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GALACTIC_KEY:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RED_CHAIN:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TOWN_MAP:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 2
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 3
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_VS_SEEKER:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_COIN_CASE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_OLD_ROD:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GOOD_ROD:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 1
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SUPER_ROD:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 18
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 1
+- Battle Stats:
+  - Cure Inflict: 2
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SPRAYDUCK:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POFFIN_CASE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BICYCLE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 4
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SUITE_KEY:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_OAKS_LETTER:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LUNAR_WING:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 22
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MEMBER_CARD:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_AZURE_FLUTE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SS_TICKET:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CONTEST_PASS:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MAGMA_STONE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 23
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PARCEL:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_COUPON_1:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_COUPON_2:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_COUPON_3:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_STORAGE_KEY:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SECRETPOTION:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_VS_RECORDER:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 23
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 6
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GRACIDEA:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 24
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 21
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SECRET_KEY:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_APRICORN_BOX:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNOWN_REPORT:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BERRY_POTS:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DOWSING_MCHN:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 25
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 2
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLUE_CARD:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SLOWPOKETAIL:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CLEAR_BELL:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CARD_KEY:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BASEMENT_KEY:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SQUIRTBOTTLE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RED_SCALE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LOST_ITEM:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PASS:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MACHINE_PART:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SILVER_WING:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RAINBOW_WING:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MYSTERY_EGG:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RED_APRICORN:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLU_APRICORN:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_YLW_APRICORN:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GRN_APRICORN:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PNK_APRICORN:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WHT_APRICORN:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLK_APRICORN:
+- Price: 2
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FAST_BALL:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 16
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LEVEL_BALL:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 17
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LURE_BALL:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 18
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HEAVY_BALL:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 19
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LOVE_BALL:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 20
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FRIEND_BALL:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 21
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MOON_BALL:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 22
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SPORT_BALL:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 23
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PARK_BALL:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PHOTO_ALBUM:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GB_SOUNDS:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TIDAL_BELL:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RAGECANDYBAR:
+- Price: 30
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 8351
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 40
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 4
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 20
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_01:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_02:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_03:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_04:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_05:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_06:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_07:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_08:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_09:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_10:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_11:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_12:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_13:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_14:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_15:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_16:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_17:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_18:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_19:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_20:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_21:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_22:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_23:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_24:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_25:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_26:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DATA_CARD_27:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_JADE_ORB:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LOCK_CAPSULE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RED_ORB:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BLUE_ORB:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ENIGMA_STONE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PRISM_SCALE:
+- Price: 50
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 100
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_EVIOLITE:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 40
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 37
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FLOAT_STONE:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 45
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ROCKY_HELMET:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 6
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 60
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 114
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_AIR_BALLOON:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 2
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RED_CARD:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 109
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RING_TARGET:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 10
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 111
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BINDING_BAND:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 0
+- Sort Index: 5
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ABSORB_BULB:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 0
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CELL_BATTERY:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 13
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_EJECT_BUTTON:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 33
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FIRE_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 41
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_WATER_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 142
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ELECTRIC_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 35
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GRASS_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 51
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ICE_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 58
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FIGHTING_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 40
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POISON_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 92
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GROUND_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 55
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_FLYING_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 46
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PSYCHIC_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 102
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BUG_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 11
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ROCK_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 112
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GHOST_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 50
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DRAGON_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 28
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DARK_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 21
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_STEEL_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 133
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_NORMAL_GEM:
+- Price: 20
+- Held Effect: 147
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 1
+- Consumable: 1
+- Sort Index: 88
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_HEALTH_WING:
+- Price: 300
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 20
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 57
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7688
+  - EV HP: 1
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 3
+  - Friendship2: 2
+  - Friendship3: 1
+  - field_1F: 0
+  - field_20: 0
+ITEM_MUSCLE_WING:
+- Price: 300
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 20
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 58
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7696
+  - EV HP: 0
+  - EVATK: 1
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 3
+  - Friendship2: 2
+  - Friendship3: 1
+  - field_1F: 0
+  - field_20: 0
+ITEM_RESIST_WING:
+- Price: 300
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 20
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 59
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7712
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 1
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 3
+  - Friendship2: 2
+  - Friendship3: 1
+  - field_1F: 0
+  - field_20: 0
+ITEM_GENIUS_WING:
+- Price: 300
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 20
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 60
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7808
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 1
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 3
+  - Friendship2: 2
+  - Friendship3: 1
+  - field_1F: 0
+  - field_20: 0
+ITEM_CLEVER_WING:
+- Price: 300
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 20
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 61
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7936
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 1
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 3
+  - Friendship2: 2
+  - Friendship3: 1
+  - field_1F: 0
+  - field_20: 0
+ITEM_SWIFT_WING:
+- Price: 300
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 20
+- Natural Gift Power: 0
+- Packed: 159
+- Effect Field: 1
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 62
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 7744
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 1
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 3
+  - Friendship2: 2
+  - Friendship3: 1
+  - field_1F: 0
+  - field_20: 0
+ITEM_PRETTY_WING:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 20
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 49
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_COVER_FOSSIL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 100
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 25
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PLUME_FOSSIL:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 100
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 48
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LIBERTY_PASS:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PASS_ORB:
+- Price: 20
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 45
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DREAM_BALL:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 2079
+- Effect Field: 0
+- Effect Battle: 1
+- Has Battle Stats: 0
+- Item Class: 4
+- Consumable: 0
+- Sort Index: 16
+- Battle Stats:
+  - Cure Inflict: 24
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_POKé_TOY:
+- Price: 100
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 4127
+- Effect Field: 0
+- Effect Battle: 3
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 10
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PROP_CASE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 8
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DRAGON_SKULL:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BALMMUSHROOM:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 16
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_BIG_NUGGET:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 18
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PEARL_STRING:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 47
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_COMET_SHARD:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 24
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RELIC_COPPER:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 54
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RELIC_SILVER:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 57
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RELIC_GOLD:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 56
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RELIC_VASE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 59
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RELIC_BAND:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 53
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RELIC_STATUE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 58
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RELIC_CROWN:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 2
+- Consumable: 0
+- Sort Index: 55
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_CASTELIACONE:
+- Price: 10
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 30
+- Natural Gift Power: 0
+- Packed: 16543
+- Effect Field: 1
+- Effect Battle: 2
+- Has Battle Stats: 1
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 30
+- Battle Stats:
+  - Cure Inflict: 63
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DIRE_HIT_2:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 32
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SPEED_2:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 32
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SPECIAL_2:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 32
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SP_DEF_2:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 2
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_DEFEND_2:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 2
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_ATTACK_2:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 32
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_ACCURACY_2:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 2
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SPEED_3:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 48
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SPECIAL_3:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 48
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SP_DEF_3:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 3
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_DEFEND_3:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 3
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_ATTACK_3:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 48
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_ACCURACY_3:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 3
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SPEED_6:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 96
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SPECIAL_6:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 96
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_SP_DEF_6:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 6
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_DEFEND_6:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 6
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_ATTACK_6:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 96
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_X_ACCURACY_6:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 6
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ABILITY_URGE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ITEM_DROP:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_ITEM_URGE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_RESET_URGE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DIRE_HIT_3:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 31
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 1
+- Item Class: 3
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 48
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_LIGHT_STONE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 9
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DARK_STONE:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 10
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM93:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 92
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM94:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 93
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_TM95:
+- Price: 1000
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 319
+- Effect Field: 6
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 94
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_XTRANSCEIVER:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 26
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 5
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_UNKNOWN_19:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GRAM_1:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GRAM_2:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GRAM_3:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 543
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 255
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_XTRANSCEIVER:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 26
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 5
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_MEDAL_BOX:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 27
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 4
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DNA_SPLICERS:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 28
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 11
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DNA_SPLICERS:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 29
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 11
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PERMIT:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 12
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_OVAL_CHARM:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 13
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_SHINY_CHARM:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 14
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_PLASMA_CARD:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 15
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_GRUBBY_HANKY:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 16
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_COLRESS_MCHN:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 17
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DROPPED_ITEM:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 18
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_DROPPED_ITEM:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 575
+- Effect Field: 0
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 19
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
+ITEM_REVEAL_GLASS:
+- Price: 0
+- Held Effect: 0
+- Held Argument: 0
+- Natural Gift Effect: 0
+- Fling Effect: 0
+- Fling Power: 0
+- Natural Gift Power: 0
+- Packed: 639
+- Effect Field: 30
+- Effect Battle: 0
+- Has Battle Stats: 0
+- Item Class: 0
+- Consumable: 0
+- Sort Index: 20
+- Battle Stats:
+  - Cure Inflict: 0
+  - Boost:
+      - 0
+      - 0
+      - 0
+      - 0
+  - Function Flags: 0
+  - EV HP: 0
+  - EVATK: 0
+  - EVDEF: 0
+  - EVSPE: 0
+  - EVSPA: 0
+  - EVSPD: 0
+  - HealAmount: 0
+  - PPGain: 0
+  - Friendship1: 0
+  - Friendship2: 0
+  - Friendship3: 0
+  - field_1F: 0
+  - field_20: 0
 };

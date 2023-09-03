@@ -1,0 +1,4 @@
+SPECIES_NONE:
+  - LEARNSET_END:
+    - MOVE: 0xFFFF
+    - LEVEL: 0xFFFF
