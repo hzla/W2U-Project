@@ -1,0 +1,2414 @@
+SPECIES_CHESPIN:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 16
+    - Target Species: SPECIES_QUILLADIN
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_QUILLADIN:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 36
+    - Target Species: SPECIES_CHESNAUGHT
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_CHESNAUGHT:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_FENNEKIN:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 16
+    - Target Species: SPECIES_BRAIXEN
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_BRAIXEN:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 36
+    - Target Species: SPECIES_DELPHOX
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_DELPHOX:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_FROAKIE:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 16
+    - Target Species: SPECIES_FROGADIER
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_FROGADIER:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 36
+    - Target Species: SPECIES_GRENINJA
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_GRENINJA:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_BUNNELBY:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 20
+    - Target Species: SPECIES_DIGGERSBY
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_DIGGERSBY:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_FLETCHLING:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 17
+    - Target Species: SPECIES_FLETCHINDER
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_FLETCHINDER:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 35
+    - Target Species: SPECIES_TALONFLAME
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_TALONFLAME:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_SCATTERBUG:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 9
+    - Target Species: SPECIES_SPEWPA
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_SPEWPA:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 12
+    - Target Species: SPECIES_VIVILLON
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_VIVILLON:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_LITLEO:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 35
+    - Target Species: SPECIES_PYROAR
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_PYROAR:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_FLABéBé:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 19
+    - Target Species: SPECIES_FLOETTE
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_FLOETTE:
+  - EVOLUTION_0:
+    - Method: METHOD_ITEM_USE
+    - Parameter: ITEM_SHINY_STONE
+    - Target Species: SPECIES_FLORGES
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_FLORGES:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_SKIDDO:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 32
+    - Target Species: SPECIES_GOGOAT
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_GOGOAT:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_PANCHAM:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 32
+    - Target Species: SPECIES_PANGORO
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_PANGORO:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_FURFROU:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_ESPURR:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 25
+    - Target Species: SPECIES_MEOWSTIC
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_MEOWSTIC:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_HONEDGE:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 35
+    - Target Species: SPECIES_DOUBLADE
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_DOUBLADE:
+  - EVOLUTION_0:
+    - Method: METHOD_ITEM_USE
+    - Parameter: ITEM_DUSK_STONE
+    - Target Species: SPECIES_AEGISLASH
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_AEGISLASH:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_SPRITZEE:
+  - EVOLUTION_0:
+    - Method: METHOD_TRADE_ITEM
+    - Parameter: ITEM_SACHET
+    - Target Species: SPECIES_AROMATISSE
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_AROMATISSE:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_SWIRLIX:
+  - EVOLUTION_0:
+    - Method: METHOD_TRADE_ITEM
+    - Parameter: ITEM_WHIPPED_DREAM
+    - Target Species: SPECIES_SLURPUFF
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_SLURPUFF:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_INKAY:
+  - EVOLUTION_0:
+    - Method: METHOD_TRADE
+    - Parameter: 0
+    - Target Species: SPECIES_MALAMAR
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_MALAMAR:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_BINACLE:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 39
+    - Target Species: SPECIES_BARBARACLE
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_BARBARACLE:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_SKRELP:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 48
+    - Target Species: SPECIES_DRAGALGE
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_DRAGALGE:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_CLAUNCHER:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 37
+    - Target Species: SPECIES_CLAWITZER
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_CLAWITZER:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_HELIOPTILE:
+  - EVOLUTION_0:
+    - Method: METHOD_ITEM_USE
+    - Parameter: ITEM_SUN_STONE
+    - Target Species: SPECIES_HELIOLISK
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_HELIOLISK:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_TYRUNT:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 39
+    - Target Species: SPECIES_TYRANTRUM
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_TYRANTRUM:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_AMAURA:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 39
+    - Target Species: SPECIES_AURORUS
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_AURORUS:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_SYLVEON:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_HAWLUCHA:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_DEDENNE:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_CARBINK:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_GOOMY:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 40
+    - Target Species: SPECIES_SLIGGOO
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_SLIGGOO:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 50
+    - Target Species: SPECIES_GOODRA
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_GOODRA:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_KLEFKI:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_PHANTUMP:
+  - EVOLUTION_0:
+    - Method: METHOD_TRADE
+    - Parameter: 0
+    - Target Species: SPECIES_TREVENANT
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_TREVENANT:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_PUMPKABOO:
+  - EVOLUTION_0:
+    - Method: METHOD_TRADE
+    - Parameter: 0
+    - Target Species: SPECIES_GOURGEIST
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_GOURGEIST:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_BERGMITE:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 37
+    - Target Species: SPECIES_AVALUGG
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_AVALUGG:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_NOIBAT:
+  - EVOLUTION_0:
+    - Method: METHOD_LEVELUP
+    - Parameter: 48
+    - Target Species: SPECIES_NOIVERN
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_NOIVERN:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_XERNEAS:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_YVELTAL:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_ZYGARDE:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_DIANCIE:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+
+SPECIES_HOOPA:
+  - EVOLUTION_0:
+    - Method: METHOD_NONE 
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_1:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_2:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_3:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_4:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_5:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_6:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+  - EVOLUTION_7:
+    - Method: METHOD_NONE  
+    - Parameter: 0 
+    - Target Species: SPECIES_NONE 
+

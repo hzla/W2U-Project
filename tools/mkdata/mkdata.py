@@ -61,6 +61,9 @@ def main():
                     defines |= flatten_dict(INCLUDE['DEFINE'])
 
         format_string = ''
+        tree = structure.values()
+        tree_flat = flatten_yaml_tree(tree)
+
         def add_field(size):
             nonlocal format_string
             match size:
@@ -78,8 +81,9 @@ def main():
                     format_string += 'I'
                 case _:
                     format_string += 'X'
-        
-        [add_field(e) for e in flatten_yaml_tree(structure.values())]
+
+        for e in tree_flat:
+            add_field(e)
 
     with Input.open('r') as IN_DATA, Output.open('wb') as OUT_DATA:
         IN_DATA_RAW = yaml.safe_load(IN_DATA)
