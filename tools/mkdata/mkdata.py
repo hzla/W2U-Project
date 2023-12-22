@@ -113,7 +113,6 @@ def main():
         
         IN_DATA_FLAT = flatten_yaml_tree(flatten_dict(IN_DATA_RAW[IN_DATA_RAW_KEYS[0]]).values())
         OUT_DATA_BUFFER = [resolve(item) for item in IN_DATA_FLAT]
-
         while len(format_string) != len(OUT_DATA_BUFFER):
             format_string = format_string[:-1]
 

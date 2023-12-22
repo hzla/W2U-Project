@@ -16,16 +16,15 @@ def main():
     Parser.add_argument('output', metavar='o', type=str)
     Arguments = Parser.parse_args()
     Input, Output = Path(Arguments.input), Path(Arguments.output)
-
+    print(Input.as_posix())
     if not Input.exists():
-        print(f'"{Arguments.type}.yml" does not exist. Exiting.')
+        print(f'"{Arguments.input}" does not exist. Exiting.')
         return 1
     
     defines = {}
     with Path(f'tools/mkdata/enum/species.yml').open('r') as INCLUDE_RAW:
         INCLUDE = yaml.safe_load(INCLUDE_RAW)
         defines |= flatten_dict(INCLUDE['DEFINE'])
-    # print(defines)
 
     with Input.open('r') as DATA:
         Encounters = yaml.safe_load(DATA)
@@ -45,7 +44,6 @@ def main():
                             continue
                         for Slot in Encounters[Key][Category][EncType]:
                             species = 0
-                            print(Slot)
                             if type(Encounters[Key][Category][EncType][Slot]['Species']) == str:
                                 if Encounters[Key][Category][EncType][Slot]['Species'] in defines.keys():
                                     species = defines[Encounters[Key][Category][EncType][Slot]['Species']]

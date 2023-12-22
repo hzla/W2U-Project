@@ -1,5 +1,6 @@
 INCLUDE:
   - enum/species.yml
+  - enum/evolution_methods.yml
 
 STRUCTURE:
   - EVOLUTION_0:
@@ -27,6 +28,10 @@ STRUCTURE:
     - Parameter: u16 
     - Target Species: u16 
   - EVOLUTION_6:
+    - Method: u16 
+    - Parameter: u16 
+    - Target Species: u16 
+  - EVOLUTION_7:
     - Method: u16 
     - Parameter: u16 
     - Target Species: u16 

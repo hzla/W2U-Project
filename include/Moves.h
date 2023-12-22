@@ -42,7 +42,7 @@
 #define TYPE_ICE              14
 #define TYPE_DRAGON           15
 #define TYPE_DARK             16
-#define TYPE_MYSTERY          17
+#define TYPE_FAIRY          17
 
 #define EFFECT_NO_SPECIAL_EFFECT              0
 #define EFFECT_STATUS_INFLICTING              1

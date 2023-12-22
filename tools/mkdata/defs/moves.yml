@@ -6,7 +6,7 @@ INCLUDE:
   - enum/btl_target.yml
   - enum/move_flags.yml
   - enum/pss.yml
-
+  - enum/status.yml
 STRUCTURE:
   - Type: u8
   - Quality: u8
