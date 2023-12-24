@@ -1,0 +1,48 @@
+CLASS: 38
+BATTLE_TYPE: 0
+ITEMS:
+  - 0
+  - 0
+  - 0
+  - 0
+AI: 135
+CAN_HEAL: 0
+REWARD_MONEY: 30
+REWARD_ITEM: 0
+PARTY:
+  - SPECIES: SPECIES_MUSHARNA
+    LEVEL: 40
+    FORM: 0
+    GENDER: 0
+    ABILITY: 1
+    DIFFICULTY_VALUE: 250
+    HELD_ITEM: 0
+    MOVES:
+      - 0
+      - 0
+      - 0
+      - 0
+  - SPECIES: SPECIES_MUSHARNA
+    LEVEL: 40
+    FORM: 0
+    GENDER: 0
+    ABILITY: 1
+    DIFFICULTY_VALUE: 250
+    HELD_ITEM: 0
+    MOVES:
+      - 0
+      - 0
+      - 0
+      - 0
+  - SPECIES: SPECIES_MUSHARNA
+    LEVEL: 40
+    FORM: 0
+    GENDER: 0
+    ABILITY: 1
+    DIFFICULTY_VALUE: 250
+    HELD_ITEM: 0
+    MOVES:
+      - 0
+      - 0
+      - 0
+      - 0  
