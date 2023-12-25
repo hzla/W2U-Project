@@ -58,13 +58,6 @@ include $(data_dir)/Makefile.mk
 
 $(project).nds: $(ARC_TARGETS) $(romfs)/patches/$(project).dll
 	@ echo "[+] Copying build NARCs..."
-	# cp $(build_dir)/system_text.arc $(romfs)/a/0/0/2
-	# cp $(build_dir)/pokegra_fb.arc $(romfs)/a/0/0/4
-	# cp $(build_dir)/pokegra_icons.arc $(romfs)/a/0/0/7
-	# cp $(build_dir)/battle_assets.arc $(romfs)/a/0/1/1
-	# cp $(build_dir)/ui_assets.arc $(romfs)/a/0/8/2
-	# cp $(build_dir)/ui_assets2.arc $(romfs)/a/1/2/5
-	# cp $(build_dir)/hall_of_fame_assets.arc $(romfs)/a/2/1/3
 
 	# $(knarc) -d $(build_dir)/Personal -u $(build_dir)/Personal.arc
 	# cp $(arc_dir)/pml/RegionalDex.bin $(build_dir)/Personal/Personal_00000826.bin
@@ -78,7 +71,7 @@ $(project).nds: $(ARC_TARGETS) $(romfs)/patches/$(project).dll
 	# cp $(build_dir)/Moves.arc $(romfs)/a/0/2/1
 	# cp $(build_dir)/Items.arc $(romfs)/a/0/2/4
 
-	cp $(src_dir)/type_chart.bin $(romfs)/type_chart.bin
+	cp $(data_dir)/type_chart.bin $(romfs)/type_chart.bin
 
 	@ echo "[+] Making $@..."
 	$(ndstool) -c $@ -9 $(exefs)/ARM9.bin -7 $(exefs)/ARM7.bin -9i $(exefs)/ARM9i.bin -7i $(exefs)/ARM7i.bin -y9 $(exefs)/ARM9OVT.bin -y7 $(exefs)/ARM7OVT.bin -d $(romfs) -y $(exefs)/overlay -t $(exefs)/banner.bin -h $(exefs)/header.bin

@@ -41,7 +41,7 @@ UI2_GRAPHICS_ROOT := $(data_dir)/graphics/ui_2
 # -------------------------------------------------------------------
 # Targets 
 # -------------------------------------------------------------------
-ARCS := $(ENCOUNTERS_ARC) $(TEXT_SYSTEM_ARC) $(TEXT_EVENTS_ARC) $(PML_ITEMS_ARC) $(PML_EVOLUTION_ARC) $(PML_PERSONAL_ARC) $(PML_LEARNSETS_ARC) $(PML_MOVES_ARC)
+ARCS := $(POKEGRA_ICONS_ARC) $(POKEGRA_SPRITES_ARC) $(ENCOUNTERS_ARC) $(TEXT_SYSTEM_ARC) $(TEXT_EVENTS_ARC) $(PML_ITEMS_ARC) $(PML_EVOLUTION_ARC) $(PML_PERSONAL_ARC) $(PML_LEARNSETS_ARC) $(PML_MOVES_ARC)
 ARC_TARGETS := $(patsubst %, $(romfs)%, $(ARCS))
 
 # Generic
@@ -57,12 +57,27 @@ LEARNSETS_FILES := $(patsubst $(PML_LEARNSETS_ROOT)/%.yml, $(build_dir)/$(PML_LE
 MOVES_FILES := $(patsubst $(PML_MOVES_ROOT)/%.yml, $(build_dir)/$(PML_MOVES_ROOT)/%.bin, $(wildcard $(PML_MOVES_ROOT)/*))
 
 # Graphics
+POKEGRA_SPRITES_CHAR	         := $(patsubst $(POKEGRA_SPRITES_ROOT)/%.png, $(build_dir)/$(POKEGRA_SPRITES_ROOT)/%.lz, $(wildcard $(POKEGRA_SPRITES_ROOT)/*.png))
+POKEGRA_SPRITES_CELL	 	 	 := $(patsubst $(POKEGRA_SPRITES_ROOT)/%.ncer, $(build_dir)/$(POKEGRA_SPRITES_ROOT)/%.ncer, $(wildcard $(POKEGRA_SPRITES_ROOT)/*.ncer))
+POKEGRA_SPRITES_ANIM	 	 	 := $(patsubst $(POKEGRA_SPRITES_ROOT)/%.nanr, $(build_dir)/$(POKEGRA_SPRITES_ROOT)/%.lz, $(wildcard $(POKEGRA_SPRITES_ROOT)/*.nanr))
+POKEGRA_SPRITES_MCELL_ANIM	     := $(patsubst $(POKEGRA_SPRITES_ROOT)/%.nmar, $(build_dir)/$(POKEGRA_SPRITES_ROOT)/%.nmar, $(wildcard $(POKEGRA_SPRITES_ROOT)/*.nmar))
+POKEGRA_SPRITES_MCELL	 	     := $(patsubst $(POKEGRA_SPRITES_ROOT)/%.nmcr, $(build_dir)/$(POKEGRA_SPRITES_ROOT)/%.nmcr, $(wildcard $(POKEGRA_SPRITES_ROOT)/*.nmcr))
+POKEGRA_SPRITES_BIN	 	         := $(patsubst $(POKEGRA_SPRITES_ROOT)/%.bin, $(build_dir)/$(POKEGRA_SPRITES_ROOT)/%.bin, $(wildcard $(POKEGRA_SPRITES_ROOT)/*.bin))
+POKEGRA_SPRITES_PAL	 	         := $(patsubst $(POKEGRA_SPRITES_ROOT)/%.pal, $(build_dir)/$(POKEGRA_SPRITES_ROOT)/%.nclr, $(wildcard $(POKEGRA_SPRITES_ROOT)/*.pal))
+POKEGRA_SPRITES			 	     := $(POKEGRA_SPRITES_CHAR) $(POKEGRA_SPRITES_CELL) $(POKEGRA_SPRITES_ANIM) $(POKEGRA_SPRITES_MCELL_ANIM) $(POKEGRA_SPRITES_MCELL) $(POKEGRA_SPRITES_BIN) $(POKEGRA_SPRITES_PAL)
 
+POKEGRA_ICONS_CHAR	             := $(patsubst $(POKEGRA_ICONS_ROOT)/%.png, $(build_dir)/$(POKEGRA_ICONS_ROOT)/%.ncgr, $(wildcard $(POKEGRA_ICONS_ROOT)/*.png))
+POKEGRA_ICONS_CELL	 	 	     := $(patsubst $(POKEGRA_ICONS_ROOT)/%.ncer, $(build_dir)/$(POKEGRA_ICONS_ROOT)/%.ncer, $(wildcard $(POKEGRA_ICONS_ROOT)/*.ncer))
+POKEGRA_ICONS_ANIM	 	 	     := $(patsubst $(POKEGRA_ICONS_ROOT)/%.nanr, $(build_dir)/$(POKEGRA_ICONS_ROOT)/%.nanr, $(wildcard $(POKEGRA_ICONS_ROOT)/*.nanr))
+POKEGRA_ICONS_MCELL_ANIM	     := $(patsubst $(POKEGRA_ICONS_ROOT)/%.nmar, $(build_dir)/$(POKEGRA_ICONS_ROOT)/%.nmar, $(wildcard $(POKEGRA_ICONS_ROOT)/*.nmar))
+POKEGRA_ICONS_MCELL	 	     	 := $(patsubst $(POKEGRA_ICONS_ROOT)/%.nmcr, $(build_dir)/$(POKEGRA_ICONS_ROOT)/%.nmcr, $(wildcard $(POKEGRA_ICONS_ROOT)/*.nmcr))
+POKEGRA_ICONS_BIN	 	         := $(patsubst $(POKEGRA_ICONS_ROOT)/%.bin, $(build_dir)/$(POKEGRA_ICONS_ROOT)/%.bin, $(wildcard $(POKEGRA_ICONS_ROOT)/*.bin))
+POKEGRA_ICONS_PAL	 	         := $(patsubst $(POKEGRA_ICONS_ROOT)/%.pal, $(build_dir)/$(POKEGRA_ICONS_ROOT)/%.nclr, $(wildcard $(POKEGRA_ICONS_ROOT)/*.pal))
+POKEGRA_ICONS			 	     := $(POKEGRA_ICONS_CHAR) $(POKEGRA_ICONS_CELL) $(POKEGRA_ICONS_ANIM) $(POKEGRA_ICONS_MCELL_ANIM) $(POKEGRA_ICONS_MCELL) $(POKEGRA_ICONS_BIN) $(POKEGRA_ICONS_PAL)
 
 # -------------------------------------------------------------------
 # Rules
 # -------------------------------------------------------------------
-
 # Generic ARC rules
 # Encounter ARC
 $(build_dir)/$(ENCOUNTERS_ROOT)/%.bin : $(ENCOUNTERS_ROOT)/%.yml
@@ -121,24 +136,56 @@ $(build_dir)/$(PML_MOVES_ROOT)/%.bin : $(PML_MOVES_ROOT)/%.yml
 $(romfs)$(PML_MOVES_ARC) : $(MOVES_FILES)
 	$(knarc) -d $(build_dir)/$(PML_MOVES_ROOT) -p $@
 
-# This is for all graphics to .bin conversions
-%.bin : %.png
+# UI Graphics ARCs
+# These should be temporary.
+$(romfs)$(UI_GRAPHICS_ARC) : $(UI_GRAPHICS_ROOT)
+	$(knarc) -d $^ -p $@
+$(romfs)$(UI2_GRAPHICS_ARC) : $(UI2_GRAPHICS_ROOT)
+	$(knarc) -d $^ -p $@
+
+# pokegra sprite rules
+$(romfs)$(POKEGRA_SPRITES_ARC) : $(POKEGRA_SPRITES)
+	$(knarc) -d $(build_dir)/$(POKEGRA_SPRITES_ROOT) -p $@
+
+$(romfs)$(POKEGRA_ICONS_ARC) : $(POKEGRA_ICONS)
+	$(knarc) -d $(build_dir)/$(POKEGRA_ICONS_ROOT) -p $@
+
+$(build_dir)/%.lz : %.png
+	@ mkdir -p $(@D)
 	$(nitrogfx) $^ $*.ncgr -mwidth 4 -mheight 8
 	mv $*.ncgr $@
+	python3 $(lzcmp) $@ $@
 
-# # PML ARC root.
-# PML_ARC_TARGETS     := $(patsubst $(arc_dir)/pml/%.c, $(build_dir)/%.arc, $(wildcard $(ARC_PML_ROOT_FILES)/*))
+$(build_dir)/%.ncgr : %.png
+	@ mkdir -p $(@D)
+	$(nitrogfx) $^ $@ -mwidth 4 -mheight 8
 
-# ARC_POKEGRA_ICON_FILES	:= $(arc_dir)/pokegra_icons
-# POKEGRA_ICON_SPRITES_NTR := $(patsubst %.png, %.bin, $(wildcard $(ARC_POKEGRA_ICON_FILES)/*))
+$(build_dir)/%.lz : %.nanr
+	@ mkdir -p $(@D)
+	cp $^ $@ 
+	python3 $(lzcmp) $@ $@
 
-# ASSET_ARC_TARGETS := $(patsubst $(arc_dir)/%, $(build_dir)/%.arc, $(wildcard $(filter-out $(ARC_PML_ROOT_FILES), $(arc_dir)/*)))
-# ARC_TARGETS 	  := $(PML_ARC_TARGETS) $(ASSET_ARC_TARGETS)
+$(build_dir)/%.nanr : %.nanr
+	@ mkdir -p $(@D)
+	cp $^ $@ 
 
-# # other rules
+$(build_dir)/%.nclr : %.pal
+	@ mkdir -p $(@D)
+	$(nitrogfx) -palette $^ $@
 
-# # o2narc rules
-# $(build_dir)/%.arc : $(arc_dir)/pml/%.c
-# 	$(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -c $< -o $(build_dir)/$*.o
-# 	@ rm -rf $@
-# 	@ $(o2narc) $(build_dir)/$*.o $@
+$(build_dir)/%.ncer : %.ncer
+	@ mkdir -p $(@D)
+	cp $^ $@ 
+
+$(build_dir)/%.bin : %.bin
+	@ mkdir -p $(@D)
+	cp $^ $@ 
+
+$(build_dir)/%.nmcr : %.nmcr
+	@ mkdir -p $(@D)
+	cp $^ $@ 
+
+$(build_dir)/%.nmar : %.nmar
+	@ mkdir -p $(@D)
+	cp $^ $@ 
+	
