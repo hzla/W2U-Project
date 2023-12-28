@@ -39,10 +39,11 @@ python			:= python3
 # mkdata tools
 # TODO: Condense into mkdata & invoke.
 mkdata			:= $(python) tools/mkdata/mkdata.py
-mkenc			:= $(python) tools/mkenc/mkenc.py
-mklz			:= $(python) tools/mklz/mklz.py
-mkmsg			:= $(python) tools/mkmsg/mkmsg.py
-mky9			:= $(python) tools/mky9/mky9.py
+mkenc			:= $(mkdata) encounter 
+mklz			:= $(mkdata) lz
+mkmsg			:= $(mkdata) message
+mky9			:= $(mkdata) y9
+mktrainer 		:= $(mkdata) trainer
 
 # Flags
 as_flags := -mthumb -march=armv5t -r
@@ -58,7 +59,7 @@ include $(data_dir)/Makefile.mk
 
 $(project).nds: $(ARC_TARGETS) $(romfs)/patches/$(project).dll
 	@ echo "[+] Copying build NARCs..."
-
+	echo $^
 	# $(knarc) -d $(build_dir)/Personal -u $(build_dir)/Personal.arc
 	# cp $(arc_dir)/pml/RegionalDex.bin $(build_dir)/Personal/Personal_00000826.bin
 	# $(knarc) -d $(build_dir)/Personal -p $(build_dir)/Personal.arc

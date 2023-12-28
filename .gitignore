@@ -4,3 +4,4 @@ tools/CTRMap/CTRMap.jar
 *.nds
 *.o
 .sav
+__pycache__/
