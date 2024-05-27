@@ -1261,6 +1261,9 @@ Symbols:
   - Name: getVSPlayerAllocation
     Segment: 0x0
     Address: 0x200c0a9
+  - Name: sub_200C124
+    Segment: 0x0
+    Address: 0x200C125
   - Name: getBattleBox
     Segment: 0x0
     Address: 0x200c261
@@ -25651,3 +25654,15 @@ Symbols:
   - Name: GetTypeWeaknesses
     Segment: 0x1D
     Address: 0x21BD2F1
+  - Name: Pokedex_CreateProc
+    Segment: 0x18
+    Address: 0x219FC01
+  - Name: Pokedex_BuildPkmEntry
+    Segment: 0x18
+    Address: 0x21A0365
+  - Name: Pokedex_ReadMonName
+    Segment: 0x18
+    Address: 0x21A0529
+  - Name: Pokedex_ReadMonEntry
+    Segment: 0x18
+    Address: 0x21A0555

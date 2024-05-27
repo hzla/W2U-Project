@@ -1,0 +1,566 @@
+RPM0 file | Code segment base address: 0x20 | BSS size: 0x0
+Symbol count: 102 | Relocation count: 16
+
+Symbol table:
+	Symbol 0 | <anonymous>
+		Address: 0
+		Type: SECTION
+		Size: 700
+		Attributes: []
+	Symbol 1 | <anonymous>
+		Address: 2bc
+		Type: SECTION
+		Size: 15
+		Attributes: []
+	Symbol 2 | <anonymous>
+		Address: 2cc
+		Type: SECTION
+		Size: 0
+		Attributes: []
+	Symbol 3 | <anonymous>
+		Address: 2cc
+		Type: SECTION
+		Size: 32
+		Attributes: []
+	Symbol 4 | <anonymous>
+		Address: 2ec
+		Type: SECTION
+		Size: 0
+		Attributes: []
+	Symbol 5 | <anonymous>
+		Address: 0
+		Type: VALUE
+		Size: 0
+		Attributes: []
+	Symbol 6 | romfs_fopen (hash: 0)
+		Address: 2070ecc
+		Type: FUNCTION_THM
+		Size: 0
+		Attributes: [Global symbol]
+	Symbol 7 | GFL_ArcSysGetDataLength (hash: 0)
+		Address: 204aa30
+		Type: FUNCTION_THM
+		Size: 0
+		Attributes: [Global symbol]
+	Symbol 8 | romfs_fclose (hash: 0)
+		Address: 2070de0
+		Type: FUNCTION_THM
+		Size: 0
+		Attributes: [Global symbol]
+	Symbol 9 | romfs_fread (hash: 0)
+		Address: 2070e6c
+		Type: FUNCTION_THM
+		Size: 0
+		Attributes: [Global symbol]
+	Symbol 10 | finit (hash: 0)
+		Address: 2070ca8
+		Type: FUNCTION_THM
+		Size: 0
+		Attributes: [Global symbol]
+	Symbol 11 | <anonymous>
+		Address: 2ec
+		Type: SECTION
+		Size: 0
+		Attributes: []
+	Symbol 12 | <anonymous>
+		Address: 2bc
+		Type: VALUE
+		Size: 0
+		Attributes: []
+	Symbol 13 | <anonymous>
+		Address: 1ac
+		Type: VALUE
+		Size: 0
+		Attributes: []
+	Symbol 14 | <anonymous>
+		Address: 200
+		Type: VALUE
+		Size: 0
+		Attributes: []
+	Symbol 15 | <anonymous>
+		Address: 240
+		Type: VALUE
+		Size: 0
+		Attributes: []
+	Symbol 16 | <anonymous>
+		Address: 27e
+		Type: VALUE
+		Size: 0
+		Attributes: []
+	Symbol 17 | FULL_COPY_PokeDex_GetSeenNoNational_0x28 (hash: 108cbd7)
+		Address: 14
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 18 | FULL_COPY_167_0x21C9E76 (hash: 4141df1)
+		Address: 196
+		Type: VALUE
+		Size: 1
+		Attributes: [Export symbol]
+	Symbol 19 | FULL_COPY_167_0x21C9E70 (hash: 6142117)
+		Address: 195
+		Type: VALUE
+		Size: 1
+		Attributes: [Export symbol]
+	Symbol 20 | FULL_COPY_PML_PersonalLoadRegionalDexTable_0x50 (hash: ce72133)
+		Address: 24
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 21 | FULL_COPY_207_0x021BA848 (hash: dd6c2bd)
+		Address: 15e
+		Type: VALUE
+		Size: 8
+		Attributes: [Export symbol]
+	Symbol 22 | *ABS*0x21a2a41 (hash: ea7b3e3)
+		Address: 21a2a40
+		Type: FUNCTION_THM
+		Size: 0
+		Attributes: [Export symbol, Global symbol]
+	Symbol 23 | FULL_COPY_PokeDex_GetCaughtNoUnova_0x48 (hash: 1056925f)
+		Address: 10
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 24 | FULL_COPY_GetPokemonDataIDBase_0x120 (hash: 10590c62)
+		Address: 2a
+		Type: VALUE
+		Size: 20
+		Attributes: [Export symbol]
+	Symbol 25 | FULL_COPY_265_0x219BADC (hash: 110fe617)
+		Address: 120
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 26 | FULL_COPY_ARM9_0x20920C8 (hash: 1aa4ba8f)
+		Address: 191
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 27 | FULL_COPY_167_0x21BB05A (hash: 20dfb9d9)
+		Address: 180
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 28 | FULL_COPY_299_0x21A053C (hash: 2680ba21)
+		Address: 72
+		Type: VALUE
+		Size: 6
+		Attributes: [Export symbol]
+	Symbol 29 | FULL_COPY_167_0x21BD1A0 (hash: 2c65b0cb)
+		Address: 184
+		Type: VALUE
+		Size: 8
+		Attributes: [Export symbol]
+	Symbol 30 | FULL_COPY_255_0x21C2A50 (hash: 2d431ef6)
+		Address: a4
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 31 | FULL_COPY_255_0x21BF2F0 (hash: 3ba901ef)
+		Address: cc
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 32 | FULL_COPY_302_0x21A0550 (hash: 3fb92641)
+		Address: 48
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 33 | FULL_COPY_PokeDex_GetSeenNoUnovaPermissive_0x54 (hash: 408ef24c)
+		Address: 20
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 34 | FULL_COPY_299_0x21A04F2 (hash: 47e9f2a8)
+		Address: 6c
+		Type: VALUE
+		Size: 6
+		Attributes: [Export symbol]
+	Symbol 35 | TypeCnt (hash: 490b4228)
+		Address: 12
+		Type: VALUE
+		Size: 0
+		Attributes: [Export symbol, Global symbol]
+	Symbol 36 | THUMB_BRANCH_GetTypeWeaknesses (hash: 4ca13fe4)
+		Address: 27e
+		Type: FUNCTION_THM
+		Size: 60
+		Attributes: [Export symbol]
+	Symbol 37 | FULL_COPY_167_0x21BB022 (hash: 4fd337e3)
+		Address: 174
+		Type: VALUE
+		Size: 8
+		Attributes: [Export symbol]
+	Symbol 38 | FULL_COPY_167_0x21BB016 (hash: 51d579a0)
+		Address: 173
+		Type: VALUE
+		Size: 1
+		Attributes: [Export symbol]
+	Symbol 39 | FULL_COPY_sub_200C124_0xA0 (hash: 5244ad56)
+		Address: 0
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 40 | FULL_COPY_167_0x21BB026 (hash: 53d33e2f)
+		Address: 193
+		Type: VALUE
+		Size: 1
+		Attributes: [Export symbol]
+	Symbol 41 | FULL_COPY_255_0x21D09AC (hash: 58a80be0)
+		Address: aa
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 42 | FULL_COPY_255_0x0219B908 (hash: 5cced461)
+		Address: d8
+		Type: VALUE
+		Size: 72
+		Attributes: [Export symbol]
+	Symbol 43 | FULL_COPY_167_0x21BB004 (hash: 61d7d167)
+		Address: 172
+		Type: VALUE
+		Size: 1
+		Attributes: [Export symbol]
+	Symbol 44 | FULL_COPY_265_0x219BB1C (hash: 640831f7)
+		Address: 124
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 45 | FULL_COPY_167_0x21AE0B0 (hash: 65916347)
+		Address: 197
+		Type: VALUE
+		Size: 1
+		Attributes: [Export symbol]
+	Symbol 46 | FULL_COPY_299_0x21A2A80 (hash: 65d69849)
+		Address: 88
+		Type: VALUE
+		Size: 16
+		Attributes: [Export symbol]
+	Symbol 47 | FULL_COPY_299_0x21A04CA (hash: 66e1d4b0)
+		Address: 66
+		Type: VALUE
+		Size: 6
+		Attributes: [Export symbol]
+	Symbol 48 | FULL_COPY_PokeDex_GetSeenNoUnova_0x48 (hash: 674f37a0)
+		Address: 18
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 49 | RegionalDexPkmCnt (hash: 6769a4ee)
+		Address: 12e
+		Type: VALUE
+		Size: 0
+		Attributes: [Export symbol, Global symbol]
+	Symbol 50 | keep_r1_A0DC (hash: 67a25665)
+		Address: c8
+		Type: VALUE
+		Size: 0
+		Attributes: [Export symbol]
+	Symbol 51 | FULL_COPY_207_0x021B6C5C (hash: 67ec1a9b)
+		Address: 13a
+		Type: VALUE
+		Size: 8
+		Attributes: [Export symbol]
+	Symbol 52 | RegionalDexFile (hash: 6c5f5f57)
+		Address: 33a
+		Type: VALUE
+		Size: 0
+		Attributes: [Export symbol, Global symbol]
+	Symbol 53 | FULL_COPY_PokeDex_GetCaughtNoNational_0x28 (hash: 708ae952)
+		Address: 8
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 54 | FULL_COPY_299_0x021A0520 (hash: 717fb341)
+		Address: 44
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 55 | FULL_COPY_167_0x21AA9A6 (hash: 7669a041)
+		Address: 16e
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 56 | FULL_COPY_299_0x21A2AC0 (hash: 7b75bfea)
+		Address: 98
+		Type: VALUE
+		Size: 12
+		Attributes: [Export symbol]
+	Symbol 57 | THUMB_BRANCH_LINK_255_0x21CF574 (hash: 8365715d)
+		Address: b2
+		Type: FUNCTION_THM
+		Size: 26
+		Attributes: [Export symbol]
+	Symbol 58 | FULL_COPY_255_0x21D0A00 (hash: 83de27f8)
+		Address: ae
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 59 | FULL_COPY_207_0x021B5110 (hash: 8483570b)
+		Address: 128
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 60 | FULL_COPY_PML_PkmIsBadMonsNo_0x14 (hash: 84afee94)
+		Address: 4
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 61 | FULL_COPY_207_0x021B8E78 (hash: 8ae1d560)
+		Address: 156
+		Type: VALUE
+		Size: 8
+		Attributes: [Export symbol]
+	Symbol 62 | FULL_COPY_255_0x21D0A22 (hash: 8de2b4e4)
+		Address: d4
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 63 | FULL_COPY_207_0x021B8E68 (hash: 90e41d69)
+		Address: 14e
+		Type: VALUE
+		Size: 8
+		Attributes: [Export symbol]
+	Symbol 64 | FULL_COPY_302_0x021AE318 (hash: 9180dfe0)
+		Address: 54
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 65 | FULL_COPY_302_0x021AE384 (hash: 936f99e5)
+		Address: 5c
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 66 | ReadTypeChartFromFile (hash: 9677e901)
+		Address: 200
+		Type: FUNCTION_THM
+		Size: 64
+		Attributes: [Export symbol]
+	Symbol 67 | *ABS*0x21a2a81 (hash: 96c50c0f)
+		Address: 21a2a80
+		Type: FUNCTION_THM
+		Size: 0
+		Attributes: [Export symbol, Global symbol]
+	Symbol 68 | FULL_COPY_302_0x021AE310 (hash: 9980ec78)
+		Address: 50
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 69 | FULL_COPY_255_0x21D0A6E (hash: 9ced59dd)
+		Address: d0
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 70 | FULL_COPY_207_0x021B8EE0 (hash: 9ffc971a)
+		Address: 142
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 71 | PkmnCnt (hash: a2532976)
+		Address: 2d1
+		Type: VALUE
+		Size: 0
+		Attributes: [Export symbol, Global symbol]
+	Symbol 72 | FULL_COPY_302_0x021AE244 (hash: a4e210c6)
+		Address: 4c
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 73 | FULL_COPY_PokeDex_GetCaughtNoUnovaPermissive_0x54 (hash: a6196bd7)
+		Address: c
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 74 | FULL_COPY_302_0x021AE37C (hash: ac9014eb)
+		Address: 58
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 75 | FULL_COPY_207_0x021B511A (hash: b383a108)
+		Address: 12a
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 76 | FULL_COPY_PML_PkmDecryptCheck_0x32 (hash: b3c0a866)
+		Address: 28
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 77 | THUMB_BRANCH_GetTypeEffectiveness (hash: b4b9a547)
+		Address: 240
+		Type: FUNCTION_THM
+		Size: 62
+		Attributes: [Export symbol]
+	Symbol 78 | FULL_COPY_255_0x21D0A0A (hash: b4de751b)
+		Address: b0
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 79 | THUMB_BRANCH_LINK_299_0x0219FC12 (hash: b82bfdfb)
+		Address: 3e
+		Type: VALUE
+		Size: 6
+		Attributes: [Export symbol]
+	Symbol 80 | FULL_COPY_255_0x21D0A7E (hash: b8efc488)
+		Address: d2
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 81 | FULL_COPY_299_0x21A0488 (hash: bedcac38)
+		Address: 60
+		Type: VALUE
+		Size: 6
+		Attributes: [Export symbol]
+	Symbol 82 | FULL_COPY_207_0x021B6BE0 (hash: c4f4b695)
+		Address: 146
+		Type: VALUE
+		Size: 8
+		Attributes: [Export symbol]
+	Symbol 83 | THUMB_BRANCH_PokeParty_GetIconIndex (hash: c7b57966)
+		Address: 1ac
+		Type: FUNCTION_THM
+		Size: 84
+		Attributes: [Export symbol]
+	Symbol 84 | FULL_COPY_207_0x021B6BF0 (hash: caf6fe9e)
+		Address: 132
+		Type: VALUE
+		Size: 8
+		Attributes: [Export symbol]
+	Symbol 85 | FULL_COPY_255_0x21D0A4A (hash: cce7953f)
+		Address: d6
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 86 | FULL_COPY_167_0x21BB034 (hash: cfd02fcc)
+		Address: 17c
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 87 | FULL_COPY_167_0x21BD318 (hash: d582641d)
+		Address: 190
+		Type: VALUE
+		Size: 1
+		Attributes: [Export symbol]
+	Symbol 88 | ALWAYS_HAVE_NATL_DEX (hash: d8b9797f)
+		Address: 1
+		Type: VALUE
+		Size: 0
+		Attributes: [Export symbol, Global symbol]
+	Symbol 89 | FULL_COPY_255_0x21BF300 (hash: d929ccbe)
+		Address: ce
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 90 | FULL_COPY_167_0x21BD1AC (hash: dd65346e)
+		Address: 18c
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 91 | FULL_COPY_168_0x021F38E8 (hash: dee19178)
+		Address: 166
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 92 | FULL_COPY_167_0x21BF862 (hash: e1447dcb)
+		Address: 194
+		Type: VALUE
+		Size: 1
+		Attributes: [Export symbol]
+	Symbol 93 | FULL_COPY_PokeDex_GetCaughtNoPermissive_0x34 (hash: e1ba3f30)
+		Address: 1c
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 94 | FULL_COPY_167_0x21A5A92 (hash: eac4aee1)
+		Address: 16a
+		Type: VALUE
+		Size: 4
+		Attributes: [Export symbol]
+	Symbol 95 | FULL_COPY_299_0x21A2A40 (hash: edf3f075)
+		Address: 78
+		Type: VALUE
+		Size: 16
+		Attributes: [Export symbol]
+	Symbol 96 | NewTagStart (hash: f077bb6d)
+		Address: 20
+		Type: VALUE
+		Size: 0
+		Attributes: [Export symbol, Global symbol]
+	Symbol 97 | FULL_COPY_207_0x021B3A5A (hash: f675e11a)
+		Address: 12e
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 98 | FULL_COPY_207_0x021B5126 (hash: f87bbee2)
+		Address: 12c
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 99 | FULL_COPY_255_0x21D0846 (hash: fa6f0759)
+		Address: a8
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 100 | FULL_COPY_207_0x021B3A32 (hash: fd716ef1)
+		Address: 130
+		Type: VALUE
+		Size: 2
+		Attributes: [Export symbol]
+	Symbol 101 | __aeabi_unwind_cpp_pr0 (hash: 0)
+		Address: 2c35012c
+		Type: VALUE
+		Size: 0
+		Attributes: [Import symbol]
+
+Relocation table:
+	Relocation 0
+		Source symbol: *ABS*0x21a2a41(FUNCTION_THM) @ 0x21a2a40 [0x0]
+		Target: THUMB_BRANCH_LINK @ base :: 0x60
+	Relocation 1
+		Source symbol: *ABS*0x21a2a41(FUNCTION_THM) @ 0x21a2a40 [0x0]
+		Target: THUMB_BRANCH_LINK @ base :: 0x66
+	Relocation 2
+		Source symbol: *ABS*0x21a2a41(FUNCTION_THM) @ 0x21a2a40 [0x0]
+		Target: THUMB_BRANCH_LINK @ base :: 0x6c
+	Relocation 3
+		Source symbol: *ABS*0x21a2a81(FUNCTION_THM) @ 0x21a2a80 [0x0]
+		Target: THUMB_BRANCH_LINK @ base :: 0x72
+	Relocation 4
+		Source symbol: GFL_ArcSysGetDataLength(FUNCTION_THM) @ 0x204aa30 [0x0]
+		Target: THUMB_BRANCH_LINK @ base :: 0x1d2
+	Relocation 5
+		Source symbol: finit(FUNCTION_THM) @ 0x2070ca8 [0x0]
+		Target: THUMB_BRANCH_LINK @ base :: 0x208
+	Relocation 6
+		Source symbol: romfs_fopen(FUNCTION_THM) @ 0x2070ecc [0x0]
+		Target: THUMB_BRANCH_LINK @ base :: 0x210
+	Relocation 7
+		Source symbol: romfs_fread(FUNCTION_THM) @ 0x2070e6c [0x0]
+		Target: THUMB_BRANCH_LINK @ base :: 0x220
+	Relocation 8
+		Source symbol: romfs_fclose(FUNCTION_THM) @ 0x2070de0 [0x0]
+		Target: THUMB_BRANCH_LINK @ base :: 0x230
+	Relocation 9
+		Source symbol: null(VALUE) @ 0x2bc [0x0]
+		Target: OFFSET @ base :: 0x23c
+	Relocation 10
+		Source symbol: ReadTypeChartFromFile(FUNCTION_THM) @ 0x200 [0x40]
+		Target: THUMB_BRANCH_LINK @ base :: 0x252
+	Relocation 11
+		Source symbol: ReadTypeChartFromFile(FUNCTION_THM) @ 0x200 [0x40]
+		Target: THUMB_BRANCH_LINK @ base :: 0x292
+	Relocation 12
+		Source symbol: null(VALUE) @ 0x1ac [0x0]
+		Target: OFFSET_REL31 @ base :: 0x2cc
+	Relocation 13
+		Source symbol: null(VALUE) @ 0x200 [0x0]
+		Target: OFFSET_REL31 @ base :: 0x2d4
+	Relocation 14
+		Source symbol: null(VALUE) @ 0x240 [0x0]
+		Target: OFFSET_REL31 @ base :: 0x2dc
+	Relocation 15
+		Source symbol: null(VALUE) @ 0x27e [0x0]
+		Target: OFFSET_REL31 @ base :: 0x2e4
+
+Metadata:

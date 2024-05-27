@@ -55,22 +55,10 @@ c_flags  := -mthumb -mno-thumb-interwork -march=armv5t -mno-long-calls -Wall -We
 all: $(project).nds
 	@ echo "[!] Done!"
 
-include $(data_dir)/Makefile.mk
+# include $(data_dir)/Makefile.mk
 
 $(project).nds: $(ARC_TARGETS) $(romfs)/patches/$(project).dll
 	@ echo "[+] Copying build NARCs..."
-	echo $^
-	# $(knarc) -d $(build_dir)/Personal -u $(build_dir)/Personal.arc
-	# cp $(arc_dir)/pml/RegionalDex.bin $(build_dir)/Personal/Personal_00000826.bin
-	# $(knarc) -d $(build_dir)/Personal -p $(build_dir)/Personal.arc
-	# rm -rf $(build_dir)/Personal
-	# cp $(build_dir)/Personal.arc $(romfs)/a/0/1/6
-
-	# cp $(build_dir)/Learnsets.arc $(romfs)/a/0/1/8
-	# cp $(build_dir)/Evolutions.arc $(romfs)/a/0/1/9
-	# cp $(build_dir)/Children.arc $(romfs)/a/0/2/0
-	# cp $(build_dir)/Moves.arc $(romfs)/a/0/2/1
-	# cp $(build_dir)/Items.arc $(romfs)/a/0/2/4
 
 	cp $(data_dir)/type_chart.bin $(romfs)/type_chart.bin
 
@@ -82,6 +70,9 @@ $(romfs)/patches/$(project).dll: $(build_dir)/$(project).elf
 	@ # java -cp $(CTRMap) rpm.cli.MAP2ESDB --map $(pmc_res)/Symbols.map --thmfile $(pmc_res)/SegmentRegisters.txt --output $(pmc_res)/ESDB.yml
 	@ echo "[+] Creating DLL $@..."
 	@ java -cp $(CTRMap) rpm.cli.RPMTool -i $< --fourcc DLXF -o $@ --esdb $(pmc_res)/ESDB.yml --generate-relocations
+	# Debug 
+	@ java -cp $(CTRMap) rpm.cli.RPMTool -i build/White2Upgrade.elf -o White2Upgrade_DEBUG.RPM --esdb $(pmc_res)/ESDB.yml
+	@ java -cp tools/CTRMap/CTRMap.jar  rpm.cli.RPMDump -i White2Upgrade_DEBUG.rpm > White2Upgrade_DEBUG.txt
 
 $(build_dir)/$(project).elf : $(code_objs)
 	@ echo "[+] Linking all objects into $@..."

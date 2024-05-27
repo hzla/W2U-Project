@@ -1,8 +1,10 @@
-.type	THUMB_BRANCH_LINK_255_0x21CF574, %function
+
 .thumb
 
 .equ TypeCnt, 0x12
 .equ NewTagStart, 0x20
+
+.type THUMB_BRANCH_LINK_255_0x21CF574, %function
 
 @ BluRose's PC screen fix
 FULL_COPY_255_0x21C2A50:

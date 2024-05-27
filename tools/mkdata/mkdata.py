@@ -35,7 +35,6 @@ def main():
         case 'y9':
             SerializerObject = OverlayTableSerializer()
     Arguments.ex_parameters = format_extra_parameters(Arguments.ex_parameters)
-    print(Arguments)
     SerializerObject.Serialize(Arguments)
         
 if __name__ == '__main__':

@@ -122,11 +122,14 @@ $(build_dir)/$(TEXT_SYSTEM_ARC)/%.bin : $(TEXT_SYSTEM_ROOT)/%.bin
 
 # Personal ARC
 ## Builds the ARC.
-$(build_dir)$(PML_PERSONAL_ARC) : $(PML_PERSONAL_FILES)
+$(build_dir)/$(PML_PERSONAL_ARC)/826.bin : $(data_dir)/pml/RegionalDex.bin
+	cp $^ $@
+$(build_dir)$(PML_PERSONAL_ARC) : $(PML_PERSONAL_FILES) $(build_dir)/$(PML_PERSONAL_ARC)/826.bin
 ## Builds the files in the ARC.
 $(build_dir)/$(PML_PERSONAL_ARC)/%.bin : $(PML_PERSONAL_ROOT)/%.yml
 	mkdir -p $(dir $@)
 	$(mkdata) generic $^ $@ format personal
+
 
 # Evolutions ARC
 ## Builds the ARC.
