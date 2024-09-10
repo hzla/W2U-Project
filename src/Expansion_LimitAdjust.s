@@ -65,13 +65,6 @@ FULL_COPY_PML_PkmDecryptCheck_0x32:
     nop
     .size FULL_COPY_PML_PkmDecryptCheck_0x32, . - FULL_COPY_PML_PkmDecryptCheck_0x32
 
-FULL_COPY_GetPokemonDataIDBase_0x120:
-    .word 0x1EA
-    .word 0x2F3
-    .word 0x4621
-    .word 0x387C
-    .word PkmnCnt+2
-    .size FULL_COPY_GetPokemonDataIDBase_0x120, . - FULL_COPY_GetPokemonDataIDBase_0x120
 
 @ Overlay 299 Patches
 @ Expand the space allocated by the process.

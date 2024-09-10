@@ -55,7 +55,7 @@ c_flags  := -mthumb -mno-thumb-interwork -march=armv5t -mno-long-calls -Wall -We
 all: $(project).nds
 	@ echo "[!] Done!"
 
-# include $(data_dir)/Makefile.mk
+include $(data_dir)/Makefile.mk
 
 $(project).nds: $(ARC_TARGETS) $(romfs)/patches/$(project).dll
 	@ echo "[+] Copying build NARCs..."
