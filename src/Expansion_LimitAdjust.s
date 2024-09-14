@@ -23,48 +23,9 @@ FULL_COPY_sub_200C124_0xA0:
     .word PkmnCnt
     .size FULL_COPY_sub_200C124_0xA0, . - FULL_COPY_sub_200C124_0xA0
 
-@ Patch the limiter on mon species being invalid.
-FULL_COPY_PML_PkmIsBadMonsNo_0x14:
-    .word PkmnCnt
-    .size FULL_COPY_PML_PkmIsBadMonsNo_0x14, . - FULL_COPY_PML_PkmIsBadMonsNo_0x14
-
-@ All of these patch the end of the loops here to span all "PkmnCnt" Pokemon.
-FULL_COPY_PokeDex_GetCaughtNoNational_0x28: 
-    .word PkmnCnt
-    .size FULL_COPY_PokeDex_GetCaughtNoNational_0x28, . - FULL_COPY_PokeDex_GetCaughtNoNational_0x28
-
-FULL_COPY_PokeDex_GetCaughtNoUnovaPermissive_0x54:
-    .word PkmnCnt
-    .size FULL_COPY_PokeDex_GetCaughtNoUnovaPermissive_0x54, . - FULL_COPY_PokeDex_GetCaughtNoUnovaPermissive_0x54
-
-FULL_COPY_PokeDex_GetCaughtNoUnova_0x48:
-    .word PkmnCnt
-    .size FULL_COPY_PokeDex_GetCaughtNoUnova_0x48, . - FULL_COPY_PokeDex_GetCaughtNoUnova_0x48
-
-FULL_COPY_PokeDex_GetSeenNoNational_0x28:
-    .word PkmnCnt
-    .size FULL_COPY_PokeDex_GetSeenNoNational_0x28, . - FULL_COPY_PokeDex_GetSeenNoNational_0x28
-
-FULL_COPY_PokeDex_GetSeenNoUnova_0x48:
-    .word PkmnCnt
-    .size FULL_COPY_PokeDex_GetSeenNoUnova_0x48, . - FULL_COPY_PokeDex_GetSeenNoUnova_0x48
-
-FULL_COPY_PokeDex_GetCaughtNoPermissive_0x34:
-    .word PkmnCnt
-    .size FULL_COPY_PokeDex_GetCaughtNoPermissive_0x34, . - FULL_COPY_PokeDex_GetCaughtNoPermissive_0x34
-
-FULL_COPY_PokeDex_GetSeenNoUnovaPermissive_0x54:
-    .word PkmnCnt
-    .size FULL_COPY_PokeDex_GetSeenNoUnovaPermissive_0x54, . - FULL_COPY_PokeDex_GetSeenNoUnovaPermissive_0x54
-
-FULL_COPY_PML_PersonalLoadRegionalDexTable_0x50:
-    .word RegionalDexFile
-    .size FULL_COPY_PML_PersonalLoadRegionalDexTable_0x50, . - FULL_COPY_PML_PersonalLoadRegionalDexTable_0x50
-
 FULL_COPY_PML_PkmDecryptCheck_0x32:
     nop
     .size FULL_COPY_PML_PkmDecryptCheck_0x32, . - FULL_COPY_PML_PkmDecryptCheck_0x32
-
 
 @ Overlay 299 Patches
 @ Expand the space allocated by the process.

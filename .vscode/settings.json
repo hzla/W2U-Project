@@ -62,7 +62,8 @@
         "valarray": "c",
         "variant": "c",
         "children.h": "c",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "xlocale": "cpp"
     },
     "cmake.sourceDirectory": "C:/Users/L33TG/Documents/White2Upgrade/include/extlib",
     "[python]": {
