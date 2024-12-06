@@ -14,6 +14,9 @@ namespace w2u {
         extern "C" u32 PML_PersonalGetParamSingle(u32, u32, u32);
         extern "C" void THUMB_BRANCH_SAFESTACK_GetPokemonDataIDBase(int ARCID, int Species, int Form, int Sex, b32 isRare, b32 isBackSprite, int isEgg, u32 *SpeciesData, u32 *OffsetBase, u32 *pGender, u32 *pValidRarity, u32 *pValidRareForme, b32 linearGraphics) {
             u32 actual_index = 0;
+
+            // This is passed to the SpeciesData pointer instead of the actual_index.
+            u32 expected_index = 0;
             
             // There are 9 files for the front, and 9 for the back.
             // Two palettes are shared.
@@ -23,18 +26,19 @@ namespace w2u {
                 // Egg; check if it is Manaphy first.
                 u32 species_is_manaphy = Species == 490;
                 // Calculate the new index.
-                actual_index = 20 * (species_is_manaphy + 683);
+                expected_index = 20 * (species_is_manaphy + 683);
+                actual_index = expected_index;
             } else {
                 // An actual Pokémon; calculate its base index.
                 // Should be, by default, 20 * Species.
-                u32 expected_species_index = 20 * Species;
+                expected_index = 20 * Species;
 
                 // Index 0 of the sprite set is the linear tiled image.
                 // Index 2 of the sprite set is the horizontally tiled image.
-                u32 linear_shift = linearGraphics ? 2 : 0;
+                u32 linear_shift = linearGraphics ? 0 : 2;
 
                 // Calculate the new index.
-                actual_index = expected_species_index + backsprite_shift + linear_shift;
+                actual_index = expected_index + backsprite_shift + linear_shift;
             }
 
             // Handle forms.
@@ -47,10 +51,10 @@ namespace w2u {
                 if (Form < FormCount) {
                     // Form is valid. Check if it is a rare forme.
                     if (SpriteForme && pValidRareForme) {
-                        u32 rare_form_index = (FormSpriteOffset + Form - 1);
-                        *pValidRareForme = isRare + 2 * rare_form_index + RARE_FORM_START;
+                        *pValidRareForme = isRare + 2 * (FormSpriteOffset + Form - 1) + RARE_FORM_START;
                     } else {
-                        actual_index = 20 * (FormSpriteOffset + Form - 1) + FORM_START;
+                        expected_index = FormSpriteOffset + Form - 1;
+                        actual_index = 20 * expected_index + FORM_START;
                     }
                 }
             }
@@ -62,7 +66,7 @@ namespace w2u {
 
             // Set the pointers for the resultant data.
             if (SpeciesData) {
-                *SpeciesData = actual_index;
+                *SpeciesData = expected_index;
             }
 
             if (OffsetBase) {
