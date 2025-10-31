@@ -20,7 +20,7 @@ enum PersonalField {
   Personal_EvSPE = 0xD,
   Personal_EvSPA = 0xE,
   Personal_EvSPD = 0xF,
-  Personal_Telekinesis = 0x10,
+  Personal_SpriteGrounded = 0x10,
   Personal_WildItem50 = 0x11,
   Personal_WildItem5 = 0x12,
   Personal_WildItem1 = 0x13,
