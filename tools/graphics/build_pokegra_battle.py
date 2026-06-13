@@ -998,6 +998,10 @@ def patch_compressed_ncgr_payload(path: Path, payload: bytes) -> None:
     path.write_bytes(lz11_compress_nlz(bytes(decompressed)))
 
 
+def nonempty_path(path: Path) -> bool:
+    return path.exists() and path.stat().st_size > 0
+
+
 def patch_gen7_native_fallbacks(pwan_source: Path | None, battle_vfs: Path) -> int:
     if pwan_source is None:
         return 0
@@ -1014,19 +1018,27 @@ def patch_gen7_native_fallbacks(pwan_source: Path | None, battle_vfs: Path) -> i
         base = gen7_battle_base(species)
         asset_index = int(entry["assetIndex"])
         flags = int(entry["flags"])
-        for side, side_flag, compact_offset, wide_offset, palette_offset in (
-            ("front", PWAN_CONFIG_FRONT_FLAG, 0, 2, 18),
-            ("back", PWAN_CONFIG_BACK_FLAG, 9, 11, 19),
+        for side, side_flag, compact_offsets, wide_offsets, palette_offset in (
+            ("front", PWAN_CONFIG_FRONT_FLAG, (0, 1), (2, 3), 18),
+            ("back", PWAN_CONFIG_BACK_FLAG, (9, 10), (11, 12), 19),
         ):
             if not (flags & side_flag):
                 continue
             pwan_path = pwan_source / f"{asset_index}_{side}.pwan"
             if not pwan_path.exists():
                 continue
-            compact_path = battle_vfs / str(base + compact_offset)
-            wide_path = battle_vfs / str(base + wide_offset)
+            compact_paths = [
+                battle_vfs / str(base + offset)
+                for offset in compact_offsets
+                if nonempty_path(battle_vfs / str(base + offset))
+            ]
+            wide_paths = [
+                battle_vfs / str(base + offset)
+                for offset in wide_offsets
+                if nonempty_path(battle_vfs / str(base + offset))
+            ]
             nclr_path = battle_vfs / str(base + palette_offset)
-            if not compact_path.exists() or not wide_path.exists() or not nclr_path.exists():
+            if not compact_paths or not wide_paths or not nclr_path.exists():
                 continue
             pixels = pwan_first_pixels(pwan_path)
             pixels = remap_pixels_to_palette(
@@ -1034,9 +1046,14 @@ def patch_gen7_native_fallbacks(pwan_source: Path | None, battle_vfs: Path) -> i
                 pwan_palette_values(pwan_path),
                 palette_from_nclr(nclr_path.read_bytes()),
             )
-            patch_compressed_ncgr_payload(compact_path, segmented_pwan_pixels(pixels))
-            patch_compressed_ncgr_payload(wide_path, linear_wide_pwan_pixels(pixels))
-            patched += 2
+            compact_payload = segmented_pwan_pixels(pixels)
+            wide_payload = linear_wide_pwan_pixels(pixels)
+            for compact_path in compact_paths:
+                patch_compressed_ncgr_payload(compact_path, compact_payload)
+                patched += 1
+            for wide_path in wide_paths:
+                patch_compressed_ncgr_payload(wide_path, wide_payload)
+                patched += 1
     return patched
 
 
