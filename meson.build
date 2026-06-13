@@ -33,16 +33,40 @@ subdir('src')
 # Assets
 subdir('data')
 
+item_icon_patch_py = find_program(meson.project_source_root() / 'tools' / 'item_icons' / 'build_item_icon_patch.py', native: true)
+patch_pmc_sysheap_py = find_program(meson.project_source_root() / 'tools' / 'patch_pmc_sysheap.py', native: true)
+
+item_icon_asset_list = run_command(
+  'sh',
+  '-c',
+  'cd "$1" && find assets/item_icons -type f \( -name "*.png" -o -name "*.pal" \) | sort',
+  'find_item_icon_assets',
+  meson.project_source_root(),
+  check: true,
+).stdout().strip()
+
+item_icon_assets = []
+foreach item_icon_asset : item_icon_asset_list.split('\n')
+  if item_icon_asset != ''
+    item_icon_assets += meson.project_source_root() / item_icon_asset
+  endif
+endforeach
+
 pmc_arm9 = custom_target(
   'pmc_arm9',
   input: meson.project_source_root() / 'pmc' / 'ARM9PMC.bin',
+  depend_files: item_icon_assets,
   output: 'pmc_arm9.stamp',
-  command: ['sh', '-c',
-    'cp "$1" "$2" && touch "$3"',
-    'pmc_arm9',
-    '@INPUT@',
-    meson.project_source_root() / 'vfs' / 'arm9.bin',
-    '@OUTPUT@'
+  command: [
+    item_icon_patch_py,
+    '--arm9-input', '@INPUT@',
+    '--arm9-output', meson.project_source_root() / 'vfs' / 'arm9.bin',
+    '--vfs-output-dir', meson.project_source_root() / 'vfs' / 'data' / 'a' / '0' / '2' / '5',
+    '--icons', meson.project_source_root() / 'assets' / 'item_icons' / 'icons',
+    '--palettes', meson.project_source_root() / 'assets' / 'item_icons' / 'icon_palettes',
+    '--base-icon-archive', meson.project_source_root() / '..' / 'IRDO_Extracted' / 'data' / 'a' / '0' / '2' / '5',
+    '--report', meson.project_build_root() / 'item_icon_patch_report.json',
+    '--stamp', '@OUTPUT@',
   ],
 )
 
@@ -50,12 +74,11 @@ pmc_overlay = custom_target(
   'pmc_overlay',
   input: meson.project_source_root() / 'pmc' / 'OVL344.bin',
   output: 'pmc_overlay.stamp',
-  command: ['sh', '-c',
-    'mkdir -p "$(dirname "$2")" && cp "$1" "$2" && touch "$3"',
-    'pmc_overlay',
-    '@INPUT@',
-    meson.project_source_root() / 'vfs' / 'overlay' / 'overlay_0344.bin',
-    '@OUTPUT@'
+  command: [
+    patch_pmc_sysheap_py,
+    '--input', '@INPUT@',
+    '--output', meson.project_source_root() / 'vfs' / 'overlay' / 'overlay_0344.bin',
+    '--stamp', '@OUTPUT@',
   ],
 )
   
