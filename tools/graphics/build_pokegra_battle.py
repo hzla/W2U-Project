@@ -5,12 +5,18 @@ import shutil
 import struct
 import sys
 import tomllib
+from io import BytesIO
 from pathlib import Path
 
 TOOLS_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(TOOLS_ROOT / "pwan"))
 
 from compile_pwan import compile_pwan  # noqa: E402
+from pwan_config import (  # noqa: E402
+    PWAN_CONFIG_BACK_FLAG,
+    PWAN_CONFIG_FRONT_FLAG,
+    parse_config as parse_pwan_config,
+)
 from PIL import Image  # noqa: E402
 
 
@@ -38,6 +44,16 @@ NCLR_HEADER = bytes.fromhex(
 TOML_BINARY_KINDS = {"ncer", "nanr", "nmcr", "nmar"}
 ORDER_FILE = "order.toml"
 LEGACY_BIN_PREFIX = "004_"
+GEN7_SPECIES_START = 722
+GEN7_SPECIES_END = 809
+GEN7_BATTLE_ARCHIVE_START = 19000
+GEN7_FILES_PER_SPRITE = 20
+PWAN_SEGMENTS = (
+    (0x0000, 0, 0, 8, 8),
+    (0x0800, 64, 0, 4, 8),
+    (0x0c00, 0, 64, 8, 4),
+    (0x1000, 64, 64, 4, 4),
+)
 G2D_MAGIC_BY_KIND = {
     "ncer": "RECN",
     "nanr": "RNAN",
@@ -80,6 +96,22 @@ def lz11_compress(data: bytes) -> bytes:
     return bytes(out)
 
 
+def lz11_decompress(data: bytes) -> bytes:
+    sys.path.insert(0, str(TOOLS_ROOT / "helpers" / "DumpUtil"))
+    from lzss import decompress_bytes  # type: ignore
+
+    return bytes(decompress_bytes(data))
+
+
+def lz11_compress_nlz(data: bytes) -> bytes:
+    sys.path.insert(0, str(TOOLS_ROOT / "mkdata"))
+    from impl.lz import LZSerializer  # type: ignore
+
+    out = BytesIO()
+    LZSerializer().compress_nlz11(data, out)
+    return out.getvalue()
+
+
 def ntr_to_rgb(value: int) -> tuple[int, int, int]:
     return (
         ((value & 0x1F) * 255) // 31,
@@ -103,6 +135,120 @@ def palette_from_nclr(data: bytes) -> list[int]:
     if len(data) < len(NCLR_HEADER) + 32 or data[:4] != b"RLCN":
         raise RuntimeError("not a supported pokegra NCLR")
     return [int.from_bytes(data[len(NCLR_HEADER) + i * 2:len(NCLR_HEADER) + i * 2 + 2], "little") for i in range(16)]
+
+
+def pwan_first_pixels(path: Path) -> list[list[int]]:
+    data = path.read_bytes()
+    (
+        magic,
+        version,
+        width,
+        height,
+        bpp,
+        frame_count,
+        _timeline_count,
+        _total_ticks,
+        frame_bytes,
+        _palette_colors,
+        _palette_offset,
+        _timeline_offset,
+        frame_offset,
+    ) = struct.unpack_from("<4sHHHHHHIIIIII", data, 0)
+    if (
+        magic != b"PWAN"
+        or version != 1
+        or width != 96
+        or height != 96
+        or bpp != 4
+        or frame_count < 1
+        or frame_bytes != 0x1200
+    ):
+        raise RuntimeError(f"{path}: expected 96x96 4bpp PWAN v1")
+
+    frame = data[frame_offset:frame_offset + frame_bytes]
+    pixels = [[0 for _x in range(96)] for _y in range(96)]
+    for segment_offset, dst_x, dst_y, tiles_w, tiles_h in PWAN_SEGMENTS:
+        segment = frame[segment_offset:segment_offset + tiles_w * tiles_h * 32]
+        for tile_y in range(tiles_h):
+            for tile_x in range(tiles_w):
+                tile_offset = (tile_y * tiles_w + tile_x) * 32
+                for y in range(8):
+                    row = segment[tile_offset + y * 4:tile_offset + y * 4 + 4]
+                    for x_pair, packed in enumerate(row):
+                        x = dst_x + tile_x * 8 + x_pair * 2
+                        yy = dst_y + tile_y * 8 + y
+                        pixels[yy][x] = packed & 0x0f
+                        pixels[yy][x + 1] = (packed >> 4) & 0x0f
+    return pixels
+
+
+def pwan_palette_values(path: Path) -> list[int]:
+    data = path.read_bytes()
+    (
+        magic,
+        version,
+        width,
+        height,
+        bpp,
+        _frame_count,
+        _timeline_count,
+        _total_ticks,
+        _frame_bytes,
+        palette_colors,
+        palette_offset,
+        _timeline_offset,
+        _frame_offset,
+    ) = struct.unpack_from("<4sHHHHHHIIIIII", data, 0)
+    if (
+        magic != b"PWAN"
+        or version != 1
+        or width != 96
+        or height != 96
+        or bpp != 4
+        or palette_colors != 16
+    ):
+        raise RuntimeError(f"{path}: expected 96x96 4bpp PWAN v1")
+    return [
+        int.from_bytes(data[palette_offset + i * 2:palette_offset + i * 2 + 2], "little")
+        for i in range(16)
+    ]
+
+
+def bgr555_to_rgb(value: int) -> tuple[int, int, int]:
+    return ((value & 0x1f) << 3, ((value >> 5) & 0x1f) << 3, ((value >> 10) & 0x1f) << 3)
+
+
+def nearest_palette_index(color: int, palette: list[int]) -> int:
+    src_r, src_g, src_b = bgr555_to_rgb(color)
+    best = 1
+    best_dist = 1 << 30
+    for index in range(1, 16):
+        dst_r, dst_g, dst_b = bgr555_to_rgb(palette[index])
+        dr = src_r - dst_r
+        dg = src_g - dst_g
+        db = src_b - dst_b
+        dist = dr * dr + dg * dg + db * db
+        if dist < best_dist:
+            best = index
+            best_dist = dist
+    return best
+
+
+def remap_pixels_to_palette(
+    pixels: list[list[int]], source_palette: list[int], native_palette: list[int]
+) -> list[list[int]]:
+    remap = list(range(16))
+    for index in range(1, 16):
+        remap[index] = nearest_palette_index(source_palette[index], native_palette)
+    return [[0 if value == 0 else remap[value] for value in row] for row in pixels]
+
+
+def linear_wide_pwan_pixels(pixels: list[list[int]]) -> bytes:
+    indices = bytearray(256 * 128)
+    for y in range(96):
+        row = pixels[y]
+        indices[y * 256:y * 256 + 96] = bytes(row[:96])
+    return pack_bitmap_4bpp(bytes(indices), 256, 128)
 
 
 def read_jasc_palette(path: Path) -> list[tuple[int, int, int]]:
@@ -814,6 +960,58 @@ def copy_extra_bin_entries(extra_source: Path | None, battle_vfs: Path, first_ex
     return count
 
 
+def gen7_battle_base(species: int) -> int:
+    return GEN7_BATTLE_ARCHIVE_START + (species - GEN7_SPECIES_START) * GEN7_FILES_PER_SPRITE
+
+
+def patch_compressed_ncgr_payload(path: Path, payload: bytes) -> None:
+    decompressed = bytearray(lz11_decompress(path.read_bytes()))
+    if len(decompressed) < len(payload) or decompressed[:4] != b"RGCN":
+        raise RuntimeError(f"{path}: not a supported compressed NCGR")
+    decompressed[-len(payload):] = payload
+    path.write_bytes(lz11_compress_nlz(bytes(decompressed)))
+
+
+def patch_gen7_native_wide_fallbacks(pwan_source: Path | None, battle_vfs: Path) -> int:
+    if pwan_source is None:
+        return 0
+    config_path = pwan_source / "config.bin"
+    if not config_path.exists():
+        raise FileNotFoundError(config_path)
+
+    entries, _max_timeline = parse_pwan_config(config_path)
+    patched = 0
+    for species in range(GEN7_SPECIES_START, GEN7_SPECIES_END + 1):
+        entry = entries.get((species, 0))
+        if entry is None:
+            continue
+        base = gen7_battle_base(species)
+        asset_index = int(entry["assetIndex"])
+        flags = int(entry["flags"])
+        for side, side_flag, side_offset, palette_offset in (
+            ("front", PWAN_CONFIG_FRONT_FLAG, 2, 18),
+            ("back", PWAN_CONFIG_BACK_FLAG, 11, 19),
+        ):
+            if not (flags & side_flag):
+                continue
+            pwan_path = pwan_source / f"{asset_index}_{side}.pwan"
+            if not pwan_path.exists():
+                continue
+            ncgr_path = battle_vfs / str(base + side_offset)
+            nclr_path = battle_vfs / str(base + palette_offset)
+            if not ncgr_path.exists() or not nclr_path.exists():
+                continue
+            pixels = pwan_first_pixels(pwan_path)
+            pixels = remap_pixels_to_palette(
+                pixels,
+                pwan_palette_values(pwan_path),
+                palette_from_nclr(nclr_path.read_bytes()),
+            )
+            patch_compressed_ncgr_payload(ncgr_path, linear_wide_pwan_pixels(pixels))
+            patched += 1
+    return patched
+
+
 def build_pwan_assets(source_root: Path, pwan_vfs: Path) -> list[dict]:
     sources = []
     config_entries = []
@@ -902,6 +1100,7 @@ def main() -> int:
     parser.add_argument("--battle-vfs", type=Path, required=True)
     parser.add_argument("--pwan-vfs", type=Path)
     parser.add_argument("--extra-bin-source", type=Path)
+    parser.add_argument("--gen7-pwan-fallback-source", type=Path)
     parser.add_argument("--skip-pwan", action="store_true")
     parser.add_argument("--arc-text", required=True)
     parser.add_argument("--stamp", type=Path, required=True)
@@ -910,6 +1109,10 @@ def main() -> int:
     clean_dir(args.battle_vfs)
     nns_count = copy_nns_archive_entries(args.source, args.battle_vfs)
     extra_count = copy_extra_bin_entries(args.extra_bin_source, args.battle_vfs, nns_count)
+    gen7_wide_fallbacks = patch_gen7_native_wide_fallbacks(
+        args.gen7_pwan_fallback_source,
+        args.battle_vfs,
+    )
     (args.battle_vfs / ".arc").write_text(args.arc_text)
     if args.skip_pwan:
         if args.pwan_vfs is not None and args.pwan_vfs.exists():
@@ -924,6 +1127,7 @@ def main() -> int:
     args.stamp.write_text(
         f"nns_entries={nns_count}\n"
         f"extra_bin_entries={extra_count}\n"
+        f"gen7_wide_fallbacks={gen7_wide_fallbacks}\n"
         f"pwan_assets={len(sources)}\n"
     )
     return 0
