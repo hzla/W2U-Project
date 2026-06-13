@@ -45,13 +45,41 @@ make
 
 `make` builds the Meson target `White2Upgrade.nds` under `build/`.
 
+Useful partial targets while reviewing migration commits:
+
+```sh
+ninja -C build src/w2u_main.elf
+ninja -C build data/build_pokeweb_pwan_narc.stamp
+ninja -C build pmc_arm9.stamp pmc_overlay.stamp
+```
+
+The DLL and final ROM targets invoke CTRMap/RPMTool through Java, so they require
+the Java/cmproj/VFS setup above.
+
+## Verification
+
+After building the relevant targets, run:
+
+```sh
+python3 tools/migration/verify_pokeweb_migration.py
+```
+
+The verifier checks staged DLLs, PWAN v3 NARC structure, sidecar binaries,
+behavior-critical archive counts, generated item icon patches, and, when the old
+local Makefile build is available, byte-compares staged archive members against
+that build.
+
 ## Pokeweb Migration Notes
 
 - PWAN battle graphics stay on Pokeweb's archive-backed v3 runtime. The build
   stages `vfs/data/zz_pokeweb_pwan/pwan.narc`, whose first member is the
   `PWNC` v3 config from `assets/pokeweb_pwan/config.bin`.
+- The separate resident PWAN runtime DLL is staged as
+  `vfs/data/patches/PokewebPwanW2.dll`.
 - Upstream's plaintext NNS/TOML/PNG battle graphics pipeline remains in place
   for regular NNS assets.
+- Move animations, SPA overrides, UI graphics, type graphics, and item icon
+  patches are staged as CTRMap VFS archive overlays under `vfs/data/a/...`.
 - Generated VFS overlays are written under `vfs/`. Do not reintroduce the old
   `ndstool` ROM extraction/repack flow for migration-only assets.
 

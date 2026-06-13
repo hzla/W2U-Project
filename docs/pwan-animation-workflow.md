@@ -4,12 +4,20 @@ This repository uses the HZLA GIF animation workflow for expanded Pokemon sprite
 
 ## Runtime
 
-The animation runtime is built into `w2u_main.dll` from `src/pwan_animation`.
-It loads assets directly from the ROM filesystem through these root-level paths:
+Pokeweb animation support is split between `w2u_main.dll` hooks and the
+resident `PokewebPwanW2.dll` runtime from `src/pwan_animation`.
 
-- `pokeweb_pwan/config.bin`
-- `pokeweb_pwan/NNN_front.pwan`
-- `pokeweb_pwan/NNN_back.pwan`
+The runtime loads one archive from the ROM filesystem:
+
+- `zz_pokeweb_pwan/pwan.narc`
+
+NARC member `0` is the `PWNC` v3 config from
+`assets/pokeweb_pwan/config.bin`. Runtime asset members are sparse:
+
+```text
+front member id = asset index * 2 + 1
+back member id  = asset index * 2 + 2
+```
 
 Species not present in `config.bin` fall back to normal game rendering.
 
@@ -29,39 +37,25 @@ The 96x96 frame is stored as four OBJ-compatible tiled regions:
 - `64x32` bottom-left
 - `32x32` bottom-right
 
-The runtime keeps 128 timeline entries per loaded asset, so the compiler resamples
+The runtime keeps 192 timeline entries per loaded asset, so the compiler resamples
 longer source GIF timelines down to that limit.
 
-## Gen 6 Asset Pack
+## Runtime Pack
 
-Run:
+The committed runtime pack source is `assets/pokeweb_pwan`:
+
+- `config.bin`
+- `NNN_front.pwan`
+- `NNN_back.pwan`
+
+Meson packs those files into `vfs/data/zz_pokeweb_pwan/pwan.narc` with:
 
 ```sh
-python3 tools/pwan/build_gen6_pwan.py
+ninja -C build data/build_pokeweb_pwan_narc.stamp
 ```
 
-The script downloads Pokemon Showdown Gen 5-style animated GIFs from
-`https://play.pokemonshowdown.com/sprites/gen5ani/` into
-`data/pwan/source_gifs`, compiles them with `tools/pwan/compile_pwan.py`, and
-writes the runtime pack to `data/pwan/pokeweb_pwan`.
-
-The Gen 5-style project does not currently expose every Gen 6 front/back under
-`gen5ani` and `gen5ani-back`, so the generator falls back to `ani`/`ani-back`
-only when the Gen 5-style URL is missing. The selected source for each compiled
-asset is written to `data/pwan/pokeweb_pwan/sources.json`.
-
-The current mapping covers species `650..721`. Asset index `0` corresponds to
-Chespin, `1` to Quilladin, and so on through Volcanion. For each species, the
-front and back entries share the same index:
-
-```text
-front asset id = index * 2
-back asset id  = index * 2 + 1
-```
-
-`data/pwan/meson.build` stages the compiled files into `vfs/data/pokeweb_pwan`.
-Because `White2Upgrade.cmproj` uses `UserDataPath: data`, those files become the
-root-level `pokeweb_pwan/...` paths expected by the runtime.
+The older loose `vfs/data/pokeweb_pwan` output path is intentionally bypassed on
+this branch so stale PWAN v1 files do not shadow or confuse the v3 runtime.
 
 ## In-Game Verification
 
@@ -85,10 +79,8 @@ Then load the save and walk with the HID update breakpoint at `0x0203dd70`.
 When Xerneas appears, the battle animation runtime should open:
 
 ```text
-pokeweb_pwan/066_front.pwan
+zz_pokeweb_pwan/pwan.narc
 ```
 
-Asset index `66` maps to species `650 + 66 = 716`, which is Xerneas. A local
-test on the rebuilt ROM recorded repeated opens of `066_front.pwan` during a
-Route 6 encounter, confirming the battle runtime found the Gen 6 PWAN asset in
-the ROM filesystem.
+Asset index `66` maps to species `650 + 66 = 716`, which is Xerneas. The front
+sprite is NARC member `133`, and the back sprite is member `134`.

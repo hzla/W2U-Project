@@ -1,6 +1,11 @@
 # Pokémon White 2 Upgrade
 This repository aims to bring new features to the Generation V Pokémon game, Pokémon White 2. This should also work for Black 2, given the conditions are satisfied (proper symbols database, PMC port).
 
+> Migration branch note: the active build entrypoint is Meson plus CTRMap VFS,
+> not the old `ndstool` extraction/repack flow. See
+> `docs/pokeweb-migration-build.md` for current setup, build, and verification
+> commands.
+
 ## Current Features
 - Expanded Pokédex (currently up to 721).
 - Fairy type.
@@ -43,4 +48,3 @@ Once the repository is setup, run `make -j$(nproc)`. If all goes well, you shall
 - [Hello007](https://github.com/HelloOO7) - CTRMap, PMC, code injection tools, Generation V research.
 - [BluRose](https://github.com/BluRosie) - Fairy type fixes, expansion fixes.
 - [PlatinumMaster](https://github.com/PlatinumMaster) - Expansion fixes, PMC, code injection tools, Generation V research, build system.
-
