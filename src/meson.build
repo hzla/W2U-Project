@@ -3,6 +3,7 @@ patches = []
 subdir('pokedex_expansion')
 subdir('type_expansion')
 subdir('pwan_animation')
+subdir('pokeweb_gameplay')
 
 cxx = meson.get_compiler('cpp')
 includes = [
@@ -16,11 +17,13 @@ includes = [
     '-I' + meson.project_source_root() / 'src' / 'pokedex_expansion',
     '-I' + meson.project_source_root() / 'src' / 'type_expansion',
     '-I' + meson.project_source_root() / 'src' / 'pwan_animation',
+    '-I' + meson.project_source_root() / 'src' / 'pokeweb_gameplay',
 ]
 
 sources = [
     pokedex_expansion,
     type_expansion,
+    pokeweb_gameplay,
     files('../include/util/filesystem.cpp'),
     files('battle_setup_patch.s'),
 ]

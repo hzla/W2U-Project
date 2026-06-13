@@ -211,14 +211,10 @@ FULL_COPY_167_0x21BB05A:
     .byte TypeCnt, 0x2C, 0x0E, 0xDA
     .size FULL_COPY_167_0x21BB05A, . - FULL_COPY_167_0x21BB05A
 
-FULL_COPY_167_0x21BD1A0:
-    .byte TypeCnt, 0x28, 0x01, 0xDA
-    .byte TypeCnt, 0x29, 0x01, 0xDB
-    .size FULL_COPY_167_0x21BD1A0, . - FULL_COPY_167_0x21BD1A0
-
-FULL_COPY_167_0x21BD1AC:
-    .byte TypeCnt, 0x22, 0x42, 0x43
-    .size FULL_COPY_167_0x21BD1AC, . - FULL_COPY_167_0x21BD1AC
+@ GetTypeEffectiveness is replaced by THUMB_BRANCH_GetTypeEffectiveness in Types.cpp.
+@ Do not also patch the vanilla row stride here; that leaves the old 17x17 embedded
+@ chart active with an 18-wide stride when the hooks race, making Flying vs Bug read
+@ as not very effective.
 
 FULL_COPY_167_0x21BD318:
     .byte TypeCnt

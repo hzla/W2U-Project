@@ -14,7 +14,8 @@ cpp_args = [
     '-fno-exceptions',
     '-fno-rtti',
     '-fno-unwind-tables',
-    '-fno-asynchronous-unwind-tables'
+    '-fno-asynchronous-unwind-tables',
+    '-DW2U_ENABLE_GEN6_BATTLE_ITEMS=1'
 ]
 
 asm_args = [

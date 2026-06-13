@@ -1,0 +1,11 @@
+pokeweb_gameplay = files(
+    'w2u_abilities.cpp',
+    'w2u_field_effects.cpp',
+    'w2u_field_items.cpp',
+    'w2u_items.cpp',
+    'w2u_mega.cpp',
+    'w2u_moves.cpp',
+    'w2u_field_item_hooks.s',
+    'w2u_mega_hooks.s',
+    'w2u_move_animation_hooks.s',
+)
