@@ -2,11 +2,11 @@
 #include "nds/fs.h"
 #include "pwan_types.h"
 #include "string.h"
-#include "w2u_pwan_config.h"
+#include "w2u_pwan_archive.h"
 
 #define W2U_PWAN_MAGIC 0x4E415750u
 #define W2U_FRAME_BYTES 0x1200u
-#define W2U_FRAME_VRAM_OFFSET 0x7000u
+#define W2U_FRAME_VRAM_OFFSET 0xc000u
 #define W2U_OBJ_1D_128K_BLOCK_BYTES 128u
 #define W2U_TILE_BASE (W2U_FRAME_VRAM_OFFSET / W2U_OBJ_1D_128K_BLOCK_BYTES)
 #define W2U_OBJ_PLT 15u
@@ -20,9 +20,8 @@
 #define W2U_VRAMCNT_C ((volatile u8 *)0x04000242)
 #define W2U_VRAMCNT_D ((volatile u8 *)0x04000243)
 #define W2U_SUMMARY_PROFILE_MAGIC 0x46525053u
-#define W2U_SUMMARY_PROFILE_VERSION 19u
+#define W2U_SUMMARY_PROFILE_VERSION 21u
 #define W2U_SUMMARY_SETTLE_FRAMES 2u
-#define W2U_SUMMARY_NO_ASSET_HOLD_FRAMES 40u
 #define W2U_SUMMARY_BASE_Y 40
 #define W2U_SUMMARY_BASELINE_BOTTOM 82
 #define W2U_MAIN_RAM_START 0x02000000u
@@ -54,28 +53,25 @@ struct PwanTimelineEntry {
     u16 ticks;
 };
 
-#define W2U_PWAN_CONFIG_PATH "pokeweb_pwan/config.bin"
-#define W2U_PWAN_CONFIG_MAGIC 0x434E5750u
-#define W2U_PWAN_CONFIG_VERSION 1u
-#define W2U_PWAN_MAX_OVERRIDES 500u
-#define W2U_PWAN_ASSET_COUNT (W2U_PWAN_MAX_OVERRIDES * 2u)
-#define W2U_SUMMARY_CACHE_COUNT 2u
-#define W2U_PWAN_PATH_BYTES 32u
-
-struct PwanConfigHeader {
-    u32 magic;
-    u16 version;
-    u16 count;
-    u16 maxTimeline;
-    u16 reserved;
-    u32 entriesOffset;
+struct RuntimeTimelineEntry {
+    u8 frame;
+    u8 ticks;
 };
 
-struct PwanConfigEntry {
+#define W2U_PWAN_MAX_OVERRIDES 500u
+#define W2U_PWAN_MAX_ASSET_INDEX 1094u
+#define W2U_PWAN_ASSET_COUNT ((W2U_PWAN_MAX_ASSET_INDEX + 1u) * 2u)
+#define W2U_PWAN_MAX_TIMELINE 192u
+#define W2U_SUMMARY_CACHE_COUNT 1u
+#define W2U_PKM_PARAM_SPECIES 5u
+#define W2U_PKM_PARAM_FORM 0x6fu
+
+typedef W2U_PwanConfigHeader PwanConfigHeader;
+typedef W2U_PwanConfigEntry PwanConfigEntry;
+
+struct SummaryPokemonIdentity {
     u16 species;
-    u16 flags;
-    u16 frontIndex;
-    u16 backIndex;
+    u16 form;
 };
 
 struct PstatusData {
@@ -110,11 +106,9 @@ typedef u32 SummaryAssetId;
 
 struct Asset {
     b32 loaded;
-    b32 fileOpen;
     u32 assetId;
-    FSFile file;
     PwanHeader header;
-    PwanTimelineEntry timeline[128];
+    RuntimeTimelineEntry timeline[W2U_PWAN_MAX_TIMELINE];
     u16 palette[16];
     s32 summaryYOffset;
     s32 summaryMaxBottom;
@@ -133,6 +127,7 @@ struct State {
     u32 observedState;
     u32 observedIsDispFront;
     u32 observedSpecies;
+    u32 observedForm;
     u32 observedAsset;
     u32 acceptedWork;
     u32 acceptedSubWork;
@@ -141,6 +136,7 @@ struct State {
     u32 acceptedState;
     u32 acceptedIsDispFront;
     u32 acceptedSpecies;
+    u32 acceptedForm;
     u32 acceptedAsset;
     u32 acceptedPos;
     u32 stableFrames;
@@ -156,9 +152,9 @@ struct State {
     u32 rawObservedMax;
     u32 rawObservedPos;
     u32 rawStableFrames;
-    u32 noAssetHoldFrames;
+    u32 sessionWork;
+    u32 sessionSubWork;
     Asset asset[W2U_SUMMARY_CACHE_COUNT];
-    u8 frame[W2U_FRAME_BYTES];
 };
 
 enum SummarySkipReason {
@@ -177,6 +173,7 @@ enum SummarySkipReason {
     SKIP_TERM = 12,
     SKIP_RAW_SIGNATURE_CHANGED = 13,
     SKIP_RAW_NOT_SETTLED = 14,
+    SKIP_NO_CONFIG = 15,
 };
 
 enum SummaryLifecycleStage {
@@ -199,6 +196,10 @@ enum SummaryLifecycleStage {
     STAGE_TERM_DONE = 16,
 };
 
+#if !W2U_PWAN_DIAGNOSTICS
+#define u32 w2u::pwan_profile::SinkWord
+#define s32 w2u::pwan_profile::SinkWord
+#endif
 struct SummaryAnimProfile {
     u32 magic;
     u32 version;
@@ -291,7 +292,12 @@ struct SummaryAnimProfile {
     u32 lastLoadHeaderTimelineCount;
     u32 lastLoadHeaderFrameOffset;
 };
+#if !W2U_PWAN_DIAGNOSTICS
+#undef s32
+#undef u32
+#endif
 
+#if W2U_PWAN_DIAGNOSTICS
 extern "C" {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmissing-field-initializers"
@@ -302,10 +308,14 @@ volatile SummaryAnimProfile W2U_SummaryAnim_Profile = {
 };
 #pragma GCC diagnostic pop
 }
+#else
+static SummaryAnimProfile W2U_SummaryAnim_Profile;
+#endif
 
 static State sState;
 
-static char sAssetPath[W2U_PWAN_PATH_BYTES];
+static u32 sConfigState;
+static u8 *const sFrameScratch = W2U_PwanFrameScratch;
 
 typedef void *(*GetCurrentPpFn)(SummaryWorkView *work);
 typedef u32 (*PpGetFn)(const void *pp, int id, void *buf);
@@ -320,10 +330,14 @@ static McssShadowVanishFn const MCSS_SetShadowVanishFlag_Fn =
     (McssShadowVanishFn)0x0201AEF9u;
 
 static void HideOam();
+static void CopyFrameCacheToVram();
 static void HideVanillaMcss(void *mcss);
 static void RestoreAcceptedTransitionMcss();
-static void RestoreAcceptedDisplayedVanillaMcss();
 static void RestoreCurrentDisplayedVanillaMcss(SummarySubWorkView *sub);
+static void ClearAcceptedPwan();
+static void ClearSessionState();
+static void ResetSessionIfChanged(SummaryWorkView *work, SummarySubWorkView *sub);
+static SummaryAssetId GetAssetForSpeciesSide(SummaryPokemonIdentity identity, b32 isFront);
 
 static b32 IsAlignedMainRamPtr(const void *ptr)
 {
@@ -415,17 +429,26 @@ static void Deactivate(SummarySkipReason reason, SummarySubWorkView *sub = 0)
     HideOam();
 }
 
-static void DeactivateNoRestore(SummarySkipReason reason)
+static void ClearPwanRenderCache()
 {
     sState.active = false;
+    sState.copiedFrame = 0xffffu;
+    sState.copiedAsset = ASSET_NONE;
+    sState.paletteAsset = ASSET_NONE;
+    sState.stableFrames = 0;
+    ClearAcceptedPwan();
+    for (u32 i = 0; i < W2U_SUMMARY_CACHE_COUNT; ++i) {
+        sState.asset[i].loaded = false;
+        sState.asset[i].assetId = ASSET_NONE;
+        sState.tick[i] = 0;
+    }
     W2U_SummaryAnim_Profile.active = false;
-    W2U_SummaryAnim_Profile.lastSkipReason = (u32)reason;
     HideOam();
 }
 
 static b32 SameObservedSignature(SummaryWorkView *work,
                                  SummarySubWorkView *sub,
-                                 u16 species,
+                                 SummaryPokemonIdentity identity,
                                  SummaryAssetId assetId)
 {
     return sState.observedWork == (u32)work &&
@@ -434,13 +457,14 @@ static b32 SameObservedSignature(SummaryWorkView *work,
            sState.observedPokeMcssBack == (u32)sub->pokeMcssBack &&
            sState.observedState == sub->state &&
            sState.observedIsDispFront == sub->isDispFront &&
-           sState.observedSpecies == species &&
+           sState.observedSpecies == identity.species &&
+           sState.observedForm == identity.form &&
            sState.observedAsset == (u32)assetId;
 }
 
 static void RecordObservedSignature(SummaryWorkView *work,
                                     SummarySubWorkView *sub,
-                                    u16 species,
+                                    SummaryPokemonIdentity identity,
                                     SummaryAssetId assetId)
 {
     sState.observedWork = (u32)work;
@@ -449,7 +473,8 @@ static void RecordObservedSignature(SummaryWorkView *work,
     sState.observedPokeMcssBack = (u32)sub->pokeMcssBack;
     sState.observedState = sub->state;
     sState.observedIsDispFront = sub->isDispFront;
-    sState.observedSpecies = species;
+    sState.observedSpecies = identity.species;
+    sState.observedForm = identity.form;
     sState.observedAsset = (u32)assetId;
     W2U_SummaryAnim_Profile.lastObservedWork = sState.observedWork;
     W2U_SummaryAnim_Profile.lastObservedSubWork = sState.observedSubWork;
@@ -470,6 +495,7 @@ static void AcceptObservedSignature()
     sState.acceptedState = sState.observedState;
     sState.acceptedIsDispFront = sState.observedIsDispFront;
     sState.acceptedSpecies = sState.observedSpecies;
+    sState.acceptedForm = sState.observedForm;
     sState.acceptedAsset = sState.observedAsset;
     sState.acceptedPos = sState.rawObservedPos;
     W2U_SummaryAnim_Profile.lastAcceptedWork = sState.acceptedWork;
@@ -485,9 +511,14 @@ static void AcceptObservedSignature()
 static b32 ShouldInitializeFrontSide(SummaryWorkView *work,
                                      SummarySubWorkView *sub,
                                      const PstatusData *psData,
-                                     u16 species)
+                                     SummaryPokemonIdentity identity)
 {
-    if (!sub || sub->isDispFront || species == SPECIES_NONE) {
+    if (!sub || sub->isDispFront || identity.species == SPECIES_NONE) {
+        return false;
+    }
+
+    // Only normalize entry side for species the PWAN summary renderer owns.
+    if (GetAssetForSpeciesSide(identity, true) >= ASSET_COUNT) {
         return false;
     }
 
@@ -499,7 +530,8 @@ static b32 ShouldInitializeFrontSide(SummaryWorkView *work,
            sState.acceptedSubWork != (u32)sub ||
            sState.acceptedPokeMcss != (u32)sub->pokeMcss ||
            sState.acceptedPokeMcssBack != (u32)sub->pokeMcssBack ||
-           sState.acceptedSpecies != species ||
+           sState.acceptedSpecies != identity.species ||
+           sState.acceptedForm != identity.form ||
            sState.acceptedPos != psData->pos;
 }
 
@@ -526,130 +558,61 @@ static b32 AcceptedSignatureStillMatches(SummaryWorkView *work, SummarySubWorkVi
            sState.acceptedIsDispFront == sub->isDispFront;
 }
 
-static void ThreeDigitDecimal(u32 value, char *out)
+static b32 ReadConfigRange(u32 offset, void *buffer, u32 size)
 {
-    u32 hundreds = 0;
-    while (value >= 100u) {
-        value -= 100u;
-        hundreds = hundreds + 1u;
-    }
-
-    u32 tens = 0;
-    while (value >= 10u) {
-        value -= 10u;
-        tens = tens + 1u;
-    }
-
-    out[0] = (char)('0' + hundreds);
-    out[1] = (char)('0' + tens);
-    out[2] = (char)('0' + value);
-}
-
-static void WriteAssetPath(char *out, u32 assetId)
-{
-    const u32 assetIndex = assetId >> 1;
-    out[0] = 'p';
-    out[1] = 'o';
-    out[2] = 'k';
-    out[3] = 'e';
-    out[4] = 'w';
-    out[5] = 'e';
-    out[6] = 'b';
-    out[7] = '_';
-    out[8] = 'p';
-    out[9] = 'w';
-    out[10] = 'a';
-    out[11] = 'n';
-    out[12] = '/';
-    ThreeDigitDecimal(assetIndex, out + 13);
-    out[16] = '_';
-    if ((assetId & 1u) == 0) {
-        out[17] = 'f';
-        out[18] = 'r';
-        out[19] = 'o';
-        out[20] = 'n';
-        out[21] = 't';
-        out[22] = '.';
-        out[23] = 'p';
-        out[24] = 'w';
-        out[25] = 'a';
-        out[26] = 'n';
-        out[27] = 0;
-    } else {
-        out[17] = 'b';
-        out[18] = 'a';
-        out[19] = 'c';
-        out[20] = 'k';
-        out[21] = '.';
-        out[22] = 'p';
-        out[23] = 'w';
-        out[24] = 'a';
-        out[25] = 'n';
-        out[26] = 0;
-    }
-}
-
-static const char *PathForAsset(SummaryAssetId assetId)
-{
-    if ((u32)assetId >= ASSET_COUNT) return 0;
-    WriteAssetPath(sAssetPath, (u32)assetId);
-    return sAssetPath;
-}
-
-static b32 ReadPathRange(const char *path, u32 offset, void *buffer, u32 size)
-{
-    if (!path) return false;
     W2U_SummaryAnim_Profile.lastLoadReadOffset = offset;
     W2U_SummaryAnim_Profile.lastLoadReadSize = size;
-    FSFile file;
-    finit(&file);
-    if (!romfs_fopen(&file, path)) {
-        return false;
+    return w2u::pwan_archive::ReadMemberRange(W2U_PWAN_CONFIG_MEMBER_ID, offset, buffer, size);
+}
+
+static b32 ReadRange(SummaryAssetId assetId, u32 offset, void *buffer, u32 size)
+{
+    if ((u32)assetId >= ASSET_COUNT) return false;
+    W2U_SummaryAnim_Profile.lastLoadReadOffset = offset;
+    W2U_SummaryAnim_Profile.lastLoadReadSize = size;
+    return w2u::pwan_archive::ReadMemberRange(
+        w2u::pwan_archive::MemberIdForAsset((u32)assetId), offset, buffer, size);
+}
+
+static b32 ReadConfigHeader(PwanConfigHeader *header)
+{
+    return ReadConfigRange(0, header, sizeof(*header)) &&
+           header->magic == W2U_PWAN_CONFIG_MAGIC &&
+           header->version == W2U_PWAN_CONFIG_VERSION &&
+           header->count <= W2U_PWAN_MAX_OVERRIDES &&
+           header->maxTimeline <= W2U_PWAN_MAX_TIMELINE &&
+           header->entriesOffset >= sizeof(PwanConfigHeader);
+}
+
+static b32 PwanConfigAvailable()
+{
+    if (sConfigState == 1u) {
+        return true;
     }
-    if (!romfs_fseek(&file, offset, IO_SEEK_SET)) {
-        romfs_fclose(&file);
-        return false;
+
+    PwanConfigHeader header;
+    if (ReadConfigHeader(&header)) {
+        sConfigState = 1u;
+        return true;
     }
-    const b32 ok = romfs_fread(&file, buffer, size) == size;
-    romfs_fclose(&file);
-    return ok;
+
+    return false;
+}
+
+static void DeactivateNoConfig()
+{
+    RestoreAcceptedTransitionMcss();
+    ClearAcceptedPwan();
+    sState.active = false;
+    W2U_SummaryAnim_Profile.active = false;
+    W2U_SummaryAnim_Profile.lastSkipReason = SKIP_NO_CONFIG;
+    HideOam();
 }
 
 static u32 CacheSlotForAsset(SummaryAssetId assetId)
 {
-    return ((u32)assetId) & 1u;
-}
-
-static void CloseAssetFile(Asset *asset)
-{
-    if (asset->fileOpen) {
-        romfs_fclose(&asset->file);
-        asset->fileOpen = false;
-    }
-}
-
-static b32 OpenAssetFile(Asset *asset, SummaryAssetId assetId)
-{
-    CloseAssetFile(asset);
-    const char *path = PathForAsset(assetId);
-    if (!path) return false;
-    finit(&asset->file);
-    if (!romfs_fopen(&asset->file, path)) {
-        return false;
-    }
-    asset->fileOpen = true;
-    return true;
-}
-
-static b32 ReadAssetRange(Asset *asset, u32 offset, void *buffer, u32 size)
-{
-    if (!asset->fileOpen) return false;
-    W2U_SummaryAnim_Profile.lastLoadReadOffset = offset;
-    W2U_SummaryAnim_Profile.lastLoadReadSize = size;
-    if (!romfs_fseek(&asset->file, offset, IO_SEEK_SET)) {
-        return false;
-    }
-    return romfs_fread(&asset->file, buffer, size) == size;
+    (void)assetId;
+    return 0;
 }
 
 static s32 FindFrameBottom(const u8 *frame)
@@ -687,12 +650,12 @@ static b32 LoadSummaryPlacement(SummaryAssetId assetId)
     Asset *asset = &sState.asset[CacheSlotForAsset(assetId)];
     const u32 offset = asset->header.frameOffset;
     W2U_SummaryAnim_Profile.lastLoadStep = 51;
-    if (!ReadAssetRange(asset, offset, sState.frame, W2U_FRAME_BYTES)) {
+    if (!ReadRange(assetId, offset, sFrameScratch, W2U_FRAME_BYTES)) {
         return false;
     }
 
     W2U_SummaryAnim_Profile.lastLoadStep = 52;
-    const s32 maxBottom = FindFrameBottom(sState.frame);
+    const s32 maxBottom = FindFrameBottom(sFrameScratch);
     asset->summaryMaxBottom = maxBottom;
     asset->summaryYOffset = maxBottom > W2U_SUMMARY_BASELINE_BOTTOM
                                  ? W2U_SUMMARY_BASELINE_BOTTOM - maxBottom
@@ -749,20 +712,15 @@ static b32 LoadAsset(SummaryAssetId assetId)
     W2U_SummaryAnim_Profile.lastLoadStep = 2;
     const u32 slot = CacheSlotForAsset(assetId);
     Asset *asset = &sState.asset[slot];
-    if (asset->loaded && asset->fileOpen && asset->assetId == (u32)assetId) {
+    if (asset->loaded && asset->assetId == (u32)assetId) {
         return true;
     }
-    CloseAssetFile(asset);
     asset->loaded = false;
     asset->assetId = (u32)assetId;
     sState.tick[slot] = 0;
 
     W2U_SummaryAnim_Profile.lastLoadStep = 10;
-    if (!OpenAssetFile(asset, assetId)) {
-        return false;
-    }
-    if (!ReadAssetRange(asset, 0, &asset->header, sizeof(asset->header))) {
-        CloseAssetFile(asset);
+    if (!ReadRange(assetId, 0, &asset->header, sizeof(asset->header))) {
         return false;
     }
     W2U_SummaryAnim_Profile.lastLoadStep = 11;
@@ -778,25 +736,29 @@ static b32 LoadAsset(SummaryAssetId assetId)
         asset->header.paletteColors != 16 ||
         asset->header.frameCount == 0 ||
         asset->header.timelineCount == 0 ||
-        asset->header.timelineCount > 128) {
-        CloseAssetFile(asset);
+        asset->header.timelineCount > W2U_PWAN_MAX_TIMELINE) {
         return false;
     }
 
     W2U_SummaryAnim_Profile.lastLoadStep = 20;
-    if (!ReadAssetRange(asset, asset->header.paletteOffset, asset->palette, sizeof(asset->palette))) {
-        CloseAssetFile(asset);
+    if (!ReadRange(assetId, asset->header.paletteOffset, asset->palette, sizeof(asset->palette))) {
         return false;
     }
     W2U_SummaryAnim_Profile.lastLoadStep = 30;
-    if (!ReadAssetRange(asset, asset->header.timelineOffset, asset->timeline,
-                        asset->header.timelineCount * sizeof(PwanTimelineEntry))) {
-        CloseAssetFile(asset);
+    PwanTimelineEntry fileTimeline[W2U_PWAN_MAX_TIMELINE];
+    if (!ReadRange(assetId, asset->header.timelineOffset, fileTimeline,
+                   asset->header.timelineCount * sizeof(fileTimeline[0]))) {
         return false;
+    }
+    for (u32 i = 0; i < asset->header.timelineCount; ++i) {
+        if (fileTimeline[i].frame > 0xffu || fileTimeline[i].ticks > 0xffu) {
+            return false;
+        }
+        asset->timeline[i].frame = (u8)fileTimeline[i].frame;
+        asset->timeline[i].ticks = (u8)fileTimeline[i].ticks;
     }
     W2U_SummaryAnim_Profile.lastLoadStep = 40;
     if (!LoadSummaryPlacement(assetId)) {
-        CloseAssetFile(asset);
         return false;
     }
 
@@ -819,6 +781,15 @@ static u16 FrameForTick(const Asset *asset, u32 tick)
     return frame < asset->header.frameCount ? frame : 0;
 }
 
+static void CopyFrameCacheToVram()
+{
+    volatile u16 *dst = W2U_OBJ_VRAM + (W2U_FRAME_VRAM_OFFSET / 2);
+    const u16 *src = (const u16 *)sFrameScratch;
+    for (u32 i = 0; i < W2U_FRAME_BYTES / 2; ++i) {
+        dst[i] = src[i];
+    }
+}
+
 static b32 CopyFrameToVram(SummaryAssetId assetId, u16 frame)
 {
     if (assetId >= ASSET_COUNT) {
@@ -829,18 +800,14 @@ static b32 CopyFrameToVram(SummaryAssetId assetId, u16 frame)
         return false;
     }
     const u32 offset = asset->header.frameOffset + (frame * asset->header.frameBytes);
-    if (!ReadAssetRange(asset, offset, sState.frame, W2U_FRAME_BYTES)) {
+    if (!ReadRange(assetId, offset, sFrameScratch, W2U_FRAME_BYTES)) {
         W2U_SummaryAnim_Profile.frameReadFailCount = W2U_SummaryAnim_Profile.frameReadFailCount + 1u;
         W2U_SummaryAnim_Profile.lastFrameReadFailAsset = (u32)assetId;
         W2U_SummaryAnim_Profile.lastFrameReadFailFrame = frame;
         return false;
     }
 
-    volatile u16 *dst = W2U_OBJ_VRAM + (W2U_FRAME_VRAM_OFFSET / 2);
-    const u16 *src = (const u16 *)sState.frame;
-    for (u32 i = 0; i < W2U_FRAME_BYTES / 2; ++i) {
-        dst[i] = src[i];
-    }
+    CopyFrameCacheToVram();
     sState.copiedFrame = frame;
     sState.copiedAsset = assetId;
     W2U_SummaryAnim_Profile.lastCopiedFrame = frame;
@@ -865,6 +832,7 @@ static void DrawFrame()
     const Asset *asset = assetId < ASSET_COUNT ? &sState.asset[CacheSlotForAsset(assetId)] : 0;
     const s32 yOffset = asset && asset->loaded && asset->assetId == assetId ? asset->summaryYOffset : 0;
     const u32 y = (u32)(W2U_SUMMARY_BASE_Y + yOffset);
+    CopyFrameCacheToVram();
     SetObj(0, x, y, 0, 3, W2U_TILE_BASE);
     SetObj(1, x + 64, y, 2, 3, W2U_TILE_BASE + (0x0800u / W2U_OBJ_1D_128K_BLOCK_BYTES));
     SetObj(2, x, y + 64, 1, 3, W2U_TILE_BASE + (0x0c00u / W2U_OBJ_1D_128K_BLOCK_BYTES));
@@ -942,16 +910,6 @@ static void RestoreAcceptedTransitionMcss()
     MoveHiddenMcssOffscreen(hidden);
 }
 
-static void RestoreAcceptedDisplayedVanillaMcss()
-{
-    if (!sState.active) {
-        return;
-    }
-    const u32 mcss = sState.acceptedIsDispFront ? sState.acceptedPokeMcss
-                                                : sState.acceptedPokeMcssBack;
-    RestoreVanillaMcss((void *)mcss);
-}
-
 static void RestoreCurrentDisplayedVanillaMcss(SummarySubWorkView *sub)
 {
     if (!sub) {
@@ -966,47 +924,118 @@ static void RestoreCurrentDisplayedVanillaMcss(SummarySubWorkView *sub)
     }
 }
 
-static b32 CurrentMcssReusesAccepted(SummarySubWorkView *sub)
-{
-    if (!sub || sState.acceptedAsset >= ASSET_COUNT) {
-        return false;
-    }
-    const u32 front = (u32)sub->pokeMcss;
-    const u32 back = (u32)sub->pokeMcssBack;
-    return front == sState.acceptedPokeMcss ||
-           front == sState.acceptedPokeMcssBack ||
-           back == sState.acceptedPokeMcss ||
-           back == sState.acceptedPokeMcssBack;
-}
-
-static void HideCurrentAndAcceptedMcss(SummarySubWorkView *sub)
-{
-    KeepTransitionMcssHidden(SKIP_NO_ASSET, sub);
-}
-
 static void ClearAcceptedPwan()
 {
     sState.acceptedAsset = ASSET_NONE;
     sState.acceptedSpecies = SPECIES_NONE;
+    sState.acceptedForm = 0;
     sState.acceptedPokeMcss = 0;
     sState.acceptedPokeMcssBack = 0;
     sState.acceptedWork = 0;
     sState.acceptedSubWork = 0;
+    sState.acceptedState = 0;
+    sState.acceptedIsDispFront = 0;
+    sState.acceptedPos = 0;
 }
 
-static u16 GetCurrentSpecies(SummaryWorkView *work)
+static void ClearSessionState()
 {
+    sState.active = false;
+    sState.copiedFrame = 0xffffu;
+    sState.copiedAsset = ASSET_NONE;
+    sState.paletteAsset = ASSET_NONE;
+    sState.observedWork = 0;
+    sState.observedSubWork = 0;
+    sState.observedPokeMcss = 0;
+    sState.observedPokeMcssBack = 0;
+    sState.observedState = 0;
+    sState.observedIsDispFront = 0;
+    sState.observedSpecies = SPECIES_NONE;
+    sState.observedForm = 0;
+    sState.observedAsset = ASSET_NONE;
+    sState.rawObservedWork = 0;
+    sState.rawObservedSubWork = 0;
+    sState.rawObservedPokeMcss = 0;
+    sState.rawObservedPokeMcssBack = 0;
+    sState.rawObservedState = 0;
+    sState.rawObservedIsDispFront = 0;
+    sState.rawObservedPsData = 0;
+    sState.rawObservedPpt = 0;
+    sState.rawObservedMode = 0;
+    sState.rawObservedMax = 0;
+    sState.rawObservedPos = 0;
+    sState.stableFrames = 0;
+    sState.rawStableFrames = 0;
+    ClearAcceptedPwan();
+    for (u32 i = 0; i < W2U_SUMMARY_CACHE_COUNT; ++i) {
+        sState.asset[i].loaded = false;
+        sState.asset[i].assetId = ASSET_NONE;
+        sState.tick[i] = 0;
+    }
+    W2U_SummaryAnim_Profile.active = false;
+    W2U_SummaryAnim_Profile.stableFrames = 0;
+    HideOam();
+}
+
+static void ResetSessionIfChanged(SummaryWorkView *work, SummarySubWorkView *sub)
+{
+    const u32 workPtr = (u32)work;
+    const u32 subPtr = (u32)sub;
+    if (sState.sessionWork == workPtr && sState.sessionSubWork == subPtr) {
+        return;
+    }
+
+    ClearSessionState();
+    sState.sessionWork = workPtr;
+    sState.sessionSubWork = subPtr;
+}
+
+static SummaryPokemonIdentity GetCurrentIdentity(SummaryWorkView *work)
+{
+    SummaryPokemonIdentity identity = {SPECIES_NONE, 0};
     void *pp = PSTATUS_UTIL_GetCurrentPP_Fn(work);
     if (!pp) {
-        return SPECIES_NONE;
+        return identity;
     }
-    return (u16)PP_Get_Fn(pp, 5, 0);
+    identity.species = (u16)PP_Get_Fn(pp, W2U_PKM_PARAM_SPECIES, 0);
+    if (identity.species != SPECIES_NONE) {
+        identity.form = (u16)PP_Get_Fn(pp, W2U_PKM_PARAM_FORM, 0);
+    }
+    return identity;
 }
 
-static SummaryAssetId GetAssetForSpeciesSide(u16 species, b32 isFront)
+static SummaryAssetId GetAssetForEntrySide(const PwanConfigEntry *entry, b32 isFront)
 {
-    const u32 assetId = w2u::pwan::GetAssetForSpeciesSide(species, isFront);
-    return assetId == W2U_PWAN_CONFIG_ASSET_NONE ? ASSET_NONE : (SummaryAssetId)assetId;
+    if (isFront) {
+        if ((entry->flags & W2U_PWAN_CONFIG_FRONT_FLAG) == 0 ||
+            entry->assetIndex > W2U_PWAN_MAX_ASSET_INDEX) {
+            return ASSET_NONE;
+        }
+        return (SummaryAssetId)(entry->assetIndex * 2u);
+    }
+    if ((entry->flags & W2U_PWAN_CONFIG_BACK_FLAG) == 0 ||
+        entry->assetIndex > W2U_PWAN_MAX_ASSET_INDEX) {
+        return ASSET_NONE;
+    }
+    return (SummaryAssetId)(entry->assetIndex * 2u + 1u);
+}
+
+static SummaryAssetId GetAssetForSpeciesSide(SummaryPokemonIdentity identity, b32 isFront)
+{
+    PwanConfigHeader header;
+    if (!ReadConfigHeader(&header)) {
+        return ASSET_NONE;
+    }
+    for (u32 i = 0; i < header.count; ++i) {
+        u8 raw[W2U_PWAN_CONFIG_ENTRY_BYTES];
+        const u32 offset = W2U_PwanConfigEntryOffset(&header, i);
+        if (!ReadConfigRange(offset, raw, W2U_PWAN_CONFIG_ENTRY_BYTES)) return ASSET_NONE;
+        PwanConfigEntry entry = W2U_DecodePwanConfigEntry(raw);
+        if (entry.species == identity.species && entry.form == identity.form) {
+            return GetAssetForEntrySide(&entry, isFront);
+        }
+    }
+    return ASSET_NONE;
 }
 
 extern "C" void W2U_SummaryAnim_Update(void *rawWork)
@@ -1014,21 +1043,27 @@ extern "C" void W2U_SummaryAnim_Update(void *rawWork)
     W2U_SummaryAnim_Profile.lastLifecycleStage = STAGE_UPDATE_ENTER;
     W2U_SummaryAnim_Profile.updateCalls = W2U_SummaryAnim_Profile.updateCalls + 1u;
     SummaryWorkView *work = (SummaryWorkView *)rawWork;
-    SummarySubWorkView *sub = work ? (SummarySubWorkView *)work->subWork : 0;
     W2U_SummaryAnim_Profile.lastWork = (u32)work;
-    W2U_SummaryAnim_Profile.lastSubWork = (u32)sub;
-    if (!work || !sub) {
-        if (!work) {
-            W2U_SummaryAnim_Profile.nullWorkCount = W2U_SummaryAnim_Profile.nullWorkCount + 1u;
-            Deactivate(SKIP_NULL_WORK);
-            return;
-        }
-        if (work && !sub) {
-            W2U_SummaryAnim_Profile.nullSubWorkCount = W2U_SummaryAnim_Profile.nullSubWorkCount + 1u;
-            Deactivate(SKIP_NULL_SUB_WORK);
-            return;
-        }
+
+    if (!PwanConfigAvailable()) {
+        DeactivateNoConfig();
+        return;
     }
+
+    if (!IsAlignedMainRamPtr(work)) {
+        W2U_SummaryAnim_Profile.nullWorkCount = W2U_SummaryAnim_Profile.nullWorkCount + 1u;
+        Deactivate(SKIP_NULL_WORK);
+        return;
+    }
+
+    SummarySubWorkView *sub = (SummarySubWorkView *)work->subWork;
+    W2U_SummaryAnim_Profile.lastSubWork = (u32)sub;
+    if (!IsAlignedMainRamPtr(sub)) {
+        W2U_SummaryAnim_Profile.nullSubWorkCount = W2U_SummaryAnim_Profile.nullSubWorkCount + 1u;
+        Deactivate(SKIP_NULL_SUB_WORK);
+        return;
+    }
+    ResetSessionIfChanged(work, sub);
     W2U_SummaryAnim_Profile.lastLifecycleStage = STAGE_UPDATE_HAVE_WORK;
     W2U_SummaryAnim_Profile.lastPokeMcss = (u32)sub->pokeMcss;
     W2U_SummaryAnim_Profile.lastPokeMcssBack = (u32)sub->pokeMcssBack;
@@ -1081,9 +1116,9 @@ extern "C" void W2U_SummaryAnim_Update(void *rawWork)
 
     W2U_SummaryAnim_Profile.lastLifecycleStage = STAGE_UPDATE_BEFORE_SPECIES;
     W2U_SummaryAnim_Profile.speciesReadCalls = W2U_SummaryAnim_Profile.speciesReadCalls + 1u;
-    const u16 species = GetCurrentSpecies(work);
+    const SummaryPokemonIdentity identity = GetCurrentIdentity(work);
     W2U_SummaryAnim_Profile.lastLifecycleStage = STAGE_UPDATE_AFTER_SPECIES;
-    if (ShouldInitializeFrontSide(work, sub, psData, species)) {
+    if (ShouldInitializeFrontSide(work, sub, psData, identity)) {
         InitializeFrontSide(work, sub, psData);
         W2U_SummaryAnim_Profile.transitionSkipCount =
             W2U_SummaryAnim_Profile.transitionSkipCount + 1u;
@@ -1091,40 +1126,18 @@ extern "C" void W2U_SummaryAnim_Update(void *rawWork)
         return;
     }
 
-    const SummaryAssetId assetId = GetAssetForSpeciesSide(species, sub->isDispFront);
-    W2U_SummaryAnim_Profile.lastSpecies = species;
+    const SummaryAssetId assetId = GetAssetForSpeciesSide(identity, sub->isDispFront);
+    W2U_SummaryAnim_Profile.lastSpecies = identity.species;
     W2U_SummaryAnim_Profile.lastAsset = (u32)assetId;
     if (assetId >= ASSET_COUNT) {
-        if (CurrentMcssReusesAccepted(sub)) {
-            if (sState.noAssetHoldFrames == 0) {
-                sState.noAssetHoldFrames = W2U_SUMMARY_NO_ASSET_HOLD_FRAMES;
-            }
-            HideCurrentAndAcceptedMcss(sub);
-            sState.noAssetHoldFrames = sState.noAssetHoldFrames - 1u;
-            if (sState.noAssetHoldFrames == 0) {
-                ClearAcceptedPwan();
-            }
-            DeactivateNoRestore(SKIP_NO_ASSET);
-            return;
-        }
-
-        if (sState.noAssetHoldFrames != 0) {
-            HideVanillaMcss(sub->pokeMcss);
-            HideVanillaMcss(sub->pokeMcssBack);
-            sState.noAssetHoldFrames = sState.noAssetHoldFrames - 1u;
-            DeactivateNoRestore(SKIP_NO_ASSET);
-            return;
-        }
-
+        RestoreAcceptedTransitionMcss();
         RestoreCurrentDisplayedVanillaMcss(sub);
-        ClearAcceptedPwan();
-        DeactivateNoRestore(SKIP_NO_ASSET);
+        ClearPwanRenderCache();
+        W2U_SummaryAnim_Profile.lastSkipReason = SKIP_NO_ASSET;
         return;
     }
-    sState.noAssetHoldFrames = 0;
-
-    if (!SameObservedSignature(work, sub, species, assetId)) {
-        RecordObservedSignature(work, sub, species, assetId);
+    if (!SameObservedSignature(work, sub, identity, assetId)) {
+        RecordObservedSignature(work, sub, identity, assetId);
         sState.stableFrames = 0;
         W2U_SummaryAnim_Profile.stableFrames = sState.stableFrames;
         W2U_SummaryAnim_Profile.transitionSkipCount =
@@ -1146,7 +1159,10 @@ extern "C" void W2U_SummaryAnim_Update(void *rawWork)
         W2U_SummaryAnim_Profile.lastLifecycleStage = STAGE_UPDATE_AFTER_LOAD;
         W2U_SummaryAnim_Profile.loadFailCount = W2U_SummaryAnim_Profile.loadFailCount + 1u;
         W2U_SummaryAnim_Profile.lastLoadFailAsset = (u32)assetId;
-        Deactivate(SKIP_LOAD_FAIL);
+        RestoreAcceptedTransitionMcss();
+        RestoreCurrentDisplayedVanillaMcss(sub);
+        ClearPwanRenderCache();
+        W2U_SummaryAnim_Profile.lastSkipReason = SKIP_LOAD_FAIL;
         return;
     }
     W2U_SummaryAnim_Profile.lastLifecycleStage = STAGE_UPDATE_AFTER_LOAD;
@@ -1192,9 +1208,16 @@ extern "C" void W2U_SummaryAnim_PreDraw(void *rawWork)
     W2U_SummaryAnim_Profile.lastLifecycleStage = STAGE_PREDRAW_ENTER;
     W2U_SummaryAnim_Profile.preDrawCalls = W2U_SummaryAnim_Profile.preDrawCalls + 1u;
     RecordDisplayProfile();
+    if (!PwanConfigAvailable()) {
+        DeactivateNoConfig();
+        return;
+    }
     SummaryWorkView *work = (SummaryWorkView *)rawWork;
-    SummarySubWorkView *sub = work ? (SummarySubWorkView *)work->subWork : 0;
-    if (!sState.active || !sub) {
+    if (!sState.active || !IsAlignedMainRamPtr(work)) {
+        return;
+    }
+    SummarySubWorkView *sub = (SummarySubWorkView *)work->subWork;
+    if (!IsAlignedMainRamPtr(sub)) {
         return;
     }
     if ((sub->pokeMcss && !IsAlignedMainRamPtr(sub->pokeMcss)) ||
@@ -1232,23 +1255,10 @@ extern "C" void W2U_SummaryAnim_Term(void *)
 {
     W2U_SummaryAnim_Profile.lastLifecycleStage = STAGE_TERM_ENTER;
     W2U_SummaryAnim_Profile.termCalls = W2U_SummaryAnim_Profile.termCalls + 1u;
-    RestoreAcceptedDisplayedVanillaMcss();
-    sState.active = false;
-    W2U_SummaryAnim_Profile.active = false;
+    ClearSessionState();
+    sState.sessionWork = 0;
+    sState.sessionSubWork = 0;
     W2U_SummaryAnim_Profile.lastSkipReason = SKIP_TERM;
-    sState.copiedFrame = 0xffffu;
-    sState.copiedAsset = ASSET_NONE;
-    sState.paletteAsset = ASSET_NONE;
-    sState.stableFrames = 0;
-    sState.rawStableFrames = 0;
-    W2U_SummaryAnim_Profile.stableFrames = 0;
-    for (u32 i = 0; i < W2U_SUMMARY_CACHE_COUNT; ++i) {
-        CloseAssetFile(&sState.asset[i]);
-        sState.asset[i].loaded = false;
-        sState.asset[i].assetId = ASSET_NONE;
-        sState.tick[i] = 0;
-    }
-    HideOam();
     W2U_SummaryAnim_Profile.lastLifecycleStage = STAGE_TERM_DONE;
 }
 

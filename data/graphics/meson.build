@@ -13,6 +13,7 @@ vfs_files += custom_target(
     '--source', meson.current_source_dir() / 'pokegra',
     '--battle-vfs', meson.project_source_root() / 'vfs' / 'data' / pokegra_battle_arc,
     '--pwan-vfs', meson.project_source_root() / 'vfs' / 'data' / 'pokeweb_pwan',
+    '--skip-pwan',
     '--arc-text', arc_marker_text,
     '--stamp', '@OUTPUT@',
   ],

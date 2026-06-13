@@ -867,16 +867,24 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Build pokegra battle graphics into VFS outputs.")
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--battle-vfs", type=Path, required=True)
-    parser.add_argument("--pwan-vfs", type=Path, required=True)
+    parser.add_argument("--pwan-vfs", type=Path)
+    parser.add_argument("--skip-pwan", action="store_true")
     parser.add_argument("--arc-text", required=True)
     parser.add_argument("--stamp", type=Path, required=True)
     args = parser.parse_args()
 
     clean_dir(args.battle_vfs)
-    ensure_dir(args.pwan_vfs)
     nns_count = copy_nns_archive_entries(args.source, args.battle_vfs)
     (args.battle_vfs / ".arc").write_text(args.arc_text)
-    sources = build_pwan_assets(args.source, args.pwan_vfs)
+    if args.skip_pwan:
+        if args.pwan_vfs is not None and args.pwan_vfs.exists():
+            shutil.rmtree(args.pwan_vfs)
+        sources = []
+    else:
+        if args.pwan_vfs is None:
+            raise RuntimeError("--pwan-vfs is required unless --skip-pwan is set")
+        ensure_dir(args.pwan_vfs)
+        sources = build_pwan_assets(args.source, args.pwan_vfs)
     args.stamp.parent.mkdir(parents=True, exist_ok=True)
     args.stamp.write_text(
         f"nns_entries={nns_count}\n"

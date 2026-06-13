@@ -1,7 +1,7 @@
 #include "Species.h"
 #include "nds/fs.h"
 #include "pwan_types.h"
-#include "w2u_pwan_config.h"
+#include "w2u_pwan_archive.h"
 
 #define W2U_PWAN_MAGIC 0x4E415750u
 #define W2U_FRAME_BYTES 0x1200u
@@ -50,39 +50,27 @@ struct PwanTimelineEntry {
     u16 ticks;
 };
 
-#define W2U_PWAN_CONFIG_PATH "pokeweb_pwan/config.bin"
-#define W2U_PWAN_CONFIG_MAGIC 0x434E5750u
-#define W2U_PWAN_CONFIG_VERSION 1u
+struct RuntimeTimelineEntry {
+    u8 frame;
+    u8 ticks;
+};
+
 #define W2U_PWAN_MAX_OVERRIDES 500u
-#define W2U_PWAN_ASSET_COUNT (W2U_PWAN_MAX_OVERRIDES * 2u)
-#define W2U_PWAN_PATH_BYTES 32u
+#define W2U_PWAN_MAX_ASSET_INDEX 1094u
+#define W2U_PWAN_ASSET_COUNT ((W2U_PWAN_MAX_ASSET_INDEX + 1u) * 2u)
+#define W2U_PWAN_MAX_TIMELINE 192u
 
-struct PwanConfigHeader {
-    u32 magic;
-    u16 version;
-    u16 count;
-    u16 maxTimeline;
-    u16 reserved;
-    u32 entriesOffset;
-};
-
-struct PwanConfigEntry {
-    u16 species;
-    u16 flags;
-    u16 frontIndex;
-    u16 backIndex;
-};
+typedef W2U_PwanConfigHeader PwanConfigHeader;
+typedef W2U_PwanConfigEntry PwanConfigEntry;
 
 typedef u32 AssetId;
 #define ASSET_NONE 0xffffffffu
 
 struct Asset {
     b32 loaded;
-    b32 fileOpen;
     AssetId assetId;
-    FSFile file;
     PwanHeader header;
-    PwanTimelineEntry timeline[128];
+    RuntimeTimelineEntry timeline[W2U_PWAN_MAX_TIMELINE];
     u16 palette[16];
 };
 
@@ -102,7 +90,6 @@ struct State {
     u8 savedVramcntE;
     b32 savedVramcntEValid;
     Asset asset;
-    u8 frame[W2U_FRAME_BYTES];
 };
 
 enum EggSkipReason {
@@ -116,6 +103,9 @@ enum EggSkipReason {
     EGG_SKIP_BAD_MCSS = 7,
 };
 
+#if !W2U_PWAN_DIAGNOSTICS
+#define u32 w2u::pwan_profile::SinkWord
+#endif
 struct EggProfile {
     u32 magic;
     u32 version;
@@ -150,7 +140,11 @@ struct EggProfile {
     u32 readyToDraw;
     u32 frameTailCalls;
 };
+#if !W2U_PWAN_DIAGNOSTICS
+#undef u32
+#endif
 
+#if W2U_PWAN_DIAGNOSTICS
 extern "C" {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmissing-field-initializers"
@@ -161,9 +155,12 @@ volatile EggProfile W2U_EggHatch_Profile = {
 };
 #pragma GCC diagnostic pop
 }
+#else
+static EggProfile W2U_EggHatch_Profile;
+#endif
 
 static State sState;
-static char sAssetPath[W2U_PWAN_PATH_BYTES];
+static u8 *const sFrameScratch = W2U_PwanFrameScratch;
 
 typedef u32 (*PpGetFn)(const void *pp, int id, void *buf);
 typedef void *(*AddPokeMcssFn)(void *system, const void *pp, int dir, s32 x, s32 y, s32 z);
@@ -203,127 +200,45 @@ static b32 McssIsVanished(void *mcss)
     return ((GetMcssFlags(mcss) >> W2U_MCSS_FLAGS_VANISH_SHIFT) & 1u) != 0;
 }
 
-static void ThreeDigitDecimal(u32 value, char *out)
+static b32 ReadRange(AssetId assetId, u32 offset, void *buffer, u32 size)
 {
-    u32 hundreds = 0;
-    while (value >= 100u) {
-        value -= 100u;
-        hundreds = hundreds + 1u;
-    }
-
-    u32 tens = 0;
-    while (value >= 10u) {
-        value -= 10u;
-        tens = tens + 1u;
-    }
-
-    out[0] = (char)('0' + hundreds);
-    out[1] = (char)('0' + tens);
-    out[2] = (char)('0' + value);
+    if (assetId >= W2U_PWAN_ASSET_COUNT) return false;
+    return w2u::pwan_archive::ReadMemberRange(
+        w2u::pwan_archive::MemberIdForAsset(assetId), offset, buffer, size);
 }
 
-static void WriteAssetPath(char *out, u32 assetId)
+static b32 ReadConfigRange(u32 offset, void *buffer, u32 size)
 {
-    const u32 assetIndex = assetId >> 1;
-    out[0] = 'p';
-    out[1] = 'o';
-    out[2] = 'k';
-    out[3] = 'e';
-    out[4] = 'w';
-    out[5] = 'e';
-    out[6] = 'b';
-    out[7] = '_';
-    out[8] = 'p';
-    out[9] = 'w';
-    out[10] = 'a';
-    out[11] = 'n';
-    out[12] = '/';
-    ThreeDigitDecimal(assetIndex, out + 13);
-    out[16] = '_';
-    if ((assetId & 1u) == 0) {
-        out[17] = 'f';
-        out[18] = 'r';
-        out[19] = 'o';
-        out[20] = 'n';
-        out[21] = 't';
-        out[22] = '.';
-        out[23] = 'p';
-        out[24] = 'w';
-        out[25] = 'a';
-        out[26] = 'n';
-        out[27] = 0;
-    } else {
-        out[17] = 'b';
-        out[18] = 'a';
-        out[19] = 'c';
-        out[20] = 'k';
-        out[21] = '.';
-        out[22] = 'p';
-        out[23] = 'w';
-        out[24] = 'a';
-        out[25] = 'n';
-        out[26] = 0;
-    }
-}
-
-static const char *PathForAsset(AssetId assetId)
-{
-    if (assetId >= W2U_PWAN_ASSET_COUNT) return 0;
-    WriteAssetPath(sAssetPath, assetId);
-    return sAssetPath;
-}
-
-static b32 ReadPathRange(const char *path, u32 offset, void *buffer, u32 size)
-{
-    if (!path) return false;
-    FSFile file;
-    finit(&file);
-    if (!romfs_fopen(&file, path)) {
-        return false;
-    }
-    if (!romfs_fseek(&file, offset, IO_SEEK_SET)) {
-        romfs_fclose(&file);
-        return false;
-    }
-    const b32 ok = romfs_fread(&file, buffer, size) == size;
-    romfs_fclose(&file);
-    return ok;
-}
-
-static void CloseAssetFile(Asset *asset)
-{
-    if (asset->fileOpen) {
-        romfs_fclose(&asset->file);
-        asset->fileOpen = false;
-    }
-}
-
-static b32 OpenAssetFile(Asset *asset, AssetId assetId)
-{
-    CloseAssetFile(asset);
-    const char *path = PathForAsset(assetId);
-    if (!path) return false;
-    finit(&asset->file);
-    if (!romfs_fopen(&asset->file, path)) {
-        return false;
-    }
-    asset->fileOpen = true;
-    return true;
-}
-
-static b32 ReadAssetRange(Asset *asset, u32 offset, void *buffer, u32 size)
-{
-    if (!asset->fileOpen) return false;
-    if (!romfs_fseek(&asset->file, offset, IO_SEEK_SET)) {
-        return false;
-    }
-    return romfs_fread(&asset->file, buffer, size) == size;
+    return w2u::pwan_archive::ReadMemberRange(W2U_PWAN_CONFIG_MEMBER_ID, offset, buffer, size);
 }
 
 static AssetId GetAssetForSpeciesSide(u16 species, b32 isFront)
 {
-    const u32 assetId = w2u::pwan::GetAssetForSpeciesSide(species, isFront);
-    return assetId == W2U_PWAN_CONFIG_ASSET_NONE ? ASSET_NONE : (AssetId)assetId;
+    PwanConfigHeader header;
+    if (!ReadConfigRange(0, &header, sizeof(header)) ||
+        header.magic != W2U_PWAN_CONFIG_MAGIC ||
+        header.version != W2U_PWAN_CONFIG_VERSION ||
+        header.count > W2U_PWAN_MAX_OVERRIDES ||
+        header.maxTimeline > W2U_PWAN_MAX_TIMELINE ||
+        header.entriesOffset < sizeof(PwanConfigHeader)) {
+        return ASSET_NONE;
+    }
+    for (u32 i = 0; i < header.count; ++i) {
+        u8 raw[W2U_PWAN_CONFIG_ENTRY_BYTES];
+        const u32 offset = W2U_PwanConfigEntryOffset(&header, i);
+        if (!ReadConfigRange(offset, raw, W2U_PWAN_CONFIG_ENTRY_BYTES)) return ASSET_NONE;
+        PwanConfigEntry entry = W2U_DecodePwanConfigEntry(raw);
+        if (entry.species != species || entry.form != 0) continue;
+        if (isFront) {
+            if ((entry.flags & W2U_PWAN_CONFIG_FRONT_FLAG) == 0 ||
+                entry.assetIndex > W2U_PWAN_MAX_ASSET_INDEX) return ASSET_NONE;
+            return (AssetId)(entry.assetIndex * 2u);
+        }
+        if ((entry.flags & W2U_PWAN_CONFIG_BACK_FLAG) == 0 ||
+            entry.assetIndex > W2U_PWAN_MAX_ASSET_INDEX) return ASSET_NONE;
+        return (AssetId)(entry.assetIndex * 2u + 1u);
+    }
+    return ASSET_NONE;
 }
 
 static b32 LoadAsset(Asset *asset, AssetId assetId)
@@ -331,18 +246,13 @@ static b32 LoadAsset(Asset *asset, AssetId assetId)
     if (assetId >= W2U_PWAN_ASSET_COUNT) {
         return false;
     }
-    if (asset->loaded && asset->fileOpen && asset->assetId == assetId) {
+    if (asset->loaded && asset->assetId == assetId) {
         return true;
     }
-    CloseAssetFile(asset);
     asset->loaded = false;
     asset->assetId = assetId;
 
-    if (!OpenAssetFile(asset, assetId)) {
-        return false;
-    }
-    if (!ReadAssetRange(asset, 0, &asset->header, sizeof(asset->header))) {
-        CloseAssetFile(asset);
+    if (!ReadRange(assetId, 0, &asset->header, sizeof(asset->header))) {
         return false;
     }
     if (asset->header.magic != W2U_PWAN_MAGIC ||
@@ -354,19 +264,24 @@ static b32 LoadAsset(Asset *asset, AssetId assetId)
         asset->header.paletteColors != 16 ||
         asset->header.frameCount == 0 ||
         asset->header.timelineCount == 0 ||
-        asset->header.timelineCount > 128) {
-        CloseAssetFile(asset);
+        asset->header.timelineCount > W2U_PWAN_MAX_TIMELINE) {
         return false;
     }
 
-    if (!ReadAssetRange(asset, asset->header.paletteOffset, asset->palette, sizeof(asset->palette))) {
-        CloseAssetFile(asset);
+    if (!ReadRange(assetId, asset->header.paletteOffset, asset->palette, sizeof(asset->palette))) {
         return false;
     }
-    if (!ReadAssetRange(asset, asset->header.timelineOffset, asset->timeline,
-                        asset->header.timelineCount * sizeof(PwanTimelineEntry))) {
-        CloseAssetFile(asset);
+    PwanTimelineEntry fileTimeline[W2U_PWAN_MAX_TIMELINE];
+    if (!ReadRange(assetId, asset->header.timelineOffset, fileTimeline,
+                   asset->header.timelineCount * sizeof(fileTimeline[0]))) {
         return false;
+    }
+    for (u32 i = 0; i < asset->header.timelineCount; ++i) {
+        if (fileTimeline[i].frame > 0xffu || fileTimeline[i].ticks > 0xffu) {
+            return false;
+        }
+        asset->timeline[i].frame = (u8)fileTimeline[i].frame;
+        asset->timeline[i].ticks = (u8)fileTimeline[i].ticks;
     }
     asset->loaded = true;
     return true;
@@ -440,7 +355,7 @@ static void CopyPalette()
 static b32 CopyFrameToVram(u16 frame)
 {
     const u32 offset = sState.asset.header.frameOffset + frame * sState.asset.header.frameBytes;
-    if (!ReadAssetRange(&sState.asset, offset, sState.frame, W2U_FRAME_BYTES)) {
+    if (!ReadRange(sState.assetId, offset, sFrameScratch, W2U_FRAME_BYTES)) {
         W2U_EggHatch_Profile.frameReadFailCount =
             W2U_EggHatch_Profile.frameReadFailCount + 1u;
         W2U_EggHatch_Profile.skipReason = EGG_SKIP_FRAME_READ_FAIL;
@@ -448,7 +363,7 @@ static b32 CopyFrameToVram(u16 frame)
     }
 
     volatile u16 *dst = W2U_OBJ_VRAM + (W2U_FRAME_VRAM_OFFSET / 2u);
-    const u16 *src = (const u16 *)sState.frame;
+    const u16 *src = (const u16 *)sFrameScratch;
     for (u32 i = 0; i < W2U_FRAME_BYTES / 2u; ++i) {
         dst[i] = src[i];
     }
@@ -525,9 +440,6 @@ static void HideNativeMcss(void *mcss)
 
 static void ClearState()
 {
-    CloseAssetFile(&sState.asset);
-    sState.asset.loaded = false;
-    sState.asset.assetId = ASSET_NONE;
     HideOam();
     sState.active = false;
     sState.revealed = false;

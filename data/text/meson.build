@@ -1,7 +1,7 @@
 game_text = run_command(
     'sh',
     '-c',
-    'find "$1" -maxdepth 1 -type f -name "*.toml" -printf "%f\n" | sed "s/\\.toml$//" | sort -n',
+    'find "$1" -maxdepth 1 -type f -name "*.toml" | sed "s|.*/||; s/\\.toml$//" | sort -n',
     'sh',
     meson.current_source_dir() / 'game',
     check: true,
@@ -10,7 +10,7 @@ game_text = run_command(
 system_text = run_command(
     'sh',
     '-c',
-    'find "$1" -maxdepth 1 -type f -name "*.toml" -printf "%f\n" | sed "s/\\.toml$//" | sort -n',
+    'find "$1" -maxdepth 1 -type f -name "*.toml" | sed "s|.*/||; s/\\.toml$//" | sort -n',
     'sh',
     meson.current_source_dir() / 'system',
     check: true,

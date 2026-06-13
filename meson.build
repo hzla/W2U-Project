@@ -6,8 +6,15 @@ incdir = include_directories('include')
 cpp_args = [
     '-mthumb',
     '-march=armv5t',
+    '-mno-thumb-interwork',
+    '-mno-long-calls',
     '-r',
-    '-nostdinc++'
+    '-nostdinc++',
+    '-Os',
+    '-fno-exceptions',
+    '-fno-rtti',
+    '-fno-unwind-tables',
+    '-fno-asynchronous-unwind-tables'
 ]
 
 asm_args = [
@@ -57,6 +64,7 @@ rom = custom_target('White2Upgrade.nds',
   input: [
     vfs_files,
     w2u_main_dll,
+    pwan_runtime_dll,
     pmc_arm9,
     pmc_overlay
   ],
