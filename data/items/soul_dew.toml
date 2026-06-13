@@ -14,7 +14,7 @@ Packed = 31
 Consumable = 0
 "Sort Index" = 129
 
-[ITEM_SOUL_DEW."\"Battle Stats\""]
+[ITEM_SOUL_DEW."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

@@ -35,6 +35,28 @@ pwan_runtime_archive = custom_target(
 
 vfs_files += pwan_runtime_archive
 
+sidecar_vfs_files = {
+  'poke_form_list.bin': meson.current_source_dir() / 'pml' / 'poke_form_list.bin',
+  'pokeicon_palette_map.bin': meson.current_source_dir() / 'pml' / 'pokeicon_palette_map.bin',
+  'type_chart.bin': meson.current_source_dir() / 'pml' / 'types' / 'type_chart.bin',
+  'type_palette_map.bin': meson.current_source_dir() / 'pml' / 'types' / 'type_palette_map.bin',
+}
+
+foreach sidecar_name, sidecar_source : sidecar_vfs_files
+  vfs_files += custom_target(
+    'stage_' + sidecar_name,
+    input: sidecar_source,
+    output: 'stage_' + sidecar_name + '.stamp',
+    command: ['sh', '-c',
+      'mkdir -p "$(dirname "$2")" && cp "$1" "$2" && touch "$3"',
+      'stage_sidecar',
+      '@INPUT@',
+      meson.project_source_root() / 'vfs' / 'data' / sidecar_name,
+      '@OUTPUT@'
+    ],
+  )
+endforeach
+
 # Load all of the resources.
 subdir('encounters')
 subdir('graphics')

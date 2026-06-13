@@ -14,7 +14,7 @@ Packed = 390
 Consumable = 1
 "Sort Index" = 31
 
-[ITEM_TANGA_BERRY."\"Battle Stats\""]
+[ITEM_TANGA_BERRY."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

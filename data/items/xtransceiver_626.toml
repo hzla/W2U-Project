@@ -1,4 +1,4 @@
-[ITEM_XTRANSCEIVER_626]
+[ITEM_XTRANSCEIVER]
 Price = 0
 "Held Effect" = 0
 "Held Argument" = 0
@@ -14,7 +14,7 @@ Packed = 639
 Consumable = 0
 "Sort Index" = 5
 
-[ITEM_XTRANSCEIVER_626."\"Battle Stats\""]
+[ITEM_XTRANSCEIVER."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

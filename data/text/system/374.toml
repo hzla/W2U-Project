@@ -1,6 +1,3 @@
-[msg]
-trailing_data = "3030"
-
 [msg.section_0.entries.0]
 text = [
   "--$",
@@ -824,4 +821,139 @@ text = [
 [msg.section_0.entries.164]
 text = [
   "Teravolt$",
+]
+
+[msg.section_0.entries.165]
+text = [
+  "Aroma Veil$",
+]
+
+[msg.section_0.entries.166]
+text = [
+  "Flower Veil$",
+]
+
+[msg.section_0.entries.167]
+text = [
+  "Cheek Pouch$",
+]
+
+[msg.section_0.entries.168]
+text = [
+  "Protean$",
+]
+
+[msg.section_0.entries.169]
+text = [
+  "Fur Coat$",
+]
+
+[msg.section_0.entries.170]
+text = [
+  "Magician$",
+]
+
+[msg.section_0.entries.171]
+text = [
+  "Bulletproof$",
+]
+
+[msg.section_0.entries.172]
+text = [
+  "Competitive$",
+]
+
+[msg.section_0.entries.173]
+text = [
+  "Strong Jaw$",
+]
+
+[msg.section_0.entries.174]
+text = [
+  "Refrigerate$",
+]
+
+[msg.section_0.entries.175]
+text = [
+  "Sweet Veil$",
+]
+
+[msg.section_0.entries.176]
+text = [
+  "Stance Change$",
+]
+
+[msg.section_0.entries.177]
+text = [
+  "Gale Wings$",
+]
+
+[msg.section_0.entries.178]
+text = [
+  "Mega Launcher$",
+]
+
+[msg.section_0.entries.179]
+text = [
+  "Grass Pelt$",
+]
+
+[msg.section_0.entries.180]
+text = [
+  "Symbiosis$",
+]
+
+[msg.section_0.entries.181]
+text = [
+  "Tough Claws$",
+]
+
+[msg.section_0.entries.182]
+text = [
+  "Pixilate$",
+]
+
+[msg.section_0.entries.183]
+text = [
+  "Gooey$",
+]
+
+[msg.section_0.entries.184]
+text = [
+  "Aerilate$",
+]
+
+[msg.section_0.entries.185]
+text = [
+  "Parental Bond$",
+]
+
+[msg.section_0.entries.186]
+text = [
+  "Dark Aura$",
+]
+
+[msg.section_0.entries.187]
+text = [
+  "Fairy Aura$",
+]
+
+[msg.section_0.entries.188]
+text = [
+  "Aura Break$",
+]
+
+[msg.section_0.entries.189]
+text = [
+  "Primordial Sea$",
+]
+
+[msg.section_0.entries.190]
+text = [
+  "Desolate Land$",
+]
+
+[msg.section_0.entries.191]
+text = [
+  "Delta Stream$",
 ]

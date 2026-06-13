@@ -14,7 +14,7 @@ Packed = 387
 Consumable = 1
 "Sort Index" = 17
 
-[ITEM_QUALOT_BERRY."\"Battle Stats\""]
+[ITEM_QUALOT_BERRY."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 7200

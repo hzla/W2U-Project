@@ -14,7 +14,7 @@ Packed = 2079
 Consumable = 0
 "Sort Index" = 6
 
-[ITEM_HEAL_BALL."\"Battle Stats\""]
+[ITEM_HEAL_BALL."Battle Stats"]
 "Cure Inflict" = 13
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

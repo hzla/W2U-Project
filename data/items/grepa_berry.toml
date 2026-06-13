@@ -14,7 +14,7 @@ Packed = 386
 Consumable = 1
 "Sort Index" = 19
 
-[ITEM_GREPA_BERRY."\"Battle Stats\""]
+[ITEM_GREPA_BERRY."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 7424

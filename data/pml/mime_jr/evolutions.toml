@@ -2,7 +2,7 @@
 
 [SPECIES_MIME_JR.EVOLUTION_0]
 Method = "METHOD_LEVELUP_MOVE"
-Parameter = "MOVE_MIMIC"
+Parameter = 0
 "Target Species" = "SPECIES_MR_MIME"
 
 [SPECIES_MIME_JR.EVOLUTION_1]

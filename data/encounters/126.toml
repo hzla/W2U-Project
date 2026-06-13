@@ -13,73 +13,73 @@ UNKNOWN = 0
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES]
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 0"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_PETILIL"
 Form = 0
 "Minimum Level" = 21
 "Maximum Level" = 21
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 1"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_SWADLOON"
 Form = 0
 "Minimum Level" = 21
 "Maximum Level" = 21
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 2"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_COMBEE"
 Form = 0
 "Minimum Level" = 22
 "Maximum Level" = 22
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 3"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_VENIPEDE"
 Form = 0
 "Minimum Level" = 21
 "Maximum Level" = 21
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 4"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_ROSELIA"
 Form = 0
 "Minimum Level" = 23
 "Maximum Level" = 23
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 5"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_VENIPEDE"
 Form = 0
 "Minimum Level" = 21
 "Maximum Level" = 21
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 6"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_ROSELIA"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 7"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_PINSIR"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 8"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_PETILIL"
 Form = 0
 "Minimum Level" = 23
 "Maximum Level" = 23
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 9"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_SWADLOON"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 10"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_PETILIL"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
 
 [ENCOUNTER_CONTAINER_0.GRASS.SINGLES."Slot 11"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_SWADLOON"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
@@ -87,73 +87,73 @@ Form = 0
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES]
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 0"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_PETILIL"
 Form = 0
 "Minimum Level" = 23
 "Maximum Level" = 23
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 1"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_SWADLOON"
 Form = 0
 "Minimum Level" = 23
 "Maximum Level" = 23
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 2"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_COMBEE"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 3"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_WHIRLIPEDE"
 Form = 0
 "Minimum Level" = 23
 "Maximum Level" = 23
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 4"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_ROSELIA"
 Form = 0
 "Minimum Level" = 25
 "Maximum Level" = 25
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 5"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_WHIRLIPEDE"
 Form = 0
 "Minimum Level" = 23
 "Maximum Level" = 23
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 6"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_ROSELIA"
 Form = 0
 "Minimum Level" = 26
 "Maximum Level" = 26
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 7"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_PINSIR"
 Form = 0
 "Minimum Level" = 26
 "Maximum Level" = 26
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 8"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_PETILIL"
 Form = 0
 "Minimum Level" = 25
 "Maximum Level" = 25
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 9"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_SWADLOON"
 Form = 0
 "Minimum Level" = 26
 "Maximum Level" = 26
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 10"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_PETILIL"
 Form = 0
 "Minimum Level" = 26
 "Maximum Level" = 26
 
 [ENCOUNTER_CONTAINER_0.GRASS.DOUBLES."Slot 11"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_SWADLOON"
 Form = 0
 "Minimum Level" = 26
 "Maximum Level" = 26
@@ -161,78 +161,78 @@ Form = 0
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL]
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 0"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_AUDINO"
 Form = 0
 "Minimum Level" = 21
 "Maximum Level" = 21
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 1"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_AUDINO"
 Form = 0
 "Minimum Level" = 23
 "Maximum Level" = 23
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 2"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_EMOLGA"
 Form = 0
 "Minimum Level" = 22
 "Maximum Level" = 22
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 3"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_PANSAGE"
 Form = 0
 "Minimum Level" = 22
 "Maximum Level" = 22
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 4"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_PANSEAR"
 Form = 0
 "Minimum Level" = 22
 "Maximum Level" = 22
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 5"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_PANPOUR"
 Form = 0
 "Minimum Level" = 22
 "Maximum Level" = 22
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 6"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_VESPIQUEN"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 7"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_ROSERADE"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 8"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_LEAVANNY"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 9"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_LILLIGANT"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 10"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_LEAVANNY"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
 
 [ENCOUNTER_CONTAINER_0.GRASS.SPECIAL."Slot 11"]
-Species = "SPECIES_XERNEAS"
+Species = "SPECIES_LILLIGANT"
 Form = 0
 "Minimum Level" = 24
 "Maximum Level" = 24
 
-
+[ENCOUNTER_CONTAINER_0.SURF]
 
 [ENCOUNTER_CONTAINER_0.SURF.SINGLES]
 

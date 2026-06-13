@@ -14,7 +14,7 @@ Packed = 159
 Consumable = 0
 "Sort Index" = 20
 
-[ITEM_SACRED_ASH."\"Battle Stats\""]
+[ITEM_SACRED_ASH."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [3, 0, 0, 0]
 "Function Flags" = 4

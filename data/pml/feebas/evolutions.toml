@@ -7,7 +7,7 @@ Parameter = 170
 
 [SPECIES_FEEBAS.EVOLUTION_1]
 Method = "METHOD_TRADE_ITEM"
-Parameter = "ITEM_PRISM_SCALE"
+Parameter = 0
 "Target Species" = "SPECIES_MILOTIC"
 
 [SPECIES_FEEBAS.EVOLUTION_2]

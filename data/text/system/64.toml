@@ -1,6 +1,3 @@
-[msg]
-trailing_data = "7474"
-
 [msg.section_0.entries.0]
 text = [
   "None$",
@@ -603,57 +600,57 @@ text = [
 
 [msg.section_0.entries.120]
 text = [
-  "???$",
+  "Ability Capsule$",
 ]
 
 [msg.section_0.entries.121]
 text = [
-  "???$",
+  "Assault Vest$",
 ]
 
 [msg.section_0.entries.122]
 text = [
-  "???$",
+  "Luminous Moss$",
 ]
 
 [msg.section_0.entries.123]
 text = [
-  "???$",
+  "Maranga Berry$",
 ]
 
 [msg.section_0.entries.124]
 text = [
-  "???$",
+  "Mega Ring$",
 ]
 
 [msg.section_0.entries.125]
 text = [
-  "???$",
+  "Fairy Feather$",
 ]
 
 [msg.section_0.entries.126]
 text = [
-  "???$",
+  "Roseli Berry$",
 ]
 
 [msg.section_0.entries.127]
 text = [
-  "???$",
+  "Safety Goggles$",
 ]
 
 [msg.section_0.entries.128]
 text = [
-  "???$",
+  "Snowball$",
 ]
 
 [msg.section_0.entries.129]
 text = [
-  "???$",
+  "Weakness Policy$",
 ]
 
 [msg.section_0.entries.130]
 text = [
-  "???$",
+  "Ability Patch$",
 ]
 
 [msg.section_0.entries.131]
@@ -2528,137 +2525,137 @@ text = [
 
 [msg.section_0.entries.505]
 text = [
-  "Data Card 01$",
+  "Venusaurite$",
 ]
 
 [msg.section_0.entries.506]
 text = [
-  "Data Card 02$",
+  "Charizardite X$",
 ]
 
 [msg.section_0.entries.507]
 text = [
-  "Data Card 03$",
+  "Charizardite Y$",
 ]
 
 [msg.section_0.entries.508]
 text = [
-  "Data Card 04$",
+  "Blastoisinite$",
 ]
 
 [msg.section_0.entries.509]
 text = [
-  "Data Card 05$",
+  "Beedrillite$",
 ]
 
 [msg.section_0.entries.510]
 text = [
-  "Data Card 06$",
+  "Pidgeotite$",
 ]
 
 [msg.section_0.entries.511]
 text = [
-  "Data Card 07$",
+  "Alakazite$",
 ]
 
 [msg.section_0.entries.512]
 text = [
-  "Data Card 08$",
+  "Slowbronite$",
 ]
 
 [msg.section_0.entries.513]
 text = [
-  "Data Card 09$",
+  "Gengarite$",
 ]
 
 [msg.section_0.entries.514]
 text = [
-  "Data Card 10$",
+  "Kangaskhanite$",
 ]
 
 [msg.section_0.entries.515]
 text = [
-  "Data Card 11$",
+  "Pinsirite$",
 ]
 
 [msg.section_0.entries.516]
 text = [
-  "Data Card 12$",
+  "Gyaradosite$",
 ]
 
 [msg.section_0.entries.517]
 text = [
-  "Data Card 13$",
+  "Aerodactylite$",
 ]
 
 [msg.section_0.entries.518]
 text = [
-  "Data Card 14$",
+  "Mewtwonite X$",
 ]
 
 [msg.section_0.entries.519]
 text = [
-  "Data Card 15$",
+  "Mewtwonite Y$",
 ]
 
 [msg.section_0.entries.520]
 text = [
-  "Data Card 16$",
+  "Ampharosite$",
 ]
 
 [msg.section_0.entries.521]
 text = [
-  "Data Card 17$",
+  "Steelixite$",
 ]
 
 [msg.section_0.entries.522]
 text = [
-  "Data Card 18$",
+  "Scizorite$",
 ]
 
 [msg.section_0.entries.523]
 text = [
-  "Data Card 19$",
+  "Heracronite$",
 ]
 
 [msg.section_0.entries.524]
 text = [
-  "Data Card 20$",
+  "Houndoominite$",
 ]
 
 [msg.section_0.entries.525]
 text = [
-  "Data Card 21$",
+  "Tyranitarite$",
 ]
 
 [msg.section_0.entries.526]
 text = [
-  "Data Card 22$",
+  "Sceptilite$",
 ]
 
 [msg.section_0.entries.527]
 text = [
-  "Data Card 23$",
+  "Blazikenite$",
 ]
 
 [msg.section_0.entries.528]
 text = [
-  "Data Card 24$",
+  "Swampertite$",
 ]
 
 [msg.section_0.entries.529]
 text = [
-  "Data Card 25$",
+  "Gardevoirite$",
 ]
 
 [msg.section_0.entries.530]
 text = [
-  "Data Card 26$",
+  "Sablenite$",
 ]
 
 [msg.section_0.entries.531]
 text = [
-  "Data Card 27$",
+  "Mawilite$",
 ]
 
 [msg.section_0.entries.532]
@@ -2963,97 +2960,97 @@ text = [
 
 [msg.section_0.entries.592]
 text = [
-  "Dire Hit 2$",
+  "Aggronite$",
 ]
 
 [msg.section_0.entries.593]
 text = [
-  "X Speed 2$",
+  "Medichamite$",
 ]
 
 [msg.section_0.entries.594]
 text = [
-  "X Special 2$",
+  "Manectite$",
 ]
 
 [msg.section_0.entries.595]
 text = [
-  "X Sp. Def 2$",
+  "Sharpedonite$",
 ]
 
 [msg.section_0.entries.596]
 text = [
-  "X Defend 2$",
+  "Cameruptite$",
 ]
 
 [msg.section_0.entries.597]
 text = [
-  "X Attack 2$",
+  "Altarianite$",
 ]
 
 [msg.section_0.entries.598]
 text = [
-  "X Accuracy 2$",
+  "Banettite$",
 ]
 
 [msg.section_0.entries.599]
 text = [
-  "X Speed 3$",
+  "Absolite$",
 ]
 
 [msg.section_0.entries.600]
 text = [
-  "X Special 3$",
+  "Glalitite$",
 ]
 
 [msg.section_0.entries.601]
 text = [
-  "X Sp. Def 3$",
+  "Salamencite$",
 ]
 
 [msg.section_0.entries.602]
 text = [
-  "X Defend 3$",
+  "Metagrossite$",
 ]
 
 [msg.section_0.entries.603]
 text = [
-  "X Attack 3$",
+  "Latiasite$",
 ]
 
 [msg.section_0.entries.604]
 text = [
-  "X Accuracy 3$",
+  "Latiosite$",
 ]
 
 [msg.section_0.entries.605]
 text = [
-  "X Speed 6$",
+  "Lopunnite$",
 ]
 
 [msg.section_0.entries.606]
 text = [
-  "X Special 6$",
+  "Garchompite$",
 ]
 
 [msg.section_0.entries.607]
 text = [
-  "X Sp. Def 6$",
+  "Lucarionite$",
 ]
 
 [msg.section_0.entries.608]
 text = [
-  "X Defend 6$",
+  "Abomasite$",
 ]
 
 [msg.section_0.entries.609]
 text = [
-  "X Attack 6$",
+  "Galladite$",
 ]
 
 [msg.section_0.entries.610]
 text = [
-  "X Accuracy 6$",
+  "Audinite$",
 ]
 
 [msg.section_0.entries.611]

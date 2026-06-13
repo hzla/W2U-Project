@@ -14,7 +14,7 @@ Packed = 8351
 Consumable = 0
 "Sort Index" = 40
 
-[ITEM_RAGECANDYBAR."\"Battle Stats\""]
+[ITEM_RAGECANDYBAR."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 4

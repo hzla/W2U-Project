@@ -14,7 +14,7 @@ Packed = 543
 Consumable = 0
 "Sort Index" = 255
 
-[ITEM_OLD_CHARM."\"Battle Stats\""]
+[ITEM_OLD_CHARM."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

@@ -1,6 +1,3 @@
-[msg]
-trailing_data = "aaaa"
-
 [msg.section_0.entries.0]
 text = [
   "????? Pokémon$",
@@ -3253,885 +3250,1880 @@ text = [
 
 [msg.section_0.entries.650]
 text = [
-  "Spiny Nut Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.651]
 text = [
-  "Spiny Armor Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.652]
 text = [
-  "Spiny Armor Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.653]
 text = [
-  "Fox Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.654]
 text = [
-  "Fox Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.655]
 text = [
-  "Fox Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.656]
 text = [
-  "Bubble Frog Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.657]
 text = [
-  "Bubble Frog Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.658]
 text = [
-  "Ninja Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.659]
 text = [
-  "Digging Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.660]
 text = [
-  "Digging Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.661]
 text = [
-  "Tiny Robin Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.662]
 text = [
-  "Ember Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.663]
 text = [
-  "Scorching Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.664]
 text = [
-  "Scatterdust Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.665]
 text = [
-  "Scatterdust Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.666]
 text = [
-  "Scale Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.667]
 text = [
-  "Lion Cub Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.668]
 text = [
-  "Royal Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.669]
 text = [
-  "Single Bloom Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.670]
 text = [
-  "Single Bloom Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.671]
 text = [
-  "Garden Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.672]
 text = [
-  "Mount Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.673]
 text = [
-  "Mount Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.674]
 text = [
-  "Playful Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.675]
 text = [
-  "Daunting Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.676]
 text = [
-  "Poodle Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.677]
 text = [
-  "Restraint Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.678]
 text = [
-  "Constraint Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.679]
 text = [
-  "Sword Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.680]
 text = [
-  "Sword Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.681]
 text = [
-  "Royal Sword Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.682]
 text = [
-  "Perfume Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.683]
 text = [
-  "Fragrance Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.684]
 text = [
-  "Cotton Candy Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.685]
 text = [
-  "Meringue Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.686]
 text = [
-  "Revolving Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.687]
 text = [
-  "Overturning Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.688]
 text = [
-  "Two-Handed Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.689]
 text = [
-  "Collective Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.690]
 text = [
-  "Mock Kelp Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.691]
 text = [
-  "Mock Kelp Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.692]
 text = [
-  "Water Gun Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.693]
 text = [
-  "Howitzer Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.694]
 text = [
-  "Generator Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.695]
 text = [
-  "Generator Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.696]
 text = [
-  "Royal Heir Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.697]
 text = [
-  "Despot Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.698]
 text = [
-  "Tundra Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.699]
 text = [
-  "Tundra Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.700]
 text = [
-  "Intertwining Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.701]
 text = [
-  "Wrestling Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.702]
 text = [
-  "Antenna Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.703]
 text = [
-  "Jewel Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.704]
 text = [
-  "Soft Tissue Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.705]
 text = [
-  "Soft Tissue Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.706]
 text = [
-  "Dragon Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.707]
 text = [
-  "Key Ring Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.708]
 text = [
-  "Stump Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.709]
 text = [
-  "Elder Tree Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.710]
 text = [
-  "Pumpkin Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.711]
 text = [
-  "Pumpkin Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.712]
 text = [
-  "Ice Chunk Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.713]
 text = [
-  "Iceberg Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.714]
 text = [
-  "Sound Wave Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.715]
 text = [
-  "Sound Wave Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.716]
 text = [
-  "Life Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.717]
 text = [
-  "Destruction Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.718]
 text = [
-  "Order Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.719]
 text = [
-  "Jewel Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.720]
 text = [
-  "Mischief Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.721]
 text = [
-  "Steam Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.722]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.723]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.724]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.725]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.726]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.727]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.728]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.729]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.730]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.731]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.732]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.733]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.734]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.735]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.736]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.737]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.738]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.739]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.740]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.741]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.742]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.743]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.744]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.745]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.746]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.747]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.748]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.749]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.750]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.751]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.752]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.753]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.754]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.755]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.756]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.757]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.758]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.759]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.760]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.761]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.762]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.763]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.764]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.765]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.766]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.767]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.768]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.769]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.770]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.771]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.772]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.773]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.774]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.775]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.776]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.777]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.778]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.779]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.780]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.781]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.782]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.783]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.784]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.785]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.786]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.787]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.788]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.789]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.790]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.791]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.792]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.793]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.794]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.795]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.796]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.797]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.798]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.799]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.800]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.801]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.802]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.803]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.804]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.805]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.806]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.807]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.808]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.809]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.810]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.811]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.812]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.813]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.814]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.815]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.816]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.817]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.818]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.819]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.820]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.821]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.822]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.823]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.824]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.825]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
 ]
 
 [msg.section_0.entries.826]
 text = [
-  "Unknown Pokémon$",
+  "PKMN$",
+]
+
+[msg.section_0.entries.827]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.828]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.829]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.830]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.831]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.832]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.833]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.834]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.835]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.836]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.837]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.838]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.839]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.840]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.841]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.842]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.843]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.844]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.845]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.846]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.847]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.848]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.849]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.850]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.851]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.852]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.853]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.854]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.855]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.856]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.857]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.858]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.859]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.860]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.861]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.862]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.863]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.864]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.865]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.866]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.867]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.868]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.869]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.870]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.871]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.872]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.873]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.874]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.875]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.876]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.877]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.878]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.879]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.880]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.881]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.882]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.883]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.884]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.885]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.886]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.887]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.888]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.889]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.890]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.891]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.892]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.893]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.894]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.895]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.896]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.897]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.898]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.899]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.900]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.901]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.902]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.903]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.904]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.905]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.906]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.907]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.908]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.909]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.910]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.911]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.912]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.913]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.914]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.915]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.916]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.917]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.918]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.919]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.920]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.921]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.922]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.923]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.924]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.925]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.926]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.927]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.928]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.929]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.930]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.931]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.932]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.933]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.934]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.935]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.936]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.937]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.938]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.939]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.940]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.941]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.942]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.943]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.944]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.945]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.946]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.947]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.948]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.949]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.950]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.951]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.952]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.953]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.954]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.955]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.956]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.957]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.958]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.959]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.960]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.961]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.962]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.963]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.964]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.965]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.966]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.967]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.968]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.969]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.970]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.971]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.972]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.973]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.974]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.975]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.976]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.977]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.978]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.979]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.980]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.981]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.982]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.983]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.984]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.985]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.986]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.987]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.988]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.989]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.990]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.991]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.992]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.993]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.994]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.995]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.996]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.997]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.998]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.999]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1000]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1001]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1002]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1003]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1004]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1005]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1006]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1007]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1008]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1009]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1010]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1011]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1012]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1013]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1014]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1015]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1016]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1017]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1018]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1019]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1020]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1021]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1022]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1023]
+text = [
+  "PKMN$",
+]
+
+[msg.section_0.entries.1024]
+text = [
+  "Egg$",
+]
+
+[msg.section_0.entries.1025]
+text = [
+  "Bad Egg$",
 ]

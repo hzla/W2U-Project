@@ -14,7 +14,7 @@ Packed = 31
 Consumable = 0
 "Sort Index" = 123
 
-[ITEM_SILVERPOWDER."\"Battle Stats\""]
+[ITEM_SILVERPOWDER."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

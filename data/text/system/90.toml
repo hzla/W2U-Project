@@ -3310,7 +3310,7 @@ text = [
 
 [msg.section_0.entries.662]
 text = [
-  "Fletchinder$",
+  "Fletchindr$",
 ]
 
 [msg.section_0.entries.663]
@@ -3610,525 +3610,1520 @@ text = [
 
 [msg.section_0.entries.722]
 text = [
-  "Egg$",
+  "Rowlet$",
 ]
 
 [msg.section_0.entries.723]
 text = [
-  "Bad Egg$",
+  "Dartrix$",
 ]
 
 [msg.section_0.entries.724]
 text = [
-  "UFO$",
+  "Decidueye$",
 ]
 
 [msg.section_0.entries.725]
 text = [
-  "Brycen-Man$",
+  "Litten$",
 ]
 
 [msg.section_0.entries.726]
 text = [
-  "MT$",
+  "Torracat$",
 ]
 
 [msg.section_0.entries.727]
 text = [
-  "MT2$",
+  "Incineroar$",
 ]
 
 [msg.section_0.entries.728]
 text = [
-  "Transport$",
+  "Popplio$",
 ]
 
 [msg.section_0.entries.729]
 text = [
-  "Giant ⑮$",
+  "Brionne$",
 ]
 
 [msg.section_0.entries.730]
 text = [
-  "Humanoid$",
+  "Primarina$",
 ]
 
 [msg.section_0.entries.731]
 text = [
-  "Monster$",
+  "Pikipek$",
 ]
 
 [msg.section_0.entries.732]
 text = [
-  "F-00$",
+  "Trumbeak$",
 ]
 
 [msg.section_0.entries.733]
 text = [
-  "Spirit$",
+  "Toucannon$",
 ]
 
 [msg.section_0.entries.734]
 text = [
-  "White Door$",
+  "Yungoos$",
 ]
 
 [msg.section_0.entries.735]
 text = [
-  "Black Door$",
+  "Gumshoos$",
 ]
 
 [msg.section_0.entries.736]
 text = [
-  "Prop U1$",
+  "Grubbin$",
 ]
 
 [msg.section_0.entries.737]
 text = [
-  "Prop U2$",
+  "Charjabug$",
 ]
 
 [msg.section_0.entries.738]
 text = [
-  "Prop H1$",
+  "Vikavolt$",
 ]
 
 [msg.section_0.entries.739]
 text = [
-  "Prop M1$",
+  "Crabrawler$",
 ]
 
 [msg.section_0.entries.740]
 text = [
-  "Prop M2$",
+  "Crabminabl$",
 ]
 
 [msg.section_0.entries.741]
 text = [
-  "Prop T1$",
+  "Oricorio$",
 ]
 
 [msg.section_0.entries.742]
 text = [
-  "Prop O1$",
+  "Cutiefly$",
 ]
 
 [msg.section_0.entries.743]
 text = [
-  "Prop O2$",
+  "Ribombee$",
 ]
 
 [msg.section_0.entries.744]
 text = [
-  "Prop C1$",
+  "Rockruff$",
 ]
 
 [msg.section_0.entries.745]
 text = [
-  "Prop C2$",
+  "Lycanroc$",
 ]
 
 [msg.section_0.entries.746]
 text = [
-  "Prop G1$",
+  "Wishiwashi$",
 ]
 
 [msg.section_0.entries.747]
 text = [
-  "Prop W1$",
+  "Mareanie$",
 ]
 
 [msg.section_0.entries.748]
 text = [
-  "Prop W2$",
+  "Toxapex$",
 ]
 
 [msg.section_0.entries.749]
 text = [
-  "Prop R1$",
+  "Mudbray$",
 ]
 
 [msg.section_0.entries.750]
 text = [
-  "Prop R2$",
+  "Mudsdale$",
 ]
 
 [msg.section_0.entries.751]
 text = [
-  "Prop K1$",
+  "Dewpider$",
 ]
 
 [msg.section_0.entries.752]
 text = [
-  "UFO 2$",
+  "Araquanid$",
 ]
 
 [msg.section_0.entries.753]
 text = [
-  "Giant ⑮ 2$",
+  "Fomantis$",
 ]
 
 [msg.section_0.entries.754]
 text = [
-  "F-002$",
+  "Lurantis$",
 ]
 
 [msg.section_0.entries.755]
 text = [
-  "Black Belt$",
+  "Morelull$",
 ]
 
 [msg.section_0.entries.756]
 text = [
-  "Smeargle 2$",
+  "Shiinotic$",
 ]
 
 [msg.section_0.entries.757]
 text = [
-  "Egg$",
+  "Salandit$",
 ]
 
 [msg.section_0.entries.758]
 text = [
-  "Egg$",
+  "Salazzle$",
 ]
 
 [msg.section_0.entries.759]
 text = [
-  "Species 759$",
+  "Stufful$",
 ]
 
 [msg.section_0.entries.760]
 text = [
-  "Species 760$",
+  "Bewear$",
 ]
 
 [msg.section_0.entries.761]
 text = [
-  "Species 761$",
+  "Bounsweet$",
 ]
 
 [msg.section_0.entries.762]
 text = [
-  "Species 762$",
+  "Steenee$",
 ]
 
 [msg.section_0.entries.763]
 text = [
-  "Species 763$",
+  "Tsareena$",
 ]
 
 [msg.section_0.entries.764]
 text = [
-  "Species 764$",
+  "Comfey$",
 ]
 
 [msg.section_0.entries.765]
 text = [
-  "Species 765$",
+  "Oranguru$",
 ]
 
 [msg.section_0.entries.766]
 text = [
-  "Species 766$",
+  "Passimian$",
 ]
 
 [msg.section_0.entries.767]
 text = [
-  "Species 767$",
+  "Wimpod$",
 ]
 
 [msg.section_0.entries.768]
 text = [
-  "Species 768$",
+  "Golisopod$",
 ]
 
 [msg.section_0.entries.769]
 text = [
-  "Species 769$",
+  "Sandygast$",
 ]
 
 [msg.section_0.entries.770]
 text = [
-  "Species 770$",
+  "Palossand$",
 ]
 
 [msg.section_0.entries.771]
 text = [
-  "Species 771$",
+  "Pyukumuku$",
 ]
 
 [msg.section_0.entries.772]
 text = [
-  "Species 772$",
+  "Type: Null$",
 ]
 
 [msg.section_0.entries.773]
 text = [
-  "Species 773$",
+  "Silvally$",
 ]
 
 [msg.section_0.entries.774]
 text = [
-  "Species 774$",
+  "Minior$",
 ]
 
 [msg.section_0.entries.775]
 text = [
-  "Species 775$",
+  "Komala$",
 ]
 
 [msg.section_0.entries.776]
 text = [
-  "Species 776$",
+  "Turtonator$",
 ]
 
 [msg.section_0.entries.777]
 text = [
-  "Species 777$",
+  "Togedemaru$",
 ]
 
 [msg.section_0.entries.778]
 text = [
-  "Species 778$",
+  "Mimikyu$",
 ]
 
 [msg.section_0.entries.779]
 text = [
-  "Species 779$",
+  "Bruxish$",
 ]
 
 [msg.section_0.entries.780]
 text = [
-  "Species 780$",
+  "Drampa$",
 ]
 
 [msg.section_0.entries.781]
 text = [
-  "Species 781$",
+  "Dhelmise$",
 ]
 
 [msg.section_0.entries.782]
 text = [
-  "Species 782$",
+  "Jangmo-o$",
 ]
 
 [msg.section_0.entries.783]
 text = [
-  "Species 783$",
+  "Hakamo-o$",
 ]
 
 [msg.section_0.entries.784]
 text = [
-  "Species 784$",
+  "Kommo-o$",
 ]
 
 [msg.section_0.entries.785]
 text = [
-  "Species 785$",
+  "Tapu Koko$",
 ]
 
 [msg.section_0.entries.786]
 text = [
-  "Species 786$",
+  "Tapu Lele$",
 ]
 
 [msg.section_0.entries.787]
 text = [
-  "Species 787$",
+  "Tapu Bulu$",
 ]
 
 [msg.section_0.entries.788]
 text = [
-  "Species 788$",
+  "Tapu Fini$",
 ]
 
 [msg.section_0.entries.789]
 text = [
-  "Species 789$",
+  "Cosmog$",
 ]
 
 [msg.section_0.entries.790]
 text = [
-  "Species 790$",
+  "Cosmoem$",
 ]
 
 [msg.section_0.entries.791]
 text = [
-  "Species 791$",
+  "Solgaleo$",
 ]
 
 [msg.section_0.entries.792]
 text = [
-  "Species 792$",
+  "Lunala$",
 ]
 
 [msg.section_0.entries.793]
 text = [
-  "Species 793$",
+  "Nihilego$",
 ]
 
 [msg.section_0.entries.794]
 text = [
-  "Species 794$",
+  "Buzzwole$",
 ]
 
 [msg.section_0.entries.795]
 text = [
-  "Species 795$",
+  "Pheromosa$",
 ]
 
 [msg.section_0.entries.796]
 text = [
-  "Species 796$",
+  "Xurkitree$",
 ]
 
 [msg.section_0.entries.797]
 text = [
-  "Species 797$",
+  "Celesteela$",
 ]
 
 [msg.section_0.entries.798]
 text = [
-  "Species 798$",
+  "Kartana$",
 ]
 
 [msg.section_0.entries.799]
 text = [
-  "Species 799$",
+  "Guzzlord$",
 ]
 
 [msg.section_0.entries.800]
 text = [
-  "Species 800$",
+  "Necrozma$",
 ]
 
 [msg.section_0.entries.801]
 text = [
-  "Species 801$",
+  "Magearna$",
 ]
 
 [msg.section_0.entries.802]
 text = [
-  "Species 802$",
+  "Marshadow$",
 ]
 
 [msg.section_0.entries.803]
 text = [
-  "Species 803$",
+  "Poipole$",
 ]
 
 [msg.section_0.entries.804]
 text = [
-  "Species 804$",
+  "Naganadel$",
 ]
 
 [msg.section_0.entries.805]
 text = [
-  "Species 805$",
+  "Stakataka$",
 ]
 
 [msg.section_0.entries.806]
 text = [
-  "Species 806$",
+  "Blacephln$",
 ]
 
 [msg.section_0.entries.807]
 text = [
-  "Species 807$",
+  "Zeraora$",
 ]
 
 [msg.section_0.entries.808]
 text = [
-  "Species 808$",
+  "Meltan$",
 ]
 
 [msg.section_0.entries.809]
 text = [
-  "Species 809$",
+  "Melmetal$",
 ]
 
 [msg.section_0.entries.810]
 text = [
-  "Species 810$",
+  "Grookey$",
 ]
 
 [msg.section_0.entries.811]
 text = [
-  "Species 811$",
+  "Thwackey$",
 ]
 
 [msg.section_0.entries.812]
 text = [
-  "Species 812$",
+  "Rillaboom$",
 ]
 
 [msg.section_0.entries.813]
 text = [
-  "Species 813$",
+  "Scorbunny$",
 ]
 
 [msg.section_0.entries.814]
 text = [
-  "Species 814$",
+  "Raboot$",
 ]
 
 [msg.section_0.entries.815]
 text = [
-  "Species 815$",
+  "Cinderace$",
 ]
 
 [msg.section_0.entries.816]
 text = [
-  "Species 816$",
+  "Sobble$",
 ]
 
 [msg.section_0.entries.817]
 text = [
-  "Species 817$",
+  "Drizzile$",
 ]
 
 [msg.section_0.entries.818]
 text = [
-  "Species 818$",
+  "Inteleon$",
 ]
 
 [msg.section_0.entries.819]
 text = [
-  "Species 819$",
+  "Skwovet$",
 ]
 
 [msg.section_0.entries.820]
 text = [
-  "Species 820$",
+  "Greedent$",
 ]
 
 [msg.section_0.entries.821]
 text = [
-  "Species 821$",
+  "Rookidee$",
 ]
 
 [msg.section_0.entries.822]
 text = [
-  "Species 822$",
+  "Corvisqire$",
 ]
 
 [msg.section_0.entries.823]
 text = [
-  "Species 823$",
+  "Corviknght$",
 ]
 
 [msg.section_0.entries.824]
 text = [
-  "Species 824$",
+  "Blipbug$",
 ]
 
 [msg.section_0.entries.825]
 text = [
-  "Species 825$",
+  "Dottler$",
 ]
 
 [msg.section_0.entries.826]
 text = [
-  "Species 826$",
+  "Orbeetle$",
+]
+
+[msg.section_0.entries.827]
+text = [
+  "Nickit$",
+]
+
+[msg.section_0.entries.828]
+text = [
+  "Thievul$",
+]
+
+[msg.section_0.entries.829]
+text = [
+  "Gossifleur$",
+]
+
+[msg.section_0.entries.830]
+text = [
+  "Eldegoss$",
+]
+
+[msg.section_0.entries.831]
+text = [
+  "Wooloo$",
+]
+
+[msg.section_0.entries.832]
+text = [
+  "Dubwool$",
+]
+
+[msg.section_0.entries.833]
+text = [
+  "Chewtle$",
+]
+
+[msg.section_0.entries.834]
+text = [
+  "Drednaw$",
+]
+
+[msg.section_0.entries.835]
+text = [
+  "Yamper$",
+]
+
+[msg.section_0.entries.836]
+text = [
+  "Boltund$",
+]
+
+[msg.section_0.entries.837]
+text = [
+  "Rolycoly$",
+]
+
+[msg.section_0.entries.838]
+text = [
+  "Carkol$",
+]
+
+[msg.section_0.entries.839]
+text = [
+  "Coalossal$",
+]
+
+[msg.section_0.entries.840]
+text = [
+  "Applin$",
+]
+
+[msg.section_0.entries.841]
+text = [
+  "Flapple$",
+]
+
+[msg.section_0.entries.842]
+text = [
+  "Appletun$",
+]
+
+[msg.section_0.entries.843]
+text = [
+  "Silicobra$",
+]
+
+[msg.section_0.entries.844]
+text = [
+  "Sandaconda$",
+]
+
+[msg.section_0.entries.845]
+text = [
+  "Cramorant$",
+]
+
+[msg.section_0.entries.846]
+text = [
+  "Arrokuda$",
+]
+
+[msg.section_0.entries.847]
+text = [
+  "Barraskwda$",
+]
+
+[msg.section_0.entries.848]
+text = [
+  "Toxel$",
+]
+
+[msg.section_0.entries.849]
+text = [
+  "Toxtricity$",
+]
+
+[msg.section_0.entries.850]
+text = [
+  "Sizzlipede$",
+]
+
+[msg.section_0.entries.851]
+text = [
+  "Centiskrch$",
+]
+
+[msg.section_0.entries.852]
+text = [
+  "Clobbopus$",
+]
+
+[msg.section_0.entries.853]
+text = [
+  "Grapploct$",
+]
+
+[msg.section_0.entries.854]
+text = [
+  "Sinistea$",
+]
+
+[msg.section_0.entries.855]
+text = [
+  "Polteagist$",
+]
+
+[msg.section_0.entries.856]
+text = [
+  "Hatenna$",
+]
+
+[msg.section_0.entries.857]
+text = [
+  "Hattrem$",
+]
+
+[msg.section_0.entries.858]
+text = [
+  "Hatterene$",
+]
+
+[msg.section_0.entries.859]
+text = [
+  "Impidimp$",
+]
+
+[msg.section_0.entries.860]
+text = [
+  "Morgrem$",
+]
+
+[msg.section_0.entries.861]
+text = [
+  "Grimmsnarl$",
+]
+
+[msg.section_0.entries.862]
+text = [
+  "Obstagoon$",
+]
+
+[msg.section_0.entries.863]
+text = [
+  "Perrserker$",
+]
+
+[msg.section_0.entries.864]
+text = [
+  "Cursola$",
+]
+
+[msg.section_0.entries.865]
+text = [
+  "Sirfetch'd$",
+]
+
+[msg.section_0.entries.866]
+text = [
+  "Mr. Rime$",
+]
+
+[msg.section_0.entries.867]
+text = [
+  "Runerigus$",
+]
+
+[msg.section_0.entries.868]
+text = [
+  "Milcery$",
+]
+
+[msg.section_0.entries.869]
+text = [
+  "Alcremie$",
+]
+
+[msg.section_0.entries.870]
+text = [
+  "Falinks$",
+]
+
+[msg.section_0.entries.871]
+text = [
+  "Pincurchin$",
+]
+
+[msg.section_0.entries.872]
+text = [
+  "Snom$",
+]
+
+[msg.section_0.entries.873]
+text = [
+  "Frosmoth$",
+]
+
+[msg.section_0.entries.874]
+text = [
+  "Stonjournr$",
+]
+
+[msg.section_0.entries.875]
+text = [
+  "Eiscue$",
+]
+
+[msg.section_0.entries.876]
+text = [
+  "Indeedee$",
+]
+
+[msg.section_0.entries.877]
+text = [
+  "Morpeko$",
+]
+
+[msg.section_0.entries.878]
+text = [
+  "Cufant$",
+]
+
+[msg.section_0.entries.879]
+text = [
+  "Copperajah$",
+]
+
+[msg.section_0.entries.880]
+text = [
+  "Dracozolt$",
+]
+
+[msg.section_0.entries.881]
+text = [
+  "Arctozolt$",
+]
+
+[msg.section_0.entries.882]
+text = [
+  "Dracovish$",
+]
+
+[msg.section_0.entries.883]
+text = [
+  "Arctovish$",
+]
+
+[msg.section_0.entries.884]
+text = [
+  "Duraludon$",
+]
+
+[msg.section_0.entries.885]
+text = [
+  "Dreepy$",
+]
+
+[msg.section_0.entries.886]
+text = [
+  "Drakloak$",
+]
+
+[msg.section_0.entries.887]
+text = [
+  "Dragapult$",
+]
+
+[msg.section_0.entries.888]
+text = [
+  "Zacian$",
+]
+
+[msg.section_0.entries.889]
+text = [
+  "Zamazenta$",
+]
+
+[msg.section_0.entries.890]
+text = [
+  "Eternatus$",
+]
+
+[msg.section_0.entries.891]
+text = [
+  "Kubfu$",
+]
+
+[msg.section_0.entries.892]
+text = [
+  "Urshifu$",
+]
+
+[msg.section_0.entries.893]
+text = [
+  "Zarude$",
+]
+
+[msg.section_0.entries.894]
+text = [
+  "Regieleki$",
+]
+
+[msg.section_0.entries.895]
+text = [
+  "Regidrago$",
+]
+
+[msg.section_0.entries.896]
+text = [
+  "Glastrier$",
+]
+
+[msg.section_0.entries.897]
+text = [
+  "Spectrier$",
+]
+
+[msg.section_0.entries.898]
+text = [
+  "Calyrex$",
+]
+
+[msg.section_0.entries.899]
+text = [
+  "Wyrdeer$",
+]
+
+[msg.section_0.entries.900]
+text = [
+  "Kleavor$",
+]
+
+[msg.section_0.entries.901]
+text = [
+  "Ursaluna$",
+]
+
+[msg.section_0.entries.902]
+text = [
+  "Basculegn$",
+]
+
+[msg.section_0.entries.903]
+text = [
+  "Sneasler$",
+]
+
+[msg.section_0.entries.904]
+text = [
+  "Overqwil$",
+]
+
+[msg.section_0.entries.905]
+text = [
+  "Enamorus$",
+]
+
+[msg.section_0.entries.906]
+text = [
+  "Sprigatito$",
+]
+
+[msg.section_0.entries.907]
+text = [
+  "Floragato$",
+]
+
+[msg.section_0.entries.908]
+text = [
+  "Meowscrda$",
+]
+
+[msg.section_0.entries.909]
+text = [
+  "Fuecoco$",
+]
+
+[msg.section_0.entries.910]
+text = [
+  "Crocalor$",
+]
+
+[msg.section_0.entries.911]
+text = [
+  "Skeledirge$",
+]
+
+[msg.section_0.entries.912]
+text = [
+  "Quaxly$",
+]
+
+[msg.section_0.entries.913]
+text = [
+  "Quaxwell$",
+]
+
+[msg.section_0.entries.914]
+text = [
+  "Quaquaval$",
+]
+
+[msg.section_0.entries.915]
+text = [
+  "Lechonk$",
+]
+
+[msg.section_0.entries.916]
+text = [
+  "Oinkologne$",
+]
+
+[msg.section_0.entries.917]
+text = [
+  "Tarountula$",
+]
+
+[msg.section_0.entries.918]
+text = [
+  "Spidops$",
+]
+
+[msg.section_0.entries.919]
+text = [
+  "Nymble$",
+]
+
+[msg.section_0.entries.920]
+text = [
+  "Lokix$",
+]
+
+[msg.section_0.entries.921]
+text = [
+  "Pawmi$",
+]
+
+[msg.section_0.entries.922]
+text = [
+  "Pawmo$",
+]
+
+[msg.section_0.entries.923]
+text = [
+  "Pawmot$",
+]
+
+[msg.section_0.entries.924]
+text = [
+  "Tandemaus$",
+]
+
+[msg.section_0.entries.925]
+text = [
+  "Maushold$",
+]
+
+[msg.section_0.entries.926]
+text = [
+  "Fidough$",
+]
+
+[msg.section_0.entries.927]
+text = [
+  "Dachsbun$",
+]
+
+[msg.section_0.entries.928]
+text = [
+  "Smoliv$",
+]
+
+[msg.section_0.entries.929]
+text = [
+  "Dolliv$",
+]
+
+[msg.section_0.entries.930]
+text = [
+  "Arboliva$",
+]
+
+[msg.section_0.entries.931]
+text = [
+  "Squawkbly$",
+]
+
+[msg.section_0.entries.932]
+text = [
+  "Nacli$",
+]
+
+[msg.section_0.entries.933]
+text = [
+  "Naclstack$",
+]
+
+[msg.section_0.entries.934]
+text = [
+  "Garganacl$",
+]
+
+[msg.section_0.entries.935]
+text = [
+  "Charcadet$",
+]
+
+[msg.section_0.entries.936]
+text = [
+  "Armarouge$",
+]
+
+[msg.section_0.entries.937]
+text = [
+  "Ceruledge$",
+]
+
+[msg.section_0.entries.938]
+text = [
+  "Tadbulb$",
+]
+
+[msg.section_0.entries.939]
+text = [
+  "Bellibolt$",
+]
+
+[msg.section_0.entries.940]
+text = [
+  "Wattrel$",
+]
+
+[msg.section_0.entries.941]
+text = [
+  "Kilowatrel$",
+]
+
+[msg.section_0.entries.942]
+text = [
+  "Maschiff$",
+]
+
+[msg.section_0.entries.943]
+text = [
+  "Mabosstiff$",
+]
+
+[msg.section_0.entries.944]
+text = [
+  "Shroodle$",
+]
+
+[msg.section_0.entries.945]
+text = [
+  "Grafaiai$",
+]
+
+[msg.section_0.entries.946]
+text = [
+  "Bramblin$",
+]
+
+[msg.section_0.entries.947]
+text = [
+  "Bramblegst$",
+]
+
+[msg.section_0.entries.948]
+text = [
+  "Toedscool$",
+]
+
+[msg.section_0.entries.949]
+text = [
+  "Toedscruel$",
+]
+
+[msg.section_0.entries.950]
+text = [
+  "Klawf$",
+]
+
+[msg.section_0.entries.951]
+text = [
+  "Capsakid$",
+]
+
+[msg.section_0.entries.952]
+text = [
+  "Scovillain$",
+]
+
+[msg.section_0.entries.953]
+text = [
+  "Rellor$",
+]
+
+[msg.section_0.entries.954]
+text = [
+  "Rabsca$",
+]
+
+[msg.section_0.entries.955]
+text = [
+  "Flittle$",
+]
+
+[msg.section_0.entries.956]
+text = [
+  "Espathra$",
+]
+
+[msg.section_0.entries.957]
+text = [
+  "Tinkatink$",
+]
+
+[msg.section_0.entries.958]
+text = [
+  "Tinkatuff$",
+]
+
+[msg.section_0.entries.959]
+text = [
+  "Tinkaton$",
+]
+
+[msg.section_0.entries.960]
+text = [
+  "Wiglett$",
+]
+
+[msg.section_0.entries.961]
+text = [
+  "Wugtrio$",
+]
+
+[msg.section_0.entries.962]
+text = [
+  "Bombirdier$",
+]
+
+[msg.section_0.entries.963]
+text = [
+  "Finizen$",
+]
+
+[msg.section_0.entries.964]
+text = [
+  "Palafin$",
+]
+
+[msg.section_0.entries.965]
+text = [
+  "Varoom$",
+]
+
+[msg.section_0.entries.966]
+text = [
+  "Revavroom$",
+]
+
+[msg.section_0.entries.967]
+text = [
+  "Cyclizar$",
+]
+
+[msg.section_0.entries.968]
+text = [
+  "Orthworm$",
+]
+
+[msg.section_0.entries.969]
+text = [
+  "Glimmet$",
+]
+
+[msg.section_0.entries.970]
+text = [
+  "Glimmora$",
+]
+
+[msg.section_0.entries.971]
+text = [
+  "Greavard$",
+]
+
+[msg.section_0.entries.972]
+text = [
+  "Houndstone$",
+]
+
+[msg.section_0.entries.973]
+text = [
+  "Flamigo$",
+]
+
+[msg.section_0.entries.974]
+text = [
+  "Cetoddle$",
+]
+
+[msg.section_0.entries.975]
+text = [
+  "Cetitan$",
+]
+
+[msg.section_0.entries.976]
+text = [
+  "Veluza$",
+]
+
+[msg.section_0.entries.977]
+text = [
+  "Dondozo$",
+]
+
+[msg.section_0.entries.978]
+text = [
+  "Tatsugiri$",
+]
+
+[msg.section_0.entries.979]
+text = [
+  "Annihilape$",
+]
+
+[msg.section_0.entries.980]
+text = [
+  "Clodsire$",
+]
+
+[msg.section_0.entries.981]
+text = [
+  "Farigiraf$",
+]
+
+[msg.section_0.entries.982]
+text = [
+  "Dudnsparc$",
+]
+
+[msg.section_0.entries.983]
+text = [
+  "Kingambit$",
+]
+
+[msg.section_0.entries.984]
+text = [
+  "Great Tusk$",
+]
+
+[msg.section_0.entries.985]
+text = [
+  "ScreamTail$",
+]
+
+[msg.section_0.entries.986]
+text = [
+  "BruteBont$",
+]
+
+[msg.section_0.entries.987]
+text = [
+  "FlutterMne$",
+]
+
+[msg.section_0.entries.988]
+text = [
+  "SlitherWng$",
+]
+
+[msg.section_0.entries.989]
+text = [
+  "SandyShcks$",
+]
+
+[msg.section_0.entries.990]
+text = [
+  "IronTreds$",
+]
+
+[msg.section_0.entries.991]
+text = [
+  "IronBundl$",
+]
+
+[msg.section_0.entries.992]
+text = [
+  "Iron Hands$",
+]
+
+[msg.section_0.entries.993]
+text = [
+  "IronJugul$",
+]
+
+[msg.section_0.entries.994]
+text = [
+  "Iron Moth$",
+]
+
+[msg.section_0.entries.995]
+text = [
+  "IronThorn$",
+]
+
+[msg.section_0.entries.996]
+text = [
+  "Frigibax$",
+]
+
+[msg.section_0.entries.997]
+text = [
+  "Arctibax$",
+]
+
+[msg.section_0.entries.998]
+text = [
+  "Baxcalibur$",
+]
+
+[msg.section_0.entries.999]
+text = [
+  "Gimmighoul$",
+]
+
+[msg.section_0.entries.1000]
+text = [
+  "Gholdengo$",
+]
+
+[msg.section_0.entries.1001]
+text = [
+  "Wo-Chien$",
+]
+
+[msg.section_0.entries.1002]
+text = [
+  "Chien-Pao$",
+]
+
+[msg.section_0.entries.1003]
+text = [
+  "Ting-Lu$",
+]
+
+[msg.section_0.entries.1004]
+text = [
+  "Chi-Yu$",
+]
+
+[msg.section_0.entries.1005]
+text = [
+  "RoarngMoon$",
+]
+
+[msg.section_0.entries.1006]
+text = [
+  "IronValnt$",
+]
+
+[msg.section_0.entries.1007]
+text = [
+  "Koraidon$",
+]
+
+[msg.section_0.entries.1008]
+text = [
+  "Miraidon$",
+]
+
+[msg.section_0.entries.1009]
+text = [
+  "WalkngWake$",
+]
+
+[msg.section_0.entries.1010]
+text = [
+  "IronLeavs$",
+]
+
+[msg.section_0.entries.1011]
+text = [
+  "Dipplin$",
+]
+
+[msg.section_0.entries.1012]
+text = [
+  "Poltchagst$",
+]
+
+[msg.section_0.entries.1013]
+text = [
+  "Sinistcha$",
+]
+
+[msg.section_0.entries.1014]
+text = [
+  "Okidogi$",
+]
+
+[msg.section_0.entries.1015]
+text = [
+  "Munkidori$",
+]
+
+[msg.section_0.entries.1016]
+text = [
+  "Fezandpti$",
+]
+
+[msg.section_0.entries.1017]
+text = [
+  "Ogerpon$",
+]
+
+[msg.section_0.entries.1018]
+text = [
+  "Archaludon$",
+]
+
+[msg.section_0.entries.1019]
+text = [
+  "Hydrapple$",
+]
+
+[msg.section_0.entries.1020]
+text = [
+  "GougingFir$",
+]
+
+[msg.section_0.entries.1021]
+text = [
+  "RagingBolt$",
+]
+
+[msg.section_0.entries.1022]
+text = [
+  "IronBouldr$",
+]
+
+[msg.section_0.entries.1023]
+text = [
+  "Iron Crown$",
+]
+
+[msg.section_0.entries.1024]
+text = [
+  "Egg$",
+]
+
+[msg.section_0.entries.1025]
+text = [
+  "Bad Egg$",
 ]

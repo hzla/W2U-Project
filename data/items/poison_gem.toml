@@ -14,7 +14,7 @@ Packed = 31
 Consumable = 1
 "Sort Index" = 92
 
-[ITEM_POISON_GEM."\"Battle Stats\""]
+[ITEM_POISON_GEM."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

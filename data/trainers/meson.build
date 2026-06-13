@@ -822,7 +822,6 @@ trpoke_arc = 'a' / '0' / '9' / '2'
 trdata_files = []
 trpoke_files = []
 foreach trainer : trainers
-  # trdata (/a/0/9/1)
   tr_name = fs.replace_suffix(trainer, '')
   trdata_files += custom_target(
     'trdata_' + tr_name,
@@ -831,8 +830,6 @@ foreach trainer : trainers
     command: [mkdata_py, 'trainer', '@INPUT@', meson.project_build_root() / '@OUTPUT@', 'output_type', 'trdata'],
   )
 
-  # trpoke (/a/0/9/2)
-  tr_name = fs.replace_suffix(trainer, '')
   trpoke_files += custom_target(
     'trpoke_' + tr_name,
     input: meson.current_source_dir() / trainer,

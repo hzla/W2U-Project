@@ -14,7 +14,7 @@ Packed = 8577
 Consumable = 1
 "Sort Index" = 5
 
-[ITEM_LEPPA_BERRY."\"Battle Stats\""]
+[ITEM_LEPPA_BERRY."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 1

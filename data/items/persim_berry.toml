@@ -14,7 +14,7 @@ Packed = 16772
 Consumable = 1
 "Sort Index" = 7
 
-[ITEM_PERSIM_BERRY."\"Battle Stats\""]
+[ITEM_PERSIM_BERRY."Battle Stats"]
 "Cure Inflict" = 32
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

@@ -14,7 +14,7 @@ Packed = 2079
 Consumable = 0
 "Sort Index" = 5
 
-[ITEM_CHERISH_BALL."\"Battle Stats\""]
+[ITEM_CHERISH_BALL."Battle Stats"]
 "Cure Inflict" = 15
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

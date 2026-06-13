@@ -14,7 +14,7 @@ Packed = 4127
 Consumable = 0
 "Sort Index" = 2
 
-[ITEM_X_SPEED."\"Battle Stats\""]
+[ITEM_X_SPEED."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 16, 0]
 "Function Flags" = 3072

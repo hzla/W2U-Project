@@ -14,7 +14,7 @@ Packed = 31
 Consumable = 0
 "Sort Index" = 9
 
-[ITEM_BRIDGEMAIL_T."\"Battle Stats\""]
+[ITEM_BRIDGEMAIL_T."Battle Stats"]
 "Cure Inflict" = 9
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

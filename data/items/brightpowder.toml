@@ -14,7 +14,7 @@ Packed = 31
 Consumable = 0
 "Sort Index" = 10
 
-[ITEM_BRIGHTPOWDER."\"Battle Stats\""]
+[ITEM_BRIGHTPOWDER."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

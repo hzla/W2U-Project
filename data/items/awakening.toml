@@ -14,7 +14,7 @@ Packed = 16543
 Consumable = 0
 "Sort Index" = 25
 
-[ITEM_AWAKENING."\"Battle Stats\""]
+[ITEM_AWAKENING."Battle Stats"]
 "Cure Inflict" = 1
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

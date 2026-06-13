@@ -14,7 +14,7 @@ Packed = 31
 Consumable = 0
 "Sort Index" = 42
 
-[ITEM_ODD_KEYSTONE."\"Battle Stats\""]
+[ITEM_ODD_KEYSTONE."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

@@ -14,7 +14,7 @@ Packed = 2079
 Consumable = 0
 "Sort Index" = 14
 
-[ITEM_LUXURY_BALL."\"Battle Stats\""]
+[ITEM_LUXURY_BALL."Battle Stats"]
 "Cure Inflict" = 10
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

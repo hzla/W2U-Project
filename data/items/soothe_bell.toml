@@ -14,7 +14,7 @@ Packed = 31
 Consumable = 0
 "Sort Index" = 128
 
-[ITEM_SOOTHE_BELL."\"Battle Stats\""]
+[ITEM_SOOTHE_BELL."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

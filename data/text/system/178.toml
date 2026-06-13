@@ -50,7 +50,7 @@ text = [
 
 [msg.section_0.entries.10]
 text = [
-  "              $$",
+  "              $",
 ]
 
 [msg.section_0.entries.11]
@@ -75,7 +75,7 @@ text = [
 
 [msg.section_0.entries.15]
 text = [
-  "              $$",
+  "              $",
 ]
 
 [msg.section_0.entries.16]
@@ -107,7 +107,7 @@ text = [
 
 [msg.section_0.entries.21]
 text = [
-  "            $$",
+  "            $",
 ]
 
 [msg.section_0.entries.22]
@@ -130,12 +130,12 @@ text = [
 
 [msg.section_0.entries.25]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.26]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.27]
@@ -151,12 +151,12 @@ text = [
 
 [msg.section_0.entries.29]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.30]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.31]
@@ -182,12 +182,12 @@ text = [
 
 [msg.section_0.entries.34]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.35]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.36]
@@ -198,12 +198,12 @@ text = [
 
 [msg.section_0.entries.37]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.38]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.39]
@@ -297,12 +297,12 @@ text = [
 
 [msg.section_0.entries.54]
 text = [
-  "                $$",
+  "                $",
 ]
 
 [msg.section_0.entries.55]
 text = [
-  "                $$",
+  "                $",
 ]
 
 [msg.section_0.entries.56]
@@ -313,8 +313,8 @@ text = [
 
 [msg.section_0.entries.57]
 text = [
-  "This can't be used until a new\\n",
-  "Badge is obtained.$",
+  "[VAR PKNICK(0)]'s Ability changed\\n",
+  "to [VAR ABILITY(1)]!$",
 ]
 
 [msg.section_0.entries.58]
@@ -333,12 +333,13 @@ text = [
 
 [msg.section_0.entries.60]
 text = [
-  "    $$",
+  "Change [VAR PKNICK(0)]'s Ability\\n",
+  "to [VAR ABILITY(1)]?$",
 ]
 
 [msg.section_0.entries.61]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.62]
@@ -366,32 +367,32 @@ text = [
 
 [msg.section_0.entries.66]
 text = [
-  "           $$",
+  "           $",
 ]
 
 [msg.section_0.entries.67]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.68]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.69]
 text = [
-  "             $$",
+  "             $",
 ]
 
 [msg.section_0.entries.70]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.71]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.72]
@@ -401,37 +402,37 @@ text = [
 
 [msg.section_0.entries.73]
 text = [
-  "                       $$",
+  "                       $",
 ]
 
 [msg.section_0.entries.74]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.75]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.76]
 text = [
-  "                  $$",
+  "                  $",
 ]
 
 [msg.section_0.entries.77]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.78]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.79]
 text = [
-  "                        $$",
+  "                        $",
 ]
 
 [msg.section_0.entries.80]
@@ -481,7 +482,7 @@ text = [
 
 [msg.section_0.entries.88]
 text = [
-  "             $$",
+  "             $",
 ]
 
 [msg.section_0.entries.89]
@@ -614,32 +615,32 @@ text = [
 
 [msg.section_0.entries.111]
 text = [
-  "                      $$",
+  "                      $",
 ]
 
 [msg.section_0.entries.112]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.113]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.114]
 text = [
-  "                    $$",
+  "                    $",
 ]
 
 [msg.section_0.entries.115]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.116]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.117]
@@ -689,7 +690,7 @@ text = [
 
 [msg.section_0.entries.126]
 text = [
-  "     $$",
+  "     $",
 ]
 
 [msg.section_0.entries.127]
@@ -704,22 +705,22 @@ text = [
 
 [msg.section_0.entries.129]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.130]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.131]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.132]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.133]
@@ -734,22 +735,22 @@ text = [
 
 [msg.section_0.entries.135]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.136]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.137]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.138]
 text = [
-  "    $$",
+  "    $",
 ]
 
 [msg.section_0.entries.139]

@@ -14,7 +14,7 @@ Packed = 16543
 Consumable = 0
 "Sort Index" = 29
 
-[ITEM_OLD_GATEAU."\"Battle Stats\""]
+[ITEM_OLD_GATEAU."Battle Stats"]
 "Cure Inflict" = 63
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

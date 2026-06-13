@@ -5,8 +5,8 @@
 "Base Speed" = 45
 "Base Special Attack" = 45
 "Base Special Defense" = 45
-"Primary Type" = "TYPE_FIRE"
-"Secondary Type" = "TYPE_FIRE"
+"Primary Type" = "TYPE_GRASS"
+"Secondary Type" = "TYPE_GRASS"
 "Capture Rate" = 45
 "Evolution Stage" = 1
 "EV Yield" = 1

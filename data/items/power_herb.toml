@@ -14,7 +14,7 @@ Packed = 31
 Consumable = 1
 "Sort Index" = 97
 
-[ITEM_POWER_HERB."\"Battle Stats\""]
+[ITEM_POWER_HERB."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

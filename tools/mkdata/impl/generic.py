@@ -80,9 +80,52 @@ class GenericSerializer(Serializer):
                     return final_value
                 return -1
 
+            def flatten_field_names(items):
+                names = []
+                for item in items:
+                    if isinstance(item, dict):
+                        for name, child in item.items():
+                            if isinstance(child, list):
+                                for child_item in child:
+                                    if isinstance(child_item, dict):
+                                        names += flatten_field_names([child_item])
+                                    else:
+                                        names.append(name)
+                            else:
+                                names.append(name)
+                    elif isinstance(item, list):
+                        names += flatten_field_names(item)
+                return names
+
+            def resolve_hit(value):
+                def pack_hit_count(hit_min, hit_max):
+                    return (hit_max << 4) | hit_min
+
+                if type(value) == int:
+                    if 0 <= value <= 0xF:
+                        return pack_hit_count(value, value)
+                    return value
+                if type(value) == str:
+                    tokens = [e.strip() for e in value.split('|')]
+                    if len(tokens) == 2 and all(token.isdigit() for token in tokens):
+                        hit_min, hit_max = [int(token) for token in tokens]
+                        if 0 <= hit_min <= 0xF and 0 <= hit_max <= 0xF:
+                            return pack_hit_count(hit_min, hit_max)
+                    if value.isdigit():
+                        hit_count = int(value)
+                        if 0 <= hit_count <= 0xF:
+                            return pack_hit_count(hit_count, hit_count)
+                        return hit_count
+                    print(f'Invalid Hit field "{value}"; expected MIN | MAX.')
+                return -1
+
             
             IN_DATA_FLAT = flatten_yaml_tree(flatten(IN_DATA_RAW[IN_DATA_RAW_KEYS[0]]).values())
-            OUT_DATA_BUFFER = [resolve(item) for item in IN_DATA_FLAT]
+            field_names = flatten_field_names(Configuration['STRUCTURE'])
+            OUT_DATA_BUFFER = [
+                resolve_hit(item) if index < len(field_names) and field_names[index] == 'Hit' else resolve(item)
+                for index, item in enumerate(IN_DATA_FLAT)
+            ]
             while len(format_string) != len(OUT_DATA_BUFFER):
                 format_string = format_string[:-1]
 

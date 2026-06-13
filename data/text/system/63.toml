@@ -825,57 +825,57 @@ text = [
 
 [msg.section_0.entries.120]
 text = [
-  "$",
+  "A capsule that allows a Pokemon with two Abilities to switch between these abilities when it is used.$",
 ]
 
 [msg.section_0.entries.121]
 text = [
-  "$",
+  "An item to be held by a Pokemon. This offensive vest raises Sp. Def but prevents the use of status moves.$",
 ]
 
 [msg.section_0.entries.122]
 text = [
-  "$",
+  "An item to be held by a Pokemon. It boosts Sp. Def if hit with a Water-type attack. It can only be used once.$",
 ]
 
 [msg.section_0.entries.123]
 text = [
-  "$",
+  "If held by a Pokemon, this Berry will increase the Pokemon's Sp. Def stat when hit by a special attack.$",
 ]
 
 [msg.section_0.entries.124]
 text = [
-  "$",
+  "This ring contains an untold power that somehow enables Pokemon carrying Mega Stones to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.125]
 text = [
-  "$",
+  "An item to be held by a Pokemon. This feather boosts the power of Fairy-type moves.$",
 ]
 
 [msg.section_0.entries.126]
 text = [
-  "$",
+  "If held by a Pokemon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.$",
 ]
 
 [msg.section_0.entries.127]
 text = [
-  "$",
+  "An item to be held by a Pokemon. These goggles protect the holder from weather damage and powder moves.$",
 ]
 
 [msg.section_0.entries.128]
 text = [
-  "$",
+  "An item to be held by a Pokemon. It boosts Attack if hit with an Ice-type attack. It can only be used once.$",
 ]
 
 [msg.section_0.entries.129]
 text = [
-  "$",
+  "An item to be held by a Pokemon. Attack and Sp. Atk sharply increase if the holder is hit with a move it's weak to.$",
 ]
 
 [msg.section_0.entries.130]
 text = [
-  "$",
+  "A patch that allows a Pokemon with a Hidden Ability to switch between its regular Ability and its Hidden Ability.$",
 ]
 
 [msg.section_0.entries.131]
@@ -3409,191 +3409,191 @@ text = [
 
 [msg.section_0.entries.505]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many victories\\n",
-  "you've had.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Venusaur hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.506]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many\\n",
-  "losses you've had.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Charizard hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.507]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times your\\n",
-  "Pokémon have dashed.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Charizard hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.508]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times your\\n",
-  "Pokémon have jumped.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Blastoise hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.509]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "won the Hurdle Dash.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Beedrill hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.510]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "won the Relay Run.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Pidgeot hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.511]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "won Pennant Capture.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Alakazam hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.512]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "won Block Smash.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Slowbro hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.513]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "won Disc Catch.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Gengar hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.514]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "won Snow Throw.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Kangaskhan hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.515]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many points\\n",
-  "your Pokémon scored.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Pinsir hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.516]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times your\\n",
-  "Pokémon have failed.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Gyarados hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.517]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times your\\n",
-  "Pokémon impeded themselves.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Aerodactyl hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.518]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times your\\n",
-  "Pokémon have tackled.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Mewtwo hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.519]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times your\\n",
-  "Pokémon have fallen down.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Mewtwo hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.520]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "won Ring Drop.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Ampharos hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.521]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "won Lamp Jump.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Steelix hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.522]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "won Circle Push.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Scizor hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.523]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many\\n",
-  "Link Pokéathlon wins you've had.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Heracross hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.524]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many\\n",
-  "Link Pokéathlon losses you've had.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Houndoom hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.525]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times\\n",
-  "you've won an event.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Tyranitar hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.526]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times\\n",
-  "you've lost an event.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Sceptile hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.527]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "switched Pokémon.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Blaziken hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.528]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "won Goal Roll.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Swampert hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.529]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times your\\n",
-  "Pokémon won individual prizes.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Gardevoir hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.530]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how many times you've\\n",
-  "instructed your Pokémon.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Sableye hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.531]
 text = [
-  "It holds Pokéathlon records. It's a\\n",
-  "card that shows how much time you've\\n",
-  "spent in the Pokéathlon.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Mawile hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.532]
@@ -4013,135 +4013,135 @@ text = [
 
 [msg.section_0.entries.592]
 text = [
-  "It can be used many times to raise the\\n",
-  "critical-hit ratio of one Pokémon. It\\n",
-  "wears off if the Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Aggron hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.593]
 text = [
-  "It sharply raises the Speed stat of a\\n",
-  "Pokémon in battle. It wears off if\\n",
-  "the Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Medicham hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.594]
 text = [
-  "It sharply raises the Sp. Atk stat of a\\n",
-  "Pokémon in battle. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Manectric hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.595]
 text = [
-  "It sharply raises the Sp. Def stat of a\\n",
-  "Pokémon in battle. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Sharpedo hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.596]
 text = [
-  "It sharply raises the Defense stat\\n",
-  "of a Pokémon in battle. It wears off\\n",
-  "if the Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Camerupt hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.597]
 text = [
-  "It sharply raises the Attack stat of a\\n",
-  "Pokémon in battle. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Altaria hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.598]
 text = [
-  "It sharply raises the accuracy of a\\n",
-  "Pokémon in battle. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Banette hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.599]
 text = [
-  "It drastically raises the Speed stat of\\n",
-  "a Pokémon in battle. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Absol hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.600]
 text = [
-  "It drastically raises the Sp. Atk stat\\n",
-  "of a Pokémon in battle. It wears off if\\n",
-  "the Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Glalie hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.601]
 text = [
-  "It drastically raises the Sp. Def stat\\n",
-  "of a Pokémon in battle. It wears off if\\n",
-  "the Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Salamence hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.602]
 text = [
-  "It drastically raises the Defense stat\\n",
-  "of a Pokémon in battle. It wears off if\\n",
-  "the Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Metagross hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.603]
 text = [
-  "It drastically raises the Attack stat\\n",
-  "of a Pokémon in battle. It wears off if\\n",
-  "the Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Latias hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.604]
 text = [
-  "It drastically raises the accuracy of a\\n",
-  "Pokémon in battle. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Latios hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.605]
 text = [
-  "It raises the Speed stat of a Pokémon\\n",
-  "in battle immensely. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Lopunny hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.606]
 text = [
-  "It raises the Sp. Atk stat of a Pokémon\\n",
-  "in battle immensely. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Garchomp hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.607]
 text = [
-  "It raises the Sp. Def stat of a Pokémon\\n",
-  "in battle immensely. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Lucario hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.608]
 text = [
-  "It raises the Defense stat of a Pokémon\\n",
-  "in battle immensely. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Abomasnow hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.609]
 text = [
-  "It raises the Attack stat of a Pokémon\\n",
-  "in battle immensely. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Gallade hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.610]
 text = [
-  "It raises the accuracy of a Pokémon in\\n",
-  "battle immensely. It wears off if the\\n",
-  "Pokémon is withdrawn.$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have Audino hold it, and this stone will\\n",
+  "enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.611]

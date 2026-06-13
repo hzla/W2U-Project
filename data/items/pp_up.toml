@@ -14,7 +14,7 @@ Packed = 159
 Consumable = 0
 "Sort Index" = 63
 
-[ITEM_PP_UP."\"Battle Stats\""]
+[ITEM_PP_UP."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 64]
 "Function Flags" = 7168

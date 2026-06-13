@@ -14,7 +14,7 @@ Packed = 31
 Consumable = 0
 "Sort Index" = 54
 
-[ITEM_RELIC_COPPER."\"Battle Stats\""]
+[ITEM_RELIC_COPPER."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

@@ -82,3 +82,8 @@ text = [
 text = [
   "DARK$",
 ]
+
+[msg.section_0.entries.17]
+text = [
+  "FAIRY$",
+]

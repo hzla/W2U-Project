@@ -14,7 +14,7 @@ Packed = 392
 Consumable = 1
 "Sort Index" = 50
 
-[ITEM_RAZZ_BERRY."\"Battle Stats\""]
+[ITEM_RAZZ_BERRY."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

@@ -14,7 +14,7 @@ Packed = 388
 Consumable = 1
 "Sort Index" = 42
 
-[ITEM_APICOT_BERRY."\"Battle Stats\""]
+[ITEM_APICOT_BERRY."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

@@ -14,7 +14,7 @@ Packed = 639
 Consumable = 0
 "Sort Index" = 7
 
-[ITEM_PAL_PAD."\"Battle Stats\""]
+[ITEM_PAL_PAD."Battle Stats"]
 "Cure Inflict" = 0
 Boost = [0, 0, 0, 0]
 "Function Flags" = 0

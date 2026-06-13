@@ -133,7 +133,7 @@ encounters = [
   '131.toml',
   '132.toml',
   '133.toml',
-  '134.toml'
+  '134.toml',
 ]
 
 # Encounters (/a/1/2/7)

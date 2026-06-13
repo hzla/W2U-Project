@@ -14,7 +14,7 @@ Packed = 16543
 Consumable = 0
 "Sort Index" = 27
 
-[ITEM_HEAL_POWDER."\"Battle Stats\""]
+[ITEM_HEAL_POWDER."Battle Stats"]
 "Cure Inflict" = 63
 Boost = [0, 0, 0, 0]
 "Function Flags" = 7168

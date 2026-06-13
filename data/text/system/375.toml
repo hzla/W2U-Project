@@ -1,6 +1,3 @@
-[msg]
-trailing_data = "4c4c"
-
 [msg.section_0.entries.0]
 text = [
   " -$",
@@ -988,4 +985,139 @@ text = [
 text = [
   "Moves can be used\\n",
   "regardless of Abilities.$",
+]
+
+[msg.section_0.entries.165]
+text = [
+  "Aroma Veil description.$",
+]
+
+[msg.section_0.entries.166]
+text = [
+  "Flower Veil description.$",
+]
+
+[msg.section_0.entries.167]
+text = [
+  "Cheek Pouch description.$",
+]
+
+[msg.section_0.entries.168]
+text = [
+  "Protean description.$",
+]
+
+[msg.section_0.entries.169]
+text = [
+  "Fur Coat description.$",
+]
+
+[msg.section_0.entries.170]
+text = [
+  "Magician description.$",
+]
+
+[msg.section_0.entries.171]
+text = [
+  "Bulletproof description.$",
+]
+
+[msg.section_0.entries.172]
+text = [
+  "Competitive description.$",
+]
+
+[msg.section_0.entries.173]
+text = [
+  "Strong Jaw description.$",
+]
+
+[msg.section_0.entries.174]
+text = [
+  "Refrigerate description.$",
+]
+
+[msg.section_0.entries.175]
+text = [
+  "Sweet Veil description.$",
+]
+
+[msg.section_0.entries.176]
+text = [
+  "Stance Change description.$",
+]
+
+[msg.section_0.entries.177]
+text = [
+  "Gale Wings description.$",
+]
+
+[msg.section_0.entries.178]
+text = [
+  "Mega Launcher description.$",
+]
+
+[msg.section_0.entries.179]
+text = [
+  "Grass Pelt description.$",
+]
+
+[msg.section_0.entries.180]
+text = [
+  "Symbiosis description.$",
+]
+
+[msg.section_0.entries.181]
+text = [
+  "Tough Claws description.$",
+]
+
+[msg.section_0.entries.182]
+text = [
+  "Pixilate description.$",
+]
+
+[msg.section_0.entries.183]
+text = [
+  "Gooey description.$",
+]
+
+[msg.section_0.entries.184]
+text = [
+  "Aerilate description.$",
+]
+
+[msg.section_0.entries.185]
+text = [
+  "Parental Bond description.$",
+]
+
+[msg.section_0.entries.186]
+text = [
+  "Dark Aura description.$",
+]
+
+[msg.section_0.entries.187]
+text = [
+  "Fairy Aura description.$",
+]
+
+[msg.section_0.entries.188]
+text = [
+  "Aura Break description.$",
+]
+
+[msg.section_0.entries.189]
+text = [
+  "Primordial Sea description.$",
+]
+
+[msg.section_0.entries.190]
+text = [
+  "Desolate Land description.$",
+]
+
+[msg.section_0.entries.191]
+text = [
+  "Delta Stream description.$",
 ]
