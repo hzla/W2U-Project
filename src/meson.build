@@ -40,14 +40,34 @@ w2u_main_dll = custom_target(
   input: w2u_main_elf,
   output: 'w2u_main.dll',
   command: ['sh', '-c',
-        '"${JAVA:-java}" -cp "$1" rpm.cli.RPMTool -i "$2" --fourcc DLXF -o "$3" --esdb "$4" --generate-relocations && cp "$3" "$5"',
+        '"${JAVA:-java}" -cp "$1" rpm.cli.RPMTool -i "$2" --fourcc DLXF -o "$3" --esdb "$4" --generate-relocations',
         'rpmtool',
         ctrmap_jar,
         '@INPUT@',
         '@OUTPUT@',
         meson.project_source_root() / 'pmc' / 'IRDO.yml',
-        meson.project_source_root() / 'vfs' / 'data' / 'patches' / 'w2u_main.dll',
     ],
+)
+
+w2u_main_patch = custom_target(
+  'stage_w2u_main_patch',
+  input: w2u_main_dll,
+  output: 'stage_w2u_main_patch.stamp',
+  build_always_stale: true,
+  command: ['sh', '-eu', '-c', '''
+    input="$1"
+    output="$2"
+    stamp="$3"
+
+    mkdir -p "$(dirname "$output")"
+    cp "$input" "$output"
+    touch "$stamp"
+  ''',
+    'stage_w2u_main_patch',
+    '@INPUT@',
+    meson.project_source_root() / 'vfs' / 'data' / 'patches' / 'w2u_main.dll',
+    '@OUTPUT@',
+  ],
 )
 
 pwan_runtime_elf = custom_target(
@@ -66,8 +86,7 @@ pwan_runtime_dll = custom_target(
     input="$2"
     output="$3"
     esdb="$4"
-    vfs_output="$5"
-    marker="$6"
+    marker="$5"
     undefined="${output%.dll}.undefined.txt"
 
     arm-none-eabi-nm -u "$input" > "$undefined"
@@ -78,15 +97,33 @@ pwan_runtime_dll = custom_target(
 
     "${JAVA:-java}" -cp "$ctrmap" rpm.cli.RPMTool -i "$input" --fourcc DLXF -o "$output" --esdb "$esdb" --generate-relocations
     python3 "$marker" "$output"
-    mkdir -p "$(dirname "$vfs_output")"
-    cp "$output" "$vfs_output"
   ''',
     'pokeweb_pwan_runtime',
     ctrmap_jar,
     '@INPUT@',
     '@OUTPUT@',
     meson.project_source_root() / 'pmc' / 'IRDO.yml',
-    meson.project_source_root() / 'vfs' / 'data' / 'patches' / 'PokewebPwanW2.dll',
     meson.project_source_root() / 'tools' / 'pwan_mark_resident.py',
+  ],
+)
+
+pwan_runtime_patch = custom_target(
+  'stage_pokeweb_pwan_runtime_patch',
+  input: pwan_runtime_dll,
+  output: 'stage_pokeweb_pwan_runtime_patch.stamp',
+  build_always_stale: true,
+  command: ['sh', '-eu', '-c', '''
+    input="$1"
+    output="$2"
+    stamp="$3"
+
+    mkdir -p "$(dirname "$output")"
+    cp "$input" "$output"
+    touch "$stamp"
+  ''',
+    'stage_pokeweb_pwan_runtime_patch',
+    '@INPUT@',
+    meson.project_source_root() / 'vfs' / 'data' / 'patches' / 'PokewebPwanW2.dll',
+    '@OUTPUT@',
   ],
 )

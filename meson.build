@@ -87,8 +87,8 @@ rom = custom_target('White2Upgrade.nds',
   output: 'White2Upgrade.nds',
   input: [
     vfs_files,
-    w2u_main_dll,
-    pwan_runtime_dll,
+    w2u_main_patch,
+    pwan_runtime_patch,
     pmc_arm9,
     pmc_overlay
   ],
