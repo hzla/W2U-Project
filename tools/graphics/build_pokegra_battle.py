@@ -37,6 +37,7 @@ NCLR_HEADER = bytes.fromhex(
 )
 TOML_BINARY_KINDS = {"ncer", "nanr", "nmcr", "nmar"}
 ORDER_FILE = "order.toml"
+LEGACY_BIN_PREFIX = "004_"
 G2D_MAGIC_BY_KIND = {
     "ncer": "RECN",
     "nanr": "RNAN",
@@ -781,6 +782,38 @@ def copy_nns_archive_entries(source_root: Path, battle_vfs: Path) -> int:
     return count
 
 
+def extra_bin_member_id(path: Path) -> int | None:
+    if path.name.isdecimal():
+        return int(path.name)
+    if path.name.startswith(LEGACY_BIN_PREFIX) and path.name.endswith(".bin"):
+        raw = path.name[len(LEGACY_BIN_PREFIX):-4]
+        if raw.isdecimal():
+            return int(raw)
+    return None
+
+
+def copy_extra_bin_entries(extra_source: Path | None, battle_vfs: Path, first_extra_index: int) -> int:
+    if extra_source is None:
+        return 0
+    if not extra_source.is_dir():
+        raise NotADirectoryError(extra_source)
+
+    count = 0
+    for file in sorted(extra_source.iterdir()):
+        if not file.is_file():
+            continue
+        index = extra_bin_member_id(file)
+        if index is None:
+            continue
+        if index < first_extra_index:
+            raise RuntimeError(
+                f"{file}: extra battle graphic index {index} overlaps generated range 0..{first_extra_index - 1}"
+            )
+        shutil.copy2(file, battle_vfs / str(index))
+        count += 1
+    return count
+
+
 def build_pwan_assets(source_root: Path, pwan_vfs: Path) -> list[dict]:
     sources = []
     config_entries = []
@@ -868,6 +901,7 @@ def main() -> int:
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--battle-vfs", type=Path, required=True)
     parser.add_argument("--pwan-vfs", type=Path)
+    parser.add_argument("--extra-bin-source", type=Path)
     parser.add_argument("--skip-pwan", action="store_true")
     parser.add_argument("--arc-text", required=True)
     parser.add_argument("--stamp", type=Path, required=True)
@@ -875,6 +909,7 @@ def main() -> int:
 
     clean_dir(args.battle_vfs)
     nns_count = copy_nns_archive_entries(args.source, args.battle_vfs)
+    extra_count = copy_extra_bin_entries(args.extra_bin_source, args.battle_vfs, nns_count)
     (args.battle_vfs / ".arc").write_text(args.arc_text)
     if args.skip_pwan:
         if args.pwan_vfs is not None and args.pwan_vfs.exists():
@@ -888,6 +923,7 @@ def main() -> int:
     args.stamp.parent.mkdir(parents=True, exist_ok=True)
     args.stamp.write_text(
         f"nns_entries={nns_count}\n"
+        f"extra_bin_entries={extra_count}\n"
         f"pwan_assets={len(sources)}\n"
     )
     return 0
