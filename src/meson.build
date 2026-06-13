@@ -65,7 +65,7 @@ w2u_main_patch = custom_target(
   ''',
     'stage_w2u_main_patch',
     '@INPUT@',
-    meson.project_source_root() / 'vfs' / 'data' / 'patches' / 'w2u_main.dll',
+    meson.project_source_root() / 'vfs' / 'data' / 'patches' / 'White2Upgrade.dll',
     '@OUTPUT@',
   ],
 )

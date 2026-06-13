@@ -81,6 +81,26 @@ pmc_overlay = custom_target(
     '--stamp', '@OUTPUT@',
   ],
 )
+
+pmc_symbols = custom_target(
+  'pmc_symbols',
+  input: meson.project_source_root() / 'pmc' / 'RPMSYM-PMC.rpm',
+  output: 'pmc_symbols.stamp',
+  command: ['sh', '-eu', '-c', '''
+    input="$1"
+    output="$2"
+    stamp="$3"
+
+    mkdir -p "$(dirname "$output")"
+    cp "$input" "$output"
+    touch "$stamp"
+  ''',
+    'stage_pmc_symbols',
+    '@INPUT@',
+    meson.project_source_root() / 'vfs' / 'data' / 'data' / 'codeinjection' / 'RPMSYM-PMC.rpm',
+    '@OUTPUT@',
+  ],
+)
   
 # The ROM itself
 rom = custom_target('White2Upgrade.nds',
@@ -90,7 +110,8 @@ rom = custom_target('White2Upgrade.nds',
     w2u_main_patch,
     pwan_runtime_patch,
     pmc_arm9,
-    pmc_overlay
+    pmc_overlay,
+    pmc_symbols
   ],
   command: ['sh', '-c',
     '"${JAVA:-java}" -cp "$1" ctrmap.cli.ROMBuilder --input "$2" --output "$3"',
