@@ -243,6 +243,32 @@ def remap_pixels_to_palette(
     return [[0 if value == 0 else remap[value] for value in row] for row in pixels]
 
 
+def tile_indexed_region(
+    pixels: list[list[int]], x0: int, y0: int, width: int, height: int
+) -> bytes:
+    out = bytearray()
+    for tile_y in range(0, height, 8):
+        for tile_x in range(0, width, 8):
+            for y in range(8):
+                row = pixels[y0 + tile_y + y]
+                for x in range(0, 8, 2):
+                    lo = row[x0 + tile_x + x] & 0x0f
+                    hi = row[x0 + tile_x + x + 1] & 0x0f
+                    out.append(lo | (hi << 4))
+    return bytes(out)
+
+
+def segmented_pwan_pixels(pixels: list[list[int]]) -> bytes:
+    chunks = [
+        tile_indexed_region(pixels, dst_x, dst_y, tiles_w * 8, tiles_h * 8)
+        for _segment_offset, dst_x, dst_y, tiles_w, tiles_h in PWAN_SEGMENTS
+    ]
+    payload = b"".join(chunks)
+    if len(payload) != 0x1200:
+        raise RuntimeError(f"segmented PWAN fallback is {len(payload)} bytes, expected 0x1200")
+    return payload
+
+
 def linear_wide_pwan_pixels(pixels: list[list[int]]) -> bytes:
     indices = bytearray(256 * 128)
     for y in range(96):
@@ -972,7 +998,7 @@ def patch_compressed_ncgr_payload(path: Path, payload: bytes) -> None:
     path.write_bytes(lz11_compress_nlz(bytes(decompressed)))
 
 
-def patch_gen7_native_wide_fallbacks(pwan_source: Path | None, battle_vfs: Path) -> int:
+def patch_gen7_native_fallbacks(pwan_source: Path | None, battle_vfs: Path) -> int:
     if pwan_source is None:
         return 0
     config_path = pwan_source / "config.bin"
@@ -988,18 +1014,19 @@ def patch_gen7_native_wide_fallbacks(pwan_source: Path | None, battle_vfs: Path)
         base = gen7_battle_base(species)
         asset_index = int(entry["assetIndex"])
         flags = int(entry["flags"])
-        for side, side_flag, side_offset, palette_offset in (
-            ("front", PWAN_CONFIG_FRONT_FLAG, 2, 18),
-            ("back", PWAN_CONFIG_BACK_FLAG, 11, 19),
+        for side, side_flag, compact_offset, wide_offset, palette_offset in (
+            ("front", PWAN_CONFIG_FRONT_FLAG, 0, 2, 18),
+            ("back", PWAN_CONFIG_BACK_FLAG, 9, 11, 19),
         ):
             if not (flags & side_flag):
                 continue
             pwan_path = pwan_source / f"{asset_index}_{side}.pwan"
             if not pwan_path.exists():
                 continue
-            ncgr_path = battle_vfs / str(base + side_offset)
+            compact_path = battle_vfs / str(base + compact_offset)
+            wide_path = battle_vfs / str(base + wide_offset)
             nclr_path = battle_vfs / str(base + palette_offset)
-            if not ncgr_path.exists() or not nclr_path.exists():
+            if not compact_path.exists() or not wide_path.exists() or not nclr_path.exists():
                 continue
             pixels = pwan_first_pixels(pwan_path)
             pixels = remap_pixels_to_palette(
@@ -1007,8 +1034,9 @@ def patch_gen7_native_wide_fallbacks(pwan_source: Path | None, battle_vfs: Path)
                 pwan_palette_values(pwan_path),
                 palette_from_nclr(nclr_path.read_bytes()),
             )
-            patch_compressed_ncgr_payload(ncgr_path, linear_wide_pwan_pixels(pixels))
-            patched += 1
+            patch_compressed_ncgr_payload(compact_path, segmented_pwan_pixels(pixels))
+            patch_compressed_ncgr_payload(wide_path, linear_wide_pwan_pixels(pixels))
+            patched += 2
     return patched
 
 
@@ -1109,7 +1137,7 @@ def main() -> int:
     clean_dir(args.battle_vfs)
     nns_count = copy_nns_archive_entries(args.source, args.battle_vfs)
     extra_count = copy_extra_bin_entries(args.extra_bin_source, args.battle_vfs, nns_count)
-    gen7_wide_fallbacks = patch_gen7_native_wide_fallbacks(
+    gen7_fallbacks = patch_gen7_native_fallbacks(
         args.gen7_pwan_fallback_source,
         args.battle_vfs,
     )
@@ -1127,7 +1155,7 @@ def main() -> int:
     args.stamp.write_text(
         f"nns_entries={nns_count}\n"
         f"extra_bin_entries={extra_count}\n"
-        f"gen7_wide_fallbacks={gen7_wide_fallbacks}\n"
+        f"gen7_native_fallbacks={gen7_fallbacks}\n"
         f"pwan_assets={len(sources)}\n"
     )
     return 0
