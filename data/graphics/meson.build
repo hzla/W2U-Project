@@ -4,6 +4,52 @@ pokegra_footprints_arc = 'a' / '1' / '6' / '5'
 pokegra_footprints_count = 832
 arc_marker_text = '.arc\ncompress default auto\n'
 build_pokegra_battle_py = find_program(meson.project_source_root() / 'tools' / 'graphics' / 'build_pokegra_battle.py', native: true)
+stage_bin_archive_py = find_program(meson.project_source_root() / 'tools' / 'graphics' / 'stage_bin_archive.py', native: true)
+
+binary_archive_stages = [
+  ['stage_move_animations', 'move_animations', 'a/0/6/5'],
+  ['stage_move_spas', 'move_spas', 'a/0/0/6'],
+  ['stage_ui_graphics', 'ui', 'a/0/8/2'],
+  ['stage_ui2_graphics', 'ui_2', 'a/1/2/5'],
+  ['stage_move_typegra', 'battle', 'a/0/1/1'],
+  ['stage_hof_graphics', 'hall_of_fame', 'a/2/1/3'],
+]
+
+foreach stage_spec : binary_archive_stages
+  stage_name = stage_spec[0]
+  stage_source_dir = stage_spec[1]
+  stage_arc = stage_spec[2]
+  stage_asset_list = run_command(
+    'sh',
+    '-c',
+    'cd "$1" && find "$2" -maxdepth 1 -type f | sort',
+    'find_' + stage_name + '_assets',
+    meson.current_source_dir(),
+    stage_source_dir,
+    check: true,
+  ).stdout().strip()
+
+  stage_assets = []
+  foreach stage_asset : stage_asset_list.split('\n')
+    if stage_asset != ''
+      stage_assets += meson.current_source_dir() / stage_asset
+    endif
+  endforeach
+
+  vfs_files += custom_target(
+    stage_name,
+    input: stage_assets,
+    output: stage_name + '.stamp',
+    command: [
+      stage_bin_archive_py,
+      '--src', meson.current_source_dir() / stage_source_dir,
+      '--output-dir', meson.project_source_root() / 'vfs' / 'data' / stage_arc,
+      '--arc-text', arc_marker_text,
+      '--stamp', '@OUTPUT@',
+    ],
+    build_always_stale: true,
+  )
+endforeach
 
 vfs_files += custom_target(
   'stage_pokegra_battle',
