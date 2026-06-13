@@ -7,6 +7,12 @@ not restored.
 ## Required Local Tools
 
 - Java 8-compatible JDK. `java` must be on `PATH` for CTRMap.
+  On this machine, Homebrew JDKs are available under `/opt/homebrew/opt`; for
+  example:
+
+  ```sh
+  export JAVA=/opt/homebrew/opt/openjdk@17/bin/java
+  ```
 - ARM embedded toolchain with `arm-none-eabi-as`, `arm-none-eabi-gcc`,
   `arm-none-eabi-g++`, `arm-none-eabi-ld`, `arm-none-eabi-objcopy`, and
   `arm-none-eabi-nm`.

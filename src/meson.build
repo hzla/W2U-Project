@@ -40,7 +40,7 @@ w2u_main_dll = custom_target(
   input: w2u_main_elf,
   output: 'w2u_main.dll',
   command: ['sh', '-c',
-        'java -cp "$1" rpm.cli.RPMTool -i "$2" --fourcc DLXF -o "$3" --esdb "$4" --generate-relocations && cp "$3" "$5"',
+        '"${JAVA:-java}" -cp "$1" rpm.cli.RPMTool -i "$2" --fourcc DLXF -o "$3" --esdb "$4" --generate-relocations && cp "$3" "$5"',
         'rpmtool',
         ctrmap_jar,
         '@INPUT@',
@@ -76,7 +76,7 @@ pwan_runtime_dll = custom_target(
       exit 1
     fi
 
-    java -cp "$ctrmap" rpm.cli.RPMTool -i "$input" --fourcc DLXF -o "$output" --esdb "$esdb" --generate-relocations
+    "${JAVA:-java}" -cp "$ctrmap" rpm.cli.RPMTool -i "$input" --fourcc DLXF -o "$output" --esdb "$esdb" --generate-relocations
     python3 "$marker" "$output"
     mkdir -p "$(dirname "$vfs_output")"
     cp "$output" "$vfs_output"

@@ -92,5 +92,11 @@ rom = custom_target('White2Upgrade.nds',
     pmc_arm9,
     pmc_overlay
   ],
-  command: ['java', '-cp', ctrmap_jar, 'ctrmap.cli.ROMBuilder', '--input', meson.project_source_root() / 'White2Upgrade.cmproj', '--output', '@OUTPUT@']
+  command: ['sh', '-c',
+    '"${JAVA:-java}" -cp "$1" ctrmap.cli.ROMBuilder --input "$2" --output "$3"',
+    'rombuilder',
+    ctrmap_jar,
+    meson.project_source_root() / 'White2Upgrade.cmproj',
+    '@OUTPUT@'
+  ],
 )

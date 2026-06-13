@@ -8,6 +8,7 @@ __pycache__/
 vfs/arm9.bin
 vfs/data/field_camera_data_index.tbl
 vfs/data/rail_data_index.tbl
+vfs/data/patches/PokewebPwanW2.dll
 vfs/data/a/0/1/6/
 vfs/data/a/0/1/8/
 vfs/data/a/0/1/9/
