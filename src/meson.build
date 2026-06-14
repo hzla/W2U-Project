@@ -73,8 +73,47 @@ w2u_main_patch = custom_target(
 pwan_runtime_elf = custom_target(
   'PokewebPwanW2.elf',
   input: pwan_runtime_sources,
+  depend_files: pwan_runtime_depend_files,
   output: 'PokewebPwanW2.elf',
-  command: ['arm-none-eabi-g++', cpp_args, includes, '-o', '@OUTPUT@', '@INPUT@'],
+  command: ['sh', '-eu', '-c', '''
+    output="$1"
+    root="$2"
+    shift 2
+
+    objdir="${output}.objs"
+    rm -rf "$objdir"
+    mkdir -p "$objdir"
+
+    cxx_flags="-mthumb -mno-thumb-interwork -march=armv5t -mno-long-calls -Wall -Wextra -Os -fira-loop-pressure -fipa-pta -fno-exceptions -fno-rtti -fno-unwind-tables -fno-asynchronous-unwind-tables"
+    cxx_includes="-I${root}/include -I${root}/include/swan -I${root}/include/NitroKernel -I${root}/src/pwan_animation"
+    asm_flags="-mthumb -march=armv5t -r"
+    objects=""
+
+    for input in "$@"; do
+      base="$(basename "$input")"
+      obj="$objdir/${base%.*}.o"
+      case "$input" in
+        *.cpp)
+          arm-none-eabi-g++ $cxx_flags $cxx_includes -c "$input" -o "$obj"
+          ;;
+        *.s)
+          arm-none-eabi-as $asm_flags -c "$input" -o "$obj"
+          ;;
+        *)
+          echo "unsupported PWAN runtime source: $input" >&2
+          exit 1
+          ;;
+      esac
+      objects="$objects $obj"
+    done
+
+    arm-none-eabi-ld -o "$output" -r $objects
+  ''',
+    'build_pokeweb_pwan_runtime_elf',
+    '@OUTPUT@',
+    meson.project_source_root(),
+    '@INPUT@',
+  ],
 )
 
 pwan_runtime_dll = custom_target(
