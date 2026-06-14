@@ -64,16 +64,9 @@ the Java/cmproj/VFS setup above.
 
 ## Verification
 
-After building the relevant targets, run:
-
-```sh
-python3 tools/migration/verify_pokeweb_migration.py
-```
-
-The verifier checks staged DLLs, PWAN v3 NARC structure, sidecar binaries,
-behavior-critical archive counts, generated item icon patches, and, when the old
-local Makefile build is available, byte-compares staged archive members against
-that build.
+After building the relevant targets, confirm the staged DLLs, PWAN v3 NARC
+structure, sidecar binaries, behavior-critical archive counts, generated item
+icon patches, and imported archive members against the current local build.
 
 ## Pokeweb Migration Notes
 
