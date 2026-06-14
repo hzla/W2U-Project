@@ -35,6 +35,7 @@ subdir('data')
 
 item_icon_patch_py = find_program(meson.project_source_root() / 'tools' / 'item_icons' / 'build_item_icon_patch.py', native: true)
 patch_pmc_sysheap_py = find_program(meson.project_source_root() / 'tools' / 'patch_pmc_sysheap.py', native: true)
+patch_arm9_footer_py = meson.project_source_root() / 'tools' / 'patch_arm9_footer.py'
 
 item_icon_asset_list = run_command(
   'sh',
@@ -113,11 +114,13 @@ rom = custom_target('White2Upgrade.nds',
     pmc_overlay,
     pmc_symbols
   ],
-  command: ['sh', '-c',
-    '"${JAVA:-java}" -cp "$1" ctrmap.cli.ROMBuilder --input "$2" --output "$3"',
+  command: ['sh', '-eu', '-c',
+    '"${JAVA:-java}" -cp "$1" ctrmap.cli.ROMBuilder --input "$2" --output "$3"; python3 "$4" --rom "$3" --arm9 "$5"',
     'rombuilder',
     ctrmap_jar,
     meson.project_source_root() / 'White2Upgrade.cmproj',
-    '@OUTPUT@'
+    '@OUTPUT@',
+    patch_arm9_footer_py,
+    meson.project_source_root() / 'vfs' / 'arm9.bin',
   ],
 )
