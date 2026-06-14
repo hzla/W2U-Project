@@ -5,9 +5,8 @@ from __future__ import annotations
 
 import argparse
 import re
+import struct
 from pathlib import Path
-
-import ndspy.narc
 
 from pwan_config import PWAN_RUNTIME_MAX_TIMELINE, parse_config
 
@@ -54,6 +53,53 @@ def collect_members(src_dir: Path) -> list[bytes]:
     return files
 
 
+def align4(value: int) -> int:
+    return (value + 3) & ~3
+
+
+def build_knarc_style_narc(files: list[bytes]) -> bytes:
+    """Build the no-FNT NARC layout emitted by the old Makefile's knarc tool."""
+    if len(files) > 0xFFFF:
+        raise ValueError(f"too many PWAN NARC members: {len(files)}")
+
+    fat_entries: list[tuple[int, int]] = []
+    cursor = 0
+    for data in files:
+        start = align4(cursor)
+        end = start + len(data)
+        fat_entries.append((start, end))
+        cursor = end
+
+    fat_chunk_size = 12 + len(fat_entries) * 8
+    fnt_chunk_size = 16
+    fimg_data_size = align4(cursor)
+    fimg_chunk_size = 8 + fimg_data_size
+    file_size = 16 + fat_chunk_size + fnt_chunk_size + fimg_chunk_size
+
+    out = bytearray()
+    out += struct.pack("<IHHIHH", 0x4352414E, 0xFFFE, 0x0100, file_size, 16, 3)
+    out += struct.pack("<IIHH", 0x46415442, fat_chunk_size, len(fat_entries), 0)
+    for start, end in fat_entries:
+        out += struct.pack("<II", start, end)
+
+    out += struct.pack("<II", 0x464E5442, fnt_chunk_size)
+    out += struct.pack("<IHH", 4, 0, 1)
+    out += struct.pack("<II", 0x46494D47, fimg_chunk_size)
+
+    data_start = len(out)
+    for data, (start, _end) in zip(files, fat_entries, strict=True):
+        while len(out) - data_start < start:
+            out.append(0xFF)
+        out += data
+
+    while len(out) - data_start < fimg_data_size:
+        out.append(0xFF)
+
+    if len(out) != file_size:
+        raise AssertionError(f"PWAN NARC size mismatch: built {len(out)}, expected {file_size}")
+    return bytes(out)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--src", required=True, type=Path)
@@ -63,7 +109,7 @@ def main() -> None:
 
     files = collect_members(args.src)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    ndspy.narc.NARC.fromFilesAndNames(files).saveToFile(args.output)
+    args.output.write_bytes(build_knarc_style_narc(files))
     args.stamp.parent.mkdir(parents=True, exist_ok=True)
     args.stamp.write_text(f"{args.output}\n{len(files)} files\n")
     print(f"[+] Packed {len(files)} PWAN NARC members into {args.output}")
