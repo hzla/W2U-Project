@@ -105,6 +105,7 @@ enum BattleEventVar : u32 {
     VAR_EFFECT_TURN_COUNT = 0x24,
     VAR_CRIT_STAGE = 0x2C,
     VAR_ITEM = 0x2D,
+    VAR_ITEM_REACTION = 0x2E,
     VAR_MOVE_POWER = 0x30,
     VAR_MOVE_POWER_RATIO = 0x31,
     VAR_DAMAGE = 0x32,
@@ -282,6 +283,7 @@ extern "C" u32 GetTypeEffectiveness(u32 moveType, u32 pokemonType);
 extern "C" u32 GetTypeEffectivenessMultiplier(u32 effectiveness1, u32 effectiveness2);
 
 extern "C" int BattleEventVar_GetValue(BattleEventVar eventVar);
+extern "C" b32 BattleEventVar_GetValueIfExist(BattleEventVar eventVar, u32* value);
 extern "C" void BattleEventVar_Push();
 extern "C" void BattleEventVar_Pop();
 extern "C" void BattleEventVar_SetValue(BattleEventVar eventVar, int value);

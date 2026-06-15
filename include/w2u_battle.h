@@ -26,6 +26,7 @@ typedef u32 WEATHER;
 
 #define BATTLE_MAX_SLOTS 31
 
+#define CONDITION_NONE 0x00
 #define CONDITION_PARALYSIS 0x01
 #define CONDITION_SLEEP 0x02
 #define CONDITION_FREEZE 0x03
@@ -685,6 +686,7 @@ extern "C" void ItemEvent_RemoveItem(BattleMon* battleMon);
 extern "C" BattleEventItem* ItemEvent_AddItem(BattleMon* battleMon);
 extern "C" BattleEventItem* ItemEvent_AddItemCore(BattleMon* battleMon, ITEM itemID);
 extern "C" void ItemEvent_PushRun(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot);
+extern "C" b32 CommonConditionCodeMatch(ServerFlow* serverFlow, u32 pokemonSlot, CONDITION condition);
 extern "C" void CommonTypeBoostingItem(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32 type);
 extern "C" void CommonResistBerry(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work, u8 pokeType, b32 skipEffectivenessCheck);
 extern "C" void HandlerCommonResistBerryDamageAfter(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work);

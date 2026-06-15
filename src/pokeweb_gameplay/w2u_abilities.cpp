@@ -25,6 +25,8 @@
 #define W2U_BATTLE_EVENT_ITEM_SUB_ID_OFFSET 0x38u
 #define W2U_ACTION_ORDER_PRIO_OFFSET 7
 #define W2U_ACTION_ORDER_SPECIAL_PRIO_OFFSET 1
+#define W2U_BATTLE_MON_CONDITION_COUNT 36u
+#define W2U_CONDITION_STATUS_MASK 0x7u
 #define W2U_VANILLA_ABILITY_EVENT_TABLE ((AbilityEventAddTable*)0x021D7F38)
 #define W2U_VANILLA_ABILITY_EVENT_TABLE_COUNT 158u
 
@@ -33,6 +35,24 @@ extern "C" void THUMB_BRANCH_ServerEvent_GetMoveParam(
     MOVE_ID moveID,
     BattleMon* battleMon,
     MoveParam* moveParam);
+
+static ConditionData W2U_GetStoredMoveCondition(BattleMon* battleMon, CONDITION condition)
+{
+    if (!battleMon || condition >= W2U_BATTLE_MON_CONDITION_COUNT) {
+        return 0;
+    }
+
+    const u8* slot = &battleMon->conditions[condition * sizeof(ConditionData)];
+    return (ConditionData)slot[0] |
+        ((ConditionData)slot[1] << 8) |
+        ((ConditionData)slot[2] << 16) |
+        ((ConditionData)slot[3] << 24);
+}
+
+static bool W2U_BattleMonHasMoveCondition(BattleMon* battleMon, CONDITION condition)
+{
+    return (W2U_GetStoredMoveCondition(battleMon, condition) & W2U_CONDITION_STATUS_MASK) != 0;
+}
 
 extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerControl_AddConditionCheckFail(
     ServerFlow* serverFlow,
@@ -57,6 +77,12 @@ extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerControl_AddConditionCheckFail(
         failStatus = 0;
     }
 
+    if ((condition < CONDITION_CONFUSION || condition == CONDITION_YAWN) &&
+        defendingMon &&
+        defendingMon->currentAbility == ABIL_COMATOSE) {
+        failStatus = 3;
+    }
+
     if (failStatus) {
         if (almost) {
             AddConditionCheckFailStandard(serverFlow, defendingMon, failStatus, condition);
@@ -76,6 +102,68 @@ extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerControl_AddConditionCheckFail(
     }
     HEManager_PopState(&serverFlow->HEManager, HEID);
     return failFlag;
+}
+
+extern "C" b32 THUMB_BRANCH_BattleMon_CheckIfMoveCondition(BattleMon* battleMon, CONDITION condition)
+{
+    if (battleMon &&
+        condition == CONDITION_SLEEP &&
+        BattleMon_GetValue(battleMon, VALUE_EFFECTIVE_ABILITY) == ABIL_COMATOSE) {
+        return 1;
+    }
+
+    return W2U_BattleMonHasMoveCondition(battleMon, condition);
+}
+
+extern "C" void THUMB_BRANCH_HandlerHex(
+    BattleEventItem* item,
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    u32* work)
+{
+    (void)item;
+    (void)work;
+
+    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) {
+        return;
+    }
+
+    BattleMon* defendingMon =
+        Handler_GetBattleMon(serverFlow, (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON));
+    if (!defendingMon) {
+        return;
+    }
+
+    if (BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_PARALYSIS) ||
+        BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_SLEEP) ||
+        BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_FREEZE) ||
+        BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_BURN) ||
+        BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_POISON) ||
+        BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_PARALYSIS)) {
+        u32 power = (u32)BattleEventVar_GetValue(VAR_MOVE_POWER);
+        BattleEventVar_RewriteValue(VAR_MOVE_POWER, power * 2);
+    }
+}
+
+extern "C" void THUMB_BRANCH_CommonStatusReaction(
+    BattleEventItem* item,
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    CONDITION condition)
+{
+    BattleMon* currentMon = Handler_GetBattleMon(serverFlow, pokemonSlot);
+    if (currentMon && currentMon->currentAbility == ABIL_COMATOSE) {
+        return;
+    }
+
+    CONDITION conditionCopy = condition;
+    if (pokemonSlot == (u32)BattleEventVar_GetValue(VAR_MON_ID) &&
+        (!BattleEventVar_GetValueIfExist(VAR_ITEM_REACTION, &conditionCopy) ||
+            conditionCopy == CONDITION_FREEZE ||
+            conditionCopy == CONDITION_NONE) &&
+        CommonConditionCodeMatch(serverFlow, pokemonSlot, condition)) {
+        ItemEvent_PushRun(item, serverFlow, pokemonSlot);
+    }
 }
 
 namespace {

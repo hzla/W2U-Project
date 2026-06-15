@@ -25732,6 +25732,9 @@ Symbols:
   - Name: BattleEventVar_GetValue
     Segment: 0x1D
     Address: 0x21BCFB1
+  - Name: BattleEventVar_GetValueIfExist
+    Segment: 0x1D
+    Address: 0x21BCFE1
   - Name: flowsub_CheckNoEffect_Protect
     Segment: 0x1D
     Address: 0x21A2F95
@@ -25912,6 +25915,12 @@ Symbols:
   - Name: CommonResistBerry
     Segment: 0x1D
     Address: 0x21C3541
+  - Name: CommonConditionCodeMatch
+    Segment: 0x1D
+    Address: 0x21C2A41
+  - Name: CommonStatusReaction
+    Segment: 0x1D
+    Address: 0x21C29C1
   - Name: CommonTypeBoostingItem
     Segment: 0x1D
     Address: 0x21C51A5
@@ -25966,6 +25975,9 @@ Symbols:
   - Name: HandlerCommon_CheckIfCanStealPokeItem
     Segment: 0x1D
     Address: 0x21CDF69
+  - Name: HandlerHex
+    Segment: 0x1D
+    Address: 0x21CC88D
   - Name: HandlerOvercoat
     Segment: 0x1D
     Address: 0x21C1D0D
