@@ -7,6 +7,8 @@ import re
 import shutil
 from pathlib import Path
 
+from ndspy import narc
+
 
 PREFIXED_BIN_RE = re.compile(r"^.+_(\d{8})\.bin$")
 PLAIN_BIN_RE = re.compile(r"^(\d+)\.bin$")
@@ -25,6 +27,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Stage binary archive members into CTRMap VFS layout.")
     parser.add_argument("--src", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--base-archive", type=Path)
     parser.add_argument("--arc-text", default=".arc\ncompress default auto\n")
     parser.add_argument("--stamp", type=Path, required=True)
     args = parser.parse_args()
@@ -37,12 +40,19 @@ def main() -> int:
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     staged = 0
+    if args.base_archive is not None:
+        base = narc.NARC.fromFile(args.base_archive)
+        for index, data in enumerate(base.files):
+            (args.output_dir / str(index)).write_bytes(data)
+            staged += 1
+
     for source in sorted(path for path in args.src.iterdir() if path.is_file()):
         index = member_id(source)
         if index is None:
             continue
         shutil.copy2(source, args.output_dir / str(index))
-        staged += 1
+        if index >= staged:
+            staged = index + 1
 
     (args.output_dir / ".arc").write_text(args.arc_text, encoding="utf-8")
     args.stamp.parent.mkdir(parents=True, exist_ok=True)

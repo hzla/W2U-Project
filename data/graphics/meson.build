@@ -7,8 +7,18 @@ build_pokegra_battle_py = find_program(meson.project_source_root() / 'tools' / '
 stage_bin_archive_py = find_program(meson.project_source_root() / 'tools' / 'graphics' / 'stage_bin_archive.py', native: true)
 
 binary_archive_stages = [
-  ['stage_move_animations', 'move_animations', 'a/0/6/5'],
-  ['stage_move_spas', 'move_spas', 'a/0/0/6'],
+  [
+    'stage_move_animations',
+    'move_animations',
+    'a/0/6/5',
+    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'data' / 'a' / '0' / '6' / '5',
+  ],
+  [
+    'stage_move_spas',
+    'move_spas',
+    'a/0/0/6',
+    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'data' / 'a' / '0' / '0' / '6',
+  ],
   ['stage_ui_graphics', 'ui', 'a/0/8/2'],
   ['stage_ui2_graphics', 'ui_2', 'a/1/2/5'],
   ['stage_move_typegra', 'battle', 'a/0/1/1'],
@@ -45,6 +55,7 @@ foreach stage_spec : binary_archive_stages
       '--src', meson.current_source_dir() / stage_source_dir,
       '--output-dir', meson.project_source_root() / 'vfs' / 'data' / stage_arc,
       '--arc-text', arc_marker_text,
+    ] + (stage_spec.length() > 3 ? ['--base-archive', stage_spec[3]] : []) + [
       '--stamp', '@OUTPUT@',
     ],
     build_always_stale: true,

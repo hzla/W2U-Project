@@ -1,0 +1,32 @@
+{
+  "source": "Blaze Black 2 Redux",
+  "archive": "/a/0/6/5",
+  "replacementMap": {
+    "Sand Tomb": "Accelerock",
+    "Horn Drill": "Boomburst",
+    "Spike Cannon": "Breaking Swipe",
+    "Slam": "Brutal Swing",
+    "Luster Purge": "Dazzling Gleam",
+    "Round": "Disarming Voice",
+    "Sweet Kiss": "Draining Kiss",
+    "Vise Grip": "Dual Wingbeat",
+    "Bubble": "Esper Wing",
+    "Razorwind": "Fire Lash",
+    "Constrict": "Infestation",
+    "Rolling Kick": "Headlong Rush",
+    "Mega Kick": "High Horsepower",
+    "Barrage": "Lunge",
+    "Mist Ball": "Moonblast",
+    "Sacred Fire": "Mystical Fire",
+    "Sharpen": "Nuzzle",
+    "Submission": "Play Rough",
+    "Comet Punch": "Power-Up Punch",
+    "Egg Bomb": "Psychic Fangs",
+    "Smelling Salts": "Psyshield Bash",
+    "Thrash": "Raging Fury",
+    "Metal Sound": "Scorching Sands",
+    "Mega Punch": "Smart Strike",
+    "Triple Kick": "Triple Axel",
+    "Punishment": "Wave Crash"
+  }
+}

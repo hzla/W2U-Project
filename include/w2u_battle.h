@@ -18,6 +18,7 @@ typedef u32 POS_EFFECT;
 typedef u32 SIDE_EFFECT;
 typedef u32 TERRAIN;
 typedef u32 TURN_FLAG;
+typedef u32 WEATHER;
 
 #define ABIL_PLUS 0x39
 #define ABIL_MINUS 0x3A
@@ -106,6 +107,12 @@ typedef u32 TURN_FLAG;
 #define TERRAIN_GRASSY 2
 #define TERRAIN_MISTY 3
 
+#define WEATHER_NULL 0
+#define WEATHER_SUN 1
+#define WEATHER_RAIN 2
+#define WEATHER_HAIL 3
+#define WEATHER_SANDSTORM 4
+
 #define DONT_OVERRIDE_EFFECTIVENESS 0
 #define OVERRIDE_EFFECTIVENESS_1_2 1
 #define OVERRIDE_EFFECTIVENESS_1 2
@@ -138,6 +145,8 @@ enum BattleMonValue : u32 {
     VALUE_ACCURACY_STAGE = 0x6,
     VALUE_EVASION_STAGE = 0x7,
     VALUE_SPEED_STAT = 0xC,
+    VALUE_CURRENT_HP = 0xD,
+    VALUE_MAX_HP = 0xE,
     VALUE_ABILITY = 0x10,
     VALUE_EFFECTIVE_ABILITY = 0x11,
     VALUE_FORM = 0x13,
@@ -160,6 +169,7 @@ enum BattleHandlerEffect : u32 {
     EFFECT_ADD_FIELD_EFFECT = 0x1B,
     EFFECT_REMOVE_FIELD_EFFECT = 0x1C,
     EFFECT_ADD_POS_EFFECT = 0x1E,
+    EFFECT_CHANGE_ABILITY = 0x1F,
     EFFECT_SWAP_ITEM = 0x24,
     EFFECT_SWITCH = 0x29,
     EFFECT_CHANGE_FORM = 0x39,
@@ -462,6 +472,15 @@ struct HandlerParam_ChangeType {
     u8 field_7;
 };
 
+struct HandlerParam_ChangeAbility {
+    HandlerParam_Header header;
+    u16 ability;
+    u8 pokeID;
+    u8 sameAbilityEffective;
+    u8 skipSwitchInEvent;
+    HandlerParam_StrParams exStr;
+};
+
 struct HandlerParam_SwapItem {
     HandlerParam_Header header;
     u8 pokeID;
@@ -632,6 +651,7 @@ extern "C" u32 HEManager_PushState(u32* HEManager);
 extern "C" void HEManager_PopState(u32* HEManager, u32 HEID);
 extern "C" void ServerEvent_ChangeAbilityBefore(ServerFlow* serverFlow, u32 pokemonSlot, ABILITY oldAbility, ABILITY newAbility);
 extern "C" void ServerEvent_ChangeAbilityAfter(ServerFlow* serverFlow, u32 pokemonSlot);
+extern "C" WEATHER ServerEvent_GetWeather(ServerFlow* serverFlow);
 extern "C" void ServerEvent_ItemSetDecide(ServerFlow* serverFlow, BattleMon* battleMon, ITEM itemID);
 extern "C" void ServerEvent_ItemRewriteDone(ServerFlow* serverFlow, BattleMon* battleMon);
 extern "C" void ServerEvent_CheckMultihitHits(ServerFlow* serverFlow, BattleMon* attackingMon, u32 moveID, HitCheckParam* params);

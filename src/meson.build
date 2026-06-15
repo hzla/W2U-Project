@@ -39,6 +39,7 @@ w2u_main_dll = custom_target(
   'w2u_main.dll',
   input: w2u_main_elf,
   output: 'w2u_main.dll',
+  depend_files: meson.project_source_root() / 'pmc' / 'IRDO.yml',
   command: ['sh', '-c',
         '"${JAVA:-java}" -cp "$1" rpm.cli.RPMTool -i "$2" --fourcc DLXF -o "$3" --esdb "$4" --generate-relocations',
         'rpmtool',
@@ -120,6 +121,7 @@ pwan_runtime_dll = custom_target(
   'PokewebPwanW2.dll',
   input: pwan_runtime_elf,
   output: 'PokewebPwanW2.dll',
+  depend_files: meson.project_source_root() / 'pmc' / 'IRDO.yml',
   command: ['sh', '-eu', '-c', '''
     ctrmap="$1"
     input="$2"

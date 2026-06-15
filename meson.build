@@ -36,6 +36,7 @@ subdir('data')
 item_icon_patch_py = find_program(meson.project_source_root() / 'tools' / 'item_icons' / 'build_item_icon_patch.py', native: true)
 patch_pmc_sysheap_py = find_program(meson.project_source_root() / 'tools' / 'patch_pmc_sysheap.py', native: true)
 patch_arm9_footer_py = meson.project_source_root() / 'tools' / 'patch_arm9_footer.py'
+main_menu_skip_patch = meson.project_source_root() / 'vfs' / 'data' / 'patches' / 'MainMenuSkip(1).dll'
 
 item_icon_asset_list = run_command(
   'sh',
@@ -110,6 +111,7 @@ rom = custom_target('White2Upgrade.nds',
     vfs_files,
     w2u_main_patch,
     pwan_runtime_patch,
+    main_menu_skip_patch,
     pmc_arm9,
     pmc_overlay,
     pmc_symbols
