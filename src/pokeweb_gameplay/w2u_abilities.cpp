@@ -1461,8 +1461,9 @@ extern "C" void HandlerDancerCheckMove(BattleEventItem* item, ServerFlow* server
             continue;
         }
 
-        *extraActionOrder = serverFlow->actionOrderWork[orderIdx];
-        extraActionOrder->battleMon = dancerMon;
+        extraActionOrder->action = serverFlow->actionOrderWork[orderIdx].action;
+        extraActionOrder->speed = serverFlow->actionOrderWork[orderIdx].speed;
+        extraActionOrder->partyID = serverFlow->actionOrderWork[orderIdx].partyID;
 
         BattleAction_Fight* fight = &extraActionOrder->action.baFight;
         switch (PML_MoveGetParam((MOVE_ID)fight->moveID, MVDATA_TARGET)) {
