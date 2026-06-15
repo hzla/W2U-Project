@@ -729,6 +729,10 @@ extern "C" b32 ServerControl_CheckNoEffectCore(
     int dmgAffRec,
     u32 eventType);
 extern "C" b32 ServerControl_CheckFloating(ServerFlow* serverFlow, BattleMon* battleMon, u32 checkSkyDrop);
+extern "C" void ServerControl_CheckActivation(ServerFlow* serverFlow);
+extern "C" b32 ServerControl_CheckMatchup(ServerFlow* serverFlow);
+extern "C" u32 ServerControl_CheckExpGet(ServerFlow* serverFlow);
+extern "C" b32 ServerControl_TurnCheck(ServerFlow* serverFlow);
 extern "C" void ServerControl_SwitchInCore(ServerFlow* serverFlow, u32 clientID, u32 switchInSlot, u32 switchOutSlot);
 extern "C" void ServerControl_ChangeHeldItem(ServerFlow* serverFlow, BattleMon* battleMon, ITEM itemID, b32 consumeItem);
 extern "C" b32 HandlerCommon_CheckIfCanStealPokeItem(ServerFlow* serverFlow, u32 thiefSlot, u32 targetSlot);
@@ -747,6 +751,7 @@ extern "C" void ClearCounter(BattleMon* battleMon);
 extern "C" void ClearMoveStatusWork(BattleMon* battleMon, bool removeStatus);
 extern "C" void ResetStatStages(StatStageParam* statChanges);
 extern "C" u32 ActionOrder_Proc(ServerFlow* serverFlow, ActionOrderWork* actionOrder);
+extern "C" void SortActionOrderBySpeed(ServerFlow* serverFlow, ActionOrderWork* actionOrder, u32 remainingActions);
 extern "C" ConditionData Condition_MakePermanent();
 extern "C" ConditionData Condition_MakeTurn(u32 turnCount);
 extern "C" ConditionData Condition_MakeTurnParam(u32 maxTurns, u32 param);

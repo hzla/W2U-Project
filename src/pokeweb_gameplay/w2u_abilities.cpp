@@ -283,6 +283,116 @@ extern "C" u32 W2U_ActionOrder_ProcWithExtras(ServerFlow* serverFlow, ActionOrde
     return procAction;
 }
 
+static void W2U_ClearAllExtraActionOrders()
+{
+    for (u32 i = 0; i < W2U_ARRAY_COUNT(sExtraActionOrder); ++i) {
+        W2U_ClearActionOrderWork(&sExtraActionOrder[i]);
+    }
+}
+
+static void W2U_ClearExtraActionTurnFlags(BattleMon* battleMon)
+{
+    Turnflag_Clear(battleMon, TURNFLAG_ACTIONSTART);
+    Turnflag_Clear(battleMon, TURNFLAG_ACTIONDONE);
+    Turnflag_Clear(battleMon, TURNFLAG_MOVEPROCDONE);
+    Turnflag_Clear(battleMon, TURNFLAG_MOVED);
+    Turnflag_Clear(battleMon, TURNFLAG_USINGFLING);
+}
+
+static void W2U_SortRemainingActions(ServerFlow* serverFlow, u32 firstIdx)
+{
+    if (!serverFlow || firstIdx >= serverFlow->numActOrder) {
+        return;
+    }
+
+    SortActionOrderBySpeed(
+        serverFlow,
+        &serverFlow->actionOrderWork[firstIdx],
+        (u32)serverFlow->numActOrder - firstIdx);
+}
+
+extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, u32 currentActionIdx)
+{
+    if (!serverFlow) {
+        return 0;
+    }
+
+    u32 procAction = 0;
+    ActionOrderWork* actionOrderWork = serverFlow->actionOrderWork;
+
+    W2U_ClearAllExtraActionOrders();
+    ResetExtraActionFlag();
+
+    W2U_SortRemainingActions(serverFlow, currentActionIdx);
+
+    while (currentActionIdx < serverFlow->numActOrder || sExtraActionOrder[0].battleMon) {
+        ActionOrderWork* currentActionOrder = &actionOrderWork[currentActionIdx];
+        bool isExtraAction = false;
+
+        if (sExtraActionOrder[0].battleMon) {
+            isExtraAction = true;
+            currentActionOrder = &sExtraActionOrder[0];
+            W2U_ClearExtraActionTurnFlags(currentActionOrder->battleMon);
+            SetExtraActionFlag();
+        }
+
+        if (!CheckExtraActionFlag()) {
+            u32 action = BattleAction_GetAction(&currentActionOrder->action);
+            if (procAction == 6 && action != 6) {
+                ServerControl_CheckActivation(serverFlow);
+                W2U_SortRemainingActions(serverFlow, currentActionIdx);
+            }
+        }
+
+        W2U_Mega_ProcessCurrentAction(serverFlow, currentActionOrder);
+        procAction = ActionOrder_Proc(serverFlow, currentActionOrder);
+
+        W2U_SortRemainingActions(serverFlow, currentActionIdx + 1);
+
+        if (isExtraAction) {
+            W2U_AdvanceExtraActionOrders();
+            ResetExtraActionFlag();
+        }
+
+        u32 getExp = ServerControl_CheckExpGet(serverFlow);
+        b32 matchup = ServerControl_CheckMatchup(serverFlow);
+        if (matchup) {
+            serverFlow->flowResult = 4;
+            return isExtraAction ? (int)currentActionIdx : (int)(currentActionIdx + 1);
+        }
+
+        if (serverFlow->flowResult == 6 || serverFlow->flowResult == 1) {
+            return isExtraAction ? (int)currentActionIdx : (int)(currentActionIdx + 1);
+        }
+
+        if (getExp) {
+            serverFlow->flowResult = 3;
+            return isExtraAction ? (int)currentActionIdx : (int)(currentActionIdx + 1);
+        }
+
+        if (!isExtraAction) {
+            ++currentActionIdx;
+        }
+    }
+
+    if (!serverFlow->flowResult) {
+        u32 turnCheck = ServerControl_TurnCheck(serverFlow);
+        if (ServerControl_CheckMatchup(serverFlow)) {
+            serverFlow->flowResult = 4;
+            return serverFlow->numActOrder;
+        }
+
+        if (turnCheck) {
+            serverFlow->flowResult = 3;
+            return serverFlow->numActOrder;
+        }
+
+        serverFlow->flowResult = 0;
+    }
+
+    return serverFlow->numActOrder;
+}
+
 extern "C" void THUMB_BRANCH_HandlerThrash(
     BattleEventItem* item,
     ServerFlow* serverFlow,

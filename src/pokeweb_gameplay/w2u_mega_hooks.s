@@ -5,7 +5,7 @@
 .type THUMB_BRANCH_LINK_BattleClient_ActionSelectFight_0x9A, %function
 .type THUMB_BRANCH_LINK_168_0x21EB65C, %function
 .type THUMB_BRANCH_LINK_169_0x689ACE8, %function
-.type THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56, %function
+.type W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56, %function
 .type THUMB_BRANCH_LINK_167_0x21B8A52, %function
 .type THUMB_BRANCH_LINK_167_0x21B8A60, %function
 
@@ -100,14 +100,14 @@ W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x3A:
     bx r1
     .size W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x3A, . - W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x3A
 
-@ Preserve the original ActionOrder_Proc call in ServerFlow_ActOrderProcMain.
+@ Disabled: Dancer now replaces ServerFlow_ActOrderProcMain as a whole loop.
 @ r0 is ServerFlow*, r1 is current ActionOrderWork*.
-THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56:
+W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56:
     push {lr}
     bl W2U_ActionOrder_ProcWithExtras
     pop {r1}
     bx r1
-    .size THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56, . - THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56
+    .size W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56, . - W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56
 
 @ Preserve the client SC_ACT_CHANGE_FORM call to BattleViewCmd_ChangeForm_Start.
 @ At this site r6 is the server command args and r7 is the resolved view pos.

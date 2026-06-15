@@ -25726,6 +25726,9 @@ Symbols:
   - Name: ActionOrder_Proc
     Segment: 0x1D
     Address: 0x21A07B9
+  - Name: ServerFlow_ActOrderProcMain
+    Segment: 0x1D
+    Address: 0x219FA11
   - Name: GetHandlerMainPriority
     Segment: 0x1D
     Address: 0x21BDD61
@@ -25747,6 +25750,18 @@ Symbols:
   - Name: ServerControl_ChangeHeldItem
     Segment: 0x1D
     Address: 0x21A5D41
+  - Name: ServerControl_CheckActivation
+    Segment: 0x1D
+    Address: 0x21A1715
+  - Name: ServerControl_CheckExpGet
+    Segment: 0x1D
+    Address: 0x21A8D01
+  - Name: ServerControl_CheckMatchup
+    Segment: 0x1D
+    Address: 0x219FD45
+  - Name: ServerControl_TurnCheck
+    Segment: 0x1D
+    Address: 0x21A7F5D
   - Name: ServerEvent_GetMoveParam
     Segment: 0x1D
     Address: 0x21AA00D
@@ -26086,6 +26101,9 @@ Symbols:
   - Name: ServerControl_AddConditionCheckFail
     Segment: 0x1D
     Address: 0x21A6291
+  - Name: SortActionOrderBySpeed
+    Segment: 0x1D
+    Address: 0x219FB7D
   - Name: ServerControl_IsGuaranteedHit
     Segment: 0x1D
     Address: 0x21A2E0D
