@@ -318,6 +318,11 @@ static u8 W2U_GetEncodedSpecialPriority(ActionOrderWork* actionOrder, u32 action
     return (u8)((actionOrder[actionIdx].speed >> 13) & 0x7);
 }
 
+static u16 W2U_GetEncodedActionSpeed(ActionOrderWork* actionOrder, u32 actionIdx)
+{
+    return (u16)(actionOrder[actionIdx].speed & 0x1FFF);
+}
+
 static void W2U_SwapActionOrder(
     ActionOrderWork* actionOrder,
     u16* speedStats,
@@ -387,7 +392,7 @@ static void W2U_SortBySpeedDynamic(
     for (u8 i = startIdx; i < serverFlow->numActOrder; ++i) {
         BattleMon* battleMon = actionOrder[i].battleMon;
         if (battleMon && !BattleMon_IsFainted(battleMon)) {
-            speedStats[i] = (u16)ServerEvent_CalculateSpeed(serverFlow, battleMon, 1);
+            speedStats[i] = W2U_GetEncodedActionSpeed(actionOrder, i);
             priority[i] = W2U_GetEncodedActionPriority(actionOrder, i);
             priority[i] += W2U_GetEncodedSpecialPriority(actionOrder, i) - W2U_ACTION_ORDER_SPECIAL_PRIO_OFFSET;
 

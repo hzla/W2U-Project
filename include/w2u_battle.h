@@ -752,7 +752,6 @@ extern "C" void ClearMoveStatusWork(BattleMon* battleMon, bool removeStatus);
 extern "C" void ResetStatStages(StatStageParam* statChanges);
 extern "C" u32 ActionOrder_Proc(ServerFlow* serverFlow, ActionOrderWork* actionOrder);
 extern "C" void SortActionOrderBySpeed(ServerFlow* serverFlow, ActionOrderWork* actionOrder, u32 remainingActions);
-extern "C" u32 ServerEvent_CalculateSpeed(ServerFlow* serverFlow, BattleMon* battleMon, b32 isTrickRoomEnabled);
 extern "C" ConditionData Condition_MakePermanent();
 extern "C" ConditionData Condition_MakeTurn(u32 turnCount);
 extern "C" ConditionData Condition_MakeTurnParam(u32 maxTurns, u32 param);
