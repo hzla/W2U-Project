@@ -25915,6 +25915,12 @@ Symbols:
   - Name: CommonTypeBoostingItem
     Segment: 0x1D
     Address: 0x21C51A5
+  - Name: AddConditionCheckFailOverwrite
+    Segment: 0x1D
+    Address: 0x21A631D
+  - Name: AddConditionCheckFailStandard
+    Segment: 0x1D
+    Address: 0x21A97CD
   - Name: Condition_CheckUnaffectedByType
     Segment: 0x1D
     Address: 0x21AAC2D
@@ -26035,6 +26041,9 @@ Symbols:
   - Name: ServerControl_CheckNoEffectCore
     Segment: 0x1D
     Address: 0x21A31D1
+  - Name: ServerControl_AddConditionCheckFail
+    Segment: 0x1D
+    Address: 0x21A6291
   - Name: ServerControl_IsGuaranteedHit
     Segment: 0x1D
     Address: 0x21A2E0D
@@ -26062,6 +26071,9 @@ Symbols:
   - Name: ServerDisplay_UseHeldItem
     Segment: 0x1D
     Address: 0x21A9C2D
+  - Name: ServerEvent_AddConditionFailed
+    Segment: 0x1D
+    Address: 0x21A6695
   - Name: ServerEvent_ChangeAbilityAfter
     Segment: 0x1D
     Address: 0x21AB6D5
@@ -26083,6 +26095,9 @@ Symbols:
   - Name: ServerEvent_ItemSetDecide
     Segment: 0x1D
     Address: 0x21AB629
+  - Name: ServerEvent_MoveConditionCheckFail
+    Segment: 0x1D
+    Address: 0x21A662D
   - Name: Pokedex_CreateProc
     Segment: 0x18
     Address: 0x219FC01

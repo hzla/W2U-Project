@@ -34,6 +34,50 @@ extern "C" void THUMB_BRANCH_ServerEvent_GetMoveParam(
     BattleMon* battleMon,
     MoveParam* moveParam);
 
+extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerControl_AddConditionCheckFail(
+    ServerFlow* serverFlow,
+    BattleMon* defendingMon,
+    BattleMon* attackingMon,
+    CONDITION condition,
+    ConditionData condData,
+    u8 overrideMode,
+    u32 almost)
+{
+    u32 failStatus = AddConditionCheckFailOverwrite(
+        serverFlow,
+        defendingMon,
+        condition,
+        condData,
+        overrideMode);
+
+    if (condition == CONDITION_POISON &&
+        failStatus == 2 &&
+        attackingMon &&
+        BattleMon_GetValue(attackingMon, VALUE_EFFECTIVE_ABILITY) == ABIL_CORROSION) {
+        failStatus = 0;
+    }
+
+    if (failStatus) {
+        if (almost) {
+            AddConditionCheckFailStandard(serverFlow, defendingMon, failStatus, condition);
+        }
+        return 1;
+    }
+
+    u32 HEID = HEManager_PushState(&serverFlow->HEManager);
+    u32 failFlag = ServerEvent_MoveConditionCheckFail(
+        serverFlow,
+        attackingMon,
+        defendingMon,
+        condition);
+    if ((failFlag && almost) || failFlag == W2U_FORCE_FAIL_MESSAGE) {
+        ServerEvent_AddConditionFailed(serverFlow, defendingMon, attackingMon, condition);
+        serverFlow->field_78A |= 0x10u;
+    }
+    HEManager_PopState(&serverFlow->HEManager, HEID);
+    return failFlag;
+}
+
 namespace {
 
 typedef BattleEventHandlerTableEntry* (*AbilityEventAddFunc)(u32* handlerAmount);

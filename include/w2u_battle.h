@@ -588,7 +588,9 @@ struct ServerFlow {
     u8 pad_14[0x76C];
     u8 numActOrder;
     u8 numEndActOrder;
-    u8 pad_782[0x5E];
+    u8 pad_782[0x08];
+    u8 field_78A;
+    u8 pad_78B[0x55];
     ActionOrderWork actionOrderWork[6];
     u8 pad_840[0x154];
     PokeSet currentpokeSet;
@@ -649,6 +651,27 @@ extern "C" u32 BattleMon_GetRealStat(BattleMon* battleMon, BattleMonValue statSt
 
 extern "C" u32 HEManager_PushState(u32* HEManager);
 extern "C" void HEManager_PopState(u32* HEManager, u32 HEID);
+extern "C" u32 AddConditionCheckFailOverwrite(
+    ServerFlow* serverFlow,
+    BattleMon* defendingMon,
+    CONDITION condition,
+    ConditionData condData,
+    u8 overrideMode);
+extern "C" u32 AddConditionCheckFailStandard(
+    ServerFlow* serverFlow,
+    BattleMon* defendingMon,
+    u32 failStatus,
+    CONDITION condition);
+extern "C" u32 ServerEvent_MoveConditionCheckFail(
+    ServerFlow* serverFlow,
+    BattleMon* attackingMon,
+    BattleMon* defendingMon,
+    CONDITION condition);
+extern "C" void ServerEvent_AddConditionFailed(
+    ServerFlow* serverFlow,
+    BattleMon* defendingMon,
+    BattleMon* attackingMon,
+    CONDITION condition);
 extern "C" void ServerEvent_ChangeAbilityBefore(ServerFlow* serverFlow, u32 pokemonSlot, ABILITY oldAbility, ABILITY newAbility);
 extern "C" void ServerEvent_ChangeAbilityAfter(ServerFlow* serverFlow, u32 pokemonSlot);
 extern "C" WEATHER ServerEvent_GetWeather(ServerFlow* serverFlow);
