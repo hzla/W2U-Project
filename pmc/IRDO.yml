@@ -25723,6 +25723,9 @@ Symbols:
   - Name: AbilityEvent_GetSubPriority
     Segment: 0x1D
     Address: 0x21BDE19
+  - Name: ActionOrder_Proc
+    Segment: 0x1D
+    Address: 0x21A07B9
   - Name: GetHandlerMainPriority
     Segment: 0x1D
     Address: 0x21BDD61
@@ -25735,6 +25738,9 @@ Symbols:
   - Name: BattleEventVar_GetValueIfExist
     Segment: 0x1D
     Address: 0x21BCFE1
+  - Name: BattleRandom
+    Segment: 0x1D
+    Address: 0x21BD101
   - Name: flowsub_CheckNoEffect_Protect
     Segment: 0x1D
     Address: 0x21A2F95
@@ -25894,9 +25900,15 @@ Symbols:
   - Name: BattleMon_TransformCheck
     Segment: 0x1D
     Address: 0x21BC595
+  - Name: Turnflag_Clear
+    Segment: 0x1D
+    Address: 0x21BBC81
   - Name: BattleViewCmd_UI_SelectMove_Wait
     Segment: 0x1D
     Address: 0x21CF181
+  - Name: BtlSetup_GetBattleStyle
+    Segment: 0x1D
+    Address: 0x219BDC1
   - Name: Btlv_StringParam_AddArg
     Segment: 0x1D
     Address: 0x21D0B65
@@ -25936,6 +25948,9 @@ Symbols:
   - Name: Condition_GetParam
     Segment: 0x1D
     Address: 0x21CE401
+  - Name: Condition_MakeTurnParam
+    Segment: 0x1D
+    Address: 0x21CE1ED
   - Name: DivideMaxHPZeroCheck
     Segment: 0x1D
     Address: 0x21BD3C9
@@ -25993,6 +26008,12 @@ Symbols:
   - Name: HandlerThiefStart
     Segment: 0x1D
     Address: 0x21C8F41
+  - Name: HandlerThrash
+    Segment: 0x1D
+    Address: 0x21C7A6D
+  - Name: HandlerThrashEnd
+    Segment: 0x1D
+    Address: 0x21C7AE1
   - Name: Handler_CheckReservedMemberChangeAction
     Segment: 0x1D
     Address: 0x21ABACD
@@ -26008,6 +26029,9 @@ Symbols:
   - Name: Handler_PokePosToPokeID
     Segment: 0x1D
     Address: 0x21ABBA1
+  - Name: IsCenterInTripleBattle
+    Segment: 0x1D
+    Address: 0x219D30D
   - Name: ItemEvent_AddItem
     Segment: 0x1D
     Address: 0x21C27C5
@@ -26023,6 +26047,12 @@ Symbols:
   - Name: MainModule_IsAllyMonID
     Segment: 0x1D
     Address: 0x219D341
+  - Name: MakeCondition
+    Segment: 0x1D
+    Address: 0x21BD615
+  - Name: MoveEvent_ForceRemoveItemFromBattleMon
+    Segment: 0x1D
+    Address: 0x21C5C41
   - Name: MoveWork_ClearSurface
     Segment: 0x1D
     Address: 0x21BA991

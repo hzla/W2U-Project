@@ -19,12 +19,16 @@ typedef u32 SIDE_EFFECT;
 typedef u32 TERRAIN;
 typedef u32 TURN_FLAG;
 typedef u32 WEATHER;
+typedef u32 BattleStyle;
 
 #define ABIL_PLUS 0x39
 #define ABIL_MINUS 0x3A
 #define ABIL_KLUTZ 0x67
 
 #define BATTLE_MAX_SLOTS 31
+
+#define BTL_STYLE_DOUBLE 0x01
+#define BTL_STYLE_TRIPLE 0x02
 
 #define CONDITION_NONE 0x00
 #define CONDITION_PARALYSIS 0x01
@@ -44,12 +48,19 @@ typedef u32 WEATHER;
 #define CONDITION_LEECHSEED 0x12
 #define CONDITION_BLOCK_ITEM 0x13
 #define CONDITION_ENCORE 0x17
+#define CONDITION_MOVELOCK 0x19
+#define CONDITION_CHARGELOCK 0x1A
 #define CONDITION_CHOICELOCK 0x1B
+#define CONDITION_SKYDROP 0x21
 #define CONDITIONFLAG_NULL 0x0F
 #define CONDITIONFLAG_BATONPASS 0x0E
+#define TURNFLAG_ACTIONSTART 0x00
+#define TURNFLAG_ACTIONDONE 0x01
 #define TURNFLAG_MOVEPROCDONE 0x03
 #define TURNFLAG_PROTECT 0x07
 #define TURNFLAG_ITEMCONSUMED 0x08
+#define TURNFLAG_MOVED 0x0C
+#define TURNFLAG_USINGFLING 0x0F
 
 #define HANDLER_ABILITY_POPUP_FLAG 0x400000
 
@@ -160,6 +171,7 @@ enum BattleHandlerEffect : u32 {
     EFFECT_RECOVER_HP = 0x5,
     EFFECT_DAMAGE = 0x7,
     EFFECT_CURE_STATUS = 0xB,
+    EFFECT_ADD_CONDITION = 0xC,
     EFFECT_CHANGE_STAT_STAGE = 0xE,
     EFFECT_SET_STAT_STAGE = 0xF,
     EFFECT_CHANGE_TYPE = 0x14,
@@ -466,6 +478,18 @@ struct HandlerParam_CureCondition {
     HandlerParam_StrParams exStr;
 };
 
+struct HandlerParam_AddCondition {
+    HandlerParam_Header header;
+    CONDITION condition;
+    ConditionData condData;
+    u8 almost;
+    u8 reserved;
+    u8 overwriteMode;
+    u8 pokeID;
+    u8 overwriteMode2;
+    HandlerParam_StrParams exStr;
+};
+
 struct HandlerParam_ChangeType {
     HandlerParam_Header header;
     u16 pokeType;
@@ -586,7 +610,8 @@ struct ServerFlow {
     PokeCon* pokeCon;
     ServerCommandQueue* serverCommandQueue;
     u32 turnCount;
-    u8 pad_14[0x76C];
+    u32 flowResult;
+    u8 pad_18[0x768];
     u8 numActOrder;
     u8 numEndActOrder;
     u8 pad_782[0x08];
@@ -602,6 +627,9 @@ struct ServerFlow {
 extern "C" u32 BattleAction_GetAction(BattleActionParam* param);
 extern "C" void BattleAction_SetNull(BattleActionParam* actionParam);
 extern "C" u32 BattleViewCmd_UI_SelectMove_Wait(BtlvCore* btlCore);
+extern "C" u32 BattleRandom(u32 range);
+extern "C" BattleStyle BtlSetup_GetBattleStyle(MainModule* mainModule);
+extern "C" b32 IsCenterInTripleBattle(u32 battlePos);
 
 extern "C" u32 GCTX_HIDGetPressedKeys();
 
@@ -614,6 +642,7 @@ extern "C" u32 BattleMon_GetValue(BattleMon* battleMon, BattleMonValue value);
 extern "C" ITEM BattleMon_GetHeldItem(BattleMon* battleMon);
 extern "C" bool BattleMon_IsFainted(BattleMon* battleMon);
 extern "C" b32 BattleMon_IsStatChangeValid(BattleMon* battleMon, StatStage stat, int volume);
+extern "C" void Turnflag_Clear(BattleMon* battleMon, TURN_FLAG turnFlag);
 extern "C" u32 BattleMon_TransformCheck(BattleMon* battleMon);
 extern "C" bool BattleMon_ChangeForm(BattleMon* battleMon, u32 form);
 extern "C" void BattleMon_ChangeAbility(BattleMon* battleMon, u16 ability);
@@ -717,9 +746,13 @@ extern "C" u8* MoveWork_ClearSurface(BattleMon* battleMon);
 extern "C" void ClearCounter(BattleMon* battleMon);
 extern "C" void ClearMoveStatusWork(BattleMon* battleMon, bool removeStatus);
 extern "C" void ResetStatStages(StatStageParam* statChanges);
+extern "C" u32 ActionOrder_Proc(ServerFlow* serverFlow, ActionOrderWork* actionOrder);
 extern "C" ConditionData Condition_MakePermanent();
 extern "C" ConditionData Condition_MakeTurn(u32 turnCount);
+extern "C" ConditionData Condition_MakeTurnParam(u32 maxTurns, u32 param);
+extern "C" ConditionData MakeCondition(CONDITION condition, BattleMon* battleMon, ConditionData* condData);
 extern "C" MOVE_ID Condition_GetParam(ConditionData conditionData);
+extern "C" void MoveEvent_ForceRemoveItemFromBattleMon(BattleMon* battleMon, MOVE_ID moveID);
 extern "C" void sys_memset(void* dst, int value, u32 size);
 
 extern "C" u32 GetSideFromMonID(u32 pokemonSlot);

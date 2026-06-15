@@ -36,6 +36,8 @@ extern "C" void THUMB_BRANCH_ServerEvent_GetMoveParam(
     BattleMon* battleMon,
     MoveParam* moveParam);
 
+extern "C" void W2U_Mega_ProcessCurrentAction(ServerFlow* serverFlow, ActionOrderWork* actionWork);
+
 static ConditionData W2U_GetStoredMoveCondition(BattleMon* battleMon, CONDITION condition)
 {
     if (!battleMon || condition >= W2U_BATTLE_MON_CONDITION_COUNT) {
@@ -163,6 +165,201 @@ extern "C" void THUMB_BRANCH_CommonStatusReaction(
             conditionCopy == CONDITION_NONE) &&
         CommonConditionCodeMatch(serverFlow, pokemonSlot, condition)) {
         ItemEvent_PushRun(item, serverFlow, pokemonSlot);
+    }
+}
+
+static ActionOrderWork sExtraActionOrder[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)];
+static u8 sExtraActionFlag = 0;
+
+static void W2U_ClearActionOrderWork(ActionOrderWork* actionOrder)
+{
+    if (actionOrder) {
+        *actionOrder = ActionOrderWork();
+    }
+}
+
+extern "C" void ShiftExtraActionOrders()
+{
+    for (u32 i = W2U_ARRAY_COUNT(sExtraActionOrder) - 1; i > 0; --i) {
+        sExtraActionOrder[i] = sExtraActionOrder[i - 1];
+    }
+    W2U_ClearActionOrderWork(&sExtraActionOrder[0]);
+}
+
+static void W2U_AdvanceExtraActionOrders()
+{
+    for (u32 i = 0; i + 1 < W2U_ARRAY_COUNT(sExtraActionOrder); ++i) {
+        sExtraActionOrder[i] = sExtraActionOrder[i + 1];
+    }
+    W2U_ClearActionOrderWork(&sExtraActionOrder[W2U_ARRAY_COUNT(sExtraActionOrder) - 1]);
+}
+
+extern "C" ActionOrderWork* GetExtraActionOrder(u32 actionIdx)
+{
+    if (actionIdx >= W2U_ARRAY_COUNT(sExtraActionOrder)) {
+        return nullptr;
+    }
+    return &sExtraActionOrder[actionIdx];
+}
+
+extern "C" b32 CheckExtraActionFlag()
+{
+    return sExtraActionFlag;
+}
+
+extern "C" void SetExtraActionFlag()
+{
+    sExtraActionFlag = 1;
+}
+
+extern "C" void ResetExtraActionFlag()
+{
+    sExtraActionFlag = 0;
+}
+
+extern "C" u32 CommonGetAllyPos(ServerFlow* serverFlow, u32 battlePos)
+{
+    BattleStyle battleStyle = BtlSetup_GetBattleStyle(serverFlow->mainModule);
+    if (battleStyle != BTL_STYLE_DOUBLE && battleStyle != BTL_STYLE_TRIPLE) {
+        return 6;
+    }
+
+    u8 isEnemy = (u8)(battlePos & 1u);
+    if (isEnemy) {
+        battlePos -= 1;
+    }
+
+    u32 allyPos = 0;
+    if (battleStyle != BTL_STYLE_TRIPLE) {
+        allyPos = battlePos == 0 ? 2 : 0;
+    } else if (IsCenterInTripleBattle(battlePos)) {
+        allyPos = BattleRandom(2) * 4;
+    } else {
+        allyPos = 2;
+    }
+
+    return allyPos + isEnemy;
+}
+
+static MOVE_ID W2U_GetBattleEventItemSubID(BattleEventItem* item)
+{
+    if (!item) {
+        return 0;
+    }
+    return (MOVE_ID)*(u16*)((u8*)item + W2U_BATTLE_EVENT_ITEM_SUB_ID_OFFSET);
+}
+
+extern "C" u32 W2U_ActionOrder_ProcWithExtras(ServerFlow* serverFlow, ActionOrderWork* actionWork)
+{
+    if (!serverFlow || !actionWork) {
+        return 0;
+    }
+
+    W2U_Mega_ProcessCurrentAction(serverFlow, actionWork);
+    u32 procAction = ActionOrder_Proc(serverFlow, actionWork);
+
+    for (u32 processed = 0;
+         processed < W2U_ARRAY_COUNT(sExtraActionOrder) && sExtraActionOrder[0].battleMon;
+         ++processed) {
+        ActionOrderWork* extraAction = &sExtraActionOrder[0];
+        Turnflag_Clear(extraAction->battleMon, TURNFLAG_ACTIONSTART);
+        Turnflag_Clear(extraAction->battleMon, TURNFLAG_ACTIONDONE);
+        Turnflag_Clear(extraAction->battleMon, TURNFLAG_MOVEPROCDONE);
+        Turnflag_Clear(extraAction->battleMon, TURNFLAG_MOVED);
+        Turnflag_Clear(extraAction->battleMon, TURNFLAG_USINGFLING);
+
+        SetExtraActionFlag();
+        W2U_Mega_ProcessCurrentAction(serverFlow, extraAction);
+        procAction = ActionOrder_Proc(serverFlow, extraAction);
+        ResetExtraActionFlag();
+        W2U_AdvanceExtraActionOrders();
+
+        if (serverFlow->flowResult) {
+            break;
+        }
+    }
+
+    ResetExtraActionFlag();
+    return procAction;
+}
+
+extern "C" void THUMB_BRANCH_HandlerThrash(
+    BattleEventItem* item,
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    u32* work)
+{
+    if (!work || pokemonSlot != (u32)BattleEventVar_GetValue(VAR_MON_ID)) {
+        return;
+    }
+
+    BattleMon* currentMon = Handler_GetBattleMon(serverFlow, pokemonSlot);
+    MOVE_ID moveID = W2U_GetBattleEventItemSubID(item);
+
+    if (CheckExtraActionFlag()) {
+        MoveEvent_ForceRemoveItemFromBattleMon(currentMon, moveID);
+        return;
+    }
+
+    if (!BattleMon_CheckIfMoveCondition(currentMon, CONDITION_MOVELOCK) && !work[6]) {
+        u32 maxTurns = BattleRandom(2u) + 2u;
+
+        HandlerParam_AddCondition* addCondition =
+            (HandlerParam_AddCondition*)BattleHandler_PushWork(serverFlow, EFFECT_ADD_CONDITION, pokemonSlot);
+        addCondition->condition = CONDITION_MOVELOCK;
+        addCondition->condData = Condition_MakeTurnParam(maxTurns, moveID);
+        addCondition->almost = 0;
+        addCondition->pokeID = (u8)pokemonSlot;
+        BattleHandler_PopWork(serverFlow, addCondition);
+        work[6] = 1;
+        *work = maxTurns;
+    }
+}
+
+extern "C" void THUMB_BRANCH_HandlerThrashEnd(
+    BattleEventItem* item,
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    u32* work)
+{
+    if (!work || pokemonSlot != (u32)BattleEventVar_GetValue(VAR_MON_ID) || !work[6]) {
+        return;
+    }
+
+    BattleMon* currentMon = Handler_GetBattleMon(serverFlow, pokemonSlot);
+    b32 finished = 0;
+
+    if (*work && !CheckExtraActionFlag()) {
+        --*work;
+    }
+
+    if (!BattleEventVar_GetValue(VAR_GENERAL_USE_FLAG)) {
+        HandlerParam_CureCondition* cureCondition =
+            (HandlerParam_CureCondition*)BattleHandler_PushWork(serverFlow, EFFECT_CURE_STATUS, pokemonSlot);
+        cureCondition->condition = CONDITION_MOVELOCK;
+        cureCondition->pokeCount = 1;
+        cureCondition->pokeID[0] = (u8)pokemonSlot;
+        BattleHandler_PopWork(serverFlow, cureCondition);
+
+        finished = 1;
+    }
+
+    if (!*work) {
+        HandlerParam_AddCondition* addCondition =
+            (HandlerParam_AddCondition*)BattleHandler_PushWork(serverFlow, EFFECT_ADD_CONDITION, pokemonSlot);
+        addCondition->condition = CONDITION_CONFUSION;
+        MakeCondition(CONDITION_CONFUSION, currentMon, &addCondition->condData);
+        addCondition->reserved = 1;
+        addCondition->pokeID = (u8)pokemonSlot;
+        BattleHandler_StrSetup(&addCondition->exStr, 2u, 360u);
+        BattleHandler_AddArg(&addCondition->exStr, pokemonSlot);
+        BattleHandler_PopWork(serverFlow, addCondition);
+
+        finished = 1;
+    }
+
+    if (finished) {
+        MoveEvent_ForceRemoveItemFromBattleMon(currentMon, W2U_GetBattleEventItemSubID(item));
     }
 }
 
@@ -1231,6 +1428,129 @@ BattleEventHandlerTableEntry QueenlyMajestyHandlers[] = {
 };
 
 
+extern "C" void HandlerDancerCheckMove(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    (void)work;
+    if (CheckExtraActionFlag()) {
+        return;
+    }
+
+    u32 currentSlot = (u32)BattleEventVar_GetValue(VAR_MON_ID);
+    MOVE_ID moveID = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
+    if (pokemonSlot == currentSlot || !getMoveFlag(moveID, MOVE_FLAG_INDEX_DANCE)) {
+        return;
+    }
+
+    BattleMon* dancerMon = Handler_GetBattleMon(serverFlow, pokemonSlot);
+    if (!dancerMon ||
+        BattleMon_CheckIfMoveCondition(dancerMon, CONDITION_SKYDROP) ||
+        BattleMon_CheckIfMoveCondition(dancerMon, CONDITION_CHARGELOCK)) {
+        return;
+    }
+
+    ShiftExtraActionOrders();
+
+    ActionOrderWork* extraActionOrder = GetExtraActionOrder(0);
+    extraActionOrder->battleMon = dancerMon;
+
+    BattleMon* currentMon = Handler_GetBattleMon(serverFlow, currentSlot);
+    bool foundAction = false;
+    for (u32 orderIdx = 0; orderIdx < W2U_ARRAY_COUNT(serverFlow->actionOrderWork); ++orderIdx) {
+        if (serverFlow->actionOrderWork[orderIdx].battleMon != currentMon) {
+            continue;
+        }
+
+        *extraActionOrder = serverFlow->actionOrderWork[orderIdx];
+        extraActionOrder->battleMon = dancerMon;
+
+        BattleAction_Fight* fight = &extraActionOrder->action.baFight;
+        switch (PML_MoveGetParam((MOVE_ID)fight->moveID, MVDATA_TARGET)) {
+        case TARGET_OTHER_SELECT:
+        case TARGET_ENEMY_SELECT:
+        case TARGET_ENEMY_RANDOM:
+            if (!MainModule_IsAllyMonID(pokemonSlot, currentSlot)) {
+                fight->targetPos = Handler_PokeIDToPokePos(serverFlow, currentSlot);
+            }
+            break;
+        case TARGET_FRIEND_AND_USER:
+            fight->targetPos = Handler_PokeIDToPokePos(serverFlow, pokemonSlot);
+            break;
+        case TARGET_FRIEND_SELECT:
+            fight->targetPos = CommonGetAllyPos(serverFlow, Handler_PokeIDToPokePos(serverFlow, pokemonSlot));
+            break;
+        default:
+            fight->targetPos = 6;
+            break;
+        }
+
+        foundAction = true;
+        break;
+    }
+
+    if (!foundAction) {
+        W2U_ClearActionOrderWork(extraActionOrder);
+        return;
+    }
+
+    extraActionOrder->field_E = 0;
+    extraActionOrder->field_F = 0;
+}
+
+extern "C" void HandlerDancerPopUp(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    (void)work;
+    if (CheckExtraActionFlag() && pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) {
+        BattleHandler_PushRun(serverFlow, EFFECT_ABILITY_POPUP_ADD, pokemonSlot);
+        BattleHandler_PushRun(serverFlow, EFFECT_ABILITY_POPUP_REMOVE, pokemonSlot);
+    }
+}
+
+extern "C" void HandlerDancerMoveFail(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    (void)work;
+    u32 currentSlot = (u32)BattleEventVar_GetValue(VAR_MON_ID);
+    if (!CheckExtraActionFlag() || pokemonSlot != currentSlot) {
+        return;
+    }
+
+    MOVE_ID moveID = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
+    BattleMon* currentMon = Handler_GetBattleMon(serverFlow, currentSlot);
+    if (!currentMon) {
+        return;
+    }
+
+    if (BattleMon_CheckIfMoveCondition(currentMon, CONDITION_ENCORE)) {
+        ActionOrderWork* extraActionOrder = nullptr;
+        for (u32 actionIdx = 0; actionIdx < W2U_ARRAY_COUNT(sExtraActionOrder); ++actionIdx) {
+            if (GetExtraActionOrder(actionIdx)->battleMon == currentMon) {
+                extraActionOrder = GetExtraActionOrder(actionIdx);
+                break;
+            }
+        }
+
+        if (extraActionOrder && extraActionOrder->action.baFight.moveID != moveID) {
+            BattleEventVar_RewriteValue(VAR_FAIL_CAUSE, MOVE_FAIL_MOVELOCK);
+            return;
+        }
+    }
+
+    if (BattleMon_CheckIfMoveCondition(currentMon, CONDITION_MOVELOCK) ||
+        BattleMon_CheckIfMoveCondition(currentMon, CONDITION_CHOICELOCK)) {
+        BattleEventVar_RewriteValue(VAR_FAIL_CAUSE, MOVE_FAIL_MOVELOCK);
+    }
+}
+
+BattleEventHandlerTableEntry DancerHandlers[] = {
+    {EVENT_MOVE_EXECUTE_EFFECTIVE, HandlerDancerCheckMove},
+    {EVENT_MOVE_EXECUTE_NOEFFECT, HandlerDancerCheckMove},
+    {EVENT_MOVE_SEQUENCE_START, HandlerDancerPopUp},
+    {EVENT_MOVE_EXECUTE_CHECK1, HandlerDancerMoveFail},
+};
+
+
 extern "C" void HandlerReceiver(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
     (void)item;
@@ -1844,6 +2164,7 @@ W2UAbilityEventAddTable sAbilityEventAddTable[] = {
     W2U_ABILITY_EVENT(ABIL_GALVANIZE, NormalMoveConversionHandlers),
     W2U_ABILITY_EVENT(ABIL_SURGE_SURFER, SurgeSurferHandlers),
     W2U_ABILITY_EVENT(ABIL_QUEENLY_MAGESTY, QueenlyMajestyHandlers),
+    W2U_ABILITY_EVENT(ABIL_DANCER, DancerHandlers),
     W2U_ABILITY_EVENT(ABIL_BATTERY, BatteryHandlers),
     W2U_ABILITY_EVENT(ABIL_FLUFFY, FluffyHandlers),
     W2U_ABILITY_EVENT(ABIL_DAZZLING, QueenlyMajestyHandlers),

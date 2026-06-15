@@ -103,11 +103,8 @@ W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x3A:
 @ Preserve the original ActionOrder_Proc call in ServerFlow_ActOrderProcMain.
 @ r0 is ServerFlow*, r1 is current ActionOrderWork*.
 THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56:
-    push {r0-r3, lr}
-    bl W2U_Mega_ProcessCurrentAction
-    pop {r0-r3}
-    ldr r3, =0x021A07B9
-    blx r3
+    push {lr}
+    bl W2U_ActionOrder_ProcWithExtras
     pop {r1}
     bx r1
     .size THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56, . - THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56
