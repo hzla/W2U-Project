@@ -170,6 +170,15 @@ extern "C" void THUMB_BRANCH_CommonStatusReaction(
 
 static ActionOrderWork sExtraActionOrder[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)];
 static u8 sExtraActionFlag = 0;
+static u8 sInterruptActionFlag = 0;
+static u8 sSendLastSlots[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)] = {
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+};
 
 static void W2U_ClearActionOrderWork(ActionOrderWork* actionOrder)
 {
@@ -299,16 +308,142 @@ static void W2U_ClearExtraActionTurnFlags(BattleMon* battleMon)
     Turnflag_Clear(battleMon, TURNFLAG_USINGFLING);
 }
 
-static void W2U_SortRemainingActions(ServerFlow* serverFlow, u32 firstIdx)
+static u8 W2U_GetEncodedActionPriority(ActionOrderWork* actionOrder, u32 actionIdx)
 {
-    if (!serverFlow || firstIdx >= serverFlow->numActOrder) {
+    return (u8)((actionOrder[actionIdx].speed >> 16) & 0x3FFFFF);
+}
+
+static u8 W2U_GetEncodedSpecialPriority(ActionOrderWork* actionOrder, u32 actionIdx)
+{
+    return (u8)((actionOrder[actionIdx].speed >> 13) & 0x7);
+}
+
+static void W2U_SwapActionOrder(
+    ActionOrderWork* actionOrder,
+    u16* speedStats,
+    u8* priority,
+    u8* eventPriority,
+    u8 slowIdx,
+    u8 fastIdx)
+{
+    if (slowIdx == fastIdx) {
         return;
     }
 
-    SortActionOrderBySpeed(
-        serverFlow,
-        &serverFlow->actionOrderWork[firstIdx],
-        (u32)serverFlow->numActOrder - firstIdx);
+    ActionOrderWork actionOrderBuffer = actionOrder[fastIdx];
+    actionOrder[fastIdx] = actionOrder[slowIdx];
+    actionOrder[slowIdx] = actionOrderBuffer;
+
+    u16 speedBuffer = speedStats[fastIdx];
+    speedStats[fastIdx] = speedStats[slowIdx];
+    speedStats[slowIdx] = speedBuffer;
+
+    u8 priorityBuffer = priority[fastIdx];
+    priority[fastIdx] = priority[slowIdx];
+    priority[slowIdx] = priorityBuffer;
+
+    u8 eventPriorityBuffer = eventPriority[fastIdx];
+    eventPriority[fastIdx] = eventPriority[slowIdx];
+    eventPriority[slowIdx] = eventPriorityBuffer;
+}
+
+static void W2U_SortBySpeedDynamic(
+    ServerFlow* serverFlow,
+    ActionOrderWork* actionOrder,
+    u8 firstIdx,
+    bool turnStart)
+{
+    if (!serverFlow || !actionOrder || firstIdx >= serverFlow->numActOrder) {
+        return;
+    }
+
+    u8 startIdx = firstIdx;
+    if (!turnStart) {
+        ++startIdx;
+    }
+
+    if (startIdx == 0) {
+        for (u32 i = 0; i < W2U_ARRAY_COUNT(sSendLastSlots); ++i) {
+            sSendLastSlots[i] = 0xFF;
+        }
+    }
+
+    if (startIdx >= serverFlow->numActOrder) {
+        return;
+    }
+
+    u8 pokeAmount = (u8)(serverFlow->numActOrder - startIdx);
+    if (pokeAmount <= 1) {
+        return;
+    }
+
+    u16 speedStats[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)] = {};
+    u8 priority[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)] = {};
+    u8 eventPriority[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)];
+    for (u32 i = 0; i < W2U_ARRAY_COUNT(eventPriority); ++i) {
+        eventPriority[i] = 7;
+    }
+
+    for (u8 i = startIdx; i < serverFlow->numActOrder; ++i) {
+        BattleMon* battleMon = actionOrder[i].battleMon;
+        if (battleMon && !BattleMon_IsFainted(battleMon)) {
+            speedStats[i] = (u16)ServerEvent_CalculateSpeed(serverFlow, battleMon, 1);
+            priority[i] = W2U_GetEncodedActionPriority(actionOrder, i);
+            priority[i] += W2U_GetEncodedSpecialPriority(actionOrder, i) - W2U_ACTION_ORDER_SPECIAL_PRIO_OFFSET;
+
+            for (u8 j = 0; j < W2U_ARRAY_COUNT(sSendLastSlots); ++j) {
+                if (sSendLastSlots[j] == 0xFF) {
+                    break;
+                }
+
+                if (sSendLastSlots[j] == battleMon->battleSlot) {
+                    eventPriority[i] = 6 - j;
+                }
+            }
+
+            if (BattleAction_GetAction(&actionOrder[i].action) == 4) {
+                eventPriority[i] = 8;
+            }
+        }
+        else {
+            priority[i] = 0xFF;
+        }
+    }
+
+    for (u8 i = startIdx; i < serverFlow->numActOrder; ++i) {
+        u8 randomSpot = startIdx + (u8)BattleRandom(pokeAmount);
+        W2U_SwapActionOrder(actionOrder, speedStats, priority, eventPriority, i, randomSpot);
+    }
+
+    bool changed = true;
+    while (changed) {
+        changed = false;
+
+        for (u8 i = startIdx; i < serverFlow->numActOrder; ++i) {
+            if (priority[i] == 0xFF || i + 1 >= serverFlow->numActOrder) {
+                continue;
+            }
+
+            for (u8 j = i + 1; j < serverFlow->numActOrder; ++j) {
+                if (priority[j] == 0xFF) {
+                    continue;
+                }
+
+                bool shouldSwap = eventPriority[j] > eventPriority[i];
+                if (eventPriority[j] == eventPriority[i]) {
+                    shouldSwap = priority[j] > priority[i];
+                    if (priority[j] == priority[i]) {
+                        shouldSwap = speedStats[j] > speedStats[i];
+                    }
+                }
+
+                if (shouldSwap) {
+                    W2U_SwapActionOrder(actionOrder, speedStats, priority, eventPriority, i, j);
+                    changed = true;
+                }
+            }
+        }
+    }
 }
 
 extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, u32 currentActionIdx)
@@ -323,7 +458,7 @@ extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, 
     W2U_ClearAllExtraActionOrders();
     ResetExtraActionFlag();
 
-    W2U_SortRemainingActions(serverFlow, currentActionIdx);
+    W2U_SortBySpeedDynamic(serverFlow, actionOrderWork, (u8)currentActionIdx, true);
 
     while (currentActionIdx < serverFlow->numActOrder || sExtraActionOrder[0].battleMon) {
         ActionOrderWork* currentActionOrder = &actionOrderWork[currentActionIdx];
@@ -340,14 +475,20 @@ extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, 
             u32 action = BattleAction_GetAction(&currentActionOrder->action);
             if (procAction == 6 && action != 6) {
                 ServerControl_CheckActivation(serverFlow);
-                W2U_SortRemainingActions(serverFlow, currentActionIdx);
+                SortActionOrderBySpeed(
+                    serverFlow,
+                    currentActionOrder,
+                    (u32)serverFlow->numActOrder - currentActionIdx);
             }
         }
 
         W2U_Mega_ProcessCurrentAction(serverFlow, currentActionOrder);
         procAction = ActionOrder_Proc(serverFlow, currentActionOrder);
 
-        W2U_SortRemainingActions(serverFlow, currentActionIdx + 1);
+        if (sInterruptActionFlag != 1) {
+            W2U_SortBySpeedDynamic(serverFlow, actionOrderWork, (u8)currentActionIdx, false);
+        }
+        sInterruptActionFlag = 0;
 
         if (isExtraAction) {
             W2U_AdvanceExtraActionOrders();

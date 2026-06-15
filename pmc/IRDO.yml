@@ -25762,6 +25762,9 @@ Symbols:
   - Name: ServerControl_TurnCheck
     Segment: 0x1D
     Address: 0x21A7F5D
+  - Name: ServerEvent_CalculateSpeed
+    Segment: 0x1D
+    Address: 0x21A041D
   - Name: ServerEvent_GetMoveParam
     Segment: 0x1D
     Address: 0x21AA00D
