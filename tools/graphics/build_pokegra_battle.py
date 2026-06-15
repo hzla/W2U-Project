@@ -11,6 +11,7 @@ from pathlib import Path
 TOOLS_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(TOOLS_ROOT / "pwan"))
 
+from ndspy import narc  # noqa: E402
 from compile_pwan import compile_pwan  # noqa: E402
 from pwan_config import (  # noqa: E402
     PWAN_CONFIG_BACK_FLAG,
@@ -81,6 +82,15 @@ def clean_dir(path: Path) -> None:
 
 def ensure_dir(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
+
+
+def seed_base_archive(base_archive: Path | None, battle_vfs: Path) -> int:
+    if base_archive is None:
+        return 0
+    archive = narc.NARC(base_archive.read_bytes())
+    for index, data in enumerate(archive.files):
+        (battle_vfs / str(index)).write_bytes(data)
+    return len(archive.files)
 
 
 def lz11_compress(data: bytes) -> bytes:
@@ -933,14 +943,15 @@ def graphics_order_entries(source_root: Path) -> list[dict]:
     return entries
 
 
-def copy_nns_archive_entries(source_root: Path, battle_vfs: Path) -> int:
+def copy_nns_archive_entries(source_root: Path, battle_vfs: Path, preserve_before: int = 0) -> int:
     if (source_root / ORDER_FILE).exists():
         count = 0
         for item in graphics_order_entries(source_root):
             manifest = source_root / item["folder"] / "nns.toml"
             manifest_data = load_toml(manifest)
             for entry in manifest_data.get("entries", []):
-                stage_nns_entry(entry, manifest, manifest_data, battle_vfs / str(count))
+                if count >= preserve_before:
+                    stage_nns_entry(entry, manifest, manifest_data, battle_vfs / str(count))
                 count += 1
         return count
 
@@ -1144,6 +1155,8 @@ def main() -> int:
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--battle-vfs", type=Path, required=True)
     parser.add_argument("--pwan-vfs", type=Path)
+    parser.add_argument("--base-archive", type=Path)
+    parser.add_argument("--preserve-base-before", type=int, default=0)
     parser.add_argument("--extra-bin-source", type=Path)
     parser.add_argument("--gen7-pwan-fallback-source", type=Path)
     parser.add_argument("--skip-pwan", action="store_true")
@@ -1152,7 +1165,13 @@ def main() -> int:
     args = parser.parse_args()
 
     clean_dir(args.battle_vfs)
-    nns_count = copy_nns_archive_entries(args.source, args.battle_vfs)
+    base_count = seed_base_archive(args.base_archive, args.battle_vfs)
+    preserve_before = args.preserve_base_before if args.base_archive is not None else 0
+    if preserve_before > base_count:
+        raise RuntimeError(
+            f"--preserve-base-before {preserve_before} exceeds base archive file count {base_count}"
+        )
+    nns_count = copy_nns_archive_entries(args.source, args.battle_vfs, preserve_before)
     extra_count = copy_extra_bin_entries(args.extra_bin_source, args.battle_vfs, nns_count)
     gen7_fallbacks = patch_gen7_native_fallbacks(
         args.gen7_pwan_fallback_source,
@@ -1170,6 +1189,8 @@ def main() -> int:
         sources = build_pwan_assets(args.source, args.pwan_vfs)
     args.stamp.parent.mkdir(parents=True, exist_ok=True)
     args.stamp.write_text(
+        f"base_entries={base_count}\n"
+        f"preserved_base_entries={preserve_before}\n"
         f"nns_entries={nns_count}\n"
         f"extra_bin_entries={extra_count}\n"
         f"gen7_native_fallbacks={gen7_fallbacks}\n"

@@ -70,6 +70,8 @@ vfs_files += custom_target(
     '--source', meson.current_source_dir() / 'pokegra',
     '--battle-vfs', meson.project_source_root() / 'vfs' / 'data' / pokegra_battle_arc,
     '--pwan-vfs', meson.project_source_root() / 'vfs' / 'data' / 'pokeweb_pwan',
+    '--base-archive', meson.project_source_root() / '..' / 'IRDO_Extracted' / 'data' / pokegra_battle_arc,
+    '--preserve-base-before', '13000',
     '--extra-bin-source', meson.current_source_dir() / 'pokegra_battle_extra',
     '--gen7-pwan-fallback-source', meson.project_source_root() / 'assets' / 'pokeweb_pwan',
     '--skip-pwan',

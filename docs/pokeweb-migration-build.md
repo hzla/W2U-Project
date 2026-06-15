@@ -1,9 +1,20 @@
 # Pokeweb Migration Build Setup
 
-**Fast local rebuild note:** from the repository root, use
+**Full local rebuild note:** from the repository root, use
 `JAVA=/opt/homebrew/Cellar/openjdk@11/11.0.31/bin/java ninja -C build White2Upgrade.nds`
 and then copy `build/White2Upgrade.nds` to `/Users/andylee/Repos/White2Upgrade.nds`.
 The macOS `/usr/bin/java` stub is not enough for CTRMap/RPMTool.
+
+**Fast data-test rebuild note:** for trainer and personal-data test edits, prefer
+the narrow helper so Meson does not rerun always-stale graphics staging:
+
+```sh
+tools/quick_rom_rebuild.sh trainer
+tools/quick_rom_rebuild.sh personal
+tools/quick_rom_rebuild.sh trainer-personal
+```
+
+Use the full Meson target after code, graphics, build-system, or VFS-wide edits.
 
 This branch keeps upstream's Meson and CTRMap VFS build as the public build
 entrypoint. The old Makefile-era `base`, `ndstool`, and full-ROM repack flow is
