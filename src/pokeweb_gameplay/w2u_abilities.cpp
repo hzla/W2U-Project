@@ -392,7 +392,7 @@ static void W2U_SortBySpeedDynamic(
     for (u8 i = startIdx; i < serverFlow->numActOrder; ++i) {
         BattleMon* battleMon = actionOrder[i].battleMon;
         if (battleMon && !BattleMon_IsFainted(battleMon)) {
-            speedStats[i] = W2U_GetEncodedActionSpeed(actionOrder, i);
+            speedStats[i] = (u16)ServerEvent_CalculateSpeed(serverFlow, battleMon, 1);
             priority[i] = W2U_GetEncodedActionPriority(actionOrder, i);
             priority[i] += W2U_GetEncodedSpecialPriority(actionOrder, i) - W2U_ACTION_ORDER_SPECIAL_PRIO_OFFSET;
 
@@ -449,6 +449,37 @@ static void W2U_SortBySpeedDynamic(
             }
         }
     }
+}
+
+extern "C" u32 THUMB_BRANCH_BattleHandler_InterruptAction(
+    ServerFlow* serverFlow,
+    HandlerParam_InterruptPoke* params)
+{
+    if (!serverFlow || !params || !ActionOrder_InterruptReserve(serverFlow, params->pokeID)) {
+        return 0;
+    }
+
+    BattleHandler_SetString(serverFlow, &params->exStr);
+    sInterruptActionFlag = 1;
+    return 1;
+}
+
+extern "C" u32 THUMB_BRANCH_BattleHandler_SendLast(ServerFlow* serverFlow, HandlerParam_SendLast* params)
+{
+    if (!serverFlow || !params || !ActionOrder_SendToLast(serverFlow, params->pokeID)) {
+        return 0;
+    }
+
+    BattleHandler_SetString(serverFlow, &params->exStr);
+
+    for (u32 i = 0; i < W2U_ARRAY_COUNT(sSendLastSlots); ++i) {
+        if (sSendLastSlots[i] == 0xFF) {
+            sSendLastSlots[i] = params->pokeID;
+            break;
+        }
+    }
+
+    return 1;
 }
 
 extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, u32 currentActionIdx)
@@ -530,6 +561,14 @@ extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, 
 
         if (turnCheck) {
             serverFlow->flowResult = 3;
+            return serverFlow->numActOrder;
+        }
+
+        u32 faintedCount = j_j_FaintRecord_GetCount_1(&serverFlow->faintRecord, 0);
+        if (Handler_IsPosOpenForRevivedMon(serverFlow) || faintedCount) {
+            ServerFlow_ReqChangePokeForServer(serverFlow, &serverFlow->field_4CE);
+            ServerDisplay_IllusionSet(serverFlow, &serverFlow->field_4CE);
+            serverFlow->flowResult = 2;
             return serverFlow->numActOrder;
         }
 

@@ -412,6 +412,28 @@ struct ActionOrderWork {
     u8 field_F;
 };
 
+struct MoveRecordUnit {
+    u32 turn;
+    u16 moveID;
+    u8 pokeID;
+    u8 effective;
+};
+
+struct MoveRecord {
+    u32 ptr;
+    MoveRecordUnit record[120];
+};
+
+struct FaintRecordUnit {
+    u8 count;
+    u8 expChecked[24];
+    u8 faintPokeID[24];
+};
+
+struct FaintRecord {
+    FaintRecordUnit turnRecord[4];
+};
+
 struct PokeSet {
     BattleMon* battleMon[6];
     u16 damage[6];
@@ -447,6 +469,18 @@ struct HandlerParam_Header {
 struct HandlerParam_Message {
     HandlerParam_Header header;
     HandlerParam_StrParams str;
+};
+
+struct HandlerParam_InterruptPoke {
+    HandlerParam_Header header;
+    u8 pokeID;
+    HandlerParam_StrParams exStr;
+};
+
+struct HandlerParam_SendLast {
+    HandlerParam_Header header;
+    u8 pokeID;
+    HandlerParam_StrParams exStr;
 };
 
 struct HandlerParam_RecoverHP {
@@ -611,7 +645,13 @@ struct ServerFlow {
     ServerCommandQueue* serverCommandQueue;
     u32 turnCount;
     u32 flowResult;
-    u8 pad_18[0x768];
+    u8 pad_18[0x3C8];
+    FaintRecord faintRecord;
+    u8 pad_4A4[0x2A];
+    u16 field_4CE;
+    u8 pad_4D0[0x2AE];
+    u8 turnCheckSeq;
+    u8 defaultTargetPos;
     u8 numActOrder;
     u8 numEndActOrder;
     u8 pad_782[0x08];
@@ -669,6 +709,7 @@ extern "C" void ServerDisplay_AddCommon(ServerCommandQueue* serverCommandQueue, 
 extern "C" void ServerDisplay_AddMessageImpl(ServerCommandQueue* serverCommandQueue, ServerCommandID commandID, u16 msgID, ...);
 extern "C" void ServerDisplay_AbilityPopupAdd(ServerFlow* serverFlow, BattleMon* battleMon);
 extern "C" void ServerDisplay_AbilityPopupRemove(ServerFlow* serverFlow, BattleMon* battleMon);
+extern "C" u32 ServerDisplay_IllusionSet(ServerFlow* serverFlow, u16* switchWork);
 extern "C" void ServerDisplay_UseHeldItem(ServerFlow* serverFlow, BattleMon* battleMon);
 extern "C" void ServerDisplay_SetConditionFlag(ServerFlow* serverFlow, BattleMon* battleMon, CONDITION_FLAG flag);
 extern "C" void ServerDisplay_SetTurnFlag(ServerFlow* serverFlow, BattleMon* battleMon, TURN_FLAG flag);
@@ -709,6 +750,7 @@ extern "C" void ServerEvent_ItemSetDecide(ServerFlow* serverFlow, BattleMon* bat
 extern "C" void ServerEvent_ItemRewriteDone(ServerFlow* serverFlow, BattleMon* battleMon);
 extern "C" void ServerEvent_CheckMultihitHits(ServerFlow* serverFlow, BattleMon* attackingMon, u32 moveID, HitCheckParam* params);
 extern "C" u32 ServerEvent_CheckProtectBreak(ServerFlow* serverFlow, BattleMon* attackingMon);
+extern "C" u32 ServerEvent_CalculateSpeed(ServerFlow* serverFlow, BattleMon* battleMon, b32 checkTrickRoom);
 extern "C" void AbilityEvent_RemoveItem(BattleMon* battleMon);
 extern "C" BattleEventItem* AbilityEvent_AddItem(BattleMon* battleMon);
 extern "C" void ItemEvent_RemoveItem(BattleMon* battleMon);
@@ -733,11 +775,13 @@ extern "C" void ServerControl_CheckActivation(ServerFlow* serverFlow);
 extern "C" b32 ServerControl_CheckMatchup(ServerFlow* serverFlow);
 extern "C" u32 ServerControl_CheckExpGet(ServerFlow* serverFlow);
 extern "C" b32 ServerControl_TurnCheck(ServerFlow* serverFlow);
+extern "C" u32 ServerFlow_ReqChangePokeForServer(ServerFlow* serverFlow, u16* switchWork);
 extern "C" void ServerControl_SwitchInCore(ServerFlow* serverFlow, u32 clientID, u32 switchInSlot, u32 switchOutSlot);
 extern "C" void ServerControl_ChangeHeldItem(ServerFlow* serverFlow, BattleMon* battleMon, ITEM itemID, b32 consumeItem);
 extern "C" b32 HandlerCommon_CheckIfCanStealPokeItem(ServerFlow* serverFlow, u32 thiefSlot, u32 targetSlot);
 extern "C" b32 HandlerCommon_IsUnremovableItem(BattleMon* battleMon, ITEM itemID);
 extern "C" b32 Handler_IsSimulationMode(ServerFlow* serverFlow);
+extern "C" u32 Handler_IsPosOpenForRevivedMon(ServerFlow* serverFlow);
 extern "C" void HandlerOvercoat(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work);
 extern "C" void HandlerThiefStart(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work);
 extern "C" u32 Handler_GetFightEnableBenchPokeNum(ServerFlow* serverFlow, u32 pokemonSlot);
@@ -751,7 +795,10 @@ extern "C" void ClearCounter(BattleMon* battleMon);
 extern "C" void ClearMoveStatusWork(BattleMon* battleMon, bool removeStatus);
 extern "C" void ResetStatStages(StatStageParam* statChanges);
 extern "C" u32 ActionOrder_Proc(ServerFlow* serverFlow, ActionOrderWork* actionOrder);
+extern "C" b32 ActionOrder_InterruptReserve(ServerFlow* serverFlow, u32 pokemonSlot);
+extern "C" u32 ActionOrder_SendToLast(ServerFlow* serverFlow, u32 pokemonSlot);
 extern "C" void SortActionOrderBySpeed(ServerFlow* serverFlow, ActionOrderWork* actionOrder, u32 remainingActions);
+extern "C" u32 j_j_FaintRecord_GetCount_1(FaintRecord* faintRecord, u32 turn);
 extern "C" ConditionData Condition_MakePermanent();
 extern "C" ConditionData Condition_MakeTurn(u32 turnCount);
 extern "C" ConditionData Condition_MakeTurnParam(u32 maxTurns, u32 param);

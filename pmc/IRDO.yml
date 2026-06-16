@@ -25696,6 +25696,12 @@ Symbols:
   - Name: BattleHandler_ConsumeItem
     Segment: 0x1D
     Address: 0x21ADA4D
+  - Name: BattleHandler_InterruptAction
+    Segment: 0x1D
+    Address: 0x21ADEF1
+  - Name: BattleHandler_SendLast
+    Segment: 0x1D
+    Address: 0x21ADF2D
   - Name: PokeCon_GetBattleMon
     Segment: 0x1D
     Address: 0x219D251
@@ -25726,9 +25732,21 @@ Symbols:
   - Name: ActionOrder_Proc
     Segment: 0x1D
     Address: 0x21A07B9
+  - Name: ActionOrder_InterruptReserve
+    Segment: 0x1D
+    Address: 0x21A0C31
+  - Name: ActionOrder_SendToLast
+    Segment: 0x1D
+    Address: 0x21A0C99
   - Name: ServerFlow_ActOrderProcMain
     Segment: 0x1D
     Address: 0x219FA11
+  - Name: j_j_FaintRecord_GetCount_1
+    Segment: 0x1D
+    Address: 0x219FB6D
+  - Name: ServerFlow_ReqChangePokeForServer
+    Segment: 0x1D
+    Address: 0x219FFB1
   - Name: GetHandlerMainPriority
     Segment: 0x1D
     Address: 0x21BDD61
@@ -26110,6 +26128,9 @@ Symbols:
   - Name: ServerControl_SwitchInCore
     Segment: 0x1D
     Address: 0x21A13D9
+  - Name: Handler_IsPosOpenForRevivedMon
+    Segment: 0x1D
+    Address: 0x21AC0B5
   - Name: ServerDisplay_AbilityPopupAdd
     Segment: 0x1D
     Address: 0x21A9575
@@ -26128,6 +26149,9 @@ Symbols:
   - Name: ServerDisplay_SetTurnFlag
     Segment: 0x1D
     Address: 0x21A9C8D
+  - Name: ServerDisplay_IllusionSet
+    Segment: 0x1D
+    Address: 0x21A9CB1
   - Name: ServerDisplay_UseHeldItem
     Segment: 0x1D
     Address: 0x21A9C2D
@@ -26146,6 +26170,9 @@ Symbols:
   - Name: ServerEvent_CheckProtectBreak
     Segment: 0x1D
     Address: 0x21AA1C1
+  - Name: ServerEvent_CalculateSpeed
+    Segment: 0x1D
+    Address: 0x21A041D
   - Name: ServerEvent_GetWeather
     Segment: 0x1D
     Address: 0x21A65A1
