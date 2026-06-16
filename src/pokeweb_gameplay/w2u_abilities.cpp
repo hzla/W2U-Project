@@ -420,33 +420,32 @@ static void W2U_SortBySpeedDynamic(
         W2U_SwapActionOrder(actionOrder, speedStats, priority, eventPriority, i, randomSpot);
     }
 
-    bool changed = true;
-    while (changed) {
-        changed = false;
+    for (u8 i = startIdx; i + 1 < serverFlow->numActOrder; ++i) {
+        if (priority[i] == 0xFF) {
+            continue;
+        }
 
-        for (u8 i = startIdx; i < serverFlow->numActOrder; ++i) {
-            if (priority[i] == 0xFF || i + 1 >= serverFlow->numActOrder) {
+        u8 bestIdx = i;
+        for (u8 j = i + 1; j < serverFlow->numActOrder; ++j) {
+            if (priority[j] == 0xFF) {
                 continue;
             }
 
-            for (u8 j = i + 1; j < serverFlow->numActOrder; ++j) {
-                if (priority[j] == 0xFF) {
-                    continue;
-                }
-
-                bool shouldSwap = eventPriority[j] > eventPriority[i];
-                if (eventPriority[j] == eventPriority[i]) {
-                    shouldSwap = priority[j] > priority[i];
-                    if (priority[j] == priority[i]) {
-                        shouldSwap = speedStats[j] > speedStats[i];
-                    }
-                }
-
-                if (shouldSwap) {
-                    W2U_SwapActionOrder(actionOrder, speedStats, priority, eventPriority, i, j);
-                    changed = true;
+            bool shouldComeFirst = eventPriority[j] > eventPriority[bestIdx];
+            if (eventPriority[j] == eventPriority[bestIdx]) {
+                shouldComeFirst = priority[j] > priority[bestIdx];
+                if (priority[j] == priority[bestIdx]) {
+                    shouldComeFirst = speedStats[j] > speedStats[bestIdx];
                 }
             }
+
+            if (shouldComeFirst) {
+                bestIdx = j;
+            }
+        }
+
+        if (bestIdx != i) {
+            W2U_SwapActionOrder(actionOrder, speedStats, priority, eventPriority, i, bestIdx);
         }
     }
 }
