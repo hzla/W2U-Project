@@ -271,6 +271,17 @@ static bool W2U_IsQueuedExtraFight(BattleMon* battleMon, MOVE_ID moveID)
     return false;
 }
 
+static u8 W2U_GetActionOrderCount(ServerFlow* serverFlow)
+{
+    if (!serverFlow) {
+        return 0;
+    }
+
+    u8 count = serverFlow->numActOrder;
+    u8 maxCount = (u8)W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork);
+    return count > maxCount ? maxCount : count;
+}
+
 extern "C" void SetExtraActionFlag()
 {
     sExtraActionFlag = 1;
@@ -418,7 +429,8 @@ static void W2U_SortBySpeedDynamic(
     u8 firstIdx,
     bool turnStart)
 {
-    if (!serverFlow || !actionOrder || firstIdx >= serverFlow->numActOrder) {
+    u8 actionCount = W2U_GetActionOrderCount(serverFlow);
+    if (!serverFlow || !actionOrder || firstIdx >= actionCount) {
         return;
     }
 
@@ -433,11 +445,11 @@ static void W2U_SortBySpeedDynamic(
         }
     }
 
-    if (startIdx >= serverFlow->numActOrder) {
+    if (startIdx >= actionCount) {
         return;
     }
 
-    u8 pokeAmount = (u8)(serverFlow->numActOrder - startIdx);
+    u8 pokeAmount = (u8)(actionCount - startIdx);
     if (pokeAmount <= 1) {
         return;
     }
@@ -451,7 +463,7 @@ static void W2U_SortBySpeedDynamic(
         ((volatile u8*)eventPriority)[i] = 7;
     }
 
-    for (u8 i = startIdx; i < serverFlow->numActOrder; ++i) {
+    for (u8 i = startIdx; i < actionCount; ++i) {
         BattleMon* battleMon = actionOrder[i].battleMon;
         if (battleMon && !BattleMon_IsFainted(battleMon)) {
             speedStats[i] = (u16)ServerEvent_CalculateSpeed(serverFlow, battleMon, 1);
@@ -477,18 +489,18 @@ static void W2U_SortBySpeedDynamic(
         }
     }
 
-    for (u8 i = startIdx; i < serverFlow->numActOrder; ++i) {
+    for (u8 i = startIdx; i < actionCount; ++i) {
         u8 randomSpot = startIdx + (u8)BattleRandom(pokeAmount);
         W2U_SwapActionOrder(actionOrder, speedStats, priority, eventPriority, i, randomSpot);
     }
 
-    for (u8 i = startIdx; i + 1 < serverFlow->numActOrder; ++i) {
+    for (u8 i = startIdx; i + 1 < actionCount; ++i) {
         if (priority[i] == 0xFF) {
             continue;
         }
 
         u8 bestIdx = i;
-        for (u8 j = i + 1; j < serverFlow->numActOrder; ++j) {
+        for (u8 j = i + 1; j < actionCount; ++j) {
             if (priority[j] == 0xFF) {
                 continue;
             }
@@ -557,7 +569,7 @@ extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, 
 
     W2U_SortBySpeedDynamic(serverFlow, actionOrderWork, (u8)currentActionIdx, true);
 
-    while (currentActionIdx < serverFlow->numActOrder || sExtraActionOrder[0].battleMon) {
+    while (currentActionIdx < W2U_GetActionOrderCount(serverFlow) || sExtraActionOrder[0].battleMon) {
         ActionOrderWork* currentActionOrder = nullptr;
         bool isExtraAction = false;
 
@@ -581,24 +593,27 @@ extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, 
             u32 action = BattleAction_GetAction(&currentActionOrder->action);
             if (procAction == 6 && action != 6) {
                 ServerControl_CheckActivation(serverFlow);
+                u8 actionCount = W2U_GetActionOrderCount(serverFlow);
                 SortActionOrderBySpeed(
                     serverFlow,
                     currentActionOrder,
-                    (u32)serverFlow->numActOrder - currentActionIdx);
+                    (u32)actionCount - currentActionIdx);
             }
         }
 
         W2U_Mega_ProcessCurrentAction(serverFlow, currentActionOrder);
         procAction = ActionOrder_Proc(serverFlow, currentActionOrder);
 
-        if (sInterruptActionFlag != 1) {
-            W2U_SortBySpeedDynamic(serverFlow, actionOrderWork, (u8)currentActionIdx, false);
-        }
+        bool shouldSortAfterAction = sInterruptActionFlag != 1;
         sInterruptActionFlag = 0;
 
         if (isExtraAction) {
             W2U_AdvanceExtraActionOrders();
             ResetExtraActionFlag();
+        }
+
+        if (shouldSortAfterAction) {
+            W2U_SortBySpeedDynamic(serverFlow, actionOrderWork, (u8)currentActionIdx, isExtraAction);
         }
 
         u32 getExp = ServerControl_CheckExpGet(serverFlow);
