@@ -182,15 +182,39 @@ static u8 sSendLastSlots[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)] = {
 
 static void W2U_ClearActionOrderWork(ActionOrderWork* actionOrder)
 {
-    if (actionOrder) {
-        *actionOrder = ActionOrderWork();
+    if (!actionOrder) {
+        return;
     }
+
+    actionOrder->battleMon = nullptr;
+    actionOrder->action.baDefault.cmd = 0;
+    actionOrder->action.baDefault.param = 0;
+    actionOrder->speed = 0;
+    actionOrder->partyID = 0;
+    actionOrder->done = 0;
+    actionOrder->field_E = 0;
+    actionOrder->field_F = 0;
+}
+
+static void W2U_CopyActionOrderWork(ActionOrderWork* dst, const ActionOrderWork* src)
+{
+    if (!dst || !src) {
+        return;
+    }
+
+    dst->battleMon = src->battleMon;
+    dst->action = src->action;
+    dst->speed = src->speed;
+    dst->partyID = src->partyID;
+    dst->done = src->done;
+    dst->field_E = src->field_E;
+    dst->field_F = src->field_F;
 }
 
 extern "C" void ShiftExtraActionOrders()
 {
     for (u32 i = W2U_ARRAY_COUNT(sExtraActionOrder) - 1; i > 0; --i) {
-        sExtraActionOrder[i] = sExtraActionOrder[i - 1];
+        W2U_CopyActionOrderWork(&sExtraActionOrder[i], &sExtraActionOrder[i - 1]);
     }
     W2U_ClearActionOrderWork(&sExtraActionOrder[0]);
 }
@@ -198,7 +222,7 @@ extern "C" void ShiftExtraActionOrders()
 static void W2U_AdvanceExtraActionOrders()
 {
     for (u32 i = 0; i + 1 < W2U_ARRAY_COUNT(sExtraActionOrder); ++i) {
-        sExtraActionOrder[i] = sExtraActionOrder[i + 1];
+        W2U_CopyActionOrderWork(&sExtraActionOrder[i], &sExtraActionOrder[i + 1]);
     }
     W2U_ClearActionOrderWork(&sExtraActionOrder[W2U_ARRAY_COUNT(sExtraActionOrder) - 1]);
 }
@@ -382,11 +406,13 @@ static void W2U_SortBySpeedDynamic(
         return;
     }
 
-    u16 speedStats[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)] = {};
-    u8 priority[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)] = {};
+    u16 speedStats[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)];
+    u8 priority[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)];
     u8 eventPriority[W2U_ARRAY_COUNT(((ServerFlow*)0)->actionOrderWork)];
     for (u32 i = 0; i < W2U_ARRAY_COUNT(eventPriority); ++i) {
-        eventPriority[i] = 7;
+        ((volatile u16*)speedStats)[i] = 0;
+        ((volatile u8*)priority)[i] = 0;
+        ((volatile u8*)eventPriority)[i] = 7;
     }
 
     for (u8 i = startIdx; i < serverFlow->numActOrder; ++i) {
@@ -1755,7 +1781,12 @@ extern "C" void HandlerDancerCheckMove(BattleEventItem* item, ServerFlow* server
             continue;
         }
 
-        extraActionOrder->action = serverFlow->actionOrderWork[orderIdx].action;
+        BattleActionParam copiedAction = serverFlow->actionOrderWork[orderIdx].action;
+        if (BattleAction_GetAction(&copiedAction) != 1 || copiedAction.baFight.moveID != moveID) {
+            continue;
+        }
+
+        extraActionOrder->action = copiedAction;
         extraActionOrder->speed = serverFlow->actionOrderWork[orderIdx].speed;
         extraActionOrder->partyID = serverFlow->actionOrderWork[orderIdx].partyID;
 
