@@ -379,6 +379,35 @@ static void W2U_ClearExtraActionTurnFlags(BattleMon* battleMon)
     Turnflag_Clear(battleMon, TURNFLAG_USINGFLING);
 }
 
+static void W2U_SetDancerCopiedTarget(
+    ServerFlow* serverFlow,
+    BattleAction_Fight* fight,
+    u32 dancerSlot,
+    u32 currentSlot)
+{
+    volatile u32 moveTarget = PML_MoveGetParam((MOVE_ID)fight->moveID, MVDATA_TARGET);
+    if (moveTarget == TARGET_OTHER_SELECT ||
+        moveTarget == TARGET_ENEMY_SELECT ||
+        moveTarget == TARGET_ENEMY_RANDOM) {
+        if (!MainModule_IsAllyMonID(dancerSlot, currentSlot)) {
+            fight->targetPos = Handler_PokeIDToPokePos(serverFlow, currentSlot);
+        }
+        return;
+    }
+
+    if (moveTarget == TARGET_FRIEND_AND_USER) {
+        fight->targetPos = Handler_PokeIDToPokePos(serverFlow, dancerSlot);
+        return;
+    }
+
+    if (moveTarget == TARGET_FRIEND_SELECT) {
+        fight->targetPos = CommonGetAllyPos(serverFlow, Handler_PokeIDToPokePos(serverFlow, dancerSlot));
+        return;
+    }
+
+    fight->targetPos = 6;
+}
+
 static u8 W2U_GetEncodedActionPriority(ActionOrderWork* actionOrder, u32 actionIdx)
 {
     return (u8)((actionOrder[actionIdx].speed >> 16) & 0x3FFFFF);
@@ -1850,24 +1879,7 @@ extern "C" void HandlerDancerCheckMove(BattleEventItem* item, ServerFlow* server
         nextExtraAction.partyID = serverFlow->actionOrderWork[orderIdx].partyID;
 
         BattleAction_Fight* fight = &nextExtraAction.action.baFight;
-        switch (PML_MoveGetParam((MOVE_ID)fight->moveID, MVDATA_TARGET)) {
-        case TARGET_OTHER_SELECT:
-        case TARGET_ENEMY_SELECT:
-        case TARGET_ENEMY_RANDOM:
-            if (!MainModule_IsAllyMonID(pokemonSlot, currentSlot)) {
-                fight->targetPos = Handler_PokeIDToPokePos(serverFlow, currentSlot);
-            }
-            break;
-        case TARGET_FRIEND_AND_USER:
-            fight->targetPos = Handler_PokeIDToPokePos(serverFlow, pokemonSlot);
-            break;
-        case TARGET_FRIEND_SELECT:
-            fight->targetPos = CommonGetAllyPos(serverFlow, Handler_PokeIDToPokePos(serverFlow, pokemonSlot));
-            break;
-        default:
-            fight->targetPos = 6;
-            break;
-        }
+        W2U_SetDancerCopiedTarget(serverFlow, fight, pokemonSlot, currentSlot);
 
         foundAction = true;
         break;
