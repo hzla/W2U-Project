@@ -240,6 +240,37 @@ extern "C" b32 CheckExtraActionFlag()
     return sExtraActionFlag;
 }
 
+static bool W2U_IsValidExtraAction(ActionOrderWork* actionOrder)
+{
+    if (!actionOrder ||
+        !actionOrder->battleMon ||
+        BattleMon_IsFainted(actionOrder->battleMon) ||
+        BattleAction_GetAction(&actionOrder->action) != 1) {
+        return false;
+    }
+
+    MOVE_ID moveID = (MOVE_ID)actionOrder->action.baFight.moveID;
+    return moveID != MOVE_NONE && getMoveFlag(moveID, MOVE_FLAG_INDEX_DANCE);
+}
+
+static bool W2U_IsQueuedExtraFight(BattleMon* battleMon, MOVE_ID moveID)
+{
+    if (!battleMon || moveID == MOVE_NONE) {
+        return false;
+    }
+
+    for (u32 i = 0; i < W2U_ARRAY_COUNT(sExtraActionOrder); ++i) {
+        ActionOrderWork* actionOrder = &sExtraActionOrder[i];
+        if (actionOrder->battleMon == battleMon &&
+            BattleAction_GetAction(&actionOrder->action) == 1 &&
+            (MOVE_ID)actionOrder->action.baFight.moveID == moveID) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 extern "C" void SetExtraActionFlag()
 {
     sExtraActionFlag = 1;
@@ -295,6 +326,11 @@ extern "C" u32 W2U_ActionOrder_ProcWithExtras(ServerFlow* serverFlow, ActionOrde
          processed < W2U_ARRAY_COUNT(sExtraActionOrder) && sExtraActionOrder[0].battleMon;
          ++processed) {
         ActionOrderWork* extraAction = &sExtraActionOrder[0];
+        if (!W2U_IsValidExtraAction(extraAction)) {
+            W2U_AdvanceExtraActionOrders();
+            continue;
+        }
+
         Turnflag_Clear(extraAction->battleMon, TURNFLAG_ACTIONSTART);
         Turnflag_Clear(extraAction->battleMon, TURNFLAG_ACTIONDONE);
         Turnflag_Clear(extraAction->battleMon, TURNFLAG_MOVEPROCDONE);
@@ -522,14 +558,23 @@ extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, 
     W2U_SortBySpeedDynamic(serverFlow, actionOrderWork, (u8)currentActionIdx, true);
 
     while (currentActionIdx < serverFlow->numActOrder || sExtraActionOrder[0].battleMon) {
-        ActionOrderWork* currentActionOrder = &actionOrderWork[currentActionIdx];
+        ActionOrderWork* currentActionOrder = nullptr;
         bool isExtraAction = false;
 
         if (sExtraActionOrder[0].battleMon) {
+            if (!W2U_IsValidExtraAction(&sExtraActionOrder[0])) {
+                W2U_AdvanceExtraActionOrders();
+                ResetExtraActionFlag();
+                continue;
+            }
+
             isExtraAction = true;
             currentActionOrder = &sExtraActionOrder[0];
             W2U_ClearExtraActionTurnFlags(currentActionOrder->battleMon);
             SetExtraActionFlag();
+        }
+        else {
+            currentActionOrder = &actionOrderWork[currentActionIdx];
         }
 
         if (!CheckExtraActionFlag()) {
@@ -1769,12 +1814,11 @@ extern "C" void HandlerDancerCheckMove(BattleEventItem* item, ServerFlow* server
         return;
     }
 
-    ShiftExtraActionOrders();
-
-    ActionOrderWork* extraActionOrder = GetExtraActionOrder(0);
-    extraActionOrder->battleMon = dancerMon;
-
     BattleMon* currentMon = Handler_GetBattleMon(serverFlow, currentSlot);
+    ActionOrderWork nextExtraAction;
+    W2U_ClearActionOrderWork(&nextExtraAction);
+    nextExtraAction.battleMon = dancerMon;
+
     bool foundAction = false;
     for (u32 orderIdx = 0; orderIdx < W2U_ARRAY_COUNT(serverFlow->actionOrderWork); ++orderIdx) {
         if (serverFlow->actionOrderWork[orderIdx].battleMon != currentMon) {
@@ -1786,11 +1830,11 @@ extern "C" void HandlerDancerCheckMove(BattleEventItem* item, ServerFlow* server
             continue;
         }
 
-        extraActionOrder->action = copiedAction;
-        extraActionOrder->speed = serverFlow->actionOrderWork[orderIdx].speed;
-        extraActionOrder->partyID = serverFlow->actionOrderWork[orderIdx].partyID;
+        nextExtraAction.action = copiedAction;
+        nextExtraAction.speed = serverFlow->actionOrderWork[orderIdx].speed;
+        nextExtraAction.partyID = serverFlow->actionOrderWork[orderIdx].partyID;
 
-        BattleAction_Fight* fight = &extraActionOrder->action.baFight;
+        BattleAction_Fight* fight = &nextExtraAction.action.baFight;
         switch (PML_MoveGetParam((MOVE_ID)fight->moveID, MVDATA_TARGET)) {
         case TARGET_OTHER_SELECT:
         case TARGET_ENEMY_SELECT:
@@ -1814,13 +1858,19 @@ extern "C" void HandlerDancerCheckMove(BattleEventItem* item, ServerFlow* server
         break;
     }
 
-    if (!foundAction) {
-        W2U_ClearActionOrderWork(extraActionOrder);
+    if (!foundAction ||
+        !W2U_IsValidExtraAction(&nextExtraAction) ||
+        W2U_IsQueuedExtraFight(dancerMon, moveID)) {
         return;
     }
 
-    extraActionOrder->field_E = 0;
-    extraActionOrder->field_F = 0;
+    nextExtraAction.done = 0;
+    nextExtraAction.field_E = 0;
+    nextExtraAction.field_F = 0;
+
+    ShiftExtraActionOrders();
+    ActionOrderWork* extraActionOrder = GetExtraActionOrder(0);
+    W2U_CopyActionOrderWork(extraActionOrder, &nextExtraAction);
 }
 
 extern "C" void HandlerDancerPopUp(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
