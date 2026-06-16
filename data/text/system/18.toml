@@ -7091,7 +7091,8 @@ text = [
 
 [msg.section_0.entries.1192]
 text = [
-  "$",
+  "[VAR PKNICK(0)]'s disguise\\n",
+  "was busted!$",
 ]
 
 [msg.section_0.entries.1193]

@@ -1336,6 +1336,29 @@ extern "C" void THUMB_BRANCH_ServerEvent_GetMoveParam(
     BattleEventVar_Pop();
 }
 
+extern "C" u32 THUMB_BRANCH_ServerEvent_CheckDamageToRecover(
+    ServerFlow* serverFlow,
+    BattleMon* attackingMon,
+    BattleMon* defendingMon,
+    MoveParam* moveParam)
+{
+    BattleEventVar_Push();
+
+    u32 attackingSlot = BattleMon_GetID(attackingMon);
+    u32 defendingSlot = BattleMon_GetID(defendingMon);
+    BattleEventVar_SetConstValue(VAR_ATTACKING_MON, attackingSlot);
+    BattleEventVar_SetConstValue(VAR_DEFENDING_MON, defendingSlot);
+    BattleEventVar_SetConstValue(VAR_MOVE_TYPE, moveParam->moveType);
+    BattleEventVar_SetConstValue(VAR_MOVE_CATEGORY, moveParam->category);
+    BattleEventVar_SetRewriteOnceValue(VAR_GENERAL_USE_FLAG, 0);
+
+    BattleEvent_CallHandlers(serverFlow, EVENT_CHECK_DAMAGE_TO_RECOVER);
+    u32 generalFlag = BattleEventVar_GetValue(VAR_GENERAL_USE_FLAG);
+
+    BattleEventVar_Pop();
+    return generalFlag;
+}
+
 extern "C" void THUMB_BRANCH_LINK_ServerControl_DamageRoot_0x36(
     ServerFlow* serverFlow,
     BattleMon* attackingMon,
@@ -1575,6 +1598,41 @@ extern "C" void HandlerStanceChange(BattleEventItem* item, ServerFlow* serverFlo
 
 BattleEventHandlerTableEntry StanceChangeHandlers[] = {
     {EVENT_MOVE_SEQUENCE_START, HandlerStanceChange},
+};
+
+
+extern "C" void HandlerDisguisePreventDamage(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    (void)work;
+    if (!serverFlow ||
+        !serverFlow->pokeCon ||
+        pokemonSlot != (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON)) {
+        return;
+    }
+
+    BattleMon* currentMon = PokeCon_GetBattleMon(serverFlow->pokeCon, pokemonSlot);
+    if (!currentMon ||
+        currentMon->species != SPECIES_778 ||
+        BattleMon_GetValue(currentMon, VALUE_FORM) != 0) {
+        return;
+    }
+
+    BattleEventVar_RewriteValue(VAR_GENERAL_USE_FLAG, 2);
+
+    HandlerParam_ChangeForm* changeForm =
+        (HandlerParam_ChangeForm*)BattleHandler_PushWork(serverFlow, EFFECT_CHANGE_FORM, pokemonSlot);
+    changeForm->header.flags |= HANDLER_ABILITY_POPUP_FLAG;
+    changeForm->pokeID = (u8)pokemonSlot;
+    changeForm->newForm = 1;
+    changeForm->dontResetOnSwitch = 1;
+    BattleHandler_StrSetup(&changeForm->exStr, 2u, BATTLE_DISGUISE_MSGID);
+    BattleHandler_AddArg(&changeForm->exStr, pokemonSlot);
+    BattleHandler_PopWork(serverFlow, changeForm);
+}
+
+BattleEventHandlerTableEntry DisguiseHandlers[] = {
+    {EVENT_CHECK_DAMAGE_TO_RECOVER, HandlerDisguisePreventDamage},
 };
 
 
@@ -2566,6 +2624,7 @@ W2UAbilityEventAddTable sAbilityEventAddTable[] = {
     W2U_ABILITY_EVENT(ABIL_SLUSH_RUSH, SlushRushHandlers),
     W2U_ABILITY_EVENT(ABIL_GALVANIZE, NormalMoveConversionHandlers),
     W2U_ABILITY_EVENT(ABIL_SURGE_SURFER, SurgeSurferHandlers),
+    W2U_ABILITY_EVENT(ABIL_DISGUISE, DisguiseHandlers),
     W2U_ABILITY_EVENT(ABIL_QUEENLY_MAGESTY, QueenlyMajestyHandlers),
     W2U_ABILITY_EVENT(ABIL_DANCER, DancerHandlers),
     W2U_ABILITY_EVENT(ABIL_BATTERY, BatteryHandlers),

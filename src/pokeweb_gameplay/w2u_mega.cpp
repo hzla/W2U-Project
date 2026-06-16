@@ -1,4 +1,5 @@
 #include "w2u_battle.h"
+#include "w2u_abilities.h"
 #include "w2u_field_effects.h"
 #include "w2u_moves.h"
 #include "w2u_mega_native_button_assets.h"
@@ -1638,7 +1639,12 @@ extern "C" void THUMB_BRANCH_BattleMon_UpdateData(BattleMon* battleMon, bool res
     W2U_MoveState_ClearExtraType(battleMon->battleSlot);
 }
 
-extern "C" void W2U_DISABLED_THUMB_BRANCH_BattleMon_ClearForSwitchOut(BattleMon* battleMon)
+static bool W2U_AbilityPreservesFormOnSwitchOut(ABILITY ability)
+{
+    return ability == ABIL_DISGUISE;
+}
+
+extern "C" void THUMB_BRANCH_BattleMon_ClearForSwitchOut(BattleMon* battleMon)
 {
     sys_memset(battleMon->turnFlag, 0, 2u);
     W2U_MoveState_ClearExtraType(battleMon->battleSlot);
@@ -1656,7 +1662,8 @@ extern "C" void W2U_DISABLED_THUMB_BRANCH_BattleMon_ClearForSwitchOut(BattleMon*
     }
 
     u8 megaForm = W2U_CanMegaEvolve(battleMon);
-    if (!megaForm || megaForm != battleMon->form) {
+    if (!W2U_AbilityPreservesFormOnSwitchOut(battleMon->currentAbility) &&
+        (!megaForm || megaForm != battleMon->form)) {
         battleMon->form = battleMon->flags & 0x1F;
         battleMon->currentAbility = battleMon->ability;
     } else {

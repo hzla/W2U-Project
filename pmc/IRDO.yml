@@ -25723,6 +25723,9 @@ Symbols:
   - Name: BattleMon_UpdateData
     Segment: 0x1D
     Address: 0x21BC3C5
+  - Name: BattleMon_ClearForSwitchOut
+    Segment: 0x1D
+    Address: 0x21BBD31
   - Name: AbilityEvent_AddItem
     Segment: 0x1D
     Address: 0x21BDCED
@@ -25783,6 +25786,9 @@ Symbols:
   - Name: ServerEvent_GetMoveParam
     Segment: 0x1D
     Address: 0x21AA00D
+  - Name: ServerEvent_CheckDamageToRecover
+    Segment: 0x1D
+    Address: 0x21AA6B5
   - Name: ItemEvent_AddItemCore
     Segment: 0x1D
     Address: 0x21C272D
