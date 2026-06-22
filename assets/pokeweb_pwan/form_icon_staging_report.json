@@ -1,0 +1,1712 @@
+{
+  "version": 1,
+  "formIcons": [
+    {
+      "targetIcon": 2198,
+      "paletteKey": 1095,
+      "sourceStem": "RATTATA_1",
+      "palette": 2,
+      "key": "REGIONAL_ALOLA_RATTATA",
+      "name": "Alolan Rattata"
+    },
+    {
+      "targetIcon": 2200,
+      "paletteKey": 1096,
+      "sourceStem": "RATICATE_1",
+      "palette": 1,
+      "key": "REGIONAL_ALOLA_RATICATE",
+      "name": "Alolan Raticate"
+    },
+    {
+      "targetIcon": 2206,
+      "paletteKey": 1099,
+      "sourceStem": "RAICHU_1",
+      "palette": 2,
+      "key": "REGIONAL_ALOLA_RAICHU",
+      "name": "Alolan Raichu"
+    },
+    {
+      "targetIcon": 2208,
+      "paletteKey": 1100,
+      "sourceStem": "SANDSHREW_1",
+      "palette": 0,
+      "key": "REGIONAL_ALOLA_SANDSHREW",
+      "name": "Alolan Sandshrew"
+    },
+    {
+      "targetIcon": 2210,
+      "paletteKey": 1101,
+      "sourceStem": "SANDSLASH_1",
+      "palette": 0,
+      "key": "REGIONAL_ALOLA_SANDSLASH",
+      "name": "Alolan Sandslash"
+    },
+    {
+      "targetIcon": 2212,
+      "paletteKey": 1102,
+      "sourceStem": "VULPIX_1",
+      "palette": 2,
+      "key": "REGIONAL_ALOLA_VULPIX",
+      "name": "Alolan Vulpix"
+    },
+    {
+      "targetIcon": 2214,
+      "paletteKey": 1103,
+      "sourceStem": "NINETALES_1",
+      "palette": 0,
+      "key": "REGIONAL_ALOLA_NINETALES",
+      "name": "Alolan Ninetales"
+    },
+    {
+      "targetIcon": 2216,
+      "paletteKey": 1104,
+      "sourceStem": "DIGLETT_1",
+      "palette": 2,
+      "key": "REGIONAL_ALOLA_DIGLETT",
+      "name": "Alolan Diglett"
+    },
+    {
+      "targetIcon": 2218,
+      "paletteKey": 1105,
+      "sourceStem": "DUGTRIO_1",
+      "palette": 1,
+      "key": "REGIONAL_ALOLA_DUGTRIO",
+      "name": "Alolan Dugtrio"
+    },
+    {
+      "targetIcon": 2220,
+      "paletteKey": 1106,
+      "sourceStem": "MEOWTH_1",
+      "palette": 0,
+      "key": "REGIONAL_ALOLA_MEOWTH",
+      "name": "Alolan Meowth"
+    },
+    {
+      "targetIcon": 2222,
+      "paletteKey": 1107,
+      "sourceStem": "MEOWTH_2",
+      "palette": 2,
+      "key": "REGIONAL_GALAR_MEOWTH",
+      "name": "Galarian Meowth"
+    },
+    {
+      "targetIcon": 2224,
+      "paletteKey": 1108,
+      "sourceStem": "PERSIAN_1",
+      "palette": 2,
+      "key": "REGIONAL_ALOLA_PERSIAN",
+      "name": "Alolan Persian"
+    },
+    {
+      "targetIcon": 2226,
+      "paletteKey": 1109,
+      "sourceStem": "GROWLITHE_1",
+      "palette": 1,
+      "key": "REGIONAL_HISUI_GROWLITHE",
+      "name": "Hisuian Growlithe"
+    },
+    {
+      "targetIcon": 2228,
+      "paletteKey": 1110,
+      "sourceStem": "ARCANINE_1",
+      "palette": 0,
+      "key": "REGIONAL_HISUI_ARCANINE",
+      "name": "Hisuian Arcanine"
+    },
+    {
+      "targetIcon": 2230,
+      "paletteKey": 1111,
+      "sourceStem": "GEODUDE_1",
+      "palette": 2,
+      "key": "REGIONAL_ALOLA_GEODUDE",
+      "name": "Alolan Geodude"
+    },
+    {
+      "targetIcon": 2232,
+      "paletteKey": 1112,
+      "sourceStem": "GRAVELER_1",
+      "palette": 2,
+      "key": "REGIONAL_ALOLA_GRAVELER",
+      "name": "Alolan Graveler"
+    },
+    {
+      "targetIcon": 2234,
+      "paletteKey": 1113,
+      "sourceStem": "GOLEM_1",
+      "palette": 1,
+      "key": "REGIONAL_ALOLA_GOLEM",
+      "name": "Alolan Golem"
+    },
+    {
+      "targetIcon": 2236,
+      "paletteKey": 1114,
+      "sourceStem": "PONYTA_1",
+      "palette": 2,
+      "key": "REGIONAL_GALAR_PONYTA",
+      "name": "Galarian Ponyta"
+    },
+    {
+      "targetIcon": 2238,
+      "paletteKey": 1115,
+      "sourceStem": "RAPIDASH_1",
+      "palette": 2,
+      "key": "REGIONAL_GALAR_RAPIDASH",
+      "name": "Galarian Rapidash"
+    },
+    {
+      "targetIcon": 2240,
+      "paletteKey": 1116,
+      "sourceStem": "SLOWPOKE_1",
+      "palette": 1,
+      "key": "REGIONAL_GALAR_SLOWPOKE",
+      "name": "Galarian Slowpoke"
+    },
+    {
+      "targetIcon": 2244,
+      "paletteKey": 1118,
+      "sourceStem": "SLOWBRO_2",
+      "palette": 0,
+      "key": "REGIONAL_GALAR_SLOWBRO",
+      "name": "Galarian Slowbro"
+    },
+    {
+      "targetIcon": 2246,
+      "paletteKey": 1119,
+      "sourceStem": "FARFETCHD_1",
+      "palette": 1,
+      "key": "REGIONAL_GALAR_FARFETCHD",
+      "name": "Galarian Farfetch'd"
+    },
+    {
+      "targetIcon": 2248,
+      "paletteKey": 1120,
+      "sourceStem": "GRIMER_1",
+      "palette": 0,
+      "key": "REGIONAL_ALOLA_GRIMER",
+      "name": "Alolan Grimer"
+    },
+    {
+      "targetIcon": 2250,
+      "paletteKey": 1121,
+      "sourceStem": "MUK_1",
+      "palette": 0,
+      "key": "REGIONAL_ALOLA_MUK",
+      "name": "Alolan Muk"
+    },
+    {
+      "targetIcon": 2252,
+      "paletteKey": 1122,
+      "sourceStem": "VOLTORB_1",
+      "palette": 0,
+      "key": "REGIONAL_HISUI_VOLTORB",
+      "name": "Hisuian Voltorb"
+    },
+    {
+      "targetIcon": 2254,
+      "paletteKey": 1123,
+      "sourceStem": "ELECTRODE_1",
+      "palette": 2,
+      "key": "REGIONAL_HISUI_ELECTRODE",
+      "name": "Hisuian Electrode"
+    },
+    {
+      "targetIcon": 2256,
+      "paletteKey": 1124,
+      "sourceStem": "EXEGGUTOR_1",
+      "palette": 1,
+      "key": "REGIONAL_ALOLA_EXEGGUTOR",
+      "name": "Alolan Exeggutor"
+    },
+    {
+      "targetIcon": 2258,
+      "paletteKey": 1125,
+      "sourceStem": "MAROWAK_1",
+      "palette": 0,
+      "key": "REGIONAL_ALOLA_MAROWAK",
+      "name": "Alolan Marowak"
+    },
+    {
+      "targetIcon": 2260,
+      "paletteKey": 1126,
+      "sourceStem": "WEEZING_1",
+      "palette": 1,
+      "key": "REGIONAL_GALAR_WEEZING",
+      "name": "Galarian Weezing"
+    },
+    {
+      "targetIcon": 2262,
+      "paletteKey": 1127,
+      "sourceStem": "MRMIME_1",
+      "palette": 2,
+      "key": "REGIONAL_GALAR_MR_MIME",
+      "name": "Galarian Mr. Mime"
+    },
+    {
+      "targetIcon": 2264,
+      "paletteKey": 1128,
+      "sourceStem": "TAUROS_1",
+      "palette": 2,
+      "key": "REGIONAL_PALDEA_TAUROS_COMBAT",
+      "name": "Paldean Tauros Combat Breed"
+    },
+    {
+      "targetIcon": 2266,
+      "paletteKey": 1129,
+      "sourceStem": "TAUROS_2",
+      "palette": 2,
+      "key": "REGIONAL_PALDEA_TAUROS_BLAZE",
+      "name": "Paldean Tauros Blaze Breed"
+    },
+    {
+      "targetIcon": 2268,
+      "paletteKey": 1130,
+      "sourceStem": "TAUROS_3",
+      "palette": 2,
+      "key": "REGIONAL_PALDEA_TAUROS_AQUA",
+      "name": "Paldean Tauros Aqua Breed"
+    },
+    {
+      "targetIcon": 2270,
+      "paletteKey": 1131,
+      "sourceStem": "ARTICUNO_1",
+      "palette": 2,
+      "key": "REGIONAL_GALAR_ARTICUNO",
+      "name": "Galarian Articuno"
+    },
+    {
+      "targetIcon": 2272,
+      "paletteKey": 1132,
+      "sourceStem": "ZAPDOS_1",
+      "palette": 0,
+      "key": "REGIONAL_GALAR_ZAPDOS",
+      "name": "Galarian Zapdos"
+    },
+    {
+      "targetIcon": 2274,
+      "paletteKey": 1133,
+      "sourceStem": "MOLTRES_1",
+      "palette": 1,
+      "key": "REGIONAL_GALAR_MOLTRES",
+      "name": "Galarian Moltres"
+    },
+    {
+      "targetIcon": 2276,
+      "paletteKey": 1134,
+      "sourceStem": "TYPHLOSION_1",
+      "palette": 1,
+      "key": "REGIONAL_HISUI_TYPHLOSION",
+      "name": "Hisuian Typhlosion"
+    },
+    {
+      "targetIcon": 2278,
+      "paletteKey": 1135,
+      "sourceStem": "WOOPER_1",
+      "palette": 2,
+      "key": "REGIONAL_PALDEA_WOOPER",
+      "name": "Paldean Wooper"
+    },
+    {
+      "targetIcon": 2280,
+      "paletteKey": 1136,
+      "sourceStem": "SLOWKING_1",
+      "palette": 2,
+      "key": "REGIONAL_GALAR_SLOWKING",
+      "name": "Galarian Slowking"
+    },
+    {
+      "targetIcon": 2282,
+      "paletteKey": 1137,
+      "sourceStem": "QWILFISH_1",
+      "palette": 1,
+      "key": "REGIONAL_HISUI_QWILFISH",
+      "name": "Hisuian Qwilfish"
+    },
+    {
+      "targetIcon": 2284,
+      "paletteKey": 1138,
+      "sourceStem": "SNEASEL_1",
+      "palette": 2,
+      "key": "REGIONAL_HISUI_SNEASEL",
+      "name": "Hisuian Sneasel"
+    },
+    {
+      "targetIcon": 2286,
+      "paletteKey": 1139,
+      "sourceStem": "CORSOLA_1",
+      "palette": 0,
+      "key": "REGIONAL_GALAR_CORSOLA",
+      "name": "Galarian Corsola"
+    },
+    {
+      "targetIcon": 2288,
+      "paletteKey": 1140,
+      "sourceStem": "ZIGZAGOON_1",
+      "palette": 0,
+      "key": "REGIONAL_GALAR_ZIGZAGOON",
+      "name": "Galarian Zigzagoon"
+    },
+    {
+      "targetIcon": 2290,
+      "paletteKey": 1141,
+      "sourceStem": "LINOONE_1",
+      "palette": 2,
+      "key": "REGIONAL_GALAR_LINOONE",
+      "name": "Galarian Linoone"
+    },
+    {
+      "targetIcon": 2292,
+      "paletteKey": 1142,
+      "sourceStem": "SAMUROTT_1",
+      "palette": 2,
+      "key": "REGIONAL_HISUI_SAMUROTT",
+      "name": "Hisuian Samurott"
+    },
+    {
+      "targetIcon": 2294,
+      "paletteKey": 1143,
+      "sourceStem": "LILLIGANT_1",
+      "palette": 1,
+      "key": "REGIONAL_HISUI_LILLIGANT",
+      "name": "Hisuian Lilligant"
+    },
+    {
+      "targetIcon": 2296,
+      "paletteKey": 1144,
+      "sourceStem": "DARUMAKA_2",
+      "palette": 0,
+      "key": "REGIONAL_GALAR_DARUMAKA",
+      "name": "Galarian Darumaka"
+    },
+    {
+      "targetIcon": 2300,
+      "paletteKey": 1146,
+      "sourceStem": "DARMANITAN_2",
+      "palette": 0,
+      "key": "REGIONAL_GALAR_DARMANITAN",
+      "name": "Galarian Darmanitan"
+    },
+    {
+      "targetIcon": 2302,
+      "paletteKey": 1147,
+      "sourceStem": "DARMANITAN_3",
+      "palette": 2,
+      "key": "REGIONAL_GALAR_DARMANITAN_ZEN",
+      "name": "Galarian Darmanitan Zen Mode"
+    },
+    {
+      "targetIcon": 2304,
+      "paletteKey": 1148,
+      "sourceStem": "YAMASK_1",
+      "palette": 2,
+      "key": "REGIONAL_GALAR_YAMASK",
+      "name": "Galarian Yamask"
+    },
+    {
+      "targetIcon": 2306,
+      "paletteKey": 1149,
+      "sourceStem": "ZORUA_1",
+      "palette": 0,
+      "key": "REGIONAL_HISUI_ZORUA",
+      "name": "Hisuian Zorua"
+    },
+    {
+      "targetIcon": 2308,
+      "paletteKey": 1150,
+      "sourceStem": "ZOROARK_1",
+      "palette": 0,
+      "key": "REGIONAL_HISUI_ZOROARK",
+      "name": "Hisuian Zoroark"
+    },
+    {
+      "targetIcon": 2310,
+      "paletteKey": 1151,
+      "sourceStem": "STUNFISK_1",
+      "palette": 0,
+      "key": "REGIONAL_GALAR_STUNFISK",
+      "name": "Galarian Stunfisk"
+    },
+    {
+      "targetIcon": 2312,
+      "paletteKey": 1152,
+      "sourceStem": "BRAVIARY_1",
+      "palette": 2,
+      "key": "REGIONAL_HISUI_BRAVIARY",
+      "name": "Hisuian Braviary"
+    },
+    {
+      "targetIcon": 2314,
+      "paletteKey": 1153,
+      "sourceStem": "SLIGGOO_1",
+      "palette": 0,
+      "key": "REGIONAL_HISUI_SLIGGOO",
+      "name": "Hisuian Sliggoo"
+    },
+    {
+      "targetIcon": 2316,
+      "paletteKey": 1154,
+      "sourceStem": "GOODRA_1",
+      "palette": 2,
+      "key": "REGIONAL_HISUI_GOODRA",
+      "name": "Hisuian Goodra"
+    },
+    {
+      "targetIcon": 2318,
+      "paletteKey": 1155,
+      "sourceStem": "AVALUGG_1",
+      "palette": 0,
+      "key": "REGIONAL_HISUI_AVALUGG",
+      "name": "Hisuian Avalugg"
+    },
+    {
+      "targetIcon": 2320,
+      "paletteKey": 1156,
+      "sourceStem": "DECIDUEYE_1",
+      "palette": 1,
+      "key": "REGIONAL_HISUI_DECIDUEYE",
+      "name": "Hisuian Decidueye"
+    },
+    {
+      "targetIcon": 2322,
+      "paletteKey": 1157,
+      "sourceStem": "TOXTRICITY_1",
+      "palette": 0,
+      "key": "ALT_TOXTRICITY_LOW_KEY",
+      "name": "Toxtricity Low Key Form"
+    },
+    {
+      "targetIcon": 2324,
+      "paletteKey": 1158,
+      "sourceStem": "EISCUE_1",
+      "palette": 0,
+      "key": "ALT_EISCUE_NOICE",
+      "name": "Eiscue Noice Face"
+    },
+    {
+      "targetIcon": 2326,
+      "paletteKey": 1159,
+      "sourceStem": "INDEEDEE_1",
+      "palette": 2,
+      "key": "ALT_INDEEDEE_FEMALE",
+      "name": "Indeedee Female"
+    },
+    {
+      "targetIcon": 2328,
+      "paletteKey": 1160,
+      "sourceStem": "MORPEKO_1",
+      "palette": 0,
+      "key": "ALT_MORPEKO_HANGRY",
+      "name": "Morpeko Hangry Mode"
+    },
+    {
+      "targetIcon": 2330,
+      "paletteKey": 1161,
+      "sourceStem": "ZACIAN_1",
+      "palette": 2,
+      "key": "ALT_ZACIAN_CROWNED",
+      "name": "Zacian Crowned Sword"
+    },
+    {
+      "targetIcon": 2332,
+      "paletteKey": 1162,
+      "sourceStem": "ZAMAZENTA_1",
+      "palette": 2,
+      "key": "ALT_ZAMAZENTA_CROWNED",
+      "name": "Zamazenta Crowned Shield"
+    },
+    {
+      "targetIcon": 2334,
+      "paletteKey": 1163,
+      "sourceStem": "URSHIFU_1",
+      "palette": 1,
+      "key": "ALT_URSHIFU_RAPID_STRIKE",
+      "name": "Urshifu Rapid Strike Style"
+    },
+    {
+      "targetIcon": 2336,
+      "paletteKey": 1164,
+      "sourceStem": "ZARUDE_1",
+      "palette": 1,
+      "key": "ALT_ZARUDE_DADA",
+      "name": "Zarude Dada"
+    },
+    {
+      "targetIcon": 2338,
+      "paletteKey": 1165,
+      "sourceStem": "CALYREX_1",
+      "palette": 0,
+      "key": "ALT_CALYREX_ICE_RIDER",
+      "name": "Calyrex Ice Rider"
+    },
+    {
+      "targetIcon": 2340,
+      "paletteKey": 1166,
+      "sourceStem": "CALYREX_2",
+      "palette": 0,
+      "key": "ALT_CALYREX_SHADOW_RIDER",
+      "name": "Calyrex Shadow Rider"
+    },
+    {
+      "targetIcon": 2342,
+      "paletteKey": 1167,
+      "sourceStem": "BASCULEGION_1",
+      "palette": 0,
+      "key": "ALT_BASCULEGION_FEMALE",
+      "name": "Basculegion Female"
+    },
+    {
+      "targetIcon": 2344,
+      "paletteKey": 1168,
+      "sourceStem": "ENAMORUS_1",
+      "palette": 0,
+      "key": "ALT_ENAMORUS_THERIAN",
+      "name": "Enamorus Therian Forme"
+    },
+    {
+      "targetIcon": 2346,
+      "paletteKey": 1169,
+      "sourceStem": "OINKOLOGNE_1",
+      "palette": 0,
+      "key": "ALT_OINKOLOGNE_FEMALE",
+      "name": "Oinkologne Female"
+    },
+    {
+      "targetIcon": 2348,
+      "paletteKey": 1170,
+      "sourceStem": "MAUSHOLD_1",
+      "palette": 0,
+      "key": "ALT_MAUSHOLD_FAMILY_OF_THREE",
+      "name": "Maushold Family of Three"
+    },
+    {
+      "targetIcon": 2350,
+      "paletteKey": 1171,
+      "sourceStem": "SQUAWKABILLY_1",
+      "palette": 0,
+      "key": "ALT_SQUAWKABILLY_BLUE",
+      "name": "Squawkabilly Blue Plumage"
+    },
+    {
+      "targetIcon": 2352,
+      "paletteKey": 1172,
+      "sourceStem": "SQUAWKABILLY_2",
+      "palette": 0,
+      "key": "ALT_SQUAWKABILLY_YELLOW",
+      "name": "Squawkabilly Yellow Plumage"
+    },
+    {
+      "targetIcon": 2354,
+      "paletteKey": 1173,
+      "sourceStem": "SQUAWKABILLY_3",
+      "palette": 0,
+      "key": "ALT_SQUAWKABILLY_WHITE",
+      "name": "Squawkabilly White Plumage"
+    },
+    {
+      "targetIcon": 2356,
+      "paletteKey": 1174,
+      "sourceStem": "PALAFIN_1",
+      "palette": 0,
+      "key": "ALT_PALAFIN_HERO",
+      "name": "Palafin Hero Form"
+    },
+    {
+      "targetIcon": 2358,
+      "paletteKey": 1175,
+      "sourceStem": "DUDUNSPARCE_1",
+      "palette": 0,
+      "key": "ALT_DUDUNSPARCE_THREE_SEGMENT",
+      "name": "Dudunsparce Three-Segment Form"
+    },
+    {
+      "targetIcon": 2360,
+      "paletteKey": 1176,
+      "sourceStem": "GIMMIGHOUL_1",
+      "palette": 2,
+      "key": "ALT_GIMMIGHOUL_ROAMING",
+      "name": "Gimmighoul Roaming Form"
+    },
+    {
+      "targetIcon": 2362,
+      "paletteKey": 1177,
+      "sourceStem": "OGERPON_1",
+      "palette": 0,
+      "key": "ALT_OGERPON_WELLSPRING",
+      "name": "Ogerpon Wellspring Mask"
+    },
+    {
+      "targetIcon": 2364,
+      "paletteKey": 1178,
+      "sourceStem": "OGERPON_2",
+      "palette": 0,
+      "key": "ALT_OGERPON_HEARTHFLAME",
+      "name": "Ogerpon Hearthflame Mask"
+    },
+    {
+      "targetIcon": 2366,
+      "paletteKey": 1179,
+      "sourceStem": "OGERPON_3",
+      "palette": 0,
+      "key": "ALT_OGERPON_CORNERSTONE",
+      "name": "Ogerpon Cornerstone Mask"
+    }
+  ],
+  "previewIcons": [
+    {
+      "previewSpecies": 1,
+      "name": "Mega Gengar",
+      "staticAsset": 738,
+      "sourceIcon": 1484,
+      "targetIcon": 10,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 2,
+      "name": "Mega Gardevoir",
+      "staticAsset": 781,
+      "sourceIcon": 1570,
+      "targetIcon": 12,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 3,
+      "name": "Mega Ampharos",
+      "staticAsset": 745,
+      "sourceIcon": 1498,
+      "targetIcon": 14,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 4,
+      "name": "Mega Venusaur",
+      "staticAsset": 724,
+      "sourceIcon": 1456,
+      "targetIcon": 16,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 5,
+      "name": "Mega Charizard X",
+      "staticAsset": 725,
+      "sourceIcon": 1458,
+      "targetIcon": 18,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 6,
+      "name": "Mega Charizard Y",
+      "staticAsset": 726,
+      "sourceIcon": 1460,
+      "targetIcon": 20,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 7,
+      "name": "Mega Mewtwo X",
+      "staticAsset": 743,
+      "sourceIcon": 1494,
+      "targetIcon": 22,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 8,
+      "name": "Mega Mewtwo Y",
+      "staticAsset": 744,
+      "sourceIcon": 1496,
+      "targetIcon": 24,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 9,
+      "name": "Mega Blaziken",
+      "staticAsset": 779,
+      "sourceIcon": 1566,
+      "targetIcon": 26,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 10,
+      "name": "Mega Medicham",
+      "staticAsset": 785,
+      "sourceIcon": 1578,
+      "targetIcon": 28,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 11,
+      "name": "Mega Houndoom",
+      "staticAsset": 776,
+      "sourceIcon": 1560,
+      "targetIcon": 30,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 12,
+      "name": "Mega Aggron",
+      "staticAsset": 784,
+      "sourceIcon": 1576,
+      "targetIcon": 32,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 13,
+      "name": "Mega Banette",
+      "staticAsset": 793,
+      "sourceIcon": 1594,
+      "targetIcon": 34,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 14,
+      "name": "Mega Tyranitar",
+      "staticAsset": 777,
+      "sourceIcon": 1562,
+      "targetIcon": 36,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 15,
+      "name": "Mega Scizor",
+      "staticAsset": 774,
+      "sourceIcon": 1556,
+      "targetIcon": 38,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 16,
+      "name": "Mega Pinsir",
+      "staticAsset": 740,
+      "sourceIcon": 1488,
+      "targetIcon": 40,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 17,
+      "name": "Mega Aerodactyl",
+      "staticAsset": 742,
+      "sourceIcon": 1492,
+      "targetIcon": 42,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 18,
+      "name": "Mega Abomasnow",
+      "staticAsset": 816,
+      "sourceIcon": 1640,
+      "targetIcon": 44,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 19,
+      "name": "Mega Blastoise",
+      "staticAsset": 727,
+      "sourceIcon": 1462,
+      "targetIcon": 46,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 20,
+      "name": "Mega Kangaskhan",
+      "staticAsset": 739,
+      "sourceIcon": 1486,
+      "targetIcon": 48,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 21,
+      "name": "Mega Gyarados",
+      "staticAsset": 741,
+      "sourceIcon": 1490,
+      "targetIcon": 50,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 22,
+      "name": "Mega Alakazam",
+      "staticAsset": 736,
+      "sourceIcon": 1480,
+      "targetIcon": 52,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 23,
+      "name": "Mega Heracross",
+      "staticAsset": 775,
+      "sourceIcon": 1558,
+      "targetIcon": 54,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 24,
+      "name": "Mega Mawile",
+      "staticAsset": 783,
+      "sourceIcon": 1574,
+      "targetIcon": 56,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 25,
+      "name": "Mega Manectric",
+      "staticAsset": 786,
+      "sourceIcon": 1580,
+      "targetIcon": 58,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 26,
+      "name": "Mega Latios",
+      "staticAsset": 799,
+      "sourceIcon": 1606,
+      "targetIcon": 60,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 27,
+      "name": "Mega Latias",
+      "staticAsset": 798,
+      "sourceIcon": 1604,
+      "targetIcon": 62,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 28,
+      "name": "Mega Swampert",
+      "staticAsset": 780,
+      "sourceIcon": 1568,
+      "targetIcon": 64,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 29,
+      "name": "Mega Sceptile",
+      "staticAsset": 778,
+      "sourceIcon": 1564,
+      "targetIcon": 66,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 30,
+      "name": "Mega Sableye",
+      "staticAsset": 782,
+      "sourceIcon": 1572,
+      "targetIcon": 68,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 31,
+      "name": "Mega Altaria",
+      "staticAsset": 789,
+      "sourceIcon": 1586,
+      "targetIcon": 70,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 32,
+      "name": "Mega Gallade",
+      "staticAsset": 817,
+      "sourceIcon": 1642,
+      "targetIcon": 72,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 33,
+      "name": "Mega Audino",
+      "staticAsset": 825,
+      "sourceIcon": 1658,
+      "targetIcon": 74,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 34,
+      "name": "Mega Sharpedo",
+      "staticAsset": 787,
+      "sourceIcon": 1582,
+      "targetIcon": 76,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 35,
+      "name": "Mega Steelix",
+      "staticAsset": 773,
+      "sourceIcon": 1554,
+      "targetIcon": 78,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 36,
+      "name": "Mega Pidgeot",
+      "staticAsset": 729,
+      "sourceIcon": 1466,
+      "targetIcon": 80,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 37,
+      "name": "Mega Glalie",
+      "staticAsset": 795,
+      "sourceIcon": 1598,
+      "targetIcon": 82,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 38,
+      "name": "Mega Diancie",
+      "staticAsset": 895,
+      "sourceIcon": 1798,
+      "targetIcon": 84,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 39,
+      "name": "Mega Metagross",
+      "staticAsset": 797,
+      "sourceIcon": 1602,
+      "targetIcon": 86,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 40,
+      "name": "Mega Rayquaza",
+      "staticAsset": 802,
+      "sourceIcon": 1612,
+      "targetIcon": 88,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 41,
+      "name": "Mega Camerupt",
+      "staticAsset": 788,
+      "sourceIcon": 1584,
+      "targetIcon": 90,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 42,
+      "name": "Mega Lopunny",
+      "staticAsset": 813,
+      "sourceIcon": 1634,
+      "targetIcon": 92,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 43,
+      "name": "Mega Salamence",
+      "staticAsset": 796,
+      "sourceIcon": 1600,
+      "targetIcon": 94,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 44,
+      "name": "Mega Beedrill",
+      "staticAsset": 728,
+      "sourceIcon": 1464,
+      "targetIcon": 96,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 45,
+      "name": "Mega Clefable",
+      "staticAsset": 1040,
+      "sourceIcon": 2088,
+      "targetIcon": 98,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 46,
+      "name": "Mega Victreebel",
+      "staticAsset": 1041,
+      "sourceIcon": 2090,
+      "targetIcon": 100,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 47,
+      "name": "Mega Starmie",
+      "staticAsset": 1042,
+      "sourceIcon": 2092,
+      "targetIcon": 102,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 48,
+      "name": "Mega Dragonite",
+      "staticAsset": 1043,
+      "sourceIcon": 2094,
+      "targetIcon": 104,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 49,
+      "name": "Mega Meganium",
+      "staticAsset": 1044,
+      "sourceIcon": 2096,
+      "targetIcon": 106,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 50,
+      "name": "Mega Feraligatr",
+      "staticAsset": 1045,
+      "sourceIcon": 2098,
+      "targetIcon": 108,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 51,
+      "name": "Mega Skarmory",
+      "staticAsset": 1046,
+      "sourceIcon": 2100,
+      "targetIcon": 110,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 52,
+      "name": "Mega Chimecho",
+      "staticAsset": 1047,
+      "sourceIcon": 2102,
+      "targetIcon": 112,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 53,
+      "name": "Mega Absol",
+      "staticAsset": 1048,
+      "sourceIcon": 2104,
+      "targetIcon": 114,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 54,
+      "name": "Mega Absol Z",
+      "staticAsset": 1049,
+      "sourceIcon": 2106,
+      "targetIcon": 116,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 55,
+      "name": "Mega Staraptor",
+      "staticAsset": 1050,
+      "sourceIcon": 2108,
+      "targetIcon": 118,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 56,
+      "name": "Mega Garchomp",
+      "staticAsset": 1051,
+      "sourceIcon": 2110,
+      "targetIcon": 120,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 57,
+      "name": "Mega Garchomp Z",
+      "staticAsset": 1052,
+      "sourceIcon": 2112,
+      "targetIcon": 122,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 58,
+      "name": "Mega Lucario",
+      "staticAsset": 1053,
+      "sourceIcon": 2114,
+      "targetIcon": 124,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 59,
+      "name": "Mega Lucario Z",
+      "staticAsset": 1054,
+      "sourceIcon": 2116,
+      "targetIcon": 126,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 60,
+      "name": "Mega Froslass",
+      "staticAsset": 1055,
+      "sourceIcon": 2118,
+      "targetIcon": 128,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 61,
+      "name": "Mega Heatran",
+      "staticAsset": 1056,
+      "sourceIcon": 2120,
+      "targetIcon": 130,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 62,
+      "name": "Mega Darkrai",
+      "staticAsset": 1057,
+      "sourceIcon": 2122,
+      "targetIcon": 132,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 63,
+      "name": "Mega Emboar",
+      "staticAsset": 1058,
+      "sourceIcon": 2124,
+      "targetIcon": 134,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 64,
+      "name": "Mega Excadrill",
+      "staticAsset": 1059,
+      "sourceIcon": 2126,
+      "targetIcon": 136,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 65,
+      "name": "Mega Scolipede",
+      "staticAsset": 1060,
+      "sourceIcon": 2128,
+      "targetIcon": 138,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 66,
+      "name": "Mega Scrafty",
+      "staticAsset": 1061,
+      "sourceIcon": 2130,
+      "targetIcon": 140,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 67,
+      "name": "Mega Eelektross",
+      "staticAsset": 1062,
+      "sourceIcon": 2132,
+      "targetIcon": 142,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 68,
+      "name": "Mega Chandelure",
+      "staticAsset": 1063,
+      "sourceIcon": 2134,
+      "targetIcon": 144,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 69,
+      "name": "Mega Golurk",
+      "staticAsset": 1064,
+      "sourceIcon": 2136,
+      "targetIcon": 146,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 70,
+      "name": "Mega Chesnaught",
+      "staticAsset": 1065,
+      "sourceIcon": 2138,
+      "targetIcon": 148,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 71,
+      "name": "Mega Delphox",
+      "staticAsset": 1066,
+      "sourceIcon": 2140,
+      "targetIcon": 150,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 72,
+      "name": "Mega Greninja",
+      "staticAsset": 1067,
+      "sourceIcon": 2142,
+      "targetIcon": 152,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 73,
+      "name": "Mega Pyroar",
+      "staticAsset": 1068,
+      "sourceIcon": 2144,
+      "targetIcon": 154,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 74,
+      "name": "Mega Floette",
+      "staticAsset": 1074,
+      "sourceIcon": 2156,
+      "targetIcon": 156,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 75,
+      "name": "Mega Meowstic",
+      "staticAsset": 1076,
+      "sourceIcon": 2160,
+      "targetIcon": 158,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 76,
+      "name": "Mega Malamar",
+      "staticAsset": 1077,
+      "sourceIcon": 2162,
+      "targetIcon": 160,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 77,
+      "name": "Mega Barbaracle",
+      "staticAsset": 1078,
+      "sourceIcon": 2164,
+      "targetIcon": 162,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 78,
+      "name": "Mega Dragalge",
+      "staticAsset": 1079,
+      "sourceIcon": 2166,
+      "targetIcon": 164,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 79,
+      "name": "Mega Hawlucha",
+      "staticAsset": 1080,
+      "sourceIcon": 2168,
+      "targetIcon": 166,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 80,
+      "name": "Mega Zygarde",
+      "staticAsset": 1081,
+      "sourceIcon": 2170,
+      "targetIcon": 168,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 81,
+      "name": "Mega Crabominable",
+      "staticAsset": 1082,
+      "sourceIcon": 2172,
+      "targetIcon": 170,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 82,
+      "name": "Mega Golisopod",
+      "staticAsset": 1083,
+      "sourceIcon": 2174,
+      "targetIcon": 172,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 83,
+      "name": "Mega Drampa",
+      "staticAsset": 1084,
+      "sourceIcon": 2176,
+      "targetIcon": 174,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 84,
+      "name": "Mega Magearna",
+      "staticAsset": 1085,
+      "sourceIcon": 2178,
+      "targetIcon": 176,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 85,
+      "name": "Mega Magearna (Original Color)",
+      "staticAsset": 1086,
+      "sourceIcon": 2180,
+      "targetIcon": 178,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 86,
+      "name": "Mega Zeraora",
+      "staticAsset": 1087,
+      "sourceIcon": 2182,
+      "targetIcon": 180,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 87,
+      "name": "Mega Falinks",
+      "staticAsset": 1088,
+      "sourceIcon": 2184,
+      "targetIcon": 182,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 88,
+      "name": "Mega Scovillain",
+      "staticAsset": 1089,
+      "sourceIcon": 2186,
+      "targetIcon": 184,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 89,
+      "name": "Mega Glimmora",
+      "staticAsset": 1090,
+      "sourceIcon": 2188,
+      "targetIcon": 186,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 90,
+      "name": "Mega Tatsugiri (Curly Form)",
+      "staticAsset": 1091,
+      "sourceIcon": 2190,
+      "targetIcon": 188,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 91,
+      "name": "Mega Tatsugiri (Droopy Form)",
+      "staticAsset": 1092,
+      "sourceIcon": 2192,
+      "targetIcon": 190,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 92,
+      "name": "Mega Tatsugiri (Stretchy Form)",
+      "staticAsset": 1093,
+      "sourceIcon": 2194,
+      "targetIcon": 192,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 93,
+      "name": "Mega Baxcalibur",
+      "staticAsset": 1094,
+      "sourceIcon": 2196,
+      "targetIcon": 194,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 94,
+      "name": "Mega Raichu X",
+      "staticAsset": 1038,
+      "sourceIcon": 2084,
+      "targetIcon": 196,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 95,
+      "name": "Mega Raichu Y",
+      "staticAsset": 1039,
+      "sourceIcon": 2086,
+      "targetIcon": 198,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    },
+    {
+      "previewSpecies": 96,
+      "name": "Mega Slowbro",
+      "staticAsset": 737,
+      "sourceIcon": 1482,
+      "targetIcon": 200,
+      "copiedOffsets": [
+        0,
+        1
+      ]
+    }
+  ],
+  "errors": []
+}

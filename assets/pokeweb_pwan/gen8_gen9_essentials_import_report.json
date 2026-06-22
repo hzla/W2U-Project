@@ -1,0 +1,5031 @@
+{
+  "version": 1,
+  "baseSpeciesImported": 214,
+  "formsImported": 81,
+  "relocatedExistingForms": [
+    {
+      "baseSpeciesId": 26,
+      "form": 1,
+      "oldPersonalId": 1128,
+      "newPersonalId": 1187,
+      "oldSpriteForm": 314,
+      "newSpriteForm": 373,
+      "oldAssetIndex": 1038,
+      "newAssetIndex": 1097
+    },
+    {
+      "baseSpeciesId": 26,
+      "form": 2,
+      "oldPersonalId": 1129,
+      "newPersonalId": 1188,
+      "oldSpriteForm": 315,
+      "newSpriteForm": 374,
+      "oldAssetIndex": 1039,
+      "newAssetIndex": 1098
+    },
+    {
+      "baseSpeciesId": 80,
+      "form": 1,
+      "oldPersonalId": 1108,
+      "newPersonalId": 1207,
+      "oldSpriteForm": 13,
+      "newSpriteForm": 393,
+      "oldAssetIndex": 737,
+      "newAssetIndex": 1117
+    },
+    {
+      "baseSpeciesId": 555,
+      "form": 1,
+      "oldPersonalId": 1041,
+      "newPersonalId": 1235,
+      "oldSpriteForm": 103,
+      "newSpriteForm": 421,
+      "oldAssetIndex": 827,
+      "newAssetIndex": 1145
+    }
+  ],
+  "personalRange": [
+    1185,
+    1269
+  ],
+  "spriteFormRange": [
+    371,
+    455
+  ],
+  "regionalDexFileIndex": 1270,
+  "formListSize": 180,
+  "pwanConfigEntries": 544,
+  "maxAssetIndex": 1179,
+  "missing": [],
+  "forms": [
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_RATTATA",
+        "id": 1185,
+        "constant": "SPECIES_1185",
+        "name": "Alolan Rattata",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_RATTATA",
+        "baseSpeciesId": 19,
+        "form": 1,
+        "spriteForm": 371,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1185/personal.toml",
+        "battleSet": 21900,
+        "battleSprites": "20/20",
+        "icon": 2198,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem RATTATA_1; PWAN asset index 1095; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1095,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/rattata-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/rattata-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/rattata-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/RATTATA_1.png",
+        "stats": {
+          "front": {
+            "frames": 14,
+            "timeline": 53,
+            "ticks": 371,
+            "bytes": 64804
+          },
+          "back": {
+            "frames": 12,
+            "timeline": 53,
+            "ticks": 371,
+            "bytes": 55588
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_RATICATE",
+        "id": 1186,
+        "constant": "SPECIES_1186",
+        "name": "Alolan Raticate",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_RATICATE",
+        "baseSpeciesId": 20,
+        "form": 1,
+        "spriteForm": 372,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1186/personal.toml",
+        "battleSet": 21920,
+        "battleSprites": "20/20",
+        "icon": 2200,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem RATICATE_1; PWAN asset index 1096; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1096,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raticate-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raticate-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raticate-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/RATICATE_1.png",
+        "stats": {
+          "front": {
+            "frames": 27,
+            "timeline": 40,
+            "ticks": 160,
+            "bytes": 124656
+          },
+          "back": {
+            "frames": 20,
+            "timeline": 39,
+            "ticks": 156,
+            "bytes": 92396
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_RAICHU",
+        "id": 1189,
+        "constant": "SPECIES_1189",
+        "name": "Alolan Raichu",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_RAICHU",
+        "baseSpeciesId": 26,
+        "form": 3,
+        "spriteForm": 375,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1189/personal.toml",
+        "battleSet": 21980,
+        "battleSprites": "20/20",
+        "icon": 2206,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem RAICHU_1; PWAN asset index 1099; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1099,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raichu-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raichu-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raichu-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/RAICHU_1.png",
+        "stats": {
+          "front": {
+            "frames": 40,
+            "timeline": 108,
+            "ticks": 648,
+            "bytes": 184832
+          },
+          "back": {
+            "frames": 40,
+            "timeline": 108,
+            "ticks": 648,
+            "bytes": 184832
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_SANDSHREW",
+        "id": 1190,
+        "constant": "SPECIES_1190",
+        "name": "Alolan Sandshrew",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_SANDSHREW",
+        "baseSpeciesId": 27,
+        "form": 1,
+        "spriteForm": 376,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1190/personal.toml",
+        "battleSet": 22000,
+        "battleSprites": "20/20",
+        "icon": 2208,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem SANDSHREW_1; PWAN asset index 1100; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1100,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandshrew-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandshrew-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandshrew-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SANDSHREW_1.png",
+        "stats": {
+          "front": {
+            "frames": 17,
+            "timeline": 63,
+            "ticks": 378,
+            "bytes": 78668
+          },
+          "back": {
+            "frames": 17,
+            "timeline": 63,
+            "ticks": 378,
+            "bytes": 78668
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_SANDSLASH",
+        "id": 1191,
+        "constant": "SPECIES_1191",
+        "name": "Alolan Sandslash",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_SANDSLASH",
+        "baseSpeciesId": 28,
+        "form": 1,
+        "spriteForm": 377,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1191/personal.toml",
+        "battleSet": 22020,
+        "battleSprites": "20/20",
+        "icon": 2210,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem SANDSLASH_1; PWAN asset index 1101; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1101,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandslash-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandslash-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandslash-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SANDSLASH_1.png",
+        "stats": {
+          "front": {
+            "frames": 44,
+            "timeline": 100,
+            "ticks": 600,
+            "bytes": 203232
+          },
+          "back": {
+            "frames": 38,
+            "timeline": 100,
+            "ticks": 600,
+            "bytes": 175584
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_VULPIX",
+        "id": 1192,
+        "constant": "SPECIES_1192",
+        "name": "Alolan Vulpix",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_VULPIX",
+        "baseSpeciesId": 37,
+        "form": 1,
+        "spriteForm": 378,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1192/personal.toml",
+        "battleSet": 22040,
+        "battleSprites": "20/20",
+        "icon": 2212,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem VULPIX_1; PWAN asset index 1102; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1102,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/vulpix-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/vulpix-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/vulpix-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/VULPIX_1.png",
+        "stats": {
+          "front": {
+            "frames": 10,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 46200
+          },
+          "back": {
+            "frames": 10,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 46200
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_NINETALES",
+        "id": 1193,
+        "constant": "SPECIES_1193",
+        "name": "Alolan Ninetales",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_NINETALES",
+        "baseSpeciesId": 38,
+        "form": 1,
+        "spriteForm": 379,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1193/personal.toml",
+        "battleSet": 22060,
+        "battleSprites": "20/20",
+        "icon": 2214,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem NINETALES_1; PWAN asset index 1103; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1103,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/ninetales-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/ninetales-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/ninetales-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/NINETALES_1.png",
+        "stats": {
+          "front": {
+            "frames": 16,
+            "timeline": 16,
+            "ticks": 96,
+            "bytes": 73872
+          },
+          "back": {
+            "frames": 16,
+            "timeline": 16,
+            "ticks": 96,
+            "bytes": 73872
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_DIGLETT",
+        "id": 1194,
+        "constant": "SPECIES_1194",
+        "name": "Alolan Diglett",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_DIGLETT",
+        "baseSpeciesId": 50,
+        "form": 1,
+        "spriteForm": 380,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1194/personal.toml",
+        "battleSet": 22080,
+        "battleSprites": "20/20",
+        "icon": 2216,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem DIGLETT_1; PWAN asset index 1104; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1104,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/diglett-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/diglett-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/diglett-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DIGLETT_1.png",
+        "stats": {
+          "front": {
+            "frames": 16,
+            "timeline": 53,
+            "ticks": 318,
+            "bytes": 74020
+          },
+          "back": {
+            "frames": 16,
+            "timeline": 53,
+            "ticks": 318,
+            "bytes": 74020
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_DUGTRIO",
+        "id": 1195,
+        "constant": "SPECIES_1195",
+        "name": "Alolan Dugtrio",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_DUGTRIO",
+        "baseSpeciesId": 51,
+        "form": 1,
+        "spriteForm": 381,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1195/personal.toml",
+        "battleSet": 22100,
+        "battleSprites": "20/20",
+        "icon": 2218,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem DUGTRIO_1; PWAN asset index 1105; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1105,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/dugtrio-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/dugtrio-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/dugtrio-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DUGTRIO_1.png",
+        "stats": {
+          "front": {
+            "frames": 22,
+            "timeline": 42,
+            "ticks": 252,
+            "bytes": 101624
+          },
+          "back": {
+            "frames": 39,
+            "timeline": 42,
+            "ticks": 252,
+            "bytes": 179960
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_MEOWTH",
+        "id": 1196,
+        "constant": "SPECIES_1196",
+        "name": "Alolan Meowth",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_MEOWTH",
+        "baseSpeciesId": 52,
+        "form": 1,
+        "spriteForm": 382,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1196/personal.toml",
+        "battleSet": 22120,
+        "battleSprites": "20/20",
+        "icon": 2220,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem MEOWTH_1; PWAN asset index 1106; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1106,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/meowth-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/meowth-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/meowth-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MEOWTH_1.png",
+        "stats": {
+          "front": {
+            "frames": 23,
+            "timeline": 57,
+            "ticks": 342,
+            "bytes": 106292
+          },
+          "back": {
+            "frames": 21,
+            "timeline": 52,
+            "ticks": 312,
+            "bytes": 97056
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_MEOWTH",
+        "id": 1197,
+        "constant": "SPECIES_1197",
+        "name": "Galarian Meowth",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_MEOWTH",
+        "baseSpeciesId": 52,
+        "form": 2,
+        "spriteForm": 383,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1197/personal.toml",
+        "battleSet": 22140,
+        "battleSprites": "20/20",
+        "icon": 2222,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem MEOWTH_2; PWAN asset index 1107; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1107,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/MEOWTH_2.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/MEOWTH_2.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/MEOWTH_2.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MEOWTH_2.png",
+        "stats": {
+          "front": {
+            "frames": 43,
+            "timeline": 75,
+            "ticks": 450,
+            "bytes": 198524
+          },
+          "back": {
+            "frames": 24,
+            "timeline": 75,
+            "ticks": 450,
+            "bytes": 110972
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_PERSIAN",
+        "id": 1198,
+        "constant": "SPECIES_1198",
+        "name": "Alolan Persian",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_PERSIAN",
+        "baseSpeciesId": 53,
+        "form": 1,
+        "spriteForm": 384,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1198/personal.toml",
+        "battleSet": 22160,
+        "battleSprites": "20/20",
+        "icon": 2224,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem PERSIAN_1; PWAN asset index 1108; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1108,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/persian-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/persian-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/persian-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/PERSIAN_1.png",
+        "stats": {
+          "front": {
+            "frames": 39,
+            "timeline": 85,
+            "ticks": 510,
+            "bytes": 180132
+          },
+          "back": {
+            "frames": 39,
+            "timeline": 85,
+            "ticks": 510,
+            "bytes": 180132
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_GROWLITHE",
+        "id": 1199,
+        "constant": "SPECIES_1199",
+        "name": "Hisuian Growlithe",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_GROWLITHE",
+        "baseSpeciesId": 58,
+        "form": 1,
+        "spriteForm": 385,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1199/personal.toml",
+        "battleSet": 22180,
+        "battleSprites": "20/20",
+        "icon": 2226,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem GROWLITHE_1; PWAN asset index 1109; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1109,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/GROWLITHE_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/GROWLITHE_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/GROWLITHE_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GROWLITHE_1.png",
+        "stats": {
+          "front": {
+            "frames": 114,
+            "timeline": 114,
+            "ticks": 684,
+            "bytes": 525848
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 144,
+            "bytes": 32384
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_ARCANINE",
+        "id": 1200,
+        "constant": "SPECIES_1200",
+        "name": "Hisuian Arcanine",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_ARCANINE",
+        "baseSpeciesId": 59,
+        "form": 1,
+        "spriteForm": 386,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1200/personal.toml",
+        "battleSet": 22200,
+        "battleSprites": "20/20",
+        "icon": 2228,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem ARCANINE_1; PWAN asset index 1110; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1110,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ARCANINE_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ARCANINE_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ARCANINE_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ARCANINE_1.png",
+        "stats": {
+          "front": {
+            "frames": 23,
+            "timeline": 51,
+            "ticks": 612,
+            "bytes": 106268
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 150,
+            "bytes": 32384
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_GEODUDE",
+        "id": 1201,
+        "constant": "SPECIES_1201",
+        "name": "Alolan Geodude",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_GEODUDE",
+        "baseSpeciesId": 74,
+        "form": 1,
+        "spriteForm": 387,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1201/personal.toml",
+        "battleSet": 22220,
+        "battleSprites": "20/20",
+        "icon": 2230,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem GEODUDE_1; PWAN asset index 1111; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1111,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/geodude-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/geodude-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/geodude-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GEODUDE_1.png",
+        "stats": {
+          "front": {
+            "frames": 24,
+            "timeline": 46,
+            "ticks": 276,
+            "bytes": 110856
+          },
+          "back": {
+            "frames": 22,
+            "timeline": 43,
+            "ticks": 258,
+            "bytes": 101628
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_GRAVELER",
+        "id": 1202,
+        "constant": "SPECIES_1202",
+        "name": "Alolan Graveler",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_GRAVELER",
+        "baseSpeciesId": 75,
+        "form": 1,
+        "spriteForm": 388,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1202/personal.toml",
+        "battleSet": 22240,
+        "battleSprites": "20/20",
+        "icon": 2232,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem GRAVELER_1; PWAN asset index 1112; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1112,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/graveler-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/graveler-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/graveler-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GRAVELER_1.png",
+        "stats": {
+          "front": {
+            "frames": 47,
+            "timeline": 89,
+            "ticks": 534,
+            "bytes": 217012
+          },
+          "back": {
+            "frames": 48,
+            "timeline": 89,
+            "ticks": 534,
+            "bytes": 221620
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_GOLEM",
+        "id": 1203,
+        "constant": "SPECIES_1203",
+        "name": "Alolan Golem",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_GOLEM",
+        "baseSpeciesId": 76,
+        "form": 1,
+        "spriteForm": 389,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1203/personal.toml",
+        "battleSet": 22260,
+        "battleSprites": "20/20",
+        "icon": 2234,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem GOLEM_1; PWAN asset index 1113; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1113,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/golem-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/golem-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/golem-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GOLEM_1.png",
+        "stats": {
+          "front": {
+            "frames": 47,
+            "timeline": 106,
+            "ticks": 636,
+            "bytes": 217080
+          },
+          "back": {
+            "frames": 42,
+            "timeline": 106,
+            "ticks": 636,
+            "bytes": 194040
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_PONYTA",
+        "id": 1204,
+        "constant": "SPECIES_1204",
+        "name": "Galarian Ponyta",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_PONYTA",
+        "baseSpeciesId": 77,
+        "form": 1,
+        "spriteForm": 390,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1204/personal.toml",
+        "battleSet": 22280,
+        "battleSprites": "20/20",
+        "icon": 2236,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem PONYTA_1; PWAN asset index 1114; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1114,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/PONYTA_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/PONYTA_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/PONYTA_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/PONYTA_1.png",
+        "stats": {
+          "front": {
+            "frames": 7,
+            "timeline": 41,
+            "ticks": 246,
+            "bytes": 32500
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 27768
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_RAPIDASH",
+        "id": 1205,
+        "constant": "SPECIES_1205",
+        "name": "Galarian Rapidash",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_RAPIDASH",
+        "baseSpeciesId": 78,
+        "form": 1,
+        "spriteForm": 391,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1205/personal.toml",
+        "battleSet": 22300,
+        "battleSprites": "20/20",
+        "icon": 2238,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem RAPIDASH_1; PWAN asset index 1115; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1115,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/RAPIDASH_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/RAPIDASH_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/RAPIDASH_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/RAPIDASH_1.png",
+        "stats": {
+          "front": {
+            "frames": 8,
+            "timeline": 15,
+            "ticks": 96,
+            "bytes": 37004
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 17,
+            "ticks": 108,
+            "bytes": 32404
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_SLOWPOKE",
+        "id": 1206,
+        "constant": "SPECIES_1206",
+        "name": "Galarian Slowpoke",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_SLOWPOKE",
+        "baseSpeciesId": 79,
+        "form": 1,
+        "spriteForm": 392,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1206/personal.toml",
+        "battleSet": 22320,
+        "battleSprites": "20/20",
+        "icon": 2240,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem SLOWPOKE_1; PWAN asset index 1116; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1116,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SLOWPOKE_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SLOWPOKE_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SLOWPOKE_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SLOWPOKE_1.png",
+        "stats": {
+          "front": {
+            "frames": 35,
+            "timeline": 86,
+            "ticks": 534,
+            "bytes": 161704
+          },
+          "back": {
+            "frames": 5,
+            "timeline": 9,
+            "ticks": 60,
+            "bytes": 23156
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_SLOWBRO",
+        "id": 1208,
+        "constant": "SPECIES_1208",
+        "name": "Galarian Slowbro",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_SLOWBRO",
+        "baseSpeciesId": 80,
+        "form": 2,
+        "spriteForm": 394,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1208/personal.toml",
+        "battleSet": 22360,
+        "battleSprites": "20/20",
+        "icon": 2244,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem SLOWBRO_2; PWAN asset index 1118; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1118,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SLOWBRO_2.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SLOWBRO_2.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SLOWBRO_2.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SLOWBRO_2.png",
+        "stats": {
+          "front": {
+            "frames": 15,
+            "timeline": 52,
+            "ticks": 312,
+            "bytes": 69408
+          },
+          "back": {
+            "frames": 11,
+            "timeline": 14,
+            "ticks": 84,
+            "bytes": 50824
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_FARFETCHD",
+        "id": 1209,
+        "constant": "SPECIES_1209",
+        "name": "Galarian Farfetch'd",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_FARFETCHD",
+        "baseSpeciesId": 83,
+        "form": 1,
+        "spriteForm": 395,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1209/personal.toml",
+        "battleSet": 22380,
+        "battleSprites": "20/20",
+        "icon": 2246,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem FARFETCHD_1; PWAN asset index 1119; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1119,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/FARFETCHD_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/FARFETCHD_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/FARFETCHD_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/FARFETCHD_1.png",
+        "stats": {
+          "front": {
+            "frames": 15,
+            "timeline": 41,
+            "ticks": 936,
+            "bytes": 69364
+          },
+          "back": {
+            "frames": 11,
+            "timeline": 41,
+            "ticks": 936,
+            "bytes": 50932
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_GRIMER",
+        "id": 1210,
+        "constant": "SPECIES_1210",
+        "name": "Alolan Grimer",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_GRIMER",
+        "baseSpeciesId": 88,
+        "form": 1,
+        "spriteForm": 396,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1210/personal.toml",
+        "battleSet": 22400,
+        "battleSprites": "20/20",
+        "icon": 2248,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem GRIMER_1; PWAN asset index 1120; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1120,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/grimer-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/grimer-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/grimer-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GRIMER_1.png",
+        "stats": {
+          "front": {
+            "frames": 18,
+            "timeline": 18,
+            "ticks": 108,
+            "bytes": 83096
+          },
+          "back": {
+            "frames": 18,
+            "timeline": 18,
+            "ticks": 108,
+            "bytes": 83096
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_MUK",
+        "id": 1211,
+        "constant": "SPECIES_1211",
+        "name": "Alolan Muk",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_MUK",
+        "baseSpeciesId": 89,
+        "form": 1,
+        "spriteForm": 397,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1211/personal.toml",
+        "battleSet": 22420,
+        "battleSprites": "20/20",
+        "icon": 2250,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem MUK_1; PWAN asset index 1121; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1121,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/muk-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/muk-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/muk-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MUK_1.png",
+        "stats": {
+          "front": {
+            "frames": 46,
+            "timeline": 120,
+            "ticks": 720,
+            "bytes": 212528
+          },
+          "back": {
+            "frames": 46,
+            "timeline": 120,
+            "ticks": 720,
+            "bytes": 212528
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_VOLTORB",
+        "id": 1212,
+        "constant": "SPECIES_1212",
+        "name": "Hisuian Voltorb",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_VOLTORB",
+        "baseSpeciesId": 100,
+        "form": 1,
+        "spriteForm": 398,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1212/personal.toml",
+        "battleSet": 22440,
+        "battleSprites": "20/20",
+        "icon": 2252,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem VOLTORB_1; PWAN asset index 1122; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1122,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/VOLTORB_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/VOLTORB_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/VOLTORB_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/VOLTORB_1.png",
+        "stats": {
+          "front": {
+            "frames": 17,
+            "timeline": 43,
+            "ticks": 270,
+            "bytes": 78588
+          },
+          "back": {
+            "frames": 12,
+            "timeline": 40,
+            "ticks": 486,
+            "bytes": 55536
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_ELECTRODE",
+        "id": 1213,
+        "constant": "SPECIES_1213",
+        "name": "Hisuian Electrode",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_ELECTRODE",
+        "baseSpeciesId": 101,
+        "form": 1,
+        "spriteForm": 399,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1213/personal.toml",
+        "battleSet": 22460,
+        "battleSprites": "20/20",
+        "icon": 2254,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem ELECTRODE_1; PWAN asset index 1123; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1123,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ELECTRODE_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ELECTRODE_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ELECTRODE_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ELECTRODE_1.png",
+        "stats": {
+          "front": {
+            "frames": 28,
+            "timeline": 64,
+            "ticks": 384,
+            "bytes": 129360
+          },
+          "back": {
+            "frames": 17,
+            "timeline": 49,
+            "ticks": 588,
+            "bytes": 78612
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_EXEGGUTOR",
+        "id": 1214,
+        "constant": "SPECIES_1214",
+        "name": "Alolan Exeggutor",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_EXEGGUTOR",
+        "baseSpeciesId": 103,
+        "form": 1,
+        "spriteForm": 400,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1214/personal.toml",
+        "battleSet": 22480,
+        "battleSprites": "20/20",
+        "icon": 2256,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem EXEGGUTOR_1; PWAN asset index 1124; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1124,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/exeggutor-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/exeggutor-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/exeggutor-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/EXEGGUTOR_1.png",
+        "stats": {
+          "front": {
+            "frames": 53,
+            "timeline": 101,
+            "ticks": 606,
+            "bytes": 244708
+          },
+          "back": {
+            "frames": 53,
+            "timeline": 101,
+            "ticks": 606,
+            "bytes": 244708
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_ALOLA_MAROWAK",
+        "id": 1215,
+        "constant": "SPECIES_1215",
+        "name": "Alolan Marowak",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_MAROWAK",
+        "baseSpeciesId": 105,
+        "form": 1,
+        "spriteForm": 401,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1215/personal.toml",
+        "battleSet": 22500,
+        "battleSprites": "20/20",
+        "icon": 2258,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "gen7-sprite-work",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem MAROWAK_1; PWAN asset index 1125; form-aware graphics slot; from gen7-sprite-work same-name Alolan source",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1125,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/marowak-front.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/marowak-back.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/marowak-front-shiny.gif",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MAROWAK_1.png",
+        "stats": {
+          "front": {
+            "frames": 56,
+            "timeline": 60,
+            "ticks": 360,
+            "bytes": 258368
+          },
+          "back": {
+            "frames": 56,
+            "timeline": 60,
+            "ticks": 360,
+            "bytes": 258368
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_WEEZING",
+        "id": 1216,
+        "constant": "SPECIES_1216",
+        "name": "Galarian Weezing",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_WEEZING",
+        "baseSpeciesId": 110,
+        "form": 1,
+        "spriteForm": 402,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1216/personal.toml",
+        "battleSet": 22520,
+        "battleSprites": "20/20",
+        "icon": 2260,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem WEEZING_1; PWAN asset index 1126; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1126,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/WEEZING_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/WEEZING_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/WEEZING_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/WEEZING_1.png",
+        "stats": {
+          "front": {
+            "frames": 19,
+            "timeline": 43,
+            "ticks": 258,
+            "bytes": 87804
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 27768
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_MR_MIME",
+        "id": 1217,
+        "constant": "SPECIES_1217",
+        "name": "Galarian Mr. Mime",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_MR_MIME",
+        "baseSpeciesId": 122,
+        "form": 1,
+        "spriteForm": 403,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1217/personal.toml",
+        "battleSet": 22540,
+        "battleSprites": "20/20",
+        "icon": 2262,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem MRMIME_1; PWAN asset index 1127; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1127,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/MRMIME_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/MRMIME_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/MRMIME_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MRMIME_1.png",
+        "stats": {
+          "front": {
+            "frames": 6,
+            "timeline": 11,
+            "ticks": 72,
+            "bytes": 27772
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 27768
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_PALDEA_TAUROS_COMBAT",
+        "id": 1218,
+        "constant": "SPECIES_1218",
+        "name": "Paldean Tauros Combat Breed",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_TAUROS",
+        "baseSpeciesId": 128,
+        "form": 1,
+        "spriteForm": 404,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1218/personal.toml",
+        "battleSet": 22560,
+        "battleSprites": "20/20",
+        "icon": 2264,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem TAUROS_1; PWAN asset index 1128; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1128,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/TAUROS_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/TAUROS_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/TAUROS_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/TAUROS_1.png",
+        "stats": {
+          "front": {
+            "frames": 20,
+            "timeline": 41,
+            "ticks": 414,
+            "bytes": 92404
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 32384
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_PALDEA_TAUROS_BLAZE",
+        "id": 1219,
+        "constant": "SPECIES_1219",
+        "name": "Paldean Tauros Blaze Breed",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_TAUROS",
+        "baseSpeciesId": 128,
+        "form": 2,
+        "spriteForm": 405,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1219/personal.toml",
+        "battleSet": 22580,
+        "battleSprites": "20/20",
+        "icon": 2266,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem TAUROS_2; PWAN asset index 1129; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1129,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/TAUROS_2.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/TAUROS_2.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/TAUROS_2.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/TAUROS_2.png",
+        "stats": {
+          "front": {
+            "frames": 12,
+            "timeline": 24,
+            "ticks": 216,
+            "bytes": 55472
+          },
+          "back": {
+            "frames": 8,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 36992
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_PALDEA_TAUROS_AQUA",
+        "id": 1220,
+        "constant": "SPECIES_1220",
+        "name": "Paldean Tauros Aqua Breed",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_TAUROS",
+        "baseSpeciesId": 128,
+        "form": 3,
+        "spriteForm": 406,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1220/personal.toml",
+        "battleSet": 22600,
+        "battleSprites": "20/20",
+        "icon": 2268,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem TAUROS_3; PWAN asset index 1130; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1130,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/TAUROS_3.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/TAUROS_3.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/TAUROS_3.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/TAUROS_3.png",
+        "stats": {
+          "front": {
+            "frames": 8,
+            "timeline": 21,
+            "ticks": 216,
+            "bytes": 37028
+          },
+          "back": {
+            "frames": 8,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 36992
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_ARTICUNO",
+        "id": 1221,
+        "constant": "SPECIES_1221",
+        "name": "Galarian Articuno",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_ARTICUNO",
+        "baseSpeciesId": 144,
+        "form": 1,
+        "spriteForm": 407,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1221/personal.toml",
+        "battleSet": 22620,
+        "battleSprites": "20/20",
+        "icon": 2270,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem ARTICUNO_1; PWAN asset index 1131; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1131,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ARTICUNO_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ARTICUNO_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ARTICUNO_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ARTICUNO_1.png",
+        "stats": {
+          "front": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 32384
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 32384
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_ZAPDOS",
+        "id": 1222,
+        "constant": "SPECIES_1222",
+        "name": "Galarian Zapdos",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_ZAPDOS",
+        "baseSpeciesId": 145,
+        "form": 1,
+        "spriteForm": 408,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1222/personal.toml",
+        "battleSet": 22640,
+        "battleSprites": "20/20",
+        "icon": 2272,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem ZAPDOS_1; PWAN asset index 1132; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1132,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZAPDOS_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZAPDOS_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZAPDOS_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZAPDOS_1.png",
+        "stats": {
+          "front": {
+            "frames": 17,
+            "timeline": 69,
+            "ticks": 1032,
+            "bytes": 78692
+          },
+          "back": {
+            "frames": 17,
+            "timeline": 69,
+            "ticks": 1032,
+            "bytes": 78692
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_MOLTRES",
+        "id": 1223,
+        "constant": "SPECIES_1223",
+        "name": "Galarian Moltres",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_MOLTRES",
+        "baseSpeciesId": 146,
+        "form": 1,
+        "spriteForm": 409,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1223/personal.toml",
+        "battleSet": 22660,
+        "battleSprites": "20/20",
+        "icon": 2274,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem MOLTRES_1; PWAN asset index 1133; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1133,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/MOLTRES_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/MOLTRES_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/MOLTRES_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MOLTRES_1.png",
+        "stats": {
+          "front": {
+            "frames": 10,
+            "timeline": 22,
+            "ticks": 132,
+            "bytes": 46248
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 27768
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_TYPHLOSION",
+        "id": 1224,
+        "constant": "SPECIES_1224",
+        "name": "Hisuian Typhlosion",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_TYPHLOSION",
+        "baseSpeciesId": 157,
+        "form": 1,
+        "spriteForm": 410,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1224/personal.toml",
+        "battleSet": 22680,
+        "battleSprites": "20/20",
+        "icon": 2276,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem TYPHLOSION_1; PWAN asset index 1134; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1134,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/TYPHLOSION_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/TYPHLOSION_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/TYPHLOSION_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/TYPHLOSION_1.png",
+        "stats": {
+          "front": {
+            "frames": 24,
+            "timeline": 57,
+            "ticks": 684,
+            "bytes": 110900
+          },
+          "back": {
+            "frames": 9,
+            "timeline": 28,
+            "ticks": 336,
+            "bytes": 41664
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_PALDEA_WOOPER",
+        "id": 1225,
+        "constant": "SPECIES_1225",
+        "name": "Paldean Wooper",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_WOOPER",
+        "baseSpeciesId": 194,
+        "form": 1,
+        "spriteForm": 411,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1225/personal.toml",
+        "battleSet": 22700,
+        "battleSprites": "20/20",
+        "icon": 2278,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem WOOPER_1; PWAN asset index 1135; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1135,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/WOOPER_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/WOOPER_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/WOOPER_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/WOOPER_1.png",
+        "stats": {
+          "front": {
+            "frames": 11,
+            "timeline": 30,
+            "ticks": 192,
+            "bytes": 50888
+          },
+          "back": {
+            "frames": 9,
+            "timeline": 28,
+            "ticks": 192,
+            "bytes": 41664
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_SLOWKING",
+        "id": 1226,
+        "constant": "SPECIES_1226",
+        "name": "Galarian Slowking",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_SLOWKING",
+        "baseSpeciesId": 199,
+        "form": 1,
+        "spriteForm": 412,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1226/personal.toml",
+        "battleSet": 22720,
+        "battleSprites": "20/20",
+        "icon": 2280,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem SLOWKING_1; PWAN asset index 1136; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1136,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SLOWKING_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SLOWKING_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SLOWKING_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SLOWKING_1.png",
+        "stats": {
+          "front": {
+            "frames": 30,
+            "timeline": 67,
+            "ticks": 402,
+            "bytes": 138588
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 27768
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_QWILFISH",
+        "id": 1227,
+        "constant": "SPECIES_1227",
+        "name": "Hisuian Qwilfish",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_QWILFISH",
+        "baseSpeciesId": 211,
+        "form": 1,
+        "spriteForm": 413,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1227/personal.toml",
+        "battleSet": 22740,
+        "battleSprites": "20/20",
+        "icon": 2282,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem QWILFISH_1; PWAN asset index 1137; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1137,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/QWILFISH_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/QWILFISH_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/QWILFISH_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/QWILFISH_1.png",
+        "stats": {
+          "front": {
+            "frames": 24,
+            "timeline": 55,
+            "ticks": 660,
+            "bytes": 110892
+          },
+          "back": {
+            "frames": 16,
+            "timeline": 16,
+            "ticks": 192,
+            "bytes": 73872
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_SNEASEL",
+        "id": 1228,
+        "constant": "SPECIES_1228",
+        "name": "Hisuian Sneasel",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_SNEASEL",
+        "baseSpeciesId": 215,
+        "form": 1,
+        "spriteForm": 414,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1228/personal.toml",
+        "battleSet": 22760,
+        "battleSprites": "20/20",
+        "icon": 2284,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem SNEASEL_1; PWAN asset index 1138; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1138,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SNEASEL_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SNEASEL_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SNEASEL_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SNEASEL_1.png",
+        "stats": {
+          "front": {
+            "frames": 18,
+            "timeline": 49,
+            "ticks": 588,
+            "bytes": 83220
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 24,
+            "ticks": 288,
+            "bytes": 32432
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_CORSOLA",
+        "id": 1229,
+        "constant": "SPECIES_1229",
+        "name": "Galarian Corsola",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_CORSOLA",
+        "baseSpeciesId": 222,
+        "form": 1,
+        "spriteForm": 415,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1229/personal.toml",
+        "battleSet": 22780,
+        "battleSprites": "20/20",
+        "icon": 2286,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem CORSOLA_1; PWAN asset index 1139; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1139,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/CORSOLA_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/CORSOLA_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/CORSOLA_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/CORSOLA_1.png",
+        "stats": {
+          "front": {
+            "frames": 20,
+            "timeline": 75,
+            "ticks": 450,
+            "bytes": 92540
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 32384
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_ZIGZAGOON",
+        "id": 1230,
+        "constant": "SPECIES_1230",
+        "name": "Galarian Zigzagoon",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_ZIGZAGOON",
+        "baseSpeciesId": 263,
+        "form": 1,
+        "spriteForm": 416,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1230/personal.toml",
+        "battleSet": 22800,
+        "battleSprites": "20/20",
+        "icon": 2288,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem ZIGZAGOON_1; PWAN asset index 1140; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1140,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZIGZAGOON_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZIGZAGOON_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZIGZAGOON_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZIGZAGOON_1.png",
+        "stats": {
+          "front": {
+            "frames": 23,
+            "timeline": 91,
+            "ticks": 546,
+            "bytes": 106428
+          },
+          "back": {
+            "frames": 23,
+            "timeline": 91,
+            "ticks": 546,
+            "bytes": 106428
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_LINOONE",
+        "id": 1231,
+        "constant": "SPECIES_1231",
+        "name": "Galarian Linoone",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_LINOONE",
+        "baseSpeciesId": 264,
+        "form": 1,
+        "spriteForm": 417,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1231/personal.toml",
+        "battleSet": 22820,
+        "battleSprites": "20/20",
+        "icon": 2290,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem LINOONE_1; PWAN asset index 1141; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1141,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/LINOONE_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/LINOONE_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/LINOONE_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/LINOONE_1.png",
+        "stats": {
+          "front": {
+            "frames": 28,
+            "timeline": 48,
+            "ticks": 288,
+            "bytes": 129296
+          },
+          "back": {
+            "frames": 27,
+            "timeline": 48,
+            "ticks": 288,
+            "bytes": 124688
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_SAMUROTT",
+        "id": 1232,
+        "constant": "SPECIES_1232",
+        "name": "Hisuian Samurott",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_SAMUROTT",
+        "baseSpeciesId": 503,
+        "form": 1,
+        "spriteForm": 418,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1232/personal.toml",
+        "battleSet": 22840,
+        "battleSprites": "20/20",
+        "icon": 2292,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem SAMUROTT_1; PWAN asset index 1142; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1142,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SAMUROTT_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SAMUROTT_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SAMUROTT_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SAMUROTT_1.png",
+        "stats": {
+          "front": {
+            "frames": 33,
+            "timeline": 85,
+            "ticks": 510,
+            "bytes": 152484
+          },
+          "back": {
+            "frames": 33,
+            "timeline": 85,
+            "ticks": 510,
+            "bytes": 152484
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_LILLIGANT",
+        "id": 1233,
+        "constant": "SPECIES_1233",
+        "name": "Hisuian Lilligant",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_LILLIGANT",
+        "baseSpeciesId": 549,
+        "form": 1,
+        "spriteForm": 419,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1233/personal.toml",
+        "battleSet": 22860,
+        "battleSprites": "20/20",
+        "icon": 2294,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem LILLIGANT_1; PWAN asset index 1143; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1143,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/LILLIGANT_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/LILLIGANT_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/LILLIGANT_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/LILLIGANT_1.png",
+        "stats": {
+          "front": {
+            "frames": 56,
+            "timeline": 112,
+            "ticks": 672,
+            "bytes": 258576
+          },
+          "back": {
+            "frames": 12,
+            "timeline": 22,
+            "ticks": 264,
+            "bytes": 55464
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_DARUMAKA",
+        "id": 1234,
+        "constant": "SPECIES_1234",
+        "name": "Galarian Darumaka",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_DARUMAKA",
+        "baseSpeciesId": 554,
+        "form": 1,
+        "spriteForm": 420,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1234/personal.toml",
+        "battleSet": 22880,
+        "battleSprites": "20/20",
+        "icon": 2296,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem DARUMAKA_2; PWAN asset index 1144; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1144,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/DARUMAKA_2.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/DARUMAKA_2.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/DARUMAKA_2.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DARUMAKA_2.png",
+        "stats": {
+          "front": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 32384
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 27768
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_DARMANITAN",
+        "id": 1236,
+        "constant": "SPECIES_1236",
+        "name": "Galarian Darmanitan",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_DARMANITAN",
+        "baseSpeciesId": 555,
+        "form": 2,
+        "spriteForm": 422,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1236/personal.toml",
+        "battleSet": 22920,
+        "battleSprites": "20/20",
+        "icon": 2300,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem DARMANITAN_2; PWAN asset index 1146; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1146,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/DARMANITAN_2.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/DARMANITAN_2.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/DARMANITAN_2.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DARMANITAN_2.png",
+        "stats": {
+          "front": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 32384
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 27768
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_DARMANITAN_ZEN",
+        "id": 1237,
+        "constant": "SPECIES_1237",
+        "name": "Galarian Darmanitan Zen Mode",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_DARMANITAN",
+        "baseSpeciesId": 555,
+        "form": 3,
+        "spriteForm": 423,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1237/personal.toml",
+        "battleSet": 22940,
+        "battleSprites": "20/20",
+        "icon": 2302,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem DARMANITAN_3; PWAN asset index 1147; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1147,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/DARMANITAN_3.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/DARMANITAN_3.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/DARMANITAN_3.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DARMANITAN_3.png",
+        "stats": {
+          "front": {
+            "frames": 6,
+            "timeline": 6,
+            "ticks": 36,
+            "bytes": 27752
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 6,
+            "ticks": 36,
+            "bytes": 27752
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_YAMASK",
+        "id": 1238,
+        "constant": "SPECIES_1238",
+        "name": "Galarian Yamask",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_YAMASK",
+        "baseSpeciesId": 562,
+        "form": 1,
+        "spriteForm": 424,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1238/personal.toml",
+        "battleSet": 22960,
+        "battleSprites": "20/20",
+        "icon": 2304,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem YAMASK_1; PWAN asset index 1148; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1148,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/YAMASK_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/YAMASK_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/YAMASK_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/YAMASK_1.png",
+        "stats": {
+          "front": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 32384
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 27768
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_ZORUA",
+        "id": 1239,
+        "constant": "SPECIES_1239",
+        "name": "Hisuian Zorua",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_ZORUA",
+        "baseSpeciesId": 570,
+        "form": 1,
+        "spriteForm": 425,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1239/personal.toml",
+        "battleSet": 22980,
+        "battleSprites": "20/20",
+        "icon": 2306,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem ZORUA_1; PWAN asset index 1149; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1149,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZORUA_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZORUA_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZORUA_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZORUA_1.png",
+        "stats": {
+          "front": {
+            "frames": 23,
+            "timeline": 54,
+            "ticks": 648,
+            "bytes": 106280
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 144,
+            "bytes": 32384
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_ZOROARK",
+        "id": 1240,
+        "constant": "SPECIES_1240",
+        "name": "Hisuian Zoroark",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_ZOROARK",
+        "baseSpeciesId": 571,
+        "form": 1,
+        "spriteForm": 426,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1240/personal.toml",
+        "battleSet": 23000,
+        "battleSprites": "20/20",
+        "icon": 2308,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem ZOROARK_1; PWAN asset index 1150; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1150,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZOROARK_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZOROARK_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZOROARK_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZOROARK_1.png",
+        "stats": {
+          "front": {
+            "frames": 24,
+            "timeline": 24,
+            "ticks": 144,
+            "bytes": 110768
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 144,
+            "bytes": 32384
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_GALAR_STUNFISK",
+        "id": 1241,
+        "constant": "SPECIES_1241",
+        "name": "Galarian Stunfisk",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_STUNFISK",
+        "baseSpeciesId": 618,
+        "form": 1,
+        "spriteForm": 427,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1241/personal.toml",
+        "battleSet": 23020,
+        "battleSprites": "20/20",
+        "icon": 2310,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem STUNFISK_1; PWAN asset index 1151; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1151,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/STUNFISK_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/STUNFISK_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/STUNFISK_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/STUNFISK_1.png",
+        "stats": {
+          "front": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 32384
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 27768
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_BRAVIARY",
+        "id": 1242,
+        "constant": "SPECIES_1242",
+        "name": "Hisuian Braviary",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_BRAVIARY",
+        "baseSpeciesId": 628,
+        "form": 1,
+        "spriteForm": 428,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1242/personal.toml",
+        "battleSet": 23040,
+        "battleSprites": "20/20",
+        "icon": 2312,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem BRAVIARY_1; PWAN asset index 1152; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1152,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/BRAVIARY_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/BRAVIARY_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/BRAVIARY_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/BRAVIARY_1.png",
+        "stats": {
+          "front": {
+            "frames": 36,
+            "timeline": 40,
+            "ticks": 480,
+            "bytes": 166128
+          },
+          "back": {
+            "frames": 16,
+            "timeline": 32,
+            "ticks": 396,
+            "bytes": 73936
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_SLIGGOO",
+        "id": 1243,
+        "constant": "SPECIES_1243",
+        "name": "Hisuian Sliggoo",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_SLIGGOO",
+        "baseSpeciesId": 705,
+        "form": 1,
+        "spriteForm": 429,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1243/personal.toml",
+        "battleSet": 23060,
+        "battleSprites": "20/20",
+        "icon": 2314,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem SLIGGOO_1; PWAN asset index 1153; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1153,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SLIGGOO_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SLIGGOO_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SLIGGOO_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SLIGGOO_1.png",
+        "stats": {
+          "front": {
+            "frames": 45,
+            "timeline": 90,
+            "ticks": 540,
+            "bytes": 207800
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 144,
+            "bytes": 32384
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_GOODRA",
+        "id": 1244,
+        "constant": "SPECIES_1244",
+        "name": "Hisuian Goodra",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_GOODRA",
+        "baseSpeciesId": 706,
+        "form": 1,
+        "spriteForm": 430,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1244/personal.toml",
+        "battleSet": 23080,
+        "battleSprites": "20/20",
+        "icon": 2316,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem GOODRA_1; PWAN asset index 1154; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1154,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/GOODRA_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/GOODRA_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/GOODRA_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GOODRA_1.png",
+        "stats": {
+          "front": {
+            "frames": 47,
+            "timeline": 95,
+            "ticks": 570,
+            "bytes": 217036
+          },
+          "back": {
+            "frames": 44,
+            "timeline": 95,
+            "ticks": 570,
+            "bytes": 203212
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_AVALUGG",
+        "id": 1245,
+        "constant": "SPECIES_1245",
+        "name": "Hisuian Avalugg",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_AVALUGG",
+        "baseSpeciesId": 713,
+        "form": 1,
+        "spriteForm": 431,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1245/personal.toml",
+        "battleSet": 23100,
+        "battleSprites": "20/20",
+        "icon": 2318,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem AVALUGG_1; PWAN asset index 1155; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1155,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/AVALUGG_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/AVALUGG_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/AVALUGG_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/AVALUGG_1.png",
+        "stats": {
+          "front": {
+            "frames": 27,
+            "timeline": 62,
+            "ticks": 744,
+            "bytes": 124744
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 144,
+            "bytes": 32384
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "REGIONAL_HISUI_DECIDUEYE",
+        "id": 1246,
+        "constant": "SPECIES_1246",
+        "name": "Hisuian Decidueye",
+        "kind": "regional form",
+        "baseSpecies": "SPECIES_724",
+        "baseSpeciesId": 724,
+        "form": 1,
+        "spriteForm": 432,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1246/personal.toml",
+        "battleSet": 23120,
+        "battleSprites": "20/20",
+        "icon": 2320,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem DECIDUEYE_1; PWAN asset index 1156; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1156,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/DECIDUEYE_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/DECIDUEYE_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/DECIDUEYE_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DECIDUEYE_1.png",
+        "stats": {
+          "front": {
+            "frames": 55,
+            "timeline": 126,
+            "ticks": 936,
+            "bytes": 254024
+          },
+          "back": {
+            "frames": 44,
+            "timeline": 122,
+            "ticks": 936,
+            "bytes": 203320
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_TOXTRICITY_LOW_KEY",
+        "id": 1247,
+        "constant": "SPECIES_1247",
+        "name": "Toxtricity Low Key Form",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_849",
+        "baseSpeciesId": 849,
+        "form": 1,
+        "spriteForm": 433,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1247/personal.toml",
+        "battleSet": 23140,
+        "battleSprites": "20/20",
+        "icon": 2322,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem TOXTRICITY_1; PWAN asset index 1157; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1157,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/TOXTRICITY_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/TOXTRICITY_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/TOXTRICITY_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/TOXTRICITY_1.png",
+        "stats": {
+          "front": {
+            "frames": 7,
+            "timeline": 7,
+            "ticks": 42,
+            "bytes": 32364
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 27768
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_EISCUE_NOICE",
+        "id": 1248,
+        "constant": "SPECIES_1248",
+        "name": "Eiscue Noice Face",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_875",
+        "baseSpeciesId": 875,
+        "form": 1,
+        "spriteForm": 434,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1248/personal.toml",
+        "battleSet": 23160,
+        "battleSprites": "20/20",
+        "icon": 2324,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem EISCUE_1; PWAN asset index 1158; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1158,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/EISCUE_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/EISCUE_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/EISCUE_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/EISCUE_1.png",
+        "stats": {
+          "front": {
+            "frames": 23,
+            "timeline": 65,
+            "ticks": 390,
+            "bytes": 106324
+          },
+          "back": {
+            "frames": 23,
+            "timeline": 65,
+            "ticks": 390,
+            "bytes": 106324
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_INDEEDEE_FEMALE",
+        "id": 1249,
+        "constant": "SPECIES_1249",
+        "name": "Indeedee Female",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_876",
+        "baseSpeciesId": 876,
+        "form": 1,
+        "spriteForm": 435,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1249/personal.toml",
+        "battleSet": 23180,
+        "battleSprites": "20/20",
+        "icon": 2326,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem INDEEDEE_1; PWAN asset index 1159; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1159,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/INDEEDEE_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/INDEEDEE_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/INDEEDEE_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/INDEEDEE_1.png",
+        "stats": {
+          "front": {
+            "frames": 36,
+            "timeline": 74,
+            "ticks": 444,
+            "bytes": 166264
+          },
+          "back": {
+            "frames": 31,
+            "timeline": 74,
+            "ticks": 444,
+            "bytes": 143224
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_MORPEKO_HANGRY",
+        "id": 1250,
+        "constant": "SPECIES_1250",
+        "name": "Morpeko Hangry Mode",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_877",
+        "baseSpeciesId": 877,
+        "form": 1,
+        "spriteForm": 436,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1250/personal.toml",
+        "battleSet": 23200,
+        "battleSprites": "20/20",
+        "icon": 2328,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem MORPEKO_1; PWAN asset index 1160; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1160,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/MORPEKO_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/MORPEKO_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/MORPEKO_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MORPEKO_1.png",
+        "stats": {
+          "front": {
+            "frames": 11,
+            "timeline": 33,
+            "ticks": 198,
+            "bytes": 50900
+          },
+          "back": {
+            "frames": 8,
+            "timeline": 33,
+            "ticks": 198,
+            "bytes": 37076
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_ZACIAN_CROWNED",
+        "id": 1251,
+        "constant": "SPECIES_1251",
+        "name": "Zacian Crowned Sword",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_888",
+        "baseSpeciesId": 888,
+        "form": 1,
+        "spriteForm": 437,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1251/personal.toml",
+        "battleSet": 23220,
+        "battleSprites": "20/20",
+        "icon": 2330,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem ZACIAN_1; PWAN asset index 1161; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1161,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZACIAN_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZACIAN_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZACIAN_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZACIAN_1.png",
+        "stats": {
+          "front": {
+            "frames": 31,
+            "timeline": 77,
+            "ticks": 462,
+            "bytes": 143236
+          },
+          "back": {
+            "frames": 31,
+            "timeline": 77,
+            "ticks": 462,
+            "bytes": 143236
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_ZAMAZENTA_CROWNED",
+        "id": 1252,
+        "constant": "SPECIES_1252",
+        "name": "Zamazenta Crowned Shield",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_889",
+        "baseSpeciesId": 889,
+        "form": 1,
+        "spriteForm": 438,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1252/personal.toml",
+        "battleSet": 23240,
+        "battleSprites": "20/20",
+        "icon": 2332,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem ZAMAZENTA_1; PWAN asset index 1162; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1162,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZAMAZENTA_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZAMAZENTA_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZAMAZENTA_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZAMAZENTA_1.png",
+        "stats": {
+          "front": {
+            "frames": 58,
+            "timeline": 122,
+            "ticks": 744,
+            "bytes": 267832
+          },
+          "back": {
+            "frames": 61,
+            "timeline": 124,
+            "ticks": 744,
+            "bytes": 281664
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_URSHIFU_RAPID_STRIKE",
+        "id": 1253,
+        "constant": "SPECIES_1253",
+        "name": "Urshifu Rapid Strike Style",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_892",
+        "baseSpeciesId": 892,
+        "form": 1,
+        "spriteForm": 439,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1253/personal.toml",
+        "battleSet": 23260,
+        "battleSprites": "20/20",
+        "icon": 2334,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem URSHIFU_1; PWAN asset index 1163; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1163,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/URSHIFU_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/URSHIFU_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/URSHIFU_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/URSHIFU_1.png",
+        "stats": {
+          "front": {
+            "frames": 10,
+            "timeline": 32,
+            "ticks": 192,
+            "bytes": 46288
+          },
+          "back": {
+            "frames": 11,
+            "timeline": 18,
+            "ticks": 108,
+            "bytes": 50840
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_ZARUDE_DADA",
+        "id": 1254,
+        "constant": "SPECIES_1254",
+        "name": "Zarude Dada",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_893",
+        "baseSpeciesId": 893,
+        "form": 1,
+        "spriteForm": 440,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1254/personal.toml",
+        "battleSet": 23280,
+        "battleSprites": "20/20",
+        "icon": 2336,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem ZARUDE_1; PWAN asset index 1164; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1164,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZARUDE_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZARUDE_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZARUDE_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZARUDE_1.png",
+        "stats": {
+          "front": {
+            "frames": 11,
+            "timeline": 22,
+            "ticks": 132,
+            "bytes": 50856
+          },
+          "back": {
+            "frames": 1,
+            "timeline": 1,
+            "ticks": 6,
+            "bytes": 4692
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_CALYREX_ICE_RIDER",
+        "id": 1255,
+        "constant": "SPECIES_1255",
+        "name": "Calyrex Ice Rider",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_898",
+        "baseSpeciesId": 898,
+        "form": 1,
+        "spriteForm": 441,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1255/personal.toml",
+        "battleSet": 23300,
+        "battleSprites": "20/20",
+        "icon": 2338,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem CALYREX_1; PWAN asset index 1165; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1165,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/CALYREX_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/CALYREX_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/CALYREX_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/CALYREX_1.png",
+        "stats": {
+          "front": {
+            "frames": 29,
+            "timeline": 93,
+            "ticks": 558,
+            "bytes": 134084
+          },
+          "back": {
+            "frames": 29,
+            "timeline": 93,
+            "ticks": 558,
+            "bytes": 134084
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_CALYREX_SHADOW_RIDER",
+        "id": 1256,
+        "constant": "SPECIES_1256",
+        "name": "Calyrex Shadow Rider",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_898",
+        "baseSpeciesId": 898,
+        "form": 2,
+        "spriteForm": 442,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1256/personal.toml",
+        "battleSet": 23320,
+        "battleSprites": "20/20",
+        "icon": 2340,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem CALYREX_2; PWAN asset index 1166; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1166,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/CALYREX_2.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/CALYREX_2.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/CALYREX_2.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/CALYREX_2.png",
+        "stats": {
+          "front": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 32384
+          },
+          "back": {
+            "frames": 6,
+            "timeline": 10,
+            "ticks": 60,
+            "bytes": 27768
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_BASCULEGION_FEMALE",
+        "id": 1257,
+        "constant": "SPECIES_1257",
+        "name": "Basculegion Female",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_902",
+        "baseSpeciesId": 902,
+        "form": 1,
+        "spriteForm": 443,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1257/personal.toml",
+        "battleSet": 23340,
+        "battleSprites": "20/20",
+        "icon": 2342,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem BASCULEGION_1; PWAN asset index 1167; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1167,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/BASCULEGION_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/BASCULEGION_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/BASCULEGION_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/BASCULEGION_1.png",
+        "stats": {
+          "front": {
+            "frames": 45,
+            "timeline": 90,
+            "ticks": 540,
+            "bytes": 207800
+          },
+          "back": {
+            "frames": 44,
+            "timeline": 90,
+            "ticks": 540,
+            "bytes": 203192
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_ENAMORUS_THERIAN",
+        "id": 1258,
+        "constant": "SPECIES_1258",
+        "name": "Enamorus Therian Forme",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_905",
+        "baseSpeciesId": 905,
+        "form": 1,
+        "spriteForm": 444,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1258/personal.toml",
+        "battleSet": 23360,
+        "battleSprites": "20/20",
+        "icon": 2344,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem ENAMORUS_1; PWAN asset index 1168; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1168,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ENAMORUS_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ENAMORUS_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ENAMORUS_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ENAMORUS_1.png",
+        "stats": {
+          "front": {
+            "frames": 15,
+            "timeline": 51,
+            "ticks": 618,
+            "bytes": 69404
+          },
+          "back": {
+            "frames": 11,
+            "timeline": 36,
+            "ticks": 414,
+            "bytes": 50912
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_OINKOLOGNE_FEMALE",
+        "id": 1259,
+        "constant": "SPECIES_1259",
+        "name": "Oinkologne Female",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_916",
+        "baseSpeciesId": 916,
+        "form": 1,
+        "spriteForm": 445,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1259/personal.toml",
+        "battleSet": 23380,
+        "battleSprites": "20/20",
+        "icon": 2346,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem OINKOLOGNE_1; PWAN asset index 1169; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1169,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/OINKOLOGNE_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/OINKOLOGNE_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/OINKOLOGNE_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/OINKOLOGNE_1.png",
+        "stats": {
+          "front": {
+            "frames": 6,
+            "timeline": 11,
+            "ticks": 72,
+            "bytes": 27772
+          },
+          "back": {
+            "frames": 9,
+            "timeline": 16,
+            "ticks": 96,
+            "bytes": 41616
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_MAUSHOLD_FAMILY_OF_THREE",
+        "id": 1260,
+        "constant": "SPECIES_1260",
+        "name": "Maushold Family of Three",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_925",
+        "baseSpeciesId": 925,
+        "form": 1,
+        "spriteForm": 446,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1260/personal.toml",
+        "battleSet": 23400,
+        "battleSprites": "20/20",
+        "icon": 2348,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem MAUSHOLD_1; PWAN asset index 1170; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1170,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/MAUSHOLD_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/MAUSHOLD_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/MAUSHOLD_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MAUSHOLD_1.png",
+        "stats": {
+          "front": {
+            "frames": 40,
+            "timeline": 80,
+            "ticks": 480,
+            "bytes": 184720
+          },
+          "back": {
+            "frames": 7,
+            "timeline": 12,
+            "ticks": 72,
+            "bytes": 32384
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_SQUAWKABILLY_BLUE",
+        "id": 1261,
+        "constant": "SPECIES_1261",
+        "name": "Squawkabilly Blue Plumage",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_931",
+        "baseSpeciesId": 931,
+        "form": 1,
+        "spriteForm": 447,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1261/personal.toml",
+        "battleSet": 23420,
+        "battleSprites": "20/20",
+        "icon": 2350,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem SQUAWKABILLY_1; PWAN asset index 1171; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1171,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SQUAWKABILLY_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SQUAWKABILLY_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SQUAWKABILLY_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SQUAWKABILLY_1.png",
+        "stats": {
+          "front": {
+            "frames": 18,
+            "timeline": 66,
+            "ticks": 432,
+            "bytes": 83288
+          },
+          "back": {
+            "frames": 8,
+            "timeline": 14,
+            "ticks": 84,
+            "bytes": 37000
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_SQUAWKABILLY_YELLOW",
+        "id": 1262,
+        "constant": "SPECIES_1262",
+        "name": "Squawkabilly Yellow Plumage",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_931",
+        "baseSpeciesId": 931,
+        "form": 2,
+        "spriteForm": 448,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1262/personal.toml",
+        "battleSet": 23440,
+        "battleSprites": "20/20",
+        "icon": 2352,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem SQUAWKABILLY_2; PWAN asset index 1172; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1172,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SQUAWKABILLY_2.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SQUAWKABILLY_2.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SQUAWKABILLY_2.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SQUAWKABILLY_2.png",
+        "stats": {
+          "front": {
+            "frames": 18,
+            "timeline": 66,
+            "ticks": 432,
+            "bytes": 83288
+          },
+          "back": {
+            "frames": 8,
+            "timeline": 14,
+            "ticks": 84,
+            "bytes": 37000
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_SQUAWKABILLY_WHITE",
+        "id": 1263,
+        "constant": "SPECIES_1263",
+        "name": "Squawkabilly White Plumage",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_931",
+        "baseSpeciesId": 931,
+        "form": 3,
+        "spriteForm": 449,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1263/personal.toml",
+        "battleSet": 23460,
+        "battleSprites": "20/20",
+        "icon": 2354,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem SQUAWKABILLY_3; PWAN asset index 1173; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1173,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SQUAWKABILLY_3.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SQUAWKABILLY_3.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SQUAWKABILLY_3.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SQUAWKABILLY_3.png",
+        "stats": {
+          "front": {
+            "frames": 18,
+            "timeline": 66,
+            "ticks": 432,
+            "bytes": 83288
+          },
+          "back": {
+            "frames": 8,
+            "timeline": 14,
+            "ticks": 84,
+            "bytes": 37000
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_PALAFIN_HERO",
+        "id": 1264,
+        "constant": "SPECIES_1264",
+        "name": "Palafin Hero Form",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_964",
+        "baseSpeciesId": 964,
+        "form": 1,
+        "spriteForm": 450,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1264/personal.toml",
+        "battleSet": 23480,
+        "battleSprites": "20/20",
+        "icon": 2356,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem PALAFIN_1; PWAN asset index 1174; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1174,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/PALAFIN_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/PALAFIN_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/PALAFIN_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/PALAFIN_1.png",
+        "stats": {
+          "front": {
+            "frames": 10,
+            "timeline": 34,
+            "ticks": 204,
+            "bytes": 46296
+          },
+          "back": {
+            "frames": 5,
+            "timeline": 8,
+            "ticks": 48,
+            "bytes": 23152
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_DUDUNSPARCE_THREE_SEGMENT",
+        "id": 1265,
+        "constant": "SPECIES_1265",
+        "name": "Dudunsparce Three-Segment Form",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_982",
+        "baseSpeciesId": 982,
+        "form": 1,
+        "spriteForm": 451,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1265/personal.toml",
+        "battleSet": 23500,
+        "battleSprites": "20/20",
+        "icon": 2358,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem DUDUNSPARCE_1; PWAN asset index 1175; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1175,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/DUDUNSPARCE_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/DUDUNSPARCE_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/DUDUNSPARCE_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DUDUNSPARCE_1.png",
+        "stats": {
+          "front": {
+            "frames": 9,
+            "timeline": 16,
+            "ticks": 96,
+            "bytes": 41616
+          },
+          "back": {
+            "frames": 16,
+            "timeline": 30,
+            "ticks": 180,
+            "bytes": 73928
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_GIMMIGHOUL_ROAMING",
+        "id": 1266,
+        "constant": "SPECIES_1266",
+        "name": "Gimmighoul Roaming Form",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_999",
+        "baseSpeciesId": 999,
+        "form": 1,
+        "spriteForm": 452,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1266/personal.toml",
+        "battleSet": 23520,
+        "battleSprites": "20/20",
+        "icon": 2360,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem GIMMIGHOUL_1; PWAN asset index 1176; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1176,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/GIMMIGHOUL_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/GIMMIGHOUL_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/GIMMIGHOUL_1.png",
+        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GIMMIGHOUL_1.png",
+        "stats": {
+          "front": {
+            "frames": 7,
+            "timeline": 7,
+            "ticks": 42,
+            "bytes": 32364
+          },
+          "back": {
+            "frames": 20,
+            "timeline": 39,
+            "ticks": 384,
+            "bytes": 92396
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_OGERPON_WELLSPRING",
+        "id": 1267,
+        "constant": "SPECIES_1267",
+        "name": "Ogerpon Wellspring Mask",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_1017",
+        "baseSpeciesId": 1017,
+        "form": 1,
+        "spriteForm": 453,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1267/personal.toml",
+        "battleSet": 23540,
+        "battleSprites": "20/20",
+        "icon": 2362,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem OGERPON_1; PWAN asset index 1177; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1177,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/OGERPON_1.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/OGERPON_1.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/OGERPON_1.png",
+        "backShiny": null,
+        "stats": {
+          "front": {
+            "frames": 20,
+            "timeline": 59,
+            "ticks": 378,
+            "bytes": 92476
+          },
+          "back": {
+            "frames": 8,
+            "timeline": 19,
+            "ticks": 120,
+            "bytes": 37020
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_OGERPON_HEARTHFLAME",
+        "id": 1268,
+        "constant": "SPECIES_1268",
+        "name": "Ogerpon Hearthflame Mask",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_1017",
+        "baseSpeciesId": 1017,
+        "form": 2,
+        "spriteForm": 454,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1268/personal.toml",
+        "battleSet": 23560,
+        "battleSprites": "20/20",
+        "icon": 2364,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem OGERPON_2; PWAN asset index 1178; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1178,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/OGERPON_2.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/OGERPON_2.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/OGERPON_2.png",
+        "backShiny": null,
+        "stats": {
+          "front": {
+            "frames": 20,
+            "timeline": 59,
+            "ticks": 378,
+            "bytes": 92476
+          },
+          "back": {
+            "frames": 8,
+            "timeline": 19,
+            "ticks": 120,
+            "bytes": 37020
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    },
+    {
+      "row": {
+        "key": "ALT_OGERPON_CORNERSTONE",
+        "id": 1269,
+        "constant": "SPECIES_1269",
+        "name": "Ogerpon Cornerstone Mask",
+        "kind": "alternate form",
+        "baseSpecies": "SPECIES_1017",
+        "baseSpeciesId": 1017,
+        "form": 3,
+        "spriteForm": 455,
+        "assetStatus": "PWAN imported + shiny palette",
+        "personalFile": "data/pml/1269/personal.toml",
+        "battleSet": 23580,
+        "battleSprites": "20/20",
+        "icon": 2366,
+        "iconFile": "OK",
+        "iconPalette": "OK",
+        "credits": "Pokemon Essentials Gen 9 Pack",
+        "runtimeNotes": "Essentials Gen 8/9 import path; sourceStem OGERPON_3; PWAN asset index 1179; form-aware graphics slot;",
+        "defaultProgress": {
+          "personalData": true,
+          "partyIcon": true,
+          "frontSprite": true,
+          "backSprite": true,
+          "verified": false,
+          "notes": "",
+          "shinyPalette": true
+        }
+      },
+      "import": {
+        "assetIndex": 1179,
+        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/OGERPON_3.gif",
+        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/OGERPON_3.gif",
+        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/OGERPON_3.png",
+        "backShiny": null,
+        "stats": {
+          "front": {
+            "frames": 20,
+            "timeline": 59,
+            "ticks": 378,
+            "bytes": 92476
+          },
+          "back": {
+            "frames": 8,
+            "timeline": 19,
+            "ticks": 120,
+            "bytes": 37020
+          }
+        },
+        "missingSides": [],
+        "nativeFallback": true,
+        "nativeFallbackError": "",
+        "shinyPalette": true
+      }
+    }
+  ],
+  "ignoredGmaxSourceStems": [
+    "ALCREMIE_63",
+    "APPLETUN_1",
+    "BUTTERFREE_1",
+    "CENTISKORCH_1",
+    "COALOSSAL_1",
+    "COPPERAJAH_1",
+    "CORVIKNIGHT_1",
+    "DREDNAW_1",
+    "DURALUDON_1",
+    "FLAPPLE_1",
+    "GARBODOR_1",
+    "GENGAR_2",
+    "GRIMMSNARL_1",
+    "HATTERENE_1",
+    "KINGLER_1",
+    "LAPRAS_1",
+    "MACHAMP_1",
+    "MELMETAL_1",
+    "MEOWTH_3",
+    "ORBEETLE_1",
+    "SNORLAX_1",
+    "TOXTRICITY_2",
+    "TOXTRICITY_3",
+    "URSHIFU_2",
+    "URSHIFU_3"
+  ],
+  "ignoredUnknownNumericSuffixes": [
+    "ABOMASNOW_1",
+    "ABSOL_1",
+    "ABSOL_2",
+    "AEGISLASH_1",
+    "AERODACTYL_1",
+    "AGGRON_1",
+    "ALAKAZAM_1",
+    "ALCREMIE_1",
+    "ALCREMIE_10",
+    "ALCREMIE_11",
+    "ALCREMIE_12",
+    "ALCREMIE_13",
+    "ALCREMIE_14",
+    "ALCREMIE_15",
+    "ALCREMIE_16",
+    "ALCREMIE_17",
+    "ALCREMIE_18",
+    "ALCREMIE_19",
+    "ALCREMIE_2",
+    "ALCREMIE_20",
+    "ALCREMIE_21",
+    "ALCREMIE_22",
+    "ALCREMIE_23",
+    "ALCREMIE_24",
+    "ALCREMIE_25",
+    "ALCREMIE_26",
+    "ALCREMIE_27",
+    "ALCREMIE_28",
+    "ALCREMIE_29",
+    "ALCREMIE_3",
+    "ALCREMIE_30",
+    "ALCREMIE_31",
+    "ALCREMIE_32",
+    "ALCREMIE_33",
+    "ALCREMIE_34",
+    "ALCREMIE_35",
+    "ALCREMIE_36",
+    "ALCREMIE_37",
+    "ALCREMIE_38",
+    "ALCREMIE_39",
+    "ALCREMIE_4",
+    "ALCREMIE_40",
+    "ALCREMIE_41",
+    "ALCREMIE_42",
+    "ALCREMIE_43",
+    "ALCREMIE_44",
+    "ALCREMIE_45",
+    "ALCREMIE_46",
+    "ALCREMIE_47",
+    "ALCREMIE_48",
+    "ALCREMIE_49",
+    "ALCREMIE_5",
+    "ALCREMIE_50",
+    "ALCREMIE_51",
+    "ALCREMIE_52",
+    "ALCREMIE_53",
+    "ALCREMIE_54",
+    "ALCREMIE_55",
+    "ALCREMIE_56",
+    "ALCREMIE_57",
+    "ALCREMIE_58",
+    "ALCREMIE_59",
+    "ALCREMIE_6",
+    "ALCREMIE_60",
+    "ALCREMIE_61",
+    "ALCREMIE_62",
+    "ALCREMIE_7",
+    "ALCREMIE_8",
+    "ALCREMIE_9",
+    "ALTARIA_1",
+    "AMPHAROS_1",
+    "ARCEUS_1",
+    "ARCEUS_10",
+    "ARCEUS_11",
+    "ARCEUS_12",
+    "ARCEUS_13",
+    "ARCEUS_14",
+    "ARCEUS_15",
+    "ARCEUS_16",
+    "ARCEUS_17",
+    "ARCEUS_18",
+    "ARCEUS_2",
+    "ARCEUS_3",
+    "ARCEUS_4",
+    "ARCEUS_5",
+    "ARCEUS_6",
+    "ARCEUS_7",
+    "ARCEUS_8",
+    "ARCEUS_9",
+    "AUDINO_1",
+    "BANETTE_1",
+    "BARBARACLE_1",
+    "BASCULIN_1",
+    "BASCULIN_2",
+    "BAXCALIBUR_1",
+    "BEEDRILL_1",
+    "BLASTOISE_1",
+    "BLASTOISE_2",
+    "BLAZIKEN_1",
+    "BURMY_1",
+    "BURMY_2",
+    "CAMERUPT_1",
+    "CASTFORM_1",
+    "CASTFORM_2",
+    "CASTFORM_3",
+    "CHANDELURE_1",
+    "CHARIZARD_1",
+    "CHARIZARD_2",
+    "CHARIZARD_3",
+    "CHERRIM_1",
+    "CHESNAUGHT_1",
+    "CHIMECHO_1",
+    "CINDERACE_1",
+    "CLEFABLE_1",
+    "CRABOMINABLE_1",
+    "CRAMORANT_1",
+    "CRAMORANT_2",
+    "DARKRAI_1",
+    "DARMANITAN_1",
+    "DEERLING_1",
+    "DEERLING_2",
+    "DEERLING_3",
+    "DELPHOX_1",
+    "DEOXYS_1",
+    "DEOXYS_2",
+    "DEOXYS_3",
+    "DIALGA_1",
+    "DIANCIE_1",
+    "DRAGALGE_1",
+    "DRAGONITE_1",
+    "DRAMPA_1",
+    "EELEKTROSS_1",
+    "EEVEE_2",
+    "EMBOAR_1",
+    "ETERNATUS_1",
+    "EXCADRILL_1",
+    "FALINKS_1",
+    "FERALIGATR_1",
+    "FLABEBE_1",
+    "FLABEBE_2",
+    "FLABEBE_3",
+    "FLABEBE_4",
+    "FLOETTE_1",
+    "FLOETTE_2",
+    "FLOETTE_3",
+    "FLOETTE_4",
+    "FLOETTE_5",
+    "FLOETTE_6",
+    "FLORGES_1",
+    "FLORGES_2",
+    "FLORGES_3",
+    "FLORGES_4",
+    "FROSLASS_1",
+    "FURFROU_1",
+    "FURFROU_2",
+    "FURFROU_3",
+    "FURFROU_4",
+    "FURFROU_5",
+    "FURFROU_6",
+    "FURFROU_7",
+    "FURFROU_8",
+    "FURFROU_9",
+    "GALLADE_1",
+    "GARCHOMP_1",
+    "GARCHOMP_2",
+    "GARDEVOIR_1",
+    "GASTRODON_1",
+    "GENESECT_1",
+    "GENESECT_2",
+    "GENESECT_3",
+    "GENESECT_4",
+    "GENGAR_1",
+    "GIRATINA_1",
+    "GLALIE_1",
+    "GLIMMORA_1",
+    "GOLISOPOD_1",
+    "GOLURK_1",
+    "GRENINJA_2",
+    "GRENINJA_3",
+    "GROUDON_1",
+    "GYARADOS_1",
+    "HAWLUCHA_1",
+    "HEATRAN_1",
+    "HERACROSS_1",
+    "HOOPA_1",
+    "HOUNDOOM_1",
+    "INTELEON_1",
+    "KANGASKHAN_1",
+    "KELDEO_1",
+    "KYOGRE_1",
+    "KYUREM_1",
+    "KYUREM_2",
+    "KYUREM_3",
+    "KYUREM_4",
+    "LANDORUS_1",
+    "LATIAS_1",
+    "LATIOS_1",
+    "LOPUNNY_1",
+    "LUCARIO_1",
+    "LUCARIO_2",
+    "LYCANROC_1",
+    "LYCANROC_2",
+    "MAGEARNA_1",
+    "MAGEARNA_2",
+    "MAGEARNA_3",
+    "MALAMAR_1",
+    "MANECTRIC_1",
+    "MAWILE_1",
+    "MEDICHAM_1",
+    "MEGANIUM_1",
+    "MELOETTA_1",
+    "MEOWSTIC_1",
+    "MEOWSTIC_2",
+    "MEOWSTIC_3",
+    "METAGROSS_1",
+    "MEWTWO_1",
+    "MEWTWO_2",
+    "MIMIKYU_1",
+    "MINIOR_10",
+    "MINIOR_11",
+    "MINIOR_12",
+    "MINIOR_13",
+    "MINIOR_7",
+    "MINIOR_8",
+    "MINIOR_9",
+    "NECROZMA_1",
+    "NECROZMA_2",
+    "NECROZMA_3",
+    "NECROZMA_4",
+    "OGERPON_10",
+    "OGERPON_11",
+    "OGERPON_4",
+    "OGERPON_5",
+    "OGERPON_6",
+    "OGERPON_7",
+    "OGERPON_8",
+    "OGERPON_9",
+    "ORICORIO_1",
+    "ORICORIO_2",
+    "ORICORIO_3",
+    "PALKIA_1",
+    "PICHU_2",
+    "PIDGEOT_1",
+    "PIKACHU_10",
+    "PIKACHU_11",
+    "PIKACHU_12",
+    "PIKACHU_13",
+    "PIKACHU_14",
+    "PIKACHU_15",
+    "PIKACHU_17",
+    "PIKACHU_2",
+    "PIKACHU_3",
+    "PIKACHU_4",
+    "PIKACHU_5",
+    "PIKACHU_6",
+    "PIKACHU_7",
+    "PIKACHU_8",
+    "PIKACHU_9",
+    "PINSIR_1",
+    "PYROAR_1",
+    "RAICHU_2",
+    "RAICHU_3",
+    "RAYQUAZA_1",
+    "RILLABOOM_1",
+    "ROTOM_1",
+    "ROTOM_2",
+    "ROTOM_3",
+    "ROTOM_4",
+    "ROTOM_5",
+    "SABLEYE_1",
+    "SALAMENCE_1",
+    "SANDACONDA_1",
+    "SAWSBUCK_1",
+    "SAWSBUCK_2",
+    "SAWSBUCK_3",
+    "SCEPTILE_1",
+    "SCIZOR_1",
+    "SCOLIPEDE_1",
+    "SCOVILLAIN_1",
+    "SCRAFTY_1",
+    "SHARPEDO_1",
+    "SHAYMIN_1",
+    "SHELLOS_1",
+    "SILVALLY_1",
+    "SILVALLY_10",
+    "SILVALLY_11",
+    "SILVALLY_12",
+    "SILVALLY_13",
+    "SILVALLY_14",
+    "SILVALLY_15",
+    "SILVALLY_16",
+    "SILVALLY_17",
+    "SILVALLY_18",
+    "SILVALLY_2",
+    "SILVALLY_3",
+    "SILVALLY_4",
+    "SILVALLY_5",
+    "SILVALLY_6",
+    "SILVALLY_7",
+    "SILVALLY_8",
+    "SKARMORY_1",
+    "SLOWBRO_1",
+    "STARAPTOR_1",
+    "STARMIE_1",
+    "STEELIX_1",
+    "STUDIOPROP_1",
+    "STUDIOPROP_10",
+    "STUDIOPROP_11",
+    "STUDIOPROP_12",
+    "STUDIOPROP_13",
+    "STUDIOPROP_14",
+    "STUDIOPROP_15",
+    "STUDIOPROP_16",
+    "STUDIOPROP_17",
+    "STUDIOPROP_18",
+    "STUDIOPROP_19",
+    "STUDIOPROP_2",
+    "STUDIOPROP_20",
+    "STUDIOPROP_21",
+    "STUDIOPROP_22",
+    "STUDIOPROP_23",
+    "STUDIOPROP_24",
+    "STUDIOPROP_25",
+    "STUDIOPROP_26",
+    "STUDIOPROP_27",
+    "STUDIOPROP_3",
+    "STUDIOPROP_4",
+    "STUDIOPROP_5",
+    "STUDIOPROP_6",
+    "STUDIOPROP_7",
+    "STUDIOPROP_8",
+    "STUDIOPROP_9",
+    "SWAMPERT_1",
+    "TATSUGIRI_1",
+    "TATSUGIRI_2",
+    "TATSUGIRI_3",
+    "TATSUGIRI_4",
+    "TATSUGIRI_5",
+    "TERAPAGOS_1",
+    "TERAPAGOS_2",
+    "THUNDURUS_1",
+    "TORNADUS_1",
+    "TYRANITAR_1",
+    "UNOWN_1",
+    "UNOWN_10",
+    "UNOWN_11",
+    "UNOWN_12",
+    "UNOWN_13",
+    "UNOWN_14",
+    "UNOWN_15",
+    "UNOWN_16",
+    "UNOWN_17",
+    "UNOWN_18",
+    "UNOWN_19",
+    "UNOWN_2",
+    "UNOWN_20",
+    "UNOWN_21",
+    "UNOWN_22",
+    "UNOWN_23",
+    "UNOWN_24",
+    "UNOWN_25",
+    "UNOWN_26",
+    "UNOWN_27",
+    "UNOWN_3",
+    "UNOWN_4",
+    "UNOWN_5",
+    "UNOWN_6",
+    "UNOWN_7",
+    "UNOWN_8",
+    "UNOWN_9",
+    "URSALUNA_1",
+    "VENUSAUR_1",
+    "VENUSAUR_2",
+    "VICTREEBEL_1",
+    "VIVILLON_1",
+    "VIVILLON_10",
+    "VIVILLON_11",
+    "VIVILLON_12",
+    "VIVILLON_13",
+    "VIVILLON_14",
+    "VIVILLON_15",
+    "VIVILLON_16",
+    "VIVILLON_17",
+    "VIVILLON_18",
+    "VIVILLON_19",
+    "VIVILLON_2",
+    "VIVILLON_3",
+    "VIVILLON_4",
+    "VIVILLON_5",
+    "VIVILLON_6",
+    "VIVILLON_7",
+    "VIVILLON_8",
+    "VIVILLON_9",
+    "WISHIWASHI_1",
+    "WORMADAM_1",
+    "WORMADAM_2",
+    "XERNEAS_1",
+    "ZERAORA_1",
+    "ZYGARDE_1",
+    "ZYGARDE_2",
+    "ZYGARDE_3",
+    "ZYGARDE_4",
+    "ZYGARDE_5"
+  ],
+  "saveLineup": "/Users/andylee/Repos/Port-Pokeweb/White2Expansion/data/gen8_gen9_save_lineup.json"
+}

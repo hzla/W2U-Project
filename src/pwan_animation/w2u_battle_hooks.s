@@ -3,12 +3,10 @@
 .type THUMB_BRANCH_LINK_168_0x21DF2C0, %function
 .type THUMB_BRANCH_LINK_168_0x21DF2F8, %function
 .type THUMB_BRANCH_LINK_168_0x21DF248, %function
-.type THUMB_BRANCH_LINK_167_0x21B2416, %function
 
 .extern W2U_BattleAnim_Update
 .extern W2U_BattleAnim_Draw
 .extern W2U_BattleAnim_Term
-.extern W2U_BattleAnim_PatchMegaSummaryCache
 
 @ Preserve BTLV_CLACT_Main, then update custom battle PWAN actors before
 @ the native battle MCSS draw pass.
@@ -38,17 +36,3 @@ THUMB_BRANCH_LINK_168_0x21DF248:
     bl W2U_BattleAnim_Term
     pop {r0-r3, pc}
     .size THUMB_BRANCH_LINK_168_0x21DF248, . - THUMB_BRANCH_LINK_168_0x21DF248
-
-@ Preserve the single-battle command UI state machine, then patch the
-@ mid-battle Pokemon status cache after that UI has had a chance to allocate it.
-THUMB_BRANCH_LINK_167_0x21B2416:
-    push {r1-r3, lr}
-    ldr r3, =0x021B2259
-    blx r3
-    push {r0}
-    bl W2U_BattleAnim_PatchMegaSummaryCache
-    pop {r0}
-    pop {r1-r3}
-    pop {r1}
-    bx r1
-    .size THUMB_BRANCH_LINK_167_0x21B2416, . - THUMB_BRANCH_LINK_167_0x21B2416

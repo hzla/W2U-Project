@@ -1,0 +1,15 @@
+option(
+  'pokegra_fallback_compression',
+  type: 'combo',
+  choices: ['literal', 'nlz11'],
+  value: 'literal',
+  description: 'Compression mode for generated Gen 7 pokegra native fallback NCGR patches. literal is fast for dev builds; nlz11 is compact.'
+)
+
+option(
+  'pokegra_fallback_jobs',
+  type: 'integer',
+  min: 1,
+  value: 6,
+  description: 'Worker process count for Gen 7 pokegra native fallback recompression.'
+)

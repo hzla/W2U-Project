@@ -2,7 +2,7 @@
 
 #include "nds/fs.h"
 
-#define W2U_PWAN_CONFIG_CACHE_BYTES 2048u
+#define W2U_PWAN_CONFIG_CACHE_BYTES 8192u
 
 namespace w2u {
 namespace pwan_archive {

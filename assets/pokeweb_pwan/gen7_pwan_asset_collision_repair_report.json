@@ -1,0 +1,501 @@
+{
+  "version": 1,
+  "repairedRows": [
+    {
+      "species": 725,
+      "name": "Litten",
+      "oldEntry": {
+        "species": 725,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 950,
+        "frontIndex": 950,
+        "backIndex": 950
+      },
+      "newAssetIndex": 725,
+      "flags": 3
+    },
+    {
+      "species": 726,
+      "name": "Torracat",
+      "oldEntry": {
+        "species": 726,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 982,
+        "frontIndex": 982,
+        "backIndex": 982
+      },
+      "newAssetIndex": 726,
+      "flags": 3
+    },
+    {
+      "species": 728,
+      "name": "Popplio",
+      "oldEntry": {
+        "species": 728,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 951,
+        "frontIndex": 951,
+        "backIndex": 951
+      },
+      "newAssetIndex": 728,
+      "flags": 3
+    },
+    {
+      "species": 729,
+      "name": "Brionne",
+      "oldEntry": {
+        "species": 729,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 952,
+        "frontIndex": 952,
+        "backIndex": 952
+      },
+      "newAssetIndex": 729,
+      "flags": 3
+    },
+    {
+      "species": 736,
+      "name": "Grubbin",
+      "oldEntry": {
+        "species": 736,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 953,
+        "frontIndex": 953,
+        "backIndex": 953
+      },
+      "newAssetIndex": 736,
+      "flags": 3
+    },
+    {
+      "species": 737,
+      "name": "Charjabug",
+      "oldEntry": {
+        "species": 737,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 954,
+        "frontIndex": 954,
+        "backIndex": 954
+      },
+      "newAssetIndex": 737,
+      "flags": 3
+    },
+    {
+      "species": 738,
+      "name": "Vikavolt",
+      "oldEntry": {
+        "species": 738,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 955,
+        "frontIndex": 955,
+        "backIndex": 955
+      },
+      "newAssetIndex": 738,
+      "flags": 3
+    },
+    {
+      "species": 739,
+      "name": "Crabrawler",
+      "oldEntry": {
+        "species": 739,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 956,
+        "frontIndex": 956,
+        "backIndex": 956
+      },
+      "newAssetIndex": 739,
+      "flags": 3
+    },
+    {
+      "species": 740,
+      "name": "Crabominable",
+      "oldEntry": {
+        "species": 740,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 957,
+        "frontIndex": 957,
+        "backIndex": 957
+      },
+      "newAssetIndex": 740,
+      "flags": 3
+    },
+    {
+      "species": 741,
+      "name": "Oricorio",
+      "oldEntry": {
+        "species": 741,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 958,
+        "frontIndex": 958,
+        "backIndex": 958
+      },
+      "newAssetIndex": 741,
+      "flags": 3
+    },
+    {
+      "species": 743,
+      "name": "Ribombee",
+      "oldEntry": {
+        "species": 743,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 959,
+        "frontIndex": 959,
+        "backIndex": 959
+      },
+      "newAssetIndex": 743,
+      "flags": 3
+    },
+    {
+      "species": 744,
+      "name": "Rockruff",
+      "oldEntry": {
+        "species": 744,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 960,
+        "frontIndex": 960,
+        "backIndex": 960
+      },
+      "newAssetIndex": 744,
+      "flags": 3
+    },
+    {
+      "species": 745,
+      "name": "Lycanroc",
+      "oldEntry": {
+        "species": 745,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 961,
+        "frontIndex": 961,
+        "backIndex": 961
+      },
+      "newAssetIndex": 745,
+      "flags": 3
+    },
+    {
+      "species": 773,
+      "name": "Silvally",
+      "oldEntry": {
+        "species": 773,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 962,
+        "frontIndex": 962,
+        "backIndex": 962
+      },
+      "newAssetIndex": 773,
+      "flags": 3
+    },
+    {
+      "species": 774,
+      "name": "Minior",
+      "oldEntry": {
+        "species": 774,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 963,
+        "frontIndex": 963,
+        "backIndex": 963
+      },
+      "newAssetIndex": 774,
+      "flags": 3
+    },
+    {
+      "species": 775,
+      "name": "Komala",
+      "oldEntry": {
+        "species": 775,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 964,
+        "frontIndex": 964,
+        "backIndex": 964
+      },
+      "newAssetIndex": 775,
+      "flags": 3
+    },
+    {
+      "species": 776,
+      "name": "Turtonator",
+      "oldEntry": {
+        "species": 776,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 965,
+        "frontIndex": 965,
+        "backIndex": 965
+      },
+      "newAssetIndex": 776,
+      "flags": 3
+    },
+    {
+      "species": 777,
+      "name": "Togedemaru",
+      "oldEntry": {
+        "species": 777,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 966,
+        "frontIndex": 966,
+        "backIndex": 966
+      },
+      "newAssetIndex": 777,
+      "flags": 3
+    },
+    {
+      "species": 779,
+      "name": "Bruxish",
+      "oldEntry": {
+        "species": 779,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 967,
+        "frontIndex": 967,
+        "backIndex": 967
+      },
+      "newAssetIndex": 779,
+      "flags": 3
+    },
+    {
+      "species": 780,
+      "name": "Drampa",
+      "oldEntry": {
+        "species": 780,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 968,
+        "frontIndex": 968,
+        "backIndex": 968
+      },
+      "newAssetIndex": 780,
+      "flags": 3
+    },
+    {
+      "species": 781,
+      "name": "Dhelmise",
+      "oldEntry": {
+        "species": 781,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 969,
+        "frontIndex": 969,
+        "backIndex": 969
+      },
+      "newAssetIndex": 781,
+      "flags": 3
+    },
+    {
+      "species": 782,
+      "name": "Jangmo-o",
+      "oldEntry": {
+        "species": 782,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 970,
+        "frontIndex": 970,
+        "backIndex": 970
+      },
+      "newAssetIndex": 782,
+      "flags": 3
+    },
+    {
+      "species": 783,
+      "name": "Hakamo-o",
+      "oldEntry": {
+        "species": 783,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 971,
+        "frontIndex": 971,
+        "backIndex": 971
+      },
+      "newAssetIndex": 783,
+      "flags": 3
+    },
+    {
+      "species": 784,
+      "name": "Kommo-o",
+      "oldEntry": {
+        "species": 784,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 972,
+        "frontIndex": 972,
+        "backIndex": 972
+      },
+      "newAssetIndex": 784,
+      "flags": 3
+    },
+    {
+      "species": 785,
+      "name": "Tapu Koko",
+      "oldEntry": {
+        "species": 785,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 973,
+        "frontIndex": 973,
+        "backIndex": 973
+      },
+      "newAssetIndex": 785,
+      "flags": 3
+    },
+    {
+      "species": 786,
+      "name": "Tapu Lele",
+      "oldEntry": {
+        "species": 786,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 974,
+        "frontIndex": 974,
+        "backIndex": 974
+      },
+      "newAssetIndex": 786,
+      "flags": 3
+    },
+    {
+      "species": 789,
+      "name": "Cosmog",
+      "oldEntry": {
+        "species": 789,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 975,
+        "frontIndex": 975,
+        "backIndex": 975
+      },
+      "newAssetIndex": 789,
+      "flags": 3
+    },
+    {
+      "species": 793,
+      "name": "Nihilego",
+      "oldEntry": {
+        "species": 793,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 976,
+        "frontIndex": 976,
+        "backIndex": 976
+      },
+      "newAssetIndex": 793,
+      "flags": 3
+    },
+    {
+      "species": 794,
+      "name": "Buzzwole",
+      "oldEntry": {
+        "species": 794,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 977,
+        "frontIndex": 977,
+        "backIndex": 977
+      },
+      "newAssetIndex": 794,
+      "flags": 3
+    },
+    {
+      "species": 795,
+      "name": "Pheromosa",
+      "oldEntry": {
+        "species": 795,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 978,
+        "frontIndex": 978,
+        "backIndex": 978
+      },
+      "newAssetIndex": 795,
+      "flags": 3
+    },
+    {
+      "species": 796,
+      "name": "Xurkitree",
+      "oldEntry": {
+        "species": 796,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 979,
+        "frontIndex": 979,
+        "backIndex": 979
+      },
+      "newAssetIndex": 796,
+      "flags": 3
+    },
+    {
+      "species": 798,
+      "name": "Kartana",
+      "oldEntry": {
+        "species": 798,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 980,
+        "frontIndex": 980,
+        "backIndex": 980
+      },
+      "newAssetIndex": 798,
+      "flags": 3
+    },
+    {
+      "species": 799,
+      "name": "Guzzlord",
+      "oldEntry": {
+        "species": 799,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 983,
+        "frontIndex": 983,
+        "backIndex": 983
+      },
+      "newAssetIndex": 799,
+      "flags": 3
+    },
+    {
+      "species": 802,
+      "name": "Marshadow",
+      "oldEntry": {
+        "species": 802,
+        "form": 0,
+        "flags": 3,
+        "assetIndex": 981,
+        "frontIndex": 981,
+        "backIndex": 981
+      },
+      "newAssetIndex": 802,
+      "flags": 3
+    }
+  ],
+  "copiedMissingDirectSides": [
+    {
+      "species": 729,
+      "side": "back",
+      "source": "/Users/andylee/Repos/Port-Pokeweb/White2Upgrade/assets/pokeweb_pwan/952_back.pwan"
+    },
+    {
+      "species": 776,
+      "side": "back",
+      "source": "/Users/andylee/Repos/Port-Pokeweb/White2Upgrade/assets/pokeweb_pwan/965_back.pwan"
+    },
+    {
+      "species": 782,
+      "side": "back",
+      "source": "/Users/andylee/Repos/Port-Pokeweb/White2Upgrade/assets/pokeweb_pwan/970_back.pwan"
+    }
+  ],
+  "missingDirectAssets": [],
+  "pwanConfigEntries": 633,
+  "maxAssetIndex": 1179
+}

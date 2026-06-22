@@ -1,0 +1,978 @@
+{
+  "version": 1,
+  "staged": [
+    {
+      "key": "REGIONAL_ALOLA_RATTATA",
+      "name": "Alolan Rattata",
+      "assetIndex": 1095,
+      "battleSet": 21900,
+      "sourceStem": "RATTATA_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_RATICATE",
+      "name": "Alolan Raticate",
+      "assetIndex": 1096,
+      "battleSet": 21920,
+      "sourceStem": "RATICATE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_RAICHU",
+      "name": "Alolan Raichu",
+      "assetIndex": 1099,
+      "battleSet": 21980,
+      "sourceStem": "RAICHU_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_SANDSHREW",
+      "name": "Alolan Sandshrew",
+      "assetIndex": 1100,
+      "battleSet": 22000,
+      "sourceStem": "SANDSHREW_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_SANDSLASH",
+      "name": "Alolan Sandslash",
+      "assetIndex": 1101,
+      "battleSet": 22020,
+      "sourceStem": "SANDSLASH_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_VULPIX",
+      "name": "Alolan Vulpix",
+      "assetIndex": 1102,
+      "battleSet": 22040,
+      "sourceStem": "VULPIX_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_NINETALES",
+      "name": "Alolan Ninetales",
+      "assetIndex": 1103,
+      "battleSet": 22060,
+      "sourceStem": "NINETALES_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_DIGLETT",
+      "name": "Alolan Diglett",
+      "assetIndex": 1104,
+      "battleSet": 22080,
+      "sourceStem": "DIGLETT_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_DUGTRIO",
+      "name": "Alolan Dugtrio",
+      "assetIndex": 1105,
+      "battleSet": 22100,
+      "sourceStem": "DUGTRIO_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_MEOWTH",
+      "name": "Alolan Meowth",
+      "assetIndex": 1106,
+      "battleSet": 22120,
+      "sourceStem": "MEOWTH_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_MEOWTH",
+      "name": "Galarian Meowth",
+      "assetIndex": 1107,
+      "battleSet": 22140,
+      "sourceStem": "MEOWTH_2",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_PERSIAN",
+      "name": "Alolan Persian",
+      "assetIndex": 1108,
+      "battleSet": 22160,
+      "sourceStem": "PERSIAN_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_GROWLITHE",
+      "name": "Hisuian Growlithe",
+      "assetIndex": 1109,
+      "battleSet": 22180,
+      "sourceStem": "GROWLITHE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_ARCANINE",
+      "name": "Hisuian Arcanine",
+      "assetIndex": 1110,
+      "battleSet": 22200,
+      "sourceStem": "ARCANINE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_GEODUDE",
+      "name": "Alolan Geodude",
+      "assetIndex": 1111,
+      "battleSet": 22220,
+      "sourceStem": "GEODUDE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_GRAVELER",
+      "name": "Alolan Graveler",
+      "assetIndex": 1112,
+      "battleSet": 22240,
+      "sourceStem": "GRAVELER_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_GOLEM",
+      "name": "Alolan Golem",
+      "assetIndex": 1113,
+      "battleSet": 22260,
+      "sourceStem": "GOLEM_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_PONYTA",
+      "name": "Galarian Ponyta",
+      "assetIndex": 1114,
+      "battleSet": 22280,
+      "sourceStem": "PONYTA_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_RAPIDASH",
+      "name": "Galarian Rapidash",
+      "assetIndex": 1115,
+      "battleSet": 22300,
+      "sourceStem": "RAPIDASH_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_SLOWPOKE",
+      "name": "Galarian Slowpoke",
+      "assetIndex": 1116,
+      "battleSet": 22320,
+      "sourceStem": "SLOWPOKE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_SLOWBRO",
+      "name": "Galarian Slowbro",
+      "assetIndex": 1118,
+      "battleSet": 22360,
+      "sourceStem": "SLOWBRO_2",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_FARFETCHD",
+      "name": "Galarian Farfetch'd",
+      "assetIndex": 1119,
+      "battleSet": 22380,
+      "sourceStem": "FARFETCHD_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_GRIMER",
+      "name": "Alolan Grimer",
+      "assetIndex": 1120,
+      "battleSet": 22400,
+      "sourceStem": "GRIMER_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_MUK",
+      "name": "Alolan Muk",
+      "assetIndex": 1121,
+      "battleSet": 22420,
+      "sourceStem": "MUK_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_VOLTORB",
+      "name": "Hisuian Voltorb",
+      "assetIndex": 1122,
+      "battleSet": 22440,
+      "sourceStem": "VOLTORB_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_ELECTRODE",
+      "name": "Hisuian Electrode",
+      "assetIndex": 1123,
+      "battleSet": 22460,
+      "sourceStem": "ELECTRODE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_EXEGGUTOR",
+      "name": "Alolan Exeggutor",
+      "assetIndex": 1124,
+      "battleSet": 22480,
+      "sourceStem": "EXEGGUTOR_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_ALOLA_MAROWAK",
+      "name": "Alolan Marowak",
+      "assetIndex": 1125,
+      "battleSet": 22500,
+      "sourceStem": "MAROWAK_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_WEEZING",
+      "name": "Galarian Weezing",
+      "assetIndex": 1126,
+      "battleSet": 22520,
+      "sourceStem": "WEEZING_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_MR_MIME",
+      "name": "Galarian Mr. Mime",
+      "assetIndex": 1127,
+      "battleSet": 22540,
+      "sourceStem": "MRMIME_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_PALDEA_TAUROS_COMBAT",
+      "name": "Paldean Tauros Combat Breed",
+      "assetIndex": 1128,
+      "battleSet": 22560,
+      "sourceStem": "TAUROS_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_PALDEA_TAUROS_BLAZE",
+      "name": "Paldean Tauros Blaze Breed",
+      "assetIndex": 1129,
+      "battleSet": 22580,
+      "sourceStem": "TAUROS_2",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_PALDEA_TAUROS_AQUA",
+      "name": "Paldean Tauros Aqua Breed",
+      "assetIndex": 1130,
+      "battleSet": 22600,
+      "sourceStem": "TAUROS_3",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_ARTICUNO",
+      "name": "Galarian Articuno",
+      "assetIndex": 1131,
+      "battleSet": 22620,
+      "sourceStem": "ARTICUNO_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_ZAPDOS",
+      "name": "Galarian Zapdos",
+      "assetIndex": 1132,
+      "battleSet": 22640,
+      "sourceStem": "ZAPDOS_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_MOLTRES",
+      "name": "Galarian Moltres",
+      "assetIndex": 1133,
+      "battleSet": 22660,
+      "sourceStem": "MOLTRES_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_TYPHLOSION",
+      "name": "Hisuian Typhlosion",
+      "assetIndex": 1134,
+      "battleSet": 22680,
+      "sourceStem": "TYPHLOSION_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_PALDEA_WOOPER",
+      "name": "Paldean Wooper",
+      "assetIndex": 1135,
+      "battleSet": 22700,
+      "sourceStem": "WOOPER_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_SLOWKING",
+      "name": "Galarian Slowking",
+      "assetIndex": 1136,
+      "battleSet": 22720,
+      "sourceStem": "SLOWKING_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_QWILFISH",
+      "name": "Hisuian Qwilfish",
+      "assetIndex": 1137,
+      "battleSet": 22740,
+      "sourceStem": "QWILFISH_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_SNEASEL",
+      "name": "Hisuian Sneasel",
+      "assetIndex": 1138,
+      "battleSet": 22760,
+      "sourceStem": "SNEASEL_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_CORSOLA",
+      "name": "Galarian Corsola",
+      "assetIndex": 1139,
+      "battleSet": 22780,
+      "sourceStem": "CORSOLA_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_ZIGZAGOON",
+      "name": "Galarian Zigzagoon",
+      "assetIndex": 1140,
+      "battleSet": 22800,
+      "sourceStem": "ZIGZAGOON_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_LINOONE",
+      "name": "Galarian Linoone",
+      "assetIndex": 1141,
+      "battleSet": 22820,
+      "sourceStem": "LINOONE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_SAMUROTT",
+      "name": "Hisuian Samurott",
+      "assetIndex": 1142,
+      "battleSet": 22840,
+      "sourceStem": "SAMUROTT_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_LILLIGANT",
+      "name": "Hisuian Lilligant",
+      "assetIndex": 1143,
+      "battleSet": 22860,
+      "sourceStem": "LILLIGANT_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_DARUMAKA",
+      "name": "Galarian Darumaka",
+      "assetIndex": 1144,
+      "battleSet": 22880,
+      "sourceStem": "DARUMAKA_2",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_DARMANITAN",
+      "name": "Galarian Darmanitan",
+      "assetIndex": 1146,
+      "battleSet": 22920,
+      "sourceStem": "DARMANITAN_2",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_DARMANITAN_ZEN",
+      "name": "Galarian Darmanitan Zen Mode",
+      "assetIndex": 1147,
+      "battleSet": 22940,
+      "sourceStem": "DARMANITAN_3",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_YAMASK",
+      "name": "Galarian Yamask",
+      "assetIndex": 1148,
+      "battleSet": 22960,
+      "sourceStem": "YAMASK_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_ZORUA",
+      "name": "Hisuian Zorua",
+      "assetIndex": 1149,
+      "battleSet": 22980,
+      "sourceStem": "ZORUA_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_ZOROARK",
+      "name": "Hisuian Zoroark",
+      "assetIndex": 1150,
+      "battleSet": 23000,
+      "sourceStem": "ZOROARK_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_GALAR_STUNFISK",
+      "name": "Galarian Stunfisk",
+      "assetIndex": 1151,
+      "battleSet": 23020,
+      "sourceStem": "STUNFISK_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_BRAVIARY",
+      "name": "Hisuian Braviary",
+      "assetIndex": 1152,
+      "battleSet": 23040,
+      "sourceStem": "BRAVIARY_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_SLIGGOO",
+      "name": "Hisuian Sliggoo",
+      "assetIndex": 1153,
+      "battleSet": 23060,
+      "sourceStem": "SLIGGOO_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_GOODRA",
+      "name": "Hisuian Goodra",
+      "assetIndex": 1154,
+      "battleSet": 23080,
+      "sourceStem": "GOODRA_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_AVALUGG",
+      "name": "Hisuian Avalugg",
+      "assetIndex": 1155,
+      "battleSet": 23100,
+      "sourceStem": "AVALUGG_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "REGIONAL_HISUI_DECIDUEYE",
+      "name": "Hisuian Decidueye",
+      "assetIndex": 1156,
+      "battleSet": 23120,
+      "sourceStem": "DECIDUEYE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_TOXTRICITY_LOW_KEY",
+      "name": "Toxtricity Low Key Form",
+      "assetIndex": 1157,
+      "battleSet": 23140,
+      "sourceStem": "TOXTRICITY_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_EISCUE_NOICE",
+      "name": "Eiscue Noice Face",
+      "assetIndex": 1158,
+      "battleSet": 23160,
+      "sourceStem": "EISCUE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_INDEEDEE_FEMALE",
+      "name": "Indeedee Female",
+      "assetIndex": 1159,
+      "battleSet": 23180,
+      "sourceStem": "INDEEDEE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_MORPEKO_HANGRY",
+      "name": "Morpeko Hangry Mode",
+      "assetIndex": 1160,
+      "battleSet": 23200,
+      "sourceStem": "MORPEKO_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_ZACIAN_CROWNED",
+      "name": "Zacian Crowned Sword",
+      "assetIndex": 1161,
+      "battleSet": 23220,
+      "sourceStem": "ZACIAN_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_ZAMAZENTA_CROWNED",
+      "name": "Zamazenta Crowned Shield",
+      "assetIndex": 1162,
+      "battleSet": 23240,
+      "sourceStem": "ZAMAZENTA_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_URSHIFU_RAPID_STRIKE",
+      "name": "Urshifu Rapid Strike Style",
+      "assetIndex": 1163,
+      "battleSet": 23260,
+      "sourceStem": "URSHIFU_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_ZARUDE_DADA",
+      "name": "Zarude Dada",
+      "assetIndex": 1164,
+      "battleSet": 23280,
+      "sourceStem": "ZARUDE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_CALYREX_ICE_RIDER",
+      "name": "Calyrex Ice Rider",
+      "assetIndex": 1165,
+      "battleSet": 23300,
+      "sourceStem": "CALYREX_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_CALYREX_SHADOW_RIDER",
+      "name": "Calyrex Shadow Rider",
+      "assetIndex": 1166,
+      "battleSet": 23320,
+      "sourceStem": "CALYREX_2",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_BASCULEGION_FEMALE",
+      "name": "Basculegion Female",
+      "assetIndex": 1167,
+      "battleSet": 23340,
+      "sourceStem": "BASCULEGION_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_ENAMORUS_THERIAN",
+      "name": "Enamorus Therian Forme",
+      "assetIndex": 1168,
+      "battleSet": 23360,
+      "sourceStem": "ENAMORUS_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_OINKOLOGNE_FEMALE",
+      "name": "Oinkologne Female",
+      "assetIndex": 1169,
+      "battleSet": 23380,
+      "sourceStem": "OINKOLOGNE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_MAUSHOLD_FAMILY_OF_THREE",
+      "name": "Maushold Family of Three",
+      "assetIndex": 1170,
+      "battleSet": 23400,
+      "sourceStem": "MAUSHOLD_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_SQUAWKABILLY_BLUE",
+      "name": "Squawkabilly Blue Plumage",
+      "assetIndex": 1171,
+      "battleSet": 23420,
+      "sourceStem": "SQUAWKABILLY_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_SQUAWKABILLY_YELLOW",
+      "name": "Squawkabilly Yellow Plumage",
+      "assetIndex": 1172,
+      "battleSet": 23440,
+      "sourceStem": "SQUAWKABILLY_2",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_SQUAWKABILLY_WHITE",
+      "name": "Squawkabilly White Plumage",
+      "assetIndex": 1173,
+      "battleSet": 23460,
+      "sourceStem": "SQUAWKABILLY_3",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_PALAFIN_HERO",
+      "name": "Palafin Hero Form",
+      "assetIndex": 1174,
+      "battleSet": 23480,
+      "sourceStem": "PALAFIN_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_DUDUNSPARCE_THREE_SEGMENT",
+      "name": "Dudunsparce Three-Segment Form",
+      "assetIndex": 1175,
+      "battleSet": 23500,
+      "sourceStem": "DUDUNSPARCE_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_GIMMIGHOUL_ROAMING",
+      "name": "Gimmighoul Roaming Form",
+      "assetIndex": 1176,
+      "battleSet": 23520,
+      "sourceStem": "GIMMIGHOUL_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_OGERPON_WELLSPRING",
+      "name": "Ogerpon Wellspring Mask",
+      "assetIndex": 1177,
+      "battleSet": 23540,
+      "sourceStem": "OGERPON_1",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_OGERPON_HEARTHFLAME",
+      "name": "Ogerpon Hearthflame Mask",
+      "assetIndex": 1178,
+      "battleSet": 23560,
+      "sourceStem": "OGERPON_2",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    },
+    {
+      "key": "ALT_OGERPON_CORNERSTONE",
+      "name": "Ogerpon Cornerstone Mask",
+      "assetIndex": 1179,
+      "battleSet": 23580,
+      "sourceStem": "OGERPON_3",
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true
+    }
+  ],
+  "errors": []
+}

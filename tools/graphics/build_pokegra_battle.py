@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import concurrent.futures
 import json
 import shutil
 import struct
@@ -26,6 +27,7 @@ CONFIG_VERSION = 1
 CONFIG_ENTRY_SIZE = 8
 CONFIG_HEADER_SIZE = 16
 MAX_TIMELINE_ENTRIES = 128
+INCREMENTAL_MANIFEST_VERSION = 1
 NCGR_TILED_HEADER = bytes.fromhex(
     "5247434efffe01013020000010000100"
     "52414843202000000c000c0003000000"
@@ -67,6 +69,11 @@ PRIMARY_SECTION_BY_KIND = {
     "nmcr": "KBCM",
     "nmar": "KNBA",
 }
+FallbackPatchJob = tuple[Path, bytes, str]
+
+
+class NeedsFullRebuild(RuntimeError):
+    pass
 
 
 def load_toml(path: Path) -> dict:
@@ -82,6 +89,71 @@ def clean_dir(path: Path) -> None:
 
 def ensure_dir(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
+
+
+def file_fingerprint(path: Path | None) -> dict | None:
+    if path is None:
+        return None
+    try:
+        stat = path.stat()
+    except FileNotFoundError:
+        return None
+    return {"size": stat.st_size, "mtime_ns": stat.st_mtime_ns}
+
+
+def output_fingerprint(path: Path) -> dict | None:
+    fingerprint = file_fingerprint(path)
+    if fingerprint is None:
+        return None
+    fingerprint["path"] = path.name
+    return fingerprint
+
+
+def manifest_path_for_stamp(stamp: Path) -> Path:
+    return stamp.with_name(f"{stamp.stem}.manifest.json")
+
+
+def load_incremental_manifest(path: Path) -> dict | None:
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text())
+    except (OSError, json.JSONDecodeError):
+        return None
+
+
+def write_incremental_manifest(path: Path, manifest: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+
+
+def incremental_config(args: argparse.Namespace) -> dict:
+    pwan_config = (
+        args.gen7_pwan_fallback_source / "config.bin"
+        if args.gen7_pwan_fallback_source is not None
+        else None
+    )
+    return {
+        "version": INCREMENTAL_MANIFEST_VERSION,
+        "preserve_base_before": args.preserve_base_before,
+        "base_archive": file_fingerprint(args.base_archive),
+        "order": file_fingerprint(args.source / ORDER_FILE),
+        "extra_bin_source": str(args.extra_bin_source) if args.extra_bin_source else None,
+        "pwan_config": file_fingerprint(pwan_config),
+        "skip_pwan": bool(args.skip_pwan),
+    }
+
+
+def can_incremental_rebuild(manifest: dict | None, config: dict, battle_vfs: Path) -> bool:
+    if not isinstance(manifest, dict):
+        return False
+    if manifest.get("config") != config:
+        return False
+    if not battle_vfs.is_dir():
+        return False
+    if not (battle_vfs / ".arc").exists():
+        return False
+    return True
 
 
 def seed_base_archive(base_archive: Path | None, battle_vfs: Path) -> int:
@@ -927,6 +999,21 @@ def stage_nns_entry(entry: dict, manifest: Path, manifest_data: dict, output: Pa
         output.write_bytes(payload)
 
 
+def nns_source_fingerprint(entry: dict, manifest: Path, manifest_data: dict) -> dict:
+    raw = manifest.parent / entry["raw"]
+    dependencies = [manifest.parent / dependency for dependency in entry.get("depends_on", [])]
+    return {
+        "entry": entry,
+        "manifest": file_fingerprint(manifest),
+        "raw": file_fingerprint(raw),
+        "dependencies": [
+            {"name": dependency.name, "fingerprint": file_fingerprint(dependency)}
+            for dependency in dependencies
+        ],
+        "sopc_height": manifest_data.get("sopc_height"),
+    }
+
+
 def graphics_order_entries(source_root: Path) -> list[dict]:
     order_path = source_root / ORDER_FILE
     order = load_toml(order_path)
@@ -941,6 +1028,76 @@ def graphics_order_entries(source_root: Path) -> list[dict]:
         if kind not in ("nns", "pwan"):
             raise RuntimeError(f"{order_path}: entries[{index}].type must be \"nns\" or \"pwan\"")
     return entries
+
+
+def collect_nns_stage_entries(source_root: Path, preserve_before: int) -> tuple[int, list[dict]]:
+    if not (source_root / ORDER_FILE).exists():
+        raise NeedsFullRebuild("legacy numeric pokegra source layout needs full rebuild")
+
+    count = 0
+    stage_entries = []
+    for item in graphics_order_entries(source_root):
+        manifest = source_root / item["folder"] / "nns.toml"
+        manifest_data = load_toml(manifest)
+        for entry in manifest_data.get("entries", []):
+            if count >= preserve_before:
+                stage_entries.append({
+                    "index": count,
+                    "entry": entry,
+                    "manifest": manifest,
+                    "manifest_data": manifest_data,
+                    "source": nns_source_fingerprint(entry, manifest, manifest_data),
+                })
+            count += 1
+    return count, stage_entries
+
+
+def stage_nns_archive_entries_incremental(
+    source_root: Path,
+    battle_vfs: Path,
+    preserve_before: int,
+    previous: dict,
+    force: bool,
+) -> tuple[int, set[int], dict, int]:
+    nns_count, stage_entries = collect_nns_stage_entries(source_root, preserve_before)
+    previous_count = previous.get("count")
+    if not force and previous_count is not None and previous_count != nns_count:
+        raise NeedsFullRebuild("pokegra NNS entry count changed")
+
+    previous_entries = previous.get("entries", {}) if isinstance(previous, dict) else {}
+    next_entries = {}
+    changed_outputs: set[int] = set()
+    staged = 0
+
+    for stage_entry in stage_entries:
+        index = int(stage_entry["index"])
+        key = str(index)
+        output = battle_vfs / key
+        current_output = output_fingerprint(output)
+        source_fingerprint = stage_entry["source"]
+        previous_entry = previous_entries.get(key)
+        should_stage = (
+            force
+            or previous_entry is None
+            or previous_entry.get("source") != source_fingerprint
+            or current_output is None
+        )
+        if should_stage:
+            stage_nns_entry(
+                stage_entry["entry"],
+                stage_entry["manifest"],
+                stage_entry["manifest_data"],
+                output,
+            )
+            current_output = output_fingerprint(output)
+            changed_outputs.add(index)
+            staged += 1
+        next_entries[key] = {
+            "source": source_fingerprint,
+            "output": current_output,
+        }
+
+    return nns_count, changed_outputs, {"count": nns_count, "entries": next_entries}, staged
 
 
 def copy_nns_archive_entries(source_root: Path, battle_vfs: Path, preserve_before: int = 0) -> int:
@@ -997,31 +1154,155 @@ def copy_extra_bin_entries(extra_source: Path | None, battle_vfs: Path, first_ex
     return count
 
 
+def collect_extra_bin_entries(extra_source: Path | None, first_extra_index: int) -> list[dict]:
+    if extra_source is None:
+        return []
+    if not extra_source.is_dir():
+        raise NotADirectoryError(extra_source)
+
+    entries = []
+    for file in sorted(extra_source.iterdir()):
+        if not file.is_file():
+            continue
+        index = extra_bin_member_id(file)
+        if index is None:
+            continue
+        if index < first_extra_index:
+            raise RuntimeError(
+                f"{file}: extra battle graphic index {index} overlaps generated range 0..{first_extra_index - 1}"
+            )
+        entries.append({
+            "index": index,
+            "path": file,
+            "source": {"name": file.name, "fingerprint": file_fingerprint(file)},
+        })
+    return entries
+
+
+def copy_extra_bin_entries_incremental(
+    extra_source: Path | None,
+    battle_vfs: Path,
+    first_extra_index: int,
+    previous: dict,
+    force: bool,
+) -> tuple[int, set[int], dict, int]:
+    entries = collect_extra_bin_entries(extra_source, first_extra_index)
+    current_keys = {str(entry["index"]) for entry in entries}
+    previous_entries = previous.get("entries", {}) if isinstance(previous, dict) else {}
+    if not force and set(previous_entries.keys()) != current_keys:
+        raise NeedsFullRebuild("extra battle graphic file set changed")
+
+    next_entries = {}
+    changed_outputs: set[int] = set()
+    copied = 0
+    for entry in entries:
+        index = int(entry["index"])
+        key = str(index)
+        output = battle_vfs / key
+        current_output = output_fingerprint(output)
+        source_fingerprint = entry["source"]
+        previous_entry = previous_entries.get(key)
+        should_copy = (
+            force
+            or previous_entry is None
+            or previous_entry.get("source") != source_fingerprint
+            or current_output is None
+        )
+        if should_copy:
+            shutil.copy2(entry["path"], output)
+            current_output = output_fingerprint(output)
+            changed_outputs.add(index)
+            copied += 1
+        next_entries[key] = {
+            "source": source_fingerprint,
+            "output": current_output,
+        }
+
+    return len(entries), changed_outputs, {"entries": next_entries}, copied
+
+
 def gen7_battle_base(species: int) -> int:
     return GEN7_BATTLE_ARCHIVE_START + (species - GEN7_SPECIES_START) * GEN7_FILES_PER_SPRITE
 
 
-def patch_compressed_ncgr_payload(path: Path, payload: bytes) -> None:
+def patch_compressed_ncgr_payload(path: Path, payload: bytes, compression: str) -> None:
     decompressed = bytearray(lz11_decompress(path.read_bytes()))
     if len(decompressed) < len(payload) or decompressed[:4] != b"RGCN":
         raise RuntimeError(f"{path}: not a supported compressed NCGR")
     decompressed[-len(payload):] = payload
-    path.write_bytes(lz11_compress_nlz(bytes(decompressed)))
+    if compression == "literal":
+        path.write_bytes(lz11_compress(bytes(decompressed)))
+    elif compression == "nlz11":
+        path.write_bytes(lz11_compress_nlz(bytes(decompressed)))
+    else:
+        raise RuntimeError(f"unsupported fallback compression {compression!r}")
+
+
+def patch_compressed_ncgr_payload_job(job: FallbackPatchJob) -> str:
+    path, payload, compression = job
+    patch_compressed_ncgr_payload(path, payload, compression)
+    return str(path)
+
+
+def run_fallback_patch_jobs(patch_jobs: list[FallbackPatchJob], fallback_jobs: int) -> int:
+    if fallback_jobs < 1:
+        raise RuntimeError("--fallback-jobs must be at least 1")
+    if not patch_jobs:
+        return 0
+    if fallback_jobs == 1:
+        for job in patch_jobs:
+            patch_compressed_ncgr_payload_job(job)
+        return len(patch_jobs)
+
+    workers = min(fallback_jobs, len(patch_jobs))
+    with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as executor:
+        for _path in executor.map(patch_compressed_ncgr_payload_job, patch_jobs, chunksize=4):
+            pass
+    return len(patch_jobs)
 
 
 def nonempty_path(path: Path) -> bool:
     return path.exists() and path.stat().st_size > 0
 
 
-def patch_gen7_native_fallbacks(pwan_source: Path | None, battle_vfs: Path) -> int:
+def patch_gen7_native_fallbacks(
+    pwan_source: Path | None,
+    battle_vfs: Path,
+    fallback_jobs: int,
+    fallback_compression: str,
+) -> int:
+    patched, _manifest = patch_gen7_native_fallbacks_incremental(
+        pwan_source,
+        battle_vfs,
+        fallback_jobs,
+        fallback_compression,
+        {},
+        set(),
+        True,
+    )
+    return patched
+
+
+def patch_gen7_native_fallbacks_incremental(
+    pwan_source: Path | None,
+    battle_vfs: Path,
+    fallback_jobs: int,
+    fallback_compression: str,
+    previous: dict,
+    changed_outputs: set[int],
+    force: bool,
+) -> tuple[int, dict]:
     if pwan_source is None:
-        return 0
+        return 0, {"entries": {}}
     config_path = pwan_source / "config.bin"
     if not config_path.exists():
         raise FileNotFoundError(config_path)
 
     entries, _max_timeline = parse_pwan_config(config_path)
-    patched = 0
+    patch_jobs: list[FallbackPatchJob] = []
+    patched_keys: list[str] = []
+    previous_entries = previous.get("entries", {}) if isinstance(previous, dict) else {}
+    next_entries = {}
     for species in range(GEN7_SPECIES_START, GEN7_SPECIES_END + 1):
         entry = entries.get((species, 0))
         if entry is None:
@@ -1051,6 +1332,8 @@ def patch_gen7_native_fallbacks(pwan_source: Path | None, battle_vfs: Path) -> i
             nclr_path = battle_vfs / str(base + palette_offset)
             if not compact_paths or not wide_paths or not nclr_path.exists():
                 continue
+            pwan_fingerprint = file_fingerprint(pwan_path)
+            palette_fingerprint = output_fingerprint(nclr_path)
             pixels = pwan_first_pixels(pwan_path)
             pixels = remap_pixels_to_palette(
                 pixels,
@@ -1059,13 +1342,32 @@ def patch_gen7_native_fallbacks(pwan_source: Path | None, battle_vfs: Path) -> i
             )
             compact_payload = segmented_pwan_pixels(pixels)
             wide_payload = linear_wide_pwan_pixels(pixels)
-            for compact_path in compact_paths:
-                patch_compressed_ncgr_payload(compact_path, compact_payload)
-                patched += 1
-            for wide_path in wide_paths:
-                patch_compressed_ncgr_payload(wide_path, wide_payload)
-                patched += 1
-    return patched
+            for output_path, payload in (
+                [(path, compact_payload) for path in compact_paths]
+                + [(path, wide_payload) for path in wide_paths]
+            ):
+                key = output_path.name
+                state = {
+                    "compression": fallback_compression,
+                    "pwan": pwan_fingerprint,
+                    "palette": palette_fingerprint,
+                    "output": output_fingerprint(output_path),
+                }
+                previous_state = previous_entries.get(key)
+                should_patch = (
+                    force
+                    or int(key) in changed_outputs
+                    or previous_state != state
+                )
+                if should_patch:
+                    patch_jobs.append((output_path, payload, fallback_compression))
+                    patched_keys.append(key)
+                next_entries[key] = state
+
+    patched = run_fallback_patch_jobs(patch_jobs, fallback_jobs)
+    for key in patched_keys:
+        next_entries[key]["output"] = output_fingerprint(battle_vfs / key)
+    return patched, {"entries": next_entries}
 
 
 def build_pwan_assets(source_root: Path, pwan_vfs: Path) -> list[dict]:
@@ -1150,33 +1452,55 @@ def build_pwan_assets(source_root: Path, pwan_vfs: Path) -> list[dict]:
     return sources
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Build pokegra battle graphics into VFS outputs.")
-    parser.add_argument("--source", type=Path, required=True)
-    parser.add_argument("--battle-vfs", type=Path, required=True)
-    parser.add_argument("--pwan-vfs", type=Path)
-    parser.add_argument("--base-archive", type=Path)
-    parser.add_argument("--preserve-base-before", type=int, default=0)
-    parser.add_argument("--extra-bin-source", type=Path)
-    parser.add_argument("--gen7-pwan-fallback-source", type=Path)
-    parser.add_argument("--skip-pwan", action="store_true")
-    parser.add_argument("--arc-text", required=True)
-    parser.add_argument("--stamp", type=Path, required=True)
-    args = parser.parse_args()
-
-    clean_dir(args.battle_vfs)
-    base_count = seed_base_archive(args.base_archive, args.battle_vfs)
+def run_stage(
+    args: argparse.Namespace,
+    previous_manifest: dict | None,
+    config: dict,
+    force_full: bool,
+) -> dict:
+    previous_manifest = previous_manifest or {}
     preserve_before = args.preserve_base_before if args.base_archive is not None else 0
+
+    if force_full:
+        clean_dir(args.battle_vfs)
+        base_count = seed_base_archive(args.base_archive, args.battle_vfs)
+    else:
+        ensure_dir(args.battle_vfs)
+        counts = previous_manifest.get("counts", {})
+        base_count = counts.get("base_entries")
+        if not isinstance(base_count, int):
+            raise NeedsFullRebuild("previous manifest is missing base entry count")
+
     if preserve_before > base_count:
         raise RuntimeError(
             f"--preserve-base-before {preserve_before} exceeds base archive file count {base_count}"
         )
-    nns_count = copy_nns_archive_entries(args.source, args.battle_vfs, preserve_before)
-    extra_count = copy_extra_bin_entries(args.extra_bin_source, args.battle_vfs, nns_count)
-    gen7_fallbacks = patch_gen7_native_fallbacks(
+
+    nns_count, nns_changed, nns_manifest, nns_staged = stage_nns_archive_entries_incremental(
+        args.source,
+        args.battle_vfs,
+        preserve_before,
+        previous_manifest.get("nns", {}),
+        force_full,
+    )
+    extra_count, extra_changed, extra_manifest, extra_staged = copy_extra_bin_entries_incremental(
+        args.extra_bin_source,
+        args.battle_vfs,
+        nns_count,
+        previous_manifest.get("extra", {}),
+        force_full,
+    )
+    changed_outputs = nns_changed | extra_changed
+    gen7_fallbacks, fallback_manifest = patch_gen7_native_fallbacks_incremental(
         args.gen7_pwan_fallback_source,
         args.battle_vfs,
+        args.fallback_jobs,
+        args.fallback_compression,
+        previous_manifest.get("fallback", {}),
+        changed_outputs,
+        force_full,
     )
+
     (args.battle_vfs / ".arc").write_text(args.arc_text)
     if args.skip_pwan:
         if args.pwan_vfs is not None and args.pwan_vfs.exists():
@@ -1187,14 +1511,81 @@ def main() -> int:
             raise RuntimeError("--pwan-vfs is required unless --skip-pwan is set")
         ensure_dir(args.pwan_vfs)
         sources = build_pwan_assets(args.source, args.pwan_vfs)
+
+    counts = {
+        "base_entries": base_count,
+        "preserved_base_entries": preserve_before,
+        "nns_entries": nns_count,
+        "extra_bin_entries": extra_count,
+        "pwan_assets": len(sources),
+    }
+    manifest = {
+        "config": config,
+        "counts": counts,
+        "nns": nns_manifest,
+        "extra": extra_manifest,
+        "fallback": fallback_manifest,
+    }
+    return {
+        "manifest": manifest,
+        "counts": counts,
+        "nns_staged": nns_staged,
+        "extra_bin_staged": extra_staged,
+        "gen7_native_fallbacks": gen7_fallbacks,
+        "pwan_assets": len(sources),
+        "full_rebuild": force_full,
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Build pokegra battle graphics into VFS outputs.")
+    parser.add_argument("--source", type=Path, required=True)
+    parser.add_argument("--battle-vfs", type=Path, required=True)
+    parser.add_argument("--pwan-vfs", type=Path)
+    parser.add_argument("--base-archive", type=Path)
+    parser.add_argument("--preserve-base-before", type=int, default=0)
+    parser.add_argument("--extra-bin-source", type=Path)
+    parser.add_argument("--gen7-pwan-fallback-source", type=Path)
+    parser.add_argument("--fallback-jobs", type=int, default=1)
+    parser.add_argument("--fallback-compression", choices=("literal", "nlz11"), default="literal")
+    parser.add_argument("--force-full", action="store_true")
+    parser.add_argument("--skip-pwan", action="store_true")
+    parser.add_argument("--arc-text", required=True)
+    parser.add_argument("--stamp", type=Path, required=True)
+    args = parser.parse_args()
+    if args.fallback_jobs < 1:
+        parser.error("--fallback-jobs must be at least 1")
+
+    manifest_path = manifest_path_for_stamp(args.stamp)
+    previous_manifest = load_incremental_manifest(manifest_path)
+    config = incremental_config(args)
+    force_full = args.force_full or not can_incremental_rebuild(
+        previous_manifest,
+        config,
+        args.battle_vfs,
+    )
+
+    try:
+        result = run_stage(args, previous_manifest, config, force_full)
+    except NeedsFullRebuild:
+        result = run_stage(args, {}, config, True)
+
+    write_incremental_manifest(manifest_path, result["manifest"])
+    counts = result["counts"]
     args.stamp.parent.mkdir(parents=True, exist_ok=True)
     args.stamp.write_text(
-        f"base_entries={base_count}\n"
-        f"preserved_base_entries={preserve_before}\n"
-        f"nns_entries={nns_count}\n"
-        f"extra_bin_entries={extra_count}\n"
-        f"gen7_native_fallbacks={gen7_fallbacks}\n"
-        f"pwan_assets={len(sources)}\n"
+        f"base_entries={counts['base_entries']}\n"
+        f"preserved_base_entries={counts['preserved_base_entries']}\n"
+        f"nns_entries={counts['nns_entries']}\n"
+        f"nns_entries_staged={result['nns_staged']}\n"
+        f"extra_bin_entries={counts['extra_bin_entries']}\n"
+        f"extra_bin_entries_staged={result['extra_bin_staged']}\n"
+        f"gen7_native_fallbacks={result['gen7_native_fallbacks']}\n"
+        f"gen7_native_fallback_jobs={args.fallback_jobs}\n"
+        f"gen7_native_fallback_compression={args.fallback_compression}\n"
+        f"full_rebuild={int(result['full_rebuild'])}\n"
+        f"incremental_manifest={manifest_path}\n"
+        f"pwan_assets={result['pwan_assets']}\n"
     )
     return 0
 

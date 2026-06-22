@@ -23,9 +23,9 @@
 "Secondary Ability" = 82
 "Hidden Ability" = 223
 "Escape Rate" = 120
-"Form Data Offset" = 0
-"Form Sprite Offset" = 0
-"Form Count" = 1
+"Form Data Offset" = 1230
+"Form Sprite Offset" = 416
+"Form Count" = 2
 Color = 5
 "Base Experience" = 56
 "Height (cm)" = 40

@@ -1,0 +1,41 @@
+[SPECIES_1206]
+
+[SPECIES_1206.EVOLUTION_0]
+Method = "METHOD_LEVELUP"
+Parameter = 37
+"Target Species" = "SPECIES_SLOWBRO"
+
+[SPECIES_1206.EVOLUTION_1]
+Method = "METHOD_TRADE_ITEM"
+Parameter = 221
+"Target Species" = "SPECIES_SLOWKING"
+
+[SPECIES_1206.EVOLUTION_2]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"
+
+[SPECIES_1206.EVOLUTION_3]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"
+
+[SPECIES_1206.EVOLUTION_4]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"
+
+[SPECIES_1206.EVOLUTION_5]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"
+
+[SPECIES_1206.EVOLUTION_6]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"
+
+[SPECIES_1206.EVOLUTION_7]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"

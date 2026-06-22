@@ -4,7 +4,7 @@
 #define W2U_PWAN_CONFIG_PATH "pokeweb_pwan/config.bin"
 #define W2U_PWAN_CONFIG_MAGIC 0x434E5750u
 #define W2U_PWAN_CONFIG_VERSION 1u
-#define W2U_PWAN_MAX_OVERRIDES 500u
+#define W2U_PWAN_MAX_OVERRIDES 768u
 
 namespace w2u {
 namespace pwan {

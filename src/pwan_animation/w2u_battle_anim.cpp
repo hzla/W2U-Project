@@ -23,10 +23,6 @@
 #define W2U_MCSS_PLTT_SLOT_BYTES 0x20u
 #define W2U_LCDC_TEX_VRAM ((volatile u16 *)0x06800000)
 #define W2U_LCDC_TEX_PLTT ((volatile u16 *)0x06890000)
-#define W2U_OBJ_OAM ((volatile u16 *)0x07000000)
-#define W2U_OBJ_VRAM ((volatile u16 *)0x06400000)
-#define W2U_OBJ_PLTT ((volatile u16 *)0x05000200)
-#define W2U_REG_DISPCNT ((volatile u32 *)0x04000000)
 #define W2U_VRAMCNT_A ((volatile u8 *)0x04000240)
 #define W2U_VRAMCNT_B ((volatile u8 *)0x04000241)
 #define W2U_VRAMCNT_C ((volatile u8 *)0x04000242)
@@ -35,27 +31,11 @@
 #define W2U_VRAMCNT_F ((volatile u8 *)0x04000245)
 #define W2U_VRAMCNT_G ((volatile u8 *)0x04000246)
 #define W2U_VRAM_LCDC_ENABLE 0x80u
-#define W2U_VRAMCNT_ENABLE 0x80u
-#define W2U_VRAMCNT_MST_MAIN_OBJ 0x02u
-#define W2U_DISPCNT_OBJ_ENABLE (1u << 12)
-#define W2U_DISPCNT_OBJ_1D_MAP (1u << 4)
 #define W2U_REG_VCOUNT ((volatile u16 *)0x04000006)
 #define W2U_MCSS_VCOUNT_LOW 192u
 #define W2U_MCSS_VCOUNT_HIGH 200u
-#define W2U_OBJ_1D_64K_BLOCK_BYTES 64u
-#define W2U_OBJ_FRAME_VRAM_OFFSET 0x7000u
-#define W2U_OBJ_TILE_BASE (W2U_OBJ_FRAME_VRAM_OFFSET / W2U_OBJ_1D_64K_BLOCK_BYTES)
-#define W2U_OBJ_PLT 15u
-#define W2U_OBJ_PRIORITY 1u
-#define W2U_BATTLE_OBJ_INDEX 124u
-#define W2U_BATTLE_OBJ_X 44u
-#define W2U_BATTLE_OBJ_Y 74u
 #define W2U_BTLV_BEW_PTR ((void **)0x021F4280)
 #define W2U_BATTLE_SPRITE_SYSTEM_OFFSET 0x190u
-#define W2U_BATTLE_SUMMARY_CACHE_KNOWN_ADDRESS 0x022C4760u
-#define W2U_BATTLE_SUMMARY_CACHE_SCAN_START 0x022C0000u
-#define W2U_BATTLE_SUMMARY_CACHE_SCAN_END 0x022E0000u
-#define W2U_BATTLE_SUMMARY_CACHE_SCAN_COOLDOWN 16u
 #define W2U_BTLV_POS_AA 0
 #define W2U_BTLV_POS_BB 1
 #define W2U_BTLV_POS_A 2
@@ -65,34 +45,18 @@
 #define W2U_BTLV_POS_E 6
 #define W2U_BTLV_POS_F 7
 #define W2U_BATTLE_PROFILE_MAGIC 0x46525042u
-#define W2U_BATTLE_PROFILE_VERSION 18u
-#define W2U_BATTLE_DIRECT_OBJ_MAWILE 0u
+#define W2U_BATTLE_PROFILE_VERSION 19u
 #define W2U_BATTLE_ACTOR_ENTRY_BASE 0x08u
 #define W2U_BATTLE_ACTOR_ENTRY_BYTES 0x5cu
 #define W2U_BATTLE_ACTOR_SPECIES_OFFSET 0x2cu
 #define W2U_BATTLE_ACTOR_FORM_OFFSET 0x30u
 #define W2U_BATTLE_SPECIES_FORM_MASK 0x7ffu
-#define W2U_MEGA_VISUAL_STATE_MAGIC 0x53564D57u
-#define W2U_MEGA_VISUAL_STATE_VERSION 1u
-#define W2U_MEGA_VISUAL_STATE_MAX_SIZE 128u
 #define W2U_MCSS_BASE_PLTT_DATA_OFFSET 0xd4u
 #define W2U_MCSS_FADE_PLTT_DATA_OFFSET 0xd8u
 #define W2U_MCSS_PLTT_DATA_SIZE_OFFSET 0xdcu
 #define W2U_MCSS_PALETTE_PROXY_VRAM_OFFSET 0xc8u
 #define W2U_MAIN_RAM_START 0x02000000u
 #define W2U_MAIN_RAM_END 0x02400000u
-#define W2U_MAWILE_MEGA_SPECIES 303u
-#define W2U_MAWILE_MEGA_FORM 1u
-#define W2U_MAWILE_BASE_SPRITE_INDEX 303u
-#define W2U_MAWILE_MEGA_FORM_SPRITE_INDEX 783u
-#define W2U_MAWILE_MEGA_FORM_SPRITE_BASE (W2U_MAWILE_MEGA_FORM_SPRITE_INDEX * 20u)
-#define W2U_MAWILE_MEGA_PACKED_MONS (W2U_MAWILE_MEGA_SPECIES | (W2U_MAWILE_MEGA_FORM << 11))
-#define W2U_TYPE_STEEL 8u
-#define W2U_TYPE_DRAGON 15u
-#define W2U_TYPE_FAIRY 17u
-#define W2U_MEGA_VISUAL_SETTLE_FRAMES 0u
-#define W2U_MEGA_VISUAL_REVEAL_HOLD_FRAMES 0u
-#define W2U_MEGA_PWAN_STREAM_DELAY_FRAMES 3u
 
 namespace w2u {
 namespace battle_anim {
@@ -123,8 +87,8 @@ struct RuntimeTimelineEntry {
     u8 ticks;
 };
 
-#define W2U_PWAN_MAX_OVERRIDES 500u
-#define W2U_PWAN_MAX_ASSET_INDEX 1094u
+#define W2U_PWAN_MAX_OVERRIDES 768u
+#define W2U_PWAN_MAX_ASSET_INDEX 1600u
 #define W2U_PWAN_ASSET_COUNT ((W2U_PWAN_MAX_ASSET_INDEX + 1u) * 2u)
 #define W2U_PWAN_MAX_TIMELINE 192u
 
@@ -147,25 +111,6 @@ struct McssAddWork {
     u32 nmar;
     u32 ncec;
     u32 heapLow;
-};
-
-struct MegaVisualStateMirror {
-    u32 magic;
-    u32 version;
-    u32 structSize;
-    u32 usedSideMask;
-    u32 clientChangeFormPokeID;
-    u32 clientChangeFormForm;
-    u32 visualOverrideReady;
-    u32 species;
-    u32 form;
-    u32 mirroredPartyAbility;
-    u32 mirroredPartyMaxHP;
-    u32 mirroredPartyAttack;
-    u32 mirroredPartyDefense;
-    u32 mirroredPartySpAttack;
-    u32 mirroredPartySpDefense;
-    u32 mirroredPartySpeed;
 };
 
 enum ActorId {
@@ -200,7 +145,6 @@ struct Asset {
 
 struct ActorState {
     b32 active;
-    b32 directObj;
     b32 textureDirty;
     b32 paletteDirty;
     u32 tick;
@@ -279,59 +223,11 @@ struct BattleAnimProfile {
     u32 lastConfigMatchMode;
     u32 lastDecodedSpecies;
     u32 lastDecodedForm;
-    u32 megaProfileScanCalls;
-    u32 megaProfileFound;
-    u32 megaProfileAddress;
-    u32 megaOverrideCalls;
-    u32 megaOverrideMatches;
-    u32 objDrawCalls;
-    u32 objHideCalls;
-    u32 objFrameCopyCalls;
-    u32 objFrameReadFailCount;
-    u32 nativeHideCalls;
-    u32 nativeRestoreCalls;
-    u32 directActor;
-    u32 directAsset;
-    u32 directFrame;
-    u32 lastObjDispcnt;
-    u32 lastObjVramcntE;
-    u32 lastOamAttr0[4];
-    u32 lastOamAttr1[4];
-    u32 lastOamAttr2[4];
-    u32 actorIdentityPatchCalls;
-    u32 actorIdentityPatchMatches;
-    u32 lastActorIdentityPatchPosition;
-    u32 lastActorIdentityPatchOldRaw;
-    u32 lastActorIdentityPatchNewRaw;
-    u32 mawPatchCalls;
-    u32 mawPatchMatches;
-    u32 lastMawPatchPosition;
-    u32 lastMawPatchOldNcbr;
-    u32 lastMawPatchNewNcbr;
-    u32 megaVisualSettleFrames;
-    u32 megaVisualSettleReady;
-    u32 megaVisualSuppressCalls;
-    u32 megaVisualRestoreCalls;
-    u32 megaVisualFirstFrameUploaded;
-    u32 megaVisualRevealHoldFrames;
-    u32 megaPwanStreamDelayFrames;
-    u32 megaPwanStreamingReady;
-    u32 megaStaticMawPatchCalls;
-    u32 megaStaticMawPatchMatches;
-    u32 megaSummaryCachePatchCalls;
-    u32 megaSummaryCachePatchMatches;
-    u32 megaSummaryCacheScanCalls;
-    u32 megaSummaryCacheAddress;
-    u32 megaSummaryCacheLastSpecies;
-    u32 megaSummaryCacheLastAttack;
-    u32 megaSummaryCacheLastDefense;
-    u32 megaSummaryCacheLastSpeed;
-    u32 megaSummaryCacheLastSpAttack;
-    u32 megaSummaryCacheLastSpDefense;
-    u32 megaSummaryCacheLastCurrentHP;
-    u32 megaSummaryCacheLastMaxHP;
-    u32 megaSummaryCacheLastTypeWord;
-    u32 megaSummaryCacheLastAbilityWord;
+    u32 carrierPatchCalls;
+    u32 carrierPatchMatches;
+    u32 lastCarrierPatchPosition;
+    u32 lastCarrierPatchOldNcbr;
+    u32 lastCarrierPatchNewNcbr;
 };
 #if !W2U_PWAN_DIAGNOSTICS
 #undef s32
@@ -342,18 +238,6 @@ struct State {
     Asset asset[ACTOR_COUNT];
     ActorState actor[ACTOR_COUNT];
     u8 nextUploadActor;
-    b32 savedVramcntEValid;
-    u8 savedVramcntE;
-    u8 megaVisualSettleFrames;
-    u8 megaVisualRevealHoldFrames;
-    u8 megaPwanStreamDelayFrames;
-    b32 megaVisualReadyObserved;
-    b32 megaVisualFirstFrameUploaded;
-    b32 megaPwanStreamingReady;
-    b32 megaVisualSuppressed;
-    void *megaVisualSuppressedMcss;
-    u32 megaSummaryCacheAddress;
-    u8 megaSummaryCacheScanCooldown;
 };
 
 #if W2U_PWAN_DIAGNOSTICS
@@ -385,22 +269,13 @@ static const ActorConfig kActorConfig[ACTOR_COUNT] = {
 static State sState;
 static u8 *const sFrameScratch = W2U_PwanFrameScratch;
 static u8 *const sTextureScratch = W2U_PwanTextureScratch;
-static volatile MegaVisualStateMirror *sMegaVisualState;
 
 typedef s32 (*McssGetIndexFn)(void *bmw, int position);
-typedef void (*McssFlagFn)(void *mcss);
-typedef void (*McssShadowVanishFn)(void *mcss, u8 flag);
 typedef void (*McssOverwriteMawFn)(void *bmw, int position, const McssAddWork *maw);
 
 static b32 IsSafeMcssTextureIndex(s32 mcssIndex);
-static void HideOam();
-static void RestoreNativeVramMapping();
 
 static McssGetIndexFn const BattleSpriteGetIndex_Fn = (McssGetIndexFn)0x021E97D5u;
-static McssFlagFn const MCSS_SetVanishFlag_Fn = (McssFlagFn)0x0201ADA9u;
-static McssFlagFn const MCSS_ResetVanishFlag_Fn = (McssFlagFn)0x0201ADB9u;
-static McssShadowVanishFn const MCSS_SetShadowVanishFlag_Fn =
-    (McssShadowVanishFn)0x0201AEF9u;
 static McssOverwriteMawFn const BattleSpriteOverwriteMaw_Fn =
     (McssOverwriteMawFn)0x021E7FBDu;
 extern "C" void W2U_BattleAnim_Term(void);
@@ -602,176 +477,6 @@ static void RestoreTexturePaletteBanks(u8 e, u8 f, u8 g)
     *W2U_VRAMCNT_E = e;
     *W2U_VRAMCNT_F = f;
     *W2U_VRAMCNT_G = g;
-}
-
-static void RestoreNativeVramMapping()
-{
-    if (sState.savedVramcntEValid) {
-        *W2U_VRAMCNT_E = sState.savedVramcntE;
-    }
-}
-
-static void PrepareObjDisplay()
-{
-    *W2U_REG_DISPCNT = *W2U_REG_DISPCNT | W2U_DISPCNT_OBJ_ENABLE | W2U_DISPCNT_OBJ_1D_MAP;
-    if (!sState.savedVramcntEValid) {
-        sState.savedVramcntE = *W2U_VRAMCNT_E;
-        sState.savedVramcntEValid = true;
-    }
-    *W2U_VRAMCNT_E = W2U_VRAMCNT_ENABLE | W2U_VRAMCNT_MST_MAIN_OBJ;
-    W2U_BattleAnim_Profile.lastObjDispcnt = *W2U_REG_DISPCNT;
-    W2U_BattleAnim_Profile.lastObjVramcntE = *W2U_VRAMCNT_E;
-}
-
-static void HideOam()
-{
-    W2U_BattleAnim_Profile.objHideCalls = W2U_BattleAnim_Profile.objHideCalls + 1u;
-    for (u32 i = 0; i < 4u; ++i) {
-        volatile u16 *oam = W2U_OBJ_OAM + ((W2U_BATTLE_OBJ_INDEX + i) * 4u);
-        oam[0] = 192u;
-        oam[1] = 0;
-        oam[2] = 0;
-        oam[3] = 0;
-        W2U_BattleAnim_Profile.lastOamAttr0[i] = oam[0];
-        W2U_BattleAnim_Profile.lastOamAttr1[i] = oam[1];
-        W2U_BattleAnim_Profile.lastOamAttr2[i] = oam[2];
-    }
-}
-
-static void HideNativeMcss(void *mcss)
-{
-    if (!IsLikelyMainRamPointer(mcss)) {
-        return;
-    }
-    MCSS_SetVanishFlag_Fn(mcss);
-    MCSS_SetShadowVanishFlag_Fn(mcss, true);
-    W2U_BattleAnim_Profile.nativeHideCalls =
-        W2U_BattleAnim_Profile.nativeHideCalls + 1u;
-}
-
-static void RestoreNativeMcss(void *mcss)
-{
-    if (!IsLikelyMainRamPointer(mcss)) {
-        return;
-    }
-    MCSS_ResetVanishFlag_Fn(mcss);
-    MCSS_SetShadowVanishFlag_Fn(mcss, false);
-    W2U_BattleAnim_Profile.nativeRestoreCalls =
-        W2U_BattleAnim_Profile.nativeRestoreCalls + 1u;
-}
-
-static void CopyObjPalette(ActorId actor)
-{
-    Asset *asset = &sState.asset[actor];
-    for (u32 i = 0; i < 16u; ++i) {
-        W2U_OBJ_PLTT[W2U_OBJ_PLT * 16u + i] = asset->palette[i];
-    }
-}
-
-static b32 CopyObjFrame(ActorId actor, u16 frame)
-{
-    Asset *asset = &sState.asset[actor];
-    if (frame >= asset->header.frameCount) {
-        frame = 0;
-    }
-    const BattleAssetId assetId = (BattleAssetId)sState.actor[actor].assetId;
-    const u32 offset = asset->header.frameOffset + (frame * asset->header.frameBytes);
-    if (!ReadRange(assetId, offset, sFrameScratch, W2U_FRAME_BYTES)) {
-        W2U_BattleAnim_Profile.objFrameReadFailCount =
-            W2U_BattleAnim_Profile.objFrameReadFailCount + 1u;
-        return false;
-    }
-
-    volatile u16 *dst = W2U_OBJ_VRAM + (W2U_OBJ_FRAME_VRAM_OFFSET / 2u);
-    const u16 *src = (const u16 *)sFrameScratch;
-    for (u32 i = 0; i < W2U_FRAME_BYTES / 2u; ++i) {
-        dst[i] = src[i];
-    }
-    sState.actor[actor].copiedFrame = frame;
-    W2U_BattleAnim_Profile.objFrameCopyCalls =
-        W2U_BattleAnim_Profile.objFrameCopyCalls + 1u;
-    return true;
-}
-
-static void SetObj(u32 index, u32 x, u32 y, u32 shape, u32 size, u32 tile)
-{
-    volatile u16 *oam = W2U_OBJ_OAM + ((W2U_BATTLE_OBJ_INDEX + index) * 4u);
-    oam[0] = (u16)((y & 0xffu) | (shape << 14));
-    oam[1] = (u16)((x & 0x1ffu) | (size << 14));
-    oam[2] = (u16)((tile & 0x3ffu) | (W2U_OBJ_PRIORITY << 10) | (W2U_OBJ_PLT << 12));
-    oam[3] = 0;
-    W2U_BattleAnim_Profile.lastOamAttr0[index] = oam[0];
-    W2U_BattleAnim_Profile.lastOamAttr1[index] = oam[1];
-    W2U_BattleAnim_Profile.lastOamAttr2[index] = oam[2];
-}
-
-static void DrawObjFrame()
-{
-    SetObj(0, W2U_BATTLE_OBJ_X, W2U_BATTLE_OBJ_Y, 0, 3, W2U_OBJ_TILE_BASE);
-    SetObj(1, W2U_BATTLE_OBJ_X + 64u, W2U_BATTLE_OBJ_Y, 2, 3,
-           W2U_OBJ_TILE_BASE + (0x0800u / W2U_OBJ_1D_64K_BLOCK_BYTES));
-    SetObj(2, W2U_BATTLE_OBJ_X, W2U_BATTLE_OBJ_Y + 64u, 1, 3,
-           W2U_OBJ_TILE_BASE + (0x0c00u / W2U_OBJ_1D_64K_BLOCK_BYTES));
-    SetObj(3, W2U_BATTLE_OBJ_X + 64u, W2U_BATTLE_OBJ_Y + 64u, 0, 2,
-           W2U_OBJ_TILE_BASE + (0x1000u / W2U_OBJ_1D_64K_BLOCK_BYTES));
-    W2U_BattleAnim_Profile.objDrawCalls = W2U_BattleAnim_Profile.objDrawCalls + 1u;
-}
-
-static b32 IsDirectObjActor(ActorId actor, const BattleActorIdentity *identity,
-                            BattleAssetId assetId)
-{
-#if W2U_BATTLE_DIRECT_OBJ_MAWILE
-    return actor == ACTOR_SINGLE_PLAYER_BACK &&
-           identity &&
-           identity->species == W2U_MAWILE_MEGA_SPECIES &&
-           identity->form == W2U_MAWILE_MEGA_FORM &&
-           assetId == (BattleAssetId)(W2U_MAWILE_MEGA_FORM_SPRITE_INDEX * 2u + 1u);
-#else
-    (void)actor;
-    (void)identity;
-    (void)assetId;
-    return false;
-#endif
-}
-
-static ActorId DirectObjActor()
-{
-    for (u32 i = 0; i < ACTOR_COUNT; ++i) {
-        if (sState.actor[i].active && sState.actor[i].directObj) {
-            return (ActorId)i;
-        }
-    }
-    return ACTOR_COUNT;
-}
-
-static void DrawDirectObjActor()
-{
-    if (!W2U_BATTLE_DIRECT_OBJ_MAWILE) {
-        return;
-    }
-
-    const ActorId actor = DirectObjActor();
-    if (actor == ACTOR_COUNT) {
-        HideOam();
-        return;
-    }
-
-    ActorState *actorState = &sState.actor[actor];
-    PrepareObjDisplay();
-    CopyObjPalette(actor);
-    const u16 frame = actorState->pendingFrame;
-    if (actorState->textureDirty || actorState->copiedFrame != frame) {
-        if (!CopyObjFrame(actor, frame)) {
-            HideOam();
-            return;
-        }
-        actorState->textureDirty = false;
-        actorState->paletteDirty = false;
-    }
-    W2U_BattleAnim_Profile.directActor = (u32)actor;
-    W2U_BattleAnim_Profile.directAsset = actorState->assetId;
-    W2U_BattleAnim_Profile.directFrame = frame;
-    DrawObjFrame();
 }
 
 static b32 IsSafeVramUploadTime()
@@ -1018,7 +723,7 @@ static s32 GetMcssFormNo(void *bmw, int position)
     return *(s32 *)(entry + W2U_BATTLE_ACTOR_FORM_OFFSET);
 }
 
-static McssAddWork MakeMawileMaw(u32 spriteIndex, int position)
+static McssAddWork MakeSpriteMaw(u32 spriteIndex, int position)
 {
     McssAddWork maw;
     const u32 base = spriteIndex * 20u;
@@ -1035,29 +740,11 @@ static McssAddWork MakeMawileMaw(u32 spriteIndex, int position)
     return maw;
 }
 
-static McssAddWork MakeMegaMawileMaw(int position)
-{
-    return MakeMawileMaw(W2U_MAWILE_MEGA_FORM_SPRITE_INDEX, position);
-}
-
-static McssAddWork MakeBaseMawileMaw(int position)
-{
-    return MakeMawileMaw(W2U_MAWILE_BASE_SPRITE_INDEX, position);
-}
-
-static b32 IsMegaMawilePwanActor(const ActorState *actorState)
-{
-    return actorState &&
-           actorState->species == W2U_MAWILE_MEGA_SPECIES &&
-           actorState->form == W2U_MAWILE_MEGA_FORM &&
-           actorState->assetId == (u16)(W2U_MAWILE_MEGA_FORM_SPRITE_INDEX * 2u + 1u);
-}
-
 static b32 PatchMcssCarrierFromSpriteIndex(void *bmw, int position, ActorState *actorState,
                                            u32 spriteIndex)
 {
-    W2U_BattleAnim_Profile.mawPatchCalls =
-        W2U_BattleAnim_Profile.mawPatchCalls + 1u;
+    W2U_BattleAnim_Profile.carrierPatchCalls =
+        W2U_BattleAnim_Profile.carrierPatchCalls + 1u;
 
     if (!bmw || !actorState || spriteIndex > W2U_PWAN_MAX_ASSET_INDEX) {
         return false;
@@ -1074,7 +761,7 @@ static b32 PatchMcssCarrierFromSpriteIndex(void *bmw, int position, ActorState *
         return false;
     }
 
-    const McssAddWork maw = MakeMawileMaw(spriteIndex, position);
+    const McssAddWork maw = MakeSpriteMaw(spriteIndex, position);
     const u32 oldNcbr = *(u32 *)(entry + 8u);
     const u32 oldNclr = *(u32 *)(entry + 12u);
     const u32 oldNcec = *(u32 *)(entry + 32u);
@@ -1096,25 +783,12 @@ static b32 PatchMcssCarrierFromSpriteIndex(void *bmw, int position, ActorState *
     actorState->paletteDirty = true;
     actorState->copiedFrame = 0xffffu;
     actorState->pendingFrame = 0xffffu;
-    W2U_BattleAnim_Profile.mawPatchMatches =
-        W2U_BattleAnim_Profile.mawPatchMatches + 1u;
-    W2U_BattleAnim_Profile.lastMawPatchPosition = (u32)position;
-    W2U_BattleAnim_Profile.lastMawPatchOldNcbr = oldNcbr;
-    W2U_BattleAnim_Profile.lastMawPatchNewNcbr = maw.ncbr;
+    W2U_BattleAnim_Profile.carrierPatchMatches =
+        W2U_BattleAnim_Profile.carrierPatchMatches + 1u;
+    W2U_BattleAnim_Profile.lastCarrierPatchPosition = (u32)position;
+    W2U_BattleAnim_Profile.lastCarrierPatchOldNcbr = oldNcbr;
+    W2U_BattleAnim_Profile.lastCarrierPatchNewNcbr = maw.ncbr;
     return true;
-}
-
-static b32 PatchMegaMawileMaw(void *bmw, int position, ActorState *actorState)
-{
-    if (!bmw ||
-        !actorState ||
-        position != W2U_BTLV_POS_AA ||
-        !IsMegaMawilePwanActor(actorState)) {
-        return false;
-    }
-
-    return PatchMcssCarrierFromSpriteIndex(
-        bmw, position, actorState, W2U_MAWILE_MEGA_FORM_SPRITE_INDEX);
 }
 
 static b32 PatchFormFromPwanConfig(void *bmw, int position, ActorState *actorState)
@@ -1130,546 +804,16 @@ static b32 PatchFormFromPwanConfig(void *bmw, int position, ActorState *actorSta
     return PatchMcssCarrierFromSpriteIndex(bmw, position, actorState, spriteIndex);
 }
 
-static void PatchBaseMawileMawIfNeeded(void *bmw, int position,
-                                       const BattleActorIdentity *identity)
-{
-    if (!bmw ||
-        !identity ||
-        position != W2U_BTLV_POS_AA ||
-        identity->species != W2U_MAWILE_MEGA_SPECIES ||
-        identity->form != 0) {
-        return;
-    }
-
-    const s32 index = GetMcssIndex(bmw, position);
-    if (!IsSafeMcssTextureIndex(index)) {
-        return;
-    }
-
-    u8 *entry = (u8 *)bmw + W2U_BATTLE_ACTOR_ENTRY_BASE +
-                ((u32)index * W2U_BATTLE_ACTOR_ENTRY_BYTES);
-    if (*(void **)entry == 0) {
-        return;
-    }
-
-    const McssAddWork maw = MakeBaseMawileMaw(position);
-    const u32 oldNcbr = *(u32 *)(entry + 8u);
-    const u32 oldNclr = *(u32 *)(entry + 12u);
-    const u32 oldNcec = *(u32 *)(entry + 32u);
-    if (oldNcbr == maw.ncbr && oldNclr == maw.nclr && oldNcec == maw.ncec) {
-        return;
-    }
-
-    BattleSpriteOverwriteMaw_Fn(bmw, position, &maw);
-    W2U_BattleAnim_Profile.lastMawPatchPosition = (u32)position;
-    W2U_BattleAnim_Profile.lastMawPatchOldNcbr = oldNcbr;
-    W2U_BattleAnim_Profile.lastMawPatchNewNcbr = maw.ncbr;
-}
-
-static b32 PatchMegaMawileStaticMaw(void *bmw)
-{
-    W2U_BattleAnim_Profile.megaStaticMawPatchCalls =
-        W2U_BattleAnim_Profile.megaStaticMawPatchCalls + 1u;
-
-    if (!bmw) {
-        return false;
-    }
-
-    const s32 index = GetMcssIndex(bmw, W2U_BTLV_POS_AA);
-    if (!IsSafeMcssTextureIndex(index)) {
-        return false;
-    }
-
-    u8 *entry = (u8 *)bmw + W2U_BATTLE_ACTOR_ENTRY_BASE +
-                ((u32)index * W2U_BATTLE_ACTOR_ENTRY_BYTES);
-    if (*(void **)entry == 0) {
-        return false;
-    }
-
-    const s32 monsNo = *(s32 *)(entry + W2U_BATTLE_ACTOR_SPECIES_OFFSET);
-    const s32 formNo = *(s32 *)(entry + W2U_BATTLE_ACTOR_FORM_OFFSET);
-    if (monsNo != (s32)W2U_MAWILE_MEGA_SPECIES ||
-        formNo != (s32)W2U_MAWILE_MEGA_FORM) {
-        return false;
-    }
-
-    const McssAddWork maw = MakeMegaMawileMaw(W2U_BTLV_POS_AA);
-    const u32 oldNcbr = *(u32 *)(entry + 8u);
-    const u32 oldNclr = *(u32 *)(entry + 12u);
-    const u32 oldNcec = *(u32 *)(entry + 32u);
-    if (oldNcbr == maw.ncbr && oldNclr == maw.nclr && oldNcec == maw.ncec) {
-        return false;
-    }
-
-    BattleSpriteOverwriteMaw_Fn(bmw, W2U_BTLV_POS_AA, &maw);
-    W2U_BattleAnim_Profile.megaStaticMawPatchMatches =
-        W2U_BattleAnim_Profile.megaStaticMawPatchMatches + 1u;
-    W2U_BattleAnim_Profile.lastMawPatchPosition = W2U_BTLV_POS_AA;
-    W2U_BattleAnim_Profile.lastMawPatchOldNcbr = oldNcbr;
-    W2U_BattleAnim_Profile.lastMawPatchNewNcbr = maw.ncbr;
-    return true;
-}
-
-static b32 IsValidMegaVisualState(volatile MegaVisualStateMirror *state)
-{
-    return state &&
-           state->magic == W2U_MEGA_VISUAL_STATE_MAGIC &&
-           state->version == W2U_MEGA_VISUAL_STATE_VERSION &&
-           state->structSize >= sizeof(MegaVisualStateMirror) &&
-           state->structSize <= W2U_MEGA_VISUAL_STATE_MAX_SIZE;
-}
-
-static volatile MegaVisualStateMirror *FindMegaVisualState()
-{
-    if (IsValidMegaVisualState(sMegaVisualState)) {
-        return sMegaVisualState;
-    }
-
-    W2U_BattleAnim_Profile.megaProfileScanCalls =
-        W2U_BattleAnim_Profile.megaProfileScanCalls + 1u;
-
-    for (u32 address = W2U_MAIN_RAM_START;
-         address + sizeof(MegaVisualStateMirror) <= W2U_MAIN_RAM_END;
-         address += sizeof(u32)) {
-        volatile MegaVisualStateMirror *candidate = (volatile MegaVisualStateMirror *)address;
-        if (IsValidMegaVisualState(candidate)) {
-            sMegaVisualState = candidate;
-            W2U_BattleAnim_Profile.megaProfileFound = 1u;
-            W2U_BattleAnim_Profile.megaProfileAddress = address;
-            return candidate;
-        }
-    }
-
-    W2U_BattleAnim_Profile.megaProfileFound = 0;
-    W2U_BattleAnim_Profile.megaProfileAddress = 0;
-    return 0;
-}
-
-static b32 IsMegaMawileVisualReadyRaw(volatile MegaVisualStateMirror *state)
-{
-    return IsValidMegaVisualState(state) &&
-           state->visualOverrideReady != 0 &&
-           state->clientChangeFormPokeID == 0 &&
-           state->clientChangeFormForm == W2U_MAWILE_MEGA_FORM &&
-           state->species == W2U_MAWILE_MEGA_SPECIES &&
-           state->form == W2U_MAWILE_MEGA_FORM &&
-           (state->usedSideMask & 1u) != 0;
-}
-
-static b32 IsPlausibleSummaryStat(u16 value)
-{
-    return value != 0 && value <= W2U_PWAN_MAX_ASSET_INDEX;
-}
-
-static b32 IsBattleSummaryCacheCandidate(u16 *entry)
-{
-    if (!IsLikelyMainRamPointer(entry) ||
-        entry[0] != W2U_MAWILE_MEGA_SPECIES ||
-        !IsPlausibleSummaryStat(entry[1]) ||
-        !IsPlausibleSummaryStat(entry[2]) ||
-        !IsPlausibleSummaryStat(entry[3]) ||
-        !IsPlausibleSummaryStat(entry[4]) ||
-        !IsPlausibleSummaryStat(entry[5]) ||
-        !IsPlausibleSummaryStat(entry[7])) {
-        return false;
-    }
-
-    u8 *bytes = (u8 *)entry;
-    const u8 type1 = bytes[0x10];
-    const u8 type2 = bytes[0x11];
-    if (type1 == W2U_TYPE_STEEL && type2 == W2U_TYPE_FAIRY) {
-        return true;
-    }
-    return type1 == W2U_TYPE_DRAGON && type2 == W2U_TYPE_DRAGON;
-}
-
-static void PatchBattleSummaryCacheEntry(u16 *entry,
-                                         volatile MegaVisualStateMirror *state)
-{
-    W2U_BattleAnim_Profile.megaSummaryCachePatchCalls =
-        W2U_BattleAnim_Profile.megaSummaryCachePatchCalls + 1u;
-
-    if (!IsBattleSummaryCacheCandidate(entry) ||
-        !IsValidMegaVisualState(state) ||
-        state->mirroredPartyAttack == 0 ||
-        state->mirroredPartyDefense == 0 ||
-        state->mirroredPartySpeed == 0 ||
-        state->mirroredPartySpAttack == 0 ||
-        state->mirroredPartySpDefense == 0) {
-        return;
-    }
-
-    entry[1] = (u16)state->mirroredPartyAttack;
-    entry[2] = (u16)state->mirroredPartyDefense;
-    entry[3] = (u16)state->mirroredPartySpeed;
-    entry[4] = (u16)state->mirroredPartySpAttack;
-    entry[5] = (u16)state->mirroredPartySpDefense;
-    if (state->mirroredPartyMaxHP != 0) {
-        entry[7] = (u16)state->mirroredPartyMaxHP;
-        if (entry[6] > entry[7]) {
-            entry[6] = entry[7];
-        }
-    }
-
-    u8 *bytes = (u8 *)entry;
-    bytes[0x10] = (u8)W2U_TYPE_DRAGON;
-    bytes[0x11] = (u8)W2U_TYPE_DRAGON;
-    const u16 ability = (u16)state->mirroredPartyAbility;
-    if (ability != 0) {
-        entry[10] = ability;
-        entry[0x30] = ability;
-        entry[0x56] = ability;
-    }
-
-    W2U_BattleAnim_Profile.megaSummaryCachePatchMatches =
-        W2U_BattleAnim_Profile.megaSummaryCachePatchMatches + 1u;
-    W2U_BattleAnim_Profile.megaSummaryCacheAddress = (u32)entry;
-    W2U_BattleAnim_Profile.megaSummaryCacheLastSpecies = entry[0];
-    W2U_BattleAnim_Profile.megaSummaryCacheLastAttack = entry[1];
-    W2U_BattleAnim_Profile.megaSummaryCacheLastDefense = entry[2];
-    W2U_BattleAnim_Profile.megaSummaryCacheLastSpeed = entry[3];
-    W2U_BattleAnim_Profile.megaSummaryCacheLastSpAttack = entry[4];
-    W2U_BattleAnim_Profile.megaSummaryCacheLastSpDefense = entry[5];
-    W2U_BattleAnim_Profile.megaSummaryCacheLastCurrentHP = entry[6];
-    W2U_BattleAnim_Profile.megaSummaryCacheLastMaxHP = entry[7];
-    W2U_BattleAnim_Profile.megaSummaryCacheLastTypeWord =
-        ((u32)bytes[0x10]) | (((u32)bytes[0x11]) << 8);
-    W2U_BattleAnim_Profile.megaSummaryCacheLastAbilityWord =
-        ((u32)entry[10]) |
-        (((u32)entry[0x30]) << 8) |
-        (((u32)entry[0x56]) << 16);
-}
-
-static void PatchMegaMawileBattleSummaryCache()
-{
-    volatile MegaVisualStateMirror *state = FindMegaVisualState();
-    if (!IsMegaMawileVisualReadyRaw(state)) {
-        sState.megaSummaryCacheAddress = 0;
-        sState.megaSummaryCacheScanCooldown = 0;
-        return;
-    }
-
-    if (sState.megaSummaryCacheAddress != 0) {
-        u16 *entry = (u16 *)sState.megaSummaryCacheAddress;
-        if (IsBattleSummaryCacheCandidate(entry)) {
-            PatchBattleSummaryCacheEntry(entry, state);
-            return;
-        }
-        sState.megaSummaryCacheAddress = 0;
-    }
-
-    u16 *knownEntry = (u16 *)W2U_BATTLE_SUMMARY_CACHE_KNOWN_ADDRESS;
-    if (IsBattleSummaryCacheCandidate(knownEntry)) {
-        sState.megaSummaryCacheAddress = W2U_BATTLE_SUMMARY_CACHE_KNOWN_ADDRESS;
-        PatchBattleSummaryCacheEntry(knownEntry, state);
-        return;
-    }
-
-    if (sState.megaSummaryCacheScanCooldown != 0) {
-        sState.megaSummaryCacheScanCooldown =
-            (u8)(sState.megaSummaryCacheScanCooldown - 1u);
-        return;
-    }
-    sState.megaSummaryCacheScanCooldown = W2U_BATTLE_SUMMARY_CACHE_SCAN_COOLDOWN;
-    W2U_BattleAnim_Profile.megaSummaryCacheScanCalls =
-        W2U_BattleAnim_Profile.megaSummaryCacheScanCalls + 1u;
-
-    for (u32 address = W2U_BATTLE_SUMMARY_CACHE_SCAN_START;
-         address + 0x20u <= W2U_BATTLE_SUMMARY_CACHE_SCAN_END;
-         address += sizeof(u16)) {
-        u16 *entry = (u16 *)address;
-        if (!IsBattleSummaryCacheCandidate(entry)) {
-            continue;
-        }
-
-        sState.megaSummaryCacheAddress = address;
-        PatchBattleSummaryCacheEntry(entry, state);
-        return;
-    }
-}
-
-extern "C" void W2U_BattleAnim_PatchMegaSummaryCache()
-{
-    PatchMegaMawileBattleSummaryCache();
-}
-
-static void ClearMegaVisualState()
-{
-    volatile MegaVisualStateMirror *state = FindMegaVisualState();
-    if (!IsValidMegaVisualState(state)) {
-        return;
-    }
-
-    state->clientChangeFormPokeID = 0;
-    state->clientChangeFormForm = 0;
-    state->visualOverrideReady = 0;
-}
-
-static void PatchBaseMawileMawWhenMegaVisualInactive(void *bmw)
-{
-    if (!bmw || IsMegaMawileVisualReadyRaw(FindMegaVisualState())) {
-        return;
-    }
-
-    const s32 index = GetMcssIndex(bmw, W2U_BTLV_POS_AA);
-    if (!IsSafeMcssTextureIndex(index)) {
-        return;
-    }
-
-    u8 *entry = (u8 *)bmw + W2U_BATTLE_ACTOR_ENTRY_BASE +
-                ((u32)index * W2U_BATTLE_ACTOR_ENTRY_BYTES);
-    if (*(void **)entry == 0) {
-        return;
-    }
-
-    const s32 monsNo = *(s32 *)(entry + W2U_BATTLE_ACTOR_SPECIES_OFFSET);
-    const u32 species = ((u32)monsNo) & W2U_BATTLE_SPECIES_FORM_MASK;
-    if (monsNo != (s32)W2U_MAWILE_MEGA_SPECIES &&
-        species != W2U_MAWILE_MEGA_SPECIES) {
-        return;
-    }
-
-    const McssAddWork maw = MakeBaseMawileMaw(W2U_BTLV_POS_AA);
-    const u32 oldNcbr = *(u32 *)(entry + 8u);
-    const u32 oldNclr = *(u32 *)(entry + 12u);
-    const u32 oldNcec = *(u32 *)(entry + 32u);
-    if (oldNcbr == maw.ncbr && oldNclr == maw.nclr && oldNcec == maw.ncec) {
-        return;
-    }
-
-    BattleSpriteOverwriteMaw_Fn(bmw, W2U_BTLV_POS_AA, &maw);
-    W2U_BattleAnim_Profile.lastMawPatchPosition = W2U_BTLV_POS_AA;
-    W2U_BattleAnim_Profile.lastMawPatchOldNcbr = oldNcbr;
-    W2U_BattleAnim_Profile.lastMawPatchNewNcbr = maw.ncbr;
-}
-
-static void RestoreSuppressedMegaMawileMcss()
-{
-    if (!sState.megaVisualSuppressed) {
-        return;
-    }
-
-    RestoreNativeMcss(sState.megaVisualSuppressedMcss);
-    sState.megaVisualSuppressed = false;
-    sState.megaVisualSuppressedMcss = 0;
-    W2U_BattleAnim_Profile.megaVisualRestoreCalls =
-        W2U_BattleAnim_Profile.megaVisualRestoreCalls + 1u;
-}
-
-static void SuppressMegaMawileMcss(void *bmw)
-{
-    const s32 index = GetMcssIndex(bmw, W2U_BTLV_POS_AA);
-    if (!IsSafeMcssTextureIndex(index)) {
-        return;
-    }
-
-    void *mcss = GetMcssPointerByIndex(bmw, index);
-    if (!IsLikelyMainRamPointer(mcss)) {
-        return;
-    }
-
-    if (sState.megaVisualSuppressed &&
-        sState.megaVisualSuppressedMcss != mcss) {
-        RestoreSuppressedMegaMawileMcss();
-    }
-
-    HideNativeMcss(mcss);
-    sState.megaVisualSuppressed = true;
-    sState.megaVisualSuppressedMcss = mcss;
-
-    W2U_BattleAnim_Profile.megaVisualSuppressCalls =
-        W2U_BattleAnim_Profile.megaVisualSuppressCalls + 1u;
-}
-
-static void UpdateMegaVisualSettle(void *bmw)
-{
-    volatile MegaVisualStateMirror *state = FindMegaVisualState();
-    if (!IsMegaMawileVisualReadyRaw(state)) {
-        RestoreSuppressedMegaMawileMcss();
-        sState.megaVisualReadyObserved = false;
-        sState.megaVisualSettleFrames = 0;
-        sState.megaVisualRevealHoldFrames = 0;
-        sState.megaPwanStreamDelayFrames = 0;
-        sState.megaVisualFirstFrameUploaded = false;
-        sState.megaPwanStreamingReady = false;
-        W2U_BattleAnim_Profile.megaVisualSettleFrames = 0;
-        W2U_BattleAnim_Profile.megaVisualSettleReady = 0;
-        W2U_BattleAnim_Profile.megaVisualFirstFrameUploaded = 0;
-        W2U_BattleAnim_Profile.megaVisualRevealHoldFrames = 0;
-        W2U_BattleAnim_Profile.megaPwanStreamDelayFrames = 0;
-        W2U_BattleAnim_Profile.megaPwanStreamingReady = 0;
-        return;
-    }
-
-    sState.megaVisualReadyObserved = true;
-#if W2U_MEGA_VISUAL_SETTLE_FRAMES > 0
-    if (sState.megaVisualSettleFrames < W2U_MEGA_VISUAL_SETTLE_FRAMES) {
-        SuppressMegaMawileMcss(bmw);
-        sState.megaVisualSettleFrames =
-            (u8)(sState.megaVisualSettleFrames + 1u);
-        W2U_BattleAnim_Profile.megaVisualSettleFrames =
-            sState.megaVisualSettleFrames;
-        W2U_BattleAnim_Profile.megaVisualSettleReady = 0;
-        return;
-    }
-#endif
-
-    W2U_BattleAnim_Profile.megaVisualSettleFrames =
-        sState.megaVisualSettleFrames;
-    W2U_BattleAnim_Profile.megaVisualSettleReady = 1u;
-    PatchMegaMawileStaticMaw(bmw);
-
-    ActorState *actorState = &sState.actor[ACTOR_SINGLE_PLAYER_BACK];
-    if (actorState->active &&
-        actorState->species == W2U_MAWILE_MEGA_SPECIES &&
-        actorState->form == W2U_MAWILE_MEGA_FORM &&
-        actorState->assetId == (u16)(W2U_MAWILE_MEGA_FORM_SPRITE_INDEX * 2u + 1u) &&
-        actorState->copiedFrame != 0xffffu) {
-        sState.megaVisualFirstFrameUploaded = true;
-        W2U_BattleAnim_Profile.megaVisualFirstFrameUploaded = 1u;
-    }
-
-#if W2U_MEGA_PWAN_STREAM_DELAY_FRAMES > 0
-    if (sState.megaPwanStreamDelayFrames < W2U_MEGA_PWAN_STREAM_DELAY_FRAMES) {
-        SuppressMegaMawileMcss(bmw);
-        sState.megaPwanStreamDelayFrames =
-            (u8)(sState.megaPwanStreamDelayFrames + 1u);
-        W2U_BattleAnim_Profile.megaPwanStreamDelayFrames =
-            sState.megaPwanStreamDelayFrames;
-        W2U_BattleAnim_Profile.megaPwanStreamingReady = 0;
-        return;
-    }
-#endif
-
-    sState.megaPwanStreamingReady = true;
-    W2U_BattleAnim_Profile.megaPwanStreamDelayFrames =
-        sState.megaPwanStreamDelayFrames;
-    W2U_BattleAnim_Profile.megaPwanStreamingReady = 1u;
-
-    if (!sState.megaVisualFirstFrameUploaded
-#if W2U_MEGA_VISUAL_REVEAL_HOLD_FRAMES > 0
-        || sState.megaVisualRevealHoldFrames < W2U_MEGA_VISUAL_REVEAL_HOLD_FRAMES
-#endif
-        ) {
-        SuppressMegaMawileMcss(bmw);
-#if W2U_MEGA_VISUAL_REVEAL_HOLD_FRAMES > 0
-        if (sState.megaVisualFirstFrameUploaded) {
-            sState.megaVisualRevealHoldFrames =
-                (u8)(sState.megaVisualRevealHoldFrames + 1u);
-        }
-#endif
-        W2U_BattleAnim_Profile.megaVisualRevealHoldFrames =
-            sState.megaVisualRevealHoldFrames;
-        return;
-    }
-
-    W2U_BattleAnim_Profile.megaVisualRevealHoldFrames =
-        sState.megaVisualRevealHoldFrames;
-    RestoreSuppressedMegaMawileMcss();
-}
-
-static b32 IsMegaMawileVisualReady(volatile MegaVisualStateMirror *state)
-{
-#if W2U_MEGA_VISUAL_SETTLE_FRAMES > 0
-    return IsMegaMawileVisualReadyRaw(state) &&
-           sState.megaVisualSettleFrames >= W2U_MEGA_VISUAL_SETTLE_FRAMES;
-#else
-    return IsMegaMawileVisualReadyRaw(state);
-#endif
-}
-
-static b32 IsMegaMawilePwanStreamingReady()
-{
-    return sState.megaPwanStreamingReady;
-}
-
-static void ApplyMegaVisualStateOverride(int position, BattleActorIdentity *identity)
-{
-    W2U_BattleAnim_Profile.megaOverrideCalls =
-        W2U_BattleAnim_Profile.megaOverrideCalls + 1u;
-
-    if (!identity ||
-        position != W2U_BTLV_POS_AA ||
-        identity->species != W2U_MAWILE_MEGA_SPECIES ||
-        identity->form != 0) {
-        return;
-    }
-
-    volatile MegaVisualStateMirror *state = FindMegaVisualState();
-    if (!IsMegaMawileVisualReady(state)) {
-        return;
-    }
-
-    identity->form = W2U_MAWILE_MEGA_FORM;
-    W2U_BattleAnim_Profile.lastDecodedForm = identity->form;
-    W2U_BattleAnim_Profile.megaOverrideMatches =
-        W2U_BattleAnim_Profile.megaOverrideMatches + 1u;
-}
-
-static void PatchMcssActorIdentity(void *bmw, int position, BattleActorIdentity *identity)
-{
-    W2U_BattleAnim_Profile.actorIdentityPatchCalls =
-        W2U_BattleAnim_Profile.actorIdentityPatchCalls + 1u;
-
-    if (!bmw ||
-        !identity ||
-        position != W2U_BTLV_POS_AA ||
-        identity->species != W2U_MAWILE_MEGA_SPECIES ||
-        identity->form != W2U_MAWILE_MEGA_FORM) {
-        return;
-    }
-
-    const s32 index = GetMcssIndex(bmw, position);
-    if (!IsSafeMcssTextureIndex(index)) {
-        return;
-    }
-
-    u8 *entry = (u8 *)bmw + W2U_BATTLE_ACTOR_ENTRY_BASE +
-                ((u32)index * W2U_BATTLE_ACTOR_ENTRY_BYTES);
-    if (*(void **)entry == 0) {
-        return;
-    }
-
-    s32 *rawMonsNo = (s32 *)(entry + W2U_BATTLE_ACTOR_SPECIES_OFFSET);
-    s32 *formNo = (s32 *)(entry + W2U_BATTLE_ACTOR_FORM_OFFSET);
-    const s32 oldRaw = *rawMonsNo;
-    if (oldRaw != (s32)W2U_MAWILE_MEGA_SPECIES &&
-        oldRaw != (s32)W2U_MAWILE_MEGA_PACKED_MONS) {
-        return;
-    }
-
-    *rawMonsNo = (s32)W2U_MAWILE_MEGA_SPECIES;
-    *formNo = (s32)W2U_MAWILE_MEGA_FORM;
-    identity->rawMonsNo = (s32)W2U_MAWILE_MEGA_SPECIES;
-    identity->species = W2U_MAWILE_MEGA_SPECIES;
-    identity->form = W2U_MAWILE_MEGA_FORM;
-    W2U_BattleAnim_Profile.actorIdentityPatchMatches =
-        W2U_BattleAnim_Profile.actorIdentityPatchMatches + 1u;
-    W2U_BattleAnim_Profile.lastActorIdentityPatchPosition = (u32)position;
-    W2U_BattleAnim_Profile.lastActorIdentityPatchOldRaw = (u32)oldRaw;
-    W2U_BattleAnim_Profile.lastActorIdentityPatchNewRaw =
-        W2U_MAWILE_MEGA_SPECIES;
-}
-
 static BattleActorIdentity GetMcssActorIdentity(void *bmw, int position)
 {
     BattleActorIdentity identity = DecodeBattleActorIdentity(GetMcssMonsNo(bmw, position));
     if (identity.species != SPECIES_NONE) {
         const s32 formNo = GetMcssFormNo(bmw, position);
         if (formNo >= 0 && formNo <= 31) {
-            if (identity.species == W2U_MAWILE_MEGA_SPECIES &&
-                formNo == (s32)W2U_MAWILE_MEGA_FORM &&
-                position == W2U_BTLV_POS_AA &&
-                !IsMegaMawileVisualReady(FindMegaVisualState())) {
-                identity.form = 0;
-            } else {
-                identity.form = (u16)formNo;
-            }
+            identity.form = (u16)formNo;
             W2U_BattleAnim_Profile.lastDecodedForm = identity.form;
         }
     }
-    ApplyMegaVisualStateOverride(position, &identity);
-    PatchMcssActorIdentity(bmw, position, &identity);
     return identity;
 }
 
@@ -1684,13 +828,6 @@ static BattleAssetId AssetForEntrySide(const PwanConfigEntry *entry, b32 isFront
     if ((entry->flags & W2U_PWAN_CONFIG_BACK_FLAG) == 0 ||
         entry->assetIndex > W2U_PWAN_MAX_ASSET_INDEX) return ASSET_NONE;
     return (BattleAssetId)(entry->assetIndex * 2u + 1u);
-}
-
-static b32 IsMawileMegaFormSpriteFallback(const BattleActorIdentity *identity, const PwanConfigEntry *entry)
-{
-    return identity->rawMonsNo == (s32)W2U_MAWILE_MEGA_FORM_SPRITE_INDEX &&
-           entry->species == W2U_MAWILE_MEGA_SPECIES &&
-           entry->form == W2U_MAWILE_MEGA_FORM;
 }
 
 static BattleAssetId GetAssetForSpeciesSide(const BattleActorIdentity *identity, b32 isFront)
@@ -1712,18 +849,8 @@ static BattleAssetId GetAssetForSpeciesSide(const BattleActorIdentity *identity,
         const u32 offset = W2U_PwanConfigEntryOffset(&header, i);
         if (!ReadConfigRange(offset, raw, W2U_PWAN_CONFIG_ENTRY_BYTES)) return ASSET_NONE;
         PwanConfigEntry entry = W2U_DecodePwanConfigEntry(raw);
-        if (identity->species == W2U_MAWILE_MEGA_SPECIES &&
-            identity->form == W2U_MAWILE_MEGA_FORM &&
-            !IsMegaMawilePwanStreamingReady()) {
-            W2U_BattleAnim_Profile.lastConfigMatchMode = 4u;
-            return ASSET_NONE;
-        }
         if (entry.species == identity->species && entry.form == identity->form) {
             W2U_BattleAnim_Profile.lastConfigMatchMode = 2u;
-            return AssetForEntrySide(&entry, isFront);
-        }
-        if (IsMawileMegaFormSpriteFallback(identity, &entry)) {
-            W2U_BattleAnim_Profile.lastConfigMatchMode = 3u;
             return AssetForEntrySide(&entry, isFront);
         }
     }
@@ -1766,12 +893,7 @@ static void RecordActorProfile(ActorId actor, u32 position, s32 mcssIndex,
 
 static void DeactivateActor(ActorId actor)
 {
-    if (sState.actor[actor].directObj) {
-        RestoreNativeMcss(sState.actor[actor].mcss);
-        HideOam();
-    }
     sState.actor[actor].active = false;
-    sState.actor[actor].directObj = false;
     sState.actor[actor].textureDirty = false;
     sState.actor[actor].paletteDirty = false;
     sState.actor[actor].copiedFrame = 0xffffu;
@@ -1800,7 +922,6 @@ static void UpdateActor(ActorId actor, void *bmw)
         return;
     }
     const BattleActorIdentity identity = GetMcssActorIdentity(bmw, cfg->position);
-    PatchBaseMawileMawIfNeeded(bmw, cfg->position, &identity);
     const BattleAssetId assetId = GetAssetForPositionSpecies(cfg->position, &identity);
     if (assetId >= ASSET_COUNT || !LoadAsset(actor, assetId)) {
         W2U_BattleAnim_Profile.loadFailCount = W2U_BattleAnim_Profile.loadFailCount + 1u;
@@ -1812,7 +933,6 @@ static void UpdateActor(ActorId actor, void *bmw)
     }
 
     const b32 wasInactive = !actorState->active;
-    const b32 wasDirectObj = actorState->directObj;
     void *oldMcss = actorState->mcss;
     void *currentMcss = GetMcssPointerByIndex(bmw, mcssIndex);
     const b32 mcssIndexChanged = actorState->mcssIndex != (s16)mcssIndex;
@@ -1837,30 +957,19 @@ static void UpdateActor(ActorId actor, void *bmw)
     actorState->form = identity.form;
     actorState->assetId = (u16)assetId;
     actorState->mcss = currentMcss;
-    actorState->directObj = IsDirectObjActor(actor, &identity, assetId);
-    if (wasDirectObj && !actorState->directObj) {
-        RestoreNativeMcss(oldMcss);
-        HideOam();
-    }
-    if (actorState->directObj) {
-        HideNativeMcss(actorState->mcss);
-    }
     if (wasInactive || mcssIndexChanged || mcssPointerChanged || speciesChanged) {
         actorState->paletteDirty = true;
     }
-    b32 carrierPatched = PatchMegaMawileMaw(bmw, cfg->position, actorState);
-    if (!IsMegaMawilePwanActor(actorState)) {
-        carrierPatched = PatchFormFromPwanConfig(bmw, cfg->position, actorState);
-    }
+    const b32 carrierPatched = PatchFormFromPwanConfig(bmw, cfg->position, actorState);
     if (carrierPatched) {
         actorState->mcss = GetMcssPointerByIndex(bmw, mcssIndex);
     }
     SetMcssPaletteBase(actorState->mcss, GetPwanPaletteBase(mcssIndex));
-    if (!actorState->directObj && !LiveMcssPaletteMatches(actor)) {
+    if (!LiveMcssPaletteMatches(actor)) {
         actorState->paletteDirty = true;
         actorState->copiedFrame = 0xffffu;
     }
-    if (actorState->paletteDirty && !actorState->directObj) {
+    if (actorState->paletteDirty) {
         CopyPaletteToLiveMcss(actor);
     }
 
@@ -1884,7 +993,6 @@ static void UpdateActor(ActorId actor, void *bmw)
 
 extern "C" void W2U_BattleAnim_Update(void)
 {
-    RestoreNativeVramMapping();
     W2U_BattleAnim_Profile.updateCalls = W2U_BattleAnim_Profile.updateCalls + 1u;
     W2U_BattleAnim_Profile.lastActiveMask = 0;
     W2U_BattleAnim_Profile.lastTextureDirtyMask = 0;
@@ -1893,9 +1001,6 @@ extern "C" void W2U_BattleAnim_Update(void)
         W2U_BattleAnim_Term();
         return;
     }
-    PatchBaseMawileMawWhenMegaVisualInactive(bmw);
-    UpdateMegaVisualSettle(bmw);
-    PatchMegaMawileBattleSummaryCache();
 
     for (u32 i = 0; i < ACTOR_COUNT; ++i) {
         UpdateActor((ActorId)i, bmw);
@@ -1905,14 +1010,10 @@ extern "C" void W2U_BattleAnim_Update(void)
 extern "C" void W2U_BattleAnim_Draw(void)
 {
     W2U_BattleAnim_Profile.drawCalls = W2U_BattleAnim_Profile.drawCalls + 1u;
-    PatchMegaMawileBattleSummaryCache();
 
     b32 needsUpload = false;
     for (u32 i = 0; i < ACTOR_COUNT; ++i) {
         if (!sState.actor[i].active) {
-            continue;
-        }
-        if (sState.actor[i].directObj) {
             continue;
         }
         SetMcssPaletteBase(sState.actor[i].mcss,
@@ -1922,7 +1023,6 @@ extern "C" void W2U_BattleAnim_Draw(void)
         }
     }
     if (!needsUpload) {
-        DrawDirectObjActor();
         return;
     }
 
@@ -1937,7 +1037,7 @@ extern "C" void W2U_BattleAnim_Draw(void)
         }
         const ActorId actor = (ActorId)actorIndex;
         ActorState *actorState = &sState.actor[actor];
-        if (!actorState->active || actorState->directObj ||
+        if (!actorState->active ||
             actorState->mcssIndex < 0 ||
             (!actorState->textureDirty && !actorState->paletteDirty)) {
             continue;
@@ -1968,21 +1068,12 @@ extern "C" void W2U_BattleAnim_Draw(void)
         sState.nextUploadActor = (u8)actorIndex;
         break;
     }
-    DrawDirectObjActor();
 }
 
 extern "C" void W2U_BattleAnim_Term(void)
 {
-    HideOam();
-    RestoreNativeVramMapping();
-    RestoreSuppressedMegaMawileMcss();
-    ClearMegaVisualState();
     for (u32 i = 0; i < ACTOR_COUNT; ++i) {
-        if (sState.actor[i].directObj) {
-            RestoreNativeMcss(sState.actor[i].mcss);
-        }
         sState.actor[i].active = false;
-        sState.actor[i].directObj = false;
         sState.actor[i].textureDirty = false;
         sState.actor[i].paletteDirty = false;
         sState.actor[i].tick = 0;
@@ -1996,17 +1087,6 @@ extern "C" void W2U_BattleAnim_Term(void)
         sState.actor[i].mcss = 0;
     }
     sState.nextUploadActor = 0;
-    sState.savedVramcntEValid = false;
-    sState.megaVisualSettleFrames = 0;
-    sState.megaVisualRevealHoldFrames = 0;
-    sState.megaPwanStreamDelayFrames = 0;
-    sState.megaVisualReadyObserved = false;
-    sState.megaVisualFirstFrameUploaded = false;
-    sState.megaPwanStreamingReady = false;
-    sState.megaVisualSuppressed = false;
-    sState.megaVisualSuppressedMcss = 0;
-    sState.megaSummaryCacheAddress = 0;
-    sState.megaSummaryCacheScanCooldown = 0;
 }
 
 } // namespace battle_anim

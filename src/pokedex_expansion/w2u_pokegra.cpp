@@ -12,16 +12,21 @@
 #define PLACEHOLDER_GRAPHICS_SPECIES SPECIES_TEPIG
 #define GEN7_SPECIES_START 722
 #define GEN7_SPECIES_END 809
+#define GEN8PLUS_SPECIES_START 810
+#define GEN8PLUS_SPECIES_END 1023
 #define GEN7_BATTLE_ARCHIVE_START 19000
 #define GEN7_ICON_ARCHIVE_START 1904
+#define GEN8PLUS_STATIC_ASSET_START 1200
+#define GEN8PLUS_BATTLE_ARCHIVE_START (GEN8PLUS_STATIC_ASSET_START * 20)
+#define GEN8PLUS_ICON_ARCHIVE_START (GEN8PLUS_STATIC_ASSET_START * 2 + 8)
 // MEGA_PREVIEW_SLOTS_BEGIN
-#define MEGA_PREVIEW_SPECIES_START 900
-#define MEGA_PREVIEW_SPECIES_END 947
+#define MEGA_PREVIEW_SPECIES_START 1
+#define MEGA_PREVIEW_SPECIES_END 96
 // MEGA_PREVIEW_SLOTS_END
 
 #define FORM_START 14480
 #define RARE_FORM_START 17953
-#define REGIONAL_DEX_FILE_INDEX 1185
+#define REGIONAL_DEX_FILE_INDEX 1270
 
 #define ICON_FORM_START 1456
 
@@ -29,6 +34,10 @@ namespace w2u {
     namespace pokegra {
         static inline b32 IsGen7Species(u32 Species) {
             return Species >= GEN7_SPECIES_START && Species <= GEN7_SPECIES_END;
+        }
+
+        static inline b32 IsGen8PlusSpecies(u32 Species) {
+            return Species >= GEN8PLUS_SPECIES_START && Species <= GEN8PLUS_SPECIES_END;
         }
 
         static inline u32 Gen7BattleIndex(u32 Species) {
@@ -39,8 +48,17 @@ namespace w2u {
             return GEN7_ICON_ARCHIVE_START + ((Species - GEN7_SPECIES_START) * 2);
         }
 
+        static inline u32 Gen8PlusBattleIndex(u32 Species) {
+            return GEN8PLUS_BATTLE_ARCHIVE_START + ((Species - GEN8PLUS_SPECIES_START) * 20);
+        }
+
+        static inline u32 Gen8PlusIconIndex(u32 Species) {
+            return GEN8PLUS_ICON_ARCHIVE_START + ((Species - GEN8PLUS_SPECIES_START) * 2);
+        }
+
         static inline b32 HasExpandedGraphics(u32 Species) {
             return IsGen7Species(Species) ||
+                IsGen8PlusSpecies(Species) ||
                 (Species >= MEGA_PREVIEW_SPECIES_START && Species <= MEGA_PREVIEW_SPECIES_END);
         }
 
@@ -60,7 +78,9 @@ namespace w2u {
             // An actual Pokémon; calculate its base index.
             // Gen 7 species overlap the expanded form ranges at the direct index,
             // so keep them in a separate archive range.
-            u32 expected_index = IsGen7Species(displaySpecies) ? Gen7BattleIndex(displaySpecies) : 20 * displaySpecies;
+            u32 expected_index = IsGen7Species(displaySpecies)
+                ? Gen7BattleIndex(displaySpecies)
+                : (IsGen8PlusSpecies(displaySpecies) ? Gen8PlusBattleIndex(displaySpecies) : 20 * displaySpecies);
 
             // There are 9 files for the front, and 9 for the back.
             // Two palettes are shared.
@@ -144,7 +164,9 @@ namespace w2u {
 
 			// An actual Pokémon; calculate its icon index.
             // Gen 7 direct icon indexes overlap the expanded form icon range.
-            u32 iconIndex = IsGen7Species(displaySpecies) ? Gen7IconIndex(displaySpecies) : 2 * displaySpecies + 8;
+            u32 iconIndex = IsGen7Species(displaySpecies)
+                ? Gen7IconIndex(displaySpecies)
+                : (IsGen8PlusSpecies(displaySpecies) ? Gen8PlusIconIndex(displaySpecies) : 2 * displaySpecies + 8);
             
             if (isEgg) {
                 // Egg; check if it is Manaphy first.

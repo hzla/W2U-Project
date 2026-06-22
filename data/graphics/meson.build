@@ -5,6 +5,8 @@ pokegra_footprints_count = 832
 arc_marker_text = '.arc\ncompress default auto\n'
 build_pokegra_battle_py = find_program(meson.project_source_root() / 'tools' / 'graphics' / 'build_pokegra_battle.py', native: true)
 stage_bin_archive_py = find_program(meson.project_source_root() / 'tools' / 'graphics' / 'stage_bin_archive.py', native: true)
+pokegra_fallback_compression = get_option('pokegra_fallback_compression')
+pokegra_fallback_jobs = get_option('pokegra_fallback_jobs').to_string()
 
 binary_archive_stages = [
   [
@@ -74,6 +76,8 @@ vfs_files += custom_target(
     '--preserve-base-before', '13000',
     '--extra-bin-source', meson.current_source_dir() / 'pokegra_battle_extra',
     '--gen7-pwan-fallback-source', meson.project_source_root() / 'assets' / 'pokeweb_pwan',
+    '--fallback-jobs', pokegra_fallback_jobs,
+    '--fallback-compression', pokegra_fallback_compression,
     '--skip-pwan',
     '--arc-text', arc_marker_text,
     '--stamp', '@OUTPUT@',

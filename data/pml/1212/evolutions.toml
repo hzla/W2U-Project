@@ -1,0 +1,41 @@
+[SPECIES_1212]
+
+[SPECIES_1212.EVOLUTION_0]
+Method = "METHOD_LEVELUP"
+Parameter = 30
+"Target Species" = "SPECIES_ELECTRODE"
+
+[SPECIES_1212.EVOLUTION_1]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"
+
+[SPECIES_1212.EVOLUTION_2]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"
+
+[SPECIES_1212.EVOLUTION_3]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"
+
+[SPECIES_1212.EVOLUTION_4]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"
+
+[SPECIES_1212.EVOLUTION_5]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"
+
+[SPECIES_1212.EVOLUTION_6]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"
+
+[SPECIES_1212.EVOLUTION_7]
+Method = "METHOD_NONE"
+Parameter = 0
+"Target Species" = "SPECIES_NONE"

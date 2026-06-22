@@ -1,0 +1,3663 @@
+{
+  "version": 1,
+  "speciesRange": [
+    810,
+    1023
+  ],
+  "staticAssetRange": [
+    1200,
+    1413
+  ],
+  "battleArchiveRange": [
+    24000,
+    28279
+  ],
+  "iconArchiveRange": [
+    2408,
+    2835
+  ],
+  "battle": [
+    {
+      "species": 810,
+      "staticAsset": 1200,
+      "targetBase": 24000,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 811,
+      "staticAsset": 1201,
+      "targetBase": 24020,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 812,
+      "staticAsset": 1202,
+      "targetBase": 24040,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 813,
+      "staticAsset": 1203,
+      "targetBase": 24060,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 814,
+      "staticAsset": 1204,
+      "targetBase": 24080,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 815,
+      "staticAsset": 1205,
+      "targetBase": 24100,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 816,
+      "staticAsset": 1206,
+      "targetBase": 24120,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 817,
+      "staticAsset": 1207,
+      "targetBase": 24140,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 818,
+      "staticAsset": 1208,
+      "targetBase": 24160,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 819,
+      "staticAsset": 1209,
+      "targetBase": 24180,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 820,
+      "staticAsset": 1210,
+      "targetBase": 24200,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 821,
+      "staticAsset": 1211,
+      "targetBase": 24220,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 822,
+      "staticAsset": 1212,
+      "targetBase": 24240,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 823,
+      "staticAsset": 1213,
+      "targetBase": 24260,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 824,
+      "staticAsset": 1214,
+      "targetBase": 24280,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 825,
+      "staticAsset": 1215,
+      "targetBase": 24300,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 826,
+      "staticAsset": 1216,
+      "targetBase": 24320,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 827,
+      "staticAsset": 1217,
+      "targetBase": 24340,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 828,
+      "staticAsset": 1218,
+      "targetBase": 24360,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 829,
+      "staticAsset": 1219,
+      "targetBase": 24380,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 830,
+      "staticAsset": 1220,
+      "targetBase": 24400,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 831,
+      "staticAsset": 1221,
+      "targetBase": 24420,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 832,
+      "staticAsset": 1222,
+      "targetBase": 24440,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 833,
+      "staticAsset": 1223,
+      "targetBase": 24460,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 834,
+      "staticAsset": 1224,
+      "targetBase": 24480,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 835,
+      "staticAsset": 1225,
+      "targetBase": 24500,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 836,
+      "staticAsset": 1226,
+      "targetBase": 24520,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 837,
+      "staticAsset": 1227,
+      "targetBase": 24540,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 838,
+      "staticAsset": 1228,
+      "targetBase": 24560,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 839,
+      "staticAsset": 1229,
+      "targetBase": 24580,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 840,
+      "staticAsset": 1230,
+      "targetBase": 24600,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 841,
+      "staticAsset": 1231,
+      "targetBase": 24620,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 842,
+      "staticAsset": 1232,
+      "targetBase": 24640,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 843,
+      "staticAsset": 1233,
+      "targetBase": 24660,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 844,
+      "staticAsset": 1234,
+      "targetBase": 24680,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 845,
+      "staticAsset": 1235,
+      "targetBase": 24700,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 846,
+      "staticAsset": 1236,
+      "targetBase": 24720,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 847,
+      "staticAsset": 1237,
+      "targetBase": 24740,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 848,
+      "staticAsset": 1238,
+      "targetBase": 24760,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 849,
+      "staticAsset": 1239,
+      "targetBase": 24780,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 850,
+      "staticAsset": 1240,
+      "targetBase": 24800,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 851,
+      "staticAsset": 1241,
+      "targetBase": 24820,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 852,
+      "staticAsset": 1242,
+      "targetBase": 24840,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 853,
+      "staticAsset": 1243,
+      "targetBase": 24860,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 854,
+      "staticAsset": 1244,
+      "targetBase": 24880,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 855,
+      "staticAsset": 1245,
+      "targetBase": 24900,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 856,
+      "staticAsset": 1246,
+      "targetBase": 24920,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 857,
+      "staticAsset": 1247,
+      "targetBase": 24940,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 858,
+      "staticAsset": 1248,
+      "targetBase": 24960,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 859,
+      "staticAsset": 1249,
+      "targetBase": 24980,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 860,
+      "staticAsset": 1250,
+      "targetBase": 25000,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 861,
+      "staticAsset": 1251,
+      "targetBase": 25020,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 862,
+      "staticAsset": 1252,
+      "targetBase": 25040,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 863,
+      "staticAsset": 1253,
+      "targetBase": 25060,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 864,
+      "staticAsset": 1254,
+      "targetBase": 25080,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 865,
+      "staticAsset": 1255,
+      "targetBase": 25100,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 866,
+      "staticAsset": 1256,
+      "targetBase": 25120,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 867,
+      "staticAsset": 1257,
+      "targetBase": 25140,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 868,
+      "staticAsset": 1258,
+      "targetBase": 25160,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 869,
+      "staticAsset": 1259,
+      "targetBase": 25180,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 870,
+      "staticAsset": 1260,
+      "targetBase": 25200,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 871,
+      "staticAsset": 1261,
+      "targetBase": 25220,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 872,
+      "staticAsset": 1262,
+      "targetBase": 25240,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 873,
+      "staticAsset": 1263,
+      "targetBase": 25260,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 874,
+      "staticAsset": 1264,
+      "targetBase": 25280,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 875,
+      "staticAsset": 1265,
+      "targetBase": 25300,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 876,
+      "staticAsset": 1266,
+      "targetBase": 25320,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 877,
+      "staticAsset": 1267,
+      "targetBase": 25340,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 878,
+      "staticAsset": 1268,
+      "targetBase": 25360,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 879,
+      "staticAsset": 1269,
+      "targetBase": 25380,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 880,
+      "staticAsset": 1270,
+      "targetBase": 25400,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 881,
+      "staticAsset": 1271,
+      "targetBase": 25420,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 882,
+      "staticAsset": 1272,
+      "targetBase": 25440,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 883,
+      "staticAsset": 1273,
+      "targetBase": 25460,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 884,
+      "staticAsset": 1274,
+      "targetBase": 25480,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 885,
+      "staticAsset": 1275,
+      "targetBase": 25500,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 886,
+      "staticAsset": 1276,
+      "targetBase": 25520,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 887,
+      "staticAsset": 1277,
+      "targetBase": 25540,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 888,
+      "staticAsset": 1278,
+      "targetBase": 25560,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 889,
+      "staticAsset": 1279,
+      "targetBase": 25580,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 890,
+      "staticAsset": 1280,
+      "targetBase": 25600,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 891,
+      "staticAsset": 1281,
+      "targetBase": 25620,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 892,
+      "staticAsset": 1282,
+      "targetBase": 25640,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 893,
+      "staticAsset": 1283,
+      "targetBase": 25660,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 894,
+      "staticAsset": 1284,
+      "targetBase": 25680,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 895,
+      "staticAsset": 1285,
+      "targetBase": 25700,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 896,
+      "staticAsset": 1286,
+      "targetBase": 25720,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 897,
+      "staticAsset": 1287,
+      "targetBase": 25740,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 898,
+      "staticAsset": 1288,
+      "targetBase": 25760,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 899,
+      "staticAsset": 1289,
+      "targetBase": 25780,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 900,
+      "staticAsset": 1290,
+      "targetBase": 25800,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 901,
+      "staticAsset": 1291,
+      "targetBase": 25820,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 902,
+      "staticAsset": 1292,
+      "targetBase": 25840,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 903,
+      "staticAsset": 1293,
+      "targetBase": 25860,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 904,
+      "staticAsset": 1294,
+      "targetBase": 25880,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 905,
+      "staticAsset": 1295,
+      "targetBase": 25900,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 906,
+      "staticAsset": 1296,
+      "targetBase": 25920,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 907,
+      "staticAsset": 1297,
+      "targetBase": 25940,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 908,
+      "staticAsset": 1298,
+      "targetBase": 25960,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 909,
+      "staticAsset": 1299,
+      "targetBase": 25980,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 910,
+      "staticAsset": 1300,
+      "targetBase": 26000,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 911,
+      "staticAsset": 1301,
+      "targetBase": 26020,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 912,
+      "staticAsset": 1302,
+      "targetBase": 26040,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 913,
+      "staticAsset": 1303,
+      "targetBase": 26060,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 914,
+      "staticAsset": 1304,
+      "targetBase": 26080,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 915,
+      "staticAsset": 1305,
+      "targetBase": 26100,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 916,
+      "staticAsset": 1306,
+      "targetBase": 26120,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 917,
+      "staticAsset": 1307,
+      "targetBase": 26140,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 918,
+      "staticAsset": 1308,
+      "targetBase": 26160,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 919,
+      "staticAsset": 1309,
+      "targetBase": 26180,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 920,
+      "staticAsset": 1310,
+      "targetBase": 26200,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 921,
+      "staticAsset": 1311,
+      "targetBase": 26220,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 922,
+      "staticAsset": 1312,
+      "targetBase": 26240,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 923,
+      "staticAsset": 1313,
+      "targetBase": 26260,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 924,
+      "staticAsset": 1314,
+      "targetBase": 26280,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 925,
+      "staticAsset": 1315,
+      "targetBase": 26300,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 926,
+      "staticAsset": 1316,
+      "targetBase": 26320,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 927,
+      "staticAsset": 1317,
+      "targetBase": 26340,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 928,
+      "staticAsset": 1318,
+      "targetBase": 26360,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 929,
+      "staticAsset": 1319,
+      "targetBase": 26380,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 930,
+      "staticAsset": 1320,
+      "targetBase": 26400,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 931,
+      "staticAsset": 1321,
+      "targetBase": 26420,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 932,
+      "staticAsset": 1322,
+      "targetBase": 26440,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 933,
+      "staticAsset": 1323,
+      "targetBase": 26460,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 934,
+      "staticAsset": 1324,
+      "targetBase": 26480,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 935,
+      "staticAsset": 1325,
+      "targetBase": 26500,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 936,
+      "staticAsset": 1326,
+      "targetBase": 26520,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 937,
+      "staticAsset": 1327,
+      "targetBase": 26540,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 938,
+      "staticAsset": 1328,
+      "targetBase": 26560,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 939,
+      "staticAsset": 1329,
+      "targetBase": 26580,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 940,
+      "staticAsset": 1330,
+      "targetBase": 26600,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 941,
+      "staticAsset": 1331,
+      "targetBase": 26620,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 942,
+      "staticAsset": 1332,
+      "targetBase": 26640,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 943,
+      "staticAsset": 1333,
+      "targetBase": 26660,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 944,
+      "staticAsset": 1334,
+      "targetBase": 26680,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 945,
+      "staticAsset": 1335,
+      "targetBase": 26700,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 946,
+      "staticAsset": 1336,
+      "targetBase": 26720,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 947,
+      "staticAsset": 1337,
+      "targetBase": 26740,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 948,
+      "staticAsset": 1338,
+      "targetBase": 26760,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 949,
+      "staticAsset": 1339,
+      "targetBase": 26780,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 950,
+      "staticAsset": 1340,
+      "targetBase": 26800,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 951,
+      "staticAsset": 1341,
+      "targetBase": 26820,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 952,
+      "staticAsset": 1342,
+      "targetBase": 26840,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 953,
+      "staticAsset": 1343,
+      "targetBase": 26860,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 954,
+      "staticAsset": 1344,
+      "targetBase": 26880,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 955,
+      "staticAsset": 1345,
+      "targetBase": 26900,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 956,
+      "staticAsset": 1346,
+      "targetBase": 26920,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 957,
+      "staticAsset": 1347,
+      "targetBase": 26940,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 958,
+      "staticAsset": 1348,
+      "targetBase": 26960,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 959,
+      "staticAsset": 1349,
+      "targetBase": 26980,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 960,
+      "staticAsset": 1350,
+      "targetBase": 27000,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 961,
+      "staticAsset": 1351,
+      "targetBase": 27020,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 962,
+      "staticAsset": 1352,
+      "targetBase": 27040,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 963,
+      "staticAsset": 1353,
+      "targetBase": 27060,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 964,
+      "staticAsset": 1354,
+      "targetBase": 27080,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 965,
+      "staticAsset": 1355,
+      "targetBase": 27100,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 966,
+      "staticAsset": 1356,
+      "targetBase": 27120,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 967,
+      "staticAsset": 1357,
+      "targetBase": 27140,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 968,
+      "staticAsset": 1358,
+      "targetBase": 27160,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 969,
+      "staticAsset": 1359,
+      "targetBase": 27180,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 970,
+      "staticAsset": 1360,
+      "targetBase": 27200,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 971,
+      "staticAsset": 1361,
+      "targetBase": 27220,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 972,
+      "staticAsset": 1362,
+      "targetBase": 27240,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 973,
+      "staticAsset": 1363,
+      "targetBase": 27260,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 974,
+      "staticAsset": 1364,
+      "targetBase": 27280,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 975,
+      "staticAsset": 1365,
+      "targetBase": 27300,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 976,
+      "staticAsset": 1366,
+      "targetBase": 27320,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 977,
+      "staticAsset": 1367,
+      "targetBase": 27340,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 978,
+      "staticAsset": 1368,
+      "targetBase": 27360,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 979,
+      "staticAsset": 1369,
+      "targetBase": 27380,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 980,
+      "staticAsset": 1370,
+      "targetBase": 27400,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 981,
+      "staticAsset": 1371,
+      "targetBase": 27420,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 982,
+      "staticAsset": 1372,
+      "targetBase": 27440,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 983,
+      "staticAsset": 1373,
+      "targetBase": 27460,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 984,
+      "staticAsset": 1374,
+      "targetBase": 27480,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 985,
+      "staticAsset": 1375,
+      "targetBase": 27500,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 986,
+      "staticAsset": 1376,
+      "targetBase": 27520,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 987,
+      "staticAsset": 1377,
+      "targetBase": 27540,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 988,
+      "staticAsset": 1378,
+      "targetBase": 27560,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 989,
+      "staticAsset": 1379,
+      "targetBase": 27580,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 990,
+      "staticAsset": 1380,
+      "targetBase": 27600,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 991,
+      "staticAsset": 1381,
+      "targetBase": 27620,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 992,
+      "staticAsset": 1382,
+      "targetBase": 27640,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 993,
+      "staticAsset": 1383,
+      "targetBase": 27660,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 994,
+      "staticAsset": 1384,
+      "targetBase": 27680,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 995,
+      "staticAsset": 1385,
+      "targetBase": 27700,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 996,
+      "staticAsset": 1386,
+      "targetBase": 27720,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 997,
+      "staticAsset": 1387,
+      "targetBase": 27740,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 998,
+      "staticAsset": 1388,
+      "targetBase": 27760,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 999,
+      "staticAsset": 1389,
+      "targetBase": 27780,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1000,
+      "staticAsset": 1390,
+      "targetBase": 27800,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1001,
+      "staticAsset": 1391,
+      "targetBase": 27820,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1002,
+      "staticAsset": 1392,
+      "targetBase": 27840,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1003,
+      "staticAsset": 1393,
+      "targetBase": 27860,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1004,
+      "staticAsset": 1394,
+      "targetBase": 27880,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1005,
+      "staticAsset": 1395,
+      "targetBase": 27900,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1006,
+      "staticAsset": 1396,
+      "targetBase": 27920,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1007,
+      "staticAsset": 1397,
+      "targetBase": 27940,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1008,
+      "staticAsset": 1398,
+      "targetBase": 27960,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1009,
+      "staticAsset": 1399,
+      "targetBase": 27980,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1010,
+      "staticAsset": 1400,
+      "targetBase": 28000,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1011,
+      "staticAsset": 1401,
+      "targetBase": 28020,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1012,
+      "staticAsset": 1402,
+      "targetBase": 28040,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1013,
+      "staticAsset": 1403,
+      "targetBase": 28060,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1014,
+      "staticAsset": 1404,
+      "targetBase": 28080,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1015,
+      "staticAsset": 1405,
+      "targetBase": 28100,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1016,
+      "staticAsset": 1406,
+      "targetBase": 28120,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1017,
+      "staticAsset": 1407,
+      "targetBase": 28140,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1018,
+      "staticAsset": 1408,
+      "targetBase": 28160,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1019,
+      "staticAsset": 1409,
+      "targetBase": 28180,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1020,
+      "staticAsset": 1410,
+      "targetBase": 28200,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1021,
+      "staticAsset": 1411,
+      "targetBase": 28220,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1022,
+      "staticAsset": 1412,
+      "targetBase": 28240,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    },
+    {
+      "species": 1023,
+      "staticAsset": 1413,
+      "targetBase": 28260,
+      "patchedSides": [
+        "front",
+        "back"
+      ],
+      "shinyPalette": true,
+      "errors": []
+    }
+  ],
+  "icons": [
+    {
+      "species": 810,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GROOKEY.png",
+      "target": 2408,
+      "palette": 1
+    },
+    {
+      "species": 811,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/THWACKEY.png",
+      "target": 2410,
+      "palette": 1
+    },
+    {
+      "species": 812,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/RILLABOOM.png",
+      "target": 2412,
+      "palette": 1
+    },
+    {
+      "species": 813,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SCORBUNNY.png",
+      "target": 2414,
+      "palette": 0
+    },
+    {
+      "species": 814,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/RABOOT.png",
+      "target": 2416,
+      "palette": 2
+    },
+    {
+      "species": 815,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CINDERACE.png",
+      "target": 2418,
+      "palette": 0
+    },
+    {
+      "species": 816,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SOBBLE.png",
+      "target": 2420,
+      "palette": 0
+    },
+    {
+      "species": 817,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DRIZZILE.png",
+      "target": 2422,
+      "palette": 2
+    },
+    {
+      "species": 818,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/INTELEON.png",
+      "target": 2424,
+      "palette": 2
+    },
+    {
+      "species": 819,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SKWOVET.png",
+      "target": 2426,
+      "palette": 2
+    },
+    {
+      "species": 820,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GREEDENT.png",
+      "target": 2428,
+      "palette": 0
+    },
+    {
+      "species": 821,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ROOKIDEE.png",
+      "target": 2430,
+      "palette": 2
+    },
+    {
+      "species": 822,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CORVISQUIRE.png",
+      "target": 2432,
+      "palette": 2
+    },
+    {
+      "species": 823,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CORVIKNIGHT.png",
+      "target": 2434,
+      "palette": 2
+    },
+    {
+      "species": 824,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/BLIPBUG.png",
+      "target": 2436,
+      "palette": 2
+    },
+    {
+      "species": 825,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DOTTLER.png",
+      "target": 2438,
+      "palette": 1
+    },
+    {
+      "species": 826,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ORBEETLE.png",
+      "target": 2440,
+      "palette": 0
+    },
+    {
+      "species": 827,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/NICKIT.png",
+      "target": 2442,
+      "palette": 0
+    },
+    {
+      "species": 828,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/THIEVUL.png",
+      "target": 2444,
+      "palette": 0
+    },
+    {
+      "species": 829,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GOSSIFLEUR.png",
+      "target": 2446,
+      "palette": 0
+    },
+    {
+      "species": 830,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ELDEGOSS.png",
+      "target": 2448,
+      "palette": 1
+    },
+    {
+      "species": 831,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/WOOLOO.png",
+      "target": 2450,
+      "palette": 0
+    },
+    {
+      "species": 832,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DUBWOOL.png",
+      "target": 2452,
+      "palette": 2
+    },
+    {
+      "species": 833,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CHEWTLE.png",
+      "target": 2454,
+      "palette": 0
+    },
+    {
+      "species": 834,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DREDNAW.png",
+      "target": 2456,
+      "palette": 0
+    },
+    {
+      "species": 835,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/YAMPER.png",
+      "target": 2458,
+      "palette": 1
+    },
+    {
+      "species": 836,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/BOLTUND.png",
+      "target": 2460,
+      "palette": 1
+    },
+    {
+      "species": 837,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ROLYCOLY.png",
+      "target": 2462,
+      "palette": 2
+    },
+    {
+      "species": 838,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CARKOL.png",
+      "target": 2464,
+      "palette": 0
+    },
+    {
+      "species": 839,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/COALOSSAL.png",
+      "target": 2466,
+      "palette": 0
+    },
+    {
+      "species": 840,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/APPLIN.png",
+      "target": 2468,
+      "palette": 1
+    },
+    {
+      "species": 841,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FLAPPLE.png",
+      "target": 2470,
+      "palette": 1
+    },
+    {
+      "species": 842,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/APPLETUN.png",
+      "target": 2472,
+      "palette": 1
+    },
+    {
+      "species": 843,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SILICOBRA.png",
+      "target": 2474,
+      "palette": 1
+    },
+    {
+      "species": 844,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SANDACONDA.png",
+      "target": 2476,
+      "palette": 1
+    },
+    {
+      "species": 845,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CRAMORANT.png",
+      "target": 2478,
+      "palette": 0
+    },
+    {
+      "species": 846,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ARROKUDA.png",
+      "target": 2480,
+      "palette": 1
+    },
+    {
+      "species": 847,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/BARRASKEWDA.png",
+      "target": 2482,
+      "palette": 0
+    },
+    {
+      "species": 848,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TOXEL.png",
+      "target": 2484,
+      "palette": 2
+    },
+    {
+      "species": 849,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TOXTRICITY.png",
+      "target": 2486,
+      "palette": 0
+    },
+    {
+      "species": 850,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SIZZLIPEDE.png",
+      "target": 2488,
+      "palette": 0
+    },
+    {
+      "species": 851,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CENTISKORCH.png",
+      "target": 2490,
+      "palette": 0
+    },
+    {
+      "species": 852,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CLOBBOPUS.png",
+      "target": 2492,
+      "palette": 2
+    },
+    {
+      "species": 853,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GRAPPLOCT.png",
+      "target": 2494,
+      "palette": 2
+    },
+    {
+      "species": 854,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SINISTEA.png",
+      "target": 2496,
+      "palette": 2
+    },
+    {
+      "species": 855,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/POLTEAGEIST.png",
+      "target": 2498,
+      "palette": 0
+    },
+    {
+      "species": 856,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/HATENNA.png",
+      "target": 2500,
+      "palette": 0
+    },
+    {
+      "species": 857,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/HATTREM.png",
+      "target": 2502,
+      "palette": 0
+    },
+    {
+      "species": 858,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/HATTERENE.png",
+      "target": 2504,
+      "palette": 0
+    },
+    {
+      "species": 859,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/IMPIDIMP.png",
+      "target": 2506,
+      "palette": 0
+    },
+    {
+      "species": 860,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/MORGREM.png",
+      "target": 2508,
+      "palette": 0
+    },
+    {
+      "species": 861,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GRIMMSNARL.png",
+      "target": 2510,
+      "palette": 0
+    },
+    {
+      "species": 862,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/OBSTAGOON.png",
+      "target": 2512,
+      "palette": 0
+    },
+    {
+      "species": 863,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/PERRSERKER.png",
+      "target": 2514,
+      "palette": 0
+    },
+    {
+      "species": 864,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CURSOLA.png",
+      "target": 2516,
+      "palette": 2
+    },
+    {
+      "species": 865,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SIRFETCHD.png",
+      "target": 2518,
+      "palette": 1
+    },
+    {
+      "species": 866,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/MRRIME.png",
+      "target": 2520,
+      "palette": 2
+    },
+    {
+      "species": 867,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/RUNERIGUS.png",
+      "target": 2522,
+      "palette": 0
+    },
+    {
+      "species": 868,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/MILCERY.png",
+      "target": 2524,
+      "palette": 1
+    },
+    {
+      "species": 869,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ALCREMIE.png",
+      "target": 2526,
+      "palette": 0
+    },
+    {
+      "species": 870,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FALINKS.png",
+      "target": 2528,
+      "palette": 1
+    },
+    {
+      "species": 871,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/PINCURCHIN.png",
+      "target": 2530,
+      "palette": 1
+    },
+    {
+      "species": 872,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SNOM.png",
+      "target": 2532,
+      "palette": 2
+    },
+    {
+      "species": 873,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FROSMOTH.png",
+      "target": 2534,
+      "palette": 2
+    },
+    {
+      "species": 874,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/STONJOURNER.png",
+      "target": 2536,
+      "palette": 2
+    },
+    {
+      "species": 875,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/EISCUE.png",
+      "target": 2538,
+      "palette": 0
+    },
+    {
+      "species": 876,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/INDEEDEE.png",
+      "target": 2540,
+      "palette": 2
+    },
+    {
+      "species": 877,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/MORPEKO.png",
+      "target": 2542,
+      "palette": 1
+    },
+    {
+      "species": 878,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CUFANT.png",
+      "target": 2544,
+      "palette": 2
+    },
+    {
+      "species": 879,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/COPPERAJAH.png",
+      "target": 2546,
+      "palette": 0
+    },
+    {
+      "species": 880,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DRACOZOLT.png",
+      "target": 2548,
+      "palette": 2
+    },
+    {
+      "species": 881,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ARCTOZOLT.png",
+      "target": 2550,
+      "palette": 2
+    },
+    {
+      "species": 882,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DRACOVISH.png",
+      "target": 2552,
+      "palette": 0
+    },
+    {
+      "species": 883,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ARCTOVISH.png",
+      "target": 2554,
+      "palette": 0
+    },
+    {
+      "species": 884,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DURALUDON.png",
+      "target": 2556,
+      "palette": 2
+    },
+    {
+      "species": 885,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DREEPY.png",
+      "target": 2558,
+      "palette": 0
+    },
+    {
+      "species": 886,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DRAKLOAK.png",
+      "target": 2560,
+      "palette": 0
+    },
+    {
+      "species": 887,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DRAGAPULT.png",
+      "target": 2562,
+      "palette": 0
+    },
+    {
+      "species": 888,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ZACIAN.png",
+      "target": 2564,
+      "palette": 0
+    },
+    {
+      "species": 889,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ZAMAZENTA.png",
+      "target": 2566,
+      "palette": 0
+    },
+    {
+      "species": 890,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ETERNATUS.png",
+      "target": 2568,
+      "palette": 2
+    },
+    {
+      "species": 891,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/KUBFU.png",
+      "target": 2570,
+      "palette": 2
+    },
+    {
+      "species": 892,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/URSHIFU.png",
+      "target": 2572,
+      "palette": 1
+    },
+    {
+      "species": 893,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ZARUDE.png",
+      "target": 2574,
+      "palette": 1
+    },
+    {
+      "species": 894,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/REGIELEKI.png",
+      "target": 2576,
+      "palette": 1
+    },
+    {
+      "species": 895,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/REGIDRAGO.png",
+      "target": 2578,
+      "palette": 2
+    },
+    {
+      "species": 896,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GLASTRIER.png",
+      "target": 2580,
+      "palette": 1
+    },
+    {
+      "species": 897,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SPECTRIER.png",
+      "target": 2582,
+      "palette": 0
+    },
+    {
+      "species": 898,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CALYREX.png",
+      "target": 2584,
+      "palette": 0
+    },
+    {
+      "species": 899,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/WYRDEER.png",
+      "target": 2586,
+      "palette": 1
+    },
+    {
+      "species": 900,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/KLEAVOR.png",
+      "target": 2588,
+      "palette": 2
+    },
+    {
+      "species": 901,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/URSALUNA.png",
+      "target": 2590,
+      "palette": 2
+    },
+    {
+      "species": 902,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/BASCULEGION.png",
+      "target": 2592,
+      "palette": 0
+    },
+    {
+      "species": 903,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SNEASLER.png",
+      "target": 2594,
+      "palette": 2
+    },
+    {
+      "species": 904,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/OVERQWIL.png",
+      "target": 2596,
+      "palette": 1
+    },
+    {
+      "species": 905,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ENAMORUS.png",
+      "target": 2598,
+      "palette": 0
+    },
+    {
+      "species": 906,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SPRIGATITO.png",
+      "target": 2600,
+      "palette": 1
+    },
+    {
+      "species": 907,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FLORAGATO.png",
+      "target": 2602,
+      "palette": 1
+    },
+    {
+      "species": 908,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/MEOWSCARADA.png",
+      "target": 2604,
+      "palette": 1
+    },
+    {
+      "species": 909,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FUECOCO.png",
+      "target": 2606,
+      "palette": 2
+    },
+    {
+      "species": 910,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CROCALOR.png",
+      "target": 2608,
+      "palette": 1
+    },
+    {
+      "species": 911,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SKELEDIRGE.png",
+      "target": 2610,
+      "palette": 0
+    },
+    {
+      "species": 912,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/QUAXLY.png",
+      "target": 2612,
+      "palette": 0
+    },
+    {
+      "species": 913,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/QUAXWELL.png",
+      "target": 2614,
+      "palette": 0
+    },
+    {
+      "species": 914,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/QUAQUAVAL.png",
+      "target": 2616,
+      "palette": 0
+    },
+    {
+      "species": 915,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/LECHONK.png",
+      "target": 2618,
+      "palette": 0
+    },
+    {
+      "species": 916,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/OINKOLOGNE.png",
+      "target": 2620,
+      "palette": 1
+    },
+    {
+      "species": 917,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TAROUNTULA.png",
+      "target": 2622,
+      "palette": 0
+    },
+    {
+      "species": 918,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SPIDOPS.png",
+      "target": 2624,
+      "palette": 1
+    },
+    {
+      "species": 919,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/NYMBLE.png",
+      "target": 2626,
+      "palette": 2
+    },
+    {
+      "species": 920,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/LOKIX.png",
+      "target": 2628,
+      "palette": 0
+    },
+    {
+      "species": 921,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/PAWMI.png",
+      "target": 2630,
+      "palette": 0
+    },
+    {
+      "species": 922,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/PAWMO.png",
+      "target": 2632,
+      "palette": 0
+    },
+    {
+      "species": 923,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/PAWMOT.png",
+      "target": 2634,
+      "palette": 0
+    },
+    {
+      "species": 924,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TANDEMAUS.png",
+      "target": 2636,
+      "palette": 0
+    },
+    {
+      "species": 925,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/MAUSHOLD.png",
+      "target": 2638,
+      "palette": 0
+    },
+    {
+      "species": 926,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FIDOUGH.png",
+      "target": 2640,
+      "palette": 1
+    },
+    {
+      "species": 927,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DACHSBUN.png",
+      "target": 2642,
+      "palette": 1
+    },
+    {
+      "species": 928,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SMOLIV.png",
+      "target": 2644,
+      "palette": 1
+    },
+    {
+      "species": 929,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DOLLIV.png",
+      "target": 2646,
+      "palette": 1
+    },
+    {
+      "species": 930,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ARBOLIVA.png",
+      "target": 2648,
+      "palette": 1
+    },
+    {
+      "species": 931,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SQUAWKABILLY.png",
+      "target": 2650,
+      "palette": 1
+    },
+    {
+      "species": 932,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/NACLI.png",
+      "target": 2652,
+      "palette": 0
+    },
+    {
+      "species": 933,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/NACLSTACK.png",
+      "target": 2654,
+      "palette": 0
+    },
+    {
+      "species": 934,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GARGANACL.png",
+      "target": 2656,
+      "palette": 2
+    },
+    {
+      "species": 935,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CHARCADET.png",
+      "target": 2658,
+      "palette": 0
+    },
+    {
+      "species": 936,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ARMAROUGE.png",
+      "target": 2660,
+      "palette": 1
+    },
+    {
+      "species": 937,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CERULEDGE.png",
+      "target": 2662,
+      "palette": 0
+    },
+    {
+      "species": 938,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TADBULB.png",
+      "target": 2664,
+      "palette": 0
+    },
+    {
+      "species": 939,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/BELLIBOLT.png",
+      "target": 2666,
+      "palette": 0
+    },
+    {
+      "species": 940,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/WATTREL.png",
+      "target": 2668,
+      "palette": 0
+    },
+    {
+      "species": 941,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/KILOWATTREL.png",
+      "target": 2670,
+      "palette": 2
+    },
+    {
+      "species": 942,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/MASCHIFF.png",
+      "target": 2672,
+      "palette": 0
+    },
+    {
+      "species": 943,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/MABOSSTIFF.png",
+      "target": 2674,
+      "palette": 1
+    },
+    {
+      "species": 944,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SHROODLE.png",
+      "target": 2676,
+      "palette": 0
+    },
+    {
+      "species": 945,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GRAFAIAI.png",
+      "target": 2678,
+      "palette": 0
+    },
+    {
+      "species": 946,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/BRAMBLIN.png",
+      "target": 2680,
+      "palette": 2
+    },
+    {
+      "species": 947,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/BRAMBLEGHAST.png",
+      "target": 2682,
+      "palette": 2
+    },
+    {
+      "species": 948,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TOEDSCOOL.png",
+      "target": 2684,
+      "palette": 0
+    },
+    {
+      "species": 949,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TOEDSCRUEL.png",
+      "target": 2686,
+      "palette": 1
+    },
+    {
+      "species": 950,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/KLAWF.png",
+      "target": 2688,
+      "palette": 2
+    },
+    {
+      "species": 951,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CAPSAKID.png",
+      "target": 2690,
+      "palette": 1
+    },
+    {
+      "species": 952,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SCOVILLAIN.png",
+      "target": 2692,
+      "palette": 1
+    },
+    {
+      "species": 953,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/RELLOR.png",
+      "target": 2694,
+      "palette": 2
+    },
+    {
+      "species": 954,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/RABSCA.png",
+      "target": 2696,
+      "palette": 2
+    },
+    {
+      "species": 955,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FLITTLE.png",
+      "target": 2698,
+      "palette": 2
+    },
+    {
+      "species": 956,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ESPATHRA.png",
+      "target": 2700,
+      "palette": 0
+    },
+    {
+      "species": 957,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TINKATINK.png",
+      "target": 2702,
+      "palette": 0
+    },
+    {
+      "species": 958,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TINKATUFF.png",
+      "target": 2704,
+      "palette": 0
+    },
+    {
+      "species": 959,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TINKATON.png",
+      "target": 2706,
+      "palette": 0
+    },
+    {
+      "species": 960,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/WIGLETT.png",
+      "target": 2708,
+      "palette": 2
+    },
+    {
+      "species": 961,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/WUGTRIO.png",
+      "target": 2710,
+      "palette": 0
+    },
+    {
+      "species": 962,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/BOMBIRDIER.png",
+      "target": 2712,
+      "palette": 1
+    },
+    {
+      "species": 963,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FINIZEN.png",
+      "target": 2714,
+      "palette": 0
+    },
+    {
+      "species": 964,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/PALAFIN.png",
+      "target": 2716,
+      "palette": 0
+    },
+    {
+      "species": 965,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/VAROOM.png",
+      "target": 2718,
+      "palette": 2
+    },
+    {
+      "species": 966,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/REVAVROOM.png",
+      "target": 2720,
+      "palette": 2
+    },
+    {
+      "species": 967,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CYCLIZAR.png",
+      "target": 2722,
+      "palette": 0
+    },
+    {
+      "species": 968,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ORTHWORM.png",
+      "target": 2724,
+      "palette": 2
+    },
+    {
+      "species": 969,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GLIMMET.png",
+      "target": 2726,
+      "palette": 0
+    },
+    {
+      "species": 970,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GLIMMORA.png",
+      "target": 2728,
+      "palette": 0
+    },
+    {
+      "species": 971,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GREAVARD.png",
+      "target": 2730,
+      "palette": 2
+    },
+    {
+      "species": 972,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/HOUNDSTONE.png",
+      "target": 2732,
+      "palette": 2
+    },
+    {
+      "species": 973,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FLAMIGO.png",
+      "target": 2734,
+      "palette": 0
+    },
+    {
+      "species": 974,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CETODDLE.png",
+      "target": 2736,
+      "palette": 1
+    },
+    {
+      "species": 975,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CETITAN.png",
+      "target": 2738,
+      "palette": 0
+    },
+    {
+      "species": 976,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/VELUZA.png",
+      "target": 2740,
+      "palette": 2
+    },
+    {
+      "species": 977,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DONDOZO.png",
+      "target": 2742,
+      "palette": 0
+    },
+    {
+      "species": 978,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TATSUGIRI.png",
+      "target": 2744,
+      "palette": 1
+    },
+    {
+      "species": 979,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ANNIHILAPE.png",
+      "target": 2746,
+      "palette": 1
+    },
+    {
+      "species": 980,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CLODSIRE.png",
+      "target": 2748,
+      "palette": 2
+    },
+    {
+      "species": 981,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FARIGIRAF.png",
+      "target": 2750,
+      "palette": 0
+    },
+    {
+      "species": 982,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DUDUNSPARCE.png",
+      "target": 2752,
+      "palette": 0
+    },
+    {
+      "species": 983,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/KINGAMBIT.png",
+      "target": 2754,
+      "palette": 0
+    },
+    {
+      "species": 984,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GREATTUSK.png",
+      "target": 2756,
+      "palette": 2
+    },
+    {
+      "species": 985,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SCREAMTAIL.png",
+      "target": 2758,
+      "palette": 1
+    },
+    {
+      "species": 986,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/BRUTEBONNET.png",
+      "target": 2760,
+      "palette": 1
+    },
+    {
+      "species": 987,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FLUTTERMANE.png",
+      "target": 2762,
+      "palette": 0
+    },
+    {
+      "species": 988,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SLITHERWING.png",
+      "target": 2764,
+      "palette": 1
+    },
+    {
+      "species": 989,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SANDYSHOCKS.png",
+      "target": 2766,
+      "palette": 0
+    },
+    {
+      "species": 990,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/IRONTREADS.png",
+      "target": 2768,
+      "palette": 1
+    },
+    {
+      "species": 991,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/IRONBUNDLE.png",
+      "target": 2770,
+      "palette": 2
+    },
+    {
+      "species": 992,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/IRONHANDS.png",
+      "target": 2772,
+      "palette": 2
+    },
+    {
+      "species": 993,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/IRONJUGULIS.png",
+      "target": 2774,
+      "palette": 2
+    },
+    {
+      "species": 994,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/IRONMOTH.png",
+      "target": 2776,
+      "palette": 0
+    },
+    {
+      "species": 995,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/IRONTHORNS.png",
+      "target": 2778,
+      "palette": 1
+    },
+    {
+      "species": 996,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FRIGIBAX.png",
+      "target": 2780,
+      "palette": 0
+    },
+    {
+      "species": 997,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ARCTIBAX.png",
+      "target": 2782,
+      "palette": 0
+    },
+    {
+      "species": 998,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/BAXCALIBUR.png",
+      "target": 2784,
+      "palette": 2
+    },
+    {
+      "species": 999,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GIMMIGHOUL.png",
+      "target": 2786,
+      "palette": 0
+    },
+    {
+      "species": 1000,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GHOLDENGO.png",
+      "target": 2788,
+      "palette": 0
+    },
+    {
+      "species": 1001,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/WOCHIEN.png",
+      "target": 2790,
+      "palette": 1
+    },
+    {
+      "species": 1002,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CHIENPAO.png",
+      "target": 2792,
+      "palette": 0
+    },
+    {
+      "species": 1003,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/TINGLU.png",
+      "target": 2794,
+      "palette": 0
+    },
+    {
+      "species": 1004,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/CHIYU.png",
+      "target": 2796,
+      "palette": 1
+    },
+    {
+      "species": 1005,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ROARINGMOON.png",
+      "target": 2798,
+      "palette": 0
+    },
+    {
+      "species": 1006,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/IRONVALIANT.png",
+      "target": 2800,
+      "palette": 0
+    },
+    {
+      "species": 1007,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/KORAIDON.png",
+      "target": 2802,
+      "palette": 0
+    },
+    {
+      "species": 1008,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/MIRAIDON.png",
+      "target": 2804,
+      "palette": 2
+    },
+    {
+      "species": 1009,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/WALKINGWAKE.png",
+      "target": 2806,
+      "palette": 2
+    },
+    {
+      "species": 1010,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/IRONLEAVES.png",
+      "target": 2808,
+      "palette": 1
+    },
+    {
+      "species": 1011,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/DIPPLIN.png",
+      "target": 2810,
+      "palette": 1
+    },
+    {
+      "species": 1012,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/POLTCHAGEIST.png",
+      "target": 2812,
+      "palette": 1
+    },
+    {
+      "species": 1013,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/SINISTCHA.png",
+      "target": 2814,
+      "palette": 1
+    },
+    {
+      "species": 1014,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/OKIDOGI.png",
+      "target": 2816,
+      "palette": 1
+    },
+    {
+      "species": 1015,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/MUNKIDORI.png",
+      "target": 2818,
+      "palette": 0
+    },
+    {
+      "species": 1016,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/FEZANDIPITI.png",
+      "target": 2820,
+      "palette": 0
+    },
+    {
+      "species": 1017,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/OGERPON.png",
+      "target": 2822,
+      "palette": 1
+    },
+    {
+      "species": 1018,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/ARCHALUDON.png",
+      "target": 2824,
+      "palette": 0
+    },
+    {
+      "species": 1019,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/HYDRAPPLE.png",
+      "target": 2826,
+      "palette": 1
+    },
+    {
+      "species": 1020,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/GOUGINGFIRE.png",
+      "target": 2828,
+      "palette": 0
+    },
+    {
+      "species": 1021,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/RAGINGBOLT.png",
+      "target": 2830,
+      "palette": 2
+    },
+    {
+      "species": 1022,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/IRONBOULDER.png",
+      "target": 2832,
+      "palette": 0
+    },
+    {
+      "species": 1023,
+      "source": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Icons/IRONCROWN.png",
+      "target": 2834,
+      "palette": 0
+    }
+  ],
+  "trackerRowsUpdated": 214,
+  "missingOrErrors": []
+}
