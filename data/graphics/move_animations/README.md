@@ -13,6 +13,10 @@ Terrain placeholders currently copy Aromatherapy (`5_00000312.bin`) into
 Grassy Terrain's slot `5_00000580.bin`, Mist (`5_00000054.bin`) into Misty
 Terrain's slot `5_00000581.bin`.
 
+Mega Evolution's placeholder custom transform animation reserves slot
+`5_00000622.bin`, initially copied from Recover's move-animation script
+member `105`.
+
 Electric Terrain (`5_00000604.bin`) is generated from Discharge with the
 target-camera hit section removed and a custom floor spark SPA installed at
 `/a/0/0/6` member `742`.

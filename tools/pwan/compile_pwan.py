@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import hashlib
+import heapq
 import struct
 from pathlib import Path
 
@@ -14,6 +15,7 @@ HEIGHT = 96
 FRAME_BYTES = 0x1200
 PALETTE_COLORS = 16
 MAX_TIMELINE_ENTRIES = 128
+TRANSPARENT_ALPHA_THRESHOLD = 128
 
 SEGMENTS = (
     (0, 0, 64, 64),
@@ -73,20 +75,125 @@ def normalize_frame(frame, scale=1.0, offset_x=0, offset_y=0):
 
 
 def make_palette(frames):
-    sheet = Image.new("RGBA", (WIDTH, HEIGHT * len(frames)), (0, 0, 0, 0))
-    for i, frame in enumerate(frames):
-        sheet.alpha_composite(frame, (0, i * HEIGHT))
+    raw_colors = count_opaque_colors(frames)
+    max_visible = PALETTE_COLORS - 1
+    if len(raw_colors) <= max_visible:
+        visible = sorted((color for color, _count in raw_colors.items()), key=rgb_sort_key)
+        strategy = "exact"
+    else:
+        anchor = compatible_anchor_palette(frames, max_visible)
+        if anchor is not None:
+            visible = anchor["palette"]
+            strategy = f"anchor-frame-{anchor['frame']}"
+        else:
+            visible = reduce_colors_by_closest_merges(raw_colors, max_visible)
+            strategy = "closest-merge"
 
-    opaque = Image.new("RGBA", sheet.size, (0, 0, 0, 0))
-    opaque.alpha_composite(sheet)
-    pal = opaque.convert("P", palette=Image.Palette.ADAPTIVE, colors=PALETTE_COLORS - 1)
-    raw = pal.getpalette()[: (PALETTE_COLORS - 1) * 3]
     colors = [(0, 0, 0)]
-    colors.extend(tuple(raw[i : i + 3]) for i in range(0, len(raw), 3))
+    colors.extend(visible)
     colors = colors[:PALETTE_COLORS]
     while len(colors) < PALETTE_COLORS:
         colors.append((0, 0, 0))
+    return colors, {
+        "strategy": strategy,
+        "sourceColors": len(raw_colors),
+        "visibleColors": len(visible),
+    }
+
+
+def count_opaque_colors(frames):
+    colors = {}
+    for frame in frames:
+        data = frame.tobytes()
+        for offset in range(0, len(data), 4):
+            r, g, b, a = data[offset : offset + 4]
+            if a < TRANSPARENT_ALPHA_THRESHOLD:
+                continue
+            color = (r, g, b)
+            colors[color] = colors.get(color, 0) + 1
     return colors
+
+
+def unique_opaque_colors(frame):
+    return set(count_opaque_colors([frame]))
+
+
+def compatible_anchor_palette(frames, max_colors):
+    minimum_anchor_colors = min(max_colors, max(1, int(max_colors * 0.75)))
+    best = None
+    for index, frame in enumerate(frames):
+        colors = unique_opaque_colors(frame)
+        if len(colors) < minimum_anchor_colors or len(colors) > max_colors:
+            continue
+        palette = sorted(colors, key=rgb_sort_key)
+        if best is None or len(palette) > len(best["palette"]):
+            best = {"frame": index, "palette": palette}
+    return best
+
+
+def reduce_colors_by_closest_merges(colors, max_colors):
+    clusters = [
+        {"id": index, "color": color, "count": count, "active": True, "version": 0}
+        for index, (color, count) in enumerate(sorted(colors.items(), key=lambda item: rgb_sort_key(item[0])))
+    ]
+    active_count = len(clusters)
+    heap = []
+    active_ids = set(range(len(clusters)))
+
+    for first in range(len(clusters)):
+        for second in range(first + 1, len(clusters)):
+            push_merge_candidate(heap, clusters[first], clusters[second])
+
+    while active_count > max_colors and heap:
+        score, distance, first_id, first_version, second_id, second_version = heapq.heappop(heap)
+        first = clusters[first_id]
+        second = clusters[second_id]
+        if (
+            not first["active"]
+            or not second["active"]
+            or first["version"] != first_version
+            or second["version"] != second_version
+        ):
+            continue
+
+        keep = first if first["count"] >= second["count"] else second
+        drop = second if keep is first else first
+        keep["count"] += drop["count"]
+        keep["version"] += 1
+        drop["active"] = False
+        active_ids.remove(drop["id"])
+        active_count -= 1
+
+        for other_id in list(active_ids):
+            if other_id == keep["id"]:
+                continue
+            push_merge_candidate(heap, keep, clusters[other_id])
+
+    return sorted((cluster["color"] for cluster in clusters if cluster["active"]), key=rgb_sort_key)
+
+
+def push_merge_candidate(heap, first, second):
+    distance = color_distance(first["color"], second["color"])
+    score = distance * max(1, min(first["count"], second["count"]))
+    heapq.heappush(
+        heap,
+        (
+            score,
+            distance,
+            first["id"],
+            first["version"],
+            second["id"],
+            second["version"],
+        ),
+    )
+
+
+def color_distance(first, second):
+    return sum((a - b) * (a - b) for a, b in zip(first, second))
+
+
+def rgb_sort_key(color):
+    return color[0], color[1], color[2]
 
 
 def nearest_palette_index(pixel, palette):
@@ -137,7 +244,7 @@ def compile_pwan(src, dst, scale=1.0, offset_x=0, offset_y=0):
     if not normalized:
         raise ValueError("GIF has no frames")
 
-    palette = make_palette(normalized)
+    palette, palette_stats = make_palette(normalized)
     compiled = [compile_frame(frame, palette) for frame in normalized]
     unique = []
     frame_map = {}
@@ -190,6 +297,9 @@ def compile_pwan(src, dst, scale=1.0, offset_x=0, offset_y=0):
         "timeline": len(timeline),
         "ticks": total_ticks,
         "bytes": dst.stat().st_size,
+        "paletteStrategy": palette_stats["strategy"],
+        "sourceColors": palette_stats["sourceColors"],
+        "visibleColors": palette_stats["visibleColors"],
     }
 
 
@@ -235,7 +345,8 @@ def main():
     print(
         f"wrote {args.dst} "
         f"({stats['frames']} unique frames, {stats['timeline']} timeline entries, "
-        f"{stats['ticks']} ticks, {stats['bytes']} bytes)"
+        f"{stats['ticks']} ticks, {stats['bytes']} bytes, "
+        f"palette {stats['paletteStrategy']} {stats['sourceColors']}->{stats['visibleColors']} colors)"
     )
 
 

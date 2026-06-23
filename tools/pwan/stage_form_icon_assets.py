@@ -30,6 +30,52 @@ MEGA_PREVIEW_REPORT = ROOT / "assets" / "pokeweb_pwan" / "mega_preview_low_ids_r
 REPORT = ROOT / "assets" / "pokeweb_pwan" / "form_icon_staging_report.json"
 
 SOURCE_STEM_RE = re.compile(r"sourceStem ([A-Z0-9_]+)")
+OFFICIAL_MEGA_BASES = {
+    "ABOMASNOW",
+    "ABSOL",
+    "AERODACTYL",
+    "AGGRON",
+    "ALAKAZAM",
+    "ALTARIA",
+    "AMPHAROS",
+    "AUDINO",
+    "BANETTE",
+    "BEEDRILL",
+    "BLASTOISE",
+    "BLAZIKEN",
+    "CAMERUPT",
+    "CHARIZARD",
+    "GALLADE",
+    "GARCHOMP",
+    "GARDEVOIR",
+    "GENGAR",
+    "GLALIE",
+    "GYARADOS",
+    "HERACROSS",
+    "HOUNDOOM",
+    "KANGASKHAN",
+    "LATIAS",
+    "LATIOS",
+    "LOPUNNY",
+    "LUCARIO",
+    "MANECTRIC",
+    "MAWILE",
+    "MEDICHAM",
+    "METAGROSS",
+    "MEWTWO",
+    "PIDGEOT",
+    "PINSIR",
+    "SABLEYE",
+    "SALAMENCE",
+    "SCEPTILE",
+    "SCIZOR",
+    "SHARPEDO",
+    "SLOWBRO",
+    "STEELIX",
+    "SWAMPERT",
+    "TYRANITAR",
+    "VENUSAUR",
+}
 
 
 def bgr555_to_rgba(color: int) -> tuple[int, int, int, int]:
@@ -180,15 +226,58 @@ def stage_form_icons(palettes: list[list[tuple[int, int, int, int]]], palette_ma
     return staged
 
 
-def stage_preview_icons() -> list[dict]:
+def mega_icon_stem(row: dict) -> str | None:
+    base = str(row.get("baseSpecies", "")).removeprefix("SPECIES_")
+    if base not in OFFICIAL_MEGA_BASES:
+        return None
+    return f"{base}_{int(row['form'])}"
+
+
+def stage_mega_species_icons(palettes: list[list[tuple[int, int, int, int]]],
+                             palette_map: bytearray) -> list[dict]:
+    rows = json.loads(TRACKER.read_text(encoding="utf-8"))
+    staged = []
+    for row in rows:
+        if row.get("kind") != "mega form":
+            continue
+        stem = mega_icon_stem(row)
+        if not stem:
+            continue
+        source = ESSENTIALS_ICONS / f"{stem}.png"
+        if not source.exists():
+            continue
+        species = int(row["id"])
+        staged.append(write_generated_icon(species * 2 + 8, species, stem, palettes, palette_map) | {
+            "key": row.get("key"),
+            "name": row.get("name"),
+            "species": species,
+            "sourceIcon": row.get("icon"),
+        })
+    return staged
+
+
+def stage_preview_icons(palette_map: bytearray) -> list[dict]:
     if not MEGA_PREVIEW_REPORT.exists():
         return []
     report = json.loads(MEGA_PREVIEW_REPORT.read_text(encoding="utf-8"))
+    tracker_by_key = {
+        row.get("key"): row
+        for row in json.loads(TRACKER.read_text(encoding="utf-8"))
+        if row.get("key")
+    }
     staged = []
     for row in report.get("rows", []):
         preview_species = int(row["previewSpecies"])
         static_asset = int(row["staticAsset"])
         source_icon = static_asset * 2 + 8
+        source_palette_key = static_asset
+        tracker_row = tracker_by_key.get(row.get("key"))
+        if tracker_row:
+            direct_species = int(tracker_row["id"])
+            direct_icon = direct_species * 2 + 8
+            if icon_path(direct_icon).exists() and icon_path(direct_icon).stat().st_size:
+                source_icon = direct_icon
+                source_palette_key = direct_species
         target_icon = preview_species * 2 + 8
         copied = []
         for offset in range(2):
@@ -199,11 +288,17 @@ def stage_preview_icons() -> list[dict]:
                 copied.append(offset)
             else:
                 dst.write_bytes(b"")
+        if preview_species >= len(palette_map):
+            palette_map.extend(b"\x00" * (preview_species + 1 - len(palette_map)))
+        palette_map[preview_species] = (
+            palette_map[source_palette_key] if source_palette_key < len(palette_map) else 0
+        )
         staged.append({
             "previewSpecies": preview_species,
             "name": row.get("name"),
             "staticAsset": static_asset,
             "sourceIcon": source_icon,
+            "sourcePaletteKey": source_palette_key,
             "targetIcon": target_icon,
             "copiedOffsets": copied,
         })
@@ -214,16 +309,22 @@ def main() -> int:
     palettes = read_icon_palettes()
     palette_map = bytearray(PALETTE_MAP.read_bytes())
     form_icons = stage_form_icons(palettes, palette_map)
-    preview_icons = stage_preview_icons()
+    mega_species_icons = stage_mega_species_icons(palettes, palette_map)
+    preview_icons = stage_preview_icons(palette_map)
     PALETTE_MAP.write_bytes(bytes(palette_map))
     report = {
         "version": 1,
         "formIcons": form_icons,
+        "megaSpeciesIcons": mega_species_icons,
         "previewIcons": preview_icons,
         "errors": [],
     }
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    print(f"Staged {len(form_icons)} form icon set(s) and {len(preview_icons)} Mega preview icon set(s).")
+    print(
+        f"Staged {len(form_icons)} form icon set(s), "
+        f"{len(mega_species_icons)} Mega species icon set(s), "
+        f"and {len(preview_icons)} Mega preview icon set(s)."
+    )
     print(f"Wrote {REPORT}")
     return 0
 

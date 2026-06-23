@@ -650,12 +650,505 @@
       "name": "Ogerpon Cornerstone Mask"
     }
   ],
+  "megaSpeciesIcons": [
+    {
+      "targetIcon": 2106,
+      "paletteKey": 1049,
+      "sourceStem": "GENGAR_1",
+      "palette": 2,
+      "key": "MEGA_GENGAR",
+      "name": "Mega Gengar",
+      "species": 1049,
+      "sourceIcon": 1484
+    },
+    {
+      "targetIcon": 2128,
+      "paletteKey": 1060,
+      "sourceStem": "GARDEVOIR_1",
+      "palette": 1,
+      "key": "MEGA_GARDEVOIR",
+      "name": "Mega Gardevoir",
+      "species": 1060,
+      "sourceIcon": 1570
+    },
+    {
+      "targetIcon": 2130,
+      "paletteKey": 1061,
+      "sourceStem": "AMPHAROS_1",
+      "palette": 1,
+      "key": "MEGA_AMPHAROS",
+      "name": "Mega Ampharos",
+      "species": 1061,
+      "sourceIcon": 1498
+    },
+    {
+      "targetIcon": 2132,
+      "paletteKey": 1062,
+      "sourceStem": "VENUSAUR_1",
+      "palette": 0,
+      "key": "MEGA_VENUSAUR",
+      "name": "Mega Venusaur",
+      "species": 1062,
+      "sourceIcon": 1456
+    },
+    {
+      "targetIcon": 2134,
+      "paletteKey": 1063,
+      "sourceStem": "CHARIZARD_1",
+      "palette": 0,
+      "key": "MEGA_CHARIZARD_X",
+      "name": "Mega Charizard X",
+      "species": 1063,
+      "sourceIcon": 1458
+    },
+    {
+      "targetIcon": 2136,
+      "paletteKey": 1064,
+      "sourceStem": "CHARIZARD_2",
+      "palette": 0,
+      "key": "MEGA_CHARIZARD_Y",
+      "name": "Mega Charizard Y",
+      "species": 1064,
+      "sourceIcon": 1460
+    },
+    {
+      "targetIcon": 2138,
+      "paletteKey": 1065,
+      "sourceStem": "MEWTWO_1",
+      "palette": 2,
+      "key": "MEGA_MEWTWO_X",
+      "name": "Mega Mewtwo X",
+      "species": 1065,
+      "sourceIcon": 1494
+    },
+    {
+      "targetIcon": 2140,
+      "paletteKey": 1066,
+      "sourceStem": "MEWTWO_2",
+      "palette": 2,
+      "key": "MEGA_MEWTWO_Y",
+      "name": "Mega Mewtwo Y",
+      "species": 1066,
+      "sourceIcon": 1496
+    },
+    {
+      "targetIcon": 2142,
+      "paletteKey": 1067,
+      "sourceStem": "BLAZIKEN_1",
+      "palette": 0,
+      "key": "MEGA_BLAZIKEN",
+      "name": "Mega Blaziken",
+      "species": 1067,
+      "sourceIcon": 1566
+    },
+    {
+      "targetIcon": 2144,
+      "paletteKey": 1068,
+      "sourceStem": "MEDICHAM_1",
+      "palette": 0,
+      "key": "MEGA_MEDICHAM",
+      "name": "Mega Medicham",
+      "species": 1068,
+      "sourceIcon": 1578
+    },
+    {
+      "targetIcon": 2146,
+      "paletteKey": 1069,
+      "sourceStem": "HOUNDOOM_1",
+      "palette": 0,
+      "key": "MEGA_HOUNDOOM",
+      "name": "Mega Houndoom",
+      "species": 1069,
+      "sourceIcon": 1560
+    },
+    {
+      "targetIcon": 2148,
+      "paletteKey": 1070,
+      "sourceStem": "AGGRON_1",
+      "palette": 2,
+      "key": "MEGA_AGGRON",
+      "name": "Mega Aggron",
+      "species": 1070,
+      "sourceIcon": 1576
+    },
+    {
+      "targetIcon": 2150,
+      "paletteKey": 1071,
+      "sourceStem": "BANETTE_1",
+      "palette": 2,
+      "key": "MEGA_BANETTE",
+      "name": "Mega Banette",
+      "species": 1071,
+      "sourceIcon": 1594
+    },
+    {
+      "targetIcon": 2152,
+      "paletteKey": 1072,
+      "sourceStem": "TYRANITAR_1",
+      "palette": 1,
+      "key": "MEGA_TYRANITAR",
+      "name": "Mega Tyranitar",
+      "species": 1072,
+      "sourceIcon": 1562
+    },
+    {
+      "targetIcon": 2154,
+      "paletteKey": 1073,
+      "sourceStem": "SCIZOR_1",
+      "palette": 0,
+      "key": "MEGA_SCIZOR",
+      "name": "Mega Scizor",
+      "species": 1073,
+      "sourceIcon": 1556
+    },
+    {
+      "targetIcon": 2156,
+      "paletteKey": 1074,
+      "sourceStem": "PINSIR_1",
+      "palette": 2,
+      "key": "MEGA_PINSIR",
+      "name": "Mega Pinsir",
+      "species": 1074,
+      "sourceIcon": 1488
+    },
+    {
+      "targetIcon": 2158,
+      "paletteKey": 1075,
+      "sourceStem": "AERODACTYL_1",
+      "palette": 0,
+      "key": "MEGA_AERODACTYL",
+      "name": "Mega Aerodactyl",
+      "species": 1075,
+      "sourceIcon": 1492
+    },
+    {
+      "targetIcon": 2162,
+      "paletteKey": 1077,
+      "sourceStem": "ABOMASNOW_1",
+      "palette": 0,
+      "key": "MEGA_ABOMASNOW",
+      "name": "Mega Abomasnow",
+      "species": 1077,
+      "sourceIcon": 1640
+    },
+    {
+      "targetIcon": 2166,
+      "paletteKey": 1079,
+      "sourceStem": "BLASTOISE_1",
+      "palette": 2,
+      "key": "MEGA_BLASTOISE",
+      "name": "Mega Blastoise",
+      "species": 1079,
+      "sourceIcon": 1462
+    },
+    {
+      "targetIcon": 2168,
+      "paletteKey": 1080,
+      "sourceStem": "KANGASKHAN_1",
+      "palette": 1,
+      "key": "MEGA_KANGASKHAN",
+      "name": "Mega Kangaskhan",
+      "species": 1080,
+      "sourceIcon": 1486
+    },
+    {
+      "targetIcon": 2170,
+      "paletteKey": 1081,
+      "sourceStem": "GYARADOS_1",
+      "palette": 2,
+      "key": "MEGA_GYARADOS",
+      "name": "Mega Gyarados",
+      "species": 1081,
+      "sourceIcon": 1490
+    },
+    {
+      "targetIcon": 2174,
+      "paletteKey": 1083,
+      "sourceStem": "ALAKAZAM_1",
+      "palette": 2,
+      "key": "MEGA_ALAKAZAM",
+      "name": "Mega Alakazam",
+      "species": 1083,
+      "sourceIcon": 1480
+    },
+    {
+      "targetIcon": 2176,
+      "paletteKey": 1084,
+      "sourceStem": "HERACROSS_1",
+      "palette": 2,
+      "key": "MEGA_HERACROSS",
+      "name": "Mega Heracross",
+      "species": 1084,
+      "sourceIcon": 1558
+    },
+    {
+      "targetIcon": 2178,
+      "paletteKey": 1085,
+      "sourceStem": "MAWILE_1",
+      "palette": 2,
+      "key": "MEGA_MAWILE",
+      "name": "Mega Mawile",
+      "species": 1085,
+      "sourceIcon": 1574
+    },
+    {
+      "targetIcon": 2180,
+      "paletteKey": 1086,
+      "sourceStem": "MANECTRIC_1",
+      "palette": 0,
+      "key": "MEGA_MANECTRIC",
+      "name": "Mega Manectric",
+      "species": 1086,
+      "sourceIcon": 1580
+    },
+    {
+      "targetIcon": 2184,
+      "paletteKey": 1088,
+      "sourceStem": "LATIOS_1",
+      "palette": 2,
+      "key": "MEGA_LATIOS",
+      "name": "Mega Latios",
+      "species": 1088,
+      "sourceIcon": 1606
+    },
+    {
+      "targetIcon": 2186,
+      "paletteKey": 1089,
+      "sourceStem": "LATIAS_1",
+      "palette": 2,
+      "key": "MEGA_LATIAS",
+      "name": "Mega Latias",
+      "species": 1089,
+      "sourceIcon": 1604
+    },
+    {
+      "targetIcon": 2210,
+      "paletteKey": 1101,
+      "sourceStem": "SWAMPERT_1",
+      "palette": 0,
+      "key": "MEGA_SWAMPERT",
+      "name": "Mega Swampert",
+      "species": 1101,
+      "sourceIcon": 1568
+    },
+    {
+      "targetIcon": 2212,
+      "paletteKey": 1102,
+      "sourceStem": "SCEPTILE_1",
+      "palette": 0,
+      "key": "MEGA_SCEPTILE",
+      "name": "Mega Sceptile",
+      "species": 1102,
+      "sourceIcon": 1564
+    },
+    {
+      "targetIcon": 2214,
+      "paletteKey": 1103,
+      "sourceStem": "SABLEYE_1",
+      "palette": 2,
+      "key": "MEGA_SABLEYE",
+      "name": "Mega Sableye",
+      "species": 1103,
+      "sourceIcon": 1572
+    },
+    {
+      "targetIcon": 2216,
+      "paletteKey": 1104,
+      "sourceStem": "ALTARIA_1",
+      "palette": 0,
+      "key": "MEGA_ALTARIA",
+      "name": "Mega Altaria",
+      "species": 1104,
+      "sourceIcon": 1586
+    },
+    {
+      "targetIcon": 2218,
+      "paletteKey": 1105,
+      "sourceStem": "GALLADE_1",
+      "palette": 0,
+      "key": "MEGA_GALLADE",
+      "name": "Mega Gallade",
+      "species": 1105,
+      "sourceIcon": 1642
+    },
+    {
+      "targetIcon": 2220,
+      "paletteKey": 1106,
+      "sourceStem": "AUDINO_1",
+      "palette": 1,
+      "key": "MEGA_AUDINO",
+      "name": "Mega Audino",
+      "species": 1106,
+      "sourceIcon": 1658
+    },
+    {
+      "targetIcon": 2222,
+      "paletteKey": 1107,
+      "sourceStem": "SHARPEDO_1",
+      "palette": 2,
+      "key": "MEGA_SHARPEDO",
+      "name": "Mega Sharpedo",
+      "species": 1107,
+      "sourceIcon": 1582
+    },
+    {
+      "targetIcon": 2226,
+      "paletteKey": 1109,
+      "sourceStem": "STEELIX_1",
+      "palette": 2,
+      "key": "MEGA_STEELIX",
+      "name": "Mega Steelix",
+      "species": 1109,
+      "sourceIcon": 1554
+    },
+    {
+      "targetIcon": 2228,
+      "paletteKey": 1110,
+      "sourceStem": "PIDGEOT_1",
+      "palette": 2,
+      "key": "MEGA_PIDGEOT",
+      "name": "Mega Pidgeot",
+      "species": 1110,
+      "sourceIcon": 1466
+    },
+    {
+      "targetIcon": 2230,
+      "paletteKey": 1111,
+      "sourceStem": "GLALIE_1",
+      "palette": 0,
+      "key": "MEGA_GLALIE",
+      "name": "Mega Glalie",
+      "species": 1111,
+      "sourceIcon": 1598
+    },
+    {
+      "targetIcon": 2234,
+      "paletteKey": 1113,
+      "sourceStem": "METAGROSS_1",
+      "palette": 0,
+      "key": "MEGA_METAGROSS",
+      "name": "Mega Metagross",
+      "species": 1113,
+      "sourceIcon": 1602
+    },
+    {
+      "targetIcon": 2256,
+      "paletteKey": 1124,
+      "sourceStem": "CAMERUPT_1",
+      "palette": 0,
+      "key": "MEGA_CAMERUPT",
+      "name": "Mega Camerupt",
+      "species": 1124,
+      "sourceIcon": 1584
+    },
+    {
+      "targetIcon": 2258,
+      "paletteKey": 1125,
+      "sourceStem": "LOPUNNY_1",
+      "palette": 1,
+      "key": "MEGA_LOPUNNY",
+      "name": "Mega Lopunny",
+      "species": 1125,
+      "sourceIcon": 1634
+    },
+    {
+      "targetIcon": 2260,
+      "paletteKey": 1126,
+      "sourceStem": "SALAMENCE_1",
+      "palette": 0,
+      "key": "MEGA_SALAMENCE",
+      "name": "Mega Salamence",
+      "species": 1126,
+      "sourceIcon": 1600
+    },
+    {
+      "targetIcon": 2262,
+      "paletteKey": 1127,
+      "sourceStem": "BEEDRILL_1",
+      "palette": 1,
+      "key": "MEGA_BEEDRILL",
+      "name": "Mega Beedrill",
+      "species": 1127,
+      "sourceIcon": 1464
+    },
+    {
+      "targetIcon": 2284,
+      "paletteKey": 1138,
+      "sourceStem": "ABSOL_1",
+      "palette": 2,
+      "key": "MEGA_ABSOL",
+      "name": "Mega Absol",
+      "species": 1138,
+      "sourceIcon": 2104
+    },
+    {
+      "targetIcon": 2286,
+      "paletteKey": 1139,
+      "sourceStem": "ABSOL_2",
+      "palette": 2,
+      "key": "MEGA_ZA_ABSOL_Z",
+      "name": "Mega Absol Z",
+      "species": 1139,
+      "sourceIcon": 2106
+    },
+    {
+      "targetIcon": 2290,
+      "paletteKey": 1141,
+      "sourceStem": "GARCHOMP_1",
+      "palette": 2,
+      "key": "MEGA_GARCHOMP",
+      "name": "Mega Garchomp",
+      "species": 1141,
+      "sourceIcon": 2110
+    },
+    {
+      "targetIcon": 2292,
+      "paletteKey": 1142,
+      "sourceStem": "GARCHOMP_2",
+      "palette": 0,
+      "key": "MEGA_ZA_GARCHOMP_Z",
+      "name": "Mega Garchomp Z",
+      "species": 1142,
+      "sourceIcon": 2112
+    },
+    {
+      "targetIcon": 2294,
+      "paletteKey": 1143,
+      "sourceStem": "LUCARIO_1",
+      "palette": 2,
+      "key": "MEGA_LUCARIO",
+      "name": "Mega Lucario",
+      "species": 1143,
+      "sourceIcon": 2114
+    },
+    {
+      "targetIcon": 2296,
+      "paletteKey": 1144,
+      "sourceStem": "LUCARIO_2",
+      "palette": 0,
+      "key": "MEGA_ZA_LUCARIO_Z",
+      "name": "Mega Lucario Z",
+      "species": 1144,
+      "sourceIcon": 2116
+    },
+    {
+      "targetIcon": 2422,
+      "paletteKey": 1207,
+      "sourceStem": "SLOWBRO_1",
+      "palette": 0,
+      "key": "MEGA_SLOWBRO",
+      "name": "Mega Slowbro",
+      "species": 1207,
+      "sourceIcon": 2242
+    }
+  ],
   "previewIcons": [
     {
       "previewSpecies": 1,
       "name": "Mega Gengar",
       "staticAsset": 738,
-      "sourceIcon": 1484,
+      "sourceIcon": 2106,
+      "sourcePaletteKey": 1049,
       "targetIcon": 10,
       "copiedOffsets": [
         0,
@@ -666,7 +1159,8 @@
       "previewSpecies": 2,
       "name": "Mega Gardevoir",
       "staticAsset": 781,
-      "sourceIcon": 1570,
+      "sourceIcon": 2128,
+      "sourcePaletteKey": 1060,
       "targetIcon": 12,
       "copiedOffsets": [
         0,
@@ -677,7 +1171,8 @@
       "previewSpecies": 3,
       "name": "Mega Ampharos",
       "staticAsset": 745,
-      "sourceIcon": 1498,
+      "sourceIcon": 2130,
+      "sourcePaletteKey": 1061,
       "targetIcon": 14,
       "copiedOffsets": [
         0,
@@ -688,7 +1183,8 @@
       "previewSpecies": 4,
       "name": "Mega Venusaur",
       "staticAsset": 724,
-      "sourceIcon": 1456,
+      "sourceIcon": 2132,
+      "sourcePaletteKey": 1062,
       "targetIcon": 16,
       "copiedOffsets": [
         0,
@@ -699,7 +1195,8 @@
       "previewSpecies": 5,
       "name": "Mega Charizard X",
       "staticAsset": 725,
-      "sourceIcon": 1458,
+      "sourceIcon": 2134,
+      "sourcePaletteKey": 1063,
       "targetIcon": 18,
       "copiedOffsets": [
         0,
@@ -710,7 +1207,8 @@
       "previewSpecies": 6,
       "name": "Mega Charizard Y",
       "staticAsset": 726,
-      "sourceIcon": 1460,
+      "sourceIcon": 2136,
+      "sourcePaletteKey": 1064,
       "targetIcon": 20,
       "copiedOffsets": [
         0,
@@ -721,7 +1219,8 @@
       "previewSpecies": 7,
       "name": "Mega Mewtwo X",
       "staticAsset": 743,
-      "sourceIcon": 1494,
+      "sourceIcon": 2138,
+      "sourcePaletteKey": 1065,
       "targetIcon": 22,
       "copiedOffsets": [
         0,
@@ -732,7 +1231,8 @@
       "previewSpecies": 8,
       "name": "Mega Mewtwo Y",
       "staticAsset": 744,
-      "sourceIcon": 1496,
+      "sourceIcon": 2140,
+      "sourcePaletteKey": 1066,
       "targetIcon": 24,
       "copiedOffsets": [
         0,
@@ -743,7 +1243,8 @@
       "previewSpecies": 9,
       "name": "Mega Blaziken",
       "staticAsset": 779,
-      "sourceIcon": 1566,
+      "sourceIcon": 2142,
+      "sourcePaletteKey": 1067,
       "targetIcon": 26,
       "copiedOffsets": [
         0,
@@ -754,7 +1255,8 @@
       "previewSpecies": 10,
       "name": "Mega Medicham",
       "staticAsset": 785,
-      "sourceIcon": 1578,
+      "sourceIcon": 2144,
+      "sourcePaletteKey": 1068,
       "targetIcon": 28,
       "copiedOffsets": [
         0,
@@ -765,7 +1267,8 @@
       "previewSpecies": 11,
       "name": "Mega Houndoom",
       "staticAsset": 776,
-      "sourceIcon": 1560,
+      "sourceIcon": 2146,
+      "sourcePaletteKey": 1069,
       "targetIcon": 30,
       "copiedOffsets": [
         0,
@@ -776,7 +1279,8 @@
       "previewSpecies": 12,
       "name": "Mega Aggron",
       "staticAsset": 784,
-      "sourceIcon": 1576,
+      "sourceIcon": 2148,
+      "sourcePaletteKey": 1070,
       "targetIcon": 32,
       "copiedOffsets": [
         0,
@@ -787,7 +1291,8 @@
       "previewSpecies": 13,
       "name": "Mega Banette",
       "staticAsset": 793,
-      "sourceIcon": 1594,
+      "sourceIcon": 2150,
+      "sourcePaletteKey": 1071,
       "targetIcon": 34,
       "copiedOffsets": [
         0,
@@ -798,7 +1303,8 @@
       "previewSpecies": 14,
       "name": "Mega Tyranitar",
       "staticAsset": 777,
-      "sourceIcon": 1562,
+      "sourceIcon": 2152,
+      "sourcePaletteKey": 1072,
       "targetIcon": 36,
       "copiedOffsets": [
         0,
@@ -809,7 +1315,8 @@
       "previewSpecies": 15,
       "name": "Mega Scizor",
       "staticAsset": 774,
-      "sourceIcon": 1556,
+      "sourceIcon": 2154,
+      "sourcePaletteKey": 1073,
       "targetIcon": 38,
       "copiedOffsets": [
         0,
@@ -820,7 +1327,8 @@
       "previewSpecies": 16,
       "name": "Mega Pinsir",
       "staticAsset": 740,
-      "sourceIcon": 1488,
+      "sourceIcon": 2156,
+      "sourcePaletteKey": 1074,
       "targetIcon": 40,
       "copiedOffsets": [
         0,
@@ -831,7 +1339,8 @@
       "previewSpecies": 17,
       "name": "Mega Aerodactyl",
       "staticAsset": 742,
-      "sourceIcon": 1492,
+      "sourceIcon": 2158,
+      "sourcePaletteKey": 1075,
       "targetIcon": 42,
       "copiedOffsets": [
         0,
@@ -842,7 +1351,8 @@
       "previewSpecies": 18,
       "name": "Mega Abomasnow",
       "staticAsset": 816,
-      "sourceIcon": 1640,
+      "sourceIcon": 2162,
+      "sourcePaletteKey": 1077,
       "targetIcon": 44,
       "copiedOffsets": [
         0,
@@ -853,7 +1363,8 @@
       "previewSpecies": 19,
       "name": "Mega Blastoise",
       "staticAsset": 727,
-      "sourceIcon": 1462,
+      "sourceIcon": 2166,
+      "sourcePaletteKey": 1079,
       "targetIcon": 46,
       "copiedOffsets": [
         0,
@@ -864,7 +1375,8 @@
       "previewSpecies": 20,
       "name": "Mega Kangaskhan",
       "staticAsset": 739,
-      "sourceIcon": 1486,
+      "sourceIcon": 2168,
+      "sourcePaletteKey": 1080,
       "targetIcon": 48,
       "copiedOffsets": [
         0,
@@ -875,7 +1387,8 @@
       "previewSpecies": 21,
       "name": "Mega Gyarados",
       "staticAsset": 741,
-      "sourceIcon": 1490,
+      "sourceIcon": 2170,
+      "sourcePaletteKey": 1081,
       "targetIcon": 50,
       "copiedOffsets": [
         0,
@@ -886,7 +1399,8 @@
       "previewSpecies": 22,
       "name": "Mega Alakazam",
       "staticAsset": 736,
-      "sourceIcon": 1480,
+      "sourceIcon": 2174,
+      "sourcePaletteKey": 1083,
       "targetIcon": 52,
       "copiedOffsets": [
         0,
@@ -897,7 +1411,8 @@
       "previewSpecies": 23,
       "name": "Mega Heracross",
       "staticAsset": 775,
-      "sourceIcon": 1558,
+      "sourceIcon": 2176,
+      "sourcePaletteKey": 1084,
       "targetIcon": 54,
       "copiedOffsets": [
         0,
@@ -908,7 +1423,8 @@
       "previewSpecies": 24,
       "name": "Mega Mawile",
       "staticAsset": 783,
-      "sourceIcon": 1574,
+      "sourceIcon": 2178,
+      "sourcePaletteKey": 1085,
       "targetIcon": 56,
       "copiedOffsets": [
         0,
@@ -919,7 +1435,8 @@
       "previewSpecies": 25,
       "name": "Mega Manectric",
       "staticAsset": 786,
-      "sourceIcon": 1580,
+      "sourceIcon": 2180,
+      "sourcePaletteKey": 1086,
       "targetIcon": 58,
       "copiedOffsets": [
         0,
@@ -930,7 +1447,8 @@
       "previewSpecies": 26,
       "name": "Mega Latios",
       "staticAsset": 799,
-      "sourceIcon": 1606,
+      "sourceIcon": 2184,
+      "sourcePaletteKey": 1088,
       "targetIcon": 60,
       "copiedOffsets": [
         0,
@@ -941,7 +1459,8 @@
       "previewSpecies": 27,
       "name": "Mega Latias",
       "staticAsset": 798,
-      "sourceIcon": 1604,
+      "sourceIcon": 2186,
+      "sourcePaletteKey": 1089,
       "targetIcon": 62,
       "copiedOffsets": [
         0,
@@ -952,7 +1471,8 @@
       "previewSpecies": 28,
       "name": "Mega Swampert",
       "staticAsset": 780,
-      "sourceIcon": 1568,
+      "sourceIcon": 2210,
+      "sourcePaletteKey": 1101,
       "targetIcon": 64,
       "copiedOffsets": [
         0,
@@ -963,7 +1483,8 @@
       "previewSpecies": 29,
       "name": "Mega Sceptile",
       "staticAsset": 778,
-      "sourceIcon": 1564,
+      "sourceIcon": 2212,
+      "sourcePaletteKey": 1102,
       "targetIcon": 66,
       "copiedOffsets": [
         0,
@@ -974,7 +1495,8 @@
       "previewSpecies": 30,
       "name": "Mega Sableye",
       "staticAsset": 782,
-      "sourceIcon": 1572,
+      "sourceIcon": 2214,
+      "sourcePaletteKey": 1103,
       "targetIcon": 68,
       "copiedOffsets": [
         0,
@@ -985,7 +1507,8 @@
       "previewSpecies": 31,
       "name": "Mega Altaria",
       "staticAsset": 789,
-      "sourceIcon": 1586,
+      "sourceIcon": 2216,
+      "sourcePaletteKey": 1104,
       "targetIcon": 70,
       "copiedOffsets": [
         0,
@@ -996,7 +1519,8 @@
       "previewSpecies": 32,
       "name": "Mega Gallade",
       "staticAsset": 817,
-      "sourceIcon": 1642,
+      "sourceIcon": 2218,
+      "sourcePaletteKey": 1105,
       "targetIcon": 72,
       "copiedOffsets": [
         0,
@@ -1007,7 +1531,8 @@
       "previewSpecies": 33,
       "name": "Mega Audino",
       "staticAsset": 825,
-      "sourceIcon": 1658,
+      "sourceIcon": 2220,
+      "sourcePaletteKey": 1106,
       "targetIcon": 74,
       "copiedOffsets": [
         0,
@@ -1018,7 +1543,8 @@
       "previewSpecies": 34,
       "name": "Mega Sharpedo",
       "staticAsset": 787,
-      "sourceIcon": 1582,
+      "sourceIcon": 2222,
+      "sourcePaletteKey": 1107,
       "targetIcon": 76,
       "copiedOffsets": [
         0,
@@ -1029,7 +1555,8 @@
       "previewSpecies": 35,
       "name": "Mega Steelix",
       "staticAsset": 773,
-      "sourceIcon": 1554,
+      "sourceIcon": 2226,
+      "sourcePaletteKey": 1109,
       "targetIcon": 78,
       "copiedOffsets": [
         0,
@@ -1040,7 +1567,8 @@
       "previewSpecies": 36,
       "name": "Mega Pidgeot",
       "staticAsset": 729,
-      "sourceIcon": 1466,
+      "sourceIcon": 2228,
+      "sourcePaletteKey": 1110,
       "targetIcon": 80,
       "copiedOffsets": [
         0,
@@ -1051,7 +1579,8 @@
       "previewSpecies": 37,
       "name": "Mega Glalie",
       "staticAsset": 795,
-      "sourceIcon": 1598,
+      "sourceIcon": 2230,
+      "sourcePaletteKey": 1111,
       "targetIcon": 82,
       "copiedOffsets": [
         0,
@@ -1062,7 +1591,8 @@
       "previewSpecies": 38,
       "name": "Mega Diancie",
       "staticAsset": 895,
-      "sourceIcon": 1798,
+      "sourceIcon": 2232,
+      "sourcePaletteKey": 1112,
       "targetIcon": 84,
       "copiedOffsets": [
         0,
@@ -1073,7 +1603,8 @@
       "previewSpecies": 39,
       "name": "Mega Metagross",
       "staticAsset": 797,
-      "sourceIcon": 1602,
+      "sourceIcon": 2234,
+      "sourcePaletteKey": 1113,
       "targetIcon": 86,
       "copiedOffsets": [
         0,
@@ -1084,7 +1615,8 @@
       "previewSpecies": 40,
       "name": "Mega Rayquaza",
       "staticAsset": 802,
-      "sourceIcon": 1612,
+      "sourceIcon": 2240,
+      "sourcePaletteKey": 1116,
       "targetIcon": 88,
       "copiedOffsets": [
         0,
@@ -1095,7 +1627,8 @@
       "previewSpecies": 41,
       "name": "Mega Camerupt",
       "staticAsset": 788,
-      "sourceIcon": 1584,
+      "sourceIcon": 2256,
+      "sourcePaletteKey": 1124,
       "targetIcon": 90,
       "copiedOffsets": [
         0,
@@ -1106,7 +1639,8 @@
       "previewSpecies": 42,
       "name": "Mega Lopunny",
       "staticAsset": 813,
-      "sourceIcon": 1634,
+      "sourceIcon": 2258,
+      "sourcePaletteKey": 1125,
       "targetIcon": 92,
       "copiedOffsets": [
         0,
@@ -1117,7 +1651,8 @@
       "previewSpecies": 43,
       "name": "Mega Salamence",
       "staticAsset": 796,
-      "sourceIcon": 1600,
+      "sourceIcon": 2260,
+      "sourcePaletteKey": 1126,
       "targetIcon": 94,
       "copiedOffsets": [
         0,
@@ -1128,7 +1663,8 @@
       "previewSpecies": 44,
       "name": "Mega Beedrill",
       "staticAsset": 728,
-      "sourceIcon": 1464,
+      "sourceIcon": 2262,
+      "sourcePaletteKey": 1127,
       "targetIcon": 96,
       "copiedOffsets": [
         0,
@@ -1139,7 +1675,8 @@
       "previewSpecies": 45,
       "name": "Mega Clefable",
       "staticAsset": 1040,
-      "sourceIcon": 2088,
+      "sourceIcon": 2268,
+      "sourcePaletteKey": 1130,
       "targetIcon": 98,
       "copiedOffsets": [
         0,
@@ -1150,7 +1687,8 @@
       "previewSpecies": 46,
       "name": "Mega Victreebel",
       "staticAsset": 1041,
-      "sourceIcon": 2090,
+      "sourceIcon": 2270,
+      "sourcePaletteKey": 1131,
       "targetIcon": 100,
       "copiedOffsets": [
         0,
@@ -1161,7 +1699,8 @@
       "previewSpecies": 47,
       "name": "Mega Starmie",
       "staticAsset": 1042,
-      "sourceIcon": 2092,
+      "sourceIcon": 2272,
+      "sourcePaletteKey": 1132,
       "targetIcon": 102,
       "copiedOffsets": [
         0,
@@ -1172,7 +1711,8 @@
       "previewSpecies": 48,
       "name": "Mega Dragonite",
       "staticAsset": 1043,
-      "sourceIcon": 2094,
+      "sourceIcon": 2274,
+      "sourcePaletteKey": 1133,
       "targetIcon": 104,
       "copiedOffsets": [
         0,
@@ -1183,7 +1723,8 @@
       "previewSpecies": 49,
       "name": "Mega Meganium",
       "staticAsset": 1044,
-      "sourceIcon": 2096,
+      "sourceIcon": 2276,
+      "sourcePaletteKey": 1134,
       "targetIcon": 106,
       "copiedOffsets": [
         0,
@@ -1194,7 +1735,8 @@
       "previewSpecies": 50,
       "name": "Mega Feraligatr",
       "staticAsset": 1045,
-      "sourceIcon": 2098,
+      "sourceIcon": 2278,
+      "sourcePaletteKey": 1135,
       "targetIcon": 108,
       "copiedOffsets": [
         0,
@@ -1205,7 +1747,8 @@
       "previewSpecies": 51,
       "name": "Mega Skarmory",
       "staticAsset": 1046,
-      "sourceIcon": 2100,
+      "sourceIcon": 2280,
+      "sourcePaletteKey": 1136,
       "targetIcon": 110,
       "copiedOffsets": [
         0,
@@ -1216,7 +1759,8 @@
       "previewSpecies": 52,
       "name": "Mega Chimecho",
       "staticAsset": 1047,
-      "sourceIcon": 2102,
+      "sourceIcon": 2282,
+      "sourcePaletteKey": 1137,
       "targetIcon": 112,
       "copiedOffsets": [
         0,
@@ -1227,7 +1771,8 @@
       "previewSpecies": 53,
       "name": "Mega Absol",
       "staticAsset": 1048,
-      "sourceIcon": 2104,
+      "sourceIcon": 2284,
+      "sourcePaletteKey": 1138,
       "targetIcon": 114,
       "copiedOffsets": [
         0,
@@ -1238,7 +1783,8 @@
       "previewSpecies": 54,
       "name": "Mega Absol Z",
       "staticAsset": 1049,
-      "sourceIcon": 2106,
+      "sourceIcon": 2286,
+      "sourcePaletteKey": 1139,
       "targetIcon": 116,
       "copiedOffsets": [
         0,
@@ -1249,7 +1795,8 @@
       "previewSpecies": 55,
       "name": "Mega Staraptor",
       "staticAsset": 1050,
-      "sourceIcon": 2108,
+      "sourceIcon": 2288,
+      "sourcePaletteKey": 1140,
       "targetIcon": 118,
       "copiedOffsets": [
         0,
@@ -1260,7 +1807,8 @@
       "previewSpecies": 56,
       "name": "Mega Garchomp",
       "staticAsset": 1051,
-      "sourceIcon": 2110,
+      "sourceIcon": 2290,
+      "sourcePaletteKey": 1141,
       "targetIcon": 120,
       "copiedOffsets": [
         0,
@@ -1271,7 +1819,8 @@
       "previewSpecies": 57,
       "name": "Mega Garchomp Z",
       "staticAsset": 1052,
-      "sourceIcon": 2112,
+      "sourceIcon": 2292,
+      "sourcePaletteKey": 1142,
       "targetIcon": 122,
       "copiedOffsets": [
         0,
@@ -1282,7 +1831,8 @@
       "previewSpecies": 58,
       "name": "Mega Lucario",
       "staticAsset": 1053,
-      "sourceIcon": 2114,
+      "sourceIcon": 2294,
+      "sourcePaletteKey": 1143,
       "targetIcon": 124,
       "copiedOffsets": [
         0,
@@ -1293,7 +1843,8 @@
       "previewSpecies": 59,
       "name": "Mega Lucario Z",
       "staticAsset": 1054,
-      "sourceIcon": 2116,
+      "sourceIcon": 2296,
+      "sourcePaletteKey": 1144,
       "targetIcon": 126,
       "copiedOffsets": [
         0,
@@ -1305,6 +1856,7 @@
       "name": "Mega Froslass",
       "staticAsset": 1055,
       "sourceIcon": 2118,
+      "sourcePaletteKey": 1055,
       "targetIcon": 128,
       "copiedOffsets": [
         0,
@@ -1315,7 +1867,8 @@
       "previewSpecies": 61,
       "name": "Mega Heatran",
       "staticAsset": 1056,
-      "sourceIcon": 2120,
+      "sourceIcon": 2300,
+      "sourcePaletteKey": 1146,
       "targetIcon": 130,
       "copiedOffsets": [
         0,
@@ -1326,7 +1879,8 @@
       "previewSpecies": 62,
       "name": "Mega Darkrai",
       "staticAsset": 1057,
-      "sourceIcon": 2122,
+      "sourceIcon": 2302,
+      "sourcePaletteKey": 1147,
       "targetIcon": 132,
       "copiedOffsets": [
         0,
@@ -1337,7 +1891,8 @@
       "previewSpecies": 63,
       "name": "Mega Emboar",
       "staticAsset": 1058,
-      "sourceIcon": 2124,
+      "sourceIcon": 2304,
+      "sourcePaletteKey": 1148,
       "targetIcon": 134,
       "copiedOffsets": [
         0,
@@ -1348,7 +1903,8 @@
       "previewSpecies": 64,
       "name": "Mega Excadrill",
       "staticAsset": 1059,
-      "sourceIcon": 2126,
+      "sourceIcon": 2306,
+      "sourcePaletteKey": 1149,
       "targetIcon": 136,
       "copiedOffsets": [
         0,
@@ -1359,7 +1915,8 @@
       "previewSpecies": 65,
       "name": "Mega Scolipede",
       "staticAsset": 1060,
-      "sourceIcon": 2128,
+      "sourceIcon": 2308,
+      "sourcePaletteKey": 1150,
       "targetIcon": 138,
       "copiedOffsets": [
         0,
@@ -1370,7 +1927,8 @@
       "previewSpecies": 66,
       "name": "Mega Scrafty",
       "staticAsset": 1061,
-      "sourceIcon": 2130,
+      "sourceIcon": 2310,
+      "sourcePaletteKey": 1151,
       "targetIcon": 140,
       "copiedOffsets": [
         0,
@@ -1381,7 +1939,8 @@
       "previewSpecies": 67,
       "name": "Mega Eelektross",
       "staticAsset": 1062,
-      "sourceIcon": 2132,
+      "sourceIcon": 2312,
+      "sourcePaletteKey": 1152,
       "targetIcon": 142,
       "copiedOffsets": [
         0,
@@ -1392,7 +1951,8 @@
       "previewSpecies": 68,
       "name": "Mega Chandelure",
       "staticAsset": 1063,
-      "sourceIcon": 2134,
+      "sourceIcon": 2314,
+      "sourcePaletteKey": 1153,
       "targetIcon": 144,
       "copiedOffsets": [
         0,
@@ -1403,7 +1963,8 @@
       "previewSpecies": 69,
       "name": "Mega Golurk",
       "staticAsset": 1064,
-      "sourceIcon": 2136,
+      "sourceIcon": 2316,
+      "sourcePaletteKey": 1154,
       "targetIcon": 146,
       "copiedOffsets": [
         0,
@@ -1414,7 +1975,8 @@
       "previewSpecies": 70,
       "name": "Mega Chesnaught",
       "staticAsset": 1065,
-      "sourceIcon": 2138,
+      "sourceIcon": 2318,
+      "sourcePaletteKey": 1155,
       "targetIcon": 148,
       "copiedOffsets": [
         0,
@@ -1425,7 +1987,8 @@
       "previewSpecies": 71,
       "name": "Mega Delphox",
       "staticAsset": 1066,
-      "sourceIcon": 2140,
+      "sourceIcon": 2320,
+      "sourcePaletteKey": 1156,
       "targetIcon": 150,
       "copiedOffsets": [
         0,
@@ -1436,7 +1999,8 @@
       "previewSpecies": 72,
       "name": "Mega Greninja",
       "staticAsset": 1067,
-      "sourceIcon": 2142,
+      "sourceIcon": 2322,
+      "sourcePaletteKey": 1157,
       "targetIcon": 152,
       "copiedOffsets": [
         0,
@@ -1447,7 +2011,8 @@
       "previewSpecies": 73,
       "name": "Mega Pyroar",
       "staticAsset": 1068,
-      "sourceIcon": 2144,
+      "sourceIcon": 2324,
+      "sourcePaletteKey": 1158,
       "targetIcon": 154,
       "copiedOffsets": [
         0,
@@ -1458,7 +2023,8 @@
       "previewSpecies": 74,
       "name": "Mega Floette",
       "staticAsset": 1074,
-      "sourceIcon": 2156,
+      "sourceIcon": 2336,
+      "sourcePaletteKey": 1164,
       "targetIcon": 156,
       "copiedOffsets": [
         0,
@@ -1469,7 +2035,8 @@
       "previewSpecies": 75,
       "name": "Mega Meowstic",
       "staticAsset": 1076,
-      "sourceIcon": 2160,
+      "sourceIcon": 2340,
+      "sourcePaletteKey": 1166,
       "targetIcon": 158,
       "copiedOffsets": [
         0,
@@ -1480,7 +2047,8 @@
       "previewSpecies": 76,
       "name": "Mega Malamar",
       "staticAsset": 1077,
-      "sourceIcon": 2162,
+      "sourceIcon": 2342,
+      "sourcePaletteKey": 1167,
       "targetIcon": 160,
       "copiedOffsets": [
         0,
@@ -1491,7 +2059,8 @@
       "previewSpecies": 77,
       "name": "Mega Barbaracle",
       "staticAsset": 1078,
-      "sourceIcon": 2164,
+      "sourceIcon": 2344,
+      "sourcePaletteKey": 1168,
       "targetIcon": 162,
       "copiedOffsets": [
         0,
@@ -1502,7 +2071,8 @@
       "previewSpecies": 78,
       "name": "Mega Dragalge",
       "staticAsset": 1079,
-      "sourceIcon": 2166,
+      "sourceIcon": 2346,
+      "sourcePaletteKey": 1169,
       "targetIcon": 164,
       "copiedOffsets": [
         0,
@@ -1513,7 +2083,8 @@
       "previewSpecies": 79,
       "name": "Mega Hawlucha",
       "staticAsset": 1080,
-      "sourceIcon": 2168,
+      "sourceIcon": 2348,
+      "sourcePaletteKey": 1170,
       "targetIcon": 166,
       "copiedOffsets": [
         0,
@@ -1524,7 +2095,8 @@
       "previewSpecies": 80,
       "name": "Mega Zygarde",
       "staticAsset": 1081,
-      "sourceIcon": 2170,
+      "sourceIcon": 2350,
+      "sourcePaletteKey": 1171,
       "targetIcon": 168,
       "copiedOffsets": [
         0,
@@ -1535,7 +2107,8 @@
       "previewSpecies": 81,
       "name": "Mega Crabominable",
       "staticAsset": 1082,
-      "sourceIcon": 2172,
+      "sourceIcon": 2352,
+      "sourcePaletteKey": 1172,
       "targetIcon": 170,
       "copiedOffsets": [
         0,
@@ -1546,7 +2119,8 @@
       "previewSpecies": 82,
       "name": "Mega Golisopod",
       "staticAsset": 1083,
-      "sourceIcon": 2174,
+      "sourceIcon": 2354,
+      "sourcePaletteKey": 1173,
       "targetIcon": 172,
       "copiedOffsets": [
         0,
@@ -1557,7 +2131,8 @@
       "previewSpecies": 83,
       "name": "Mega Drampa",
       "staticAsset": 1084,
-      "sourceIcon": 2176,
+      "sourceIcon": 2356,
+      "sourcePaletteKey": 1174,
       "targetIcon": 174,
       "copiedOffsets": [
         0,
@@ -1568,7 +2143,8 @@
       "previewSpecies": 84,
       "name": "Mega Magearna",
       "staticAsset": 1085,
-      "sourceIcon": 2178,
+      "sourceIcon": 2358,
+      "sourcePaletteKey": 1175,
       "targetIcon": 176,
       "copiedOffsets": [
         0,
@@ -1579,7 +2155,8 @@
       "previewSpecies": 85,
       "name": "Mega Magearna (Original Color)",
       "staticAsset": 1086,
-      "sourceIcon": 2180,
+      "sourceIcon": 2360,
+      "sourcePaletteKey": 1176,
       "targetIcon": 178,
       "copiedOffsets": [
         0,
@@ -1590,7 +2167,8 @@
       "previewSpecies": 86,
       "name": "Mega Zeraora",
       "staticAsset": 1087,
-      "sourceIcon": 2182,
+      "sourceIcon": 2362,
+      "sourcePaletteKey": 1177,
       "targetIcon": 180,
       "copiedOffsets": [
         0,
@@ -1601,7 +2179,8 @@
       "previewSpecies": 87,
       "name": "Mega Falinks",
       "staticAsset": 1088,
-      "sourceIcon": 2184,
+      "sourceIcon": 2364,
+      "sourcePaletteKey": 1178,
       "targetIcon": 182,
       "copiedOffsets": [
         0,
@@ -1612,7 +2191,8 @@
       "previewSpecies": 88,
       "name": "Mega Scovillain",
       "staticAsset": 1089,
-      "sourceIcon": 2186,
+      "sourceIcon": 2366,
+      "sourcePaletteKey": 1179,
       "targetIcon": 184,
       "copiedOffsets": [
         0,
@@ -1624,6 +2204,7 @@
       "name": "Mega Glimmora",
       "staticAsset": 1090,
       "sourceIcon": 2188,
+      "sourcePaletteKey": 1090,
       "targetIcon": 186,
       "copiedOffsets": [
         0,
@@ -1635,6 +2216,7 @@
       "name": "Mega Tatsugiri (Curly Form)",
       "staticAsset": 1091,
       "sourceIcon": 2190,
+      "sourcePaletteKey": 1091,
       "targetIcon": 188,
       "copiedOffsets": [
         0,
@@ -1646,6 +2228,7 @@
       "name": "Mega Tatsugiri (Droopy Form)",
       "staticAsset": 1092,
       "sourceIcon": 2192,
+      "sourcePaletteKey": 1092,
       "targetIcon": 190,
       "copiedOffsets": [
         0,
@@ -1657,6 +2240,7 @@
       "name": "Mega Tatsugiri (Stretchy Form)",
       "staticAsset": 1093,
       "sourceIcon": 2194,
+      "sourcePaletteKey": 1093,
       "targetIcon": 192,
       "copiedOffsets": [
         0,
@@ -1668,6 +2252,7 @@
       "name": "Mega Baxcalibur",
       "staticAsset": 1094,
       "sourceIcon": 2196,
+      "sourcePaletteKey": 1094,
       "targetIcon": 194,
       "copiedOffsets": [
         0,
@@ -1679,6 +2264,7 @@
       "name": "Mega Raichu X",
       "staticAsset": 1038,
       "sourceIcon": 2084,
+      "sourcePaletteKey": 1038,
       "targetIcon": 196,
       "copiedOffsets": [
         0,
@@ -1690,6 +2276,7 @@
       "name": "Mega Raichu Y",
       "staticAsset": 1039,
       "sourceIcon": 2086,
+      "sourcePaletteKey": 1039,
       "targetIcon": 198,
       "copiedOffsets": [
         0,
@@ -1700,7 +2287,8 @@
       "previewSpecies": 96,
       "name": "Mega Slowbro",
       "staticAsset": 737,
-      "sourceIcon": 1482,
+      "sourceIcon": 2422,
+      "sourcePaletteKey": 1207,
       "targetIcon": 200,
       "copiedOffsets": [
         0,

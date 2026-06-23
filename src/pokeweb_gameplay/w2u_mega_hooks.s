@@ -1,26 +1,28 @@
 .thumb
 
-.type THUMB_BRANCH_LINK_BattleClient_ActionSelectRoot_0x58, %function
-.type THUMB_BRANCH_LINK_BattleClient_ActionSelectFight_0x8E, %function
-.type THUMB_BRANCH_LINK_BattleClient_ActionSelectFight_0x9A, %function
+.type THUMB_BRANCH_LINK_167_0x21B348C, %function
+.type THUMB_BRANCH_LINK_167_0x21B3CCE, %function
+.type THUMB_BRANCH_LINK_167_0x21B3CDA, %function
 .type THUMB_BRANCH_LINK_168_0x21EB65C, %function
 .type THUMB_BRANCH_LINK_169_0x689ACE8, %function
 .type W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56, %function
 .type THUMB_BRANCH_LINK_167_0x21B8A52, %function
 .type THUMB_BRANCH_LINK_167_0x21B8A60, %function
+.type THUMB_BRANCH_LINK_207_0x21B3388, %function
+.type THUMB_BRANCH_LINK_207_0x21B9204, %function
 
 @ Preserve the original BattleAction_SetNull call and run Mega root cleanup.
-THUMB_BRANCH_LINK_BattleClient_ActionSelectRoot_0x58:
+THUMB_BRANCH_LINK_167_0x21B348C:
     push {r0-r3, lr}
     bl W2U_Mega_OnActionSelectRoot
     pop {r0-r3}
     bl BattleAction_SetNull
     pop {r1}
     bx r1
-    .size THUMB_BRANCH_LINK_BattleClient_ActionSelectRoot_0x58, . - THUMB_BRANCH_LINK_BattleClient_ActionSelectRoot_0x58
+    .size THUMB_BRANCH_LINK_167_0x21B348C, . - THUMB_BRANCH_LINK_167_0x21B348C
 
 @ Poll Mega input before vanilla move wait, then draw the sub-screen button after it.
-THUMB_BRANCH_LINK_BattleClient_ActionSelectFight_0x8E:
+THUMB_BRANCH_LINK_167_0x21B3CCE:
     push {r0-r3, lr}
     bl W2U_Mega_OnActionSelectFightWait
     pop {r0-r3}
@@ -33,10 +35,10 @@ THUMB_BRANCH_LINK_BattleClient_ActionSelectFight_0x8E:
     pop {r0-r3}
     pop {r1}
     bx r1
-    .size THUMB_BRANCH_LINK_BattleClient_ActionSelectFight_0x8E, . - THUMB_BRANCH_LINK_BattleClient_ActionSelectFight_0x8E
+    .size THUMB_BRANCH_LINK_167_0x21B3CCE, . - THUMB_BRANCH_LINK_167_0x21B3CCE
 
 @ Preserve the original BattleAction_GetAction call and commit a queued Mega flag.
-THUMB_BRANCH_LINK_BattleClient_ActionSelectFight_0x9A:
+THUMB_BRANCH_LINK_167_0x21B3CDA:
     push {r1-r3, lr}
     push {r0}
     bl BattleAction_GetAction
@@ -48,7 +50,7 @@ THUMB_BRANCH_LINK_BattleClient_ActionSelectFight_0x9A:
     bl W2U_Mega_OnActionSelected
     pop {r0}
     pop {r1-r3, pc}
-    .size THUMB_BRANCH_LINK_BattleClient_ActionSelectFight_0x9A, . - THUMB_BRANCH_LINK_BattleClient_ActionSelectFight_0x9A
+    .size THUMB_BRANCH_LINK_167_0x21B3CDA, . - THUMB_BRANCH_LINK_167_0x21B3CDA
 
 @ Substitute the move-selection touch table with one that appends Mega at index 6.
 @ This preserves the original BTLV_INPUT_CheckKey ABI, including stack args.
@@ -109,35 +111,85 @@ W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56:
     bx r1
     .size W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56, . - W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56
 
-@ Preserve the client SC_ACT_CHANGE_FORM call to BattleViewCmd_ChangeForm_Start.
-@ At this site r6 is the server command args and r7 is the resolved view pos.
+@ Replace the client SC_ACT_CHANGE_FORM visual for Mega transformations only.
+@ At this site the client form has already been refreshed; r6 is the server
+@ command args and r7 is the resolved view pos.
 THUMB_BRANCH_LINK_167_0x21B8A52:
-    push {r0-r3, lr}
-    mov r0, r6
-    mov r1, r7
+    push {r0-r4, lr}
+    mov r1, r6
+    mov r2, r7
     bl W2U_Mega_OnClientChangeFormStart
-    pop {r0-r3}
+    cmp r0, #0
+    beq 1f
+    add sp, #4
+    pop {r1-r4}
+    pop {r1}
+    bx r1
+1:
+    ldr r0, [sp,#0]
+    ldr r1, [sp,#4]
+    ldr r2, [sp,#8]
+    ldr r3, [sp,#12]
     ldr r3, =0x021D04A1
     blx r3
+    add sp, #4
+    pop {r1-r4}
     pop {r1}
     bx r1
     .size THUMB_BRANCH_LINK_167_0x21B8A52, . - THUMB_BRANCH_LINK_167_0x21B8A52
 
-@ Preserve the client SC_ACT_CHANGE_FORM call to BattleViewCmd_ChangeForm_Wait.
-@ Only after the vanilla wait returns true is the transform animation complete.
+@ Wait on the Mega placeholder animation when active; otherwise preserve the
+@ original BattleViewCmd_ChangeForm_Wait path.
 THUMB_BRANCH_LINK_167_0x21B8A60:
-    push {r1-r3, lr}
+    push {r0-r4, lr}
+    mov r1, r6
+    bl W2U_Mega_OnClientChangeFormWaitOverride
+    cmp r0, #2
+    beq 1f
+    add sp, #4
+    pop {r1-r4}
+    pop {r2}
+    bx r2
+1:
+    ldr r0, [sp,#0]
     ldr r3, =0x021D04BD
     blx r3
+    str r0, [sp,#0]
     mov r1, r0
-    push {r0}
     mov r0, r6
     bl W2U_Mega_OnClientChangeFormWait
-    pop {r0}
-    pop {r1-r3}
+    ldr r0, [sp,#0]
+    add sp, #4
+    pop {r1-r4}
     pop {r2}
     bx r2
     .size THUMB_BRANCH_LINK_167_0x21B8A60, . - THUMB_BRANCH_LINK_167_0x21B8A60
+
+@ Battle summary redraw path. Preserve the original draw helper, then refresh
+@ the Mega summary cache from the gameplay DLL while overlay 207 is active.
+THUMB_BRANCH_LINK_207_0x21B3388:
+    push {r0-r3, lr}
+    ldr r3, =0x02049AC5
+    blx r3
+    bl W2U_Mega_PatchKnownSummaryCache
+    pop {r0-r3}
+    pop {r1}
+    bx r1
+    .size THUMB_BRANCH_LINK_207_0x21B3388, . - THUMB_BRANCH_LINK_207_0x21B3388
+
+@ Ability text uses the current summary PP directly instead of the stat cache.
+@ Replay PP_Get(PF_Ability), then substitute the mirrored Mega ability if this
+@ summary entry is the active Mega.
+THUMB_BRANCH_LINK_207_0x21B9204:
+    push {r4, lr}
+    mov r4, r0
+    bl PokeParty_GetParam
+    mov r1, r4
+    bl W2U_Mega_OverrideSummaryAbilityParam
+    pop {r4}
+    pop {r1}
+    bx r1
+    .size THUMB_BRANCH_LINK_207_0x21B9204, . - THUMB_BRANCH_LINK_207_0x21B9204
 
 @ Pass the BattleMon pointer to the unremovable-item check used by Trick.
 FULL_COPY_HandlerTrick_0x6C:

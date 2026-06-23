@@ -32,6 +32,18 @@
 #define W2U_GFL_UI_TP_HIT_TRG 0x0203DA39u
 #define W2U_SEQ_SE_DECIDE2 1357u
 #define W2U_SEQ_SE_CANCEL2 1362u
+#define W2U_BATTLE_ANIMATIONS_COUNT 115u
+#define W2U_MEGA_ANIMATION_SCRIPT_ID 622u
+#define W2U_MEGA_ANIMATION_CMD_ID (W2U_MEGA_ANIMATION_SCRIPT_ID + W2U_BATTLE_ANIMATIONS_COUNT)
+#define W2U_MEGA_ANIMATION_WAIT_FRAMES 96u
+#define W2U_CMD_ACT_WAIT_ADDRESS 0x021D3171u
+#define W2U_BTLVSCU_VIEW_MON_SELECTOR_OFFSET 0x134u
+#define W2U_BTLVSCU_VIEW_MON_TABLE_OFFSET 0x138u
+#define W2U_BATTLE_VIEW_RESOLVE_VIEW_MON_ADDRESS 0x0219C785u
+#define W2U_BATTLE_VIEW_LOOKUP_MON_ADDRESS 0x0219D1C9u
+#define W2U_BATTLE_VIEW_DEREF_MON_ADDRESS 0x021BB085u
+#define W2U_BATTLE_VIEW_REFRESH_FORM_SPRITE_ADDRESS 0x021DF7ADu
+#define W2U_MEGA_PENDING_CLIENT_CHANGE_COUNT 4u
 
 #if W2U_ENABLE_MEGA_EVOLUTION
 
@@ -41,6 +53,14 @@ extern "C" void W2U_BattleAction_ResetMegaEvolution(BattleActionParam* actionPar
 extern "C" u8 W2U_BattleAction_CheckMegaEvolution(const BattleActionParam* actionParam);
 extern "C" u32 PML_PersonalGetParamSingle(u32 species, u32 form, u32 field);
 extern "C" void GFL_SndSEPlay(u32 soundIdx);
+extern "C" void CMD_ACT_MoveAnimStart(
+    BtlvScu* btlvScu,
+    u32 attackingViewPos,
+    u32 targetViewPos,
+    u16 moveID,
+    u32 moveTarget,
+    u8 effectIndex,
+    u8 zero);
 
 namespace {
 
@@ -93,6 +113,22 @@ struct MegaBattleState {
     u16 originalAbilityBySide[2];
 };
 
+struct MegaCustomAnimationState {
+    u8 active;
+    u8 pokeID;
+    u8 form;
+    u8 viewPos;
+    u16 framesRemaining;
+    u16 reserved;
+};
+
+struct MegaPendingClientChangeState {
+    u8 active;
+    u8 pokeID;
+    u8 form;
+    u8 reserved;
+};
+
 struct NativeTouchHitRect {
     u8 up;
     u8 down;
@@ -115,6 +151,11 @@ typedef u32 (*NativeInputCheckKeyFn)(
     u32 henshinFlag);
 
 typedef u32 (*NativeTouchHitTriggerFn)(const NativeTouchHitRect* hitTable);
+typedef u32 (*CmdActWaitFn)(BtlvScu* btlvScu);
+typedef u32 (*BattleViewResolveViewMonFn)(void* selector, u32 viewPos);
+typedef void* (*BattleViewLookupMonFn)(void* table, u32 resolvedViewPos);
+typedef void* (*BattleViewDerefMonFn)(void* monRef);
+typedef void (*BattleViewRefreshFormSpriteFn)(void* monHandle, u32 viewPos);
 
 struct MegaVisualState {
     u32 magic;
@@ -165,6 +206,11 @@ MegaUiState gMegaUiState = {
 };
 
 BtlvCore* gMegaActiveBtlCore = nullptr;
+ServerFlow* gMegaBattleServerFlow = nullptr;
+MainModule* gMegaBattleMainModule = nullptr;
+PokeCon* gMegaBattlePokeCon = nullptr;
+MegaCustomAnimationState gMegaCustomAnimationState = {};
+MegaPendingClientChangeState gMegaPendingClientChanges[W2U_MEGA_PENDING_CLIENT_CHANGE_COUNT] = {};
 MegaButtonBgLayerState gMegaButtonBgLayers[W2U_MEGA_NATIVE_BG_LAYER_COUNT] = {
     {{0}, 0xFFFFu, 0, 0, 0, 0, 0, 0xFFu},
     {{0}, 0xFFFFu, 0, 0, 0, 0, 0, 0xFFu},
@@ -309,7 +355,6 @@ const MegaEvolutionEntry W2U_MEGA_TABLE[] = {
 };
 
 const u32 W2U_BATTLE_SUMMARY_CACHE_KNOWN_ADDRESS = 0x022C4760u;
-const u8 W2U_TYPE_DRAGON = 15u;
 
 extern "C" {
 #pragma GCC diagnostic push
@@ -329,6 +374,60 @@ void ClearMegaVisualClientState()
     W2U_MegaVisualState.visualOverrideReady = 0;
 }
 
+void ClearMegaCustomAnimationState()
+{
+    gMegaCustomAnimationState.active = 0;
+    gMegaCustomAnimationState.pokeID = 0;
+    gMegaCustomAnimationState.form = 0;
+    gMegaCustomAnimationState.viewPos = 0;
+    gMegaCustomAnimationState.framesRemaining = 0;
+    gMegaCustomAnimationState.reserved = 0;
+}
+
+void ClearMegaPendingClientChanges()
+{
+    for (u32 idx = 0; idx < W2U_ARRAY_COUNT(gMegaPendingClientChanges); ++idx) {
+        gMegaPendingClientChanges[idx].active = 0;
+        gMegaPendingClientChanges[idx].pokeID = 0;
+        gMegaPendingClientChanges[idx].form = 0;
+        gMegaPendingClientChanges[idx].reserved = 0;
+    }
+}
+
+void RecordPendingMegaClientChange(u8 pokeID, u8 form)
+{
+    u32 freeIdx = W2U_ARRAY_COUNT(gMegaPendingClientChanges);
+    for (u32 idx = 0; idx < W2U_ARRAY_COUNT(gMegaPendingClientChanges); ++idx) {
+        MegaPendingClientChangeState* pending = &gMegaPendingClientChanges[idx];
+        if (pending->active && pending->pokeID == pokeID && pending->form == form) {
+            return;
+        }
+        if (!pending->active && freeIdx == W2U_ARRAY_COUNT(gMegaPendingClientChanges)) {
+            freeIdx = idx;
+        }
+    }
+
+    if (freeIdx == W2U_ARRAY_COUNT(gMegaPendingClientChanges)) {
+        freeIdx = 0;
+    }
+    gMegaPendingClientChanges[freeIdx].active = 1;
+    gMegaPendingClientChanges[freeIdx].pokeID = pokeID;
+    gMegaPendingClientChanges[freeIdx].form = form;
+    gMegaPendingClientChanges[freeIdx].reserved = 0;
+}
+
+bool ConsumePendingMegaClientChange(u8 pokeID, u8 form)
+{
+    for (u32 idx = 0; idx < W2U_ARRAY_COUNT(gMegaPendingClientChanges); ++idx) {
+        MegaPendingClientChangeState* pending = &gMegaPendingClientChanges[idx];
+        if (pending->active && pending->pokeID == pokeID && pending->form == form) {
+            pending->active = 0;
+            return true;
+        }
+    }
+    return false;
+}
+
 void ClearMegaVisualState()
 {
     ClearMegaVisualClientState();
@@ -344,6 +443,16 @@ void ClearMegaVisualState()
     W2U_MegaVisualState.mirroredPartySpeed = 0;
 }
 
+void RecordClientChangeFormArgs(const u32* args)
+{
+    if (!args) {
+        return;
+    }
+
+    W2U_MegaVisualState.clientChangeFormPokeID = args[0] & 0xffu;
+    W2U_MegaVisualState.clientChangeFormForm = args[1] & 0xffu;
+}
+
 void RecordMegaVisualBattleMon(const BattleMon* battleMon)
 {
     if (!battleMon) {
@@ -356,13 +465,35 @@ void RecordMegaVisualBattleMon(const BattleMon* battleMon)
     W2U_MegaVisualState.form = battleMon->form;
 }
 
+u16 GetMegaFormRecordAbility(SPECIES species, u8 form, u16 fallback)
+{
+    if (form == W2U_MEGA_NO_FORM) {
+        return fallback;
+    }
+
+    for (u32 idx = 0; idx < W2U_ARRAY_COUNT(W2U_MEGA_TABLE); ++idx) {
+        const MegaEvolutionEntry* mega = &W2U_MEGA_TABLE[idx];
+        if (mega->species == species && mega->form == form) {
+            const u16 ability =
+                (u16)PML_PersonalGetParamSingle(species, form, Personal_Abil1);
+            return ability != 0 ? ability : fallback;
+        }
+    }
+
+    return fallback;
+}
+
 void RecordMegaVisualStats(const BattleMon* battleMon)
 {
     if (!battleMon) {
         return;
     }
 
-    W2U_MegaVisualState.mirroredPartyAbility = battleMon->ability;
+    W2U_MegaVisualState.mirroredPartyAbility =
+        GetMegaFormRecordAbility(
+            (SPECIES)battleMon->species,
+            (u8)battleMon->form,
+            battleMon->ability);
     W2U_MegaVisualState.mirroredPartyMaxHP = battleMon->maxHP;
     W2U_MegaVisualState.mirroredPartyAttack = battleMon->attack;
     W2U_MegaVisualState.mirroredPartyDefense = battleMon->defense;
@@ -744,16 +875,82 @@ bool StringParamIsEnabled(const HandlerParam_StrParams* str)
     return str->flags != 0;
 }
 
-bool IsMegaMawileServerStateReady()
+u32 CMD_ACT_Wait(BtlvScu* btlvScu)
 {
-    return W2U_MegaVisualState.species == SPECIES_MAWILE &&
-           W2U_MegaVisualState.form == 1 &&
-           (W2U_MegaVisualState.usedSideMask & 1u) != 0;
+    if (!btlvScu) {
+        return 1u;
+    }
+
+    CmdActWaitFn wait = reinterpret_cast<CmdActWaitFn>(W2U_CMD_ACT_WAIT_ADDRESS);
+    return wait(btlvScu);
 }
+
+void RefreshMegaFormSprite(BtlvScu* btlvScu, u32 viewPos)
+{
+    if (!btlvScu) {
+        return;
+    }
+
+    u8* btlvScuBytes = reinterpret_cast<u8*>(btlvScu);
+    void* selector =
+        *reinterpret_cast<void**>(btlvScuBytes + W2U_BTLVSCU_VIEW_MON_SELECTOR_OFFSET);
+    void* table =
+        *reinterpret_cast<void**>(btlvScuBytes + W2U_BTLVSCU_VIEW_MON_TABLE_OFFSET);
+    if (!selector || !table) {
+        return;
+    }
+
+    BattleViewResolveViewMonFn resolveViewMon =
+        reinterpret_cast<BattleViewResolveViewMonFn>(W2U_BATTLE_VIEW_RESOLVE_VIEW_MON_ADDRESS);
+    BattleViewLookupMonFn lookupMon =
+        reinterpret_cast<BattleViewLookupMonFn>(W2U_BATTLE_VIEW_LOOKUP_MON_ADDRESS);
+    BattleViewDerefMonFn derefMon =
+        reinterpret_cast<BattleViewDerefMonFn>(W2U_BATTLE_VIEW_DEREF_MON_ADDRESS);
+    BattleViewRefreshFormSpriteFn refreshFormSprite =
+        reinterpret_cast<BattleViewRefreshFormSpriteFn>(W2U_BATTLE_VIEW_REFRESH_FORM_SPRITE_ADDRESS);
+
+    const u32 viewPos8 = viewPos & 0xffu;
+    void* monRef = lookupMon(table, resolveViewMon(selector, viewPos8));
+    if (!monRef) {
+        return;
+    }
+
+    void* monHandle = derefMon(monRef);
+    if (!monHandle) {
+        return;
+    }
+
+    refreshFormSprite(monHandle, viewPos8);
+}
+
+bool IsMegaFormRecord(SPECIES species, u8 form)
+{
+    if (form == W2U_MEGA_NO_FORM) {
+        return false;
+    }
+
+    for (u32 idx = 0; idx < W2U_ARRAY_COUNT(W2U_MEGA_TABLE); ++idx) {
+        if (W2U_MEGA_TABLE[idx].species == species &&
+            W2U_MEGA_TABLE[idx].form == form) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool IsMegaServerStateReady()
+{
+    return IsMegaFormRecord(
+               (SPECIES)W2U_MegaVisualState.species,
+               (u8)(W2U_MegaVisualState.form & 0xffu)) &&
+           W2U_MegaVisualState.usedSideMask != 0;
+}
+
+u8 MegaSideForSlot(u8 battleSlot);
 
 u8 MegaTrainerClientForSlot(u8 pokemonSlot)
 {
-    return pokemonSlot & 1u;
+    return MegaSideForSlot(pokemonSlot);
 }
 
 const MegaEvolutionEntry* FindMegaEntry(SPECIES species, ITEM item)
@@ -765,6 +962,24 @@ const MegaEvolutionEntry* FindMegaEntry(SPECIES species, ITEM item)
         }
     }
     return nullptr;
+}
+
+u8 GetMegaFormForBattleMon(const BattleMon* battleMon)
+{
+    if (!battleMon) {
+        return W2U_MEGA_NO_FORM;
+    }
+
+    const MegaEvolutionEntry* mega = FindMegaEntry(battleMon->species, battleMon->heldItem);
+    return mega ? mega->form : W2U_MEGA_NO_FORM;
+}
+
+bool IsBattleMonInMegaForm(const BattleMon* battleMon)
+{
+    const u8 megaForm = GetMegaFormForBattleMon(battleMon);
+    return megaForm != W2U_MEGA_NO_FORM &&
+        battleMon &&
+        battleMon->form == megaForm;
 }
 
 void ResetPendingMega()
@@ -785,13 +1000,22 @@ void ResetMegaBattleState()
     gMegaState.committedSlotBySide[1] = W2U_MEGA_NO_SLOT;
     gMegaState.originalAbilityBySide[0] = W2U_MEGA_NO_ABILITY;
     gMegaState.originalAbilityBySide[1] = W2U_MEGA_NO_ABILITY;
+    gMegaBattleServerFlow = nullptr;
+    gMegaBattleMainModule = nullptr;
+    gMegaBattlePokeCon = nullptr;
+    ClearMegaCustomAnimationState();
+    ClearMegaPendingClientChanges();
     ClearMegaVisualState();
     ClearMegaButtonState(MEGA_SKIP_NONE);
 }
 
 u8 MegaSideForSlot(u8 battleSlot)
 {
-    return battleSlot & 1;
+    if (battleSlot == W2U_MEGA_NO_SLOT) {
+        return 0;
+    }
+
+    return MainModule_IsAllyMonID(0, battleSlot) ? 0u : 1u;
 }
 
 u8 MegaSideMaskForSlot(u8 battleSlot)
@@ -896,6 +1120,31 @@ bool IsActiveMonMegaForm(BattleMon* battleMon, u8* formOut)
 
     if (formOut) {
         *formOut = megaForm;
+    }
+    return true;
+}
+
+bool ConsumeClientMegaChangeForm(const u32* args, u8* pokeIDOut, u8* formOut)
+{
+    if (!args) {
+        return false;
+    }
+
+    const u8 pokeID = (u8)(args[0] & 0xffu);
+    const u8 form = (u8)(args[1] & 0xffu);
+    if (form == W2U_MEGA_NO_FORM) {
+        return false;
+    }
+
+    if (!ConsumePendingMegaClientChange(pokeID, form)) {
+        return false;
+    }
+
+    if (pokeIDOut) {
+        *pokeIDOut = pokeID;
+    }
+    if (formOut) {
+        *formOut = form;
     }
     return true;
 }
@@ -1042,9 +1291,26 @@ ABILITY GetMegaFormAbility(const BattleMon* battleMon)
     return PML_PersonalGetParamSingle(battleMon->species, battleMon->form, Personal_Abil1);
 }
 
-u16 GetBaseAbilityForRestore(const BattleMon* battleMon, u16 ability)
+u16 GetFallbackBaseAbilityForRestore(const BattleMon* battleMon, PartyPkm* partyPkm)
 {
-    if (!battleMon || battleMon->species != SPECIES_MAWILE) {
+    if (!battleMon) {
+        return 0;
+    }
+
+    if (partyPkm && PokeParty_GetParam(partyPkm, PF_IsHiddenAbility, nullptr) != 0) {
+        const u16 hiddenAbility =
+            (u16)PML_PersonalGetParamSingle(battleMon->species, 0, Personal_AbilH);
+        if (hiddenAbility != 0) {
+            return hiddenAbility;
+        }
+    }
+
+    return (u16)PML_PersonalGetParamSingle(battleMon->species, 0, Personal_Abil1);
+}
+
+u16 GetBaseAbilityForRestore(const BattleMon* battleMon, PartyPkm* partyPkm, u16 ability)
+{
+    if (!battleMon) {
         return ability;
     }
 
@@ -1059,7 +1325,8 @@ u16 GetBaseAbilityForRestore(const BattleMon* battleMon, u16 ability)
         return ability;
     }
 
-    return (u16)PML_PersonalGetParamSingle(battleMon->species, 0, Personal_Abil1);
+    const u16 baseAbility = GetFallbackBaseAbilityForRestore(battleMon, partyPkm);
+    return baseAbility != 0 ? baseAbility : ability;
 }
 
 u16 GetOriginalAbilityForSide(u8 side, BattleMon* battleMon, PartyPkm* partyPkm)
@@ -1071,27 +1338,41 @@ u16 GetOriginalAbilityForSide(u8 side, BattleMon* battleMon, PartyPkm* partyPkm)
     } else {
         ability = (u16)PokeParty_GetParam(partyPkm, PF_Ability, nullptr);
     }
-    return GetBaseAbilityForRestore(battleMon, ability);
+    return GetBaseAbilityForRestore(battleMon, partyPkm, ability);
 }
 
-void RepairLeakedBaseMegaAbility(BattleMon* battleMon)
+void RestorePartyBaseForm(BattleMon* battleMon, u8 form);
+void RefreshBattleMonStatsFromParty(BattleMon* battleMon);
+
+bool RepairLeakedBaseMegaAbility(BattleMon* battleMon)
 {
     if (!battleMon ||
-        battleMon->species != SPECIES_MAWILE ||
         battleMon->form != 0 ||
         !battleMon->partySrc) {
-        return;
+        return false;
+    }
+
+    const u8 megaForm = GetMegaFormForBattleMon(battleMon);
+    if (megaForm == W2U_MEGA_NO_FORM) {
+        return false;
     }
 
     const u16 megaAbility =
-        (u16)PML_PersonalGetParamSingle(battleMon->species, 1, Personal_Abil1);
+        (u16)PML_PersonalGetParamSingle(battleMon->species, megaForm, Personal_Abil1);
+    const u16 partyAbility =
+        (u16)PokeParty_GetParam(battleMon->partySrc, PF_Ability, nullptr);
+    const u32 partyForm = PokeParty_GetParam(battleMon->partySrc, PF_Forme, nullptr);
     if (battleMon->ability != megaAbility &&
-        (u16)PokeParty_GetParam(battleMon->partySrc, PF_Ability, nullptr) != megaAbility) {
-        return;
+        battleMon->currentAbility != megaAbility &&
+        partyAbility != megaAbility &&
+        partyForm != megaForm) {
+        return false;
     }
 
-    const u16 baseAbility =
-        (u16)PML_PersonalGetParamSingle(battleMon->species, 0, Personal_Abil1);
+    const u16 baseAbility = GetOriginalAbilityForSide(
+        MegaSideForSlot(battleMon->battleSlot),
+        battleMon,
+        battleMon->partySrc);
     battleMon->Type1 =
         (u8)PML_PersonalGetParamSingle(battleMon->species, 0, Personal_Type1);
     battleMon->Type2 =
@@ -1101,17 +1382,23 @@ void RepairLeakedBaseMegaAbility(BattleMon* battleMon)
     PokeParty_SetParam(battleMon->partySrc, PF_Forme, 0);
     PokeParty_SetParam(battleMon->partySrc, PF_Ability, baseAbility);
     PokeParty_RecalcStats(battleMon->partySrc);
+    RefreshBattleMonStatsFromParty(battleMon);
+    return true;
 }
 
-void RepairLeakedBaseMegaAbilities(PokeCon* pokeCon)
+bool RepairLeakedBaseMegaAbilities(PokeCon* pokeCon)
 {
     if (!pokeCon) {
-        return;
+        return false;
     }
 
+    bool repaired = false;
     for (u32 i = 0; i < W2U_ARRAY_COUNT(pokeCon->activeBattleMon); ++i) {
-        RepairLeakedBaseMegaAbility(pokeCon->activeBattleMon[i]);
+        if (RepairLeakedBaseMegaAbility(pokeCon->activeBattleMon[i])) {
+            repaired = true;
+        }
     }
+    return repaired;
 }
 
 void MirrorMegaFormToParty(BattleMon* battleMon)
@@ -1128,8 +1415,15 @@ void MirrorMegaFormToParty(BattleMon* battleMon)
             (u16)PokeParty_GetParam(partyPkm, PF_Ability, nullptr);
     }
 
+    const u16 ability = GetMegaFormRecordAbility(
+        (SPECIES)battleMon->species,
+        (u8)battleMon->form,
+        battleMon->ability);
+    battleMon->ability = ability;
+    battleMon->currentAbility = ability;
+
     PokeParty_SetParam(partyPkm, PF_Forme, battleMon->form);
-    PokeParty_SetParam(partyPkm, PF_Ability, battleMon->ability);
+    PokeParty_SetParam(partyPkm, PF_Ability, ability);
     PokeParty_RecalcStats(partyPkm);
     if (battleMon->currentHP) {
         PokeParty_SetParam(partyPkm, PF_NowHP, battleMon->currentHP);
@@ -1192,6 +1486,114 @@ void RestorePartyBaseForm(BattleMon* battleMon, u8 form)
 
 }
 
+void RestoreMegaBattleMonToBaseForm(BattleMon* battleMon)
+{
+    if (!battleMon) {
+        return;
+    }
+
+    battleMon->form = 0;
+    if (!battleMon->partySrc) {
+        return;
+    }
+    RestorePartyBaseForm(battleMon, 0);
+    const u16 ability =
+        (u16)PokeParty_GetParam(battleMon->partySrc, PF_Ability, nullptr);
+    battleMon->Type1 =
+        (u8)PML_PersonalGetParamSingle(battleMon->species, battleMon->form, Personal_Type1);
+    battleMon->Type2 =
+        (u8)PML_PersonalGetParamSingle(battleMon->species, battleMon->form, Personal_Type2);
+    battleMon->ability = ability;
+    battleMon->currentAbility = ability;
+    RefreshBattleMonStatsFromParty(battleMon);
+}
+
+void RefreshBattleMonStatsFromParty(BattleMon* battleMon)
+{
+    if (!battleMon || !battleMon->partySrc) {
+        return;
+    }
+
+    battleMon->maxHP = (u16)PokeParty_GetParam(battleMon->partySrc, PF_MaxHP, nullptr);
+    if (battleMon->currentHP > battleMon->maxHP) {
+        battleMon->currentHP = battleMon->maxHP;
+        PokeParty_SetParam(battleMon->partySrc, PF_NowHP, battleMon->currentHP);
+    }
+    battleMon->attack = (u16)PokeParty_GetParam(battleMon->partySrc, PF_Attack, nullptr);
+    battleMon->defense = (u16)PokeParty_GetParam(battleMon->partySrc, PF_Defense, nullptr);
+    battleMon->speed = (u16)PokeParty_GetParam(battleMon->partySrc, PF_Speed, nullptr);
+    battleMon->specialAttack = (u16)PokeParty_GetParam(battleMon->partySrc, PF_SpAttack, nullptr);
+    battleMon->specialDefense = (u16)PokeParty_GetParam(battleMon->partySrc, PF_SpDefense, nullptr);
+}
+
+void RepairLeakedMegaForm(BattleMon* battleMon)
+{
+    if (!battleMon || !battleMon->partySrc) {
+        return;
+    }
+
+    const u8 megaForm = GetMegaFormForBattleMon(battleMon);
+    if (megaForm == W2U_MEGA_NO_FORM) {
+        return;
+    }
+
+    const u32 partyForm = PokeParty_GetParam(battleMon->partySrc, PF_Forme, nullptr);
+    if (battleMon->form != megaForm && partyForm != megaForm) {
+        return;
+    }
+
+    RestoreMegaBattleMonToBaseForm(battleMon);
+    battleMon->Type1 =
+        (u8)PML_PersonalGetParamSingle(battleMon->species, battleMon->form, Personal_Type1);
+    battleMon->Type2 =
+        (u8)PML_PersonalGetParamSingle(battleMon->species, battleMon->form, Personal_Type2);
+    RefreshBattleMonStatsFromParty(battleMon);
+}
+
+void RepairLeakedMegaForms(PokeCon* pokeCon)
+{
+    if (!pokeCon) {
+        return;
+    }
+
+    for (u32 i = 0; i < W2U_ARRAY_COUNT(pokeCon->activeBattleMon); ++i) {
+        RepairLeakedMegaForm(pokeCon->activeBattleMon[i]);
+    }
+}
+
+void RepairLeakedMegaStateBeforeUse(PokeCon* pokeCon)
+{
+    if (gMegaState.usedSideMask != 0 ||
+        gMegaState.committedSideMask != 0) {
+        return;
+    }
+
+    RepairLeakedMegaForms(pokeCon);
+    RepairLeakedBaseMegaAbilities(pokeCon);
+}
+
+void SetMegaBattleContext(MainModule* mainModule, PokeCon* pokeCon)
+{
+    if (!mainModule && pokeCon) {
+        mainModule = pokeCon->mainModule;
+    }
+    gMegaBattleMainModule = mainModule;
+    gMegaBattlePokeCon = pokeCon;
+}
+
+void MaintainMegaBattleContext(BtlvCore* btlCore)
+{
+    if (!btlCore) {
+        return;
+    }
+
+    if (!gMegaBattleMainModule && !gMegaBattlePokeCon) {
+        SetMegaBattleContext(btlCore->mainModule, btlCore->pokeCon);
+    }
+
+    RepairLeakedMegaStateBeforeUse(btlCore->pokeCon);
+}
+
 void ApplyMegaFormBattleData(BattleMon* battleMon)
 {
     battleMon->Type1 = (u8)PML_PersonalGetParamSingle(battleMon->species, battleMon->form, Personal_Type1);
@@ -1213,9 +1615,9 @@ void ApplyFormBattleData(BattleMon* battleMon)
     RecordMegaVisualBattleMon(battleMon);
 }
 
-bool IsMegaMawileSummaryCacheCandidate(u16* entry)
+bool IsMegaSummaryCacheCandidate(u16* entry)
 {
-    if (!entry || entry[0] != SPECIES_MAWILE) {
+    if (!entry || entry[0] != W2U_MegaVisualState.species) {
         return false;
     }
 
@@ -1232,9 +1634,10 @@ bool IsMegaMawileSummaryCacheCandidate(u16* entry)
 
 extern "C" void W2U_Mega_PatchKnownSummaryCache()
 {
-    if (W2U_MegaVisualState.species != SPECIES_MAWILE ||
-        W2U_MegaVisualState.form != 1 ||
-        W2U_MegaVisualState.visualOverrideReady == 0 ||
+    if (!IsMegaFormRecord(
+            (SPECIES)W2U_MegaVisualState.species,
+            (u8)(W2U_MegaVisualState.form & 0xffu)) ||
+        W2U_MegaVisualState.usedSideMask == 0 ||
         W2U_MegaVisualState.mirroredPartyAttack == 0 ||
         W2U_MegaVisualState.mirroredPartyDefense == 0 ||
         W2U_MegaVisualState.mirroredPartySpeed == 0 ||
@@ -1244,7 +1647,7 @@ extern "C" void W2U_Mega_PatchKnownSummaryCache()
     }
 
     u16* entry = (u16*)W2U_BATTLE_SUMMARY_CACHE_KNOWN_ADDRESS;
-    if (!IsMegaMawileSummaryCacheCandidate(entry)) {
+    if (!IsMegaSummaryCacheCandidate(entry)) {
         return;
     }
 
@@ -1259,13 +1662,44 @@ extern "C" void W2U_Mega_PatchKnownSummaryCache()
             entry[6] = entry[7];
         }
     }
-    entry[8] = ((u16)W2U_TYPE_DRAGON) | (((u16)W2U_TYPE_DRAGON) << 8);
+    const u16 type1 = (u16)PML_PersonalGetParamSingle(
+        W2U_MegaVisualState.species,
+        W2U_MegaVisualState.form,
+        Personal_Type1);
+    const u16 type2 = (u16)PML_PersonalGetParamSingle(
+        W2U_MegaVisualState.species,
+        W2U_MegaVisualState.form,
+        Personal_Type2);
+    entry[8] = type1 | (type2 << 8);
     const u16 ability = (u16)W2U_MegaVisualState.mirroredPartyAbility;
     if (ability != 0) {
         entry[10] = ability;
         entry[0x30] = ability;
         entry[0x56] = ability;
     }
+}
+
+extern "C" u32 W2U_Mega_OverrideSummaryAbilityParam(u32 ability, PartyPkm* partyPkm)
+{
+    const u32 megaAbility = W2U_MegaVisualState.mirroredPartyAbility;
+    if (megaAbility == 0 ||
+        W2U_MegaVisualState.usedSideMask == 0 ||
+        !IsMegaFormRecord(
+            (SPECIES)W2U_MegaVisualState.species,
+            (u8)(W2U_MegaVisualState.form & 0xffu))) {
+        return ability;
+    }
+
+    if (IsMegaSummaryCacheCandidate((u16*)W2U_BATTLE_SUMMARY_CACHE_KNOWN_ADDRESS)) {
+        return megaAbility;
+    }
+
+    if (!partyPkm) {
+        return ability;
+    }
+
+    const u32 species = PokeParty_GetParam(partyPkm, PF_Species, nullptr);
+    return species == W2U_MegaVisualState.species ? megaAbility : ability;
 }
 
 void ApplyMegaAbilityChange(ServerFlow* serverFlow, BattleMon* battleMon, u8 pokeID)
@@ -1357,7 +1791,9 @@ bool ProcessMegaActionWork(ServerFlow* serverFlow, ActionOrderWork* actionWork)
     HandlerParam_ChangeForm* changeForm = (HandlerParam_ChangeForm*)BattleHandler_PushWork(serverFlow, EFFECT_CHANGE_FORM, pokemonSlot);
     changeForm->pokeID = pokemonSlot;
     changeForm->newForm = megaForm;
+    changeForm->dontResetOnSwitch = 1;
     ClearStringParam(&changeForm->exStr);
+    RecordPendingMegaClientChange(pokemonSlot, megaForm);
     BattleHandler_PopWork(serverFlow, changeForm);
 
     W2U_BattleAction_ResetMegaEvolution(actionParam);
@@ -1368,12 +1804,7 @@ bool ProcessMegaActionWork(ServerFlow* serverFlow, ActionOrderWork* actionWork)
 
 extern "C" u8 W2U_CanMegaEvolve(BattleMon* battleMon)
 {
-    if (!battleMon) {
-        return 0;
-    }
-
-    const MegaEvolutionEntry* mega = FindMegaEntry(battleMon->species, battleMon->heldItem);
-    return mega ? mega->form : 0;
+    return GetMegaFormForBattleMon(battleMon);
 }
 
 extern "C" u32 W2U_Mega_WrapNativeInputCheckKey(
@@ -1481,6 +1912,7 @@ extern "C" void W2U_Mega_OnActionSelectRoot(BattleActionParam* actionParam)
 extern "C" void W2U_Mega_OnActionSelectFightWait(BtlvCore* btlCore)
 {
     gMegaActiveBtlCore = btlCore;
+    MaintainMegaBattleContext(btlCore);
     if ((GCTX_HIDGetPressedKeys() & W2U_KEY_START) == W2U_KEY_START) {
         ToggleMegaSelectionForActiveMon(btlCore, MEGA_TOGGLE_SOURCE_START);
     }
@@ -1490,6 +1922,7 @@ extern "C" void W2U_Mega_OnActionSelectFightWait(BtlvCore* btlCore)
 extern "C" void W2U_Mega_OnActionSelectFightPostWait(BtlvCore* btlCore)
 {
     gMegaActiveBtlCore = btlCore;
+    MaintainMegaBattleContext(btlCore);
     RefreshMegaButtonState(btlCore);
     PollMegaButtonTouch(btlCore);
     UpdateMegaButtonBg();
@@ -1554,19 +1987,38 @@ extern "C" bool THUMB_BRANCH_BattleHandler_ChangeForm(ServerFlow* serverFlow, Ha
     return true;
 }
 
-extern "C" void W2U_Mega_OnClientChangeFormStart(const u32* args, u32 viewPos)
+extern "C" u32 W2U_Mega_OnClientChangeFormStart(BtlvCore* btlCore, const u32* args, u32 viewPos)
 {
-    (void)viewPos;
+    ClearMegaCustomAnimationState();
     ClearMegaVisualClientState();
+    RecordClientChangeFormArgs(args);
 
-    if (!args) {
-        return;
+    u8 pokeID = 0;
+    u8 form = 0;
+    if (!btlCore || !btlCore->btlvScu ||
+        !ConsumeClientMegaChangeForm(args, &pokeID, &form)) {
+        return 0;
+    }
+    if (!gMegaBattleMainModule && !gMegaBattlePokeCon) {
+        SetMegaBattleContext(btlCore->mainModule, btlCore->pokeCon);
     }
 
-    const u32 pokeID = args[0] & 0xffu;
-    const u32 form = args[1] & 0xffu;
-    W2U_MegaVisualState.clientChangeFormPokeID = pokeID;
-    W2U_MegaVisualState.clientChangeFormForm = form;
+    gMegaCustomAnimationState.active = 1;
+    gMegaCustomAnimationState.pokeID = pokeID;
+    gMegaCustomAnimationState.form = form;
+    gMegaCustomAnimationState.viewPos = (u8)(viewPos & 0xffu);
+    gMegaCustomAnimationState.framesRemaining = W2U_MEGA_ANIMATION_WAIT_FRAMES;
+
+    RefreshMegaFormSprite(btlCore->btlvScu, viewPos);
+    CMD_ACT_MoveAnimStart(
+        btlCore->btlvScu,
+        viewPos,
+        viewPos,
+        W2U_MEGA_ANIMATION_CMD_ID,
+        TARGET_USER,
+        0,
+        0);
+    return 1;
 }
 
 extern "C" void W2U_Mega_OnClientChangeFormWait(const u32* args, u32 waitResult)
@@ -1575,14 +2027,44 @@ extern "C" void W2U_Mega_OnClientChangeFormWait(const u32* args, u32 waitResult)
         return;
     }
 
-    const u32 pokeID = args[0] & 0xffu;
-    const u32 form = args[1] & 0xffu;
-    W2U_MegaVisualState.clientChangeFormPokeID = pokeID;
-    W2U_MegaVisualState.clientChangeFormForm = form;
+    RecordClientChangeFormArgs(args);
 
-    if (IsMegaMawileServerStateReady()) {
+    if (IsMegaServerStateReady()) {
         W2U_MegaVisualState.visualOverrideReady = 1u;
     }
+}
+
+extern "C" u32 W2U_Mega_OnClientChangeFormWaitOverride(BtlvCore* btlCore, const u32* args)
+{
+    if (!gMegaCustomAnimationState.active || !args) {
+        return 2;
+    }
+
+    const u8 pokeID = (u8)(args[0] & 0xffu);
+    const u8 form = (u8)(args[1] & 0xffu);
+    if (gMegaCustomAnimationState.pokeID != pokeID ||
+        gMegaCustomAnimationState.form != form) {
+        ClearMegaCustomAnimationState();
+        return 2;
+    }
+
+    u32 animDone = 1u;
+    if (btlCore) {
+        animDone = CMD_ACT_Wait(btlCore->btlvScu);
+    }
+
+    if (gMegaCustomAnimationState.framesRemaining != 0) {
+        --gMegaCustomAnimationState.framesRemaining;
+        return 0;
+    }
+
+    if (!animDone) {
+        return 0;
+    }
+
+    W2U_Mega_OnClientChangeFormWait(args, 1);
+    ClearMegaCustomAnimationState();
+    return 1;
 }
 
 extern "C" void W2U_Mega_ProcessActionOrder(ServerFlow* serverFlow)
@@ -1590,10 +2072,30 @@ extern "C" void W2U_Mega_ProcessActionOrder(ServerFlow* serverFlow)
     if (!serverFlow) {
         return;
     }
+    if (!gMegaBattleMainModule && !gMegaBattlePokeCon) {
+        SetMegaBattleContext(serverFlow->mainModule, serverFlow->pokeCon);
+    }
 
     for (u32 actionIdx = 0; actionIdx < serverFlow->numActOrder; ++actionIdx) {
         ProcessMegaActionWork(serverFlow, &serverFlow->actionOrderWork[actionIdx]);
     }
+}
+
+bool ShouldResetMegaBattleStateForSetup(ServerFlow* serverFlow)
+{
+    if (!serverFlow) {
+        return true;
+    }
+    if (gMegaBattleServerFlow != serverFlow) {
+        return true;
+    }
+    if (gMegaBattleMainModule && gMegaBattleMainModule != serverFlow->mainModule) {
+        return true;
+    }
+    if (gMegaBattlePokeCon && gMegaBattlePokeCon != serverFlow->pokeCon) {
+        return true;
+    }
+    return false;
 }
 
 extern "C" void THUMB_BRANCH_LINK_ServerFlow_SetupBeforeFirstTurn_0x6E(
@@ -1602,12 +2104,27 @@ extern "C" void THUMB_BRANCH_LINK_ServerFlow_SetupBeforeFirstTurn_0x6E(
     u32 switchInSlot,
     u32 switchOutSlot)
 {
-    ResetMegaBattleState();
-    W2U_AuraField_ResetBattleState();
-    W2U_MoveState_ResetBattleState();
-    RepairLeakedBaseMegaAbilities(serverFlow ? serverFlow->pokeCon : nullptr);
+    const bool resetBattleState = ShouldResetMegaBattleStateForSetup(serverFlow);
+    if (resetBattleState) {
+        ResetMegaBattleState();
+    }
+    gMegaBattleServerFlow = serverFlow;
+    SetMegaBattleContext(
+        serverFlow ? serverFlow->mainModule : nullptr,
+        serverFlow ? serverFlow->pokeCon : nullptr);
+    if (resetBattleState) {
+        W2U_AuraField_ResetBattleState();
+        W2U_MoveState_ResetBattleState();
+        RepairLeakedMegaForms(serverFlow ? serverFlow->pokeCon : nullptr);
+        RepairLeakedBaseMegaAbilities(serverFlow ? serverFlow->pokeCon : nullptr);
+    } else {
+        RepairLeakedMegaStateBeforeUse(serverFlow ? serverFlow->pokeCon : nullptr);
+    }
     ServerControl_SwitchInCore(serverFlow, clientID, switchInSlot, switchOutSlot);
-    RepairLeakedBaseMegaAbilities(serverFlow ? serverFlow->pokeCon : nullptr);
+    if (resetBattleState) {
+        RepairLeakedMegaForms(serverFlow ? serverFlow->pokeCon : nullptr);
+        RepairLeakedBaseMegaAbilities(serverFlow ? serverFlow->pokeCon : nullptr);
+    }
 }
 
 extern "C" void THUMB_BRANCH_BattleMon_UpdateData(BattleMon* battleMon, bool resetForm)
@@ -1625,10 +2142,13 @@ extern "C" void THUMB_BRANCH_BattleMon_UpdateData(BattleMon* battleMon, bool res
     BattleMon_SetMovesAndPP(battleMon);
 
     u8 form = battleMon->form;
-    const u8 megaForm = W2U_CanMegaEvolve(battleMon);
-    if ((megaForm != 0 && form == megaForm) ||
-        (battleMon->flags & 0x20) != 0 ||
-        resetForm) {
+    if (IsBattleMonInMegaForm(battleMon)) {
+        if (resetForm) {
+            RestoreMegaBattleMonToBaseForm(battleMon);
+        } else {
+            MirrorMegaFormToParty(battleMon);
+        }
+    } else if ((battleMon->flags & 0x20) != 0 || resetForm) {
         form = battleMon->flags & 0x1F;
         RestorePartyBaseForm(battleMon, form);
     } else {
@@ -1637,6 +2157,9 @@ extern "C" void THUMB_BRANCH_BattleMon_UpdateData(BattleMon* battleMon, bool res
     }
     PokeParty_SetParam(partyPkm, PF_Item, battleMon->heldItem);
     W2U_MoveState_ClearExtraType(battleMon->battleSlot);
+    if (resetForm) {
+        ResetMegaBattleState();
+    }
 }
 
 static bool W2U_AbilityPreservesFormOnSwitchOut(ABILITY ability)
@@ -1661,9 +2184,12 @@ extern "C" void THUMB_BRANCH_BattleMon_ClearForSwitchOut(BattleMon* battleMon)
         sys_memset(battleMon->conditionFlag, 0, 2u);
     }
 
-    u8 megaForm = W2U_CanMegaEvolve(battleMon);
-    if (!W2U_AbilityPreservesFormOnSwitchOut(battleMon->currentAbility) &&
-        (!megaForm || megaForm != battleMon->form)) {
+    if (IsBattleMonInMegaForm(battleMon)) {
+        RestoreMegaBattleMonToBaseForm(battleMon);
+        return;
+    }
+
+    if (!W2U_AbilityPreservesFormOnSwitchOut(battleMon->currentAbility)) {
         battleMon->form = battleMon->flags & 0x1F;
         battleMon->currentAbility = battleMon->ability;
     } else {
