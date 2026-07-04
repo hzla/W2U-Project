@@ -6,6 +6,79 @@ This repository aims to bring new features to the Generation V Pokémon game, Po
 > `docs/pokeweb-migration-build.md` for current setup, build, and verification
 > commands.
 
+## Pokeweb Branch Changes
+This branch keeps the original W2U expansion goals, but it also carries several
+larger Pokeweb systems. Upstream review is easiest if these are treated as
+separate merge surfaces.
+
+### PWAN animated Pokemon graphics
+- Runtime support lives in `src/pwan_animation/`. It builds the resident
+  `PokewebPwanW2.dll` runtime and contains the battle, summary, evolution, egg
+  hatch, and non-battle hooks for animated Pokemon sprites.
+- Runtime assets live in `assets/pokeweb_pwan/`: `config.bin` plus sparse
+  `NNN_front.pwan` and `NNN_back.pwan` files. `tools/pwan/build_pwan_narc.py`
+  packs them into `vfs/data/zz_pokeweb_pwan/pwan.narc`.
+- `config.bin` now uses the compact `PWNC` v3 layout: a small header plus
+  5-byte species/form rows with front/back flags and one paired asset index.
+  Species and forms absent from this table fall back to normal static graphics.
+- PWAN assets are packed into a single sparse NARC instead of the older loose
+  `vfs/data/pokeweb_pwan` runtime output. NARC member `0` is `config.bin`;
+  front and back animation members are addressed as `asset index * 2 + 1` and
+  `asset index * 2 + 2`.
+- Static fallback and form graphics are staged from `data/graphics/pokegra/`
+  and `data/graphics/pokegra_battle_extra/`; import, relocation, grounding,
+  form, icon, and Mega preview helpers live under `tools/pwan/`.
+- Start with `docs/pwan-animation-workflow.md`, `data/graphics/meson.build`,
+  and `src/pwan_animation/meson.build` when merging or auditing this system.
+
+### New move animation assets
+- Visible battle animation changes are data authored in the move-animation VM
+  scripts and SPA particle archives, not C/C++. The routing hook is
+  `src/pokeweb_gameplay/w2u_move_animation_hooks.s`.
+- Move scripts are staged from `data/graphics/move_animations/` into archive
+  `a/0/6/5`; SPA particle archives are staged from `data/graphics/move_spas/`
+  into archive `a/0/0/6`. Both staging paths are wired in
+  `data/graphics/meson.build`.
+- The current generated Gen 6 move script range is `5_00000560.bin` through
+  `5_00000623.bin`, with matching custom SPA additions currently in the
+  `6_00000739.bin` through `6_00000783.bin` range.
+- Per-animation notes live in `data/graphics/move_animations/README.md` and
+  `data/graphics/move_spas/README.md`; broader editing references are in
+  `docs/moveanimation-spanotes.md`, `docs/spa-editing-reference.md`, and
+  `tools/import_move_animations_from_rom.py`.
+
+### Mega Evolution
+- Core mechanics, action selection integration, battle state repair, native
+  Mega button behavior, and sprite-refresh synchronization live in
+  `src/pokeweb_gameplay/w2u_mega.cpp` and
+  `src/pokeweb_gameplay/w2u_mega_hooks.s`.
+- The visible transformation is still handled by the move-animation system:
+  `data/graphics/move_animations/5_00000622.bin` uses SPA assets
+  `data/graphics/move_spas/6_00000765.bin` through
+  `data/graphics/move_spas/6_00000771.bin`.
+- Mega item definitions and icons are spread across `data/items/`,
+  `tools/mkdata/enum/items.toml`, `assets/item_icons/icons/`,
+  `assets/item_icons/icon_palettes/`, `tools/item_icons/build_item_icon_patch.py`,
+  and `include/w2u_mega_native_button_assets.h`.
+- Mega form graphics share the PWAN and pokegra paths above, with preview/form
+  staging helpers in `tools/pwan/apply_mega_preview_low_ids.py`,
+  `tools/pwan/stage_form_battle_assets.py`, and
+  `tools/pwan/stage_form_icon_assets.py`.
+
+### Move, ability, and item mechanics
+- Pokeweb gameplay extensions are grouped in `src/pokeweb_gameplay/`:
+  `w2u_moves.cpp`, `w2u_abilities.cpp`, `w2u_items.cpp`,
+  `w2u_field_effects.cpp`, `w2u_field_items.cpp`, plus the associated hook
+  assembly listed in `src/pokeweb_gameplay/meson.build`.
+- Public declarations and expanded enums are in `include/w2u_moves.h`,
+  `include/w2u_abilities.h`, `include/w2u_field_effects.h`,
+  `include/w2u_battle.h`, `include/Moves.h`, `include/Items.h`,
+  `include/Species.h`, `include/Personal.h`, and `include/Types.h`.
+- Data-side changes live mainly under `data/pml/`, `data/pml/moves/`,
+  `data/pml/types/`, `data/items/`, `data/text/system/`, and `data/trainers/`.
+  The mkdata enum inputs in `tools/mkdata/enum/` should be reviewed alongside
+  those data files.
+
 ## Current Features
 - Expanded Pokédex (currently up to 721).
 - Fairy type.
