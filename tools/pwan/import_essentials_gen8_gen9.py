@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import re
 import shutil
 import struct
@@ -21,10 +22,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-REPOS = ROOT.parent
-PORT = Path("/Users/andylee/Repos/Port-Pokeweb")
-if not PORT.exists():
-    PORT = REPOS / "Port-Pokeweb"
+PORT = Path(os.environ.get("POKEWEB_SOURCE_ROOT", ROOT.parent / "pokeweb-source"))
 ESSENTIALS_GIFS = PORT / "essentials_gifs"
 ESSENTIALS_PNGS = PORT / "essentials_pngs"
 GEN7_DOWNLOADS = PORT / "gen7-sprite-work" / "downloads"

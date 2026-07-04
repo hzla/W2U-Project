@@ -36,7 +36,7 @@ extern "C" void THUMB_BRANCH_ServerEvent_GetMoveParam(
     BattleMon* battleMon,
     MoveParam* moveParam);
 
-extern "C" void W2U_Mega_ProcessCurrentAction(ServerFlow* serverFlow, ActionOrderWork* actionWork);
+extern "C" void W2U_Mega_ProcessActionOrderBeforeMoves(ServerFlow* serverFlow, u32 startActionIdx);
 
 static ConditionData W2U_GetStoredMoveCondition(BattleMon* battleMon, CONDITION condition)
 {
@@ -330,7 +330,7 @@ extern "C" u32 W2U_ActionOrder_ProcWithExtras(ServerFlow* serverFlow, ActionOrde
         return 0;
     }
 
-    W2U_Mega_ProcessCurrentAction(serverFlow, actionWork);
+    W2U_Mega_ProcessActionOrderBeforeMoves(serverFlow, 0);
     u32 procAction = ActionOrder_Proc(serverFlow, actionWork);
 
     for (u32 processed = 0;
@@ -349,7 +349,6 @@ extern "C" u32 W2U_ActionOrder_ProcWithExtras(ServerFlow* serverFlow, ActionOrde
         Turnflag_Clear(extraAction->battleMon, TURNFLAG_USINGFLING);
 
         SetExtraActionFlag();
-        W2U_Mega_ProcessCurrentAction(serverFlow, extraAction);
         procAction = ActionOrder_Proc(serverFlow, extraAction);
         ResetExtraActionFlag();
         W2U_AdvanceExtraActionOrders();
@@ -597,6 +596,7 @@ extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, 
     ResetExtraActionFlag();
 
     W2U_SortBySpeedDynamic(serverFlow, actionOrderWork, (u8)currentActionIdx, true);
+    W2U_Mega_ProcessActionOrderBeforeMoves(serverFlow, currentActionIdx);
 
     while (currentActionIdx < W2U_GetActionOrderCount(serverFlow) || sExtraActionOrder[0].battleMon) {
         ActionOrderWork* currentActionOrder = nullptr;
@@ -630,7 +630,6 @@ extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, 
             }
         }
 
-        W2U_Mega_ProcessCurrentAction(serverFlow, currentActionOrder);
         procAction = ActionOrder_Proc(serverFlow, currentActionOrder);
 
         bool shouldSortAfterAction = sInterruptActionFlag != 1;

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import struct
 import subprocess
@@ -21,10 +22,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[2]
-REPOS = ROOT.parent
-PORT = Path("/Users/andylee/Repos/Port-Pokeweb")
-if not PORT.exists():
-    PORT = REPOS / "Port-Pokeweb"
+PORT = Path(os.environ.get("POKEWEB_SOURCE_ROOT", ROOT.parent / "pokeweb-source"))
 
 PWAN_DIR = ROOT / "assets" / "pokeweb_pwan"
 CONFIG_PATH = PWAN_DIR / "config.bin"

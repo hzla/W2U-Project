@@ -782,17 +782,23 @@ text = [
 
 [msg.section_0.entries.113]
 text = [
-  "$",
+  "One of the mysterious Mega Stones.\\n",
+  "Have certain Pokémon hold it, and this stone\\n",
+  "will enable them to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.114]
 text = [
-  "$",
+  "One of the mysterious Mega Stones.\\n",
+  "It resonates with certain Pokémon that\\n",
+  "Mega Evolve into an X form.$",
 ]
 
 [msg.section_0.entries.115]
 text = [
-  "$",
+  "One of the mysterious Mega Stones.\\n",
+  "It resonates with certain Pokémon that\\n",
+  "Mega Evolve into a Y form.$",
 ]
 
 [msg.section_0.entries.116]

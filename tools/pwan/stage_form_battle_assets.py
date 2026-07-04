@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import re
 import shutil
 import sys
@@ -18,9 +19,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PORT = Path("/Users/andylee/Repos/Port-Pokeweb")
-if not PORT.exists():
-    PORT = ROOT.parent / "Port-Pokeweb"
+PORT = Path(os.environ.get("POKEWEB_SOURCE_ROOT", ROOT.parent / "pokeweb-source"))
 
 TRACKER = PORT / "White2Expansion" / "data" / "pokemon.gen6.json"
 ESSENTIALS_GIFS = PORT / "essentials_gifs"

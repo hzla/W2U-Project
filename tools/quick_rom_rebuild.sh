@@ -4,9 +4,9 @@ set -euo pipefail
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 
-java_bin="${JAVA:-/opt/homebrew/Cellar/openjdk@11/11.0.31/bin/java}"
+java_bin="${JAVA:-java}"
 rom_out="${ROM_OUT:-build/White2Upgrade.nds}"
-copy_to="${COPY_ROM_TO:-/Users/andylee/Repos/White2Upgrade.nds}"
+copy_to="${COPY_ROM_TO:-build/White2Upgrade-copy.nds}"
 quick_rom_method="${QUICK_ROM_METHOD:-patch}"
 
 usage() {
@@ -25,7 +25,7 @@ Modes:
 Environment:
   JAVA              Java binary to use for CTRMap
   ROM_OUT           Output ROM path, default build/White2Upgrade.nds
-  COPY_ROM_TO       Copy destination, default /Users/andylee/Repos/White2Upgrade.nds
+  COPY_ROM_TO       Copy destination, default build/White2Upgrade-copy.nds
   QUICK_ROM_METHOD  patch (default) or rombuilder
 EOF
 }

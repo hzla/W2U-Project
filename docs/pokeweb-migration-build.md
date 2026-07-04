@@ -1,8 +1,8 @@
 # Pokeweb Migration Build Setup
 
 **Full local rebuild note:** from the repository root, use
-`JAVA=/opt/homebrew/Cellar/openjdk@11/11.0.31/bin/java ninja -C build White2Upgrade.nds`
-and then copy `build/White2Upgrade.nds` to `/Users/andylee/Repos/White2Upgrade.nds`.
+`JAVA=java ninja -C build White2Upgrade.nds`
+and then copy `build/White2Upgrade.nds` to the desired output path.
 The macOS `/usr/bin/java` stub is not enough for CTRMap/RPMTool.
 
 **Fast data-test rebuild note:** for trainer and personal-data test edits, prefer
@@ -50,20 +50,18 @@ python3 subprojects/meson-1.7.0/meson.py configure build -Dpokegra_fallback_comp
 
 The target is incremental after its first run. It writes
 `build/data/graphics/stage_pokegra_battle.manifest.json` and then only restages
-changed NNS entries, extra binaries, or affected PWAN fallback patches. Current
-observed timings on the M3 Pro are about 1.3 seconds for a no-op stage and about
-1.7 seconds after touching five Gen 7 PWAN assets. Delete the manifest or run
+changed NNS entries, extra binaries, or affected PWAN fallback patches. Local
+test timings were about 1.3 seconds for a no-op stage and about 1.7 seconds
+after touching five Gen 7 PWAN assets. Delete the manifest or run
 `tools/graphics/build_pokegra_battle.py` with `--force-full` when a complete
 restage is needed for debugging.
 
 ## Required Local Tools
 
-- Java 8-compatible JDK. `java` must be on `PATH` for CTRMap.
-  On this machine, Homebrew JDKs are available under `/opt/homebrew/opt`; for
-  example:
+- Java 8-compatible JDK. `java` must be on `PATH` for CTRMap. For example:
 
   ```sh
-  export JAVA=/opt/homebrew/opt/openjdk@17/bin/java
+  export JAVA=/path/to/jdk/bin/java
   ```
 - ARM embedded toolchain with `arm-none-eabi-as`, `arm-none-eabi-gcc`,
   `arm-none-eabi-g++`, `arm-none-eabi-ld`, `arm-none-eabi-objcopy`, and

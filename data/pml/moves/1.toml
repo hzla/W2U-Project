@@ -2,12 +2,12 @@
 Type = "TYPE_NORMAL"
 Quality = "EFFECT_NO_SPECIAL_EFFECT"
 Category = "SPLIT_PHYSICAL"
-Power = 40
+Power = 50
 Accuracy = 100
 "Base PP" = 35
 Priority = 0
 Hit = "0 | 0"
-"Inflict Status" = "STATUS_NONE"
+"Inflict Status" = "STAT_NONE"
 "Inflict Chance" = 0
 "Inflict Duration" = "INFLICT_DURATION_NONE"
 "Turn (min)" = 0

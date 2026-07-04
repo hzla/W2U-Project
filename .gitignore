@@ -27,3 +27,4 @@ vfs/data/a/2/1/3/
 vfs/data/zz_pokeweb_pwan/
 .vscode
 tools/migration/verify_pokeweb_migration.py
+.DS_Store

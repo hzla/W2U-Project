@@ -90,10 +90,10 @@
       },
       "import": {
         "assetIndex": 1095,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/rattata-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/rattata-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/rattata-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/RATTATA_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/rattata-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/rattata-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/rattata-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/RATTATA_1.png",
         "stats": {
           "front": {
             "frames": 14,
@@ -146,10 +146,10 @@
       },
       "import": {
         "assetIndex": 1096,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raticate-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raticate-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raticate-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/RATICATE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/raticate-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/raticate-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/raticate-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/RATICATE_1.png",
         "stats": {
           "front": {
             "frames": 27,
@@ -202,10 +202,10 @@
       },
       "import": {
         "assetIndex": 1099,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raichu-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raichu-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/raichu-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/RAICHU_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/raichu-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/raichu-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/raichu-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/RAICHU_1.png",
         "stats": {
           "front": {
             "frames": 40,
@@ -258,10 +258,10 @@
       },
       "import": {
         "assetIndex": 1100,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandshrew-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandshrew-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandshrew-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SANDSHREW_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/sandshrew-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/sandshrew-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/sandshrew-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/SANDSHREW_1.png",
         "stats": {
           "front": {
             "frames": 17,
@@ -314,10 +314,10 @@
       },
       "import": {
         "assetIndex": 1101,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandslash-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandslash-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/sandslash-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SANDSLASH_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/sandslash-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/sandslash-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/sandslash-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/SANDSLASH_1.png",
         "stats": {
           "front": {
             "frames": 44,
@@ -370,10 +370,10 @@
       },
       "import": {
         "assetIndex": 1102,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/vulpix-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/vulpix-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/vulpix-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/VULPIX_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/vulpix-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/vulpix-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/vulpix-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/VULPIX_1.png",
         "stats": {
           "front": {
             "frames": 10,
@@ -426,10 +426,10 @@
       },
       "import": {
         "assetIndex": 1103,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/ninetales-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/ninetales-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/ninetales-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/NINETALES_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/ninetales-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/ninetales-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/ninetales-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/NINETALES_1.png",
         "stats": {
           "front": {
             "frames": 16,
@@ -482,10 +482,10 @@
       },
       "import": {
         "assetIndex": 1104,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/diglett-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/diglett-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/diglett-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DIGLETT_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/diglett-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/diglett-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/diglett-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/DIGLETT_1.png",
         "stats": {
           "front": {
             "frames": 16,
@@ -538,10 +538,10 @@
       },
       "import": {
         "assetIndex": 1105,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/dugtrio-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/dugtrio-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/dugtrio-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DUGTRIO_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/dugtrio-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/dugtrio-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/dugtrio-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/DUGTRIO_1.png",
         "stats": {
           "front": {
             "frames": 22,
@@ -594,10 +594,10 @@
       },
       "import": {
         "assetIndex": 1106,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/meowth-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/meowth-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/meowth-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MEOWTH_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/meowth-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/meowth-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/meowth-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/MEOWTH_1.png",
         "stats": {
           "front": {
             "frames": 23,
@@ -650,10 +650,10 @@
       },
       "import": {
         "assetIndex": 1107,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/MEOWTH_2.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/MEOWTH_2.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/MEOWTH_2.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MEOWTH_2.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/MEOWTH_2.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/MEOWTH_2.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/MEOWTH_2.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/MEOWTH_2.png",
         "stats": {
           "front": {
             "frames": 43,
@@ -706,10 +706,10 @@
       },
       "import": {
         "assetIndex": 1108,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/persian-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/persian-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/persian-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/PERSIAN_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/persian-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/persian-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/persian-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/PERSIAN_1.png",
         "stats": {
           "front": {
             "frames": 39,
@@ -762,10 +762,10 @@
       },
       "import": {
         "assetIndex": 1109,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/GROWLITHE_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/GROWLITHE_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/GROWLITHE_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GROWLITHE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/GROWLITHE_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/GROWLITHE_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/GROWLITHE_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/GROWLITHE_1.png",
         "stats": {
           "front": {
             "frames": 114,
@@ -818,10 +818,10 @@
       },
       "import": {
         "assetIndex": 1110,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ARCANINE_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ARCANINE_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ARCANINE_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ARCANINE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/ARCANINE_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/ARCANINE_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/ARCANINE_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/ARCANINE_1.png",
         "stats": {
           "front": {
             "frames": 23,
@@ -874,10 +874,10 @@
       },
       "import": {
         "assetIndex": 1111,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/geodude-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/geodude-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/geodude-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GEODUDE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/geodude-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/geodude-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/geodude-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/GEODUDE_1.png",
         "stats": {
           "front": {
             "frames": 24,
@@ -930,10 +930,10 @@
       },
       "import": {
         "assetIndex": 1112,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/graveler-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/graveler-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/graveler-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GRAVELER_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/graveler-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/graveler-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/graveler-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/GRAVELER_1.png",
         "stats": {
           "front": {
             "frames": 47,
@@ -986,10 +986,10 @@
       },
       "import": {
         "assetIndex": 1113,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/golem-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/golem-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/golem-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GOLEM_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/golem-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/golem-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/golem-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/GOLEM_1.png",
         "stats": {
           "front": {
             "frames": 47,
@@ -1042,10 +1042,10 @@
       },
       "import": {
         "assetIndex": 1114,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/PONYTA_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/PONYTA_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/PONYTA_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/PONYTA_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/PONYTA_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/PONYTA_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/PONYTA_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/PONYTA_1.png",
         "stats": {
           "front": {
             "frames": 7,
@@ -1098,10 +1098,10 @@
       },
       "import": {
         "assetIndex": 1115,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/RAPIDASH_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/RAPIDASH_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/RAPIDASH_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/RAPIDASH_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/RAPIDASH_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/RAPIDASH_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/RAPIDASH_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/RAPIDASH_1.png",
         "stats": {
           "front": {
             "frames": 8,
@@ -1154,10 +1154,10 @@
       },
       "import": {
         "assetIndex": 1116,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SLOWPOKE_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SLOWPOKE_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SLOWPOKE_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SLOWPOKE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/SLOWPOKE_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/SLOWPOKE_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/SLOWPOKE_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/SLOWPOKE_1.png",
         "stats": {
           "front": {
             "frames": 35,
@@ -1210,10 +1210,10 @@
       },
       "import": {
         "assetIndex": 1118,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SLOWBRO_2.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SLOWBRO_2.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SLOWBRO_2.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SLOWBRO_2.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/SLOWBRO_2.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/SLOWBRO_2.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/SLOWBRO_2.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/SLOWBRO_2.png",
         "stats": {
           "front": {
             "frames": 15,
@@ -1266,10 +1266,10 @@
       },
       "import": {
         "assetIndex": 1119,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/FARFETCHD_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/FARFETCHD_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/FARFETCHD_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/FARFETCHD_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/FARFETCHD_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/FARFETCHD_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/FARFETCHD_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/FARFETCHD_1.png",
         "stats": {
           "front": {
             "frames": 15,
@@ -1322,10 +1322,10 @@
       },
       "import": {
         "assetIndex": 1120,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/grimer-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/grimer-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/grimer-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GRIMER_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/grimer-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/grimer-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/grimer-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/GRIMER_1.png",
         "stats": {
           "front": {
             "frames": 18,
@@ -1378,10 +1378,10 @@
       },
       "import": {
         "assetIndex": 1121,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/muk-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/muk-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/muk-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MUK_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/muk-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/muk-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/muk-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/MUK_1.png",
         "stats": {
           "front": {
             "frames": 46,
@@ -1434,10 +1434,10 @@
       },
       "import": {
         "assetIndex": 1122,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/VOLTORB_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/VOLTORB_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/VOLTORB_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/VOLTORB_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/VOLTORB_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/VOLTORB_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/VOLTORB_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/VOLTORB_1.png",
         "stats": {
           "front": {
             "frames": 17,
@@ -1490,10 +1490,10 @@
       },
       "import": {
         "assetIndex": 1123,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ELECTRODE_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ELECTRODE_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ELECTRODE_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ELECTRODE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/ELECTRODE_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/ELECTRODE_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/ELECTRODE_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/ELECTRODE_1.png",
         "stats": {
           "front": {
             "frames": 28,
@@ -1546,10 +1546,10 @@
       },
       "import": {
         "assetIndex": 1124,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/exeggutor-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/exeggutor-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/exeggutor-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/EXEGGUTOR_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/exeggutor-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/exeggutor-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/exeggutor-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/EXEGGUTOR_1.png",
         "stats": {
           "front": {
             "frames": 53,
@@ -1602,10 +1602,10 @@
       },
       "import": {
         "assetIndex": 1125,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/marowak-front.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/marowak-back.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/gen7-sprite-work/downloads/marowak-front-shiny.gif",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MAROWAK_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/marowak-front.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/marowak-back.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/gen7-sprite-work/downloads/marowak-front-shiny.gif",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/MAROWAK_1.png",
         "stats": {
           "front": {
             "frames": 56,
@@ -1658,10 +1658,10 @@
       },
       "import": {
         "assetIndex": 1126,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/WEEZING_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/WEEZING_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/WEEZING_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/WEEZING_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/WEEZING_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/WEEZING_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/WEEZING_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/WEEZING_1.png",
         "stats": {
           "front": {
             "frames": 19,
@@ -1714,10 +1714,10 @@
       },
       "import": {
         "assetIndex": 1127,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/MRMIME_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/MRMIME_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/MRMIME_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MRMIME_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/MRMIME_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/MRMIME_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/MRMIME_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/MRMIME_1.png",
         "stats": {
           "front": {
             "frames": 6,
@@ -1770,10 +1770,10 @@
       },
       "import": {
         "assetIndex": 1128,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/TAUROS_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/TAUROS_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/TAUROS_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/TAUROS_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/TAUROS_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/TAUROS_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/TAUROS_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/TAUROS_1.png",
         "stats": {
           "front": {
             "frames": 20,
@@ -1826,10 +1826,10 @@
       },
       "import": {
         "assetIndex": 1129,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/TAUROS_2.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/TAUROS_2.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/TAUROS_2.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/TAUROS_2.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/TAUROS_2.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/TAUROS_2.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/TAUROS_2.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/TAUROS_2.png",
         "stats": {
           "front": {
             "frames": 12,
@@ -1882,10 +1882,10 @@
       },
       "import": {
         "assetIndex": 1130,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/TAUROS_3.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/TAUROS_3.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/TAUROS_3.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/TAUROS_3.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/TAUROS_3.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/TAUROS_3.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/TAUROS_3.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/TAUROS_3.png",
         "stats": {
           "front": {
             "frames": 8,
@@ -1938,10 +1938,10 @@
       },
       "import": {
         "assetIndex": 1131,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ARTICUNO_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ARTICUNO_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ARTICUNO_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ARTICUNO_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/ARTICUNO_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/ARTICUNO_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/ARTICUNO_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/ARTICUNO_1.png",
         "stats": {
           "front": {
             "frames": 7,
@@ -1994,10 +1994,10 @@
       },
       "import": {
         "assetIndex": 1132,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZAPDOS_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZAPDOS_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZAPDOS_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZAPDOS_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/ZAPDOS_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/ZAPDOS_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/ZAPDOS_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/ZAPDOS_1.png",
         "stats": {
           "front": {
             "frames": 17,
@@ -2050,10 +2050,10 @@
       },
       "import": {
         "assetIndex": 1133,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/MOLTRES_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/MOLTRES_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/MOLTRES_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MOLTRES_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/MOLTRES_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/MOLTRES_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/MOLTRES_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/MOLTRES_1.png",
         "stats": {
           "front": {
             "frames": 10,
@@ -2106,10 +2106,10 @@
       },
       "import": {
         "assetIndex": 1134,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/TYPHLOSION_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/TYPHLOSION_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/TYPHLOSION_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/TYPHLOSION_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/TYPHLOSION_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/TYPHLOSION_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/TYPHLOSION_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/TYPHLOSION_1.png",
         "stats": {
           "front": {
             "frames": 24,
@@ -2162,10 +2162,10 @@
       },
       "import": {
         "assetIndex": 1135,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/WOOPER_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/WOOPER_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/WOOPER_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/WOOPER_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/WOOPER_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/WOOPER_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/WOOPER_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/WOOPER_1.png",
         "stats": {
           "front": {
             "frames": 11,
@@ -2218,10 +2218,10 @@
       },
       "import": {
         "assetIndex": 1136,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SLOWKING_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SLOWKING_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SLOWKING_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SLOWKING_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/SLOWKING_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/SLOWKING_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/SLOWKING_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/SLOWKING_1.png",
         "stats": {
           "front": {
             "frames": 30,
@@ -2274,10 +2274,10 @@
       },
       "import": {
         "assetIndex": 1137,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/QWILFISH_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/QWILFISH_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/QWILFISH_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/QWILFISH_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/QWILFISH_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/QWILFISH_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/QWILFISH_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/QWILFISH_1.png",
         "stats": {
           "front": {
             "frames": 24,
@@ -2330,10 +2330,10 @@
       },
       "import": {
         "assetIndex": 1138,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SNEASEL_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SNEASEL_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SNEASEL_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SNEASEL_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/SNEASEL_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/SNEASEL_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/SNEASEL_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/SNEASEL_1.png",
         "stats": {
           "front": {
             "frames": 18,
@@ -2386,10 +2386,10 @@
       },
       "import": {
         "assetIndex": 1139,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/CORSOLA_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/CORSOLA_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/CORSOLA_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/CORSOLA_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/CORSOLA_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/CORSOLA_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/CORSOLA_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/CORSOLA_1.png",
         "stats": {
           "front": {
             "frames": 20,
@@ -2442,10 +2442,10 @@
       },
       "import": {
         "assetIndex": 1140,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZIGZAGOON_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZIGZAGOON_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZIGZAGOON_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZIGZAGOON_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/ZIGZAGOON_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/ZIGZAGOON_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/ZIGZAGOON_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/ZIGZAGOON_1.png",
         "stats": {
           "front": {
             "frames": 23,
@@ -2498,10 +2498,10 @@
       },
       "import": {
         "assetIndex": 1141,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/LINOONE_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/LINOONE_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/LINOONE_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/LINOONE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/LINOONE_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/LINOONE_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/LINOONE_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/LINOONE_1.png",
         "stats": {
           "front": {
             "frames": 28,
@@ -2554,10 +2554,10 @@
       },
       "import": {
         "assetIndex": 1142,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SAMUROTT_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SAMUROTT_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SAMUROTT_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SAMUROTT_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/SAMUROTT_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/SAMUROTT_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/SAMUROTT_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/SAMUROTT_1.png",
         "stats": {
           "front": {
             "frames": 33,
@@ -2610,10 +2610,10 @@
       },
       "import": {
         "assetIndex": 1143,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/LILLIGANT_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/LILLIGANT_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/LILLIGANT_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/LILLIGANT_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/LILLIGANT_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/LILLIGANT_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/LILLIGANT_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/LILLIGANT_1.png",
         "stats": {
           "front": {
             "frames": 56,
@@ -2666,10 +2666,10 @@
       },
       "import": {
         "assetIndex": 1144,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/DARUMAKA_2.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/DARUMAKA_2.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/DARUMAKA_2.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DARUMAKA_2.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/DARUMAKA_2.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/DARUMAKA_2.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/DARUMAKA_2.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/DARUMAKA_2.png",
         "stats": {
           "front": {
             "frames": 7,
@@ -2722,10 +2722,10 @@
       },
       "import": {
         "assetIndex": 1146,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/DARMANITAN_2.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/DARMANITAN_2.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/DARMANITAN_2.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DARMANITAN_2.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/DARMANITAN_2.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/DARMANITAN_2.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/DARMANITAN_2.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/DARMANITAN_2.png",
         "stats": {
           "front": {
             "frames": 7,
@@ -2778,10 +2778,10 @@
       },
       "import": {
         "assetIndex": 1147,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/DARMANITAN_3.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/DARMANITAN_3.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/DARMANITAN_3.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DARMANITAN_3.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/DARMANITAN_3.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/DARMANITAN_3.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/DARMANITAN_3.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/DARMANITAN_3.png",
         "stats": {
           "front": {
             "frames": 6,
@@ -2834,10 +2834,10 @@
       },
       "import": {
         "assetIndex": 1148,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/YAMASK_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/YAMASK_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/YAMASK_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/YAMASK_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/YAMASK_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/YAMASK_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/YAMASK_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/YAMASK_1.png",
         "stats": {
           "front": {
             "frames": 7,
@@ -2890,10 +2890,10 @@
       },
       "import": {
         "assetIndex": 1149,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZORUA_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZORUA_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZORUA_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZORUA_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/ZORUA_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/ZORUA_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/ZORUA_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/ZORUA_1.png",
         "stats": {
           "front": {
             "frames": 23,
@@ -2946,10 +2946,10 @@
       },
       "import": {
         "assetIndex": 1150,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZOROARK_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZOROARK_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZOROARK_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZOROARK_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/ZOROARK_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/ZOROARK_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/ZOROARK_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/ZOROARK_1.png",
         "stats": {
           "front": {
             "frames": 24,
@@ -3002,10 +3002,10 @@
       },
       "import": {
         "assetIndex": 1151,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/STUNFISK_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/STUNFISK_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/STUNFISK_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/STUNFISK_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/STUNFISK_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/STUNFISK_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/STUNFISK_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/STUNFISK_1.png",
         "stats": {
           "front": {
             "frames": 7,
@@ -3058,10 +3058,10 @@
       },
       "import": {
         "assetIndex": 1152,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/BRAVIARY_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/BRAVIARY_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/BRAVIARY_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/BRAVIARY_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/BRAVIARY_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/BRAVIARY_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/BRAVIARY_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/BRAVIARY_1.png",
         "stats": {
           "front": {
             "frames": 36,
@@ -3114,10 +3114,10 @@
       },
       "import": {
         "assetIndex": 1153,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SLIGGOO_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SLIGGOO_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SLIGGOO_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SLIGGOO_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/SLIGGOO_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/SLIGGOO_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/SLIGGOO_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/SLIGGOO_1.png",
         "stats": {
           "front": {
             "frames": 45,
@@ -3170,10 +3170,10 @@
       },
       "import": {
         "assetIndex": 1154,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/GOODRA_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/GOODRA_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/GOODRA_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GOODRA_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/GOODRA_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/GOODRA_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/GOODRA_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/GOODRA_1.png",
         "stats": {
           "front": {
             "frames": 47,
@@ -3226,10 +3226,10 @@
       },
       "import": {
         "assetIndex": 1155,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/AVALUGG_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/AVALUGG_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/AVALUGG_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/AVALUGG_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/AVALUGG_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/AVALUGG_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/AVALUGG_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/AVALUGG_1.png",
         "stats": {
           "front": {
             "frames": 27,
@@ -3282,10 +3282,10 @@
       },
       "import": {
         "assetIndex": 1156,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/DECIDUEYE_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/DECIDUEYE_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/DECIDUEYE_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DECIDUEYE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/DECIDUEYE_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/DECIDUEYE_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/DECIDUEYE_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/DECIDUEYE_1.png",
         "stats": {
           "front": {
             "frames": 55,
@@ -3338,10 +3338,10 @@
       },
       "import": {
         "assetIndex": 1157,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/TOXTRICITY_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/TOXTRICITY_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/TOXTRICITY_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/TOXTRICITY_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/TOXTRICITY_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/TOXTRICITY_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/TOXTRICITY_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/TOXTRICITY_1.png",
         "stats": {
           "front": {
             "frames": 7,
@@ -3394,10 +3394,10 @@
       },
       "import": {
         "assetIndex": 1158,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/EISCUE_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/EISCUE_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/EISCUE_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/EISCUE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/EISCUE_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/EISCUE_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/EISCUE_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/EISCUE_1.png",
         "stats": {
           "front": {
             "frames": 23,
@@ -3450,10 +3450,10 @@
       },
       "import": {
         "assetIndex": 1159,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/INDEEDEE_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/INDEEDEE_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/INDEEDEE_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/INDEEDEE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/INDEEDEE_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/INDEEDEE_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/INDEEDEE_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/INDEEDEE_1.png",
         "stats": {
           "front": {
             "frames": 36,
@@ -3506,10 +3506,10 @@
       },
       "import": {
         "assetIndex": 1160,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/MORPEKO_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/MORPEKO_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/MORPEKO_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MORPEKO_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/MORPEKO_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/MORPEKO_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/MORPEKO_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/MORPEKO_1.png",
         "stats": {
           "front": {
             "frames": 11,
@@ -3562,10 +3562,10 @@
       },
       "import": {
         "assetIndex": 1161,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZACIAN_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZACIAN_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZACIAN_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZACIAN_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/ZACIAN_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/ZACIAN_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/ZACIAN_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/ZACIAN_1.png",
         "stats": {
           "front": {
             "frames": 31,
@@ -3618,10 +3618,10 @@
       },
       "import": {
         "assetIndex": 1162,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZAMAZENTA_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZAMAZENTA_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZAMAZENTA_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZAMAZENTA_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/ZAMAZENTA_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/ZAMAZENTA_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/ZAMAZENTA_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/ZAMAZENTA_1.png",
         "stats": {
           "front": {
             "frames": 58,
@@ -3674,10 +3674,10 @@
       },
       "import": {
         "assetIndex": 1163,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/URSHIFU_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/URSHIFU_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/URSHIFU_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/URSHIFU_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/URSHIFU_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/URSHIFU_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/URSHIFU_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/URSHIFU_1.png",
         "stats": {
           "front": {
             "frames": 10,
@@ -3730,10 +3730,10 @@
       },
       "import": {
         "assetIndex": 1164,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ZARUDE_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ZARUDE_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ZARUDE_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ZARUDE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/ZARUDE_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/ZARUDE_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/ZARUDE_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/ZARUDE_1.png",
         "stats": {
           "front": {
             "frames": 11,
@@ -3786,10 +3786,10 @@
       },
       "import": {
         "assetIndex": 1165,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/CALYREX_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/CALYREX_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/CALYREX_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/CALYREX_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/CALYREX_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/CALYREX_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/CALYREX_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/CALYREX_1.png",
         "stats": {
           "front": {
             "frames": 29,
@@ -3842,10 +3842,10 @@
       },
       "import": {
         "assetIndex": 1166,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/CALYREX_2.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/CALYREX_2.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/CALYREX_2.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/CALYREX_2.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/CALYREX_2.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/CALYREX_2.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/CALYREX_2.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/CALYREX_2.png",
         "stats": {
           "front": {
             "frames": 7,
@@ -3898,10 +3898,10 @@
       },
       "import": {
         "assetIndex": 1167,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/BASCULEGION_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/BASCULEGION_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/BASCULEGION_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/BASCULEGION_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/BASCULEGION_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/BASCULEGION_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/BASCULEGION_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/BASCULEGION_1.png",
         "stats": {
           "front": {
             "frames": 45,
@@ -3954,10 +3954,10 @@
       },
       "import": {
         "assetIndex": 1168,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/ENAMORUS_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/ENAMORUS_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/ENAMORUS_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/ENAMORUS_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/ENAMORUS_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/ENAMORUS_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/ENAMORUS_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/ENAMORUS_1.png",
         "stats": {
           "front": {
             "frames": 15,
@@ -4010,10 +4010,10 @@
       },
       "import": {
         "assetIndex": 1169,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/OINKOLOGNE_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/OINKOLOGNE_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/OINKOLOGNE_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/OINKOLOGNE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/OINKOLOGNE_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/OINKOLOGNE_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/OINKOLOGNE_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/OINKOLOGNE_1.png",
         "stats": {
           "front": {
             "frames": 6,
@@ -4066,10 +4066,10 @@
       },
       "import": {
         "assetIndex": 1170,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/MAUSHOLD_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/MAUSHOLD_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/MAUSHOLD_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/MAUSHOLD_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/MAUSHOLD_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/MAUSHOLD_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/MAUSHOLD_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/MAUSHOLD_1.png",
         "stats": {
           "front": {
             "frames": 40,
@@ -4122,10 +4122,10 @@
       },
       "import": {
         "assetIndex": 1171,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SQUAWKABILLY_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SQUAWKABILLY_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SQUAWKABILLY_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SQUAWKABILLY_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/SQUAWKABILLY_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/SQUAWKABILLY_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/SQUAWKABILLY_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/SQUAWKABILLY_1.png",
         "stats": {
           "front": {
             "frames": 18,
@@ -4178,10 +4178,10 @@
       },
       "import": {
         "assetIndex": 1172,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SQUAWKABILLY_2.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SQUAWKABILLY_2.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SQUAWKABILLY_2.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SQUAWKABILLY_2.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/SQUAWKABILLY_2.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/SQUAWKABILLY_2.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/SQUAWKABILLY_2.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/SQUAWKABILLY_2.png",
         "stats": {
           "front": {
             "frames": 18,
@@ -4234,10 +4234,10 @@
       },
       "import": {
         "assetIndex": 1173,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/SQUAWKABILLY_3.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/SQUAWKABILLY_3.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/SQUAWKABILLY_3.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/SQUAWKABILLY_3.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/SQUAWKABILLY_3.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/SQUAWKABILLY_3.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/SQUAWKABILLY_3.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/SQUAWKABILLY_3.png",
         "stats": {
           "front": {
             "frames": 18,
@@ -4290,10 +4290,10 @@
       },
       "import": {
         "assetIndex": 1174,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/PALAFIN_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/PALAFIN_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/PALAFIN_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/PALAFIN_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/PALAFIN_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/PALAFIN_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/PALAFIN_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/PALAFIN_1.png",
         "stats": {
           "front": {
             "frames": 10,
@@ -4346,10 +4346,10 @@
       },
       "import": {
         "assetIndex": 1175,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/DUDUNSPARCE_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/DUDUNSPARCE_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/DUDUNSPARCE_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/DUDUNSPARCE_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/DUDUNSPARCE_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/DUDUNSPARCE_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/DUDUNSPARCE_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/DUDUNSPARCE_1.png",
         "stats": {
           "front": {
             "frames": 9,
@@ -4402,10 +4402,10 @@
       },
       "import": {
         "assetIndex": 1176,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/GIMMIGHOUL_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/GIMMIGHOUL_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/GIMMIGHOUL_1.png",
-        "backShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Back shiny/GIMMIGHOUL_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/GIMMIGHOUL_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/GIMMIGHOUL_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/GIMMIGHOUL_1.png",
+        "backShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Back shiny/GIMMIGHOUL_1.png",
         "stats": {
           "front": {
             "frames": 7,
@@ -4458,9 +4458,9 @@
       },
       "import": {
         "assetIndex": 1177,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/OGERPON_1.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/OGERPON_1.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/OGERPON_1.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/OGERPON_1.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/OGERPON_1.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/OGERPON_1.png",
         "backShiny": null,
         "stats": {
           "front": {
@@ -4514,9 +4514,9 @@
       },
       "import": {
         "assetIndex": 1178,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/OGERPON_2.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/OGERPON_2.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/OGERPON_2.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/OGERPON_2.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/OGERPON_2.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/OGERPON_2.png",
         "backShiny": null,
         "stats": {
           "front": {
@@ -4570,9 +4570,9 @@
       },
       "import": {
         "assetIndex": 1179,
-        "front": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Front/OGERPON_3.gif",
-        "back": "/Users/andylee/Repos/Port-Pokeweb/essentials_gifs/Back/OGERPON_3.gif",
-        "frontShiny": "/Users/andylee/Repos/Port-Pokeweb/essentials_pngs/Front shiny/OGERPON_3.png",
+        "front": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Front/OGERPON_3.gif",
+        "back": "<POKEWEB_SOURCE_ROOT>/essentials_gifs/Back/OGERPON_3.gif",
+        "frontShiny": "<POKEWEB_SOURCE_ROOT>/essentials_pngs/Front shiny/OGERPON_3.png",
         "backShiny": null,
         "stats": {
           "front": {
@@ -5027,5 +5027,5 @@
     "ZYGARDE_4",
     "ZYGARDE_5"
   ],
-  "saveLineup": "/Users/andylee/Repos/Port-Pokeweb/White2Expansion/data/gen8_gen9_save_lineup.json"
+  "saveLineup": "<POKEWEB_SOURCE_ROOT>/White2Expansion/data/gen8_gen9_save_lineup.json"
 }

@@ -112,12 +112,13 @@ W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56:
     .size W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56, . - W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56
 
 @ Replace the client SC_ACT_CHANGE_FORM visual for Mega transformations only.
-@ At this site the client form has already been refreshed; r6 is the server
-@ command args and r7 is the resolved view pos.
+@ r6 is the server command args and r7 is the resolved view pos. The saved
+@ r0-r3 values are still passed for diagnostics/future vanilla re-entry work.
 THUMB_BRANCH_LINK_167_0x21B8A52:
     push {r0-r4, lr}
     mov r1, r6
     mov r2, r7
+    mov r3, sp
     bl W2U_Mega_OnClientChangeFormStart
     cmp r0, #0
     beq 1f
@@ -138,7 +139,7 @@ THUMB_BRANCH_LINK_167_0x21B8A52:
     bx r1
     .size THUMB_BRANCH_LINK_167_0x21B8A52, . - THUMB_BRANCH_LINK_167_0x21B8A52
 
-@ Wait on the Mega placeholder animation when active; otherwise preserve the
+@ Wait on the custom Mega animation when active; otherwise preserve the
 @ original BattleViewCmd_ChangeForm_Wait path.
 THUMB_BRANCH_LINK_167_0x21B8A60:
     push {r0-r4, lr}

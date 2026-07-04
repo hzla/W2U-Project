@@ -6885,19 +6885,19 @@ text = [
 [msg.section_0.entries.1153]
 text = [
   "[VAR PKNICK(0)]'s [VAR ITEM2(1)] is\\n",
-  "reacting to [VAR TRNAME(2)]'s Mega Ring!$",
+  "reacting to a Mega Ring!$",
 ]
 
 [msg.section_0.entries.1154]
 text = [
-  "The wild [VAR PKNICK(0)] is completely\\n",
-  "synchronized with its Trainer!$",
+  "[VAR PKNICK(0)]'s [VAR ITEM2(1)] is\\n",
+  "reacting to a Mega Ring!$",
 ]
 
 [msg.section_0.entries.1155]
 text = [
-  "The foe's Trainer is completely\\n",
-  "synchronized with [VAR PKNICK(0)]!$",
+  "[VAR PKNICK(0)]'s [VAR ITEM2(1)] is\\n",
+  "reacting to a Mega Ring!$",
 ]
 
 [msg.section_0.entries.1156]

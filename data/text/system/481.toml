@@ -568,17 +568,17 @@ text = [
 
 [msg.section_0.entries.113]
 text = [
-  "???$",
+  "[COLORRESET]a [COLOR(255)]Megite$",
 ]
 
 [msg.section_0.entries.114]
 text = [
-  "???$",
+  "[COLORRESET]a [COLOR(255)]Megite X$",
 ]
 
 [msg.section_0.entries.115]
 text = [
-  "???$",
+  "[COLORRESET]a [COLOR(255)]Megite Y$",
 ]
 
 [msg.section_0.entries.116]

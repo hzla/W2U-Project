@@ -482,17 +482,17 @@
     {
       "species": 729,
       "side": "back",
-      "source": "/Users/andylee/Repos/Port-Pokeweb/White2Upgrade/assets/pokeweb_pwan/952_back.pwan"
+      "source": "<POKEWEB_SOURCE_ROOT>/White2Upgrade/assets/pokeweb_pwan/952_back.pwan"
     },
     {
       "species": 776,
       "side": "back",
-      "source": "/Users/andylee/Repos/Port-Pokeweb/White2Upgrade/assets/pokeweb_pwan/965_back.pwan"
+      "source": "<POKEWEB_SOURCE_ROOT>/White2Upgrade/assets/pokeweb_pwan/965_back.pwan"
     },
     {
       "species": 782,
       "side": "back",
-      "source": "/Users/andylee/Repos/Port-Pokeweb/White2Upgrade/assets/pokeweb_pwan/970_back.pwan"
+      "source": "<POKEWEB_SOURCE_ROOT>/White2Upgrade/assets/pokeweb_pwan/970_back.pwan"
     }
   ],
   "missingDirectAssets": [],

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import re
 import shutil
 import sys
@@ -21,9 +22,7 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PORT = Path("/Users/andylee/Repos/Port-Pokeweb")
-if not PORT.exists():
-    PORT = ROOT.parent / "Port-Pokeweb"
+PORT = Path(os.environ.get("POKEWEB_SOURCE_ROOT", ROOT.parent / "pokeweb-source"))
 
 SPECIES_NAMES = PORT / "reference_repos/PKHeX/PKHeX.Core/Resources/text/other/en/text_Species_en.txt"
 ESSENTIALS_ICONS = PORT / "essentials_pngs" / "Icons"

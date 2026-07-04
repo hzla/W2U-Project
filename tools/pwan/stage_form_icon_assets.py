@@ -10,6 +10,7 @@ folder and updates the palette map entries used by form icons.
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 from pathlib import Path
@@ -18,9 +19,7 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PORT = Path("/Users/andylee/Repos/Port-Pokeweb")
-if not PORT.exists():
-    PORT = ROOT.parent / "Port-Pokeweb"
+PORT = Path(os.environ.get("POKEWEB_SOURCE_ROOT", ROOT.parent / "pokeweb-source"))
 
 TRACKER = PORT / "White2Expansion" / "data" / "pokemon.gen6.json"
 ESSENTIALS_ICONS = PORT / "essentials_pngs" / "Icons"

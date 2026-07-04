@@ -1,5 +1,5 @@
 Projects:
-  - "C:/Users/L33TG/Documents/White2Upgrade/user/scripting/workspace/Project.Scripts/Project.Scripts.pksproj"
+  - "Project.Scripts/Project.Scripts.pksproj"
 
 IDEState:
   OpenFiles:
@@ -10,4 +10,3 @@ IDEState:
     ProjectProdId: ctrmap.White2Upgrade.Project.Scripts
     Path: container_1243.pkr
     OpenRW: true
-
