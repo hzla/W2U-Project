@@ -1,0 +1,130 @@
+{
+  "baseArchive": "../IRDO_Extracted/data/a/0/9/4",
+  "templateId": 3,
+  "backgrounds": [
+    {
+      "name": "electric",
+      "id": 267,
+      "source": "assets/move_backgrounds/terrains/electric.jpg",
+      "sourceWidth": 800,
+      "sourceHeight": 480,
+      "viewportWidth": 256,
+      "viewportHeight": 192,
+      "mapWidth": 512,
+      "mapHeight": 512,
+      "uniqueTileCount": 646,
+      "paletteBankCount": 6,
+      "usedPaletteBankCount": 6,
+      "files": [
+        {
+          "member": 267,
+          "bytes": 8228,
+          "sha256": "281237090caee7f523eeb9002faaa93d859181bdce17531f4df6cb9fedeaf0f1"
+        },
+        {
+          "member": 268,
+          "bytes": 32832,
+          "sha256": "774ace559ddd23459a544ff62ac24db133c9107d0ce0419f1d0f5f0d83998f80"
+        },
+        {
+          "member": 269,
+          "bytes": 260,
+          "sha256": "cf5b05b7c8baca7a31711cd3e19fec4bdd843e6402a5eb0951907daefc98d88f"
+        }
+      ]
+    },
+    {
+      "name": "psychic",
+      "id": 270,
+      "source": "assets/move_backgrounds/terrains/psychic.png",
+      "sourceWidth": 700,
+      "sourceHeight": 500,
+      "viewportWidth": 256,
+      "viewportHeight": 192,
+      "mapWidth": 512,
+      "mapHeight": 512,
+      "uniqueTileCount": 606,
+      "paletteBankCount": 6,
+      "usedPaletteBankCount": 6,
+      "files": [
+        {
+          "member": 270,
+          "bytes": 8228,
+          "sha256": "5c82d97ab098d5b4a264d16fc72c86fb98dc960fb0dfce4b0cf7da6c16e8883f"
+        },
+        {
+          "member": 271,
+          "bytes": 32832,
+          "sha256": "69f30e51ea5a834367b8684d5feafaa9eab5ffb5630429255543d23aa91961d7"
+        },
+        {
+          "member": 272,
+          "bytes": 260,
+          "sha256": "f9fba06ae9f8661420b3b26bb543710ee006b4f8d1db5536b16593bddd566ecb"
+        }
+      ]
+    },
+    {
+      "name": "misty",
+      "id": 273,
+      "source": "assets/move_backgrounds/terrains/misty.jpg",
+      "sourceWidth": 800,
+      "sourceHeight": 480,
+      "viewportWidth": 256,
+      "viewportHeight": 192,
+      "mapWidth": 512,
+      "mapHeight": 512,
+      "uniqueTileCount": 566,
+      "paletteBankCount": 6,
+      "usedPaletteBankCount": 6,
+      "files": [
+        {
+          "member": 273,
+          "bytes": 8228,
+          "sha256": "f8111724b3a963590934bee6c1cbcd237a2c25afaaac2cb09ba70fbe42d0657d"
+        },
+        {
+          "member": 274,
+          "bytes": 32832,
+          "sha256": "50907355a05760046c1ef073741675e4f23e11011423fbd95ff20dbbba841dbe"
+        },
+        {
+          "member": 275,
+          "bytes": 260,
+          "sha256": "abbf66e99802a26202eb5b6fefda19ba975b079f7644c1339c1b6f66c474b07e"
+        }
+      ]
+    },
+    {
+      "name": "grassy",
+      "id": 276,
+      "source": "assets/move_backgrounds/terrains/grassy.jpg",
+      "sourceWidth": 800,
+      "sourceHeight": 480,
+      "viewportWidth": 256,
+      "viewportHeight": 192,
+      "mapWidth": 512,
+      "mapHeight": 512,
+      "uniqueTileCount": 653,
+      "paletteBankCount": 6,
+      "usedPaletteBankCount": 6,
+      "files": [
+        {
+          "member": 276,
+          "bytes": 8228,
+          "sha256": "172f472426bd16eb8a41dea6379566cb80d2801e1ae2d30cd73e8f5f8418abb8"
+        },
+        {
+          "member": 277,
+          "bytes": 32832,
+          "sha256": "2c336775b54390d6df6e55f375fd7256015761097e1b8d41e1816f9ba22c8acb"
+        },
+        {
+          "member": 278,
+          "bytes": 260,
+          "sha256": "28cba5c135ef7f29c583944caed043db261f3639a8905e14b68d9fdee98ef7c9"
+        }
+      ]
+    }
+  ]
+}

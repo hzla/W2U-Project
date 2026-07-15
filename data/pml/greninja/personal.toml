@@ -20,12 +20,12 @@
 "Egg Group 1" = 2
 "Egg Group 2" = 2
 "Primary Ability" = 67
-"Secondary Ability" = 67
+"Secondary Ability" = 210
 "Hidden Ability" = 168
 "Escape Rate" = 0
-"Form Data Offset" = 1157
-"Form Sprite Offset" = 343
-"Form Count" = 2
+"Form Data Offset" = 1270
+"Form Sprite Offset" = 456
+"Form Count" = 3
 Color = 65
 "Base Experience" = 239
 "Height (cm)" = 150

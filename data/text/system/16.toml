@@ -11190,3 +11190,5367 @@ text = [
   "The foe's [VAR PKNICK(0)] used\\n",
   "Hyperspace Fury!$",
 ]
+
+[msg.section_0.entries.1866]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Breakneck Blitz!$",
+]
+
+[msg.section_0.entries.1867]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Breakneck Blitz!$",
+]
+
+[msg.section_0.entries.1868]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Breakneck Blitz!$",
+]
+
+[msg.section_0.entries.1869]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Breakneck Blitz 2!$",
+]
+
+[msg.section_0.entries.1870]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Breakneck Blitz 2!$",
+]
+
+[msg.section_0.entries.1871]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Breakneck Blitz 2!$",
+]
+
+[msg.section_0.entries.1872]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "All-Out Pummeling!$",
+]
+
+[msg.section_0.entries.1873]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "All-Out Pummeling!$",
+]
+
+[msg.section_0.entries.1874]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "All-Out Pummeling!$",
+]
+
+[msg.section_0.entries.1875]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "All-Out Pummeling 2!$",
+]
+
+[msg.section_0.entries.1876]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "All-Out Pummeling 2!$",
+]
+
+[msg.section_0.entries.1877]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "All-Out Pummeling 2!$",
+]
+
+[msg.section_0.entries.1878]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Supersonic Skystrike!$",
+]
+
+[msg.section_0.entries.1879]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Supersonic Skystrike!$",
+]
+
+[msg.section_0.entries.1880]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Supersonic Skystrike!$",
+]
+
+[msg.section_0.entries.1881]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Supersonic Skystrike 2!$",
+]
+
+[msg.section_0.entries.1882]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Supersonic Skystrike 2!$",
+]
+
+[msg.section_0.entries.1883]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Supersonic Skystrike 2!$",
+]
+
+[msg.section_0.entries.1884]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Acid Downpour!$",
+]
+
+[msg.section_0.entries.1885]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Acid Downpour!$",
+]
+
+[msg.section_0.entries.1886]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Acid Downpour!$",
+]
+
+[msg.section_0.entries.1887]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Acid Downpour 2!$",
+]
+
+[msg.section_0.entries.1888]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Acid Downpour 2!$",
+]
+
+[msg.section_0.entries.1889]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Acid Downpour 2!$",
+]
+
+[msg.section_0.entries.1890]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Tectonic Rage!$",
+]
+
+[msg.section_0.entries.1891]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Tectonic Rage!$",
+]
+
+[msg.section_0.entries.1892]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Tectonic Rage!$",
+]
+
+[msg.section_0.entries.1893]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Tectonic Rage 2!$",
+]
+
+[msg.section_0.entries.1894]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Tectonic Rage 2!$",
+]
+
+[msg.section_0.entries.1895]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Tectonic Rage 2!$",
+]
+
+[msg.section_0.entries.1896]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Continental Crush!$",
+]
+
+[msg.section_0.entries.1897]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Continental Crush!$",
+]
+
+[msg.section_0.entries.1898]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Continental Crush!$",
+]
+
+[msg.section_0.entries.1899]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Continental Crush 2!$",
+]
+
+[msg.section_0.entries.1900]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Continental Crush 2!$",
+]
+
+[msg.section_0.entries.1901]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Continental Crush 2!$",
+]
+
+[msg.section_0.entries.1902]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Savage Spin-Out!$",
+]
+
+[msg.section_0.entries.1903]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Savage Spin-Out!$",
+]
+
+[msg.section_0.entries.1904]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Savage Spin-Out!$",
+]
+
+[msg.section_0.entries.1905]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Savage Spin-Out 2!$",
+]
+
+[msg.section_0.entries.1906]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Savage Spin-Out 2!$",
+]
+
+[msg.section_0.entries.1907]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Savage Spin-Out 2!$",
+]
+
+[msg.section_0.entries.1908]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Never-Ending Nightmare!$",
+]
+
+[msg.section_0.entries.1909]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Never-Ending Nightmare!$",
+]
+
+[msg.section_0.entries.1910]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Never-Ending Nightmare!$",
+]
+
+[msg.section_0.entries.1911]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Never-Ending Nightmare 2!$",
+]
+
+[msg.section_0.entries.1912]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Never-Ending Nightmare 2!$",
+]
+
+[msg.section_0.entries.1913]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Never-Ending Nightmare 2!$",
+]
+
+[msg.section_0.entries.1914]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Corkscrew Crash!$",
+]
+
+[msg.section_0.entries.1915]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Corkscrew Crash!$",
+]
+
+[msg.section_0.entries.1916]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Corkscrew Crash!$",
+]
+
+[msg.section_0.entries.1917]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Corkscrew Crash 2!$",
+]
+
+[msg.section_0.entries.1918]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Corkscrew Crash 2!$",
+]
+
+[msg.section_0.entries.1919]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Corkscrew Crash 2!$",
+]
+
+[msg.section_0.entries.1920]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Inferno Overdrive!$",
+]
+
+[msg.section_0.entries.1921]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Inferno Overdrive!$",
+]
+
+[msg.section_0.entries.1922]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Inferno Overdrive!$",
+]
+
+[msg.section_0.entries.1923]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Inferno Overdrive 2!$",
+]
+
+[msg.section_0.entries.1924]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Inferno Overdrive 2!$",
+]
+
+[msg.section_0.entries.1925]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Inferno Overdrive 2!$",
+]
+
+[msg.section_0.entries.1926]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Hydro Vortex!$",
+]
+
+[msg.section_0.entries.1927]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Hydro Vortex!$",
+]
+
+[msg.section_0.entries.1928]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Hydro Vortex!$",
+]
+
+[msg.section_0.entries.1929]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Hydro Vortex 2!$",
+]
+
+[msg.section_0.entries.1930]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Hydro Vortex 2!$",
+]
+
+[msg.section_0.entries.1931]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Hydro Vortex 2!$",
+]
+
+[msg.section_0.entries.1932]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Bloom Doom!$",
+]
+
+[msg.section_0.entries.1933]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Bloom Doom!$",
+]
+
+[msg.section_0.entries.1934]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Bloom Doom!$",
+]
+
+[msg.section_0.entries.1935]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Bloom Doom 2!$",
+]
+
+[msg.section_0.entries.1936]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Bloom Doom 2!$",
+]
+
+[msg.section_0.entries.1937]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Bloom Doom 2!$",
+]
+
+[msg.section_0.entries.1938]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Gigavolt Havoc!$",
+]
+
+[msg.section_0.entries.1939]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Gigavolt Havoc!$",
+]
+
+[msg.section_0.entries.1940]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Gigavolt Havoc!$",
+]
+
+[msg.section_0.entries.1941]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Gigavolt Havoc 2!$",
+]
+
+[msg.section_0.entries.1942]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Gigavolt Havoc 2!$",
+]
+
+[msg.section_0.entries.1943]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Gigavolt Havoc 2!$",
+]
+
+[msg.section_0.entries.1944]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Shattered Psyche!$",
+]
+
+[msg.section_0.entries.1945]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Shattered Psyche!$",
+]
+
+[msg.section_0.entries.1946]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Shattered Psyche!$",
+]
+
+[msg.section_0.entries.1947]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Shattered Psyche 2!$",
+]
+
+[msg.section_0.entries.1948]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Shattered Psyche 2!$",
+]
+
+[msg.section_0.entries.1949]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Shattered Psyche 2!$",
+]
+
+[msg.section_0.entries.1950]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Subzero Slammer!$",
+]
+
+[msg.section_0.entries.1951]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Subzero Slammer!$",
+]
+
+[msg.section_0.entries.1952]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Subzero Slammer!$",
+]
+
+[msg.section_0.entries.1953]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Subzero Slammer 2!$",
+]
+
+[msg.section_0.entries.1954]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Subzero Slammer 2!$",
+]
+
+[msg.section_0.entries.1955]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Subzero Slammer 2!$",
+]
+
+[msg.section_0.entries.1956]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Devastating Drake!$",
+]
+
+[msg.section_0.entries.1957]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Devastating Drake!$",
+]
+
+[msg.section_0.entries.1958]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Devastating Drake!$",
+]
+
+[msg.section_0.entries.1959]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Devastating Drake 2!$",
+]
+
+[msg.section_0.entries.1960]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Devastating Drake 2!$",
+]
+
+[msg.section_0.entries.1961]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Devastating Drake 2!$",
+]
+
+[msg.section_0.entries.1962]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Black Hole Eclipse!$",
+]
+
+[msg.section_0.entries.1963]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Black Hole Eclipse!$",
+]
+
+[msg.section_0.entries.1964]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Black Hole Eclipse!$",
+]
+
+[msg.section_0.entries.1965]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Black Hole Eclipse 2!$",
+]
+
+[msg.section_0.entries.1966]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Black Hole Eclipse 2!$",
+]
+
+[msg.section_0.entries.1967]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Black Hole Eclipse 2!$",
+]
+
+[msg.section_0.entries.1968]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Twinkle Tackle!$",
+]
+
+[msg.section_0.entries.1969]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Twinkle Tackle!$",
+]
+
+[msg.section_0.entries.1970]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Twinkle Tackle!$",
+]
+
+[msg.section_0.entries.1971]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Twinkle Tackle 2!$",
+]
+
+[msg.section_0.entries.1972]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Twinkle Tackle 2!$",
+]
+
+[msg.section_0.entries.1973]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Twinkle Tackle 2!$",
+]
+
+[msg.section_0.entries.1974]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Catastropika!$",
+]
+
+[msg.section_0.entries.1975]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Catastropika!$",
+]
+
+[msg.section_0.entries.1976]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Catastropika!$",
+]
+
+[msg.section_0.entries.1977]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Shore Up!$",
+]
+
+[msg.section_0.entries.1978]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Shore Up!$",
+]
+
+[msg.section_0.entries.1979]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Shore Up!$",
+]
+
+[msg.section_0.entries.1980]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "First Impression!$",
+]
+
+[msg.section_0.entries.1981]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "First Impression!$",
+]
+
+[msg.section_0.entries.1982]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "First Impression!$",
+]
+
+[msg.section_0.entries.1983]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Baneful Bunker!$",
+]
+
+[msg.section_0.entries.1984]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Baneful Bunker!$",
+]
+
+[msg.section_0.entries.1985]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Baneful Bunker!$",
+]
+
+[msg.section_0.entries.1986]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Spirit Shackle!$",
+]
+
+[msg.section_0.entries.1987]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Spirit Shackle!$",
+]
+
+[msg.section_0.entries.1988]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Spirit Shackle!$",
+]
+
+[msg.section_0.entries.1989]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Darkest Lariat!$",
+]
+
+[msg.section_0.entries.1990]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Darkest Lariat!$",
+]
+
+[msg.section_0.entries.1991]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Darkest Lariat!$",
+]
+
+[msg.section_0.entries.1992]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Sparkling Aria!$",
+]
+
+[msg.section_0.entries.1993]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Sparkling Aria!$",
+]
+
+[msg.section_0.entries.1994]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Sparkling Aria!$",
+]
+
+[msg.section_0.entries.1995]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Ice Hammer!$",
+]
+
+[msg.section_0.entries.1996]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Ice Hammer!$",
+]
+
+[msg.section_0.entries.1997]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Ice Hammer!$",
+]
+
+[msg.section_0.entries.1998]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Floral Healing!$",
+]
+
+[msg.section_0.entries.1999]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Floral Healing!$",
+]
+
+[msg.section_0.entries.2000]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Floral Healing!$",
+]
+
+[msg.section_0.entries.2001]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "High Horsepower!$",
+]
+
+[msg.section_0.entries.2002]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "High Horsepower!$",
+]
+
+[msg.section_0.entries.2003]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "High Horsepower!$",
+]
+
+[msg.section_0.entries.2004]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Strength Sap!$",
+]
+
+[msg.section_0.entries.2005]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Strength Sap!$",
+]
+
+[msg.section_0.entries.2006]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Strength Sap!$",
+]
+
+[msg.section_0.entries.2007]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Solar Blade!$",
+]
+
+[msg.section_0.entries.2008]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Solar Blade!$",
+]
+
+[msg.section_0.entries.2009]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Solar Blade!$",
+]
+
+[msg.section_0.entries.2010]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Leafage!$",
+]
+
+[msg.section_0.entries.2011]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Leafage!$",
+]
+
+[msg.section_0.entries.2012]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Leafage!$",
+]
+
+[msg.section_0.entries.2013]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Spotlight!$",
+]
+
+[msg.section_0.entries.2014]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Spotlight!$",
+]
+
+[msg.section_0.entries.2015]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Spotlight!$",
+]
+
+[msg.section_0.entries.2016]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Toxic Thread!$",
+]
+
+[msg.section_0.entries.2017]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Toxic Thread!$",
+]
+
+[msg.section_0.entries.2018]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Toxic Thread!$",
+]
+
+[msg.section_0.entries.2019]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Laser Focus!$",
+]
+
+[msg.section_0.entries.2020]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Laser Focus!$",
+]
+
+[msg.section_0.entries.2021]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Laser Focus!$",
+]
+
+[msg.section_0.entries.2022]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Gear Up!$",
+]
+
+[msg.section_0.entries.2023]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Gear Up!$",
+]
+
+[msg.section_0.entries.2024]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Gear Up!$",
+]
+
+[msg.section_0.entries.2025]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Throat Chop!$",
+]
+
+[msg.section_0.entries.2026]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Throat Chop!$",
+]
+
+[msg.section_0.entries.2027]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Throat Chop!$",
+]
+
+[msg.section_0.entries.2028]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Pollen Puff!$",
+]
+
+[msg.section_0.entries.2029]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Pollen Puff!$",
+]
+
+[msg.section_0.entries.2030]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Pollen Puff!$",
+]
+
+[msg.section_0.entries.2031]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Anchor Shot!$",
+]
+
+[msg.section_0.entries.2032]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Anchor Shot!$",
+]
+
+[msg.section_0.entries.2033]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Anchor Shot!$",
+]
+
+[msg.section_0.entries.2034]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Psychic Terrain!$",
+]
+
+[msg.section_0.entries.2035]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Psychic Terrain!$",
+]
+
+[msg.section_0.entries.2036]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Psychic Terrain!$",
+]
+
+[msg.section_0.entries.2037]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Lunge!$",
+]
+
+[msg.section_0.entries.2038]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Lunge!$",
+]
+
+[msg.section_0.entries.2039]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Lunge!$",
+]
+
+[msg.section_0.entries.2040]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Fire Lash!$",
+]
+
+[msg.section_0.entries.2041]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Fire Lash!$",
+]
+
+[msg.section_0.entries.2042]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Fire Lash!$",
+]
+
+[msg.section_0.entries.2043]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Power Trip!$",
+]
+
+[msg.section_0.entries.2044]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Power Trip!$",
+]
+
+[msg.section_0.entries.2045]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Power Trip!$",
+]
+
+[msg.section_0.entries.2046]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Burn Up!$",
+]
+
+[msg.section_0.entries.2047]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Burn Up!$",
+]
+
+[msg.section_0.entries.2048]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Burn Up!$",
+]
+
+[msg.section_0.entries.2049]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Speed Swap!$",
+]
+
+[msg.section_0.entries.2050]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Speed Swap!$",
+]
+
+[msg.section_0.entries.2051]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Speed Swap!$",
+]
+
+[msg.section_0.entries.2052]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Smart Strike!$",
+]
+
+[msg.section_0.entries.2053]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Smart Strike!$",
+]
+
+[msg.section_0.entries.2054]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Smart Strike!$",
+]
+
+[msg.section_0.entries.2055]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Purify!$",
+]
+
+[msg.section_0.entries.2056]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Purify!$",
+]
+
+[msg.section_0.entries.2057]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Purify!$",
+]
+
+[msg.section_0.entries.2058]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Revelation Dance!$",
+]
+
+[msg.section_0.entries.2059]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Revelation Dance!$",
+]
+
+[msg.section_0.entries.2060]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Revelation Dance!$",
+]
+
+[msg.section_0.entries.2061]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Core Enforcer!$",
+]
+
+[msg.section_0.entries.2062]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Core Enforcer!$",
+]
+
+[msg.section_0.entries.2063]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Core Enforcer!$",
+]
+
+[msg.section_0.entries.2064]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Trop Kick!$",
+]
+
+[msg.section_0.entries.2065]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Trop Kick!$",
+]
+
+[msg.section_0.entries.2066]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Trop Kick!$",
+]
+
+[msg.section_0.entries.2067]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Instruct!$",
+]
+
+[msg.section_0.entries.2068]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Instruct!$",
+]
+
+[msg.section_0.entries.2069]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Instruct!$",
+]
+
+[msg.section_0.entries.2070]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Beak Blast!$",
+]
+
+[msg.section_0.entries.2071]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Beak Blast!$",
+]
+
+[msg.section_0.entries.2072]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Beak Blast!$",
+]
+
+[msg.section_0.entries.2073]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Clanging Scales!$",
+]
+
+[msg.section_0.entries.2074]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Clanging Scales!$",
+]
+
+[msg.section_0.entries.2075]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Clanging Scales!$",
+]
+
+[msg.section_0.entries.2076]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Dragon Hammer!$",
+]
+
+[msg.section_0.entries.2077]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Dragon Hammer!$",
+]
+
+[msg.section_0.entries.2078]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Dragon Hammer!$",
+]
+
+[msg.section_0.entries.2079]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Brutal Swing!$",
+]
+
+[msg.section_0.entries.2080]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Brutal Swing!$",
+]
+
+[msg.section_0.entries.2081]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Brutal Swing!$",
+]
+
+[msg.section_0.entries.2082]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Aurora Veil!$",
+]
+
+[msg.section_0.entries.2083]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Aurora Veil!$",
+]
+
+[msg.section_0.entries.2084]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Aurora Veil!$",
+]
+
+[msg.section_0.entries.2085]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Sinister Arrow Raid!$",
+]
+
+[msg.section_0.entries.2086]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Sinister Arrow Raid!$",
+]
+
+[msg.section_0.entries.2087]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Sinister Arrow Raid!$",
+]
+
+[msg.section_0.entries.2088]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Malicious Moonsault!$",
+]
+
+[msg.section_0.entries.2089]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Malicious Moonsault!$",
+]
+
+[msg.section_0.entries.2090]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Malicious Moonsault!$",
+]
+
+[msg.section_0.entries.2091]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Oceanic Operetta!$",
+]
+
+[msg.section_0.entries.2092]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Oceanic Operetta!$",
+]
+
+[msg.section_0.entries.2093]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Oceanic Operetta!$",
+]
+
+[msg.section_0.entries.2094]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Guardian of Alola!$",
+]
+
+[msg.section_0.entries.2095]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Guardian of Alola!$",
+]
+
+[msg.section_0.entries.2096]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Guardian of Alola!$",
+]
+
+[msg.section_0.entries.2097]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Soul-Stealing 7-Star Strike!$",
+]
+
+[msg.section_0.entries.2098]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Soul-Stealing 7-Star Strike!$",
+]
+
+[msg.section_0.entries.2099]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Soul-Stealing 7-Star Strike!$",
+]
+
+[msg.section_0.entries.2100]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Stoked Sparksurfer!$",
+]
+
+[msg.section_0.entries.2101]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Stoked Sparksurfer!$",
+]
+
+[msg.section_0.entries.2102]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Stoked Sparksurfer!$",
+]
+
+[msg.section_0.entries.2103]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Pulverizing Pancake!$",
+]
+
+[msg.section_0.entries.2104]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Pulverizing Pancake!$",
+]
+
+[msg.section_0.entries.2105]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Pulverizing Pancake!$",
+]
+
+[msg.section_0.entries.2106]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Extreme Evoboost!$",
+]
+
+[msg.section_0.entries.2107]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Extreme Evoboost!$",
+]
+
+[msg.section_0.entries.2108]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Extreme Evoboost!$",
+]
+
+[msg.section_0.entries.2109]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Genesis Supernova!$",
+]
+
+[msg.section_0.entries.2110]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Genesis Supernova!$",
+]
+
+[msg.section_0.entries.2111]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Genesis Supernova!$",
+]
+
+[msg.section_0.entries.2112]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Shell Trap!$",
+]
+
+[msg.section_0.entries.2113]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Shell Trap!$",
+]
+
+[msg.section_0.entries.2114]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Shell Trap!$",
+]
+
+[msg.section_0.entries.2115]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Fleur Cannon!$",
+]
+
+[msg.section_0.entries.2116]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Fleur Cannon!$",
+]
+
+[msg.section_0.entries.2117]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Fleur Cannon!$",
+]
+
+[msg.section_0.entries.2118]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Psychic Fangs!$",
+]
+
+[msg.section_0.entries.2119]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Psychic Fangs!$",
+]
+
+[msg.section_0.entries.2120]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Psychic Fangs!$",
+]
+
+[msg.section_0.entries.2121]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Stomping Tantrum!$",
+]
+
+[msg.section_0.entries.2122]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Stomping Tantrum!$",
+]
+
+[msg.section_0.entries.2123]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Stomping Tantrum!$",
+]
+
+[msg.section_0.entries.2124]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Shadow Bone!$",
+]
+
+[msg.section_0.entries.2125]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Shadow Bone!$",
+]
+
+[msg.section_0.entries.2126]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Shadow Bone!$",
+]
+
+[msg.section_0.entries.2127]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Accelerock!$",
+]
+
+[msg.section_0.entries.2128]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Accelerock!$",
+]
+
+[msg.section_0.entries.2129]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Accelerock!$",
+]
+
+[msg.section_0.entries.2130]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Liquidation!$",
+]
+
+[msg.section_0.entries.2131]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Liquidation!$",
+]
+
+[msg.section_0.entries.2132]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Liquidation!$",
+]
+
+[msg.section_0.entries.2133]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Prismatic Laser!$",
+]
+
+[msg.section_0.entries.2134]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Prismatic Laser!$",
+]
+
+[msg.section_0.entries.2135]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Prismatic Laser!$",
+]
+
+[msg.section_0.entries.2136]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Spectral Thief!$",
+]
+
+[msg.section_0.entries.2137]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Spectral Thief!$",
+]
+
+[msg.section_0.entries.2138]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Spectral Thief!$",
+]
+
+[msg.section_0.entries.2139]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Sunsteel Strike!$",
+]
+
+[msg.section_0.entries.2140]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Sunsteel Strike!$",
+]
+
+[msg.section_0.entries.2141]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Sunsteel Strike!$",
+]
+
+[msg.section_0.entries.2142]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Moongeist Beam!$",
+]
+
+[msg.section_0.entries.2143]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Moongeist Beam!$",
+]
+
+[msg.section_0.entries.2144]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Moongeist Beam!$",
+]
+
+[msg.section_0.entries.2145]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Tearful Look!$",
+]
+
+[msg.section_0.entries.2146]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Tearful Look!$",
+]
+
+[msg.section_0.entries.2147]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Tearful Look!$",
+]
+
+[msg.section_0.entries.2148]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Zing Zap!$",
+]
+
+[msg.section_0.entries.2149]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Zing Zap!$",
+]
+
+[msg.section_0.entries.2150]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Zing Zap!$",
+]
+
+[msg.section_0.entries.2151]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Nature's Madness!$",
+]
+
+[msg.section_0.entries.2152]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Nature's Madness!$",
+]
+
+[msg.section_0.entries.2153]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Nature's Madness!$",
+]
+
+[msg.section_0.entries.2154]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Multi-Attack!$",
+]
+
+[msg.section_0.entries.2155]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Multi-Attack!$",
+]
+
+[msg.section_0.entries.2156]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Multi-Attack!$",
+]
+
+[msg.section_0.entries.2157]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "10,000,000 Volt Thunderbolt!$",
+]
+
+[msg.section_0.entries.2158]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "10,000,000 Volt Thunderbolt!$",
+]
+
+[msg.section_0.entries.2159]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "10,000,000 Volt Thunderbolt!$",
+]
+
+[msg.section_0.entries.2160]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Mind Blown!$",
+]
+
+[msg.section_0.entries.2161]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Mind Blown!$",
+]
+
+[msg.section_0.entries.2162]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Mind Blown!$",
+]
+
+[msg.section_0.entries.2163]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Plasma Fists!$",
+]
+
+[msg.section_0.entries.2164]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Plasma Fists!$",
+]
+
+[msg.section_0.entries.2165]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Plasma Fists!$",
+]
+
+[msg.section_0.entries.2166]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Photon Geyser!$",
+]
+
+[msg.section_0.entries.2167]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Photon Geyser!$",
+]
+
+[msg.section_0.entries.2168]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Photon Geyser!$",
+]
+
+[msg.section_0.entries.2169]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Light That Burns the Sky!$",
+]
+
+[msg.section_0.entries.2170]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Light That Burns the Sky!$",
+]
+
+[msg.section_0.entries.2171]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Light That Burns the Sky!$",
+]
+
+[msg.section_0.entries.2172]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Searing Sunraze Smash!$",
+]
+
+[msg.section_0.entries.2173]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Searing Sunraze Smash!$",
+]
+
+[msg.section_0.entries.2174]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Searing Sunraze Smash!$",
+]
+
+[msg.section_0.entries.2175]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Menacing Moonraze Maelstrom!$",
+]
+
+[msg.section_0.entries.2176]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Menacing Moonraze Maelstrom!$",
+]
+
+[msg.section_0.entries.2177]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Menacing Moonraze Maelstrom!$",
+]
+
+[msg.section_0.entries.2178]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Let's Snuggle Forever!$",
+]
+
+[msg.section_0.entries.2179]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Let's Snuggle Forever!$",
+]
+
+[msg.section_0.entries.2180]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Let's Snuggle Forever!$",
+]
+
+[msg.section_0.entries.2181]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Splintered Stormshards!$",
+]
+
+[msg.section_0.entries.2182]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Splintered Stormshards!$",
+]
+
+[msg.section_0.entries.2183]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Splintered Stormshards!$",
+]
+
+[msg.section_0.entries.2184]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Clangorous Soulblaze!$",
+]
+
+[msg.section_0.entries.2185]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Clangorous Soulblaze!$",
+]
+
+[msg.section_0.entries.2186]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Clangorous Soulblaze!$",
+]
+
+[msg.section_0.entries.2187]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Zippy Zap!$",
+]
+
+[msg.section_0.entries.2188]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Zippy Zap!$",
+]
+
+[msg.section_0.entries.2189]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Zippy Zap!$",
+]
+
+[msg.section_0.entries.2190]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Splishy Splash!$",
+]
+
+[msg.section_0.entries.2191]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Splishy Splash!$",
+]
+
+[msg.section_0.entries.2192]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Splishy Splash!$",
+]
+
+[msg.section_0.entries.2193]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Floaty Fall!$",
+]
+
+[msg.section_0.entries.2194]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Floaty Fall!$",
+]
+
+[msg.section_0.entries.2195]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Floaty Fall!$",
+]
+
+[msg.section_0.entries.2196]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Pika Papow!$",
+]
+
+[msg.section_0.entries.2197]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Pika Papow!$",
+]
+
+[msg.section_0.entries.2198]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Pika Papow!$",
+]
+
+[msg.section_0.entries.2199]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Bouncy Bubble!$",
+]
+
+[msg.section_0.entries.2200]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Bouncy Bubble!$",
+]
+
+[msg.section_0.entries.2201]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Bouncy Bubble!$",
+]
+
+[msg.section_0.entries.2202]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Buzzy Buzz!$",
+]
+
+[msg.section_0.entries.2203]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Buzzy Buzz!$",
+]
+
+[msg.section_0.entries.2204]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Buzzy Buzz!$",
+]
+
+[msg.section_0.entries.2205]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Sizzly Slide!$",
+]
+
+[msg.section_0.entries.2206]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Sizzly Slide!$",
+]
+
+[msg.section_0.entries.2207]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Sizzly Slide!$",
+]
+
+[msg.section_0.entries.2208]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Glitzy Glow!$",
+]
+
+[msg.section_0.entries.2209]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Glitzy Glow!$",
+]
+
+[msg.section_0.entries.2210]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Glitzy Glow!$",
+]
+
+[msg.section_0.entries.2211]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Baddy Bad!$",
+]
+
+[msg.section_0.entries.2212]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Baddy Bad!$",
+]
+
+[msg.section_0.entries.2213]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Baddy Bad!$",
+]
+
+[msg.section_0.entries.2214]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Sappy Seed!$",
+]
+
+[msg.section_0.entries.2215]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Sappy Seed!$",
+]
+
+[msg.section_0.entries.2216]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Sappy Seed!$",
+]
+
+[msg.section_0.entries.2217]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Freezy Frost!$",
+]
+
+[msg.section_0.entries.2218]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Freezy Frost!$",
+]
+
+[msg.section_0.entries.2219]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Freezy Frost!$",
+]
+
+[msg.section_0.entries.2220]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Sparkly Swirl!$",
+]
+
+[msg.section_0.entries.2221]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Sparkly Swirl!$",
+]
+
+[msg.section_0.entries.2222]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Sparkly Swirl!$",
+]
+
+[msg.section_0.entries.2223]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Veevee Volley!$",
+]
+
+[msg.section_0.entries.2224]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Veevee Volley!$",
+]
+
+[msg.section_0.entries.2225]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Veevee Volley!$",
+]
+
+[msg.section_0.entries.2226]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Double Iron Bash!$",
+]
+
+[msg.section_0.entries.2227]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Double Iron Bash!$",
+]
+
+[msg.section_0.entries.2228]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Double Iron Bash!$",
+]
+
+[msg.section_0.entries.2229]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Guard!$",
+]
+
+[msg.section_0.entries.2230]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Guard!$",
+]
+
+[msg.section_0.entries.2231]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Guard!$",
+]
+
+[msg.section_0.entries.2232]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Dynamax Cannon!$",
+]
+
+[msg.section_0.entries.2233]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Dynamax Cannon!$",
+]
+
+[msg.section_0.entries.2234]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Dynamax Cannon!$",
+]
+
+[msg.section_0.entries.2235]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Snipe Shot!$",
+]
+
+[msg.section_0.entries.2236]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Snipe Shot!$",
+]
+
+[msg.section_0.entries.2237]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Snipe Shot!$",
+]
+
+[msg.section_0.entries.2238]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Jaw Lock!$",
+]
+
+[msg.section_0.entries.2239]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Jaw Lock!$",
+]
+
+[msg.section_0.entries.2240]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Jaw Lock!$",
+]
+
+[msg.section_0.entries.2241]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Stuff Cheeks!$",
+]
+
+[msg.section_0.entries.2242]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Stuff Cheeks!$",
+]
+
+[msg.section_0.entries.2243]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Stuff Cheeks!$",
+]
+
+[msg.section_0.entries.2244]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "No Retreat!$",
+]
+
+[msg.section_0.entries.2245]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "No Retreat!$",
+]
+
+[msg.section_0.entries.2246]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "No Retreat!$",
+]
+
+[msg.section_0.entries.2247]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Tar Shot!$",
+]
+
+[msg.section_0.entries.2248]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Tar Shot!$",
+]
+
+[msg.section_0.entries.2249]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Tar Shot!$",
+]
+
+[msg.section_0.entries.2250]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Magic Powder!$",
+]
+
+[msg.section_0.entries.2251]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Magic Powder!$",
+]
+
+[msg.section_0.entries.2252]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Magic Powder!$",
+]
+
+[msg.section_0.entries.2253]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Dragon Darts!$",
+]
+
+[msg.section_0.entries.2254]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Dragon Darts!$",
+]
+
+[msg.section_0.entries.2255]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Dragon Darts!$",
+]
+
+[msg.section_0.entries.2256]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Teatime!$",
+]
+
+[msg.section_0.entries.2257]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Teatime!$",
+]
+
+[msg.section_0.entries.2258]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Teatime!$",
+]
+
+[msg.section_0.entries.2259]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Octolock!$",
+]
+
+[msg.section_0.entries.2260]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Octolock!$",
+]
+
+[msg.section_0.entries.2261]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Octolock!$",
+]
+
+[msg.section_0.entries.2262]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Bolt Beak!$",
+]
+
+[msg.section_0.entries.2263]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Bolt Beak!$",
+]
+
+[msg.section_0.entries.2264]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Bolt Beak!$",
+]
+
+[msg.section_0.entries.2265]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Fishious Rend!$",
+]
+
+[msg.section_0.entries.2266]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Fishious Rend!$",
+]
+
+[msg.section_0.entries.2267]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Fishious Rend!$",
+]
+
+[msg.section_0.entries.2268]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Court Change!$",
+]
+
+[msg.section_0.entries.2269]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Court Change!$",
+]
+
+[msg.section_0.entries.2270]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Court Change!$",
+]
+
+[msg.section_0.entries.2271]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Flare!$",
+]
+
+[msg.section_0.entries.2272]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Flare!$",
+]
+
+[msg.section_0.entries.2273]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Flare!$",
+]
+
+[msg.section_0.entries.2274]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Flutterby!$",
+]
+
+[msg.section_0.entries.2275]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Flutterby!$",
+]
+
+[msg.section_0.entries.2276]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Flutterby!$",
+]
+
+[msg.section_0.entries.2277]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Lightning!$",
+]
+
+[msg.section_0.entries.2278]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Lightning!$",
+]
+
+[msg.section_0.entries.2279]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Lightning!$",
+]
+
+[msg.section_0.entries.2280]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Strike!$",
+]
+
+[msg.section_0.entries.2281]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Strike!$",
+]
+
+[msg.section_0.entries.2282]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Strike!$",
+]
+
+[msg.section_0.entries.2283]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Knuckle!$",
+]
+
+[msg.section_0.entries.2284]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Knuckle!$",
+]
+
+[msg.section_0.entries.2285]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Knuckle!$",
+]
+
+[msg.section_0.entries.2286]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Phantasm!$",
+]
+
+[msg.section_0.entries.2287]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Phantasm!$",
+]
+
+[msg.section_0.entries.2288]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Phantasm!$",
+]
+
+[msg.section_0.entries.2289]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Hailstorm!$",
+]
+
+[msg.section_0.entries.2290]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Hailstorm!$",
+]
+
+[msg.section_0.entries.2291]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Hailstorm!$",
+]
+
+[msg.section_0.entries.2292]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Ooze!$",
+]
+
+[msg.section_0.entries.2293]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Ooze!$",
+]
+
+[msg.section_0.entries.2294]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Ooze!$",
+]
+
+[msg.section_0.entries.2295]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Geyser!$",
+]
+
+[msg.section_0.entries.2296]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Geyser!$",
+]
+
+[msg.section_0.entries.2297]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Geyser!$",
+]
+
+[msg.section_0.entries.2298]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Airstream!$",
+]
+
+[msg.section_0.entries.2299]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Airstream!$",
+]
+
+[msg.section_0.entries.2300]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Airstream!$",
+]
+
+[msg.section_0.entries.2301]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Starfall!$",
+]
+
+[msg.section_0.entries.2302]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Starfall!$",
+]
+
+[msg.section_0.entries.2303]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Starfall!$",
+]
+
+[msg.section_0.entries.2304]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Wyrmwind!$",
+]
+
+[msg.section_0.entries.2305]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Wyrmwind!$",
+]
+
+[msg.section_0.entries.2306]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Wyrmwind!$",
+]
+
+[msg.section_0.entries.2307]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Mindstorm!$",
+]
+
+[msg.section_0.entries.2308]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Mindstorm!$",
+]
+
+[msg.section_0.entries.2309]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Mindstorm!$",
+]
+
+[msg.section_0.entries.2310]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Rockfall!$",
+]
+
+[msg.section_0.entries.2311]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Rockfall!$",
+]
+
+[msg.section_0.entries.2312]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Rockfall!$",
+]
+
+[msg.section_0.entries.2313]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Quake!$",
+]
+
+[msg.section_0.entries.2314]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Quake!$",
+]
+
+[msg.section_0.entries.2315]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Quake!$",
+]
+
+[msg.section_0.entries.2316]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Darkness!$",
+]
+
+[msg.section_0.entries.2317]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Darkness!$",
+]
+
+[msg.section_0.entries.2318]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Darkness!$",
+]
+
+[msg.section_0.entries.2319]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Overgrowth!$",
+]
+
+[msg.section_0.entries.2320]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Overgrowth!$",
+]
+
+[msg.section_0.entries.2321]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Overgrowth!$",
+]
+
+[msg.section_0.entries.2322]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Max Steelspike!$",
+]
+
+[msg.section_0.entries.2323]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Max Steelspike!$",
+]
+
+[msg.section_0.entries.2324]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Max Steelspike!$",
+]
+
+[msg.section_0.entries.2325]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Clangorous Soul!$",
+]
+
+[msg.section_0.entries.2326]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Clangorous Soul!$",
+]
+
+[msg.section_0.entries.2327]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Clangorous Soul!$",
+]
+
+[msg.section_0.entries.2328]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Body Press!$",
+]
+
+[msg.section_0.entries.2329]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Body Press!$",
+]
+
+[msg.section_0.entries.2330]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Body Press!$",
+]
+
+[msg.section_0.entries.2331]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Decorate!$",
+]
+
+[msg.section_0.entries.2332]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Decorate!$",
+]
+
+[msg.section_0.entries.2333]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Decorate!$",
+]
+
+[msg.section_0.entries.2334]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Drum Beating!$",
+]
+
+[msg.section_0.entries.2335]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Drum Beating!$",
+]
+
+[msg.section_0.entries.2336]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Drum Beating!$",
+]
+
+[msg.section_0.entries.2337]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Snap Trap!$",
+]
+
+[msg.section_0.entries.2338]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Snap Trap!$",
+]
+
+[msg.section_0.entries.2339]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Snap Trap!$",
+]
+
+[msg.section_0.entries.2340]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Pyro Ball!$",
+]
+
+[msg.section_0.entries.2341]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Pyro Ball!$",
+]
+
+[msg.section_0.entries.2342]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Pyro Ball!$",
+]
+
+[msg.section_0.entries.2343]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Behemoth Blade!$",
+]
+
+[msg.section_0.entries.2344]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Behemoth Blade!$",
+]
+
+[msg.section_0.entries.2345]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Behemoth Blade!$",
+]
+
+[msg.section_0.entries.2346]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Behemoth Bash!$",
+]
+
+[msg.section_0.entries.2347]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Behemoth Bash!$",
+]
+
+[msg.section_0.entries.2348]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Behemoth Bash!$",
+]
+
+[msg.section_0.entries.2349]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Aura Wheel!$",
+]
+
+[msg.section_0.entries.2350]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Aura Wheel!$",
+]
+
+[msg.section_0.entries.2351]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Aura Wheel!$",
+]
+
+[msg.section_0.entries.2352]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Breaking Swipe!$",
+]
+
+[msg.section_0.entries.2353]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Breaking Swipe!$",
+]
+
+[msg.section_0.entries.2354]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Breaking Swipe!$",
+]
+
+[msg.section_0.entries.2355]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Branch Poke!$",
+]
+
+[msg.section_0.entries.2356]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Branch Poke!$",
+]
+
+[msg.section_0.entries.2357]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Branch Poke!$",
+]
+
+[msg.section_0.entries.2358]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Overdrive!$",
+]
+
+[msg.section_0.entries.2359]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Overdrive!$",
+]
+
+[msg.section_0.entries.2360]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Overdrive!$",
+]
+
+[msg.section_0.entries.2361]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Apple Acid!$",
+]
+
+[msg.section_0.entries.2362]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Apple Acid!$",
+]
+
+[msg.section_0.entries.2363]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Apple Acid!$",
+]
+
+[msg.section_0.entries.2364]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Grav Apple!$",
+]
+
+[msg.section_0.entries.2365]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Grav Apple!$",
+]
+
+[msg.section_0.entries.2366]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Grav Apple!$",
+]
+
+[msg.section_0.entries.2367]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Spirit Break!$",
+]
+
+[msg.section_0.entries.2368]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Spirit Break!$",
+]
+
+[msg.section_0.entries.2369]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Spirit Break!$",
+]
+
+[msg.section_0.entries.2370]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Strange Steam!$",
+]
+
+[msg.section_0.entries.2371]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Strange Steam!$",
+]
+
+[msg.section_0.entries.2372]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Strange Steam!$",
+]
+
+[msg.section_0.entries.2373]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Life Dew!$",
+]
+
+[msg.section_0.entries.2374]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Life Dew!$",
+]
+
+[msg.section_0.entries.2375]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Life Dew!$",
+]
+
+[msg.section_0.entries.2376]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Obstruct!$",
+]
+
+[msg.section_0.entries.2377]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Obstruct!$",
+]
+
+[msg.section_0.entries.2378]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Obstruct!$",
+]
+
+[msg.section_0.entries.2379]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "False Surrender!$",
+]
+
+[msg.section_0.entries.2380]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "False Surrender!$",
+]
+
+[msg.section_0.entries.2381]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "False Surrender!$",
+]
+
+[msg.section_0.entries.2382]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Meteor Assault!$",
+]
+
+[msg.section_0.entries.2383]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Meteor Assault!$",
+]
+
+[msg.section_0.entries.2384]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Meteor Assault!$",
+]
+
+[msg.section_0.entries.2385]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Eternabeam!$",
+]
+
+[msg.section_0.entries.2386]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Eternabeam!$",
+]
+
+[msg.section_0.entries.2387]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Eternabeam!$",
+]
+
+[msg.section_0.entries.2388]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Steel Beam!$",
+]
+
+[msg.section_0.entries.2389]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Steel Beam!$",
+]
+
+[msg.section_0.entries.2390]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Steel Beam!$",
+]
+
+[msg.section_0.entries.2391]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Expanding Force!$",
+]
+
+[msg.section_0.entries.2392]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Expanding Force!$",
+]
+
+[msg.section_0.entries.2393]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Expanding Force!$",
+]
+
+[msg.section_0.entries.2394]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Steel Roller!$",
+]
+
+[msg.section_0.entries.2395]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Steel Roller!$",
+]
+
+[msg.section_0.entries.2396]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Steel Roller!$",
+]
+
+[msg.section_0.entries.2397]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Scale Shot!$",
+]
+
+[msg.section_0.entries.2398]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Scale Shot!$",
+]
+
+[msg.section_0.entries.2399]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Scale Shot!$",
+]
+
+[msg.section_0.entries.2400]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Meteor Beam!$",
+]
+
+[msg.section_0.entries.2401]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Meteor Beam!$",
+]
+
+[msg.section_0.entries.2402]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Meteor Beam!$",
+]
+
+[msg.section_0.entries.2403]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Shell Side Arm!$",
+]
+
+[msg.section_0.entries.2404]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Shell Side Arm!$",
+]
+
+[msg.section_0.entries.2405]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Shell Side Arm!$",
+]
+
+[msg.section_0.entries.2406]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Misty Explosion!$",
+]
+
+[msg.section_0.entries.2407]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Misty Explosion!$",
+]
+
+[msg.section_0.entries.2408]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Misty Explosion!$",
+]
+
+[msg.section_0.entries.2409]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Grassy Glide!$",
+]
+
+[msg.section_0.entries.2410]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Grassy Glide!$",
+]
+
+[msg.section_0.entries.2411]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Grassy Glide!$",
+]
+
+[msg.section_0.entries.2412]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Rising Voltage!$",
+]
+
+[msg.section_0.entries.2413]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Rising Voltage!$",
+]
+
+[msg.section_0.entries.2414]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Rising Voltage!$",
+]
+
+[msg.section_0.entries.2415]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Terrain Pulse!$",
+]
+
+[msg.section_0.entries.2416]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Terrain Pulse!$",
+]
+
+[msg.section_0.entries.2417]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Terrain Pulse!$",
+]
+
+[msg.section_0.entries.2418]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Skitter Smack!$",
+]
+
+[msg.section_0.entries.2419]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Skitter Smack!$",
+]
+
+[msg.section_0.entries.2420]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Skitter Smack!$",
+]
+
+[msg.section_0.entries.2421]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Burning Jealousy!$",
+]
+
+[msg.section_0.entries.2422]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Burning Jealousy!$",
+]
+
+[msg.section_0.entries.2423]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Burning Jealousy!$",
+]
+
+[msg.section_0.entries.2424]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Lash Out!$",
+]
+
+[msg.section_0.entries.2425]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Lash Out!$",
+]
+
+[msg.section_0.entries.2426]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Lash Out!$",
+]
+
+[msg.section_0.entries.2427]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Poltergeist!$",
+]
+
+[msg.section_0.entries.2428]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Poltergeist!$",
+]
+
+[msg.section_0.entries.2429]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Poltergeist!$",
+]
+
+[msg.section_0.entries.2430]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Corrosive Gas!$",
+]
+
+[msg.section_0.entries.2431]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Corrosive Gas!$",
+]
+
+[msg.section_0.entries.2432]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Corrosive Gas!$",
+]
+
+[msg.section_0.entries.2433]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Coaching!$",
+]
+
+[msg.section_0.entries.2434]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Coaching!$",
+]
+
+[msg.section_0.entries.2435]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Coaching!$",
+]
+
+[msg.section_0.entries.2436]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Flip Turn!$",
+]
+
+[msg.section_0.entries.2437]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Flip Turn!$",
+]
+
+[msg.section_0.entries.2438]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Flip Turn!$",
+]
+
+[msg.section_0.entries.2439]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Triple Axel!$",
+]
+
+[msg.section_0.entries.2440]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Triple Axel!$",
+]
+
+[msg.section_0.entries.2441]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Triple Axel!$",
+]
+
+[msg.section_0.entries.2442]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Dual Wingbeat!$",
+]
+
+[msg.section_0.entries.2443]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Dual Wingbeat!$",
+]
+
+[msg.section_0.entries.2444]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Dual Wingbeat!$",
+]
+
+[msg.section_0.entries.2445]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Scorching Sands!$",
+]
+
+[msg.section_0.entries.2446]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Scorching Sands!$",
+]
+
+[msg.section_0.entries.2447]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Scorching Sands!$",
+]
+
+[msg.section_0.entries.2448]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Jungle Healing!$",
+]
+
+[msg.section_0.entries.2449]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Jungle Healing!$",
+]
+
+[msg.section_0.entries.2450]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Jungle Healing!$",
+]
+
+[msg.section_0.entries.2451]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Wicked Blow!$",
+]
+
+[msg.section_0.entries.2452]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Wicked Blow!$",
+]
+
+[msg.section_0.entries.2453]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Wicked Blow!$",
+]
+
+[msg.section_0.entries.2454]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Surging Strikes!$",
+]
+
+[msg.section_0.entries.2455]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Surging Strikes!$",
+]
+
+[msg.section_0.entries.2456]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Surging Strikes!$",
+]
+
+[msg.section_0.entries.2457]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Thunder Cage!$",
+]
+
+[msg.section_0.entries.2458]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Thunder Cage!$",
+]
+
+[msg.section_0.entries.2459]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Thunder Cage!$",
+]
+
+[msg.section_0.entries.2460]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Dragon Energy!$",
+]
+
+[msg.section_0.entries.2461]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Dragon Energy!$",
+]
+
+[msg.section_0.entries.2462]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Dragon Energy!$",
+]
+
+[msg.section_0.entries.2463]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Freezing Glare!$",
+]
+
+[msg.section_0.entries.2464]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Freezing Glare!$",
+]
+
+[msg.section_0.entries.2465]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Freezing Glare!$",
+]
+
+[msg.section_0.entries.2466]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Fiery Wrath!$",
+]
+
+[msg.section_0.entries.2467]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Fiery Wrath!$",
+]
+
+[msg.section_0.entries.2468]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Fiery Wrath!$",
+]
+
+[msg.section_0.entries.2469]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Thunderous Kick!$",
+]
+
+[msg.section_0.entries.2470]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Thunderous Kick!$",
+]
+
+[msg.section_0.entries.2471]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Thunderous Kick!$",
+]
+
+[msg.section_0.entries.2472]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Glacial Lance!$",
+]
+
+[msg.section_0.entries.2473]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Glacial Lance!$",
+]
+
+[msg.section_0.entries.2474]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Glacial Lance!$",
+]
+
+[msg.section_0.entries.2475]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Astral Barrage!$",
+]
+
+[msg.section_0.entries.2476]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Astral Barrage!$",
+]
+
+[msg.section_0.entries.2477]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Astral Barrage!$",
+]
+
+[msg.section_0.entries.2478]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Eerie Spell!$",
+]
+
+[msg.section_0.entries.2479]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Eerie Spell!$",
+]
+
+[msg.section_0.entries.2480]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Eerie Spell!$",
+]
+
+[msg.section_0.entries.2481]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Dire Claw!$",
+]
+
+[msg.section_0.entries.2482]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Dire Claw!$",
+]
+
+[msg.section_0.entries.2483]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Dire Claw!$",
+]
+
+[msg.section_0.entries.2484]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Psyshield Bash!$",
+]
+
+[msg.section_0.entries.2485]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Psyshield Bash!$",
+]
+
+[msg.section_0.entries.2486]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Psyshield Bash!$",
+]
+
+[msg.section_0.entries.2487]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Power Shift!$",
+]
+
+[msg.section_0.entries.2488]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Power Shift!$",
+]
+
+[msg.section_0.entries.2489]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Power Shift!$",
+]
+
+[msg.section_0.entries.2490]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Stone Axe!$",
+]
+
+[msg.section_0.entries.2491]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Stone Axe!$",
+]
+
+[msg.section_0.entries.2492]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Stone Axe!$",
+]
+
+[msg.section_0.entries.2493]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Springtide Storm!$",
+]
+
+[msg.section_0.entries.2494]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Springtide Storm!$",
+]
+
+[msg.section_0.entries.2495]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Springtide Storm!$",
+]
+
+[msg.section_0.entries.2496]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Mystical Power!$",
+]
+
+[msg.section_0.entries.2497]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Mystical Power!$",
+]
+
+[msg.section_0.entries.2498]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Mystical Power!$",
+]
+
+[msg.section_0.entries.2499]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Raging Fury!$",
+]
+
+[msg.section_0.entries.2500]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Raging Fury!$",
+]
+
+[msg.section_0.entries.2501]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Raging Fury!$",
+]
+
+[msg.section_0.entries.2502]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Wave Crash!$",
+]
+
+[msg.section_0.entries.2503]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Wave Crash!$",
+]
+
+[msg.section_0.entries.2504]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Wave Crash!$",
+]
+
+[msg.section_0.entries.2505]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Chloroblast!$",
+]
+
+[msg.section_0.entries.2506]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Chloroblast!$",
+]
+
+[msg.section_0.entries.2507]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Chloroblast!$",
+]
+
+[msg.section_0.entries.2508]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Mountain Gale!$",
+]
+
+[msg.section_0.entries.2509]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Mountain Gale!$",
+]
+
+[msg.section_0.entries.2510]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Mountain Gale!$",
+]
+
+[msg.section_0.entries.2511]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Victory Dance!$",
+]
+
+[msg.section_0.entries.2512]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Victory Dance!$",
+]
+
+[msg.section_0.entries.2513]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Victory Dance!$",
+]
+
+[msg.section_0.entries.2514]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Headlong Rush!$",
+]
+
+[msg.section_0.entries.2515]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Headlong Rush!$",
+]
+
+[msg.section_0.entries.2516]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Headlong Rush!$",
+]
+
+[msg.section_0.entries.2517]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Barb Barrage!$",
+]
+
+[msg.section_0.entries.2518]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Barb Barrage!$",
+]
+
+[msg.section_0.entries.2519]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Barb Barrage!$",
+]
+
+[msg.section_0.entries.2520]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Esper Wing!$",
+]
+
+[msg.section_0.entries.2521]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Esper Wing!$",
+]
+
+[msg.section_0.entries.2522]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Esper Wing!$",
+]
+
+[msg.section_0.entries.2523]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Bitter Malice!$",
+]
+
+[msg.section_0.entries.2524]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Bitter Malice!$",
+]
+
+[msg.section_0.entries.2525]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Bitter Malice!$",
+]
+
+[msg.section_0.entries.2526]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Shelter!$",
+]
+
+[msg.section_0.entries.2527]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Shelter!$",
+]
+
+[msg.section_0.entries.2528]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Shelter!$",
+]
+
+[msg.section_0.entries.2529]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Triple Arrows!$",
+]
+
+[msg.section_0.entries.2530]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Triple Arrows!$",
+]
+
+[msg.section_0.entries.2531]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Triple Arrows!$",
+]
+
+[msg.section_0.entries.2532]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Infernal Parade!$",
+]
+
+[msg.section_0.entries.2533]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Infernal Parade!$",
+]
+
+[msg.section_0.entries.2534]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Infernal Parade!$",
+]
+
+[msg.section_0.entries.2535]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Ceaseless Edge!$",
+]
+
+[msg.section_0.entries.2536]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Ceaseless Edge!$",
+]
+
+[msg.section_0.entries.2537]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Ceaseless Edge!$",
+]
+
+[msg.section_0.entries.2538]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Bleakwind Storm!$",
+]
+
+[msg.section_0.entries.2539]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Bleakwind Storm!$",
+]
+
+[msg.section_0.entries.2540]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Bleakwind Storm!$",
+]
+
+[msg.section_0.entries.2541]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Wildbolt Storm!$",
+]
+
+[msg.section_0.entries.2542]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Wildbolt Storm!$",
+]
+
+[msg.section_0.entries.2543]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Wildbolt Storm!$",
+]
+
+[msg.section_0.entries.2544]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Sandsear Storm!$",
+]
+
+[msg.section_0.entries.2545]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Sandsear Storm!$",
+]
+
+[msg.section_0.entries.2546]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Sandsear Storm!$",
+]
+
+[msg.section_0.entries.2547]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Lunar Blessing!$",
+]
+
+[msg.section_0.entries.2548]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Lunar Blessing!$",
+]
+
+[msg.section_0.entries.2549]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Lunar Blessing!$",
+]
+
+[msg.section_0.entries.2550]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Take Heart!$",
+]
+
+[msg.section_0.entries.2551]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Take Heart!$",
+]
+
+[msg.section_0.entries.2552]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Take Heart!$",
+]
+
+[msg.section_0.entries.2553]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Tera Blast!$",
+]
+
+[msg.section_0.entries.2554]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Tera Blast!$",
+]
+
+[msg.section_0.entries.2555]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Tera Blast!$",
+]
+
+[msg.section_0.entries.2556]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Silk Trap!$",
+]
+
+[msg.section_0.entries.2557]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Silk Trap!$",
+]
+
+[msg.section_0.entries.2558]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Silk Trap!$",
+]
+
+[msg.section_0.entries.2559]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Axe Kick!$",
+]
+
+[msg.section_0.entries.2560]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Axe Kick!$",
+]
+
+[msg.section_0.entries.2561]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Axe Kick!$",
+]
+
+[msg.section_0.entries.2562]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Last Respects!$",
+]
+
+[msg.section_0.entries.2563]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Last Respects!$",
+]
+
+[msg.section_0.entries.2564]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Last Respects!$",
+]
+
+[msg.section_0.entries.2565]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Lumina Crash!$",
+]
+
+[msg.section_0.entries.2566]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Lumina Crash!$",
+]
+
+[msg.section_0.entries.2567]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Lumina Crash!$",
+]
+
+[msg.section_0.entries.2568]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Order Up!$",
+]
+
+[msg.section_0.entries.2569]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Order Up!$",
+]
+
+[msg.section_0.entries.2570]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Order Up!$",
+]
+
+[msg.section_0.entries.2571]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Jet Punch!$",
+]
+
+[msg.section_0.entries.2572]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Jet Punch!$",
+]
+
+[msg.section_0.entries.2573]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Jet Punch!$",
+]
+
+[msg.section_0.entries.2574]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Spicy Extract!$",
+]
+
+[msg.section_0.entries.2575]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Spicy Extract!$",
+]
+
+[msg.section_0.entries.2576]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Spicy Extract!$",
+]
+
+[msg.section_0.entries.2577]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Spin Out!$",
+]
+
+[msg.section_0.entries.2578]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Spin Out!$",
+]
+
+[msg.section_0.entries.2579]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Spin Out!$",
+]
+
+[msg.section_0.entries.2580]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Population Bomb!$",
+]
+
+[msg.section_0.entries.2581]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Population Bomb!$",
+]
+
+[msg.section_0.entries.2582]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Population Bomb!$",
+]
+
+[msg.section_0.entries.2583]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Ice Spinner!$",
+]
+
+[msg.section_0.entries.2584]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Ice Spinner!$",
+]
+
+[msg.section_0.entries.2585]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Ice Spinner!$",
+]
+
+[msg.section_0.entries.2586]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Glaive Rush!$",
+]
+
+[msg.section_0.entries.2587]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Glaive Rush!$",
+]
+
+[msg.section_0.entries.2588]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Glaive Rush!$",
+]
+
+[msg.section_0.entries.2589]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Revival Blessing!$",
+]
+
+[msg.section_0.entries.2590]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Revival Blessing!$",
+]
+
+[msg.section_0.entries.2591]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Revival Blessing!$",
+]
+
+[msg.section_0.entries.2592]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Salt Cure!$",
+]
+
+[msg.section_0.entries.2593]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Salt Cure!$",
+]
+
+[msg.section_0.entries.2594]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Salt Cure!$",
+]
+
+[msg.section_0.entries.2595]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Triple Dive!$",
+]
+
+[msg.section_0.entries.2596]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Triple Dive!$",
+]
+
+[msg.section_0.entries.2597]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Triple Dive!$",
+]
+
+[msg.section_0.entries.2598]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Mortal Spin!$",
+]
+
+[msg.section_0.entries.2599]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Mortal Spin!$",
+]
+
+[msg.section_0.entries.2600]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Mortal Spin!$",
+]
+
+[msg.section_0.entries.2601]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Doodle!$",
+]
+
+[msg.section_0.entries.2602]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Doodle!$",
+]
+
+[msg.section_0.entries.2603]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Doodle!$",
+]
+
+[msg.section_0.entries.2604]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Fillet Away!$",
+]
+
+[msg.section_0.entries.2605]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Fillet Away!$",
+]
+
+[msg.section_0.entries.2606]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Fillet Away!$",
+]
+
+[msg.section_0.entries.2607]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Kowtow Cleave!$",
+]
+
+[msg.section_0.entries.2608]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Kowtow Cleave!$",
+]
+
+[msg.section_0.entries.2609]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Kowtow Cleave!$",
+]
+
+[msg.section_0.entries.2610]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Flower Trick!$",
+]
+
+[msg.section_0.entries.2611]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Flower Trick!$",
+]
+
+[msg.section_0.entries.2612]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Flower Trick!$",
+]
+
+[msg.section_0.entries.2613]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Torch Song!$",
+]
+
+[msg.section_0.entries.2614]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Torch Song!$",
+]
+
+[msg.section_0.entries.2615]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Torch Song!$",
+]
+
+[msg.section_0.entries.2616]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Aqua Step!$",
+]
+
+[msg.section_0.entries.2617]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Aqua Step!$",
+]
+
+[msg.section_0.entries.2618]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Aqua Step!$",
+]
+
+[msg.section_0.entries.2619]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Raging Bull!$",
+]
+
+[msg.section_0.entries.2620]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Raging Bull!$",
+]
+
+[msg.section_0.entries.2621]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Raging Bull!$",
+]
+
+[msg.section_0.entries.2622]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Make It Rain!$",
+]
+
+[msg.section_0.entries.2623]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Make It Rain!$",
+]
+
+[msg.section_0.entries.2624]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Make It Rain!$",
+]
+
+[msg.section_0.entries.2625]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Psyblade!$",
+]
+
+[msg.section_0.entries.2626]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Psyblade!$",
+]
+
+[msg.section_0.entries.2627]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Psyblade!$",
+]
+
+[msg.section_0.entries.2628]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Hydro Steam!$",
+]
+
+[msg.section_0.entries.2629]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Hydro Steam!$",
+]
+
+[msg.section_0.entries.2630]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Hydro Steam!$",
+]
+
+[msg.section_0.entries.2631]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Ruination!$",
+]
+
+[msg.section_0.entries.2632]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Ruination!$",
+]
+
+[msg.section_0.entries.2633]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Ruination!$",
+]
+
+[msg.section_0.entries.2634]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Collision Course!$",
+]
+
+[msg.section_0.entries.2635]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Collision Course!$",
+]
+
+[msg.section_0.entries.2636]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Collision Course!$",
+]
+
+[msg.section_0.entries.2637]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Electro Drift!$",
+]
+
+[msg.section_0.entries.2638]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Electro Drift!$",
+]
+
+[msg.section_0.entries.2639]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Electro Drift!$",
+]
+
+[msg.section_0.entries.2640]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Shed Tail!$",
+]
+
+[msg.section_0.entries.2641]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Shed Tail!$",
+]
+
+[msg.section_0.entries.2642]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Shed Tail!$",
+]
+
+[msg.section_0.entries.2643]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Chilly Reception!$",
+]
+
+[msg.section_0.entries.2644]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Chilly Reception!$",
+]
+
+[msg.section_0.entries.2645]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Chilly Reception!$",
+]
+
+[msg.section_0.entries.2646]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Tidy Up!$",
+]
+
+[msg.section_0.entries.2647]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Tidy Up!$",
+]
+
+[msg.section_0.entries.2648]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Tidy Up!$",
+]
+
+[msg.section_0.entries.2649]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Snowscape!$",
+]
+
+[msg.section_0.entries.2650]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Snowscape!$",
+]
+
+[msg.section_0.entries.2651]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Snowscape!$",
+]
+
+[msg.section_0.entries.2652]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Pounce!$",
+]
+
+[msg.section_0.entries.2653]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Pounce!$",
+]
+
+[msg.section_0.entries.2654]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Pounce!$",
+]
+
+[msg.section_0.entries.2655]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Trailblaze!$",
+]
+
+[msg.section_0.entries.2656]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Trailblaze!$",
+]
+
+[msg.section_0.entries.2657]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Trailblaze!$",
+]
+
+[msg.section_0.entries.2658]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Chilling Water!$",
+]
+
+[msg.section_0.entries.2659]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Chilling Water!$",
+]
+
+[msg.section_0.entries.2660]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Chilling Water!$",
+]
+
+[msg.section_0.entries.2661]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Hyper Drill!$",
+]
+
+[msg.section_0.entries.2662]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Hyper Drill!$",
+]
+
+[msg.section_0.entries.2663]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Hyper Drill!$",
+]
+
+[msg.section_0.entries.2664]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Twin Beam!$",
+]
+
+[msg.section_0.entries.2665]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Twin Beam!$",
+]
+
+[msg.section_0.entries.2666]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Twin Beam!$",
+]
+
+[msg.section_0.entries.2667]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Rage Fist!$",
+]
+
+[msg.section_0.entries.2668]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Rage Fist!$",
+]
+
+[msg.section_0.entries.2669]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Rage Fist!$",
+]
+
+[msg.section_0.entries.2670]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Armor Cannon!$",
+]
+
+[msg.section_0.entries.2671]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Armor Cannon!$",
+]
+
+[msg.section_0.entries.2672]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Armor Cannon!$",
+]
+
+[msg.section_0.entries.2673]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Bitter Blade!$",
+]
+
+[msg.section_0.entries.2674]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Bitter Blade!$",
+]
+
+[msg.section_0.entries.2675]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Bitter Blade!$",
+]
+
+[msg.section_0.entries.2676]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Double Shock!$",
+]
+
+[msg.section_0.entries.2677]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Double Shock!$",
+]
+
+[msg.section_0.entries.2678]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Double Shock!$",
+]
+
+[msg.section_0.entries.2679]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Gigaton Hammer!$",
+]
+
+[msg.section_0.entries.2680]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Gigaton Hammer!$",
+]
+
+[msg.section_0.entries.2681]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Gigaton Hammer!$",
+]
+
+[msg.section_0.entries.2682]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Comeuppance!$",
+]
+
+[msg.section_0.entries.2683]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Comeuppance!$",
+]
+
+[msg.section_0.entries.2684]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Comeuppance!$",
+]
+
+[msg.section_0.entries.2685]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Aqua Cutter!$",
+]
+
+[msg.section_0.entries.2686]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Aqua Cutter!$",
+]
+
+[msg.section_0.entries.2687]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Aqua Cutter!$",
+]
+
+[msg.section_0.entries.2688]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Blazing Torque!$",
+]
+
+[msg.section_0.entries.2689]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Blazing Torque!$",
+]
+
+[msg.section_0.entries.2690]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Blazing Torque!$",
+]
+
+[msg.section_0.entries.2691]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Wicked Torque!$",
+]
+
+[msg.section_0.entries.2692]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Wicked Torque!$",
+]
+
+[msg.section_0.entries.2693]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Wicked Torque!$",
+]
+
+[msg.section_0.entries.2694]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Noxious Torque!$",
+]
+
+[msg.section_0.entries.2695]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Noxious Torque!$",
+]
+
+[msg.section_0.entries.2696]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Noxious Torque!$",
+]
+
+[msg.section_0.entries.2697]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Combat Torque!$",
+]
+
+[msg.section_0.entries.2698]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Combat Torque!$",
+]
+
+[msg.section_0.entries.2699]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Combat Torque!$",
+]
+
+[msg.section_0.entries.2700]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Magical Torque!$",
+]
+
+[msg.section_0.entries.2701]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Magical Torque!$",
+]
+
+[msg.section_0.entries.2702]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Magical Torque!$",
+]
+
+[msg.section_0.entries.2703]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Blood Moon!$",
+]
+
+[msg.section_0.entries.2704]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Blood Moon!$",
+]
+
+[msg.section_0.entries.2705]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Blood Moon!$",
+]
+
+[msg.section_0.entries.2706]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Matcha Gotcha!$",
+]
+
+[msg.section_0.entries.2707]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Matcha Gotcha!$",
+]
+
+[msg.section_0.entries.2708]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Matcha Gotcha!$",
+]
+
+[msg.section_0.entries.2709]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Syrup Bomb!$",
+]
+
+[msg.section_0.entries.2710]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Syrup Bomb!$",
+]
+
+[msg.section_0.entries.2711]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Syrup Bomb!$",
+]
+
+[msg.section_0.entries.2712]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Ivy Cudgel!$",
+]
+
+[msg.section_0.entries.2713]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Ivy Cudgel!$",
+]
+
+[msg.section_0.entries.2714]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Ivy Cudgel!$",
+]
+
+[msg.section_0.entries.2715]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Electro Shot!$",
+]
+
+[msg.section_0.entries.2716]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Electro Shot!$",
+]
+
+[msg.section_0.entries.2717]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Electro Shot!$",
+]
+
+[msg.section_0.entries.2718]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Tera Starstorm!$",
+]
+
+[msg.section_0.entries.2719]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Tera Starstorm!$",
+]
+
+[msg.section_0.entries.2720]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Tera Starstorm!$",
+]
+
+[msg.section_0.entries.2721]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Fickle Beam!$",
+]
+
+[msg.section_0.entries.2722]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Fickle Beam!$",
+]
+
+[msg.section_0.entries.2723]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Fickle Beam!$",
+]
+
+[msg.section_0.entries.2724]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Burning Bulwark!$",
+]
+
+[msg.section_0.entries.2725]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Burning Bulwark!$",
+]
+
+[msg.section_0.entries.2726]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Burning Bulwark!$",
+]
+
+[msg.section_0.entries.2727]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Thunderclap!$",
+]
+
+[msg.section_0.entries.2728]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Thunderclap!$",
+]
+
+[msg.section_0.entries.2729]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Thunderclap!$",
+]
+
+[msg.section_0.entries.2730]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Mighty Cleave!$",
+]
+
+[msg.section_0.entries.2731]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Mighty Cleave!$",
+]
+
+[msg.section_0.entries.2732]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Mighty Cleave!$",
+]
+
+[msg.section_0.entries.2733]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Tachyon Cutter!$",
+]
+
+[msg.section_0.entries.2734]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Tachyon Cutter!$",
+]
+
+[msg.section_0.entries.2735]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Tachyon Cutter!$",
+]
+
+[msg.section_0.entries.2736]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Hard Press!$",
+]
+
+[msg.section_0.entries.2737]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Hard Press!$",
+]
+
+[msg.section_0.entries.2738]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Hard Press!$",
+]
+
+[msg.section_0.entries.2739]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Dragon Cheer!$",
+]
+
+[msg.section_0.entries.2740]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Dragon Cheer!$",
+]
+
+[msg.section_0.entries.2741]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Dragon Cheer!$",
+]
+
+[msg.section_0.entries.2742]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Alluring Voice!$",
+]
+
+[msg.section_0.entries.2743]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Alluring Voice!$",
+]
+
+[msg.section_0.entries.2744]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Alluring Voice!$",
+]
+
+[msg.section_0.entries.2745]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Temper Flare!$",
+]
+
+[msg.section_0.entries.2746]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Temper Flare!$",
+]
+
+[msg.section_0.entries.2747]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Temper Flare!$",
+]
+
+[msg.section_0.entries.2748]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Supercell Slam!$",
+]
+
+[msg.section_0.entries.2749]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Supercell Slam!$",
+]
+
+[msg.section_0.entries.2750]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Supercell Slam!$",
+]
+
+[msg.section_0.entries.2751]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Psychic Noise!$",
+]
+
+[msg.section_0.entries.2752]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Psychic Noise!$",
+]
+
+[msg.section_0.entries.2753]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Psychic Noise!$",
+]
+
+[msg.section_0.entries.2754]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Upper Hand!$",
+]
+
+[msg.section_0.entries.2755]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Upper Hand!$",
+]
+
+[msg.section_0.entries.2756]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Upper Hand!$",
+]
+
+[msg.section_0.entries.2757]
+text = [
+  "[VAR PKNICK(0)] used\\n",
+  "Malignant Chain!$",
+]
+
+[msg.section_0.entries.2758]
+text = [
+  "The wild [VAR PKNICK(0)] used\\n",
+  "Malignant Chain!$",
+]
+
+[msg.section_0.entries.2759]
+text = [
+  "The foe's [VAR PKNICK(0)] used\\n",
+  "Malignant Chain!$",
+]

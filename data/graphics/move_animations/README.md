@@ -23,9 +23,16 @@ The initial files are clones of each move's `Move Animation ID` source from
 `data/pml/moves/*.yml`. Future custom animation work should edit the destination
 file directly, for example `5_00000573.bin` for Freeze-Dry.
 
-Terrain placeholders currently copy Aromatherapy (`5_00000312.bin`) into
-Grassy Terrain's slot `5_00000580.bin`, Mist (`5_00000054.bin`) into Misty
-Terrain's slot `5_00000581.bin`.
+Grassy Terrain (`580`), Misty Terrain (`581`), and Electric Terrain (`604`)
+use their custom particle sequences. Grassy Terrain keeps its existing SPA
+`754` flower/grass sequence and attacker sprite tint, but its two scene-wide
+`ChangeBackgroundColor` commands are removed so it does not hue-shift the
+battle background. Psychic Terrain (`678`) is routed around the generic Gen
+7-9 Tackle fallback to reserved custom script member `624`. That script keeps
+only Electrify's attacker-side opening: its initial camera, sounds, and SPA
+resources `0..4`, recolored purple in custom SPA `786`. Electrify's later
+defender-side section and SPA `379` are omitted. Terrain Surge abilities invoke
+these same logical move animations.
 
 Mega Evolution's custom transform animation reserves slot `5_00000622.bin`.
 It uses SolarBeam's first gathering script body from member `76`, redirected to
@@ -82,7 +89,11 @@ through the VM script.
 
 Electric Terrain (`5_00000604.bin`) is generated from Discharge with the
 target-camera hit section removed and a custom floor spark SPA installed at
-`/a/0/0/6` member `742`.
+`/a/0/0/6` member `742`. For the terrain-texture MVP, this script also fades
+only the field fully to black at startup, waits for the viewer-side texture
+swap, and fades the Electric field back in while the floor sparks continue.
+Its original stage/effect tint timing remains intact, and MCSS Pokemon
+platforms are not part of the field fade.
 
 Topsy-Turvy (`5_00000576.bin`) is generated from Psychic's background sequence
 and rotates the field sprite selector upside down and back.

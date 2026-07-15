@@ -76,6 +76,9 @@ pmc_overlay = custom_target(
   'pmc_overlay',
   input: meson.project_source_root() / 'pmc' / 'OVL344.bin',
   output: 'pmc_overlay.stamp',
+  # The real output is staged in the source-tree VFS. Re-run this cheap copy so
+  # a changed or corrupted staged overlay cannot bypass the stamp dependency.
+  build_always_stale: true,
   command: [
     patch_pmc_sysheap_py,
     '--input', '@INPUT@',

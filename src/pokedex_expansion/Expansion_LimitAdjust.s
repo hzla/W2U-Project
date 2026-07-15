@@ -2,7 +2,7 @@
 
 .equ PkmnCnt, 1023
 .equ RegionalDexPkmCnt, 302
-.equ RegionalDexFile, 1270
+.equ RegionalDexFile, 1273
 
 .equ ALWAYS_HAVE_NATL_DEX, 1
 

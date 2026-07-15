@@ -237,6 +237,8 @@ enum W2UMoveFlagIndex : u32 {
     MOVE_FLAG_INDEX_BLOCKED_BY_PROTECT = 0x3,
     MOVE_FLAG_INDEX_GROUNDED_BY_GRAVITY = 0x9,
     MOVE_FLAG_INDEX_POWDER = 0xE,
+    MOVE_FLAG_INDEX_WIND = 0x10,
+    MOVE_FLAG_INDEX_SHARP = 0x11,
     MOVE_FLAG_INDEX_HEALING = 0x12,
     MOVE_FLAG_INDEX_DANCE = 0x13,
     MOVE_FLAG_INDEX_BULLET = 0x14,
@@ -316,6 +318,7 @@ extern "C" void BattleEventItem_Remove(BattleEventItem* item);
 
 extern "C" u32 AbilityEvent_GetSubPriority(BattleMon* battleMon);
 extern "C" BattleEventPriority GetHandlerMainPriority(u32* handlerAmount);
+extern "C" int W2U_GetQueuedMovePriority(ServerFlow* serverFlow, BattleMon* attackingMon);
 extern "C" void BattleHandler_PushRun(ServerFlow* serverFlow, BattleHandlerEffect effect, u32 pokemonSlot);
 
 #endif

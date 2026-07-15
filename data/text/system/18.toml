@@ -7107,7 +7107,8 @@ text = [
 
 [msg.section_0.entries.1195]
 text = [
-  "$",
+  "[VAR PKNICK(0)] became\\n",
+  "Ash-Greninja!$",
 ]
 
 [msg.section_0.entries.1196]
@@ -7701,4 +7702,29 @@ text = [
 text = [
   "A deluge of ions showers\\n",
   "the battlefield!$",
+]
+
+[msg.section_0.entries.1311]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1312]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1313]
+text = [
+  "The battlefield got weird!$",
+]
+
+[msg.section_0.entries.1314]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1315]
+text = [
+  "$",
 ]

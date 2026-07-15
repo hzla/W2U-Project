@@ -13,6 +13,13 @@ leaving it in place can make the particle drift back toward the donor move's
 colors during its lifetime.
 
 Current generated SPA additions:
+- `6_00000786.bin`: Electrify opening particles for Psychic Terrain, cloned
+  from custom Electrify SPA `743`. All five resources and both 64x64 A5I3
+  textures retain their motion, scale, and alpha behavior. The yellow donor
+  texture pixels are normalized to white, while every resource base color and
+  color-animation endpoint is shifted to the dominant hue of
+  `psychic-tileable.png` (about 287 degrees, sampled near `#9a06c2`), preventing
+  yellow color-curve leakage while preserving the donor brightness range.
 - `6_00000755.bin`: brown-tinted Shock Wave gathering particles for Land's
   Wrath, generated from SPA `528`.
 - `6_00000756.bin`: flipped/reversed Quash hand particles for Mat Block,

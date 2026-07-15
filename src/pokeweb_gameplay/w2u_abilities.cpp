@@ -20,6 +20,7 @@
 #define W2U_CHEEK_POUCH_RECOVER_DENOMINATOR 3u
 #define W2U_RECEIVER_MSG_NARC 2u
 #define W2U_RECEIVER_MSG_ID 619u
+#define W2U_BATTLE_BOND_ASH_FORM 2u
 #define W2U_FORCE_FAIL_MESSAGE 2
 #define W2U_SERVERFLOW_SET_TARGET_ORIGINAL_OFFSET 0x850u
 #define W2U_BATTLE_EVENT_ITEM_SUB_ID_OFFSET 0x38u
@@ -37,6 +38,26 @@ extern "C" void THUMB_BRANCH_ServerEvent_GetMoveParam(
     MoveParam* moveParam);
 
 extern "C" void W2U_Mega_ProcessActionOrderBeforeMoves(ServerFlow* serverFlow, u32 startActionIdx);
+
+extern "C" int W2U_GetQueuedMovePriority(ServerFlow* serverFlow, BattleMon* attackingMon)
+{
+    if (!serverFlow || !attackingMon) {
+        return 0;
+    }
+
+    for (u32 idx = 0; idx < W2U_ARRAY_COUNT(serverFlow->actionOrderWork); ++idx) {
+        ActionOrderWork* actionOrder = &serverFlow->actionOrderWork[idx];
+        if (actionOrder->battleMon == attackingMon) {
+            int priority =
+                (int)((actionOrder->speed >> 16) & 0x3FFFFF) - W2U_ACTION_ORDER_PRIO_OFFSET;
+            int specialPriority =
+                (int)((actionOrder->speed >> 13) & 0x7) - W2U_ACTION_ORDER_SPECIAL_PRIO_OFFSET;
+            return priority + specialPriority;
+        }
+    }
+
+    return (int)BattleEventVar_GetValue(VAR_MOVE_PRIORITY);
+}
 
 static ConditionData W2U_GetStoredMoveCondition(BattleMon* battleMon, CONDITION condition)
 {
@@ -1049,25 +1070,6 @@ bool IsReceiverFailAbility(ABILITY ability)
     }
 }
 
-int GetQueuedMovePriority(ServerFlow* serverFlow, BattleMon* attackingMon)
-{
-    if (!serverFlow || !attackingMon) {
-        return 0;
-    }
-
-    for (u32 idx = 0; idx < W2U_ARRAY_COUNT(serverFlow->actionOrderWork); ++idx) {
-        ActionOrderWork* actionOrder = &serverFlow->actionOrderWork[idx];
-        if (actionOrder->battleMon == attackingMon) {
-            int priority = (int)((actionOrder->speed >> 16) & 0x3FFFFF) - W2U_ACTION_ORDER_PRIO_OFFSET;
-            int specialPriority =
-                (int)((actionOrder->speed >> 13) & 0x7) - W2U_ACTION_ORDER_SPECIAL_PRIO_OFFSET;
-            return priority + specialPriority;
-        }
-    }
-
-    return (int)BattleEventVar_GetValue(VAR_MOVE_PRIORITY);
-}
-
 bool EventMonIsFainted(ServerFlow* serverFlow, u32 pokemonSlot)
 {
     if (!serverFlow || !serverFlow->pokeCon) {
@@ -1625,13 +1627,80 @@ extern "C" void HandlerDisguisePreventDamage(BattleEventItem* item, ServerFlow* 
     changeForm->pokeID = (u8)pokemonSlot;
     changeForm->newForm = 1;
     changeForm->dontResetOnSwitch = 1;
-    BattleHandler_StrSetup(&changeForm->exStr, 2u, BATTLE_DISGUISE_MSGID);
-    BattleHandler_AddArg(&changeForm->exStr, pokemonSlot);
+    HandlerParam_StrParams emptyString = {};
+    changeForm->exStr = emptyString;
     BattleHandler_PopWork(serverFlow, changeForm);
+
+    // Keep the announcement as a separate work item so it is displayed after
+    // the instant client-side form refresh and before Disguise's HP cost.
+    HandlerParam_Message* message =
+        (HandlerParam_Message*)BattleHandler_PushWork(serverFlow, EFFECT_MESSAGE, pokemonSlot);
+    BattleHandler_StrSetup(&message->str, 2u, BATTLE_DISGUISE_MSGID);
+    BattleHandler_AddArg(&message->str, pokemonSlot);
+    BattleHandler_PopWork(serverFlow, message);
+
+    // Generation VIII onward: busting Disguise also costs 1/8 of Mimikyu's
+    // maximum HP. DivideMaxHPZeroCheck keeps the damage at a minimum of 1.
+    HandlerParam_Damage* damage =
+        (HandlerParam_Damage*)BattleHandler_PushWork(serverFlow, EFFECT_DAMAGE, pokemonSlot);
+    damage->pokeID = (u8)pokemonSlot;
+    damage->damage = (u16)DivideMaxHPZeroCheck(currentMon, 8u);
+    BattleHandler_PopWork(serverFlow, damage);
 }
 
 BattleEventHandlerTableEntry DisguiseHandlers[] = {
     {EVENT_CHECK_DAMAGE_TO_RECOVER, HandlerDisguisePreventDamage},
+};
+
+
+extern "C" void HandlerBattleBond(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    if (!work ||
+        work[0] ||
+        pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) {
+        return;
+    }
+
+    BattleMon* attackingMon = GetAbilityBattleMon(serverFlow, pokemonSlot);
+    if (!attackingMon ||
+        attackingMon->species != SPECIES_GRENINJA ||
+        BattleMon_IsFainted(attackingMon) ||
+        BattleMon_TransformCheck(attackingMon) ||
+        BattleMon_GetValue(attackingMon, VALUE_FORM) != 0) {
+        return;
+    }
+
+    u32 targetCount = (u32)BattleEventVar_GetValue(VAR_TARGET_COUNT);
+    for (u32 idx = 0; idx < targetCount; ++idx) {
+        u32 targetSlot = (u32)BattleEventVar_GetValue((BattleEventVar)(VAR_TARGET_MON_ID + idx));
+        BattleMon* targetMon = GetAbilityBattleMon(serverFlow, targetSlot);
+        if (!targetMon || targetSlot == pokemonSlot || !BattleMon_IsFainted(targetMon)) {
+            continue;
+        }
+
+        // Mark the event item before queuing the form change so spread and
+        // multi-hit moves can never enqueue Battle Bond more than once.
+        work[0] = 1;
+
+        HandlerParam_ChangeForm* changeForm =
+            (HandlerParam_ChangeForm*)BattleHandler_PushWork(
+                serverFlow,
+                EFFECT_CHANGE_FORM,
+                pokemonSlot);
+        changeForm->header.flags |= HANDLER_ABILITY_POPUP_FLAG;
+        changeForm->pokeID = (u8)pokemonSlot;
+        changeForm->newForm = W2U_BATTLE_BOND_ASH_FORM;
+        changeForm->dontResetOnSwitch = 1;
+        BattleHandler_StrSetup(&changeForm->exStr, 2u, BATTLE_BATTLE_BOND_MSGID);
+        BattleHandler_AddArg(&changeForm->exStr, pokemonSlot);
+        BattleHandler_PopWork(serverFlow, changeForm);
+        return;
+    }
+}
+
+BattleEventHandlerTableEntry BattleBondHandlers[] = {
+    {EVENT_DAMAGE_PROCESSING_END_HIT_REAL, HandlerBattleBond},
 };
 
 
@@ -1767,6 +1836,77 @@ BattleEventHandlerTableEntry SurgeSurferHandlers[] = {
     {EVENT_CALC_SPEED, HandlerSurgeSurfer},
 };
 
+static bool GetTerrainSurgeParams(
+    ABILITY ability,
+    TERRAIN* terrain,
+    u32* msgID,
+    MOVE_ID* animationMoveID)
+{
+    // Use indexed data rather than a switch. GCC's Thumb-1 switch lowering
+    // calls __gnu_thumb1_case_uqi, which the runtime DLL linker cannot resolve.
+    static const TERRAIN terrains[] = {
+        TERRAIN_ELECTRIC,
+        TERRAIN_PSYCHIC,
+        TERRAIN_MISTY,
+        TERRAIN_GRASSY,
+    };
+    static const u32 messageIDs[] = {
+        BATTLE_ELECTRIC_TERRAIN_MSGID,
+        BATTLE_PSYCHIC_TERRAIN_MSGID,
+        BATTLE_MISTY_TERRAIN_MSGID,
+        BATTLE_GRASSY_TERRAIN_MSGID,
+    };
+    static const MOVE_ID animationMoveIDs[] = {
+        MOVE_ELECTRIC_TERRAIN,
+        MOVE_PSYCHIC_TERRAIN,
+        MOVE_MISTY_TERRAIN,
+        MOVE_GRASSY_TERRAIN,
+    };
+
+    u32 index = (u32)ability - (u32)ABIL_ELECTRIC_SURGE;
+    if (index >= 4) {
+        return false;
+    }
+
+    *terrain = terrains[index];
+    *msgID = messageIDs[index];
+    *animationMoveID = animationMoveIDs[index];
+    return true;
+}
+
+extern "C" void HandlerTerrainSurge(
+    BattleEventItem* item,
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    u32* work)
+{
+    (void)work;
+    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_MON_ID)) {
+        return;
+    }
+
+    TERRAIN terrain = TERRAIN_NULL;
+    u32 msgID = 0;
+    MOVE_ID animationMoveID = MOVE_NONE;
+    if (GetTerrainSurgeParams(
+            GetEventItemAbility(item),
+            &terrain,
+            &msgID,
+            &animationMoveID)) {
+        W2U_MoveState_SetTerrainFromAbility(
+            serverFlow,
+            pokemonSlot,
+            terrain,
+            msgID,
+            animationMoveID);
+    }
+}
+
+BattleEventHandlerTableEntry TerrainSurgeHandlers[] = {
+    {EVENT_SWITCH_IN, HandlerTerrainSurge},
+    {EVENT_AFTER_ABILITY_CHANGE, HandlerTerrainSurge},
+};
+
 
 extern "C" void HandlerBattery(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
@@ -1884,7 +2024,7 @@ extern "C" void HandlerQueenlyMajesty(BattleEventItem* item, ServerFlow* serverF
     }
 
     BattleMon* attackingMon = GetAbilityBattleMon(serverFlow, attackingSlot);
-    if (GetQueuedMovePriority(serverFlow, attackingMon) > 0) {
+    if (W2U_GetQueuedMovePriority(serverFlow, attackingMon) > 0) {
         BattleEventVar_RewriteValue(VAR_NO_EFFECT_FLAG, 1);
     }
 }
@@ -2623,7 +2763,12 @@ W2UAbilityEventAddTable sAbilityEventAddTable[] = {
     W2U_ABILITY_EVENT(ABIL_SLUSH_RUSH, SlushRushHandlers),
     W2U_ABILITY_EVENT(ABIL_GALVANIZE, NormalMoveConversionHandlers),
     W2U_ABILITY_EVENT(ABIL_SURGE_SURFER, SurgeSurferHandlers),
+    W2U_ABILITY_EVENT(ABIL_ELECTRIC_SURGE, TerrainSurgeHandlers),
+    W2U_ABILITY_EVENT(ABIL_PSYCHIC_SURGE, TerrainSurgeHandlers),
+    W2U_ABILITY_EVENT(ABIL_MISTY_SURGE, TerrainSurgeHandlers),
+    W2U_ABILITY_EVENT(ABIL_GRASSY_SURGE, TerrainSurgeHandlers),
     W2U_ABILITY_EVENT(ABIL_DISGUISE, DisguiseHandlers),
+    W2U_ABILITY_EVENT(ABIL_BATTLE_BOND, BattleBondHandlers),
     W2U_ABILITY_EVENT(ABIL_QUEENLY_MAGESTY, QueenlyMajestyHandlers),
     W2U_ABILITY_EVENT(ABIL_DANCER, DancerHandlers),
     W2U_ABILITY_EVENT(ABIL_BATTERY, BatteryHandlers),

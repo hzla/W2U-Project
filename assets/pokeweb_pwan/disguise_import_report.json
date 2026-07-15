@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "species": 778,
+  "form": 1,
+  "personalId": 1272,
+  "spriteForm": 458,
+  "assetIndex": 1182,
+  "formListRecords": 181,
+  "sources": {
+    "front": "/Users/andylee/Repos/Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-front.gif",
+    "back": "/Users/andylee/Repos/Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-back.gif"
+  },
+  "import": {
+    "assetIndex": 1182,
+    "front": "/Users/andylee/Repos/Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-front.gif",
+    "back": "/Users/andylee/Repos/Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-back.gif",
+    "frontShiny": null,
+    "backShiny": null,
+    "stats": {
+      "front": {
+        "frames": 19,
+        "timeline": 63,
+        "ticks": 378,
+        "bytes": 87884,
+        "paletteStrategy": "exact",
+        "sourceColors": 11,
+        "visibleColors": 11
+      },
+      "back": {
+        "frames": 18,
+        "timeline": 63,
+        "ticks": 378,
+        "bytes": 83276,
+        "paletteStrategy": "exact",
+        "sourceColors": 9,
+        "visibleColors": 9
+      }
+    },
+    "missingSides": [],
+    "nativeFallback": true,
+    "nativeFallbackError": "",
+    "shinyPalette": false
+  },
+  "battleSet": 23640,
+  "carrierSourceBattleSet": 20120,
+  "inheritedCarrierOffsets": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "icon": 2372
+}

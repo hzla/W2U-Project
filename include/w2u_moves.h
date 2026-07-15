@@ -17,6 +17,12 @@ extern "C" bool W2U_MoveState_IsElectrified(u32 pokemonSlot);
 extern "C" void W2U_MoveState_ClearElectrified();
 
 extern "C" TERRAIN W2U_MoveState_GetTerrain();
+extern "C" bool W2U_MoveState_SetTerrainFromAbility(
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    TERRAIN terrain,
+    u32 msgID,
+    MOVE_ID animationMoveID);
 extern "C" bool W2U_MoveState_RemoveTerrain(ServerFlow* serverFlow);
 extern "C" bool W2U_MoveState_RemoveStickyWebSide(u32 side);
 

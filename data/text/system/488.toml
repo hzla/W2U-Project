@@ -2800,3 +2800,1803 @@ text = [
 text = [
   "FUSION BOLT$",
 ]
+
+[msg.section_0.entries.560]
+text = [
+  "FLYING PRESS$",
+]
+
+[msg.section_0.entries.561]
+text = [
+  "MAT BLOCK$",
+]
+
+[msg.section_0.entries.562]
+text = [
+  "BELCH$",
+]
+
+[msg.section_0.entries.563]
+text = [
+  "ROTOTILLER$",
+]
+
+[msg.section_0.entries.564]
+text = [
+  "STICKY WEB$",
+]
+
+[msg.section_0.entries.565]
+text = [
+  "FELL STINGER$",
+]
+
+[msg.section_0.entries.566]
+text = [
+  "PHANTOM FORCE$",
+]
+
+[msg.section_0.entries.567]
+text = [
+  "TRICK-OR-TREAT$",
+]
+
+[msg.section_0.entries.568]
+text = [
+  "NOBLE ROAR$",
+]
+
+[msg.section_0.entries.569]
+text = [
+  "ION DELUGE$",
+]
+
+[msg.section_0.entries.570]
+text = [
+  "PARABOLIC CHARGE$",
+]
+
+[msg.section_0.entries.571]
+text = [
+  "FOREST'S CURSE$",
+]
+
+[msg.section_0.entries.572]
+text = [
+  "PETAL BLIZZARD$",
+]
+
+[msg.section_0.entries.573]
+text = [
+  "FREEZE-DRY$",
+]
+
+[msg.section_0.entries.574]
+text = [
+  "DISARMING VOICE$",
+]
+
+[msg.section_0.entries.575]
+text = [
+  "PARTING SHOT$",
+]
+
+[msg.section_0.entries.576]
+text = [
+  "TOPSY-TURVY$",
+]
+
+[msg.section_0.entries.577]
+text = [
+  "DRAINING KISS$",
+]
+
+[msg.section_0.entries.578]
+text = [
+  "CRAFTY SHIELD$",
+]
+
+[msg.section_0.entries.579]
+text = [
+  "FLOWER SHIELD$",
+]
+
+[msg.section_0.entries.580]
+text = [
+  "GRASSY TERRAIN$",
+]
+
+[msg.section_0.entries.581]
+text = [
+  "MISTY TERRAIN$",
+]
+
+[msg.section_0.entries.582]
+text = [
+  "ELECTRIFY$",
+]
+
+[msg.section_0.entries.583]
+text = [
+  "PLAY ROUGH$",
+]
+
+[msg.section_0.entries.584]
+text = [
+  "FAIRY WIND$",
+]
+
+[msg.section_0.entries.585]
+text = [
+  "MOONBLAST$",
+]
+
+[msg.section_0.entries.586]
+text = [
+  "BOOMBURST$",
+]
+
+[msg.section_0.entries.587]
+text = [
+  "FAIRY LOCK$",
+]
+
+[msg.section_0.entries.588]
+text = [
+  "KING'S SHIELD$",
+]
+
+[msg.section_0.entries.589]
+text = [
+  "PLAY NICE$",
+]
+
+[msg.section_0.entries.590]
+text = [
+  "CONFIDE$",
+]
+
+[msg.section_0.entries.591]
+text = [
+  "DIAMOND STORM$",
+]
+
+[msg.section_0.entries.592]
+text = [
+  "STEAM ERUPTION$",
+]
+
+[msg.section_0.entries.593]
+text = [
+  "HYPERSPACE HOLE$",
+]
+
+[msg.section_0.entries.594]
+text = [
+  "WATER SHURIKEN$",
+]
+
+[msg.section_0.entries.595]
+text = [
+  "MYSTICAL FIRE$",
+]
+
+[msg.section_0.entries.596]
+text = [
+  "SPIKY SHIELD$",
+]
+
+[msg.section_0.entries.597]
+text = [
+  "AROMATIC MIST$",
+]
+
+[msg.section_0.entries.598]
+text = [
+  "EERIE IMPULSE$",
+]
+
+[msg.section_0.entries.599]
+text = [
+  "VENOM DRENCH$",
+]
+
+[msg.section_0.entries.600]
+text = [
+  "POWDER$",
+]
+
+[msg.section_0.entries.601]
+text = [
+  "GEOMANCY$",
+]
+
+[msg.section_0.entries.602]
+text = [
+  "MAGNETIC FLUX$",
+]
+
+[msg.section_0.entries.603]
+text = [
+  "HAPPY HOUR$",
+]
+
+[msg.section_0.entries.604]
+text = [
+  "ELECTRIC TERRAIN$",
+]
+
+[msg.section_0.entries.605]
+text = [
+  "DAZZLING GLEAM$",
+]
+
+[msg.section_0.entries.606]
+text = [
+  "CELEBRATE$",
+]
+
+[msg.section_0.entries.607]
+text = [
+  "HOLD HANDS$",
+]
+
+[msg.section_0.entries.608]
+text = [
+  "BABY-DOLL EYES$",
+]
+
+[msg.section_0.entries.609]
+text = [
+  "NUZZLE$",
+]
+
+[msg.section_0.entries.610]
+text = [
+  "HOLD BACK$",
+]
+
+[msg.section_0.entries.611]
+text = [
+  "INFESTATION$",
+]
+
+[msg.section_0.entries.612]
+text = [
+  "POWER-UP PUNCH$",
+]
+
+[msg.section_0.entries.613]
+text = [
+  "OBLIVION WING$",
+]
+
+[msg.section_0.entries.614]
+text = [
+  "THOUSAND ARROWS$",
+]
+
+[msg.section_0.entries.615]
+text = [
+  "THOUSAND WAVES$",
+]
+
+[msg.section_0.entries.616]
+text = [
+  "LAND'S WRATH$",
+]
+
+[msg.section_0.entries.617]
+text = [
+  "LIGHT OF RUIN$",
+]
+
+[msg.section_0.entries.618]
+text = [
+  "ORIGIN PULSE$",
+]
+
+[msg.section_0.entries.619]
+text = [
+  "PRECIPICE BLADES$",
+]
+
+[msg.section_0.entries.620]
+text = [
+  "DRAGON ASCENT$",
+]
+
+[msg.section_0.entries.621]
+text = [
+  "HYPERSPACE FURY$",
+]
+
+[msg.section_0.entries.622]
+text = [
+  "BREAKNECK BLITZ$",
+]
+
+[msg.section_0.entries.623]
+text = [
+  "BREAKNECK BLITZ 2$",
+]
+
+[msg.section_0.entries.624]
+text = [
+  "ALL-OUT PUMMELING$",
+]
+
+[msg.section_0.entries.625]
+text = [
+  "ALL-OUT PUMMELING 2$",
+]
+
+[msg.section_0.entries.626]
+text = [
+  "SUPERSONIC SKYSTRIKE$",
+]
+
+[msg.section_0.entries.627]
+text = [
+  "SUPERSONIC SKYSTRIKE 2$",
+]
+
+[msg.section_0.entries.628]
+text = [
+  "ACID DOWNPOUR$",
+]
+
+[msg.section_0.entries.629]
+text = [
+  "ACID DOWNPOUR 2$",
+]
+
+[msg.section_0.entries.630]
+text = [
+  "TECTONIC RAGE$",
+]
+
+[msg.section_0.entries.631]
+text = [
+  "TECTONIC RAGE 2$",
+]
+
+[msg.section_0.entries.632]
+text = [
+  "CONTINENTAL CRUSH$",
+]
+
+[msg.section_0.entries.633]
+text = [
+  "CONTINENTAL CRUSH 2$",
+]
+
+[msg.section_0.entries.634]
+text = [
+  "SAVAGE SPIN-OUT$",
+]
+
+[msg.section_0.entries.635]
+text = [
+  "SAVAGE SPIN-OUT 2$",
+]
+
+[msg.section_0.entries.636]
+text = [
+  "NEVER-ENDING NIGHTMARE$",
+]
+
+[msg.section_0.entries.637]
+text = [
+  "NEVER-ENDING NIGHTMARE 2$",
+]
+
+[msg.section_0.entries.638]
+text = [
+  "CORKSCREW CRASH$",
+]
+
+[msg.section_0.entries.639]
+text = [
+  "CORKSCREW CRASH 2$",
+]
+
+[msg.section_0.entries.640]
+text = [
+  "INFERNO OVERDRIVE$",
+]
+
+[msg.section_0.entries.641]
+text = [
+  "INFERNO OVERDRIVE 2$",
+]
+
+[msg.section_0.entries.642]
+text = [
+  "HYDRO VORTEX$",
+]
+
+[msg.section_0.entries.643]
+text = [
+  "HYDRO VORTEX 2$",
+]
+
+[msg.section_0.entries.644]
+text = [
+  "BLOOM DOOM$",
+]
+
+[msg.section_0.entries.645]
+text = [
+  "BLOOM DOOM 2$",
+]
+
+[msg.section_0.entries.646]
+text = [
+  "GIGAVOLT HAVOC$",
+]
+
+[msg.section_0.entries.647]
+text = [
+  "GIGAVOLT HAVOC 2$",
+]
+
+[msg.section_0.entries.648]
+text = [
+  "SHATTERED PSYCHE$",
+]
+
+[msg.section_0.entries.649]
+text = [
+  "SHATTERED PSYCHE 2$",
+]
+
+[msg.section_0.entries.650]
+text = [
+  "SUBZERO SLAMMER$",
+]
+
+[msg.section_0.entries.651]
+text = [
+  "SUBZERO SLAMMER 2$",
+]
+
+[msg.section_0.entries.652]
+text = [
+  "DEVASTATING DRAKE$",
+]
+
+[msg.section_0.entries.653]
+text = [
+  "DEVASTATING DRAKE 2$",
+]
+
+[msg.section_0.entries.654]
+text = [
+  "BLACK HOLE ECLIPSE$",
+]
+
+[msg.section_0.entries.655]
+text = [
+  "BLACK HOLE ECLIPSE 2$",
+]
+
+[msg.section_0.entries.656]
+text = [
+  "TWINKLE TACKLE$",
+]
+
+[msg.section_0.entries.657]
+text = [
+  "TWINKLE TACKLE 2$",
+]
+
+[msg.section_0.entries.658]
+text = [
+  "CATASTROPIKA$",
+]
+
+[msg.section_0.entries.659]
+text = [
+  "SHORE UP$",
+]
+
+[msg.section_0.entries.660]
+text = [
+  "FIRST IMPRESSION$",
+]
+
+[msg.section_0.entries.661]
+text = [
+  "BANEFUL BUNKER$",
+]
+
+[msg.section_0.entries.662]
+text = [
+  "SPIRIT SHACKLE$",
+]
+
+[msg.section_0.entries.663]
+text = [
+  "DARKEST LARIAT$",
+]
+
+[msg.section_0.entries.664]
+text = [
+  "SPARKLING ARIA$",
+]
+
+[msg.section_0.entries.665]
+text = [
+  "ICE HAMMER$",
+]
+
+[msg.section_0.entries.666]
+text = [
+  "FLORAL HEALING$",
+]
+
+[msg.section_0.entries.667]
+text = [
+  "HIGH HORSEPOWER$",
+]
+
+[msg.section_0.entries.668]
+text = [
+  "STRENGTH SAP$",
+]
+
+[msg.section_0.entries.669]
+text = [
+  "SOLAR BLADE$",
+]
+
+[msg.section_0.entries.670]
+text = [
+  "LEAFAGE$",
+]
+
+[msg.section_0.entries.671]
+text = [
+  "SPOTLIGHT$",
+]
+
+[msg.section_0.entries.672]
+text = [
+  "TOXIC THREAD$",
+]
+
+[msg.section_0.entries.673]
+text = [
+  "LASER FOCUS$",
+]
+
+[msg.section_0.entries.674]
+text = [
+  "GEAR UP$",
+]
+
+[msg.section_0.entries.675]
+text = [
+  "THROAT CHOP$",
+]
+
+[msg.section_0.entries.676]
+text = [
+  "POLLEN PUFF$",
+]
+
+[msg.section_0.entries.677]
+text = [
+  "ANCHOR SHOT$",
+]
+
+[msg.section_0.entries.678]
+text = [
+  "PSYCHIC TERRAIN$",
+]
+
+[msg.section_0.entries.679]
+text = [
+  "LUNGE$",
+]
+
+[msg.section_0.entries.680]
+text = [
+  "FIRE LASH$",
+]
+
+[msg.section_0.entries.681]
+text = [
+  "POWER TRIP$",
+]
+
+[msg.section_0.entries.682]
+text = [
+  "BURN UP$",
+]
+
+[msg.section_0.entries.683]
+text = [
+  "SPEED SWAP$",
+]
+
+[msg.section_0.entries.684]
+text = [
+  "SMART STRIKE$",
+]
+
+[msg.section_0.entries.685]
+text = [
+  "PURIFY$",
+]
+
+[msg.section_0.entries.686]
+text = [
+  "REVELATION DANCE$",
+]
+
+[msg.section_0.entries.687]
+text = [
+  "CORE ENFORCER$",
+]
+
+[msg.section_0.entries.688]
+text = [
+  "TROP KICK$",
+]
+
+[msg.section_0.entries.689]
+text = [
+  "INSTRUCT$",
+]
+
+[msg.section_0.entries.690]
+text = [
+  "BEAK BLAST$",
+]
+
+[msg.section_0.entries.691]
+text = [
+  "CLANGING SCALES$",
+]
+
+[msg.section_0.entries.692]
+text = [
+  "DRAGON HAMMER$",
+]
+
+[msg.section_0.entries.693]
+text = [
+  "BRUTAL SWING$",
+]
+
+[msg.section_0.entries.694]
+text = [
+  "AURORA VEIL$",
+]
+
+[msg.section_0.entries.695]
+text = [
+  "SINISTER ARROW RAID$",
+]
+
+[msg.section_0.entries.696]
+text = [
+  "MALICIOUS MOONSAULT$",
+]
+
+[msg.section_0.entries.697]
+text = [
+  "OCEANIC OPERETTA$",
+]
+
+[msg.section_0.entries.698]
+text = [
+  "GUARDIAN OF ALOLA$",
+]
+
+[msg.section_0.entries.699]
+text = [
+  "SOUL-STEALING 7-STAR STRIKE$",
+]
+
+[msg.section_0.entries.700]
+text = [
+  "STOKED SPARKSURFER$",
+]
+
+[msg.section_0.entries.701]
+text = [
+  "PULVERIZING PANCAKE$",
+]
+
+[msg.section_0.entries.702]
+text = [
+  "EXTREME EVOBOOST$",
+]
+
+[msg.section_0.entries.703]
+text = [
+  "GENESIS SUPERNOVA$",
+]
+
+[msg.section_0.entries.704]
+text = [
+  "SHELL TRAP$",
+]
+
+[msg.section_0.entries.705]
+text = [
+  "FLEUR CANNON$",
+]
+
+[msg.section_0.entries.706]
+text = [
+  "PSYCHIC FANGS$",
+]
+
+[msg.section_0.entries.707]
+text = [
+  "STOMPING TANTRUM$",
+]
+
+[msg.section_0.entries.708]
+text = [
+  "SHADOW BONE$",
+]
+
+[msg.section_0.entries.709]
+text = [
+  "ACCELEROCK$",
+]
+
+[msg.section_0.entries.710]
+text = [
+  "LIQUIDATION$",
+]
+
+[msg.section_0.entries.711]
+text = [
+  "PRISMATIC LASER$",
+]
+
+[msg.section_0.entries.712]
+text = [
+  "SPECTRAL THIEF$",
+]
+
+[msg.section_0.entries.713]
+text = [
+  "SUNSTEEL STRIKE$",
+]
+
+[msg.section_0.entries.714]
+text = [
+  "MOONGEIST BEAM$",
+]
+
+[msg.section_0.entries.715]
+text = [
+  "TEARFUL LOOK$",
+]
+
+[msg.section_0.entries.716]
+text = [
+  "ZING ZAP$",
+]
+
+[msg.section_0.entries.717]
+text = [
+  "NATURE'S MADNESS$",
+]
+
+[msg.section_0.entries.718]
+text = [
+  "MULTI-ATTACK$",
+]
+
+[msg.section_0.entries.719]
+text = [
+  "10,000,000 VOLT THUNDERBOLT$",
+]
+
+[msg.section_0.entries.720]
+text = [
+  "MIND BLOWN$",
+]
+
+[msg.section_0.entries.721]
+text = [
+  "PLASMA FISTS$",
+]
+
+[msg.section_0.entries.722]
+text = [
+  "PHOTON GEYSER$",
+]
+
+[msg.section_0.entries.723]
+text = [
+  "LIGHT THAT BURNS THE SKY$",
+]
+
+[msg.section_0.entries.724]
+text = [
+  "SEARING SUNRAZE SMASH$",
+]
+
+[msg.section_0.entries.725]
+text = [
+  "MENACING MOONRAZE MAELSTROM$",
+]
+
+[msg.section_0.entries.726]
+text = [
+  "LET'S SNUGGLE FOREVER$",
+]
+
+[msg.section_0.entries.727]
+text = [
+  "SPLINTERED STORMSHARDS$",
+]
+
+[msg.section_0.entries.728]
+text = [
+  "CLANGOROUS SOULBLAZE$",
+]
+
+[msg.section_0.entries.729]
+text = [
+  "ZIPPY ZAP$",
+]
+
+[msg.section_0.entries.730]
+text = [
+  "SPLISHY SPLASH$",
+]
+
+[msg.section_0.entries.731]
+text = [
+  "FLOATY FALL$",
+]
+
+[msg.section_0.entries.732]
+text = [
+  "PIKA PAPOW$",
+]
+
+[msg.section_0.entries.733]
+text = [
+  "BOUNCY BUBBLE$",
+]
+
+[msg.section_0.entries.734]
+text = [
+  "BUZZY BUZZ$",
+]
+
+[msg.section_0.entries.735]
+text = [
+  "SIZZLY SLIDE$",
+]
+
+[msg.section_0.entries.736]
+text = [
+  "GLITZY GLOW$",
+]
+
+[msg.section_0.entries.737]
+text = [
+  "BADDY BAD$",
+]
+
+[msg.section_0.entries.738]
+text = [
+  "SAPPY SEED$",
+]
+
+[msg.section_0.entries.739]
+text = [
+  "FREEZY FROST$",
+]
+
+[msg.section_0.entries.740]
+text = [
+  "SPARKLY SWIRL$",
+]
+
+[msg.section_0.entries.741]
+text = [
+  "VEEVEE VOLLEY$",
+]
+
+[msg.section_0.entries.742]
+text = [
+  "DOUBLE IRON BASH$",
+]
+
+[msg.section_0.entries.743]
+text = [
+  "MAX GUARD$",
+]
+
+[msg.section_0.entries.744]
+text = [
+  "DYNAMAX CANNON$",
+]
+
+[msg.section_0.entries.745]
+text = [
+  "SNIPE SHOT$",
+]
+
+[msg.section_0.entries.746]
+text = [
+  "JAW LOCK$",
+]
+
+[msg.section_0.entries.747]
+text = [
+  "STUFF CHEEKS$",
+]
+
+[msg.section_0.entries.748]
+text = [
+  "NO RETREAT$",
+]
+
+[msg.section_0.entries.749]
+text = [
+  "TAR SHOT$",
+]
+
+[msg.section_0.entries.750]
+text = [
+  "MAGIC POWDER$",
+]
+
+[msg.section_0.entries.751]
+text = [
+  "DRAGON DARTS$",
+]
+
+[msg.section_0.entries.752]
+text = [
+  "TEATIME$",
+]
+
+[msg.section_0.entries.753]
+text = [
+  "OCTOLOCK$",
+]
+
+[msg.section_0.entries.754]
+text = [
+  "BOLT BEAK$",
+]
+
+[msg.section_0.entries.755]
+text = [
+  "FISHIOUS REND$",
+]
+
+[msg.section_0.entries.756]
+text = [
+  "COURT CHANGE$",
+]
+
+[msg.section_0.entries.757]
+text = [
+  "MAX FLARE$",
+]
+
+[msg.section_0.entries.758]
+text = [
+  "MAX FLUTTERBY$",
+]
+
+[msg.section_0.entries.759]
+text = [
+  "MAX LIGHTNING$",
+]
+
+[msg.section_0.entries.760]
+text = [
+  "MAX STRIKE$",
+]
+
+[msg.section_0.entries.761]
+text = [
+  "MAX KNUCKLE$",
+]
+
+[msg.section_0.entries.762]
+text = [
+  "MAX PHANTASM$",
+]
+
+[msg.section_0.entries.763]
+text = [
+  "MAX HAILSTORM$",
+]
+
+[msg.section_0.entries.764]
+text = [
+  "MAX OOZE$",
+]
+
+[msg.section_0.entries.765]
+text = [
+  "MAX GEYSER$",
+]
+
+[msg.section_0.entries.766]
+text = [
+  "MAX AIRSTREAM$",
+]
+
+[msg.section_0.entries.767]
+text = [
+  "MAX STARFALL$",
+]
+
+[msg.section_0.entries.768]
+text = [
+  "MAX WYRMWIND$",
+]
+
+[msg.section_0.entries.769]
+text = [
+  "MAX MINDSTORM$",
+]
+
+[msg.section_0.entries.770]
+text = [
+  "MAX ROCKFALL$",
+]
+
+[msg.section_0.entries.771]
+text = [
+  "MAX QUAKE$",
+]
+
+[msg.section_0.entries.772]
+text = [
+  "MAX DARKNESS$",
+]
+
+[msg.section_0.entries.773]
+text = [
+  "MAX OVERGROWTH$",
+]
+
+[msg.section_0.entries.774]
+text = [
+  "MAX STEELSPIKE$",
+]
+
+[msg.section_0.entries.775]
+text = [
+  "CLANGOROUS SOUL$",
+]
+
+[msg.section_0.entries.776]
+text = [
+  "BODY PRESS$",
+]
+
+[msg.section_0.entries.777]
+text = [
+  "DECORATE$",
+]
+
+[msg.section_0.entries.778]
+text = [
+  "DRUM BEATING$",
+]
+
+[msg.section_0.entries.779]
+text = [
+  "SNAP TRAP$",
+]
+
+[msg.section_0.entries.780]
+text = [
+  "PYRO BALL$",
+]
+
+[msg.section_0.entries.781]
+text = [
+  "BEHEMOTH BLADE$",
+]
+
+[msg.section_0.entries.782]
+text = [
+  "BEHEMOTH BASH$",
+]
+
+[msg.section_0.entries.783]
+text = [
+  "AURA WHEEL$",
+]
+
+[msg.section_0.entries.784]
+text = [
+  "BREAKING SWIPE$",
+]
+
+[msg.section_0.entries.785]
+text = [
+  "BRANCH POKE$",
+]
+
+[msg.section_0.entries.786]
+text = [
+  "OVERDRIVE$",
+]
+
+[msg.section_0.entries.787]
+text = [
+  "APPLE ACID$",
+]
+
+[msg.section_0.entries.788]
+text = [
+  "GRAV APPLE$",
+]
+
+[msg.section_0.entries.789]
+text = [
+  "SPIRIT BREAK$",
+]
+
+[msg.section_0.entries.790]
+text = [
+  "STRANGE STEAM$",
+]
+
+[msg.section_0.entries.791]
+text = [
+  "LIFE DEW$",
+]
+
+[msg.section_0.entries.792]
+text = [
+  "OBSTRUCT$",
+]
+
+[msg.section_0.entries.793]
+text = [
+  "FALSE SURRENDER$",
+]
+
+[msg.section_0.entries.794]
+text = [
+  "METEOR ASSAULT$",
+]
+
+[msg.section_0.entries.795]
+text = [
+  "ETERNABEAM$",
+]
+
+[msg.section_0.entries.796]
+text = [
+  "STEEL BEAM$",
+]
+
+[msg.section_0.entries.797]
+text = [
+  "EXPANDING FORCE$",
+]
+
+[msg.section_0.entries.798]
+text = [
+  "STEEL ROLLER$",
+]
+
+[msg.section_0.entries.799]
+text = [
+  "SCALE SHOT$",
+]
+
+[msg.section_0.entries.800]
+text = [
+  "METEOR BEAM$",
+]
+
+[msg.section_0.entries.801]
+text = [
+  "SHELL SIDE ARM$",
+]
+
+[msg.section_0.entries.802]
+text = [
+  "MISTY EXPLOSION$",
+]
+
+[msg.section_0.entries.803]
+text = [
+  "GRASSY GLIDE$",
+]
+
+[msg.section_0.entries.804]
+text = [
+  "RISING VOLTAGE$",
+]
+
+[msg.section_0.entries.805]
+text = [
+  "TERRAIN PULSE$",
+]
+
+[msg.section_0.entries.806]
+text = [
+  "SKITTER SMACK$",
+]
+
+[msg.section_0.entries.807]
+text = [
+  "BURNING JEALOUSY$",
+]
+
+[msg.section_0.entries.808]
+text = [
+  "LASH OUT$",
+]
+
+[msg.section_0.entries.809]
+text = [
+  "POLTERGEIST$",
+]
+
+[msg.section_0.entries.810]
+text = [
+  "CORROSIVE GAS$",
+]
+
+[msg.section_0.entries.811]
+text = [
+  "COACHING$",
+]
+
+[msg.section_0.entries.812]
+text = [
+  "FLIP TURN$",
+]
+
+[msg.section_0.entries.813]
+text = [
+  "TRIPLE AXEL$",
+]
+
+[msg.section_0.entries.814]
+text = [
+  "DUAL WINGBEAT$",
+]
+
+[msg.section_0.entries.815]
+text = [
+  "SCORCHING SANDS$",
+]
+
+[msg.section_0.entries.816]
+text = [
+  "JUNGLE HEALING$",
+]
+
+[msg.section_0.entries.817]
+text = [
+  "WICKED BLOW$",
+]
+
+[msg.section_0.entries.818]
+text = [
+  "SURGING STRIKES$",
+]
+
+[msg.section_0.entries.819]
+text = [
+  "THUNDER CAGE$",
+]
+
+[msg.section_0.entries.820]
+text = [
+  "DRAGON ENERGY$",
+]
+
+[msg.section_0.entries.821]
+text = [
+  "FREEZING GLARE$",
+]
+
+[msg.section_0.entries.822]
+text = [
+  "FIERY WRATH$",
+]
+
+[msg.section_0.entries.823]
+text = [
+  "THUNDEROUS KICK$",
+]
+
+[msg.section_0.entries.824]
+text = [
+  "GLACIAL LANCE$",
+]
+
+[msg.section_0.entries.825]
+text = [
+  "ASTRAL BARRAGE$",
+]
+
+[msg.section_0.entries.826]
+text = [
+  "EERIE SPELL$",
+]
+
+[msg.section_0.entries.827]
+text = [
+  "DIRE CLAW$",
+]
+
+[msg.section_0.entries.828]
+text = [
+  "PSYSHIELD BASH$",
+]
+
+[msg.section_0.entries.829]
+text = [
+  "POWER SHIFT$",
+]
+
+[msg.section_0.entries.830]
+text = [
+  "STONE AXE$",
+]
+
+[msg.section_0.entries.831]
+text = [
+  "SPRINGTIDE STORM$",
+]
+
+[msg.section_0.entries.832]
+text = [
+  "MYSTICAL POWER$",
+]
+
+[msg.section_0.entries.833]
+text = [
+  "RAGING FURY$",
+]
+
+[msg.section_0.entries.834]
+text = [
+  "WAVE CRASH$",
+]
+
+[msg.section_0.entries.835]
+text = [
+  "CHLOROBLAST$",
+]
+
+[msg.section_0.entries.836]
+text = [
+  "MOUNTAIN GALE$",
+]
+
+[msg.section_0.entries.837]
+text = [
+  "VICTORY DANCE$",
+]
+
+[msg.section_0.entries.838]
+text = [
+  "HEADLONG RUSH$",
+]
+
+[msg.section_0.entries.839]
+text = [
+  "BARB BARRAGE$",
+]
+
+[msg.section_0.entries.840]
+text = [
+  "ESPER WING$",
+]
+
+[msg.section_0.entries.841]
+text = [
+  "BITTER MALICE$",
+]
+
+[msg.section_0.entries.842]
+text = [
+  "SHELTER$",
+]
+
+[msg.section_0.entries.843]
+text = [
+  "TRIPLE ARROWS$",
+]
+
+[msg.section_0.entries.844]
+text = [
+  "INFERNAL PARADE$",
+]
+
+[msg.section_0.entries.845]
+text = [
+  "CEASELESS EDGE$",
+]
+
+[msg.section_0.entries.846]
+text = [
+  "BLEAKWIND STORM$",
+]
+
+[msg.section_0.entries.847]
+text = [
+  "WILDBOLT STORM$",
+]
+
+[msg.section_0.entries.848]
+text = [
+  "SANDSEAR STORM$",
+]
+
+[msg.section_0.entries.849]
+text = [
+  "LUNAR BLESSING$",
+]
+
+[msg.section_0.entries.850]
+text = [
+  "TAKE HEART$",
+]
+
+[msg.section_0.entries.851]
+text = [
+  "TERA BLAST$",
+]
+
+[msg.section_0.entries.852]
+text = [
+  "SILK TRAP$",
+]
+
+[msg.section_0.entries.853]
+text = [
+  "AXE KICK$",
+]
+
+[msg.section_0.entries.854]
+text = [
+  "LAST RESPECTS$",
+]
+
+[msg.section_0.entries.855]
+text = [
+  "LUMINA CRASH$",
+]
+
+[msg.section_0.entries.856]
+text = [
+  "ORDER UP$",
+]
+
+[msg.section_0.entries.857]
+text = [
+  "JET PUNCH$",
+]
+
+[msg.section_0.entries.858]
+text = [
+  "SPICY EXTRACT$",
+]
+
+[msg.section_0.entries.859]
+text = [
+  "SPIN OUT$",
+]
+
+[msg.section_0.entries.860]
+text = [
+  "POPULATION BOMB$",
+]
+
+[msg.section_0.entries.861]
+text = [
+  "ICE SPINNER$",
+]
+
+[msg.section_0.entries.862]
+text = [
+  "GLAIVE RUSH$",
+]
+
+[msg.section_0.entries.863]
+text = [
+  "REVIVAL BLESSING$",
+]
+
+[msg.section_0.entries.864]
+text = [
+  "SALT CURE$",
+]
+
+[msg.section_0.entries.865]
+text = [
+  "TRIPLE DIVE$",
+]
+
+[msg.section_0.entries.866]
+text = [
+  "MORTAL SPIN$",
+]
+
+[msg.section_0.entries.867]
+text = [
+  "DOODLE$",
+]
+
+[msg.section_0.entries.868]
+text = [
+  "FILLET AWAY$",
+]
+
+[msg.section_0.entries.869]
+text = [
+  "KOWTOW CLEAVE$",
+]
+
+[msg.section_0.entries.870]
+text = [
+  "FLOWER TRICK$",
+]
+
+[msg.section_0.entries.871]
+text = [
+  "TORCH SONG$",
+]
+
+[msg.section_0.entries.872]
+text = [
+  "AQUA STEP$",
+]
+
+[msg.section_0.entries.873]
+text = [
+  "RAGING BULL$",
+]
+
+[msg.section_0.entries.874]
+text = [
+  "MAKE IT RAIN$",
+]
+
+[msg.section_0.entries.875]
+text = [
+  "PSYBLADE$",
+]
+
+[msg.section_0.entries.876]
+text = [
+  "HYDRO STEAM$",
+]
+
+[msg.section_0.entries.877]
+text = [
+  "RUINATION$",
+]
+
+[msg.section_0.entries.878]
+text = [
+  "COLLISION COURSE$",
+]
+
+[msg.section_0.entries.879]
+text = [
+  "ELECTRO DRIFT$",
+]
+
+[msg.section_0.entries.880]
+text = [
+  "SHED TAIL$",
+]
+
+[msg.section_0.entries.881]
+text = [
+  "CHILLY RECEPTION$",
+]
+
+[msg.section_0.entries.882]
+text = [
+  "TIDY UP$",
+]
+
+[msg.section_0.entries.883]
+text = [
+  "SNOWSCAPE$",
+]
+
+[msg.section_0.entries.884]
+text = [
+  "POUNCE$",
+]
+
+[msg.section_0.entries.885]
+text = [
+  "TRAILBLAZE$",
+]
+
+[msg.section_0.entries.886]
+text = [
+  "CHILLING WATER$",
+]
+
+[msg.section_0.entries.887]
+text = [
+  "HYPER DRILL$",
+]
+
+[msg.section_0.entries.888]
+text = [
+  "TWIN BEAM$",
+]
+
+[msg.section_0.entries.889]
+text = [
+  "RAGE FIST$",
+]
+
+[msg.section_0.entries.890]
+text = [
+  "ARMOR CANNON$",
+]
+
+[msg.section_0.entries.891]
+text = [
+  "BITTER BLADE$",
+]
+
+[msg.section_0.entries.892]
+text = [
+  "DOUBLE SHOCK$",
+]
+
+[msg.section_0.entries.893]
+text = [
+  "GIGATON HAMMER$",
+]
+
+[msg.section_0.entries.894]
+text = [
+  "COMEUPPANCE$",
+]
+
+[msg.section_0.entries.895]
+text = [
+  "AQUA CUTTER$",
+]
+
+[msg.section_0.entries.896]
+text = [
+  "BLAZING TORQUE$",
+]
+
+[msg.section_0.entries.897]
+text = [
+  "WICKED TORQUE$",
+]
+
+[msg.section_0.entries.898]
+text = [
+  "NOXIOUS TORQUE$",
+]
+
+[msg.section_0.entries.899]
+text = [
+  "COMBAT TORQUE$",
+]
+
+[msg.section_0.entries.900]
+text = [
+  "MAGICAL TORQUE$",
+]
+
+[msg.section_0.entries.901]
+text = [
+  "BLOOD MOON$",
+]
+
+[msg.section_0.entries.902]
+text = [
+  "MATCHA GOTCHA$",
+]
+
+[msg.section_0.entries.903]
+text = [
+  "SYRUP BOMB$",
+]
+
+[msg.section_0.entries.904]
+text = [
+  "IVY CUDGEL$",
+]
+
+[msg.section_0.entries.905]
+text = [
+  "ELECTRO SHOT$",
+]
+
+[msg.section_0.entries.906]
+text = [
+  "TERA STARSTORM$",
+]
+
+[msg.section_0.entries.907]
+text = [
+  "FICKLE BEAM$",
+]
+
+[msg.section_0.entries.908]
+text = [
+  "BURNING BULWARK$",
+]
+
+[msg.section_0.entries.909]
+text = [
+  "THUNDERCLAP$",
+]
+
+[msg.section_0.entries.910]
+text = [
+  "MIGHTY CLEAVE$",
+]
+
+[msg.section_0.entries.911]
+text = [
+  "TACHYON CUTTER$",
+]
+
+[msg.section_0.entries.912]
+text = [
+  "HARD PRESS$",
+]
+
+[msg.section_0.entries.913]
+text = [
+  "DRAGON CHEER$",
+]
+
+[msg.section_0.entries.914]
+text = [
+  "ALLURING VOICE$",
+]
+
+[msg.section_0.entries.915]
+text = [
+  "TEMPER FLARE$",
+]
+
+[msg.section_0.entries.916]
+text = [
+  "SUPERCELL SLAM$",
+]
+
+[msg.section_0.entries.917]
+text = [
+  "PSYCHIC NOISE$",
+]
+
+[msg.section_0.entries.918]
+text = [
+  "UPPER HAND$",
+]
+
+[msg.section_0.entries.919]
+text = [
+  "MALIGNANT CHAIN$",
+]

@@ -3107,3 +3107,1493 @@ text = [
 text = [
   "Hyperspace Fury$",
 ]
+
+[msg.section_0.entries.622]
+text = [
+  "Breakneck Blitz$",
+]
+
+[msg.section_0.entries.623]
+text = [
+  "Breakneck Blitz 2$",
+]
+
+[msg.section_0.entries.624]
+text = [
+  "All-Out Pummeling$",
+]
+
+[msg.section_0.entries.625]
+text = [
+  "All-Out Pummeling 2$",
+]
+
+[msg.section_0.entries.626]
+text = [
+  "Supersonic Skystrike$",
+]
+
+[msg.section_0.entries.627]
+text = [
+  "Supersonic Skystrike 2$",
+]
+
+[msg.section_0.entries.628]
+text = [
+  "Acid Downpour$",
+]
+
+[msg.section_0.entries.629]
+text = [
+  "Acid Downpour 2$",
+]
+
+[msg.section_0.entries.630]
+text = [
+  "Tectonic Rage$",
+]
+
+[msg.section_0.entries.631]
+text = [
+  "Tectonic Rage 2$",
+]
+
+[msg.section_0.entries.632]
+text = [
+  "Continental Crush$",
+]
+
+[msg.section_0.entries.633]
+text = [
+  "Continental Crush 2$",
+]
+
+[msg.section_0.entries.634]
+text = [
+  "Savage Spin-Out$",
+]
+
+[msg.section_0.entries.635]
+text = [
+  "Savage Spin-Out 2$",
+]
+
+[msg.section_0.entries.636]
+text = [
+  "Never-Ending Nightmare$",
+]
+
+[msg.section_0.entries.637]
+text = [
+  "Never-Ending Nightmare 2$",
+]
+
+[msg.section_0.entries.638]
+text = [
+  "Corkscrew Crash$",
+]
+
+[msg.section_0.entries.639]
+text = [
+  "Corkscrew Crash 2$",
+]
+
+[msg.section_0.entries.640]
+text = [
+  "Inferno Overdrive$",
+]
+
+[msg.section_0.entries.641]
+text = [
+  "Inferno Overdrive 2$",
+]
+
+[msg.section_0.entries.642]
+text = [
+  "Hydro Vortex$",
+]
+
+[msg.section_0.entries.643]
+text = [
+  "Hydro Vortex 2$",
+]
+
+[msg.section_0.entries.644]
+text = [
+  "Bloom Doom$",
+]
+
+[msg.section_0.entries.645]
+text = [
+  "Bloom Doom 2$",
+]
+
+[msg.section_0.entries.646]
+text = [
+  "Gigavolt Havoc$",
+]
+
+[msg.section_0.entries.647]
+text = [
+  "Gigavolt Havoc 2$",
+]
+
+[msg.section_0.entries.648]
+text = [
+  "Shattered Psyche$",
+]
+
+[msg.section_0.entries.649]
+text = [
+  "Shattered Psyche 2$",
+]
+
+[msg.section_0.entries.650]
+text = [
+  "Subzero Slammer$",
+]
+
+[msg.section_0.entries.651]
+text = [
+  "Subzero Slammer 2$",
+]
+
+[msg.section_0.entries.652]
+text = [
+  "Devastating Drake$",
+]
+
+[msg.section_0.entries.653]
+text = [
+  "Devastating Drake 2$",
+]
+
+[msg.section_0.entries.654]
+text = [
+  "Black Hole Eclipse$",
+]
+
+[msg.section_0.entries.655]
+text = [
+  "Black Hole Eclipse 2$",
+]
+
+[msg.section_0.entries.656]
+text = [
+  "Twinkle Tackle$",
+]
+
+[msg.section_0.entries.657]
+text = [
+  "Twinkle Tackle 2$",
+]
+
+[msg.section_0.entries.658]
+text = [
+  "Catastropika$",
+]
+
+[msg.section_0.entries.659]
+text = [
+  "Shore Up$",
+]
+
+[msg.section_0.entries.660]
+text = [
+  "First Impression$",
+]
+
+[msg.section_0.entries.661]
+text = [
+  "Baneful Bunker$",
+]
+
+[msg.section_0.entries.662]
+text = [
+  "Spirit Shackle$",
+]
+
+[msg.section_0.entries.663]
+text = [
+  "Darkest Lariat$",
+]
+
+[msg.section_0.entries.664]
+text = [
+  "Sparkling Aria$",
+]
+
+[msg.section_0.entries.665]
+text = [
+  "Ice Hammer$",
+]
+
+[msg.section_0.entries.666]
+text = [
+  "Floral Healing$",
+]
+
+[msg.section_0.entries.667]
+text = [
+  "High Horsepower$",
+]
+
+[msg.section_0.entries.668]
+text = [
+  "Strength Sap$",
+]
+
+[msg.section_0.entries.669]
+text = [
+  "Solar Blade$",
+]
+
+[msg.section_0.entries.670]
+text = [
+  "Leafage$",
+]
+
+[msg.section_0.entries.671]
+text = [
+  "Spotlight$",
+]
+
+[msg.section_0.entries.672]
+text = [
+  "Toxic Thread$",
+]
+
+[msg.section_0.entries.673]
+text = [
+  "Laser Focus$",
+]
+
+[msg.section_0.entries.674]
+text = [
+  "Gear Up$",
+]
+
+[msg.section_0.entries.675]
+text = [
+  "Throat Chop$",
+]
+
+[msg.section_0.entries.676]
+text = [
+  "Pollen Puff$",
+]
+
+[msg.section_0.entries.677]
+text = [
+  "Anchor Shot$",
+]
+
+[msg.section_0.entries.678]
+text = [
+  "Psychic Terrain$",
+]
+
+[msg.section_0.entries.679]
+text = [
+  "Lunge$",
+]
+
+[msg.section_0.entries.680]
+text = [
+  "Fire Lash$",
+]
+
+[msg.section_0.entries.681]
+text = [
+  "Power Trip$",
+]
+
+[msg.section_0.entries.682]
+text = [
+  "Burn Up$",
+]
+
+[msg.section_0.entries.683]
+text = [
+  "Speed Swap$",
+]
+
+[msg.section_0.entries.684]
+text = [
+  "Smart Strike$",
+]
+
+[msg.section_0.entries.685]
+text = [
+  "Purify$",
+]
+
+[msg.section_0.entries.686]
+text = [
+  "Revelation Dance$",
+]
+
+[msg.section_0.entries.687]
+text = [
+  "Core Enforcer$",
+]
+
+[msg.section_0.entries.688]
+text = [
+  "Trop Kick$",
+]
+
+[msg.section_0.entries.689]
+text = [
+  "Instruct$",
+]
+
+[msg.section_0.entries.690]
+text = [
+  "Beak Blast$",
+]
+
+[msg.section_0.entries.691]
+text = [
+  "Clanging Scales$",
+]
+
+[msg.section_0.entries.692]
+text = [
+  "Dragon Hammer$",
+]
+
+[msg.section_0.entries.693]
+text = [
+  "Brutal Swing$",
+]
+
+[msg.section_0.entries.694]
+text = [
+  "Aurora Veil$",
+]
+
+[msg.section_0.entries.695]
+text = [
+  "Sinister Arrow Raid$",
+]
+
+[msg.section_0.entries.696]
+text = [
+  "Malicious Moonsault$",
+]
+
+[msg.section_0.entries.697]
+text = [
+  "Oceanic Operetta$",
+]
+
+[msg.section_0.entries.698]
+text = [
+  "Guardian of Alola$",
+]
+
+[msg.section_0.entries.699]
+text = [
+  "Soul-Stealing 7-Star Strike$",
+]
+
+[msg.section_0.entries.700]
+text = [
+  "Stoked Sparksurfer$",
+]
+
+[msg.section_0.entries.701]
+text = [
+  "Pulverizing Pancake$",
+]
+
+[msg.section_0.entries.702]
+text = [
+  "Extreme Evoboost$",
+]
+
+[msg.section_0.entries.703]
+text = [
+  "Genesis Supernova$",
+]
+
+[msg.section_0.entries.704]
+text = [
+  "Shell Trap$",
+]
+
+[msg.section_0.entries.705]
+text = [
+  "Fleur Cannon$",
+]
+
+[msg.section_0.entries.706]
+text = [
+  "Psychic Fangs$",
+]
+
+[msg.section_0.entries.707]
+text = [
+  "Stomping Tantrum$",
+]
+
+[msg.section_0.entries.708]
+text = [
+  "Shadow Bone$",
+]
+
+[msg.section_0.entries.709]
+text = [
+  "Accelerock$",
+]
+
+[msg.section_0.entries.710]
+text = [
+  "Liquidation$",
+]
+
+[msg.section_0.entries.711]
+text = [
+  "Prismatic Laser$",
+]
+
+[msg.section_0.entries.712]
+text = [
+  "Spectral Thief$",
+]
+
+[msg.section_0.entries.713]
+text = [
+  "Sunsteel Strike$",
+]
+
+[msg.section_0.entries.714]
+text = [
+  "Moongeist Beam$",
+]
+
+[msg.section_0.entries.715]
+text = [
+  "Tearful Look$",
+]
+
+[msg.section_0.entries.716]
+text = [
+  "Zing Zap$",
+]
+
+[msg.section_0.entries.717]
+text = [
+  "Nature's Madness$",
+]
+
+[msg.section_0.entries.718]
+text = [
+  "Multi-Attack$",
+]
+
+[msg.section_0.entries.719]
+text = [
+  "10,000,000 Volt Thunderbolt$",
+]
+
+[msg.section_0.entries.720]
+text = [
+  "Mind Blown$",
+]
+
+[msg.section_0.entries.721]
+text = [
+  "Plasma Fists$",
+]
+
+[msg.section_0.entries.722]
+text = [
+  "Photon Geyser$",
+]
+
+[msg.section_0.entries.723]
+text = [
+  "Light That Burns the Sky$",
+]
+
+[msg.section_0.entries.724]
+text = [
+  "Searing Sunraze Smash$",
+]
+
+[msg.section_0.entries.725]
+text = [
+  "Menacing Moonraze Maelstrom$",
+]
+
+[msg.section_0.entries.726]
+text = [
+  "Let's Snuggle Forever$",
+]
+
+[msg.section_0.entries.727]
+text = [
+  "Splintered Stormshards$",
+]
+
+[msg.section_0.entries.728]
+text = [
+  "Clangorous Soulblaze$",
+]
+
+[msg.section_0.entries.729]
+text = [
+  "Zippy Zap$",
+]
+
+[msg.section_0.entries.730]
+text = [
+  "Splishy Splash$",
+]
+
+[msg.section_0.entries.731]
+text = [
+  "Floaty Fall$",
+]
+
+[msg.section_0.entries.732]
+text = [
+  "Pika Papow$",
+]
+
+[msg.section_0.entries.733]
+text = [
+  "Bouncy Bubble$",
+]
+
+[msg.section_0.entries.734]
+text = [
+  "Buzzy Buzz$",
+]
+
+[msg.section_0.entries.735]
+text = [
+  "Sizzly Slide$",
+]
+
+[msg.section_0.entries.736]
+text = [
+  "Glitzy Glow$",
+]
+
+[msg.section_0.entries.737]
+text = [
+  "Baddy Bad$",
+]
+
+[msg.section_0.entries.738]
+text = [
+  "Sappy Seed$",
+]
+
+[msg.section_0.entries.739]
+text = [
+  "Freezy Frost$",
+]
+
+[msg.section_0.entries.740]
+text = [
+  "Sparkly Swirl$",
+]
+
+[msg.section_0.entries.741]
+text = [
+  "Veevee Volley$",
+]
+
+[msg.section_0.entries.742]
+text = [
+  "Double Iron Bash$",
+]
+
+[msg.section_0.entries.743]
+text = [
+  "Max Guard$",
+]
+
+[msg.section_0.entries.744]
+text = [
+  "Dynamax Cannon$",
+]
+
+[msg.section_0.entries.745]
+text = [
+  "Snipe Shot$",
+]
+
+[msg.section_0.entries.746]
+text = [
+  "Jaw Lock$",
+]
+
+[msg.section_0.entries.747]
+text = [
+  "Stuff Cheeks$",
+]
+
+[msg.section_0.entries.748]
+text = [
+  "No Retreat$",
+]
+
+[msg.section_0.entries.749]
+text = [
+  "Tar Shot$",
+]
+
+[msg.section_0.entries.750]
+text = [
+  "Magic Powder$",
+]
+
+[msg.section_0.entries.751]
+text = [
+  "Dragon Darts$",
+]
+
+[msg.section_0.entries.752]
+text = [
+  "Teatime$",
+]
+
+[msg.section_0.entries.753]
+text = [
+  "Octolock$",
+]
+
+[msg.section_0.entries.754]
+text = [
+  "Bolt Beak$",
+]
+
+[msg.section_0.entries.755]
+text = [
+  "Fishious Rend$",
+]
+
+[msg.section_0.entries.756]
+text = [
+  "Court Change$",
+]
+
+[msg.section_0.entries.757]
+text = [
+  "Max Flare$",
+]
+
+[msg.section_0.entries.758]
+text = [
+  "Max Flutterby$",
+]
+
+[msg.section_0.entries.759]
+text = [
+  "Max Lightning$",
+]
+
+[msg.section_0.entries.760]
+text = [
+  "Max Strike$",
+]
+
+[msg.section_0.entries.761]
+text = [
+  "Max Knuckle$",
+]
+
+[msg.section_0.entries.762]
+text = [
+  "Max Phantasm$",
+]
+
+[msg.section_0.entries.763]
+text = [
+  "Max Hailstorm$",
+]
+
+[msg.section_0.entries.764]
+text = [
+  "Max Ooze$",
+]
+
+[msg.section_0.entries.765]
+text = [
+  "Max Geyser$",
+]
+
+[msg.section_0.entries.766]
+text = [
+  "Max Airstream$",
+]
+
+[msg.section_0.entries.767]
+text = [
+  "Max Starfall$",
+]
+
+[msg.section_0.entries.768]
+text = [
+  "Max Wyrmwind$",
+]
+
+[msg.section_0.entries.769]
+text = [
+  "Max Mindstorm$",
+]
+
+[msg.section_0.entries.770]
+text = [
+  "Max Rockfall$",
+]
+
+[msg.section_0.entries.771]
+text = [
+  "Max Quake$",
+]
+
+[msg.section_0.entries.772]
+text = [
+  "Max Darkness$",
+]
+
+[msg.section_0.entries.773]
+text = [
+  "Max Overgrowth$",
+]
+
+[msg.section_0.entries.774]
+text = [
+  "Max Steelspike$",
+]
+
+[msg.section_0.entries.775]
+text = [
+  "Clangorous Soul$",
+]
+
+[msg.section_0.entries.776]
+text = [
+  "Body Press$",
+]
+
+[msg.section_0.entries.777]
+text = [
+  "Decorate$",
+]
+
+[msg.section_0.entries.778]
+text = [
+  "Drum Beating$",
+]
+
+[msg.section_0.entries.779]
+text = [
+  "Snap Trap$",
+]
+
+[msg.section_0.entries.780]
+text = [
+  "Pyro Ball$",
+]
+
+[msg.section_0.entries.781]
+text = [
+  "Behemoth Blade$",
+]
+
+[msg.section_0.entries.782]
+text = [
+  "Behemoth Bash$",
+]
+
+[msg.section_0.entries.783]
+text = [
+  "Aura Wheel$",
+]
+
+[msg.section_0.entries.784]
+text = [
+  "Breaking Swipe$",
+]
+
+[msg.section_0.entries.785]
+text = [
+  "Branch Poke$",
+]
+
+[msg.section_0.entries.786]
+text = [
+  "Overdrive$",
+]
+
+[msg.section_0.entries.787]
+text = [
+  "Apple Acid$",
+]
+
+[msg.section_0.entries.788]
+text = [
+  "Grav Apple$",
+]
+
+[msg.section_0.entries.789]
+text = [
+  "Spirit Break$",
+]
+
+[msg.section_0.entries.790]
+text = [
+  "Strange Steam$",
+]
+
+[msg.section_0.entries.791]
+text = [
+  "Life Dew$",
+]
+
+[msg.section_0.entries.792]
+text = [
+  "Obstruct$",
+]
+
+[msg.section_0.entries.793]
+text = [
+  "False Surrender$",
+]
+
+[msg.section_0.entries.794]
+text = [
+  "Meteor Assault$",
+]
+
+[msg.section_0.entries.795]
+text = [
+  "Eternabeam$",
+]
+
+[msg.section_0.entries.796]
+text = [
+  "Steel Beam$",
+]
+
+[msg.section_0.entries.797]
+text = [
+  "Expanding Force$",
+]
+
+[msg.section_0.entries.798]
+text = [
+  "Steel Roller$",
+]
+
+[msg.section_0.entries.799]
+text = [
+  "Scale Shot$",
+]
+
+[msg.section_0.entries.800]
+text = [
+  "Meteor Beam$",
+]
+
+[msg.section_0.entries.801]
+text = [
+  "Shell Side Arm$",
+]
+
+[msg.section_0.entries.802]
+text = [
+  "Misty Explosion$",
+]
+
+[msg.section_0.entries.803]
+text = [
+  "Grassy Glide$",
+]
+
+[msg.section_0.entries.804]
+text = [
+  "Rising Voltage$",
+]
+
+[msg.section_0.entries.805]
+text = [
+  "Terrain Pulse$",
+]
+
+[msg.section_0.entries.806]
+text = [
+  "Skitter Smack$",
+]
+
+[msg.section_0.entries.807]
+text = [
+  "Burning Jealousy$",
+]
+
+[msg.section_0.entries.808]
+text = [
+  "Lash Out$",
+]
+
+[msg.section_0.entries.809]
+text = [
+  "Poltergeist$",
+]
+
+[msg.section_0.entries.810]
+text = [
+  "Corrosive Gas$",
+]
+
+[msg.section_0.entries.811]
+text = [
+  "Coaching$",
+]
+
+[msg.section_0.entries.812]
+text = [
+  "Flip Turn$",
+]
+
+[msg.section_0.entries.813]
+text = [
+  "Triple Axel$",
+]
+
+[msg.section_0.entries.814]
+text = [
+  "Dual Wingbeat$",
+]
+
+[msg.section_0.entries.815]
+text = [
+  "Scorching Sands$",
+]
+
+[msg.section_0.entries.816]
+text = [
+  "Jungle Healing$",
+]
+
+[msg.section_0.entries.817]
+text = [
+  "Wicked Blow$",
+]
+
+[msg.section_0.entries.818]
+text = [
+  "Surging Strikes$",
+]
+
+[msg.section_0.entries.819]
+text = [
+  "Thunder Cage$",
+]
+
+[msg.section_0.entries.820]
+text = [
+  "Dragon Energy$",
+]
+
+[msg.section_0.entries.821]
+text = [
+  "Freezing Glare$",
+]
+
+[msg.section_0.entries.822]
+text = [
+  "Fiery Wrath$",
+]
+
+[msg.section_0.entries.823]
+text = [
+  "Thunderous Kick$",
+]
+
+[msg.section_0.entries.824]
+text = [
+  "Glacial Lance$",
+]
+
+[msg.section_0.entries.825]
+text = [
+  "Astral Barrage$",
+]
+
+[msg.section_0.entries.826]
+text = [
+  "Eerie Spell$",
+]
+
+[msg.section_0.entries.827]
+text = [
+  "Dire Claw$",
+]
+
+[msg.section_0.entries.828]
+text = [
+  "Psyshield Bash$",
+]
+
+[msg.section_0.entries.829]
+text = [
+  "Power Shift$",
+]
+
+[msg.section_0.entries.830]
+text = [
+  "Stone Axe$",
+]
+
+[msg.section_0.entries.831]
+text = [
+  "Springtide Storm$",
+]
+
+[msg.section_0.entries.832]
+text = [
+  "Mystical Power$",
+]
+
+[msg.section_0.entries.833]
+text = [
+  "Raging Fury$",
+]
+
+[msg.section_0.entries.834]
+text = [
+  "Wave Crash$",
+]
+
+[msg.section_0.entries.835]
+text = [
+  "Chloroblast$",
+]
+
+[msg.section_0.entries.836]
+text = [
+  "Mountain Gale$",
+]
+
+[msg.section_0.entries.837]
+text = [
+  "Victory Dance$",
+]
+
+[msg.section_0.entries.838]
+text = [
+  "Headlong Rush$",
+]
+
+[msg.section_0.entries.839]
+text = [
+  "Barb Barrage$",
+]
+
+[msg.section_0.entries.840]
+text = [
+  "Esper Wing$",
+]
+
+[msg.section_0.entries.841]
+text = [
+  "Bitter Malice$",
+]
+
+[msg.section_0.entries.842]
+text = [
+  "Shelter$",
+]
+
+[msg.section_0.entries.843]
+text = [
+  "Triple Arrows$",
+]
+
+[msg.section_0.entries.844]
+text = [
+  "Infernal Parade$",
+]
+
+[msg.section_0.entries.845]
+text = [
+  "Ceaseless Edge$",
+]
+
+[msg.section_0.entries.846]
+text = [
+  "Bleakwind Storm$",
+]
+
+[msg.section_0.entries.847]
+text = [
+  "Wildbolt Storm$",
+]
+
+[msg.section_0.entries.848]
+text = [
+  "Sandsear Storm$",
+]
+
+[msg.section_0.entries.849]
+text = [
+  "Lunar Blessing$",
+]
+
+[msg.section_0.entries.850]
+text = [
+  "Take Heart$",
+]
+
+[msg.section_0.entries.851]
+text = [
+  "Tera Blast$",
+]
+
+[msg.section_0.entries.852]
+text = [
+  "Silk Trap$",
+]
+
+[msg.section_0.entries.853]
+text = [
+  "Axe Kick$",
+]
+
+[msg.section_0.entries.854]
+text = [
+  "Last Respects$",
+]
+
+[msg.section_0.entries.855]
+text = [
+  "Lumina Crash$",
+]
+
+[msg.section_0.entries.856]
+text = [
+  "Order Up$",
+]
+
+[msg.section_0.entries.857]
+text = [
+  "Jet Punch$",
+]
+
+[msg.section_0.entries.858]
+text = [
+  "Spicy Extract$",
+]
+
+[msg.section_0.entries.859]
+text = [
+  "Spin Out$",
+]
+
+[msg.section_0.entries.860]
+text = [
+  "Population Bomb$",
+]
+
+[msg.section_0.entries.861]
+text = [
+  "Ice Spinner$",
+]
+
+[msg.section_0.entries.862]
+text = [
+  "Glaive Rush$",
+]
+
+[msg.section_0.entries.863]
+text = [
+  "Revival Blessing$",
+]
+
+[msg.section_0.entries.864]
+text = [
+  "Salt Cure$",
+]
+
+[msg.section_0.entries.865]
+text = [
+  "Triple Dive$",
+]
+
+[msg.section_0.entries.866]
+text = [
+  "Mortal Spin$",
+]
+
+[msg.section_0.entries.867]
+text = [
+  "Doodle$",
+]
+
+[msg.section_0.entries.868]
+text = [
+  "Fillet Away$",
+]
+
+[msg.section_0.entries.869]
+text = [
+  "Kowtow Cleave$",
+]
+
+[msg.section_0.entries.870]
+text = [
+  "Flower Trick$",
+]
+
+[msg.section_0.entries.871]
+text = [
+  "Torch Song$",
+]
+
+[msg.section_0.entries.872]
+text = [
+  "Aqua Step$",
+]
+
+[msg.section_0.entries.873]
+text = [
+  "Raging Bull$",
+]
+
+[msg.section_0.entries.874]
+text = [
+  "Make It Rain$",
+]
+
+[msg.section_0.entries.875]
+text = [
+  "Psyblade$",
+]
+
+[msg.section_0.entries.876]
+text = [
+  "Hydro Steam$",
+]
+
+[msg.section_0.entries.877]
+text = [
+  "Ruination$",
+]
+
+[msg.section_0.entries.878]
+text = [
+  "Collision Course$",
+]
+
+[msg.section_0.entries.879]
+text = [
+  "Electro Drift$",
+]
+
+[msg.section_0.entries.880]
+text = [
+  "Shed Tail$",
+]
+
+[msg.section_0.entries.881]
+text = [
+  "Chilly Reception$",
+]
+
+[msg.section_0.entries.882]
+text = [
+  "Tidy Up$",
+]
+
+[msg.section_0.entries.883]
+text = [
+  "Snowscape$",
+]
+
+[msg.section_0.entries.884]
+text = [
+  "Pounce$",
+]
+
+[msg.section_0.entries.885]
+text = [
+  "Trailblaze$",
+]
+
+[msg.section_0.entries.886]
+text = [
+  "Chilling Water$",
+]
+
+[msg.section_0.entries.887]
+text = [
+  "Hyper Drill$",
+]
+
+[msg.section_0.entries.888]
+text = [
+  "Twin Beam$",
+]
+
+[msg.section_0.entries.889]
+text = [
+  "Rage Fist$",
+]
+
+[msg.section_0.entries.890]
+text = [
+  "Armor Cannon$",
+]
+
+[msg.section_0.entries.891]
+text = [
+  "Bitter Blade$",
+]
+
+[msg.section_0.entries.892]
+text = [
+  "Double Shock$",
+]
+
+[msg.section_0.entries.893]
+text = [
+  "Gigaton Hammer$",
+]
+
+[msg.section_0.entries.894]
+text = [
+  "Comeuppance$",
+]
+
+[msg.section_0.entries.895]
+text = [
+  "Aqua Cutter$",
+]
+
+[msg.section_0.entries.896]
+text = [
+  "Blazing Torque$",
+]
+
+[msg.section_0.entries.897]
+text = [
+  "Wicked Torque$",
+]
+
+[msg.section_0.entries.898]
+text = [
+  "Noxious Torque$",
+]
+
+[msg.section_0.entries.899]
+text = [
+  "Combat Torque$",
+]
+
+[msg.section_0.entries.900]
+text = [
+  "Magical Torque$",
+]
+
+[msg.section_0.entries.901]
+text = [
+  "Blood Moon$",
+]
+
+[msg.section_0.entries.902]
+text = [
+  "Matcha Gotcha$",
+]
+
+[msg.section_0.entries.903]
+text = [
+  "Syrup Bomb$",
+]
+
+[msg.section_0.entries.904]
+text = [
+  "Ivy Cudgel$",
+]
+
+[msg.section_0.entries.905]
+text = [
+  "Electro Shot$",
+]
+
+[msg.section_0.entries.906]
+text = [
+  "Tera Starstorm$",
+]
+
+[msg.section_0.entries.907]
+text = [
+  "Fickle Beam$",
+]
+
+[msg.section_0.entries.908]
+text = [
+  "Burning Bulwark$",
+]
+
+[msg.section_0.entries.909]
+text = [
+  "Thunderclap$",
+]
+
+[msg.section_0.entries.910]
+text = [
+  "Mighty Cleave$",
+]
+
+[msg.section_0.entries.911]
+text = [
+  "Tachyon Cutter$",
+]
+
+[msg.section_0.entries.912]
+text = [
+  "Hard Press$",
+]
+
+[msg.section_0.entries.913]
+text = [
+  "Dragon Cheer$",
+]
+
+[msg.section_0.entries.914]
+text = [
+  "Alluring Voice$",
+]
+
+[msg.section_0.entries.915]
+text = [
+  "Temper Flare$",
+]
+
+[msg.section_0.entries.916]
+text = [
+  "Supercell Slam$",
+]
+
+[msg.section_0.entries.917]
+text = [
+  "Psychic Noise$",
+]
+
+[msg.section_0.entries.918]
+text = [
+  "Upper Hand$",
+]
+
+[msg.section_0.entries.919]
+text = [
+  "Malignant Chain$",
+]

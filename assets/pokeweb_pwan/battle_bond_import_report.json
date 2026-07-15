@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "species": 658,
+  "forms": {
+    "mega": {
+      "form": 1,
+      "assetIndex": 1180
+    },
+    "ash": {
+      "form": 2,
+      "assetIndex": 1181
+    }
+  },
+  "ashPwan": {
+    "front": {
+      "frames": 28,
+      "timeline": 94,
+      "ticks": 576,
+      "bytes": 129480,
+      "paletteStrategy": "exact",
+      "sourceColors": 15,
+      "visibleColors": 15
+    },
+    "back": {
+      "frames": 24,
+      "timeline": 88,
+      "ticks": 552,
+      "bytes": 111024,
+      "paletteStrategy": "exact",
+      "sourceColors": 13,
+      "visibleColors": 13
+    }
+  },
+  "ashStatic": {
+    "key": "ALT_GRENINJA_ASH",
+    "name": "Ash-Greninja",
+    "assetIndex": 1181,
+    "battleSet": 23620,
+    "sourceStem": "GRENINJA_2",
+    "patchedSides": [
+      "front",
+      "back"
+    ],
+    "shinyPalette": true
+  },
+  "ashIcon": {
+    "targetIcon": 2370,
+    "paletteKey": 1181,
+    "sourceStem": "GRENINJA_2",
+    "palette": 0
+  }
+}

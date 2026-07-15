@@ -31,6 +31,7 @@ sources = [
 w2u_main_elf = custom_target(
   'w2u_main.elf',
   input: sources,
+  depend_files: files('pokeweb_gameplay/w2u_terrain_texture_mappings.inc'),
   output: 'w2u_main.elf',
   command: ['arm-none-eabi-g++', cpp_args, includes ,'-o', '@OUTPUT@', '@INPUT@'],
 )

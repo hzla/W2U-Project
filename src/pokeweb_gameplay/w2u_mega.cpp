@@ -1,4 +1,5 @@
 #include "w2u_battle.h"
+#include "w2u_battle_lifecycle.h"
 #include "w2u_abilities.h"
 #include "w2u_field_effects.h"
 #include "w2u_moves.h"
@@ -68,6 +69,9 @@ const u8 W2U_MEGA_NO_SLOT = 0xFF;
 const u8 W2U_MEGA_NO_FORM = 0;
 const u16 W2U_MEGA_NO_ABILITY = 0xFFFF;
 const u8 W2U_RAYQUAZA_DRAGON_ASCENT_MEGA_FORM = 1u;
+const u8 W2U_CLIENT_FORM_VISUAL_MEGA = 1u;
+const u8 W2U_CLIENT_FORM_VISUAL_INSTANT_DISGUISE = 2u;
+const u8 W2U_MIMIKYU_BUSTED_FORM = 1u;
 
 enum MegaSkipReason : u32 {
     MEGA_SKIP_NONE = 0,
@@ -957,10 +961,10 @@ u32 CMD_ACT_Wait(BtlvScu* btlvScu)
     return wait(btlvScu);
 }
 
-void RefreshMegaFormSprite(BtlvScu* btlvScu, u32 viewPos)
+bool RefreshMegaFormSprite(BtlvScu* btlvScu, u32 viewPos)
 {
     if (!btlvScu) {
-        return;
+        return false;
     }
 
     u8* btlvScuBytes = reinterpret_cast<u8*>(btlvScu);
@@ -969,7 +973,7 @@ void RefreshMegaFormSprite(BtlvScu* btlvScu, u32 viewPos)
     void* table =
         *reinterpret_cast<void**>(btlvScuBytes + W2U_BTLVSCU_VIEW_MON_TABLE_OFFSET);
     if (!selector || !table) {
-        return;
+        return false;
     }
 
     BattleViewResolveViewMonFn resolveViewMon =
@@ -984,15 +988,16 @@ void RefreshMegaFormSprite(BtlvScu* btlvScu, u32 viewPos)
     const u32 viewPos8 = viewPos & 0xffu;
     void* monRef = lookupMon(table, resolveViewMon(selector, viewPos8));
     if (!monRef) {
-        return;
+        return false;
     }
 
     void* monHandle = derefMon(monRef);
     if (!monHandle) {
-        return;
+        return false;
     }
 
     refreshFormSprite(monHandle, viewPos8);
+    return true;
 }
 
 bool IsMegaFormRecord(SPECIES species, u8 form)
@@ -1120,6 +1125,20 @@ void ResetMegaBattleState()
     ClearMegaPendingClientChanges();
     ClearMegaVisualState();
     ClearMegaButtonState(MEGA_SKIP_NONE);
+}
+
+extern "C" void W2U_BattleState_OnBattleExit()
+{
+    // The battle heap commonly reuses these exact addresses. Invalidate the
+    // cached identity explicitly so SetupBeforeFirstTurn performs its full
+    // reset in the next battle even when every pointer value is unchanged.
+    gMegaActiveBtlCore = nullptr;
+    gMegaBattleServerFlow = nullptr;
+    gMegaBattleMainModule = nullptr;
+    gMegaBattlePokeCon = nullptr;
+
+    W2U_AuraField_ResetBattleState();
+    W2U_MoveState_ResetBattleState();
 }
 
 u8 MegaSideForSlot(u8 battleSlot)
@@ -1271,6 +1290,36 @@ bool ConsumeClientMegaChangeForm(const u32* args, u8* pokeIDOut, u8* formOut)
     }
 
     if (!ConsumePendingMegaClientChange(pokeID, form)) {
+        return false;
+    }
+
+    if (pokeIDOut) {
+        *pokeIDOut = pokeID;
+    }
+    if (formOut) {
+        *formOut = form;
+    }
+    return true;
+}
+
+bool IsInstantDisguiseClientChange(
+    BtlvCore* btlCore,
+    const u32* args,
+    u8* pokeIDOut,
+    u8* formOut)
+{
+    if (!btlCore || !btlCore->pokeCon || !args) {
+        return false;
+    }
+
+    const u8 pokeID = (u8)(args[0] & 0xffu);
+    const u8 form = (u8)(args[1] & 0xffu);
+    if (form != W2U_MIMIKYU_BUSTED_FORM) {
+        return false;
+    }
+
+    BattleMon* battleMon = PokeCon_GetBattleMon(btlCore->pokeCon, pokeID);
+    if (!battleMon || battleMon->species != SPECIES_778) {
         return false;
     }
 
@@ -2224,15 +2273,35 @@ extern "C" u32 W2U_Mega_OnClientChangeFormStart(
 
     u8 pokeID = 0;
     u8 form = 0;
-    if (!btlCore || !btlCore->btlvScu ||
-        !ConsumeClientMegaChangeForm(args, &pokeID, &form)) {
+    if (!btlCore || !btlCore->btlvScu) {
+        return 0;
+    }
+
+    if (IsInstantDisguiseClientChange(btlCore, args, &pokeID, &form)) {
+        gMegaCustomAnimationState.active = W2U_CLIENT_FORM_VISUAL_INSTANT_DISGUISE;
+        gMegaCustomAnimationState.pokeID = pokeID;
+        gMegaCustomAnimationState.form = form;
+        gMegaCustomAnimationState.viewPos = (u8)(viewPos & 0xffu);
+        // Keep the native identity/form preparation, while the resident PWAN
+        // hook suppresses only Mimikyu's final static carrier replacement.
+        gMegaCustomAnimationState.spriteRefreshed =
+            RefreshMegaFormSprite(btlCore->btlvScu, viewPos) ? 1u : 0u;
+        gMegaCustomAnimationState.waitFrames = 0;
+        if (!gMegaCustomAnimationState.spriteRefreshed) {
+            ClearMegaCustomAnimationState();
+            return 0;
+        }
+        return 1;
+    }
+
+    if (!ConsumeClientMegaChangeForm(args, &pokeID, &form)) {
         return 0;
     }
     if (!gMegaBattleMainModule && !gMegaBattlePokeCon) {
         SetMegaBattleContext(btlCore->mainModule, btlCore->pokeCon);
     }
 
-    gMegaCustomAnimationState.active = 1;
+    gMegaCustomAnimationState.active = W2U_CLIENT_FORM_VISUAL_MEGA;
     gMegaCustomAnimationState.pokeID = pokeID;
     gMegaCustomAnimationState.form = form;
     gMegaCustomAnimationState.viewPos = (u8)(viewPos & 0xffu);
@@ -2284,13 +2353,19 @@ extern "C" u32 W2U_Mega_OnClientChangeFormWaitOverride(BtlvCore* btlCore, const 
         return 2;
     }
 
+    if (gMegaCustomAnimationState.active ==
+        W2U_CLIENT_FORM_VISUAL_INSTANT_DISGUISE) {
+        ClearMegaCustomAnimationState();
+        return 1;
+    }
+
     if (btlCore &&
         !gMegaCustomAnimationState.spriteRefreshed &&
         gMegaCustomAnimationState.waitFrames >= W2U_MEGA_FORM_REFRESH_FRAME) {
-        RefreshMegaFormSprite(
-            btlCore->btlvScu,
-            gMegaCustomAnimationState.viewPos);
-        gMegaCustomAnimationState.spriteRefreshed = 1;
+        gMegaCustomAnimationState.spriteRefreshed =
+            RefreshMegaFormSprite(
+                btlCore->btlvScu,
+                gMegaCustomAnimationState.viewPos) ? 1u : 0u;
     }
 
     u32 animDone = 1u;
@@ -2306,10 +2381,10 @@ extern "C" u32 W2U_Mega_OnClientChangeFormWaitOverride(BtlvCore* btlCore, const 
     }
 
     if (btlCore && !gMegaCustomAnimationState.spriteRefreshed) {
-        RefreshMegaFormSprite(
-            btlCore->btlvScu,
-            gMegaCustomAnimationState.viewPos);
-        gMegaCustomAnimationState.spriteRefreshed = 1;
+        gMegaCustomAnimationState.spriteRefreshed =
+            RefreshMegaFormSprite(
+                btlCore->btlvScu,
+                gMegaCustomAnimationState.viewPos) ? 1u : 0u;
     }
 
     CompleteMegaClientChangeForm(args);
@@ -2414,7 +2489,7 @@ extern "C" void THUMB_BRANCH_BattleMon_UpdateData(BattleMon* battleMon, bool res
 
 static bool W2U_AbilityPreservesFormOnSwitchOut(ABILITY ability)
 {
-    return ability == ABIL_DISGUISE;
+    return ability == ABIL_DISGUISE || ability == ABIL_BATTLE_BOND;
 }
 
 extern "C" void THUMB_BRANCH_BattleMon_ClearForSwitchOut(BattleMon* battleMon)

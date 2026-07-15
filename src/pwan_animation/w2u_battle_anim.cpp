@@ -269,6 +269,7 @@ static const ActorConfig kActorConfig[ACTOR_COUNT] = {
 static State sState;
 static u8 *const sFrameScratch = W2U_PwanFrameScratch;
 static u8 *const sTextureScratch = W2U_PwanTextureScratch;
+static s32 sNativeFormChangePosition = -1;
 
 typedef s32 (*McssGetIndexFn)(void *bmw, int position);
 typedef void (*McssOverwriteMawFn)(void *bmw, int position, const McssAddWork *maw);
@@ -279,6 +280,16 @@ static McssGetIndexFn const BattleSpriteGetIndex_Fn = (McssGetIndexFn)0x021E97D5
 static McssOverwriteMawFn const BattleSpriteOverwriteMaw_Fn =
     (McssOverwriteMawFn)0x021E7FBDu;
 extern "C" void W2U_BattleAnim_Term(void);
+
+extern "C" void W2U_BattleAnim_BeginNativeFormChange(u32 position)
+{
+    sNativeFormChangePosition = position < ACTOR_COUNT ? (s32)position : -1;
+}
+
+extern "C" void W2U_BattleAnim_EndNativeFormChange(void)
+{
+    sNativeFormChangePosition = -1;
+}
 
 static b32 ReadRange(BattleAssetId assetId, u32 offset, void *buffer, u32 size)
 {
@@ -800,6 +811,21 @@ static b32 PatchFormFromPwanConfig(void *bmw, int position, ActorState *actorSta
         return false;
     }
 
+    // Mimikyu's busted battle carrier deliberately inherits the base form's
+    // geometry and animation metadata. Reusing the live base carrier avoids
+    // scheduling the native static busted texture, which otherwise arrives
+    // several frames after PWAN and overwrites its frame-0 texture in VRAM.
+    if (actorState->species == SPECIES_778 && actorState->form == 1u) {
+        if (!actorState->mcssMawPatched) {
+            actorState->textureDirty = true;
+            actorState->paletteDirty = true;
+            actorState->copiedFrame = 0xffffu;
+            actorState->pendingFrame = 0xffffu;
+        }
+        actorState->mcssMawPatched = true;
+        return actorState->textureDirty || actorState->paletteDirty;
+    }
+
     const u32 spriteIndex = ((u32)actorState->assetId) / 2u;
     return PatchMcssCarrierFromSpriteIndex(bmw, position, actorState, spriteIndex);
 }
@@ -960,7 +986,16 @@ static void UpdateActor(ActorId actor, void *bmw)
     if (wasInactive || mcssIndexChanged || mcssPointerChanged || speciesChanged) {
         actorState->paletteDirty = true;
     }
-    const b32 carrierPatched = PatchFormFromPwanConfig(bmw, cfg->position, actorState);
+    // The native change-form effect snapshots the old MAW and restores it partway
+    // through the animation with BattleSpriteOverwriteMaw. Calling that same
+    // routine here on the intervening frames makes the renderer alternate between
+    // the effect snapshot and the new carrier, which appears as a positional
+    // flicker. PWAN texture/palette uploads are safe during the effect; defer only
+    // the carrier replacement until the native task has released this position.
+    const b32 nativeFormChangeOwnsCarrier =
+        sNativeFormChangePosition == (s32)cfg->position;
+    const b32 carrierPatched = nativeFormChangeOwnsCarrier ?
+        false : PatchFormFromPwanConfig(bmw, cfg->position, actorState);
     if (carrierPatched) {
         actorState->mcss = GetMcssPointerByIndex(bmw, mcssIndex);
     }
@@ -1007,6 +1042,86 @@ extern "C" void W2U_BattleAnim_Update(void)
     }
 }
 
+static b32 UploadPendingActor(ActorId actor)
+{
+    ActorState *actorState = &sState.actor[actor];
+    if (!actorState->active ||
+        actorState->mcssIndex < 0 ||
+        (!actorState->textureDirty && !actorState->paletteDirty)) {
+        return false;
+    }
+
+    b32 stagedTexture = true;
+    if (actorState->textureDirty) {
+        stagedTexture = StageFrameTexture(actor, actorState->pendingFrame);
+    }
+    if (stagedTexture) {
+        WaitForSafeVramUploadTime();
+        if (actorState->paletteDirty) {
+            CopyPaletteToLiveMcss(actor);
+            UploadPalette(actor, GetPwanPaletteBase(actorState->mcssIndex));
+        }
+        if (actorState->textureDirty) {
+            UploadTexture(actor, actorState->mcssIndex);
+            actorState->copiedFrame = actorState->pendingFrame;
+        }
+    } else {
+        actorState->textureDirty = false;
+        actorState->paletteDirty = false;
+    }
+    return true;
+}
+
+extern "C" b32 W2U_BattleAnim_ShouldSuppressNativeFormCarrier(
+    void *bmw,
+    u32 position)
+{
+    if (!bmw || position >= ACTOR_COUNT) {
+        return false;
+    }
+
+    const BattleActorIdentity identity = GetMcssActorIdentity(bmw, (int)position);
+    return identity.species == SPECIES_778 && identity.form == 1u;
+}
+
+extern "C" void W2U_BattleAnim_RefreshPositionNow(u32 position)
+{
+    ActorId actor = ACTOR_COUNT;
+    for (u32 i = 0; i < ACTOR_COUNT; ++i) {
+        if ((u32)kActorConfig[i].position == position) {
+            actor = (ActorId)i;
+            break;
+        }
+    }
+    if (actor == ACTOR_COUNT) {
+        return;
+    }
+
+    void *bmw = GetMcssWork();
+    if (!bmw) {
+        return;
+    }
+
+    ActorState *actorState = &sState.actor[actor];
+    actorState->mcssMawPatched = false;
+    actorState->textureDirty = true;
+    actorState->paletteDirty = true;
+    actorState->copiedFrame = 0xffffu;
+    actorState->pendingFrame = 0xffffu;
+
+    UpdateActor(actor, bmw);
+    if (!actorState->active ||
+        (!actorState->textureDirty && !actorState->paletteDirty)) {
+        return;
+    }
+
+    W2U_BattleAnim_Profile.lastUploadBytes = 0;
+    W2U_BattleAnim_Profile.lastUploadActors = 0;
+    W2U_BattleAnim_Profile.textureUploadCalls =
+        W2U_BattleAnim_Profile.textureUploadCalls + 1u;
+    UploadPendingActor(actor);
+}
+
 extern "C" void W2U_BattleAnim_Draw(void)
 {
     W2U_BattleAnim_Profile.drawCalls = W2U_BattleAnim_Profile.drawCalls + 1u;
@@ -1043,24 +1158,7 @@ extern "C" void W2U_BattleAnim_Draw(void)
             continue;
         }
 
-        b32 stagedTexture = true;
-        if (actorState->textureDirty) {
-            stagedTexture = StageFrameTexture(actor, actorState->pendingFrame);
-        }
-        if (stagedTexture) {
-            WaitForSafeVramUploadTime();
-            if (actorState->paletteDirty) {
-                CopyPaletteToLiveMcss(actor);
-                UploadPalette(actor, GetPwanPaletteBase(actorState->mcssIndex));
-            }
-            if (actorState->textureDirty) {
-                UploadTexture(actor, actorState->mcssIndex);
-                actorState->copiedFrame = actorState->pendingFrame;
-            }
-        } else {
-            actorState->textureDirty = false;
-            actorState->paletteDirty = false;
-        }
+        UploadPendingActor(actor);
         actorIndex = actorIndex + 1u;
         if (actorIndex >= ACTOR_COUNT) {
             actorIndex = 0;
@@ -1087,6 +1185,7 @@ extern "C" void W2U_BattleAnim_Term(void)
         sState.actor[i].mcss = 0;
     }
     sState.nextUploadActor = 0;
+    sNativeFormChangePosition = -1;
 }
 
 } // namespace battle_anim

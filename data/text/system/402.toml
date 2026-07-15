@@ -4116,3 +4116,1493 @@ text = [
 text = [
   "Hyperspace Fury description.$",
 ]
+
+[msg.section_0.entries.622]
+text = [
+  "Breakneck Blitz description.$",
+]
+
+[msg.section_0.entries.623]
+text = [
+  "Breakneck Blitz 2 description.$",
+]
+
+[msg.section_0.entries.624]
+text = [
+  "All-Out Pummeling description.$",
+]
+
+[msg.section_0.entries.625]
+text = [
+  "All-Out Pummeling 2 description.$",
+]
+
+[msg.section_0.entries.626]
+text = [
+  "Supersonic Skystrike description.$",
+]
+
+[msg.section_0.entries.627]
+text = [
+  "Supersonic Skystrike 2 description.$",
+]
+
+[msg.section_0.entries.628]
+text = [
+  "Acid Downpour description.$",
+]
+
+[msg.section_0.entries.629]
+text = [
+  "Acid Downpour 2 description.$",
+]
+
+[msg.section_0.entries.630]
+text = [
+  "Tectonic Rage description.$",
+]
+
+[msg.section_0.entries.631]
+text = [
+  "Tectonic Rage 2 description.$",
+]
+
+[msg.section_0.entries.632]
+text = [
+  "Continental Crush description.$",
+]
+
+[msg.section_0.entries.633]
+text = [
+  "Continental Crush 2 description.$",
+]
+
+[msg.section_0.entries.634]
+text = [
+  "Savage Spin-Out description.$",
+]
+
+[msg.section_0.entries.635]
+text = [
+  "Savage Spin-Out 2 description.$",
+]
+
+[msg.section_0.entries.636]
+text = [
+  "Never-Ending Nightmare description.$",
+]
+
+[msg.section_0.entries.637]
+text = [
+  "Never-Ending Nightmare 2 description.$",
+]
+
+[msg.section_0.entries.638]
+text = [
+  "Corkscrew Crash description.$",
+]
+
+[msg.section_0.entries.639]
+text = [
+  "Corkscrew Crash 2 description.$",
+]
+
+[msg.section_0.entries.640]
+text = [
+  "Inferno Overdrive description.$",
+]
+
+[msg.section_0.entries.641]
+text = [
+  "Inferno Overdrive 2 description.$",
+]
+
+[msg.section_0.entries.642]
+text = [
+  "Hydro Vortex description.$",
+]
+
+[msg.section_0.entries.643]
+text = [
+  "Hydro Vortex 2 description.$",
+]
+
+[msg.section_0.entries.644]
+text = [
+  "Bloom Doom description.$",
+]
+
+[msg.section_0.entries.645]
+text = [
+  "Bloom Doom 2 description.$",
+]
+
+[msg.section_0.entries.646]
+text = [
+  "Gigavolt Havoc description.$",
+]
+
+[msg.section_0.entries.647]
+text = [
+  "Gigavolt Havoc 2 description.$",
+]
+
+[msg.section_0.entries.648]
+text = [
+  "Shattered Psyche description.$",
+]
+
+[msg.section_0.entries.649]
+text = [
+  "Shattered Psyche 2 description.$",
+]
+
+[msg.section_0.entries.650]
+text = [
+  "Subzero Slammer description.$",
+]
+
+[msg.section_0.entries.651]
+text = [
+  "Subzero Slammer 2 description.$",
+]
+
+[msg.section_0.entries.652]
+text = [
+  "Devastating Drake description.$",
+]
+
+[msg.section_0.entries.653]
+text = [
+  "Devastating Drake 2 description.$",
+]
+
+[msg.section_0.entries.654]
+text = [
+  "Black Hole Eclipse description.$",
+]
+
+[msg.section_0.entries.655]
+text = [
+  "Black Hole Eclipse 2 description.$",
+]
+
+[msg.section_0.entries.656]
+text = [
+  "Twinkle Tackle description.$",
+]
+
+[msg.section_0.entries.657]
+text = [
+  "Twinkle Tackle 2 description.$",
+]
+
+[msg.section_0.entries.658]
+text = [
+  "Catastropika description.$",
+]
+
+[msg.section_0.entries.659]
+text = [
+  "Shore Up description.$",
+]
+
+[msg.section_0.entries.660]
+text = [
+  "First Impression description.$",
+]
+
+[msg.section_0.entries.661]
+text = [
+  "Baneful Bunker description.$",
+]
+
+[msg.section_0.entries.662]
+text = [
+  "Spirit Shackle description.$",
+]
+
+[msg.section_0.entries.663]
+text = [
+  "Darkest Lariat description.$",
+]
+
+[msg.section_0.entries.664]
+text = [
+  "Sparkling Aria description.$",
+]
+
+[msg.section_0.entries.665]
+text = [
+  "Ice Hammer description.$",
+]
+
+[msg.section_0.entries.666]
+text = [
+  "Floral Healing description.$",
+]
+
+[msg.section_0.entries.667]
+text = [
+  "High Horsepower description.$",
+]
+
+[msg.section_0.entries.668]
+text = [
+  "Strength Sap description.$",
+]
+
+[msg.section_0.entries.669]
+text = [
+  "Solar Blade description.$",
+]
+
+[msg.section_0.entries.670]
+text = [
+  "Leafage description.$",
+]
+
+[msg.section_0.entries.671]
+text = [
+  "Spotlight description.$",
+]
+
+[msg.section_0.entries.672]
+text = [
+  "Toxic Thread description.$",
+]
+
+[msg.section_0.entries.673]
+text = [
+  "Laser Focus description.$",
+]
+
+[msg.section_0.entries.674]
+text = [
+  "Gear Up description.$",
+]
+
+[msg.section_0.entries.675]
+text = [
+  "Throat Chop description.$",
+]
+
+[msg.section_0.entries.676]
+text = [
+  "Pollen Puff description.$",
+]
+
+[msg.section_0.entries.677]
+text = [
+  "Anchor Shot description.$",
+]
+
+[msg.section_0.entries.678]
+text = [
+  "Psychic Terrain description.$",
+]
+
+[msg.section_0.entries.679]
+text = [
+  "Lunge description.$",
+]
+
+[msg.section_0.entries.680]
+text = [
+  "Fire Lash description.$",
+]
+
+[msg.section_0.entries.681]
+text = [
+  "Power Trip description.$",
+]
+
+[msg.section_0.entries.682]
+text = [
+  "Burn Up description.$",
+]
+
+[msg.section_0.entries.683]
+text = [
+  "Speed Swap description.$",
+]
+
+[msg.section_0.entries.684]
+text = [
+  "Smart Strike description.$",
+]
+
+[msg.section_0.entries.685]
+text = [
+  "Purify description.$",
+]
+
+[msg.section_0.entries.686]
+text = [
+  "Revelation Dance description.$",
+]
+
+[msg.section_0.entries.687]
+text = [
+  "Core Enforcer description.$",
+]
+
+[msg.section_0.entries.688]
+text = [
+  "Trop Kick description.$",
+]
+
+[msg.section_0.entries.689]
+text = [
+  "Instruct description.$",
+]
+
+[msg.section_0.entries.690]
+text = [
+  "Beak Blast description.$",
+]
+
+[msg.section_0.entries.691]
+text = [
+  "Clanging Scales description.$",
+]
+
+[msg.section_0.entries.692]
+text = [
+  "Dragon Hammer description.$",
+]
+
+[msg.section_0.entries.693]
+text = [
+  "Brutal Swing description.$",
+]
+
+[msg.section_0.entries.694]
+text = [
+  "Aurora Veil description.$",
+]
+
+[msg.section_0.entries.695]
+text = [
+  "Sinister Arrow Raid description.$",
+]
+
+[msg.section_0.entries.696]
+text = [
+  "Malicious Moonsault description.$",
+]
+
+[msg.section_0.entries.697]
+text = [
+  "Oceanic Operetta description.$",
+]
+
+[msg.section_0.entries.698]
+text = [
+  "Guardian of Alola description.$",
+]
+
+[msg.section_0.entries.699]
+text = [
+  "Soul-Stealing 7-Star Strike description.$",
+]
+
+[msg.section_0.entries.700]
+text = [
+  "Stoked Sparksurfer description.$",
+]
+
+[msg.section_0.entries.701]
+text = [
+  "Pulverizing Pancake description.$",
+]
+
+[msg.section_0.entries.702]
+text = [
+  "Extreme Evoboost description.$",
+]
+
+[msg.section_0.entries.703]
+text = [
+  "Genesis Supernova description.$",
+]
+
+[msg.section_0.entries.704]
+text = [
+  "Shell Trap description.$",
+]
+
+[msg.section_0.entries.705]
+text = [
+  "Fleur Cannon description.$",
+]
+
+[msg.section_0.entries.706]
+text = [
+  "Psychic Fangs description.$",
+]
+
+[msg.section_0.entries.707]
+text = [
+  "Stomping Tantrum description.$",
+]
+
+[msg.section_0.entries.708]
+text = [
+  "Shadow Bone description.$",
+]
+
+[msg.section_0.entries.709]
+text = [
+  "Accelerock description.$",
+]
+
+[msg.section_0.entries.710]
+text = [
+  "Liquidation description.$",
+]
+
+[msg.section_0.entries.711]
+text = [
+  "Prismatic Laser description.$",
+]
+
+[msg.section_0.entries.712]
+text = [
+  "Spectral Thief description.$",
+]
+
+[msg.section_0.entries.713]
+text = [
+  "Sunsteel Strike description.$",
+]
+
+[msg.section_0.entries.714]
+text = [
+  "Moongeist Beam description.$",
+]
+
+[msg.section_0.entries.715]
+text = [
+  "Tearful Look description.$",
+]
+
+[msg.section_0.entries.716]
+text = [
+  "Zing Zap description.$",
+]
+
+[msg.section_0.entries.717]
+text = [
+  "Nature's Madness description.$",
+]
+
+[msg.section_0.entries.718]
+text = [
+  "Multi-Attack description.$",
+]
+
+[msg.section_0.entries.719]
+text = [
+  "10,000,000 Volt Thunderbolt description.$",
+]
+
+[msg.section_0.entries.720]
+text = [
+  "Mind Blown description.$",
+]
+
+[msg.section_0.entries.721]
+text = [
+  "Plasma Fists description.$",
+]
+
+[msg.section_0.entries.722]
+text = [
+  "Photon Geyser description.$",
+]
+
+[msg.section_0.entries.723]
+text = [
+  "Light That Burns the Sky description.$",
+]
+
+[msg.section_0.entries.724]
+text = [
+  "Searing Sunraze Smash description.$",
+]
+
+[msg.section_0.entries.725]
+text = [
+  "Menacing Moonraze Maelstrom description.$",
+]
+
+[msg.section_0.entries.726]
+text = [
+  "Let's Snuggle Forever description.$",
+]
+
+[msg.section_0.entries.727]
+text = [
+  "Splintered Stormshards description.$",
+]
+
+[msg.section_0.entries.728]
+text = [
+  "Clangorous Soulblaze description.$",
+]
+
+[msg.section_0.entries.729]
+text = [
+  "Zippy Zap description.$",
+]
+
+[msg.section_0.entries.730]
+text = [
+  "Splishy Splash description.$",
+]
+
+[msg.section_0.entries.731]
+text = [
+  "Floaty Fall description.$",
+]
+
+[msg.section_0.entries.732]
+text = [
+  "Pika Papow description.$",
+]
+
+[msg.section_0.entries.733]
+text = [
+  "Bouncy Bubble description.$",
+]
+
+[msg.section_0.entries.734]
+text = [
+  "Buzzy Buzz description.$",
+]
+
+[msg.section_0.entries.735]
+text = [
+  "Sizzly Slide description.$",
+]
+
+[msg.section_0.entries.736]
+text = [
+  "Glitzy Glow description.$",
+]
+
+[msg.section_0.entries.737]
+text = [
+  "Baddy Bad description.$",
+]
+
+[msg.section_0.entries.738]
+text = [
+  "Sappy Seed description.$",
+]
+
+[msg.section_0.entries.739]
+text = [
+  "Freezy Frost description.$",
+]
+
+[msg.section_0.entries.740]
+text = [
+  "Sparkly Swirl description.$",
+]
+
+[msg.section_0.entries.741]
+text = [
+  "Veevee Volley description.$",
+]
+
+[msg.section_0.entries.742]
+text = [
+  "Double Iron Bash description.$",
+]
+
+[msg.section_0.entries.743]
+text = [
+  "Max Guard description.$",
+]
+
+[msg.section_0.entries.744]
+text = [
+  "Dynamax Cannon description.$",
+]
+
+[msg.section_0.entries.745]
+text = [
+  "Snipe Shot description.$",
+]
+
+[msg.section_0.entries.746]
+text = [
+  "Jaw Lock description.$",
+]
+
+[msg.section_0.entries.747]
+text = [
+  "Stuff Cheeks description.$",
+]
+
+[msg.section_0.entries.748]
+text = [
+  "No Retreat description.$",
+]
+
+[msg.section_0.entries.749]
+text = [
+  "Tar Shot description.$",
+]
+
+[msg.section_0.entries.750]
+text = [
+  "Magic Powder description.$",
+]
+
+[msg.section_0.entries.751]
+text = [
+  "Dragon Darts description.$",
+]
+
+[msg.section_0.entries.752]
+text = [
+  "Teatime description.$",
+]
+
+[msg.section_0.entries.753]
+text = [
+  "Octolock description.$",
+]
+
+[msg.section_0.entries.754]
+text = [
+  "Bolt Beak description.$",
+]
+
+[msg.section_0.entries.755]
+text = [
+  "Fishious Rend description.$",
+]
+
+[msg.section_0.entries.756]
+text = [
+  "Court Change description.$",
+]
+
+[msg.section_0.entries.757]
+text = [
+  "Max Flare description.$",
+]
+
+[msg.section_0.entries.758]
+text = [
+  "Max Flutterby description.$",
+]
+
+[msg.section_0.entries.759]
+text = [
+  "Max Lightning description.$",
+]
+
+[msg.section_0.entries.760]
+text = [
+  "Max Strike description.$",
+]
+
+[msg.section_0.entries.761]
+text = [
+  "Max Knuckle description.$",
+]
+
+[msg.section_0.entries.762]
+text = [
+  "Max Phantasm description.$",
+]
+
+[msg.section_0.entries.763]
+text = [
+  "Max Hailstorm description.$",
+]
+
+[msg.section_0.entries.764]
+text = [
+  "Max Ooze description.$",
+]
+
+[msg.section_0.entries.765]
+text = [
+  "Max Geyser description.$",
+]
+
+[msg.section_0.entries.766]
+text = [
+  "Max Airstream description.$",
+]
+
+[msg.section_0.entries.767]
+text = [
+  "Max Starfall description.$",
+]
+
+[msg.section_0.entries.768]
+text = [
+  "Max Wyrmwind description.$",
+]
+
+[msg.section_0.entries.769]
+text = [
+  "Max Mindstorm description.$",
+]
+
+[msg.section_0.entries.770]
+text = [
+  "Max Rockfall description.$",
+]
+
+[msg.section_0.entries.771]
+text = [
+  "Max Quake description.$",
+]
+
+[msg.section_0.entries.772]
+text = [
+  "Max Darkness description.$",
+]
+
+[msg.section_0.entries.773]
+text = [
+  "Max Overgrowth description.$",
+]
+
+[msg.section_0.entries.774]
+text = [
+  "Max Steelspike description.$",
+]
+
+[msg.section_0.entries.775]
+text = [
+  "Clangorous Soul description.$",
+]
+
+[msg.section_0.entries.776]
+text = [
+  "Body Press description.$",
+]
+
+[msg.section_0.entries.777]
+text = [
+  "Decorate description.$",
+]
+
+[msg.section_0.entries.778]
+text = [
+  "Drum Beating description.$",
+]
+
+[msg.section_0.entries.779]
+text = [
+  "Snap Trap description.$",
+]
+
+[msg.section_0.entries.780]
+text = [
+  "Pyro Ball description.$",
+]
+
+[msg.section_0.entries.781]
+text = [
+  "Behemoth Blade description.$",
+]
+
+[msg.section_0.entries.782]
+text = [
+  "Behemoth Bash description.$",
+]
+
+[msg.section_0.entries.783]
+text = [
+  "Aura Wheel description.$",
+]
+
+[msg.section_0.entries.784]
+text = [
+  "Breaking Swipe description.$",
+]
+
+[msg.section_0.entries.785]
+text = [
+  "Branch Poke description.$",
+]
+
+[msg.section_0.entries.786]
+text = [
+  "Overdrive description.$",
+]
+
+[msg.section_0.entries.787]
+text = [
+  "Apple Acid description.$",
+]
+
+[msg.section_0.entries.788]
+text = [
+  "Grav Apple description.$",
+]
+
+[msg.section_0.entries.789]
+text = [
+  "Spirit Break description.$",
+]
+
+[msg.section_0.entries.790]
+text = [
+  "Strange Steam description.$",
+]
+
+[msg.section_0.entries.791]
+text = [
+  "Life Dew description.$",
+]
+
+[msg.section_0.entries.792]
+text = [
+  "Obstruct description.$",
+]
+
+[msg.section_0.entries.793]
+text = [
+  "False Surrender description.$",
+]
+
+[msg.section_0.entries.794]
+text = [
+  "Meteor Assault description.$",
+]
+
+[msg.section_0.entries.795]
+text = [
+  "Eternabeam description.$",
+]
+
+[msg.section_0.entries.796]
+text = [
+  "Steel Beam description.$",
+]
+
+[msg.section_0.entries.797]
+text = [
+  "Expanding Force description.$",
+]
+
+[msg.section_0.entries.798]
+text = [
+  "Steel Roller description.$",
+]
+
+[msg.section_0.entries.799]
+text = [
+  "Scale Shot description.$",
+]
+
+[msg.section_0.entries.800]
+text = [
+  "Meteor Beam description.$",
+]
+
+[msg.section_0.entries.801]
+text = [
+  "Shell Side Arm description.$",
+]
+
+[msg.section_0.entries.802]
+text = [
+  "Misty Explosion description.$",
+]
+
+[msg.section_0.entries.803]
+text = [
+  "Grassy Glide description.$",
+]
+
+[msg.section_0.entries.804]
+text = [
+  "Rising Voltage description.$",
+]
+
+[msg.section_0.entries.805]
+text = [
+  "Terrain Pulse description.$",
+]
+
+[msg.section_0.entries.806]
+text = [
+  "Skitter Smack description.$",
+]
+
+[msg.section_0.entries.807]
+text = [
+  "Burning Jealousy description.$",
+]
+
+[msg.section_0.entries.808]
+text = [
+  "Lash Out description.$",
+]
+
+[msg.section_0.entries.809]
+text = [
+  "Poltergeist description.$",
+]
+
+[msg.section_0.entries.810]
+text = [
+  "Corrosive Gas description.$",
+]
+
+[msg.section_0.entries.811]
+text = [
+  "Coaching description.$",
+]
+
+[msg.section_0.entries.812]
+text = [
+  "Flip Turn description.$",
+]
+
+[msg.section_0.entries.813]
+text = [
+  "Triple Axel description.$",
+]
+
+[msg.section_0.entries.814]
+text = [
+  "Dual Wingbeat description.$",
+]
+
+[msg.section_0.entries.815]
+text = [
+  "Scorching Sands description.$",
+]
+
+[msg.section_0.entries.816]
+text = [
+  "Jungle Healing description.$",
+]
+
+[msg.section_0.entries.817]
+text = [
+  "Wicked Blow description.$",
+]
+
+[msg.section_0.entries.818]
+text = [
+  "Surging Strikes description.$",
+]
+
+[msg.section_0.entries.819]
+text = [
+  "Thunder Cage description.$",
+]
+
+[msg.section_0.entries.820]
+text = [
+  "Dragon Energy description.$",
+]
+
+[msg.section_0.entries.821]
+text = [
+  "Freezing Glare description.$",
+]
+
+[msg.section_0.entries.822]
+text = [
+  "Fiery Wrath description.$",
+]
+
+[msg.section_0.entries.823]
+text = [
+  "Thunderous Kick description.$",
+]
+
+[msg.section_0.entries.824]
+text = [
+  "Glacial Lance description.$",
+]
+
+[msg.section_0.entries.825]
+text = [
+  "Astral Barrage description.$",
+]
+
+[msg.section_0.entries.826]
+text = [
+  "Eerie Spell description.$",
+]
+
+[msg.section_0.entries.827]
+text = [
+  "Dire Claw description.$",
+]
+
+[msg.section_0.entries.828]
+text = [
+  "Psyshield Bash description.$",
+]
+
+[msg.section_0.entries.829]
+text = [
+  "Power Shift description.$",
+]
+
+[msg.section_0.entries.830]
+text = [
+  "Stone Axe description.$",
+]
+
+[msg.section_0.entries.831]
+text = [
+  "Springtide Storm description.$",
+]
+
+[msg.section_0.entries.832]
+text = [
+  "Mystical Power description.$",
+]
+
+[msg.section_0.entries.833]
+text = [
+  "Raging Fury description.$",
+]
+
+[msg.section_0.entries.834]
+text = [
+  "Wave Crash description.$",
+]
+
+[msg.section_0.entries.835]
+text = [
+  "Chloroblast description.$",
+]
+
+[msg.section_0.entries.836]
+text = [
+  "Mountain Gale description.$",
+]
+
+[msg.section_0.entries.837]
+text = [
+  "Victory Dance description.$",
+]
+
+[msg.section_0.entries.838]
+text = [
+  "Headlong Rush description.$",
+]
+
+[msg.section_0.entries.839]
+text = [
+  "Barb Barrage description.$",
+]
+
+[msg.section_0.entries.840]
+text = [
+  "Esper Wing description.$",
+]
+
+[msg.section_0.entries.841]
+text = [
+  "Bitter Malice description.$",
+]
+
+[msg.section_0.entries.842]
+text = [
+  "Shelter description.$",
+]
+
+[msg.section_0.entries.843]
+text = [
+  "Triple Arrows description.$",
+]
+
+[msg.section_0.entries.844]
+text = [
+  "Infernal Parade description.$",
+]
+
+[msg.section_0.entries.845]
+text = [
+  "Ceaseless Edge description.$",
+]
+
+[msg.section_0.entries.846]
+text = [
+  "Bleakwind Storm description.$",
+]
+
+[msg.section_0.entries.847]
+text = [
+  "Wildbolt Storm description.$",
+]
+
+[msg.section_0.entries.848]
+text = [
+  "Sandsear Storm description.$",
+]
+
+[msg.section_0.entries.849]
+text = [
+  "Lunar Blessing description.$",
+]
+
+[msg.section_0.entries.850]
+text = [
+  "Take Heart description.$",
+]
+
+[msg.section_0.entries.851]
+text = [
+  "Tera Blast description.$",
+]
+
+[msg.section_0.entries.852]
+text = [
+  "Silk Trap description.$",
+]
+
+[msg.section_0.entries.853]
+text = [
+  "Axe Kick description.$",
+]
+
+[msg.section_0.entries.854]
+text = [
+  "Last Respects description.$",
+]
+
+[msg.section_0.entries.855]
+text = [
+  "Lumina Crash description.$",
+]
+
+[msg.section_0.entries.856]
+text = [
+  "Order Up description.$",
+]
+
+[msg.section_0.entries.857]
+text = [
+  "Jet Punch description.$",
+]
+
+[msg.section_0.entries.858]
+text = [
+  "Spicy Extract description.$",
+]
+
+[msg.section_0.entries.859]
+text = [
+  "Spin Out description.$",
+]
+
+[msg.section_0.entries.860]
+text = [
+  "Population Bomb description.$",
+]
+
+[msg.section_0.entries.861]
+text = [
+  "Ice Spinner description.$",
+]
+
+[msg.section_0.entries.862]
+text = [
+  "Glaive Rush description.$",
+]
+
+[msg.section_0.entries.863]
+text = [
+  "Revival Blessing description.$",
+]
+
+[msg.section_0.entries.864]
+text = [
+  "Salt Cure description.$",
+]
+
+[msg.section_0.entries.865]
+text = [
+  "Triple Dive description.$",
+]
+
+[msg.section_0.entries.866]
+text = [
+  "Mortal Spin description.$",
+]
+
+[msg.section_0.entries.867]
+text = [
+  "Doodle description.$",
+]
+
+[msg.section_0.entries.868]
+text = [
+  "Fillet Away description.$",
+]
+
+[msg.section_0.entries.869]
+text = [
+  "Kowtow Cleave description.$",
+]
+
+[msg.section_0.entries.870]
+text = [
+  "Flower Trick description.$",
+]
+
+[msg.section_0.entries.871]
+text = [
+  "Torch Song description.$",
+]
+
+[msg.section_0.entries.872]
+text = [
+  "Aqua Step description.$",
+]
+
+[msg.section_0.entries.873]
+text = [
+  "Raging Bull description.$",
+]
+
+[msg.section_0.entries.874]
+text = [
+  "Make It Rain description.$",
+]
+
+[msg.section_0.entries.875]
+text = [
+  "Psyblade description.$",
+]
+
+[msg.section_0.entries.876]
+text = [
+  "Hydro Steam description.$",
+]
+
+[msg.section_0.entries.877]
+text = [
+  "Ruination description.$",
+]
+
+[msg.section_0.entries.878]
+text = [
+  "Collision Course description.$",
+]
+
+[msg.section_0.entries.879]
+text = [
+  "Electro Drift description.$",
+]
+
+[msg.section_0.entries.880]
+text = [
+  "Shed Tail description.$",
+]
+
+[msg.section_0.entries.881]
+text = [
+  "Chilly Reception description.$",
+]
+
+[msg.section_0.entries.882]
+text = [
+  "Tidy Up description.$",
+]
+
+[msg.section_0.entries.883]
+text = [
+  "Snowscape description.$",
+]
+
+[msg.section_0.entries.884]
+text = [
+  "Pounce description.$",
+]
+
+[msg.section_0.entries.885]
+text = [
+  "Trailblaze description.$",
+]
+
+[msg.section_0.entries.886]
+text = [
+  "Chilling Water description.$",
+]
+
+[msg.section_0.entries.887]
+text = [
+  "Hyper Drill description.$",
+]
+
+[msg.section_0.entries.888]
+text = [
+  "Twin Beam description.$",
+]
+
+[msg.section_0.entries.889]
+text = [
+  "Rage Fist description.$",
+]
+
+[msg.section_0.entries.890]
+text = [
+  "Armor Cannon description.$",
+]
+
+[msg.section_0.entries.891]
+text = [
+  "Bitter Blade description.$",
+]
+
+[msg.section_0.entries.892]
+text = [
+  "Double Shock description.$",
+]
+
+[msg.section_0.entries.893]
+text = [
+  "Gigaton Hammer description.$",
+]
+
+[msg.section_0.entries.894]
+text = [
+  "Comeuppance description.$",
+]
+
+[msg.section_0.entries.895]
+text = [
+  "Aqua Cutter description.$",
+]
+
+[msg.section_0.entries.896]
+text = [
+  "Blazing Torque description.$",
+]
+
+[msg.section_0.entries.897]
+text = [
+  "Wicked Torque description.$",
+]
+
+[msg.section_0.entries.898]
+text = [
+  "Noxious Torque description.$",
+]
+
+[msg.section_0.entries.899]
+text = [
+  "Combat Torque description.$",
+]
+
+[msg.section_0.entries.900]
+text = [
+  "Magical Torque description.$",
+]
+
+[msg.section_0.entries.901]
+text = [
+  "Blood Moon description.$",
+]
+
+[msg.section_0.entries.902]
+text = [
+  "Matcha Gotcha description.$",
+]
+
+[msg.section_0.entries.903]
+text = [
+  "Syrup Bomb description.$",
+]
+
+[msg.section_0.entries.904]
+text = [
+  "Ivy Cudgel description.$",
+]
+
+[msg.section_0.entries.905]
+text = [
+  "Electro Shot description.$",
+]
+
+[msg.section_0.entries.906]
+text = [
+  "Tera Starstorm description.$",
+]
+
+[msg.section_0.entries.907]
+text = [
+  "Fickle Beam description.$",
+]
+
+[msg.section_0.entries.908]
+text = [
+  "Burning Bulwark description.$",
+]
+
+[msg.section_0.entries.909]
+text = [
+  "Thunderclap description.$",
+]
+
+[msg.section_0.entries.910]
+text = [
+  "Mighty Cleave description.$",
+]
+
+[msg.section_0.entries.911]
+text = [
+  "Tachyon Cutter description.$",
+]
+
+[msg.section_0.entries.912]
+text = [
+  "Hard Press description.$",
+]
+
+[msg.section_0.entries.913]
+text = [
+  "Dragon Cheer description.$",
+]
+
+[msg.section_0.entries.914]
+text = [
+  "Alluring Voice description.$",
+]
+
+[msg.section_0.entries.915]
+text = [
+  "Temper Flare description.$",
+]
+
+[msg.section_0.entries.916]
+text = [
+  "Supercell Slam description.$",
+]
+
+[msg.section_0.entries.917]
+text = [
+  "Psychic Noise description.$",
+]
+
+[msg.section_0.entries.918]
+text = [
+  "Upper Hand description.$",
+]
+
+[msg.section_0.entries.919]
+text = [
+  "Malignant Chain description.$",
+]

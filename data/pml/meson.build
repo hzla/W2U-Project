@@ -1271,6 +1271,9 @@ personal_sources = [
   '1267/personal.toml',
   '1268/personal.toml',
   '1269/personal.toml',
+  '1270/personal.toml',
+  '1271/personal.toml',
+  '1272/personal.toml',
 ]
 
 learnset_sources = [
@@ -2544,6 +2547,9 @@ learnset_sources = [
   '1267/learnset.toml',
   '1268/learnset.toml',
   '1269/learnset.toml',
+  '1270/learnset.toml',
+  '1271/learnset.toml',
+  '1272/learnset.toml',
 ]
 
 evolution_sources = [
@@ -3817,6 +3823,9 @@ evolution_sources = [
   '1267/evolutions.toml',
   '1268/evolutions.toml',
   '1269/evolutions.toml',
+  '1270/evolutions.toml',
+  '1271/evolutions.toml',
+  '1272/evolutions.toml',
 ]
 
 personal_arc = 'a' / '0' / '1' / '6'

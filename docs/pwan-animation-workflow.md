@@ -84,3 +84,80 @@ zz_pokeweb_pwan/pwan.narc
 
 Asset index `66` maps to species `650 + 66 = 716`, which is Xerneas. The front
 sprite is NARC member `133`, and the back sprite is member `134`.
+
+## Form Changes Without an Intermediate Native Frame
+
+PWAN-backed form changes must treat the actor identity and the rendered carrier
+as separate pieces of state. The native `BattleViewRefreshFormSprite` path does
+three conceptual jobs:
+
+1. update the MCSS actor's species/form identity;
+2. build the target form's native MAW resources;
+3. queue the native carrier/static texture replacement.
+
+The third step is not guaranteed to finish in the same frame. If PWAN uploads
+the target texture first, the queued native replacement can arrive afterward
+and overwrite texture VRAM. The PWAN frame cache will not notice that overwrite:
+its species, form, asset, and copied frame are still unchanged. The native
+texture can therefore remain visible until the next PWAN timeline frame. It may
+also look offset or incorrectly colored because native NCBR pixels are being
+displayed through the PWAN palette or through carrier metadata with a different
+anchor.
+
+For an **instant** PWAN form change:
+
+1. Keep the native identity/form preparation. Do not remove the entire refresh
+   call; doing so leaves MCSS on the old identity and the form may never change.
+2. Suppress only the final native carrier/static texture replacement when the
+   old carrier is compatible with the new PWAN asset.
+3. Reuse that one live carrier, invalidate `copiedFrame` and `pendingFrame`, mark
+   both texture and palette dirty, and upload the new PWAN frame immediately at
+   the safe upload point.
+4. Ensure both forms use compatible carrier geometry, cell, animation, and
+   anchor metadata. If they do not, create a shared neutral carrier or copy the
+   required metadata deliberately.
+
+For a **transform animation**, apply the same ownership rule for the full
+effect:
+
+- Keep one carrier and one anchor from the first animation frame through the
+  last. Do not let a native effect restore a snapshot MAW while PWAN installs a
+  second carrier; alternating those carriers causes the position flicker.
+- Allow the logical MCSS form to update, but keep a temporary PWAN visual-form
+  override pointing at the old asset until the animation's explicit swap frame.
+- At the swap frame, upload the new PWAN texture and palette onto the same
+  carrier. Release the visual override when the effect completes.
+- Native fades, particles, scaling, and similar effects are safe as long as
+  they do not replace or restore the carrier texture/MAW.
+
+Mimikyu's instant Disguise bust is the reference implementation:
+
+- `src/pokeweb_gameplay/w2u_mega.cpp` keeps the native form/identity refresh.
+- `src/pwan_animation/w2u_battle_hooks.s` hooks the final native carrier call at
+  `THUMB_BRANCH_LINK_168_0x21DF7DC` and suppresses it only for busted Mimikyu.
+- `src/pwan_animation/w2u_battle_anim.cpp` reuses the base-form carrier and
+  forces the new PWAN texture/palette upload with
+  `W2U_BattleAnim_RefreshPositionNow`.
+- `tools/pwan/import_disguise.py` makes the busted form inherit the compatible
+  carrier metadata.
+
+The current exception is intentionally Mimikyu-specific. Before generalizing
+it, verify that the new form can safely use the existing carrier.
+
+### Diagnosing a Bad Intermediate Frame
+
+Save one state on the first bad frame and another on the first good frame, then
+compare:
+
+- the MCSS entry's species/form and MAW resource IDs;
+- the live MCSS pointer and palette proxy;
+- the PWAN actor's `active`, `species`, `form`, `assetId`, `tick`,
+  `copiedFrame`, `pendingFrame`, and dirty flags;
+- texture and palette VRAM against the expected PWAN source bytes.
+
+If the bad state reports a clean `copiedFrame` but texture VRAM does not match
+that PWAN frame, and the image fixes itself at the next timeline frame, another
+renderer overwrote VRAM after PWAN. Fix ownership or ordering; repeatedly
+uploading earlier in the frame will not solve it. Also verify that the rebuilt
+resident DLL is actually loaded and restart the emulator after replacing a
+resident runtime build.

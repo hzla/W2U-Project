@@ -23,9 +23,11 @@ The initial files are clones of each move's `Move Animation ID` source from
 `data/pml/moves/*.yml`. Future custom animation work should edit the destination
 file directly, for example `5_00000573.bin` for Freeze-Dry.
 
-Terrain placeholders currently copy Aromatherapy (`5_00000312.bin`) into
-Grassy Terrain's slot `5_00000580.bin`, Mist (`5_00000054.bin`) into Misty
-Terrain's slot `5_00000581.bin`.
+Grassy Terrain uses its custom SPA `754` sequence in `5_00000580.bin` without
+the donor's scene-wide background hue commands. Misty Terrain uses its custom
+sequence in `5_00000581.bin`. Psychic Terrain's logical move ID `678` routes to
+reserved script member `624`, which uses only the attacker-side opening of
+Electrify with its particles recolored purple in SPA `786`.
 
 Mega Evolution's custom transform animation reserves slot `5_00000622.bin`.
 It uses SolarBeam's first gathering script body from member `76`, redirected to

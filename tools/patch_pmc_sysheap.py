@@ -9,7 +9,7 @@ from pathlib import Path
 
 PMC_OVERLAY_HEAP_KIB_IMMEDIATE_OFFSET = 0x2BA
 OLD_SYSHEAP_KIB = 160
-DEFAULT_SYSHEAP_KIB = 160
+DEFAULT_SYSHEAP_KIB = 164
 
 
 def parse_int(value: str) -> int:
@@ -29,7 +29,7 @@ def main() -> int:
         "--kib",
         type=parse_int,
         default=DEFAULT_SYSHEAP_KIB,
-        help="New PMC system heap cap in KiB. Default: 160.",
+        help=f"New PMC system heap cap in KiB. Default: {DEFAULT_SYSHEAP_KIB}.",
     )
     parser.add_argument("--stamp", type=Path, help="Optional stamp file to write after patching.")
     args = parser.parse_args()

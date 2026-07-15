@@ -1,5 +1,6 @@
 #include "w2u_moves.h"
 #include "w2u_field_effects.h"
+#include "w2u_terrain_texture.h"
 #include "Types.h"
 
 #define W2U_MOVE_EVENT_TABLE ((MoveEventAddTable*)0x021DA0F4)
@@ -9,6 +10,7 @@
 
 #define W2U_FIRST_BATTLE_ANIMATION_ID 561u
 #define W2U_BATTLE_ANIMATIONS_COUNT 115u
+#define W2U_PSYCHIC_TERRAIN_ANIMATION_ID 624u
 #define W2U_NULL_BATTLE_POS 6u
 #define W2U_SIDE_COUNT 2u
 #define W2U_SIDE_SLOT_COUNT 3u
@@ -488,16 +490,49 @@ u32 EffectivenessScaledMultiplier(u32 effectiveness)
 
 BattleEventItem* AddTransientMoveStateEvent(u32 pokemonSlot);
 BattleEventItem* AddTerrainEvent(u32 pokemonSlot);
-bool SetTerrain(ServerFlow* serverFlow, u32 pokemonSlot, TERRAIN terrain, u32 msgID)
+
+bool RemoveTerrainState(ServerFlow* serverFlow, bool showEndMessage, bool requestTextureReset = true)
+{
+    if (!sMoveState.terrain.active) {
+        return false;
+    }
+
+    if (sMoveState.terrain.item) {
+        BattleEventItem_Remove(sMoveState.terrain.item);
+    }
+
+    sMoveState.terrain.item = 0;
+    sMoveState.terrain.terrain = TERRAIN_NULL;
+    sMoveState.terrain.turns = 0;
+    sMoveState.terrain.active = false;
+
+    if (requestTextureReset) {
+        if (showEndMessage && serverFlow) {
+            W2U_TerrainTexture_DeferResetUntilMessage(BATTLE_TERRAIN_END_MSGID);
+        } else {
+            W2U_TerrainTexture_Request(TERRAIN_NULL);
+        }
+    }
+
+    if (showEndMessage && serverFlow) {
+        PushMessage(serverFlow, BATTLE_MAX_SLOTS, 2u, BATTLE_TERRAIN_END_MSGID);
+    }
+    return true;
+}
+
+bool SetTerrainState(u32 pokemonSlot, TERRAIN terrain)
 {
     if (sMoveState.terrain.active && sMoveState.terrain.terrain == terrain) {
         return false;
     }
 
-    W2U_MoveState_RemoveTerrain(serverFlow);
+    // Replacing one terrain with another does not show the generic expiry
+    // message between the old and new terrain announcements.
+    RemoveTerrainState(0, false, false);
 
     BattleEventItem* item = AddTerrainEvent(pokemonSlot);
     if (!item) {
+        W2U_TerrainTexture_Request(TERRAIN_NULL);
         return false;
     }
 
@@ -505,6 +540,16 @@ bool SetTerrain(ServerFlow* serverFlow, u32 pokemonSlot, TERRAIN terrain, u32 ms
     sMoveState.terrain.terrain = terrain;
     sMoveState.terrain.turns = W2U_TERRAIN_TURNS;
     sMoveState.terrain.active = true;
+    W2U_TerrainTexture_Request(terrain);
+
+    return true;
+}
+
+bool SetTerrain(ServerFlow* serverFlow, u32 pokemonSlot, TERRAIN terrain, u32 msgID)
+{
+    if (!SetTerrainState(pokemonSlot, terrain)) {
+        return false;
+    }
 
     PushMessage(serverFlow, pokemonSlot, 2u, msgID);
     return true;
@@ -877,6 +922,7 @@ extern "C" void W2U_MoveState_ResetBattleState()
 {
     ClearMoveState();
     InitLocalMoveState();
+    W2U_TerrainTexture_Request(TERRAIN_NULL);
 }
 
 extern "C" void W2U_MoveState_SetConsumedBerryFlag(u32 pokemonSlot)
@@ -949,22 +995,41 @@ extern "C" TERRAIN W2U_MoveState_GetTerrain()
 
 extern "C" bool W2U_MoveState_RemoveTerrain(ServerFlow* serverFlow)
 {
-    if (!sMoveState.terrain.active) {
+    return RemoveTerrainState(serverFlow, true);
+}
+
+extern "C" bool W2U_MoveState_SetTerrainFromAbility(
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    TERRAIN terrain,
+    u32 msgID,
+    MOVE_ID animationMoveID)
+{
+    BattleMon* battleMon = GetBattleMon(serverFlow, pokemonSlot);
+    if (!serverFlow || !serverFlow->serverCommandQueue || !battleMon ||
+        !SetTerrainState(pokemonSlot, terrain)) {
         return false;
     }
 
-    if (sMoveState.terrain.item) {
-        BattleEventItem_Remove(sMoveState.terrain.item);
-    }
+    // Queue the same visual sequence used by PW2Code's terrain field-effect
+    // handler, keeping the move animation between the popup and message.
+    ServerDisplay_AbilityPopupAdd(serverFlow, battleMon);
 
-    sMoveState.terrain.item = 0;
-    sMoveState.terrain.terrain = TERRAIN_NULL;
-    sMoveState.terrain.turns = 0;
-    sMoveState.terrain.active = false;
+    u32 pokePos = Handler_PokeIDToPokePos(serverFlow, pokemonSlot);
+    ServerDisplay_AddCommon(
+        serverFlow->serverCommandQueue,
+        SCID_MoveAnim,
+        pokePos,
+        pokePos,
+        animationMoveID,
+        0,
+        0);
 
-    if (serverFlow) {
-        PushMessage(serverFlow, BATTLE_MAX_SLOTS, 2u, BATTLE_TERRAIN_END_MSGID);
-    }
+    HandlerParam_StrParams terrainMessage = {};
+    BattleHandler_StrSetup(&terrainMessage, 2u, (u16)msgID);
+    BattleHandler_SetString(serverFlow, &terrainMessage);
+
+    ServerDisplay_AbilityPopupRemove(serverFlow, battleMon);
     return true;
 }
 
@@ -1518,6 +1583,18 @@ BattleEventHandlerTableEntry MistyTerrainHandlers[] = {
 };
 
 
+extern "C" void HandlerPsychicTerrain(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    (void)work;
+    CommonTerrainMove(serverFlow, pokemonSlot, TERRAIN_PSYCHIC, BATTLE_PSYCHIC_TERRAIN_MSGID);
+}
+
+BattleEventHandlerTableEntry PsychicTerrainHandlers[] = {
+    { EVENT_CALL_FIELD_EFFECT, HandlerPsychicTerrain },
+};
+
+
 extern "C" void HandlerPosElectrify(BattleEventItem* item, ServerFlow* serverFlow, u32 targetPos, u32* work)
 {
     (void)item;
@@ -2066,8 +2143,36 @@ extern "C" void HandlerTerrainPower(BattleEventItem* item, ServerFlow* serverFlo
     }
 
     if ((terrain == TERRAIN_ELECTRIC && moveType == TYPE_ELECTRIC) ||
-        (terrain == TERRAIN_GRASSY && moveType == TYPE_GRASS)) {
+        (terrain == TERRAIN_GRASSY && moveType == TYPE_GRASS) ||
+        (terrain == TERRAIN_PSYCHIC && moveType == TYPE_PSYCHIC)) {
         BattleEventVar_MulValue(VAR_MOVE_POWER_RATIO, W2U_TERRAIN_POWER_RATIO);
+    }
+}
+
+extern "C" void HandlerPsychicTerrainPriorityGuard(
+    BattleEventItem* item,
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    u32* work)
+{
+    (void)item;
+    (void)pokemonSlot;
+    (void)work;
+    if (!IsTerrainActive(TERRAIN_PSYCHIC)) {
+        return;
+    }
+
+    u32 defendingSlot = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
+    u32 attackingSlot = (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON);
+    if (defendingSlot == attackingSlot || MainModule_IsAllyMonID(attackingSlot, defendingSlot)) {
+        return;
+    }
+
+    BattleMon* defendingMon = GetBattleMon(serverFlow, defendingSlot);
+    BattleMon* attackingMon = GetBattleMon(serverFlow, attackingSlot);
+    if (IsGrounded(serverFlow, defendingMon) &&
+        W2U_GetQueuedMovePriority(serverFlow, attackingMon) > 0) {
+        BattleEventVar_RewriteValue(VAR_NO_EFFECT_FLAG, 1);
     }
 }
 
@@ -2116,6 +2221,7 @@ BattleEventHandlerTableEntry FieldTerrainHandlers[] = {
     { EVENT_TURN_CHECK_BEGIN, HandlerGrassyTerrainHeal },
     { EVENT_MOVE_BASE_POWER, HandlerGrassyTerrainQuakeMoves },
     { EVENT_MOVE_POWER, HandlerTerrainPower },
+    { EVENT_ABILITY_CHECK_NO_EFFECT, HandlerPsychicTerrainPriorityGuard },
     { EVENT_DEFENDER_GUARD, HandlerMistyTerrainDragonGuard },
     { EVENT_TURN_CHECK_DONE, HandlerTerrainTurnCheckDone },
 };
@@ -2165,6 +2271,7 @@ const W2UMoveEventAddTable W2U_MOVE_EVENT_ADD_TABLE[] = {
     W2U_MOVE_EVENT(MOVE_ELECTRIFY, ElectrifyHandlers),
     W2U_MOVE_EVENT(MOVE_KINGS_SHIELD, ProtectLikeShieldHandlers),
     W2U_MOVE_EVENT(MOVE_ELECTRIC_TERRAIN, ElectricTerrainHandlers),
+    W2U_MOVE_EVENT(MOVE_PSYCHIC_TERRAIN, PsychicTerrainHandlers),
 };
 
 const W2UMoveEventAliasTable W2U_MOVE_EVENT_ALIAS_TABLE[] = {
@@ -2302,6 +2409,10 @@ extern "C" void THUMB_BRANCH_SAFESTACK_BattleViewCmd_MoveEffect_Start(
     u32 effectIndex,
     u8 zero)
 {
+    // Keep the logical ID for viewer-side effects that must begin with the
+    // move animation.  This runs before Gen 7-9 animation-member remapping.
+    W2U_TerrainTexture_OnMoveAnimationStart(moveID);
+
     u32 attackingViewPos = MainModule_BattlePosToViewPos(btlCore->mainModule, attackingPos);
     u32 targetViewPos = 255;
     if (targetPos != W2U_NULL_BATTLE_POS) {
@@ -2309,8 +2420,22 @@ extern "C" void THUMB_BRANCH_SAFESTACK_BattleViewCmd_MoveEffect_Start(
     }
 
     u16 animMoveID = moveID;
-    if (animMoveID >= W2U_FIRST_BATTLE_ANIMATION_ID) {
+    if (animMoveID == MOVE_PSYCHIC_TERRAIN) {
+        // Psychic Terrain is beyond the contiguous Gen 6 override range. Route
+        // it through reserved move-animation member 624 instead of the generic
+        // Gen 7-9 Tackle fallback.
+        animMoveID = W2U_PSYCHIC_TERRAIN_ANIMATION_ID +
+            W2U_BATTLE_ANIMATIONS_COUNT;
+    } else if (animMoveID >= W2U_FIRST_BATTLE_ANIMATION_ID &&
+        animMoveID <= MOVE_HYPERSPACE_FURY) {
         animMoveID += W2U_BATTLE_ANIMATIONS_COUNT;
+    } else if (animMoveID > MOVE_HYPERSPACE_FURY &&
+               animMoveID < MOVE_END_MSG) {
+        // Gen 7-9 moves do not have dedicated scripts yet. Route them through
+        // Tackle instead of treating their logical move IDs as animation
+        // members, which would collide with reserved custom scripts such as
+        // Mega Evolution's member 622.
+        animMoveID = MOVE_TACKLE;
     }
     CMD_ACT_MoveAnimStart(
         btlCore->btlvScu,
@@ -2324,7 +2449,7 @@ extern "C" void THUMB_BRANCH_SAFESTACK_BattleViewCmd_MoveEffect_Start(
 
 extern "C" bool THUMB_BRANCH_MoveEvent_AddItem(BattleMon* battleMon, MOVE_ID moveID, u32 speed)
 {
-    if (moveID > MOVE_HYPERSPACE_FURY) {
+    if (moveID >= MOVE_END_MSG) {
         return false;
     }
 
