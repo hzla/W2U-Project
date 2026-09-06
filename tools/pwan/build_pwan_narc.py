@@ -12,6 +12,8 @@ from pwan_config import PWAN_RUNTIME_MAX_TIMELINE, parse_config
 
 
 PWAN_NAME_RE = re.compile(r"^(\d+)_(front|back)\.pwan$")
+# Matches W2U_PWAN_CONFIG_CACHE_BYTES in w2u_pwan_archive.cpp.
+PWAN_RUNTIME_CONFIG_CACHE_BYTES = 4096
 
 
 def member_id_for_pwan(path: Path) -> int | None:
@@ -28,6 +30,13 @@ def collect_members(src_dir: Path) -> list[bytes]:
     config = src_dir / "config.bin"
     if not config.exists():
         raise FileNotFoundError(config)
+
+    config_size = config.stat().st_size
+    if config_size > PWAN_RUNTIME_CONFIG_CACHE_BYTES:
+        raise ValueError(
+            f"{config} size {config_size} exceeds runtime config cache "
+            f"{PWAN_RUNTIME_CONFIG_CACHE_BYTES} bytes"
+        )
 
     entries, max_timeline = parse_config(config)
     if max_timeline > PWAN_RUNTIME_MAX_TIMELINE:

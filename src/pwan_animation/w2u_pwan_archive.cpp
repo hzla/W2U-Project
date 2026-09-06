@@ -2,7 +2,9 @@
 
 #include "nds/fs.h"
 
-#define W2U_PWAN_CONFIG_CACHE_BYTES 8192u
+// Config v3 needs 16 + 768 * 5 = 3856 bytes at the runtime override cap.
+// Keep tools/pwan/build_pwan_narc.py's size guard in sync.
+#define W2U_PWAN_CONFIG_CACHE_BYTES 4096u
 
 namespace w2u {
 namespace pwan_archive {

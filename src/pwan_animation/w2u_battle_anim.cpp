@@ -14,7 +14,8 @@
 #define W2U_VISIBLE_TEX_ROW_BYTES (W2U_VISIBLE_TEX_WIDTH / 2u)
 #define W2U_VISIBLE_TEX_ROW_HALFWORDS (W2U_VISIBLE_TEX_ROW_BYTES / 2u)
 #define W2U_VISIBLE_TEX_BYTES (W2U_VISIBLE_TEX_ROW_BYTES * W2U_VISIBLE_TEX_HEIGHT)
-#define W2U_STAGING_TEX_BYTES (W2U_MCSS_TEX_STRIDE_BYTES * W2U_VISIBLE_TEX_HEIGHT)
+#define W2U_STAGING_TEX_STRIDE_BYTES W2U_VISIBLE_TEX_ROW_BYTES
+#define W2U_STAGING_TEX_BYTES (W2U_STAGING_TEX_STRIDE_BYTES * W2U_VISIBLE_TEX_HEIGHT)
 #define W2U_LEGACY_TEX_BYTES_AVOIDED (W2U_MCSS_TEX_BYTES - W2U_VISIBLE_TEX_BYTES)
 #define W2U_MCSS_TEX_BASE 0x24000u
 #define W2U_MCSS_TEX_SLOT_BYTES 0x4000u
@@ -273,7 +274,8 @@ static const ActorConfig kActorConfig[ACTOR_COUNT] = {
 
 static State sState;
 static u8 *const sFrameScratch = W2U_PwanFrameScratch;
-static u8 *const sTextureScratch = W2U_PwanTextureScratch;
+// Pack CPU staging rows; only the VRAM destination uses the 256-pixel stride.
+static u8 sTextureScratch[W2U_STAGING_TEX_BYTES] __attribute__((aligned(4)));
 static s32 sNativeFormChangePosition = -1;
 static u16 sNativeFormChangeVisualAsset = ASSET_NONE;
 static b32 sNativeFormChangeSwapReached = false;
@@ -579,7 +581,7 @@ static void BlitTileSegmentToTexture(u8 *dst, const u8 *src, u32 dstX, u32 dstY,
         for (u32 tileX = 0; tileX < tilesW; ++tileX) {
             const u8 *tile = src + ((tileY * tilesW + tileX) * 32u);
             for (u32 y = 0; y < 8; ++y) {
-                u8 *row = dst + (dstY + tileY * 8u + y) * W2U_MCSS_TEX_STRIDE_BYTES +
+                u8 *row = dst + (dstY + tileY * 8u + y) * W2U_STAGING_TEX_STRIDE_BYTES +
                           (dstX + tileX * 8u) / 2u;
                 const u8 *srcRow = tile + y * 4u;
                 row[0] = srcRow[0];
@@ -610,7 +612,7 @@ static void UploadTexture(ActorId actor, s32 mcssIndex)
                         ((W2U_MCSS_TEX_BASE + W2U_MCSS_TEX_SLOT_BYTES * (u32)mcssIndex) / 2u);
     for (u32 y = 0; y < W2U_VISIBLE_TEX_HEIGHT; ++y) {
         volatile u16 *dstRow = dst + ((y * W2U_MCSS_TEX_STRIDE_BYTES) / 2u);
-        const u16 *srcRow = (const u16 *)(sTextureScratch + y * W2U_MCSS_TEX_STRIDE_BYTES);
+        const u16 *srcRow = (const u16 *)(sTextureScratch + y * W2U_STAGING_TEX_STRIDE_BYTES);
         for (u32 x = 0; x < W2U_VISIBLE_TEX_ROW_HALFWORDS; ++x) {
             dstRow[x] = srcRow[x];
         }

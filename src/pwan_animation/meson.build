@@ -6,7 +6,7 @@ pwan_summary_sources = files(
 )
 
 pwan_battle_sources = files(
-  'w2u_pwan_scratch.cpp',
+  'w2u_pwan_frame_scratch.cpp',
   'w2u_pwan_archive.cpp',
   'w2u_battle_anim.cpp',
   'w2u_battle_hooks.s',
@@ -22,7 +22,7 @@ pwan_misc_sources = files(
 )
 
 pwan_battle_b2_sources = files(
-  'w2u_pwan_scratch.cpp',
+  'w2u_pwan_frame_scratch.cpp',
   'w2u_pwan_archive.cpp',
   'w2u_battle_anim.cpp',
   'b2_battle_hooks.s',
