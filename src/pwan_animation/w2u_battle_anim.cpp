@@ -1,4 +1,4 @@
-#include "Species.h"
+#include "species_ids.h"
 #include "nds/fs.h"
 #include "pwan_types.h"
 #include "string.h"
@@ -51,6 +51,9 @@
 #define W2U_BATTLE_ACTOR_SPECIES_OFFSET 0x2cu
 #define W2U_BATTLE_ACTOR_FORM_OFFSET 0x30u
 #define W2U_BATTLE_SPECIES_FORM_MASK 0x7ffu
+#define W2U_MINIOR_CORE_FORM_START 7u
+#define W2U_MINIOR_FORM_COUNT 14u
+#define W2U_MINIOR_SHINY_CORE_ASSET 1196u
 #define W2U_MCSS_BASE_PLTT_DATA_OFFSET 0xd4u
 #define W2U_MCSS_FADE_PLTT_DATA_OFFSET 0xd8u
 #define W2U_MCSS_PLTT_DATA_SIZE_OFFSET 0xdcu
@@ -99,6 +102,7 @@ struct BattleActorIdentity {
     s32 rawMonsNo;
     u16 species;
     u16 form;
+    b32 shiny;
 };
 
 struct McssAddWork {
@@ -154,6 +158,7 @@ struct ActorState {
     u16 species;
     u16 form;
     u16 assetId;
+    b32 shiny;
     b32 mcssMawPatched;
     void *mcss;
 };
@@ -270,6 +275,8 @@ static State sState;
 static u8 *const sFrameScratch = W2U_PwanFrameScratch;
 static u8 *const sTextureScratch = W2U_PwanTextureScratch;
 static s32 sNativeFormChangePosition = -1;
+static u16 sNativeFormChangeVisualAsset = ASSET_NONE;
+static b32 sNativeFormChangeSwapReached = false;
 
 typedef s32 (*McssGetIndexFn)(void *bmw, int position);
 typedef void (*McssOverwriteMawFn)(void *bmw, int position, const McssAddWork *maw);
@@ -283,12 +290,32 @@ extern "C" void W2U_BattleAnim_Term(void);
 
 extern "C" void W2U_BattleAnim_BeginNativeFormChange(u32 position)
 {
-    sNativeFormChangePosition = position < ACTOR_COUNT ? (s32)position : -1;
+    sNativeFormChangePosition = -1;
+    sNativeFormChangeVisualAsset = ASSET_NONE;
+    sNativeFormChangeSwapReached = false;
+
+    if (position >= ACTOR_COUNT) {
+        return;
+    }
+
+    // This runs immediately before BTLV_EFFECT_Henge updates the native MCSS
+    // identity. Remember the PWAN asset that is currently visible so it remains
+    // on the stable, pre-change carrier until the native mosaic reaches its swap
+    // point. Actors without a PWAN asset keep the unmodified native path.
+    const ActorState *actorState = &sState.actor[position];
+    if (!actorState->active || actorState->assetId >= ASSET_COUNT) {
+        return;
+    }
+
+    sNativeFormChangePosition = (s32)position;
+    sNativeFormChangeVisualAsset = actorState->assetId;
 }
 
 extern "C" void W2U_BattleAnim_EndNativeFormChange(void)
 {
     sNativeFormChangePosition = -1;
+    sNativeFormChangeVisualAsset = ASSET_NONE;
+    sNativeFormChangeSwapReached = false;
 }
 
 static b32 ReadRange(BattleAssetId assetId, u32 offset, void *buffer, u32 size)
@@ -697,6 +724,7 @@ static BattleActorIdentity DecodeBattleActorIdentity(s32 rawMonsNo)
     identity.rawMonsNo = rawMonsNo;
     identity.species = SPECIES_NONE;
     identity.form = 0;
+    identity.shiny = false;
 
     if (rawMonsNo <= SPECIES_NONE) {
         return identity;
@@ -734,14 +762,37 @@ static s32 GetMcssFormNo(void *bmw, int position)
     return *(s32 *)(entry + W2U_BATTLE_ACTOR_FORM_OFFSET);
 }
 
-static McssAddWork MakeSpriteMaw(u32 spriteIndex, int position)
+static b32 GetMcssIsShiny(void *bmw, int position)
+{
+    if (!bmw) {
+        return false;
+    }
+
+    const s32 index = GetMcssIndex(bmw, position);
+    if (index < 0) {
+        return false;
+    }
+
+    u8 *entry = (u8 *)bmw + W2U_BATTLE_ACTOR_ENTRY_BASE +
+                ((u32)index * W2U_BATTLE_ACTOR_ENTRY_BYTES);
+    if (*(void **)entry == 0) {
+        return false;
+    }
+
+    // Every native battle sprite occupies a 20-member block. Its normal and
+    // shiny palettes are members 18 and 19 respectively. PWAN carrier patches
+    // retain that choice so it remains observable after a form change.
+    return (*(u32 *)(entry + 12u) & 1u) != 0u;
+}
+
+static McssAddWork MakeSpriteMaw(u32 spriteIndex, int position, b32 shiny)
 {
     McssAddWork maw;
     const u32 base = spriteIndex * 20u;
     const b32 front = (position & 1) != 0;
     maw.arcID = 4u;
     maw.ncbr = base + (front ? 2u : 11u);
-    maw.nclr = base + 18u;
+    maw.nclr = base + 18u + (shiny ? 1u : 0u);
     maw.ncer = base + (front ? 4u : 13u);
     maw.nanr = base + (front ? 5u : 14u);
     maw.nmcr = base + (front ? 6u : 15u);
@@ -772,7 +823,7 @@ static b32 PatchMcssCarrierFromSpriteIndex(void *bmw, int position, ActorState *
         return false;
     }
 
-    const McssAddWork maw = MakeSpriteMaw(spriteIndex, position);
+    const McssAddWork maw = MakeSpriteMaw(spriteIndex, position, actorState->shiny);
     const u32 oldNcbr = *(u32 *)(entry + 8u);
     const u32 oldNclr = *(u32 *)(entry + 12u);
     const u32 oldNcec = *(u32 *)(entry + 32u);
@@ -834,6 +885,7 @@ static BattleActorIdentity GetMcssActorIdentity(void *bmw, int position)
 {
     BattleActorIdentity identity = DecodeBattleActorIdentity(GetMcssMonsNo(bmw, position));
     if (identity.species != SPECIES_NONE) {
+        identity.shiny = GetMcssIsShiny(bmw, position);
         const s32 formNo = GetMcssFormNo(bmw, position);
         if (formNo >= 0 && formNo <= 31) {
             identity.form = (u16)formNo;
@@ -858,6 +910,14 @@ static BattleAssetId AssetForEntrySide(const PwanConfigEntry *entry, b32 isFront
 
 static BattleAssetId GetAssetForSpeciesSide(const BattleActorIdentity *identity, b32 isFront)
 {
+    if (identity->species == SPECIES_774 &&
+        identity->form >= W2U_MINIOR_CORE_FORM_START &&
+        identity->form < W2U_MINIOR_FORM_COUNT &&
+        identity->shiny) {
+        return (BattleAssetId)(W2U_MINIOR_SHINY_CORE_ASSET * 2u +
+                               (isFront ? 0u : 1u));
+    }
+
     PwanConfigHeader header = {};
     if (!ReadConfigRange(0, &header, sizeof(header)) ||
         header.magic != W2U_PWAN_CONFIG_MAGIC ||
@@ -927,6 +987,7 @@ static void DeactivateActor(ActorId actor)
     sState.actor[actor].mcssIndex = -1;
     sState.actor[actor].species = SPECIES_NONE;
     sState.actor[actor].form = 0;
+    sState.actor[actor].shiny = false;
     sState.actor[actor].assetId = ASSET_NONE;
     sState.actor[actor].mcssMawPatched = false;
     sState.actor[actor].mcss = 0;
@@ -943,12 +1004,18 @@ static void UpdateActor(ActorId actor, void *bmw)
         none.rawMonsNo = SPECIES_NONE;
         none.species = SPECIES_NONE;
         none.form = 0;
+        none.shiny = false;
         RecordActorProfile(actor, cfg->position, mcssIndex, &none, ASSET_NONE, false, false, 0xffffu);
         DeactivateActor(actor);
         return;
     }
     const BattleActorIdentity identity = GetMcssActorIdentity(bmw, cfg->position);
-    const BattleAssetId assetId = GetAssetForPositionSpecies(cfg->position, &identity);
+    BattleAssetId assetId = GetAssetForPositionSpecies(cfg->position, &identity);
+    if (sNativeFormChangePosition == (s32)cfg->position &&
+        !sNativeFormChangeSwapReached &&
+        sNativeFormChangeVisualAsset < ASSET_COUNT) {
+        assetId = (BattleAssetId)sNativeFormChangeVisualAsset;
+    }
     if (assetId >= ASSET_COUNT || !LoadAsset(actor, assetId)) {
         W2U_BattleAnim_Profile.loadFailCount = W2U_BattleAnim_Profile.loadFailCount + 1u;
         W2U_BattleAnim_Profile.lastLoadFailActor = (u32)actor;
@@ -965,6 +1032,7 @@ static void UpdateActor(ActorId actor, void *bmw)
     const b32 mcssPointerChanged = oldMcss != currentMcss;
     const b32 speciesChanged = actorState->species != identity.species ||
                                actorState->form != identity.form ||
+                               actorState->shiny != identity.shiny ||
                                actorState->assetId != assetId;
     if (speciesChanged) {
         actorState->tick = 0;
@@ -981,6 +1049,7 @@ static void UpdateActor(ActorId actor, void *bmw)
     actorState->mcssIndex = (s16)mcssIndex;
     actorState->species = identity.species;
     actorState->form = identity.form;
+    actorState->shiny = identity.shiny;
     actorState->assetId = (u16)assetId;
     actorState->mcss = currentMcss;
     if (wasInactive || mcssIndexChanged || mcssPointerChanged || speciesChanged) {
@@ -1084,6 +1153,36 @@ extern "C" b32 W2U_BattleAnim_ShouldSuppressNativeFormCarrier(
     return identity.species == SPECIES_778 && identity.form == 1u;
 }
 
+extern "C" b32 W2U_BattleAnim_OnNativeFormChangeSwap(
+    void *bmw,
+    u32 position)
+{
+    if (!bmw || position >= ACTOR_COUNT ||
+        sNativeFormChangePosition != (s32)position ||
+        sNativeFormChangeVisualAsset >= ASSET_COUNT) {
+        return false;
+    }
+
+    const BattleActorIdentity identity = GetMcssActorIdentity(bmw, (int)position);
+    const BattleAssetId targetAsset = GetAssetForPositionSpecies((int)position, &identity);
+    if (targetAsset >= ASSET_COUNT ||
+        !LoadAsset((ActorId)position, targetAsset)) {
+        // The destination has no usable PWAN asset, so release ownership and let
+        // BTLV_MCSS_OverwriteMAW perform the normal native form swap.
+        sNativeFormChangePosition = -1;
+        sNativeFormChangeVisualAsset = ASSET_NONE;
+        sNativeFormChangeSwapReached = false;
+        return false;
+    }
+
+    // Do not replace the MAW while its mosaic transform is active: changing the
+    // carrier's cell/anchor at this point is what makes the blurry pixels jump.
+    // The hook uploads the destination PWAN pixels to the existing carrier now;
+    // the final carrier is installed only after the effect has fully completed.
+    sNativeFormChangeSwapReached = true;
+    return true;
+}
+
 extern "C" void W2U_BattleAnim_RefreshPositionNow(u32 position)
 {
     ActorId actor = ACTOR_COUNT;
@@ -1180,12 +1279,15 @@ extern "C" void W2U_BattleAnim_Term(void)
         sState.actor[i].mcssIndex = -1;
         sState.actor[i].species = SPECIES_NONE;
         sState.actor[i].form = 0;
+        sState.actor[i].shiny = false;
         sState.actor[i].assetId = ASSET_NONE;
         sState.actor[i].mcssMawPatched = false;
         sState.actor[i].mcss = 0;
     }
     sState.nextUploadActor = 0;
     sNativeFormChangePosition = -1;
+    sNativeFormChangeVisualAsset = ASSET_NONE;
+    sNativeFormChangeSwapReached = false;
 }
 
 } // namespace battle_anim
