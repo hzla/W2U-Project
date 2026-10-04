@@ -22,6 +22,7 @@ enum W2UBattleModuleId : u8 {
     W2U_MODULE_MOVES_TRAPPING,
     W2U_MODULE_MOVES_SCREENS,
     W2U_MODULE_MOVES_ABILITY,
+    W2U_MODULE_ABILITIES_STRONG_WEATHER,
     W2U_BATTLE_MODULE_COUNT,
     W2U_NO_MODULE = 0xFF,
 };
@@ -62,6 +63,7 @@ static const W2UBattleModuleDescriptor sBattleModuleDescriptors[] = {
     {"moves/trapping.dll", W2U_NO_MODULE},
     {"moves/screens.dll", W2U_NO_MODULE},
     {"moves/ability.dll", W2U_NO_MODULE},
+    {"abilities/strong_weather.dll", W2U_NO_MODULE},
 };
 
 #define W2U_ROUTE(kind, id, module) {(u16)(id), (u8)(kind), (u8)(module)}
@@ -250,6 +252,9 @@ static const W2UBattleMechanicRoute sBattleMechanicRoutes[] = {
     W2U_ROUTE(W2U_MECHANIC_MOVE, MOVE_SUNSTEEL_STRIKE, W2U_MODULE_MOVES_ABILITY),
     W2U_ROUTE(W2U_MECHANIC_MOVE, MOVE_PHOTON_GEYSER, W2U_MODULE_MOVES_ABILITY),
     W2U_ROUTE(W2U_MECHANIC_MOVE, MOVE_WATER_SHURIKEN, W2U_MODULE_MOVES_ABILITY),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_DELTA_STREAM, W2U_MODULE_ABILITIES_STRONG_WEATHER),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_PRIMORDIAL_SEA, W2U_MODULE_ABILITIES_STRONG_WEATHER),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_DESOLATE_LAND, W2U_MODULE_ABILITIES_STRONG_WEATHER),
 };
 
 #undef W2U_ROUTE
@@ -278,6 +283,7 @@ extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_MOVES_FLOW();
 extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_MOVES_TRAPPING();
 extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_MOVES_SCREENS();
 extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_MOVES_ABILITY();
+extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_STRONG_WEATHER();
 
 static const W2UBattleStaticApiGetter sBattleStaticApiGetters[] = {
     W2U_GetStaticBattleModuleApi_ABILITIES_VEILS,
@@ -302,5 +308,6 @@ static const W2UBattleStaticApiGetter sBattleStaticApiGetters[] = {
     W2U_GetStaticBattleModuleApi_MOVES_TRAPPING,
     W2U_GetStaticBattleModuleApi_MOVES_SCREENS,
     W2U_GetStaticBattleModuleApi_MOVES_ABILITY,
+    W2U_GetStaticBattleModuleApi_ABILITIES_STRONG_WEATHER,
 };
 #endif

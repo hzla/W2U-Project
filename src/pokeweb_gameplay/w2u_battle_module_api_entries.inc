@@ -165,6 +165,18 @@ static const W2UBattleModuleApi sBattleModuleApi = {
     (u16)W2U_ARRAY_COUNT(sBattleModuleEntries),
     sBattleModuleEntries,
 };
+#elif W2U_BATTLE_MODULE_ID == 22
+static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_DELTA_STREAM), (u16)W2U_ARRAY_COUNT(DeltaStreamHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DeltaStreamHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PRIMORDIAL_SEA), (u16)W2U_ARRAY_COUNT(PrimordialSeaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PrimordialSeaHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_DESOLATE_LAND), (u16)W2U_ARRAY_COUNT(DesolateLandHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DesolateLandHandlers},
+};
+static const W2UBattleModuleApi sBattleModuleApi = {
+    W2U_BATTLE_MODULE_MAGIC,
+    W2U_BATTLE_MODULE_ABI_VERSION,
+    (u16)W2U_ARRAY_COUNT(sBattleModuleEntries),
+    sBattleModuleEntries,
+};
 #else
 #error Unsupported abilities battle module ID
 #endif
@@ -366,6 +378,21 @@ static const W2UBattleModuleApi sBattleModule_abilities_battle_flowApi = {
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_BATTLE_FLOW()
 {
     return &sBattleModule_abilities_battle_flowApi;
+}
+static const W2UBattleHandlerExport sBattleModule_abilities_strong_weatherEntries[] = {
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_DELTA_STREAM), (u16)W2U_ARRAY_COUNT(DeltaStreamHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DeltaStreamHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PRIMORDIAL_SEA), (u16)W2U_ARRAY_COUNT(PrimordialSeaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PrimordialSeaHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_DESOLATE_LAND), (u16)W2U_ARRAY_COUNT(DesolateLandHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DesolateLandHandlers},
+};
+static const W2UBattleModuleApi sBattleModule_abilities_strong_weatherApi = {
+    W2U_BATTLE_MODULE_MAGIC,
+    W2U_BATTLE_MODULE_ABI_VERSION,
+    (u16)W2U_ARRAY_COUNT(sBattleModule_abilities_strong_weatherEntries),
+    sBattleModule_abilities_strong_weatherEntries,
+};
+extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_STRONG_WEATHER()
+{
+    return &sBattleModule_abilities_strong_weatherApi;
 }
 #endif
 #endif // W2U_BATTLE_API_SOURCE_ABILITIES

@@ -4,6 +4,7 @@
 #include "w2u_field_effects.h"
 #include "w2u_moves.h"
 #include "w2u_platform.h"
+#include "w2u_strong_weather.h"
 
 #define W2U_ABILITY_POWER_RATIO_1_2X 4915
 #define W2U_ABILITY_POWER_RATIO_1_3_DECIMAL 5325

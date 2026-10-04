@@ -1139,3 +1139,72 @@ text = [
 text = [
   "A wild [VAR PKNAME(0)] appeared?!$",
 ]
+
+[msg.section_0.entries.201]
+text = [
+  "Mysterious strong winds are\\n",
+  "protecting Flying-type Pokémon!$",
+]
+
+[msg.section_0.entries.202]
+text = [
+  "The mysterious strong winds\\n",
+  "weakened the attack!$",
+]
+
+[msg.section_0.entries.203]
+text = [
+  "The mysterious strong winds\\n",
+  "blow on regardless!$",
+]
+
+[msg.section_0.entries.204]
+text = [
+  "The mysterious strong winds\\n",
+  "have dissipated!$",
+]
+
+[msg.section_0.entries.205]
+text = [
+  "A heavy rain began to fall!$",
+]
+
+[msg.section_0.entries.206]
+text = [
+  "There is no relief from\\n",
+  "this heavy rain!$",
+]
+
+[msg.section_0.entries.207]
+text = [
+  "The Fire-type attack fizzled out\\n",
+  "in the heavy rain!$",
+]
+
+[msg.section_0.entries.208]
+text = [
+  "The heavy rain has lifted!$",
+]
+
+[msg.section_0.entries.209]
+text = [
+  "The sunlight turned\\n",
+  "extremely harsh!$",
+]
+
+[msg.section_0.entries.210]
+text = [
+  "The extremely harsh sunlight\\n",
+  "was not lessened at all!$",
+]
+
+[msg.section_0.entries.211]
+text = [
+  "The Water-type attack evaporated\\n",
+  "in the harsh sunlight!$",
+]
+
+[msg.section_0.entries.212]
+text = [
+  "The harsh sunlight faded.$",
+]

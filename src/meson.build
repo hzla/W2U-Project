@@ -135,6 +135,7 @@ w2u_battle_registry_check = custom_target(
     files('pokeweb_gameplay/w2u_field_effects.cpp'),
     w2u_battle_api_generated,
     w2u_battle_meson_generated,
+    files('pokeweb_gameplay/w2u_strong_weather.cpp'),
   ],
   output: 'verify_w2u_battle_registry.stamp',
   depend_files: [w2u_battle_registry_generator],
@@ -149,6 +150,7 @@ w2u_battle_registry_check = custom_target(
     '--api-check', '@INPUT6@',
     '--meson-check', '@INPUT7@',
     '--meson', '@INPUT7@',
+    '--source', '@INPUT8@',
     '--stamp', '@OUTPUT@',
   ],
 )
@@ -1416,6 +1418,7 @@ b2u_main_sources = [
   files('pokeweb_gameplay/w2u_items.cpp'),
   files('pokeweb_gameplay/w2u_mega.cpp'),
   files('pokeweb_gameplay/w2u_moves.cpp'),
+  files('pokeweb_gameplay/w2u_strong_weather.cpp'),
   files('pokeweb_gameplay/w2u_terrain_indicator.cpp'),
   files('pokeweb_gameplay/w2u_terrain_texture.cpp'),
   files('../include/util/filesystem.cpp'),

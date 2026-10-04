@@ -376,6 +376,16 @@
         ["move", "MOVE_PHOTON_GEYSER", "PhotonGeyserHandlers"],
         ["move", "MOVE_WATER_SHURIKEN", "WaterShurikenHandlers"]
       ]
+    },
+    {
+      "id": 22,
+      "name": "abilities/strong_weather",
+      "source": "abilities+strong_weather",
+      "entries": [
+        ["ability", "ABIL_DELTA_STREAM", "DeltaStreamHandlers"],
+        ["ability", "ABIL_PRIMORDIAL_SEA", "PrimordialSeaHandlers"],
+        ["ability", "ABIL_DESOLATE_LAND", "DesolateLandHandlers"]
+      ]
     }
   ]
 }
