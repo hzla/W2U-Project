@@ -27,8 +27,8 @@ def verify_hook_targets(definitions: set[str], database_symbols: set[str]) -> No
         match = re.fullmatch(
             r"THUMB_BRANCH_LINK_(.+)_0x[0-9A-Fa-f]+", name
         ) or re.fullmatch(r"THUMB_BRANCH_(?:SAFESTACK_)?(.+)", name)
-        if not match or match[1].isdigit():
-            continue  # Direct numeric-overlay hooks have no named ESDB owner.
+        if not match or match[1].isdigit() or re.fullmatch(r"\d+_0x[0-9A-Fa-f]+", match[1]):
+            continue  # Direct numeric-overlay hooks (with or without LINK) have no named ESDB owner.
         if match[1] not in database_symbols:
             raise RuntimeError(f"{name}: missing ESDB hook owner {match[1]}; hook has no mapped game target")
 
