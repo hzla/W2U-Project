@@ -30,7 +30,7 @@ Licence and asset terms for contributed code and art are still open. Assets with
 | 0 | This record; build portability | done |
 | 1 | Baseline build on this branch + battle-harness smoke test | done |
 | 2a | Primal weathers (Primordial Sea, Desolate Land, Delta Stream) | done (White 2) |
-| 2b | Merged weather / terrain indicator | planned |
+| 2b | Merged weather / terrain indicator | done (White 2) |
 | 3 | Abilities by group (Gen 8 / 9 and custom), terrain extras, Booster Energy | planned |
 | 4 | `w2anim` PWAN writer (tool-side; lives in the w2anim repository) | planned |
 | 5 | Mega extras (held-START toggle, Mega sound cues, HP-gauge Mega icon) | planned |
@@ -83,6 +83,37 @@ Notes for review:
 - A base-form Rayquaza given Delta Stream through the harness has it reset by the existing leaked-Mega-ability
   repair (expected for normal play); Mega Rayquaza is the natural holder and was not tested here.
 - A blocked weather move also shows the retail "But it failed!" after the block text (same as in MegaB2W2).
-- Not yet tested: ending on switch-out / faint, Air Lock / Cloud Nine negation, doubles.
+- Not yet tested: ending on switch-out / faint, Air Lock / Cloud Nine negation.
 - Host tests: four failures on Windows only (python3 alias lookup in two transform tests, path separators in two
   privacy-report tests); unrelated to this branch.
+
+## Fix: terrain moves hung in battles started without the field
+
+Every terrain move stopped after "X used ... Terrain!" in harness battles (reproduced on unmodified `main`,
+stripped and unstripped). The battle client started the move-animation command, W2U's
+`W2U_TerrainTexture_OnMoveAnimationStart` prepared the ambient particles, and
+`GFL_HeapGetHighestAllocatableSize(GetFieldLowHeapID())` never returned: the heap ID has no heap in that boot,
+the native lookup (ARM9 `0x2039AAC`) gives a null handle, and `HeapBase_GetHighestAllocatableSize` walks a free
+list from address 0. `GetFieldLowHeapID()` now returns 0 for a missing heap (callers already skip on 0), so the
+texture swap runs and only the ambient particles are skipped there. White 2 only (`W2U_ADDR_GFL_HEAP_HANDLE_FOR_ID`);
+the Black 2 address is not mapped. Found by tracing the client's server-command handlers and the interrupted PC in
+headless melonDS.
+
+## Phase 2b: command-screen indicators
+
+`tools/graphics/build_command_indicators.py` (replaces the static icons of `build_terrain_indicator.py`, which is
+kept but marked superseded) writes battgra 420-423 and art member 941:
+
+- strong-weather icons (Delta Stream, Primordial Sea, Desolate Land), animated, palette 5 (new colours in its unused
+  slots 9-11 / 13-15); sequences 0x13 (winds, weather value 5), 21, 22;
+- an animated TERRAIN panel per terrain (label in the native WEATHER font + box), palette 15, sequence 23;
+- one 3-frame weather slot and one 2-frame terrain slot in the sheet (80 tiles after the 314 retail ones, 16 more
+  than the previous terrain icons); the current icon's frames are copied from member 941 when the panel appears.
+
+`w2u_terrain_indicator.cpp` keeps W2U's own CLACT unit and lifetime hooks, and now: picks the weather value / icon
+for the native WEATHER panel (strong weathers), redirects its icon sequence (ov168 `0x21EE7FE`, White 2), and places
+the TERRAIN panel under the WEATHER panel (or in its place without weather), sliding in with it from the input's
+task list (White 2; Black 2 places it without the slide and shows no strong-weather icons).
+
+Headless checks: heavy rain + Electric, strong winds + Grassy, harsh sun + Psychic, Misty alone (singles); Double
+Battle with heavy rain + Electric Terrain: both command screens show both indicators and both party icons.
