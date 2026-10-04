@@ -1,6 +1,6 @@
 {
   "abi_version": 1,
-  "capacity": 24,
+  "capacity": 32,
   "output_root": "lib/w2u_battle",
   "entry_defaults": {
     "handler_count": "array",
@@ -386,6 +386,93 @@
         ["ability", "ABIL_DELTA_STREAM", "DeltaStreamHandlers"],
         ["ability", "ABIL_PRIMORDIAL_SEA", "PrimordialSeaHandlers"],
         ["ability", "ABIL_DESOLATE_LAND", "DesolateLandHandlers"]
+      ]
+    },
+    {
+      "id": 23,
+      "name": "abilities/mb_power",
+      "source": "abilities",
+      "white2_only": true,
+      "extra_sources": ["megab2w2/abilities/Boost.cpp", "megab2w2/abilities/Charge.cpp", "megab2w2/abilities/MindsEye.cpp", "megab2w2/abilities/Neuroforce.cpp", "megab2w2/abilities/PowerSpot.cpp", "megab2w2/abilities/Protean.cpp", "megab2w2/abilities/PunkRock.cpp", "megab2w2/abilities/Ruin.cpp", "megab2w2/abilities/SupremeOverlord.cpp", "megab2w2/abilities/ToxicChain.cpp"],
+      "entries": [
+        ["ability", "ABIL_TRANSISTOR", "MB_BoostHandlers"],
+        ["ability", "ABIL_DRAGONS_MAW", "MB_BoostHandlers"],
+        ["ability", "ABIL_ROCKY_PAYLOAD", "MB_BoostHandlers"],
+        ["ability", "ABIL_SHARPNESS", "MB_BoostHandlers"],
+        ["ability", "ABIL_FIRE_MANE", "MB_BoostHandlers"],
+        ["ability", "ABIL_WIND_POWER", "MB_ChargeHandlers"],
+        ["ability", "ABIL_ELECTROMORPHOSIS", "MB_ChargeHandlers"],
+        ["ability", "ABIL_MINDS_EYE", "MB_MindsEyeHandlers"],
+        ["ability", "ABIL_NEUROFORCE", "MB_NeuroforceHandlers"],
+        ["ability", "ABIL_POWER_SPOT", "MB_PowerSpotHandlers"],
+        ["ability", "ABIL_STEELY_SPIRIT", "MB_PowerSpotHandlers"],
+        ["ability", "ABIL_LIBERO", "MB_ProteanHandlers"],
+        ["ability", "ABIL_PUNK_ROCK", "MB_PunkRockHandlers"],
+        ["ability", "ABIL_VESSEL_OF_RUIN", "MB_RuinHandlers"],
+        ["ability", "ABIL_SWORD_OF_RUIN", "MB_RuinHandlers"],
+        ["ability", "ABIL_TABLETS_OF_RUIN", "MB_RuinHandlers"],
+        ["ability", "ABIL_BEADS_OF_RUIN", "MB_RuinHandlers"],
+        ["ability", "ABIL_SUPREME_OVERLORD", "MB_SupremeOverlordHandlers"],
+        ["ability", "ABIL_TOXIC_CHAIN", "MB_ToxicChainHandlers"]
+      ]
+    },
+    {
+      "id": 24,
+      "name": "abilities/mb_defense",
+      "source": "abilities",
+      "white2_only": true,
+      "extra_sources": ["megab2w2/abilities/BeastBoost.cpp", "megab2w2/abilities/EarthEater.cpp", "megab2w2/abilities/Fluffy.cpp", "megab2w2/abilities/GoodAsGold.cpp", "megab2w2/abilities/GuardDog.cpp", "megab2w2/abilities/MirrorArmor.cpp", "megab2w2/abilities/PurifyingSalt.cpp", "megab2w2/abilities/QueenlyMajesty.cpp", "megab2w2/abilities/Shields.cpp", "megab2w2/abilities/Veil.cpp", "megab2w2/abilities/WellBakedBody.cpp", "megab2w2/abilities/WindRider.cpp"],
+      "entries": [
+        ["ability", "ABIL_EELEVATE", "MB_EelevateHandlers"],
+        ["ability", "ABIL_EARTH_EATER", "MB_EarthEaterHandlers"],
+        ["ability", "ABIL_ICE_SCALES", "MB_FluffyHandlers"],
+        ["ability", "ABIL_AURA_GUARD", "MB_FluffyHandlers"],
+        ["ability", "ABIL_GOOD_AS_GOLD", "MB_GoodAsGoldHandlers"],
+        ["ability", "ABIL_GUARD_DOG", "MB_GuardDogHandlers"],
+        ["ability", "ABIL_MIRROR_ARMOR", "MB_MirrorArmorHandlers"],
+        ["ability", "ABIL_PURIFYING_SALT", "MB_PurifyingSaltHandlers"],
+        ["ability", "ABIL_ARMOR_TAIL", "MB_QueenlyMajestyHandlers"],
+        ["ability", "ABIL_TERA_SHELL", "MB_TeraShellHandlers"],
+        ["ability", "ABIL_PASTEL_VEIL", "MB_VeilHandlers"],
+        ["ability", "ABIL_WELL_BAKED_BODY", "MB_WellBakedBodyHandlers"],
+        ["ability", "ABIL_WIND_RIDER", "MB_WindRiderHandlers"]
+      ]
+    },
+    {
+      "id": 25,
+      "name": "abilities/mb_reactive",
+      "source": "abilities",
+      "white2_only": true,
+      "extra_sources": ["megab2w2/abilities/Berserk.cpp", "megab2w2/abilities/HitReactions.cpp", "megab2w2/abilities/LingeringAroma.cpp", "megab2w2/abilities/SpicySpray.cpp", "megab2w2/abilities/Stamina.cpp"],
+      "entries": [
+        ["ability", "ABIL_ANGER_SHELL", "MB_BerserkHandlers"],
+        ["ability", "ABIL_COTTON_DOWN", "MB_CottonDownHandlers"],
+        ["ability", "ABIL_PERISH_BODY", "MB_PerishBodyHandlers"],
+        ["ability", "ABIL_TOXIC_DEBRIS", "MB_ToxicDebrisHandlers"],
+        ["ability", "ABIL_WANDERING_SPIRIT", "MB_LingeringAromaHandlers"],
+        ["ability", "ABIL_LINGERING_AROMA", "MB_LingeringAromaHandlers"],
+        ["ability", "ABIL_SPICY_SPRAY", "MB_SpicySprayHandlers"],
+        ["ability", "ABIL_STEAM_ENGINE", "MB_StaminaHandlers"],
+        ["ability", "ABIL_THERMAL_EXCHANGE", "MB_ThermalExchangeHandlers"]
+      ]
+    },
+    {
+      "id": 26,
+      "name": "abilities/mb_entry",
+      "source": "abilities",
+      "white2_only": true,
+      "extra_sources": ["megab2w2/abilities/EntryEffects.cpp", "megab2w2/abilities/Hospitality.cpp", "megab2w2/abilities/IntrepidSword.cpp", "megab2w2/abilities/Neigh.cpp", "megab2w2/abilities/ScreenCleaner.cpp"],
+      "entries": [
+        ["ability", "ABIL_CURIOUS_MEDICINE", "MB_CuriousMedicineHandlers"],
+        ["ability", "ABIL_COSTAR", "MB_CostarHandlers"],
+        ["ability", "ABIL_SUPERSWEET_SYRUP", "MB_SupersweetSyrupHandlers"],
+        ["ability", "ABIL_HOSPITALITY", "MB_HospitalityHandlers"],
+        ["ability", "ABIL_INTREPID_SWORD", "MB_IntrepidSwordHandlers"],
+        ["ability", "ABIL_DAUNTLESS_SHIELD", "MB_IntrepidSwordHandlers"],
+        ["ability", "ABIL_GRIM_NEIGH", "MB_NeighHandlers"],
+        ["ability", "ABIL_AS_ONE_GLASTRIER", "MB_NeighHandlers"],
+        ["ability", "ABIL_AS_ONE_SPECTRIER", "MB_NeighHandlers"],
+        ["ability", "ABIL_SCREEN_CLEANER", "MB_ScreenCleanerHandlers"]
       ]
     }
   ]

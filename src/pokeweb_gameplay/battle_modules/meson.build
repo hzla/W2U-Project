@@ -115,4 +115,24 @@ w2u_battle_module_definitions = [
     'slug': 'abilities_strong_weather',
     'sources': files('../w2u_abilities.cpp', '../w2u_strong_weather.cpp'),
   },
+  {
+    'id': 23,
+    'slug': 'abilities_mb_power',
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Boost.cpp', '../megab2w2/abilities/Charge.cpp', '../megab2w2/abilities/MindsEye.cpp', '../megab2w2/abilities/Neuroforce.cpp', '../megab2w2/abilities/PowerSpot.cpp', '../megab2w2/abilities/Protean.cpp', '../megab2w2/abilities/PunkRock.cpp', '../megab2w2/abilities/Ruin.cpp', '../megab2w2/abilities/SupremeOverlord.cpp', '../megab2w2/abilities/ToxicChain.cpp'),
+  },
+  {
+    'id': 24,
+    'slug': 'abilities_mb_defense',
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/BeastBoost.cpp', '../megab2w2/abilities/EarthEater.cpp', '../megab2w2/abilities/Fluffy.cpp', '../megab2w2/abilities/GoodAsGold.cpp', '../megab2w2/abilities/GuardDog.cpp', '../megab2w2/abilities/MirrorArmor.cpp', '../megab2w2/abilities/PurifyingSalt.cpp', '../megab2w2/abilities/QueenlyMajesty.cpp', '../megab2w2/abilities/Shields.cpp', '../megab2w2/abilities/Veil.cpp', '../megab2w2/abilities/WellBakedBody.cpp', '../megab2w2/abilities/WindRider.cpp'),
+  },
+  {
+    'id': 25,
+    'slug': 'abilities_mb_reactive',
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Berserk.cpp', '../megab2w2/abilities/HitReactions.cpp', '../megab2w2/abilities/LingeringAroma.cpp', '../megab2w2/abilities/SpicySpray.cpp', '../megab2w2/abilities/Stamina.cpp'),
+  },
+  {
+    'id': 26,
+    'slug': 'abilities_mb_entry',
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/EntryEffects.cpp', '../megab2w2/abilities/Hospitality.cpp', '../megab2w2/abilities/IntrepidSword.cpp', '../megab2w2/abilities/Neigh.cpp', '../megab2w2/abilities/ScreenCleaner.cpp'),
+  },
 ]

@@ -26551,3 +26551,21 @@ Symbols:
   - Name: sub_21ABF54
     Segment: 0x1D
     Address: 0x21ABF55
+  - Name: Condition_MakePermanent
+    Segment: 0x1D
+    Address: 0x21CE241
+  - Name: Condition_MakeTurn
+    Segment: 0x1D
+    Address: 0x21CE1C1
+  - Name: HandlerUnnerveMemberIn
+    Segment: 0x1D
+    Address: 0x21C24C5
+  - Name: HandlerUnnerveRotationIn
+    Segment: 0x1D
+    Address: 0x21C24E9
+  - Name: MonIDToClientID
+    Segment: 0x1D
+    Address: 0x219C5B5
+  - Name: TypeEffectivenessClass
+    Segment: 0x1D
+    Address: 0x21BD329

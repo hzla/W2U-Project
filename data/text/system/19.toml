@@ -1208,3 +1208,15 @@ text = [
 text = [
   "The harsh sunlight faded.$",
 ]
+
+[msg.section_0.entries.213]
+text = [
+  "Its disguise served it\\n",
+  "as a decoy!$",
+]
+
+[msg.section_0.entries.214]
+text = [
+  "Both Pokémon will faint\\n",
+  "in three turns!$",
+]
