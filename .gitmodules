@@ -1,9 +1,3 @@
 [submodule "include/swan"]
 	path = include/swan
 	url = https://github.com/kingdom-of-ds-hacking/swan.git
-[submodule "include/extlib"]
-	path = include/extlib
-	url = https://github.com/HelloOO7/ExtLib.git
-[submodule "include/NitroKernel"]
-	path = include/NitroKernel
-	url = https://github.com/HelloOO7/NitroKernel.git

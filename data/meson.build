@@ -9,7 +9,7 @@ double_battle_fix = custom_target(
   'stage_double_battle_fix_w2',
   input: [
     meson.project_source_root() / '..' / 'IRDO_Extracted' / 'overlay' / 'overlay_0036.bin',
-    meson.project_source_root() / 'vfs' / 'y9.bin',
+    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'y9.bin',
   ],
   output: 'stage_double_battle_fix_w2.stamp',
   command: [

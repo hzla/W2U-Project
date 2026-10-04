@@ -1,0 +1,18 @@
+{
+  "dependencies": [
+    {
+      "path": "include/extlib",
+      "upstream": "https://github.com/HelloOO7/ExtLib.git",
+      "revision": "4fcc85b78f4eafcf9c77347a51930359c3a6da39",
+      "storage": "vendored",
+      "localChanges": "Portable example input/output paths and compiler discovery."
+    },
+    {
+      "path": "include/NitroKernel",
+      "upstream": "https://github.com/HelloOO7/NitroKernel.git",
+      "revision": "3cad669b3247651c82658cbcd0b46b672b611d4d",
+      "storage": "vendored",
+      "localChanges": "Portable editor include paths and compiler discovery."
+    }
+  ]
+}
