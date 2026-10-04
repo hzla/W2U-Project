@@ -379,6 +379,7 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 {
     return &sBattleModule_abilities_battle_flowApi;
 }
+#if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_strong_weatherEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DELTA_STREAM), (u16)W2U_ARRAY_COUNT(DeltaStreamHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DeltaStreamHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PRIMORDIAL_SEA), (u16)W2U_ARRAY_COUNT(PrimordialSeaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PrimordialSeaHandlers},
@@ -394,6 +395,7 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 {
     return &sBattleModule_abilities_strong_weatherApi;
 }
+#endif
 #endif
 #endif // W2U_BATTLE_API_SOURCE_ABILITIES
 

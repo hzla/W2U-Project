@@ -217,10 +217,19 @@ def render_cpp(registry: dict) -> str:
         ]
     )
     for module in modules:
-        lines.append(
-            'extern "C" const W2UBattleModuleApi* '
-            + getter_name(module["name"])
-            + "();"
+        declaration = 'extern "C" const W2UBattleModuleApi* ' + getter_name(module["name"]) + "();"
+        if module.get("white2_only"):
+            lines.extend(["#if !defined(W2U_TARGET_B2)", declaration, "#endif"])
+        else:
+            lines.append(declaration)
+    if any(module.get("white2_only") for module in modules):
+        lines.extend(
+            [
+                "#if defined(W2U_TARGET_B2)",
+                "// White 2-only modules (registry \"white2_only\"): not built for Black 2.",
+                "static const W2UBattleModuleApi* W2U_UnavailableStaticBattleModule() { return 0; }",
+                "#endif",
+            ]
         )
     lines.extend(
         [
@@ -228,7 +237,19 @@ def render_cpp(registry: dict) -> str:
             "static const W2UBattleStaticApiGetter sBattleStaticApiGetters[] = {",
         ]
     )
-    lines.extend(f"    {getter_name(module['name'])}," for module in modules)
+    for module in modules:
+        if module.get("white2_only"):
+            lines.extend(
+                [
+                    "#if defined(W2U_TARGET_B2)",
+                    "    W2U_UnavailableStaticBattleModule,",
+                    "#else",
+                    f"    {getter_name(module['name'])},",
+                    "#endif",
+                ]
+            )
+        else:
+            lines.append(f"    {getter_name(module['name'])},")
     lines.extend(["};", "#endif", ""])
     return "\n".join(lines)
 
@@ -277,14 +298,15 @@ def render_api_cpp(registry: dict) -> str:
         )
         for module in family_modules:
             identifier = slug(module["name"])
-            lines.extend(
-                render_api_definition(
-                    registry,
-                    module,
-                    f"sBattleModule_{identifier}",
-                    getter_name(module["name"]),
-                )
+            definition = render_api_definition(
+                registry,
+                module,
+                f"sBattleModule_{identifier}",
+                getter_name(module["name"]),
             )
+            if module.get("white2_only"):
+                definition = ["#if !defined(W2U_TARGET_B2)", *definition, "#endif"]
+            lines.extend(definition)
         lines.extend(["#endif", f"#endif // W2U_BATTLE_API_SOURCE_{family}"])
     lines.extend(["#endif", ""])
     return "\n".join(lines)

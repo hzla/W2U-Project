@@ -283,7 +283,13 @@ extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_MOVES_FLOW();
 extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_MOVES_TRAPPING();
 extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_MOVES_SCREENS();
 extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_MOVES_ABILITY();
+#if !defined(W2U_TARGET_B2)
 extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_STRONG_WEATHER();
+#endif
+#if defined(W2U_TARGET_B2)
+// White 2-only modules (registry "white2_only"): not built for Black 2.
+static const W2UBattleModuleApi* W2U_UnavailableStaticBattleModule() { return 0; }
+#endif
 
 static const W2UBattleStaticApiGetter sBattleStaticApiGetters[] = {
     W2U_GetStaticBattleModuleApi_ABILITIES_VEILS,
@@ -308,6 +314,10 @@ static const W2UBattleStaticApiGetter sBattleStaticApiGetters[] = {
     W2U_GetStaticBattleModuleApi_MOVES_TRAPPING,
     W2U_GetStaticBattleModuleApi_MOVES_SCREENS,
     W2U_GetStaticBattleModuleApi_MOVES_ABILITY,
+#if defined(W2U_TARGET_B2)
+    W2U_UnavailableStaticBattleModule,
+#else
     W2U_GetStaticBattleModuleApi_ABILITIES_STRONG_WEATHER,
+#endif
 };
 #endif
