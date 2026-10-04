@@ -1,10 +1,10 @@
 # White 2 on-demand battle modules
 
 White 2 keeps battle hooks, Mega Evolution, terrain graphics, shared state,
-aliases, and the registration dispatchers in `White2Upgrade.dll`. The 59
+aliases, and the registration dispatchers in `White2Upgrade.dll`. The 62
 managed ability entries (including updated Overcoat), 101 managed move entries,
 13 custom item entries and their subordinate field/side/position entries are
-grouped into 22 RPMs under
+grouped into 23 RPMs under
 `vfs/data/lib/w2u_battle/`.
 
 Updated Overcoat stays in the defense group, retaining its native weather
