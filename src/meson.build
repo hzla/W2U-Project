@@ -14,6 +14,15 @@ checked_rpm_depend_files = [
   meson.project_source_root() / 'tools' / 'audit_white2upgrade_battle_heap.py',
 ]
 w2u_cpp_args = cpp_args + ['-DW2U_DYNAMIC_BATTLE_CORE=1']
+
+# Every compile target depends on the shared headers: the compile commands below are custom targets without
+# depfiles, so a header edit would otherwise leave stale objects (e.g. a changed handler flag constant).
+w2u_header_deps = run_command(
+  'python3', '-c',
+  'import glob, sys; root = sys.argv[1]; print("\\n".join(sorted(glob.glob(root + "/include/*.h") + glob.glob(root + "/src/**/*.h", recursive=True))))',
+  meson.project_source_root(),
+  check: true,
+).stdout().strip().split('\n')
 includes = [
     # Important libraries.
     '-I' + meson.project_source_root() / 'include' / 'extlib',
@@ -73,10 +82,10 @@ w2u_nonresident_modules = [
 w2u_main_elf = custom_target(
   'w2u_main.elf',
   input: sources,
-  depend_files: files(
+  depend_files: [files(
     'pokeweb_gameplay/w2u_terrain_texture_mappings.inc',
     'pokeweb_gameplay/w2u_battle_module_api_entries.inc',
-  ),
+  ), w2u_header_deps],
   output: 'w2u_main.elf',
   command: ['arm-none-eabi-g++', w2u_cpp_args, includes ,'-o', '@OUTPUT@', '@INPUT@'],
 )
@@ -164,7 +173,7 @@ foreach battle_module : w2u_battle_module_definitions
     'w2u_battle_' + module_slug + '.elf',
     input: battle_module['sources'],
     output: 'w2u_battle_' + module_slug + '.elf',
-    depend_files: w2u_battle_api_generated,
+    depend_files: [w2u_battle_api_generated, w2u_header_deps],
     command: ['sh', '-eu', '-c', '''
       output="$1"
       root="$2"
@@ -330,7 +339,7 @@ foreach w2u_module : w2u_nonresident_modules
     w2u_name + '.elf',
     input: w2u_module['sources'],
     output: w2u_name + '.elf',
-    depend_files: battle_log_headers,
+    depend_files: [battle_log_headers, w2u_header_deps],
     command: ['arm-none-eabi-g++', cpp_args, includes, '-o', '@OUTPUT@', '@INPUT@'],
   )
 
@@ -396,7 +405,7 @@ menu_evolution_w2_elf = custom_target(
   input: menu_evolution_cpp,
   output: 'MenuEvolutionW2.elf',
   build_by_default: true,
-  depend_files: menu_evolution_headers,
+  depend_files: [menu_evolution_headers, w2u_header_deps],
   command: ['arm-none-eabi-g++', cpp_args, includes, '-o', '@OUTPUT@', '@INPUT@'],
 )
 
@@ -480,7 +489,7 @@ foreach pwan_module : pwan_runtime_modules
   pwan_runtime_elf = custom_target(
     pwan_name + '.elf',
     input: pwan_module['sources'],
-    depend_files: pwan_runtime_depend_files,
+    depend_files: [pwan_runtime_depend_files, w2u_header_deps],
     output: pwan_name + '.elf',
     command: ['sh', '-eu', '-c', '''
       output="$1"
@@ -649,7 +658,7 @@ w2u_battle_heap_audit = custom_target(
 pwan_battle_b2_elf = custom_target(
   'PokewebPwanBattleB2.elf',
   input: pwan_battle_b2_sources,
-  depend_files: pwan_runtime_depend_files,
+  depend_files: [pwan_runtime_depend_files, w2u_header_deps],
   output: 'PokewebPwanBattleB2.elf',
   build_by_default: true,
   command: ['sh', '-eu', '-c', '''
@@ -749,7 +758,7 @@ pwan_battle_b2_dll = custom_target(
 pwan_trainer_b2_elf = custom_target(
   'PokewebPwanTrainerB2.elf',
   input: pwan_trainer_b2_sources,
-  depend_files: pwan_runtime_depend_files,
+  depend_files: [pwan_runtime_depend_files, w2u_header_deps],
   output: 'PokewebPwanTrainerB2.elf',
   build_by_default: true,
   command: ['sh', '-eu', '-c', '''
@@ -826,7 +835,7 @@ pwan_trainer_b2_dll = custom_target(
 pwan_summary_b2_elf = custom_target(
   'PokewebPwanSummaryB2.elf',
   input: pwan_summary_b2_sources,
-  depend_files: pwan_runtime_depend_files,
+  depend_files: [pwan_runtime_depend_files, w2u_header_deps],
   output: 'PokewebPwanSummaryB2.elf',
   build_by_default: true,
   command: ['sh', '-eu', '-c', '''
@@ -928,7 +937,7 @@ pwan_summary_b2_dll = custom_target(
 pwan_misc_b2_elf = custom_target(
   'PokewebPwanMiscB2.elf',
   input: pwan_misc_b2_sources,
-  depend_files: pwan_runtime_depend_files,
+  depend_files: [pwan_runtime_depend_files, w2u_header_deps],
   output: 'PokewebPwanMiscB2.elf',
   build_by_default: true,
   command: ['sh', '-eu', '-c', '''
@@ -1173,7 +1182,7 @@ b2u_battle_log_elf = custom_target(
   'Black2UpgradeBattleLog.elf',
   input: [battle_log_cpp, battle_log_trampolines],
   output: 'Black2UpgradeBattleLog.elf',
-  depend_files: battle_log_headers,
+  depend_files: [battle_log_headers, w2u_header_deps],
   command: ['arm-none-eabi-g++', b2u_cpp_args, includes, '-o', '@OUTPUT@', '@INPUT@'],
 )
 
@@ -1226,7 +1235,7 @@ b2u_battle_log_summary_elf = custom_target(
   'Black2UpgradeBattleLogSummary.elf',
   input: battle_log_summary_cpp,
   output: 'Black2UpgradeBattleLogSummary.elf',
-  depend_files: battle_log_headers,
+  depend_files: [battle_log_headers, w2u_header_deps],
   command: ['arm-none-eabi-g++', b2u_cpp_args, includes, '-o', '@OUTPUT@', '@INPUT@'],
 )
 
@@ -1306,7 +1315,7 @@ foreach target : bw1_battle_log_targets
     battle_elf_name,
     input: [battle_log_cpp, battle_log_trampolines],
     output: battle_elf_name,
-    depend_files: battle_log_headers,
+    depend_files: [battle_log_headers, w2u_header_deps],
     command: ['arm-none-eabi-g++', target_args, includes, '-o', '@OUTPUT@', '@INPUT@'],
   )
   custom_target(
@@ -1341,7 +1350,7 @@ foreach target : bw1_battle_log_targets
     counter_elf_name,
     input: files('battle_log/w2u_pk5_battle_counters.cpp'),
     output: counter_elf_name,
-    depend_files: battle_log_headers,
+    depend_files: [battle_log_headers, w2u_header_deps],
     command: ['arm-none-eabi-g++', target_args, includes, '-o', '@OUTPUT@', '@INPUT@'],
   )
   custom_target(
@@ -1376,7 +1385,7 @@ foreach target : bw1_battle_log_targets
     summary_elf_name,
     input: battle_log_summary_cpp,
     output: summary_elf_name,
-    depend_files: battle_log_headers,
+    depend_files: [battle_log_headers, w2u_header_deps],
     command: ['arm-none-eabi-g++', target_args, includes, '-o', '@OUTPUT@', '@INPUT@'],
   )
   custom_target(
@@ -1428,11 +1437,11 @@ b2u_main_sources = [
 b2u_main_elf = custom_target(
   'Black2Upgrade.elf',
   input: b2u_main_sources,
-  depend_files: files(
+  depend_files: [files(
     'pokeweb_gameplay/w2u_terrain_texture_mappings.inc',
     'pokeweb_gameplay/w2u_battle_module_registry.inc',
     'pokeweb_gameplay/w2u_battle_module_api_entries.inc',
-  ),
+  ), w2u_header_deps],
   output: 'Black2Upgrade.elf',
   command: ['arm-none-eabi-g++', b2u_cpp_args, includes, '-o', '@OUTPUT@', '@INPUT@'],
 )
@@ -1507,7 +1516,7 @@ foreach module : b2u_nonresident_modules
     name + '.elf',
     input: module['sources'],
     output: name + '.elf',
-    depend_files: battle_log_headers,
+    depend_files: [battle_log_headers, w2u_header_deps],
     command: ['arm-none-eabi-g++', b2u_cpp_args, includes, '-o', '@OUTPUT@', '@INPUT@'],
   )
   dll = custom_target(
@@ -1577,7 +1586,7 @@ menu_evolution_b2_elf = custom_target(
   input: menu_evolution_cpp,
   output: 'MenuEvolutionB2.elf',
   build_by_default: true,
-  depend_files: menu_evolution_headers,
+  depend_files: [menu_evolution_headers, w2u_header_deps],
   command: ['arm-none-eabi-g++', b2u_cpp_args, includes, '-o', '@OUTPUT@', '@INPUT@'],
 )
 
