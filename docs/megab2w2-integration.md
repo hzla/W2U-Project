@@ -31,7 +31,7 @@ Licence and asset terms for contributed code and art are still open. Assets with
 | 1 | Baseline build on this branch + battle-harness smoke test | done |
 | 2a | Primal weathers (Primordial Sea, Desolate Land, Delta Stream) | done (White 2) |
 | 2b | Merged weather / terrain indicator | done (White 2) |
-| 3 | Abilities by group (Gen 8 / 9 and custom), terrain extras, Booster Energy | planned |
+| 3 | Abilities by group (Gen 8 / 9 and custom), terrain extras, Booster Energy | in progress (wave A + storage done) |
 | 4 | `w2anim` PWAN writer (tool-side; lives in the w2anim repository) | planned |
 | 5 | Mega extras (held-START toggle, Mega sound cues, HP-gauge Mega icon) | planned |
 | 6 | Fixes for differences found in shared abilities | planned |
@@ -117,3 +117,53 @@ task list (White 2; Black 2 places it without the slide and shows no strong-weat
 
 Headless checks: heavy rain + Electric, strong winds + Grassy, harsh sun + Psychic, Misty alone (singles); Double
 Battle with heavy rain + Electric Terrain: both command screens show both indicators and both party icons.
+
+## W2U fixes found during integration
+
+| Fix | Symptom |
+|---|---|
+| `GetFieldLowHeapID()` returns 0 for a missing heap | every terrain move hung in battles started without the field |
+| `HANDLER_ABILITY_POPUP_FLAG` = 0x800000 (native bit) | replaced Rough Skin / Aftermath / Mummy / Pickpocket / Poison Touch, contact-status abilities, Cheek Pouch, Innards Out, form abilities and the Mega form change showed no ability popup |
+| compile targets depend on the shared headers | a header edit left stale DLLs (custom targets without depfiles) |
+| `package_rpm_checked.py` rejects `__gnu_thumb1_case_*` | a jump-table switch packaged without error and hung the boot |
+| `CTRMapV-dirty.jar` via `files()` | Windows hosts could not configure |
+
+## Phase 3: abilities
+
+### Wave A: 51 hook-free abilities
+
+MegaB2W2's logic files are compiled as they are against their own engine headers
+(`src/pokeweb_gameplay/megab2w2/`: `battle.h`, `battle_events.h`, `ability_api.h`, `mb_ids.h`); the two sides meet
+only at the handler tables (`MB_<Logic>Handlers`, same `{event, handler}` layout), declared for the generated
+module API in `megab2w2/mb_ability_tables.h`. W2U's `W2U_MoveMakesContact` and move-record flags replace MegaB2W2's
+Long Reach wrapper and flag table. Modules (White 2 only, registry ids 23-26): `abilities/mb_power`,
+`mb_defense`, `mb_reactive`, `mb_entry`.
+
+Abilities: Neuroforce, Intrepid Sword, Dauntless Shield, Libero, Cotton Down, Mirror Armor, Steam Engine, Punk Rock,
+Ice Scales, Power Spot, Steely Spirit, Screen Cleaner, Perish Body, Wandering Spirit, Lingering Aroma, Pastel Veil,
+Curious Medicine, Transistor, Dragon's Maw, Rocky Payload, Sharpness, Fire Mane, Grim Neigh, As One (both), Thermal
+Exchange, Anger Shell, Purifying Salt, Well-Baked Body, Wind Rider, Guard Dog, Wind Power, Electromorphosis, Good as
+Gold, the four Ruin abilities, Supreme Overlord, Costar, Toxic Debris, Armor Tail, Earth Eater, Mind's Eye,
+Supersweet Syrup, Hospitality, Toxic Chain, Tera Shell, Spicy Spray, Eelevate, Aura Guard.
+
+Supporting changes: registry `extra_sources` (and the source check reads them), capacity / loader records 32,
+113 managed abilities, the ability enum completed (official IDs to 306, MegaB2W2 custom 307-314), 48 ESDB names,
+messages in bank 18 (1352-1396) and bank 19 (213-214).
+
+Headless checks so far: Perish Body; Sword of Ruin and Good as Gold (abilities above 255, below).
+
+### Abilities above 255
+
+W2U stored abilities in one byte (species data and each Pokemon), so no ability above 255 could be used; Gen 9
+species had placeholders (e.g. Gholdengo: Overgrow). Now (White 2):
+
+- species data: ability byte = low 8 bits, EV Yield bit 13 + slot = bit 8 (EV Yield uses bits 0-12; no species set
+  bits 13-15); `tools/mkdata` packs abilities up to 511;
+- Pokemon data: byte 0x42 bits 6-7 = bits 8-9 (vanilla uses bit 0 hidden ability, bit 1 N's Pokemon; byte 0x43 and
+  0x5E / 0x64-0x67 are taken by the battle log / PKHeX's probe); old saves read as before;
+- `w2u_ability_storage.cpp` decodes at `PML_PersonalGetParam` (re-implemented 1:1) and the four Pokemon parameter
+  get / set call sites; `w2u_ability_storage_ui.cpp` (UI companion) handles the PC box panel's display byte.
+
+Data: Gholdengo (Good as Gold) and Chien-Pao (Sword of Ruin) corrected; the other Gen 8 / 9 species with
+placeholder abilities still need their real ones. Pokeweb's battle harness writes player abilities itself (1-255);
+abilities above 255 are therefore checked on trainer Pokemon, which the game generates through the hooked path.
