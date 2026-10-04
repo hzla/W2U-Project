@@ -1,138 +1,222 @@
-# Pokémon White 2 Upgrade
-This repository aims to bring new features to the Generation V Pokémon game, Pokémon White 2. This should also work for Black 2, given the conditions are satisfied (proper symbols database, PMC port).
+# Pokémon White 2 Upgrade — Pokeweb
 
-> Migration branch note: the active build entrypoint is Meson plus CTRMap VFS,
-> not the old `ndstool` extraction/repack flow. See
-> `docs/pokeweb-migration-build.md` for current setup, build, and verification
-> commands.
+This Pokeweb-oriented fork builds an expanded US Pokémon White 2 (`IRDO`)
+ROM and provides a separate US Black 2 (`IREO`) runtime/data package. It uses
+Meson/Ninja, PMC RPM modules, and a source-tree CTRMap VFS. GNU Make is only a
+convenience wrapper; the old `make base`, `make tools`, and `ndstool` workflow
+does not apply.
 
-## Pokeweb Branch Changes
-This branch keeps the original W2U expansion goals, but it also carries several
-larger Pokeweb systems. Upstream review is easiest if these are treated as
-separate merge surfaces.
+## Current Scope
 
-### Black 2 Upgrade V1
-- The clean-US Black 2 expansion is a separate four-module target and does not
-  stage into the White 2 VFS. Its data package starts from clean `IREO` and is
-  installed transactionally by Pokeweb Serverless.
-- Build layout, compatibility rules, merge policy, commands, and validation
-  boundaries are documented in `docs/black2upgrade-v1.md`.
+- Expanded Pokémon data through National Dex **#1023**, plus selected regional,
+  Mega, and alternate forms; Fairy typing and expanded graphics/data tables.
+- Mega Evolution with battle selection, ability changes, and sprite refresh.
+- Gen 6/7 battle mechanics and incremental Gen 8/9 move-handler support.
+- Electric, Grassy, Misty, and Psychic Terrain effects with animated floor
+  textures and terrain indicators.
+- PWAN animated graphics, custom move-animation scripts, and SPA particles.
+- Overlay-scoped battle logging, individual Pokémon counters, and summary
+  integration; a White 2 single-NPC double-battle compatibility patch.
 
-### Gameplay DLL residency
-- `White2Upgrade.dll` remains resident because it patches ARM9 and owns the
-  battle mechanics and shared state.
-- Field-item code lives in `White2UpgradeField.dll`, Pokédex UI limit patches
-  in `White2UpgradePokedex.dll`, and PC/Hall of Fame/summary patches in
-  `White2UpgradeUI.dll`. Each is scoped only to the overlays that use it, so a
-  battle summary does not also load the unrelated field and Pokédex code.
-- The current split reduces the fixed resident W2U allocation from 87,096 to
-  82,828 bytes, leaving 4,268 more bytes available while a battle is active.
-  The summary-capable UI module occupies 2,128 fixed bytes while active, so the
-  split still saves 2,140 bytes when overlay 207 is open during battle.
+Expanded data is not a claim of complete modern-generation mechanics.
+The [Gen 8/9 progress ledger](docs/gen8-gen9-move-handler-progress.md) distinguishes
+focused emulator-tested handlers, native/reused effects that were only wired
+and build-checked, and pending work. Hard and doubles-dependent entries in that
+implementation batch remain deferred. Full gameplay, visual, lifecycle/stress,
+and Black 2 behavioral regression coverage is not implied.
 
-### PWAN animated Pokemon graphics
-- Runtime support lives in `src/pwan_animation/`. It builds three
-  overlay-scoped runtimes: `PokewebPwanSummaryW2.dll`,
-  `PokewebPwanBattleW2.dll`, and `PokewebPwanMiscW2.dll`. Together they contain
-  the summary, battle, evolution, egg hatch, and non-battle hooks for animated
-  Pokemon sprites without keeping unrelated PWAN code loaded.
-- `PokewebPwanSummaryB2.dll`, `PokewebPwanBattleB2.dll`, and
-  `PokewebPwanMiscB2.dll` are separate stock-US Black 2 (`IREO`) targets. They
-  share the archive/format implementation but use B2-specific hook assembly,
-  symbols, and code-layout addresses; Serverless bundles them without staging
-  them into the White 2 Upgrade VFS.
-- Runtime assets live in `assets/pokeweb_pwan/`: `config.bin` plus sparse
-  `NNN_front.pwan` and `NNN_back.pwan` files. `tools/pwan/build_pwan_narc.py`
-  packs them into `vfs/data/zz_pokeweb_pwan/pwan.narc`.
-- `config.bin` now uses the compact `PWNC` v3 layout: a small header plus
-  5-byte species/form rows with front/back flags and one paired asset index.
-  Species and forms absent from this table fall back to normal static graphics.
-- PWAN assets are packed into a single sparse NARC instead of the older loose
-  `vfs/data/pokeweb_pwan` runtime output. NARC member `0` is `config.bin`;
-  front and back animation members are addressed as `asset index * 2 + 1` and
-  `asset index * 2 + 2`.
-- Static fallback and form graphics are staged from `data/graphics/pokegra/`
-  and `data/graphics/pokegra_battle_extra/`; import, relocation, grounding,
-  form, icon, and Mega preview helpers live under `tools/pwan/`.
-- Start with `docs/pwan-animation-workflow.md`, `data/graphics/meson.build`,
-  and `src/pwan_animation/meson.build` when merging or auditing this system.
+Battle logging repurposes Wi-Fi/Pal Pad save blocks. Back up saves and read the
+[save-format and compatibility notes](docs/battle-log-save-format.md) before use.
 
-### New move animation assets
-- Visible battle animation changes are data authored in the move-animation VM
-  scripts and SPA particle archives, not C/C++. The routing hook is
-  `src/pokeweb_gameplay/w2u_move_animation_hooks.s`.
-- Move scripts are staged from `data/graphics/move_animations/` into archive
-  `a/0/6/5`; SPA particle archives are staged from `data/graphics/move_spas/`
-  into archive `a/0/0/6`. Both staging paths are wired in
-  `data/graphics/meson.build`.
-- The current generated Gen 6 move script range is `5_00000560.bin` through
-  `5_00000623.bin`, with matching custom SPA additions currently in the
-  `6_00000739.bin` through `6_00000783.bin` range.
-- Per-animation notes live in `data/graphics/move_animations/README.md` and
-  `data/graphics/move_spas/README.md`; broader editing references are in
-  `docs/moveanimation-spanotes.md`, `docs/spa-editing-reference.md`, and
-  `tools/import_move_animations_from_rom.py`.
+## Runtime Architecture
 
-### Mega Evolution
-- Core mechanics, action selection integration, battle state repair, native
-  Mega button behavior, and sprite-refresh synchronization live in
-  `src/pokeweb_gameplay/w2u_mega.cpp` and
-  `src/pokeweb_gameplay/w2u_mega_hooks.s`.
-- The visible transformation is still handled by the move-animation system:
-  `data/graphics/move_animations/5_00000622.bin` uses SPA assets
-  `data/graphics/move_spas/6_00000765.bin` through
-  `data/graphics/move_spas/6_00000771.bin`.
-- Mega item definitions and icons are spread across `data/items/`,
-  `tools/mkdata/enum/items.toml`, `assets/item_icons/icons/`,
-  `assets/item_icons/icon_palettes/`, `tools/item_icons/build_item_icon_patch.py`,
-  and `include/w2u_mega_native_button_assets.h`.
-- Mega form graphics share the PWAN and pokegra paths above, with preview/form
-  staging helpers in `tools/pwan/apply_mega_preview_low_ids.py`,
-  `tools/pwan/stage_form_battle_assets.py`, and
-  `tools/pwan/stage_form_icon_assets.py`.
+| Component | White 2 | Black 2 |
+| --- | --- | --- |
+| Resident core | `White2Upgrade.dll`: hooks, shared state, Mega Evolution, terrain graphics, registration dispatch, and native aliases | `Black2Upgrade.dll`: game-specific hooks and static mechanic registration |
+| Managed battle mechanics | On-demand grouped DLLs under `lib/w2u_battle/` | Same grouped sources linked statically; no child DLL loading |
+| Field, Pokédex, and menu code | Overlay-scoped `White2UpgradeField.dll`, `White2UpgradePokedex.dll`, and `White2UpgradeUI.dll` | Separate matching `Black2Upgrade*` companions |
+| PWAN graphics | Overlay-scoped Summary, Battle, Misc, and Trainer DLLs | Separate B2 builds with B2-specific hooks |
 
-### Move, ability, and item mechanics
-- Pokeweb gameplay extensions are grouped in `src/pokeweb_gameplay/`:
-  `w2u_moves.cpp`, `w2u_abilities.cpp`, `w2u_items.cpp`,
-  `w2u_field_effects.cpp`, `w2u_field_items.cpp`, plus the associated hook
-  assembly listed in `src/pokeweb_gameplay/meson.build`.
-- Public declarations and expanded enums are in `include/w2u_moves.h`,
-  `include/w2u_abilities.h`, `include/w2u_field_effects.h`,
-  `include/w2u_battle.h`, `include/Moves.h`, `include/Items.h`,
-  `include/species_ids.h`, `include/personal_data.h`, and
-  `include/type_constants.h`.
-- Data-side changes live mainly under `data/pml/`, `data/pml/moves/`,
-  `data/pml/types/`, `data/items/`, `data/text/system/`, and `data/trainers/`.
-  The mkdata enum inputs in `tools/mkdata/enum/` should be reviewed alongside
-  those data files.
+The [battle registry](src/pokeweb_gameplay/battle_modules/registry.json) currently
+defines **22 groups**, with 59 managed ability entries, 101 move entries,
+13 item entries, and subordinate field/side/position handlers. These are managed
+registrations, including updates to some vanilla mechanics—not total coverage
+counts. The registry generates the resident lookup, child API tables, Meson
+manifest, and Black 2 static resolver.
 
-## Current Features
-- Expanded Pokédex (currently up to 721).
-- Fairy type.
+White 2 loads a group when the engine registers one of its mechanic events,
+resolves its versioned `W2U_GetBattleModuleApi` export, and caches it for the
+battle. Multiple registrations reuse one handle. Children remain loaded until
+battle cleanup, rather than unloading when an originating event disappears.
+The resident loader has 24 fixed records and uses PMC's existing allocation
+and module services without a separate loader heap or NitroKernel runtime DLL.
+Native aliases stay resident. Temporary move registration does not guarantee
+that every move in a moveset is loaded before action-order queries.
 
-## Setup
-You will need the following tools to use this repository:
-- [arm-none-eabi-{as, gcc, ld}](https://developer.arm.com/downloads/-/gnu-rm).
-- [CTRMap (Community Edition)](https://github.com/kingdom-of-ds-hacking/CTRMap-CE/releases).
-- gcc
-- GNU Make (anything over 3.81).
-- Java 1.8
-- Python 3.4+
-- [ndstool (2.2.0)](https://github.com/devkitPro/ndstool)
-- A Linux environment (native or Windows Subsystem for Linux)
+White 2's PMC heap is patched to **164 KiB**. Use the generated stripped-build
+heap audit for the current budget; historical monolith sizes are not the
+current allocation. The audit is a static model, not a runtime fragmentation
+or load-peak guarantee. See [battle-module details](docs/w2u-battle-modules.md).
 
-## Installation
-### Initial Setup
-1) Clone this repository using `git clone --recursive git@github.com:PlatinumMaster/White2Upgrade.git`, then `cd White2Upgrade`. **Do not omit the recursive flag, or you will not have all of the submodules associated with this repository.**
-2) Download [CTRMap (Community Edition)](https://github.com/kingdom-of-ds-hacking/CTRMap-CE/releases), and put `CTRMap.jar` in `tools/CTRMap`, making the directory if it does not exist.
-3) Grab a fresh American Pokémon White 2 ROM (preferrably one with SHA256SUM `3e50aec3db401332175a5d2b5fe2a68ac1a05ec63995dba9d1506b1b51837446`), name it `IRDO.nds`, and place it in the root directory of the repository (i.e in the same folder as `Makefile`).
-4) Run `make tools` to build all of the tools associated.
-5) Run `make base` to prepare the ROM contents for the build.
+PWAN assets in `assets/pokeweb_pwan/` use the compact `PWNC` v3 config and are
+packed into `vfs/data/zz_pokeweb_pwan/pwan.narc`. Unconfigured Pokémon use native
+static graphics. The four W2 runtimes are `PokewebPwanSummaryW2.dll`,
+`PokewebPwanBattleW2.dll`, `PokewebPwanMiscW2.dll`, and
+`PokewebPwanTrainerW2.dll`; matching B2 targets are built separately.
+See the [PWAN workflow](docs/pwan-animation-workflow.md) and
+[memory-reduction notes](docs/pwan-memory-reduction.md).
 
-### Building
-Once the repository is setup, run `make -j$(nproc)`. If all goes well, you shall see `White2Upgrade.nds` at the end of your build.
+## Build Setup
+
+Required tools:
+
+- Git, Ninja, GNU Make, and a POSIX shell environment.
+- Python **3.11 or newer**, with packages from `requirements.txt`.
+- A working JDK with `java` available on `PATH`; the macOS system launcher
+  stub alone is not a JDK. `JAVA` can select another Java executable.
+- ARM embedded tools: `arm-none-eabi-gcc`, `arm-none-eabi-g++`,
+  `arm-none-eabi-as`, `arm-none-eabi-ld`, `arm-none-eabi-objcopy`,
+  `arm-none-eabi-nm`, and `arm-none-eabi-readelf`.
+
+Clone this fork and install the Python dependencies:
+
+```sh
+git clone --recurse-submodules https://github.com/hzla/W2U-Project.git
+cd W2U-Project
+python3 -m pip install -r requirements.txt
+cp White2Upgrade.cmproj.example White2Upgrade.cmproj
+```
+
+`include/swan` is the remaining Git submodule. ExtLib and NitroKernel sources
+are vendored at their existing include paths; their pinned upstream revisions
+and local portability changes are recorded in
+[native-dependencies.json](include/native-dependencies.json).
+Use the bundled `tools/CTRMap/CTRMapV-dirty.jar`, which contains this build's
+ROMBuilder/RPMTool changes; do not replace it with an arbitrary CTRMap release.
+
+Supply your own clean US ROM inputs. The current build expects:
+
+- A clean extracted White 2 VFS at `../IRDO_Extracted`.
+- Clean White 2 and Black 2 ROMs at `../Port-Pokeweb/cleanwhite2.nds` and
+  `../Port-Pokeweb/cleanblack2.nds` for targets that use clean-ROM inputs.
+- `White2Upgrade.cmproj` with `VFSBase: ../IRDO_Extracted` and
+  `VFSOverlay: vfs`.
+
+These sibling paths are current build assumptions, not files supplied by the
+repository. Several Meson targets reference them directly, so changing only
+the cmproj's `VFSBase` is not sufficient to relocate all inputs. The Black 2
+base path can be changed with `-Dblack2_base_rom=...`. A loose `IRDO.nds` in
+the repository root is not the primary input for the White 2 VFS build.
+
+`vfs/` is ignored build output. Start with an empty or absent directory; the
+build generates its overlay table, zone changes, assets, and patches from the
+clean `IRDO_Extracted` input and the project's asset and code sources. Unchanged
+retail resources are read directly from `VFSBase`.
+
+### White 2
+
+For a stripped build:
+
+```sh
+make meson
+python3 subprojects/meson-1.7.0/meson.py setup build-stripped \
+  --cross-file=meson/nitro.ini -Dstrip_rpms=true
+ninja -C build-stripped White2Upgrade.nds
+```
+
+`make meson` fetches the pinned Meson 1.7.0 tool. The ROM is written to
+`build-stripped/White2Upgrade.nds`. Subsequent builds only need the `ninja`
+command. Child battle DLLs are always stripped; `strip_rpms` also strips
+the generated core and companion RPMs while retaining diagnostic ELF files.
+
+For an unstripped development build, use `make configure` followed by `make`;
+the output is `build/White2Upgrade.nds`. Both build directories stage into the
+same source-tree `vfs/`, so do not build them concurrently. ROMBuilder defaults
+to a 4 GiB Java heap, configurable with `-Drombuilder_java_heap=6g`.
+
+The ROM finalizer validates FAT/digest/TWL ordering and adjusts oversized ROM
+headers. The post-512-MiB path is tested for the Pokeweb emulator deployment;
+stock hardware and arbitrary flashcart compatibility are not claimed.
+See [BUILD_ROM.md](BUILD_ROM.md) for full-build and fast data-test commands.
+
+### Black 2
+
+Black 2 is a separate clean-US `IREO` package, not a White 2 ROM with renamed
+DLLs. Its hooks, symbol database, metadata, and compatibility signatures are
+game-specific. Other regions and modified bases are not supported fresh-install
+targets. It does not package or load White 2's child mechanic DLLs.
+
+```sh
+ninja -C build-stripped src/black2upgrade-artifacts.stamp \
+  black2upgrade-release-artifacts.stamp
+```
+
+This stages runtime/compatibility/heap artifacts and the expansion-data package
+under `build-stripped/black2upgrade-artifacts/`. Pokeweb Serverless handles the
+installation and canonical Black 2 ROM workflow separately; this target does
+not itself build `Black2Upgrade.nds`.
+See [Black2Upgrade V1](docs/black2upgrade-v1.md) for installation, preservation,
+and verification requirements.
+
+## Verification and Contribution
+
+Run repository host tests and the source privacy check:
+
+```sh
+python3 -m unittest discover -s tools/tests
+python3 tools/check_source_privacy.py
+```
+
+PWAN's sanitizer-backed texture/config host tests additionally require
+`clang++` with AddressSanitizer and UndefinedBehaviorSanitizer:
+
+```sh
+python3 tools/pwan/test_runtime_memory.py
+```
+
+Useful configured-build checks:
+
+```sh
+ninja -C build-stripped src/stage_w2u_battle_modules.stamp \
+  src/white2upgrade-battle-heap-audit.json \
+  src/Black2Upgrade.dll src/black2upgrade-compatibility.json
+```
+
+Packaging checks cover registry consistency, child exports/imports, stripped
+RPMs, hook ownership, staged modules, and heap budgeting. Host tests are not
+emulator gameplay tests. Focused headless move-interaction tests use the separate
+Pokeweb Serverless harness; recorded per-move coverage and limitations are in
+the progress ledger. Do not refresh compatibility baselines just to hide a
+failing check.
+
+For new mechanics, prefer an existing cohesive module group, compose native
+effects where appropriate, and keep hooks/shared state resident. Update the
+registry and generated manifests together. See the
+[Gen 8/9 handler reference](docs/gen8-gen9-move-handler-reference.md) and
+[module architecture](docs/w2u-battle-modules.md).
+
+Source map:
+
+- Gameplay, Mega, terrain logic/graphics, and hooks: `src/pokeweb_gameplay/`.
+- PWAN graphics: `src/pwan_animation/`, `assets/pokeweb_pwan/`, `tools/pwan/`.
+- Pokémon/move/type data: `data/pml/`; items, text, and trainers: `data/`.
+- Move scripts and particles: `data/graphics/move_animations/` and
+  `data/graphics/move_spas/`; see their READMEs and the
+  [animation notes](docs/moveanimation-spanotes.md).
+- Terrain assets/mappings: `assets/move_backgrounds/terrains/` and the
+  [terrain-texture guide](docs/terrain-texture-mvp.md).
+- Battle-log/counter code: `src/battle_log/`; see the
+  [save format](docs/battle-log-save-format.md).
+- Single-NPC doubles patch: [scope and checks](docs/single-npc-double-battle-fix.md).
+- Build targets/staging: `meson.build`, `src/meson.build`, `data/meson.build`.
+
+Keep published documentation and generated reports free of host-specific
+paths and private identifiers. Report writers use `tools/pwan/report_paths.py`;
+the privacy check includes publishable files, submodules, and ZIP/JAR contents,
+but does not rewrite Git history or ignored build metadata.
 
 ## Creators
+
 - [PlatinumMaster](https://github.com/PlatinumMaster)
 - [Dararo](https://github.com/Paideieitor)
 - [BluRose](https://github.com/BluRosie)
@@ -142,6 +226,7 @@ Once the repository is setup, run `make -j$(nproc)`. If all goes well, you shall
 - [totally_anonymous](https://github.com/totallyanon)
 
 ## Credits
+
 - Log(n) - All supplied Gen 8 and Gen 9 move animations.
 - [Bond697](https://github.com/Bond697) - Initial Generation V research.
 - [KazoWAR](https://projectpokemon.org/home/forums/topic/33493-project-721/) - Project 721 (which this was based on).
