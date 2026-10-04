@@ -19,7 +19,7 @@ KIND_ENUM = {
 }
 
 EXPECTED_PRIMARY_COUNTS = {
-    "ability": 59,
+    "ability": 62,
     "move": 101,
     "item": 13,
 }
@@ -349,6 +349,10 @@ def render_meson(registry: dict) -> str:
         "abilities+field_effects": [
             "../w2u_abilities.cpp",
             "../w2u_field_effects.cpp",
+        ],
+        "abilities+strong_weather": [
+            "../w2u_abilities.cpp",
+            "../w2u_strong_weather.cpp",
         ],
         "items": ["../w2u_items.cpp"],
         "moves": ["../w2u_moves.cpp"],

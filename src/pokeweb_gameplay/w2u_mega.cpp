@@ -9,6 +9,7 @@
 #include "w2u_mega_native_button_assets.h"
 #include "personal_data.h"
 #include "w2u_platform.h"
+#include "w2u_strong_weather.h"
 #include "w2u_native_item_protection.h"
 
 #define W2U_ENABLE_MEGA_EVOLUTION 1
@@ -1173,6 +1174,9 @@ extern "C" void W2U_BattleState_OnBattleExit()
     W2U_AuraField_ResetBattleState();
     W2U_AbilityState_ResetBattleState();
     W2U_MoveState_ResetBattleState();
+#if !defined(W2U_TARGET_B2)
+    W2U_StrongWeather_Reset();
+#endif
 }
 
 u8 MegaSideForSlot(u8 battleSlot)
@@ -2521,6 +2525,12 @@ extern "C" void THUMB_BRANCH_LINK_ServerFlow_SetupBeforeFirstTurn_0x6E(
         W2U_AuraField_ResetBattleState();
         W2U_AbilityState_ResetBattleState();
         W2U_MoveState_ResetBattleState();
+#if !defined(W2U_TARGET_B2)
+        W2U_StrongWeather_Reset();
+#endif
+#if !defined(W2U_TARGET_B2)
+    W2U_StrongWeather_Reset();
+#endif
         RepairLeakedMegaForms(serverFlow ? serverFlow->pokeCon : nullptr);
         RepairLeakedBaseMegaAbilities(serverFlow ? serverFlow->pokeCon : nullptr);
     } else {

@@ -5,6 +5,7 @@ pokeweb_gameplay = files(
     'w2u_items.cpp',
     'w2u_mega.cpp',
     'w2u_moves.cpp',
+    'w2u_strong_weather.cpp',
     'w2u_terrain_indicator.cpp',
     'w2u_terrain_texture.cpp',
     'w2u_mega_hooks.s',
