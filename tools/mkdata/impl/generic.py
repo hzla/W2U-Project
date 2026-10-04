@@ -126,6 +126,20 @@ class GenericSerializer(Serializer):
                 resolve_hit(item) if index < len(field_names) and field_names[index] == 'Hit' else resolve(item)
                 for index, item in enumerate(IN_DATA_FLAT)
             ]
+            if Arguments.ex_parameters["format"] == 'personal':
+                # Abilities above 255: the ability byte keeps the low 8 bits and EV Yield bit 13 + slot holds bit 8
+                # (EV Yield uses bits 0-12). Decoded by THUMB_BRANCH_PML_PersonalGetParam (w2u_ability_storage.cpp).
+                personal_fields = list(structure.keys())   # flat layout: one value per field up to the tutors
+                ev_yield = personal_fields.index('EV Yield')
+                for slot, name in enumerate(('Primary Ability', 'Secondary Ability', 'Hidden Ability')):
+                    index = personal_fields.index(name)
+                    value = OUT_DATA_BUFFER[index]
+                    if value > 511:
+                        print(f'{Arguments.input}: {name} {value} is above 511, the personal data limit.')
+                        return 1
+                    if value > 255:
+                        OUT_DATA_BUFFER[index] = value & 0xFF
+                        OUT_DATA_BUFFER[ev_yield] |= 1 << (13 + slot)
             while len(format_string) != len(OUT_DATA_BUFFER):
                 format_string = format_string[:-1]
 

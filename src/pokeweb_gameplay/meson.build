@@ -1,5 +1,6 @@
 pokeweb_gameplay = files(
     'w2u_abilities.cpp',
+    'w2u_ability_storage.cpp',
     'w2u_battle_module_loader.cpp',
     'w2u_field_effects.cpp',
     'w2u_items.cpp',
@@ -22,6 +23,7 @@ pokeweb_field = files(
 )
 
 pokeweb_ui = files(
+    'w2u_ability_storage_ui.cpp',
     'w2u_mega_summary_hooks.s',
 )
 
