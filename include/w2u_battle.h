@@ -68,7 +68,7 @@ typedef u32 BattleStyle;
 #define TURNFLAG_MOVED 0x0C
 #define TURNFLAG_USINGFLING 0x0F
 
-#define HANDLER_ABILITY_POPUP_FLAG 0x400000
+#define HANDLER_ABILITY_POPUP_FLAG 0x800000  // native handlers set 4 << 21 (e.g. Rough Skin, ov167 0x21BF742)
 
 #define BATTLE_MEGA_SYNC_MSGID 1153
 #define BATTLE_MEGA_EVOLVE_MSGID 1156
