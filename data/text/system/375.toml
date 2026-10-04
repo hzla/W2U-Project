@@ -989,135 +989,896 @@ text = [
 
 [msg.section_0.entries.165]
 text = [
-  "Aroma Veil description.$",
+  "Protects allies from moves\n",
+  "that limit move choice.$",
 ]
 
 [msg.section_0.entries.166]
 text = [
-  "Flower Veil description.$",
+  "Ally Grass types' stats\n",
+  "can't be lowered.$",
 ]
 
 [msg.section_0.entries.167]
 text = [
-  "Cheek Pouch description.$",
+  "Restores HP as well when\n",
+  "the Pokémon eats a Berry.$",
 ]
 
 [msg.section_0.entries.168]
 text = [
-  "Protean description.$",
+  "Becomes the type of the\n",
+  "move it uses.$",
 ]
 
 [msg.section_0.entries.169]
 text = [
-  "Fur Coat description.$",
+  "Halves damage from physical\n",
+  "moves.$",
 ]
 
 [msg.section_0.entries.170]
 text = [
-  "Magician description.$",
+  "Steals the item of a\n",
+  "Pokémon it hits.$",
 ]
 
 [msg.section_0.entries.171]
 text = [
-  "Bulletproof description.$",
+  "Protects the Pokémon from\n",
+  "some ball and bomb moves.$",
 ]
 
 [msg.section_0.entries.172]
 text = [
-  "Competitive description.$",
+  "Boosts the Sp. Atk stat\n",
+  "when a stat is lowered.$",
 ]
 
 [msg.section_0.entries.173]
 text = [
-  "Strong Jaw description.$",
+  "Powers up biting moves.$",
 ]
 
 [msg.section_0.entries.174]
 text = [
-  "Refrigerate description.$",
+  "Normal-type moves become\n",
+  "Ice-type moves.$",
 ]
 
 [msg.section_0.entries.175]
 text = [
-  "Sweet Veil description.$",
+  "It and its allies can't\n",
+  "fall asleep.$",
 ]
 
 [msg.section_0.entries.176]
 text = [
-  "Stance Change description.$",
+  "Changes form depending on\n",
+  "how it battles.$",
 ]
 
 [msg.section_0.entries.177]
 text = [
-  "Gale Wings description.$",
+  "Gives priority to Flying-\n",
+  "type moves.$",
 ]
 
 [msg.section_0.entries.178]
 text = [
-  "Mega Launcher description.$",
+  "Powers up aura and pulse\n",
+  "moves.$",
 ]
 
 [msg.section_0.entries.179]
 text = [
-  "Grass Pelt description.$",
+  "Boosts the Defense stat in\n",
+  "Grassy Terrain.$",
 ]
 
 [msg.section_0.entries.180]
 text = [
-  "Symbiosis description.$",
+  "The Pokémon can pass an\n",
+  "item to an ally.$",
 ]
 
 [msg.section_0.entries.181]
 text = [
-  "Tough Claws description.$",
+  "Powers up moves that make\n",
+  "direct contact.$",
 ]
 
 [msg.section_0.entries.182]
 text = [
-  "Pixilate description.$",
+  "Normal-type moves become\n",
+  "Fairy-type moves.$",
 ]
 
 [msg.section_0.entries.183]
 text = [
-  "Gooey description.$",
+  "Contact with it lowers the\n",
+  "attacker's Speed.$",
 ]
 
 [msg.section_0.entries.184]
 text = [
-  "Aerilate description.$",
+  "Normal-type moves become\n",
+  "Flying-type moves.$",
 ]
 
 [msg.section_0.entries.185]
 text = [
-  "Parental Bond description.$",
+  "Parent and child attack\n",
+  "together.$",
 ]
 
 [msg.section_0.entries.186]
 text = [
-  "Dark Aura description.$",
+  "Powers up each Pokémon’s\n",
+  "Dark-type moves.$",
 ]
 
 [msg.section_0.entries.187]
 text = [
-  "Fairy Aura description.$",
+  "Powers up each Pokémon’s\n",
+  "Fairy-type moves.$",
 ]
 
 [msg.section_0.entries.188]
 text = [
-  "Aura Break description.$",
+  "The effects of “Aura”\n",
+  "Abilities are reversed.$",
 ]
 
 [msg.section_0.entries.189]
 text = [
-  "Primordial Sea description.$",
+  "Heavy rain that stops Fire-\n",
+  "type attacks.$",
 ]
 
 [msg.section_0.entries.190]
 text = [
-  "Desolate Land description.$",
+  "Extreme sun that stops\n",
+  "Water-type attacks.$",
 ]
 
 [msg.section_0.entries.191]
 text = [
-  "Delta Stream description.$",
+  "Strong winds that protect\n",
+  "Flying types.$",
+]
+
+[msg.section_0.entries.192]
+text = [
+  "Boosts the Defense stat\\n",
+  "when hit by an attack.$",
+]
+
+[msg.section_0.entries.193]
+text = [
+  "Switches out when its HP\\n",
+  "drops to half.$",
+]
+
+[msg.section_0.entries.194]
+text = [
+  "Flees when its HP drops to\\n",
+  "half or less.$",
+]
+
+[msg.section_0.entries.195]
+text = [
+  "Defense rises sharply when\\n",
+  "hit by Water.$",
+]
+
+[msg.section_0.entries.196]
+text = [
+  "Always lands critical hits\\n",
+  "on poisoned foes.$",
+]
+
+[msg.section_0.entries.197]
+text = [
+  "Breaks its shell at half HP\\n",
+  "and turns fierce.$",
+]
+
+[msg.section_0.entries.198]
+text = [
+  "Doubles damage to a foe\\n",
+  "that just switched in.$",
+]
+
+[msg.section_0.entries.199]
+text = [
+  "Halves Fire damage, boosts\\n",
+  "Water, can't burn.$",
+]
+
+[msg.section_0.entries.200]
+text = [
+  "Powers up Steel-type moves.$",
+]
+
+[msg.section_0.entries.201]
+text = [
+  "Sp. Atk rises when a hit\\n",
+  "drops it below half HP.$",
+]
+
+[msg.section_0.entries.202]
+text = [
+  "Boosts the Pokémon’s Speed\\n",
+  "stat in a hailstorm.$",
+]
+
+[msg.section_0.entries.203]
+text = [
+  "Its moves never make\\n",
+  "contact.$",
+]
+
+[msg.section_0.entries.204]
+text = [
+  "All sound-based moves\\n",
+  "become Water-type moves.$",
+]
+
+[msg.section_0.entries.205]
+text = [
+  "Gives priority to a healing\\n",
+  "move.$",
+]
+
+[msg.section_0.entries.206]
+text = [
+  "Normal moves become\\n",
+  "Electric and get stronger.$",
+]
+
+[msg.section_0.entries.207]
+text = [
+  "Doubles its Speed on\\n",
+  "Electric Terrain.$",
+]
+
+[msg.section_0.entries.208]
+text = [
+  "Forms a strong school while\\n",
+  "its HP is high.$",
+]
+
+[msg.section_0.entries.209]
+text = [
+  "Its disguise blocks one\\n",
+  "attack per battle.$",
+]
+
+[msg.section_0.entries.210]
+text = [
+  "Its bond grows stronger\\n",
+  "when it KOs a foe.$",
+]
+
+[msg.section_0.entries.211]
+text = [
+  "Changes to Complete Forme\\n",
+  "at half HP.$",
+]
+
+[msg.section_0.entries.212]
+text = [
+  "Can poison Steel and Poison\\n",
+  "types.$",
+]
+
+[msg.section_0.entries.213]
+text = [
+  "Always drowsy, yet it can\\n",
+  "still attack.$",
+]
+
+[msg.section_0.entries.214]
+text = [
+  "Foes can't use priority\\n",
+  "moves on it.$",
+]
+
+[msg.section_0.entries.215]
+text = [
+  "Hurts its finisher by the\\n",
+  "HP it had left.$",
+]
+
+[msg.section_0.entries.216]
+text = [
+  "Copies dance moves used by\\n",
+  "others.$",
+]
+
+[msg.section_0.entries.217]
+text = [
+  "Powers up ally Pokémon’s\\n",
+  "special moves.$",
+]
+
+[msg.section_0.entries.218]
+text = [
+  "Halves contact damage,\\n",
+  "doubles Fire damage.$",
+]
+
+[msg.section_0.entries.219]
+text = [
+  "Foes can't use priority\\n",
+  "moves on it.$",
+]
+
+[msg.section_0.entries.220]
+text = [
+  "Sp. Atk rises each time a\\n",
+  "Pokémon faints.$",
+]
+
+[msg.section_0.entries.221]
+text = [
+  "Contact with it lowers the\\n",
+  "attacker's Speed.$",
+]
+
+[msg.section_0.entries.222]
+text = [
+  "The Pokémon copies the\\n",
+  "Ability of a defeated ally.$",
+]
+
+[msg.section_0.entries.223]
+text = [
+  "The Pokémon copies the\\n",
+  "Ability of a defeated ally.$",
+]
+
+[msg.section_0.entries.224]
+text = [
+  "Raises its best stat each\\n",
+  "time it KOs a foe.$",
+]
+
+[msg.section_0.entries.225]
+text = [
+  "Its type matches the memory\\n",
+  "disc it holds.$",
+]
+
+[msg.section_0.entries.226]
+text = [
+  "Sets Electric Terrain when\\n",
+  "it enters battle.$",
+]
+
+[msg.section_0.entries.227]
+text = [
+  "Sets Psychic Terrain when\\n",
+  "it enters battle.$",
+]
+
+[msg.section_0.entries.228]
+text = [
+  "Sets Misty Terrain when it\\n",
+  "enters battle.$",
+]
+
+[msg.section_0.entries.229]
+text = [
+  "Sets Grassy Terrain when it\\n",
+  "enters battle.$",
+]
+
+[msg.section_0.entries.230]
+text = [
+  "Others can't lower its\\n",
+  "stats.$",
+]
+
+[msg.section_0.entries.231]
+text = [
+  "Takes less damage while its\\n",
+  "HP is full.$",
+]
+
+[msg.section_0.entries.232]
+text = [
+  "Weakens super-effective\\n",
+  "attacks on it.$",
+]
+
+[msg.section_0.entries.233]
+text = [
+  "Powers up moves that are\\n",
+  "super effective.$",
+]
+
+[msg.section_0.entries.234]
+text = [
+  "Raises its Attack when it\\n",
+  "enters battle.$",
+]
+
+[msg.section_0.entries.235]
+text = [
+  "Raises its Defense when it\\n",
+  "enters battle.$",
+]
+
+[msg.section_0.entries.236]
+text = [
+  "Becomes the type of the\\n",
+  "move it uses.$",
+]
+
+[msg.section_0.entries.237]
+text = [
+  "Fetches the first Poké Ball\\n",
+  "that failed.$",
+]
+
+[msg.section_0.entries.238]
+text = [
+  "When hit, lowers everyone\\n",
+  "else's Speed.$",
+]
+
+[msg.section_0.entries.239]
+text = [
+  "Ignores Abilities and moves\\n",
+  "that redirect.$",
+]
+
+[msg.section_0.entries.240]
+text = [
+  "Bounces back stat-lowering\\n",
+  "effects.$",
+]
+
+[msg.section_0.entries.241]
+text = [
+  "Catches prey with Surf and\\n",
+  "spits it when hit.$",
+]
+
+[msg.section_0.entries.242]
+text = [
+  "Ignores Abilities and moves\\n",
+  "that redirect.$",
+]
+
+[msg.section_0.entries.243]
+text = [
+  "Speed rises drastically\\n",
+  "when hit by Fire or Water.$",
+]
+
+[msg.section_0.entries.244]
+text = [
+  "Stronger sound moves;\\n",
+  "halves sound damage.$",
+]
+
+[msg.section_0.entries.245]
+text = [
+  "Whips up a sandstorm when\\n",
+  "it is hit.$",
+]
+
+[msg.section_0.entries.246]
+text = [
+  "Halves damage from special\\n",
+  "moves.$",
+]
+
+[msg.section_0.entries.247]
+text = [
+  "Ripens Berries and doubles\\n",
+  "their effect.$",
+]
+
+[msg.section_0.entries.248]
+text = [
+  "Its ice head takes one\\n",
+  "physical hit.$",
+]
+
+[msg.section_0.entries.249]
+text = [
+  "Just being next to the\\n",
+  "Pokémon powers up moves.$",
+]
+
+[msg.section_0.entries.250]
+text = [
+  "Its type changes with the\\n",
+  "terrain.$",
+]
+
+[msg.section_0.entries.251]
+text = [
+  "Removes screens when it\\n",
+  "enters battle.$",
+]
+
+[msg.section_0.entries.252]
+text = [
+  "Powers up ally Pokémon’s\\n",
+  "Steel-type moves.$",
+]
+
+[msg.section_0.entries.253]
+text = [
+  "Contact makes both faint in\\n",
+  "three turns.$",
+]
+
+[msg.section_0.entries.254]
+text = [
+  "Swaps Abilities with a foe\\n",
+  "that touches it.$",
+]
+
+[msg.section_0.entries.255]
+text = [
+  "Boosts Attack but locks it\\n",
+  "into one move.$",
+]
+
+[msg.section_0.entries.256]
+text = [
+  "Nullifies all other\\n",
+  "Abilities while it is out.$",
+]
+
+[msg.section_0.entries.257]
+text = [
+  "It and its allies can't be\\n",
+  "poisoned.$",
+]
+
+[msg.section_0.entries.258]
+text = [
+  "Changes mode at the end of\\n",
+  "each turn.$",
+]
+
+[msg.section_0.entries.259]
+text = [
+  "Enables the Pokémon to move\\n",
+  "first occasionally.$",
+]
+
+[msg.section_0.entries.260]
+text = [
+  "Contact moves hit through\\n",
+  "protection.$",
+]
+
+[msg.section_0.entries.261]
+text = [
+  "Resets allies' stat changes\\n",
+  "on entry.$",
+]
+
+[msg.section_0.entries.262]
+text = [
+  "Powers up Electric-type\\n",
+  "moves.$",
+]
+
+[msg.section_0.entries.263]
+text = [
+  "Powers up Dragon-type\\n",
+  "moves.$",
+]
+
+[msg.section_0.entries.264]
+text = [
+  "Raises its Attack when it\\n",
+  "KOs a foe.$",
+]
+
+[msg.section_0.entries.265]
+text = [
+  "Raises its Sp. Atk when it\\n",
+  "KOs a foe.$",
+]
+
+[msg.section_0.entries.266]
+text = [
+  "Has both Unnerve and\\n",
+  "Chilling Neigh.$",
+]
+
+[msg.section_0.entries.267]
+text = [
+  "Has both Unnerve and Grim\\n",
+  "Neigh.$",
+]
+
+[msg.section_0.entries.268]
+text = [
+  "Contact passes this Ability\\n",
+  "to the attacker.$",
+]
+
+[msg.section_0.entries.269]
+text = [
+  "Sets Grassy Terrain when it\\n",
+  "is hit.$",
+]
+
+[msg.section_0.entries.270]
+text = [
+  "Fire hits raise Attack; it\\n",
+  "can't be burned.$",
+]
+
+[msg.section_0.entries.271]
+text = [
+  "At half HP, trades defenses\\n",
+  "for offense.$",
+]
+
+[msg.section_0.entries.272]
+text = [
+  "Can't get statuses; halves\\n",
+  "Ghost damage.$",
+]
+
+[msg.section_0.entries.273]
+text = [
+  "Fire moves sharply raise\\n",
+  "its Defense instead.$",
+]
+
+[msg.section_0.entries.274]
+text = [
+  "Wind moves and Tailwind\\n",
+  "raise its Attack.$",
+]
+
+[msg.section_0.entries.275]
+text = [
+  "Intimidate boosts it; it\\n",
+  "can't be forced out.$",
+]
+
+[msg.section_0.entries.276]
+text = [
+  "Powers up Rock-type moves.$",
+]
+
+[msg.section_0.entries.277]
+text = [
+  "Wind moves charge its next\\n",
+  "Electric move.$",
+]
+
+[msg.section_0.entries.278]
+text = [
+  "Becomes its Hero Form when\\n",
+  "it switches out.$",
+]
+
+[msg.section_0.entries.279]
+text = [
+  "Hides in an ally Dondozo\\n",
+  "and gives orders.$",
+]
+
+[msg.section_0.entries.280]
+text = [
+  "Taking damage charges its\\n",
+  "next Electric move.$",
+]
+
+[msg.section_0.entries.281]
+text = [
+  "Sun or Booster Energy raise\\n",
+  "its best stat.$",
+]
+
+[msg.section_0.entries.282]
+text = [
+  "Electric Terrain or Booster\\n",
+  "Energy boost it.$",
+]
+
+[msg.section_0.entries.283]
+text = [
+  "Immune to other Pokémon's\\n",
+  "status moves.$",
+]
+
+[msg.section_0.entries.284]
+text = [
+  "Lowers the Sp. Atk of all\\n",
+  "other Pokémon.$",
+]
+
+[msg.section_0.entries.285]
+text = [
+  "Lowers the Defense of all\\n",
+  "other Pokémon.$",
+]
+
+[msg.section_0.entries.286]
+text = [
+  "Lowers the Attack of all\\n",
+  "other Pokémon.$",
+]
+
+[msg.section_0.entries.287]
+text = [
+  "Lowers the Sp. Def of all\\n",
+  "other Pokémon.$",
+]
+
+[msg.section_0.entries.288]
+text = [
+  "Sets sun on entry; sun\\n",
+  "boosts its Attack.$",
+]
+
+[msg.section_0.entries.289]
+text = [
+  "Sets Electric Terrain; it\\n",
+  "boosts its Sp. Atk.$",
+]
+
+[msg.section_0.entries.290]
+text = [
+  "Copies the stat boosts its\\n",
+  "foes get.$",
+]
+
+[msg.section_0.entries.291]
+text = [
+  "Eats a Berry again at the\\n",
+  "next turn's end.$",
+]
+
+[msg.section_0.entries.292]
+text = [
+  "Powers up slicing moves.$",
+]
+
+[msg.section_0.entries.293]
+text = [
+  "Stronger for each fainted\\n",
+  "party member.$",
+]
+
+[msg.section_0.entries.294]
+text = [
+  "Copies an ally's stat\\n",
+  "changes on entry.$",
+]
+
+[msg.section_0.entries.295]
+text = [
+  "Physical hits scatter Toxic\\n",
+  "Spikes.$",
+]
+
+[msg.section_0.entries.296]
+text = [
+  "Foes can't use priority\\n",
+  "moves on its side.$",
+]
+
+[msg.section_0.entries.297]
+text = [
+  "Ground moves restore its HP\\n",
+  "instead.$",
+]
+
+[msg.section_0.entries.298]
+text = [
+  "Status moves go last but\\n",
+  "ignore Abilities.$",
+]
+
+[msg.section_0.entries.299]
+text = [
+  "Ignores evasion; Normal and\\n",
+  "Fighting hit Ghosts.$",
+]
+
+[msg.section_0.entries.300]
+text = [
+  "Lowers foes' evasion when\\n",
+  "it first enters.$",
+]
+
+[msg.section_0.entries.301]
+text = [
+  "Restores an ally's HP when\\n",
+  "it enters battle.$",
+]
+
+[msg.section_0.entries.302]
+text = [
+  "Its moves may badly poison\\n",
+  "the target.$",
+]
+
+[msg.section_0.entries.303]
+text = [
+  "Its mask shines and raises\\n",
+  "one of its stats.$",
+]
+
+[msg.section_0.entries.304]
+text = [
+  "Enters battle in its\\n",
+  "Terastal Form.$",
+]
+
+[msg.section_0.entries.305]
+text = [
+  "At full HP, every hit is\\n",
+  "not very effective.$",
+]
+
+[msg.section_0.entries.306]
+text = [
+  "Clears weather and terrain\\n",
+  "in Stellar Form.$",
+]
+
+[msg.section_0.entries.307]
+text = [
+  "Targets it poisons also\\n",
+  "become confused.$",
+]
+
+[msg.section_0.entries.308]
+text = [
+  "Contact moves hit through\\n",
+  "protection at 1/4.$",
+]
+
+[msg.section_0.entries.309]
+text = [
+  "Normal moves become Dragon\\n",
+  "and get stronger.$",
+]
+
+[msg.section_0.entries.310]
+text = [
+  "Its moves act as if the sun\\n",
+  "were harsh.$",
+]
+
+[msg.section_0.entries.311]
+text = [
+  "Burns the attacker when it\\n",
+  "takes damage.$",
+]
+
+[msg.section_0.entries.312]
+text = [
+  "Floats; KOs raise its\\n",
+  "highest stat.$",
+]
+
+[msg.section_0.entries.313]
+text = [
+  "Powers up its Fire-type\\n",
+  "moves by 50%.$",
+]
+
+[msg.section_0.entries.314]
+text = [
+  "Halves damage from contact\\n",
+  "moves.$",
 ]
