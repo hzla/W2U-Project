@@ -26425,3 +26425,129 @@ Symbols:
   - Name: CommonScreenEffect
     Segment: 0x1F
     Address: 0x6898E55
+  - Name: BTL_MakeSickCont
+    Segment: 0x1D
+    Address: 0x21BD4C5
+  - Name: Battle_ExpandPos
+    Segment: 0x1D
+    Address: 0x21ABAE9
+  - Name: Battle_GetMonPos
+    Segment: 0x1D
+    Address: 0x21ABB91
+  - Name: CheckCondition
+    Segment: 0x1D
+    Address: 0x21BBB05
+  - Name: CommonAbilityCureStatus
+    Segment: 0x1D
+    Address: 0x21BEF45
+  - Name: CommonAbilityCureStatusCore
+    Segment: 0x1D
+    Address: 0x21BEF65
+  - Name: GetAdditionalConditionFlag
+    Segment: 0x1D
+    Address: 0x21BB41D
+  - Name: GetBattleMon
+    Segment: 0x1D
+    Address: 0x21AB875
+  - Name: GetBattleMonStatus
+    Segment: 0x1D
+    Address: 0x21BBAE9
+  - Name: GetPartyData
+    Segment: 0x1D
+    Address: 0x219D409
+  - Name: GetWeather
+    Segment: 0x1D
+    Address: 0x21ABE09
+  - Name: HandlerAddStatusFailedCommon
+    Segment: 0x1D
+    Address: 0x21BEF35
+  - Name: HandlerCommonGuardStatus
+    Segment: 0x1D
+    Address: 0x21BEEB1
+  - Name: HandlerInsomniaYawnCheck
+    Segment: 0x1D
+    Address: 0x21BECC9
+  - Name: HandlerIntimidateMemberIn
+    Segment: 0x1D
+    Address: 0x21BDE5D
+  - Name: HandlerKeenEyeCheck
+    Segment: 0x1D
+    Address: 0x21BEAA9
+  - Name: HandlerKeenEyeGuard
+    Segment: 0x1D
+    Address: 0x21BEAB9
+  - Name: HandlerLevitate
+    Segment: 0x1D
+    Address: 0x21C045D
+  - Name: HandlerLevitateAddImmunity
+    Segment: 0x1D
+    Address: 0x21C0485
+  - Name: HandlerLevitateTurnCheck
+    Segment: 0x1D
+    Address: 0x21C04D5
+  - Name: HandlerScrappy
+    Segment: 0x1D
+    Address: 0x21C03B1
+  - Name: HandlerSuctionCups
+    Segment: 0x1D
+    Address: 0x21C0DC9
+  - Name: HandlerTargetsContain
+    Segment: 0x1D
+    Address: 0x21CDE79
+  - Name: HandlerWaterVeil
+    Segment: 0x1D
+    Address: 0x21BED6D
+  - Name: HandlerWaterVeilActionEnd
+    Segment: 0x1D
+    Address: 0x21BED91
+  - Name: HandlerWaterVeilCureStatus
+    Segment: 0x1D
+    Address: 0x21BED81
+  - Name: IsAllyMonID
+    Segment: 0x1D
+    Address: 0x219D341
+  - Name: ItemSwapBlocked
+    Segment: 0x1D
+    Address: 0x21CDF69
+  - Name: MakeConditionParamPermanent
+    Segment: 0x1D
+    Address: 0x21CE255
+  - Name: PML_MoveGetSickCont
+    Segment: 0x0
+    Address: 0x20214DD
+  - Name: PokeTypePair_HasType
+    Segment: 0x1D
+    Address: 0x21CE5A5
+  - Name: ServerEvent_GetMovePriority
+    Segment: 0x1D
+    Address: 0x21A03C1
+  - Name: SideEffect_IsActive
+    Segment: 0x1D
+    Address: 0x21C6151
+  - Name: sub_21BD56C
+    Segment: 0x1D
+    Address: 0x21BD56D
+  - Name: CommonDamageRecoverCheck
+    Segment: 0x1D
+    Address: 0x21C0111
+  - Name: CommonTypeRecoverHP
+    Segment: 0x1D
+    Address: 0x21C0145
+  - Name: CommonTypeNoEffectRankUp
+    Segment: 0x1D
+    Address: 0x21C01D5
+  - Name: IsMonFullHP
+    Segment: 0x1D
+    Address: 0x21BB389
+  - Name: GetBattleMonStat
+    Segment: 0x1D
+    Address: 0x21BB1F5
+  - Name: GetPokeType
+    Segment: 0x1D
+    Address: 0x21BB03D
+  - Name: PokeTypePair_MakePure
+    Segment: 0x1D
+    Address: 0x21CE571
+  - Name: sub_21ABF54
+    Segment: 0x1D
+    Address: 0x21ABF55
