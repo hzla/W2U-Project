@@ -1418,7 +1418,6 @@ b2u_main_sources = [
   files('pokeweb_gameplay/w2u_items.cpp'),
   files('pokeweb_gameplay/w2u_mega.cpp'),
   files('pokeweb_gameplay/w2u_moves.cpp'),
-  files('pokeweb_gameplay/w2u_strong_weather.cpp'),
   files('pokeweb_gameplay/w2u_terrain_indicator.cpp'),
   files('pokeweb_gameplay/w2u_terrain_texture.cpp'),
   files('../include/util/filesystem.cpp'),

@@ -10,16 +10,7 @@
 
 #define W2U_STRONG_WEATHER_CALL(type, address) ((type)(address))
 
-#if defined(W2U_TARGET_B2)
-// Not mapped for Black 2 (see the header): the tables exist for the static module resolver and do nothing.
-extern "C" void HandlerStrongWeatherUnmapped(BattleEventItem*, ServerFlow*, u32, u32*) {}
-BattleEventHandlerTableEntry DeltaStreamHandlers[W2U_DELTA_STREAM_HANDLER_COUNT] = {
-    {EVENT_SWITCH_IN, HandlerStrongWeatherUnmapped}};
-BattleEventHandlerTableEntry PrimordialSeaHandlers[W2U_PRIMORDIAL_SEA_HANDLER_COUNT] = {
-    {EVENT_SWITCH_IN, HandlerStrongWeatherUnmapped}};
-BattleEventHandlerTableEntry DesolateLandHandlers[W2U_DESOLATE_LAND_HANDLER_COUNT] = {
-    {EVENT_SWITCH_IN, HandlerStrongWeatherUnmapped}};
-#else
+#if !defined(W2U_TARGET_B2)   // White 2 only (registry "white2_only")
 
 namespace {
 

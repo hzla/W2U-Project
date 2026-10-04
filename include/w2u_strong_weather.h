@@ -2,8 +2,8 @@
 
 // Strong weathers: Delta Stream (strong winds), Primordial Sea (heavy rain), Desolate Land (extremely harsh sun).
 // Ported from MegaB2W2 (StrongWeather.cpp / WeatherView.cpp). White 2 only on this branch: the hook sites and
-// the W2U_ADDR_STRONG_WEATHER_* anchors below have not been mapped for Black 2, so a Black 2 build gets one-entry
-// no-op handler tables (the abilities do nothing there) and none of the hooks.
+// the W2U_ADDR_STRONG_WEATHER_* anchors below have not been mapped for Black 2; the battle module is
+// "white2_only" in the registry, so Black 2 builds neither the module nor this code.
 //
 // Server: one strong weather at a time, kept up by the Pokemon holding its ability. A holder entering starts it
 // and replaces any weather (no end text); it ends when no holder of the active kind remains. While one is active,
@@ -65,20 +65,16 @@ enum W2UStrongWeatherKind : u32 {
 #define W2U_ADDR_STRONG_WEATHER_EFFECT_BUSY              0x021DF829u  // ov168: nonzero while an effect runs
 #define W2U_ADDR_STRONG_WEATHER_VIEW_TABLE               0x021D6F48u  // ov167 data: {u16 stdMsg, u16 effect} per weather 0-4
 
-#if defined(W2U_TARGET_B2)
-#define W2U_DELTA_STREAM_HANDLER_COUNT 1
-#define W2U_PRIMORDIAL_SEA_HANDLER_COUNT 1
-#define W2U_DESOLATE_LAND_HANDLER_COUNT 1
-#else
+#if !defined(W2U_TARGET_B2)
 #define W2U_DELTA_STREAM_HANDLER_COUNT 7
 #define W2U_PRIMORDIAL_SEA_HANDLER_COUNT 8
 #define W2U_DESOLATE_LAND_HANDLER_COUNT 8
-#endif
 
 // Ability handler tables (src/pokeweb_gameplay/w2u_strong_weather.cpp; battle module abilities/strong_weather).
 extern BattleEventHandlerTableEntry DeltaStreamHandlers[W2U_DELTA_STREAM_HANDLER_COUNT];
 extern BattleEventHandlerTableEntry PrimordialSeaHandlers[W2U_PRIMORDIAL_SEA_HANDLER_COUNT];
 extern BattleEventHandlerTableEntry DesolateLandHandlers[W2U_DESOLATE_LAND_HANDLER_COUNT];
+#endif
 
 extern "C" {
 // Resident state (core); battle-module children call these instead of touching storage directly.
