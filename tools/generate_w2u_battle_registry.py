@@ -19,7 +19,7 @@ KIND_ENUM = {
 }
 
 EXPECTED_PRIMARY_COUNTS = {
-    "ability": 62,
+    "ability": 113,
     "move": 101,
     "item": 13,
 }
@@ -385,6 +385,9 @@ def render_meson(registry: dict) -> str:
     ]
     for module in sorted(registry["modules"], key=lambda item: item["id"]):
         paths = source_files.get(module["source"])
+        if module.get("extra_sources"):
+            # Ported MegaB2W2 logic (src/pokeweb_gameplay/megab2w2/): the family's file plus the listed sources.
+            paths = source_files[module["source"]] + [f"../{path}" for path in module["extra_sources"]]
         if not paths:
             raise RuntimeError(
                 f"{module['name']}: no Meson source mapping for {module['source']!r}"
@@ -457,6 +460,13 @@ def main() -> int:
         parser.error("exactly one of --output or --check is required")
 
     registry = load_registry(args.registry)
+    # Modules with "extra_sources" keep their handler tables in those files: check them as sources too.
+    gameplay_root = args.registry.resolve().parent.parent
+    for module in registry["modules"]:
+        for path in module.get("extra_sources", []):
+            source = gameplay_root / path
+            if source not in args.source:
+                args.source.append(source)
     generated = render_cpp(registry)
     generated_api = render_api_cpp(registry)
     generated_meson = render_meson(registry)

@@ -7919,3 +7919,269 @@ text = [
   "The foe's [VAR PKNICK(0)] is about to be attacked\n",
   "by its [VAR ITEM2(1)]!$",
 ]
+
+[msg.section_0.entries.1352]
+text = [
+  "[VAR PKNICK(0)] is protected\\n",
+  "by an aromatic veil!$",
+]
+
+[msg.section_0.entries.1353]
+text = [
+  "The wild [VAR PKNICK(0)] is protected\\n",
+  "by an aromatic veil!$",
+]
+
+[msg.section_0.entries.1354]
+text = [
+  "The foe's [VAR PKNICK(0)] is protected\\n",
+  "by an aromatic veil!$",
+]
+
+[msg.section_0.entries.1355]
+text = [
+  "[VAR PKNICK(0)] has two Abilities!$",
+]
+
+[msg.section_0.entries.1356]
+text = [
+  "The wild [VAR PKNICK(0)] has\\n",
+  "two Abilities!$",
+]
+
+[msg.section_0.entries.1357]
+text = [
+  "The foe's [VAR PKNICK(0)] has\\n",
+  "two Abilities!$",
+]
+
+[msg.section_0.entries.1358]
+text = [
+  "[VAR PKNICK(0)] is drowsing!$",
+]
+
+[msg.section_0.entries.1359]
+text = [
+  "The wild [VAR PKNICK(0)] is drowsing!$",
+]
+
+[msg.section_0.entries.1360]
+text = [
+  "The foe's [VAR PKNICK(0)] is drowsing!$",
+]
+
+[msg.section_0.entries.1361]
+text = [
+  "[VAR PKNICK(0)]'s disguise\\n",
+  "was busted!$",
+]
+
+[msg.section_0.entries.1362]
+text = [
+  "The wild [VAR PKNICK(0)]'s disguise\\n",
+  "was busted!$",
+]
+
+[msg.section_0.entries.1363]
+text = [
+  "The foe's [VAR PKNICK(0)]'s disguise\\n",
+  "was busted!$",
+]
+
+[msg.section_0.entries.1364]
+text = [
+  "[VAR PKNICK(0)] surrounded itself\\n",
+  "with a veil of petals!$",
+]
+
+[msg.section_0.entries.1365]
+text = [
+  "The wild [VAR PKNICK(0)] surrounded itself\\n",
+  "with a veil of petals!$",
+]
+
+[msg.section_0.entries.1366]
+text = [
+  "The foe's [VAR PKNICK(0)] surrounded itself\\n",
+  "with a veil of petals!$",
+]
+
+[msg.section_0.entries.1367]
+text = [
+  "A lingering aroma clings\\n",
+  "to [VAR PKNICK(0)]!$",
+]
+
+[msg.section_0.entries.1368]
+text = [
+  "A lingering aroma clings\\n",
+  "to the wild [VAR PKNICK(0)]!$",
+]
+
+[msg.section_0.entries.1369]
+text = [
+  "A lingering aroma clings\\n",
+  "to the foe's [VAR PKNICK(0)]!$",
+]
+
+[msg.section_0.entries.1370]
+text = [
+  "[VAR PKNICK(0)] is protected\\n",
+  "by a pastel veil!$",
+]
+
+[msg.section_0.entries.1371]
+text = [
+  "The wild [VAR PKNICK(0)] is protected\\n",
+  "by a pastel veil!$",
+]
+
+[msg.section_0.entries.1372]
+text = [
+  "The foe's [VAR PKNICK(0)] is protected\\n",
+  "by a pastel veil!$",
+]
+
+[msg.section_0.entries.1373]
+text = [
+  "[VAR PKNICK(0)] weakened the Attack\\n",
+  "of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1374]
+text = [
+  "The wild [VAR PKNICK(0)] weakened the Attack\\n",
+  "of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1375]
+text = [
+  "The foe's [VAR PKNICK(0)] weakened the\\n",
+  "Attack of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1376]
+text = [
+  "[VAR PKNICK(0)] weakened the Defense\\n",
+  "of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1377]
+text = [
+  "The wild [VAR PKNICK(0)] weakened the Defense\\n",
+  "of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1378]
+text = [
+  "The foe's [VAR PKNICK(0)] weakened the\\n",
+  "Defense of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1379]
+text = [
+  "[VAR PKNICK(0)] weakened the Sp. Atk\\n",
+  "of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1380]
+text = [
+  "The wild [VAR PKNICK(0)] weakened the Sp. Atk\\n",
+  "of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1381]
+text = [
+  "The foe's [VAR PKNICK(0)] weakened the\\n",
+  "Sp. Atk of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1382]
+text = [
+  "[VAR PKNICK(0)] weakened the Sp. Def\\n",
+  "of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1383]
+text = [
+  "The wild [VAR PKNICK(0)] weakened the Sp. Def\\n",
+  "of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1384]
+text = [
+  "The foe's [VAR PKNICK(0)] weakened the\\n",
+  "Sp. Def of all surrounding Pokémon!$",
+]
+
+[msg.section_0.entries.1385]
+text = [
+  "A supersweet aroma is wafting from\\n",
+  "the syrup covering [VAR PKNICK(0)]!$",
+]
+
+[msg.section_0.entries.1386]
+text = [
+  "A supersweet aroma is wafting from\\n",
+  "the syrup covering the wild [VAR PKNICK(0)]!$",
+]
+
+[msg.section_0.entries.1387]
+text = [
+  "A supersweet aroma is wafting from\\n",
+  "the syrup covering the foe's [VAR PKNICK(0)]!$",
+]
+
+[msg.section_0.entries.1388]
+text = [
+  "[VAR PKNICK(0)] gained strength\\n",
+  "from the fallen!$",
+]
+
+[msg.section_0.entries.1389]
+text = [
+  "The wild [VAR PKNICK(0)] gained strength\\n",
+  "from the fallen!$",
+]
+
+[msg.section_0.entries.1390]
+text = [
+  "The foe's [VAR PKNICK(0)] gained strength\\n",
+  "from the fallen!$",
+]
+
+[msg.section_0.entries.1391]
+text = [
+  "[VAR PKNICK(0)] surrounded itself\\n",
+  "with a veil of sweetness!$",
+]
+
+[msg.section_0.entries.1392]
+text = [
+  "The wild [VAR PKNICK(0)] surrounded itself\\n",
+  "with a veil of sweetness!$",
+]
+
+[msg.section_0.entries.1393]
+text = [
+  "The foe's [VAR PKNICK(0)] surrounded itself\\n",
+  "with a veil of sweetness!$",
+]
+
+[msg.section_0.entries.1394]
+text = [
+  "[VAR PKNICK(0)] made its shell gleam!\\n",
+  "It's distorting type matchups!$",
+]
+
+[msg.section_0.entries.1395]
+text = [
+  "The wild [VAR PKNICK(0)] made its shell gleam!\\n",
+  "It's distorting type matchups!$",
+]
+
+[msg.section_0.entries.1396]
+text = [
+  "The foe's [VAR PKNICK(0)] made its shell gleam!\\n",
+  "It's distorting type matchups!$",
+]
