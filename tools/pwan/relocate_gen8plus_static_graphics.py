@@ -22,6 +22,7 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[2]
+from report_paths import write_report
 PORT = Path(os.environ.get("POKEWEB_SOURCE_ROOT", ROOT.parent / "pokeweb-source"))
 
 SPECIES_NAMES = PORT / "reference_repos/PKHeX/PKHeX.Core/Resources/text/other/en/text_Species_en.txt"
@@ -307,7 +308,7 @@ def update_tracker(species_names: list[str]) -> int:
             "relocated Gen 8/9 static graphics range"
         )
         changed += 1
-    TRACKER.write_text(json.dumps(rows, indent=2) + "\n", encoding="utf-8")
+    write_report(TRACKER, rows)
     return changed
 
 
@@ -344,7 +345,7 @@ def main() -> int:
         "trackerRowsUpdated": tracker_changed,
         "missingOrErrors": missing,
     }
-    REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    write_report(REPORT, report)
     print(
         f"Staged {len(battle_rows)} battle fallback set(s), {len(icon_rows)} icon set(s); "
         f"updated {tracker_changed} tracker row(s); errors={len(missing)}"

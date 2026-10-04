@@ -26,7 +26,7 @@ typedef struct {
 
 Count = 0
 with open(f'src/arc/pml/Children.c', 'w') as Personal:
-  Personal.write(f'#include "Species.h"\n#include "Children.h"\n\nu32 __size = sizeof(CHILD_DATA);\n\nconst CHILD_DATA __data[] = {{\n')
+  Personal.write(f'#include "species_ids.h"\n#include "Children.h"\n\nu32 __size = sizeof(CHILD_DATA);\n\nconst CHILD_DATA __data[] = {{\n')
   for Entry in sorted(PersonalExt.glob('*'), key=lambda x: int(x.stem[13:])):
     Personal.write(f'\t[SPECIES_{SpeciesNames[Count]}] = {{\n') # Header
     # Write EntryData

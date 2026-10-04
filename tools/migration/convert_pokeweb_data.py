@@ -488,7 +488,7 @@ vfs_files += custom_target(
     copy_binary(source / "data" / "type_chart.bin", dest / "data" / "pml" / "types" / "type_chart.bin")
     copy_binary(source / "data" / "type_palette_map.bin", dest / "data" / "pml" / "types" / "type_palette_map.bin")
 
-    species_defines = defines_from_header(dest / "include" / "species.h", "SPECIES_", {"SPECIES_CNT", "SPECIES_AND_EGG_CNT"})
+    species_defines = defines_from_header(dest / "include" / "species_ids.h", "SPECIES_", {"SPECIES_CNT", "SPECIES_AND_EGG_CNT"})
     move_defines = defines_from_header(dest / "include" / "Moves.h", "MOVE_")
     write_defines_toml(dest / "tools" / "mkdata" / "enum" / "species.toml", species_defines)
     write_defines_yml(dest / "data" / "enums" / "species.yml", species_defines)

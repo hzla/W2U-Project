@@ -1,0 +1,381 @@
+{
+  "abi_version": 1,
+  "capacity": 24,
+  "output_root": "lib/w2u_battle",
+  "entry_defaults": {
+    "handler_count": "array",
+    "priority": 65535
+  },
+  "modules": [
+    {
+      "id": 0,
+      "name": "abilities/veils",
+      "source": "abilities",
+      "entries": [
+        ["ability", "ABIL_AROMA_VEIL", "AromaVeilHandlers"],
+        ["ability", "ABIL_FLOWER_VEIL", "FlowerVeilHandlers"],
+        ["ability", "ABIL_SWEET_VEIL", "SweetVeilHandlers"]
+      ]
+    },
+    {
+      "id": 1,
+      "name": "abilities/auras",
+      "source": "abilities+field_effects",
+      "entry_overrides": {
+        "field:FLDEFF_DARK_AURA": {
+          "handler_count": 1
+        },
+        "field:FLDEFF_FAIRY_AURA": {
+          "handler_count": 1
+        }
+      },
+      "entries": [
+        ["ability", "ABIL_DARK_AURA", "AuraFamilyHandlers"],
+        ["ability", "ABIL_FAIRY_AURA", "AuraFamilyHandlers"],
+        ["ability", "ABIL_AURA_BREAK", "AuraFamilyHandlers"],
+        ["field", "FLDEFF_DARK_AURA", "FieldDarkAuraHandlers"],
+        ["field", "FLDEFF_FAIRY_AURA", "FieldFairyAuraHandlers"]
+      ]
+    },
+    {
+      "id": 2,
+      "name": "abilities/item_ops",
+      "source": "abilities",
+      "entries": [
+        ["ability", "ABIL_CHEEK_POUCH", "CheekPouchHandlers"],
+        ["ability", "ABIL_MAGICIAN", "MagicianHandlers"],
+        ["ability", "ABIL_SYMBIOSIS", "SymbiosisHandlers"]
+      ]
+    },
+    {
+      "id": 3,
+      "name": "abilities/type",
+      "source": "abilities",
+      "entries": [
+        ["ability", "ABIL_PROTEAN", "ProteanHandlers"],
+        ["ability", "ABIL_REFRIGERATE", "NormalMoveConversionHandlers"],
+        ["ability", "ABIL_PIXILATE", "NormalMoveConversionHandlers"],
+        ["ability", "ABIL_AERILATE", "NormalMoveConversionHandlers"],
+        ["ability", "ABIL_GALVANIZE", "NormalMoveConversionHandlers"],
+        ["ability", "ABIL_LIQUID_VOICE", "LiquidVoiceHandlers"]
+      ]
+    },
+    {
+      "id": 4,
+      "name": "abilities/power",
+      "source": "abilities",
+      "entries": [
+        ["ability", "ABIL_PARENTAL_BOND", "ParentalBondHandlers"],
+        ["ability", "ABIL_STRONG_JAW", "MoveFlagPowerBoostHandlers"],
+        ["ability", "ABIL_MEGA_LAUNCHER", "MegaLauncherHandlers"],
+        ["ability", "ABIL_TOUGH_CLAWS", "MoveFlagPowerBoostHandlers"],
+        ["ability", "ABIL_MERCILESS", "MercilessHandlers"],
+        ["ability", "ABIL_STAKEOUT", "StakeoutHandlers"],
+        ["ability", "ABIL_STEELWORKER", "SteelworkerHandlers"],
+        ["ability", "ABIL_BATTERY", "BatteryHandlers"]
+      ]
+    },
+    {
+      "id": 5,
+      "name": "abilities/defense",
+      "source": "abilities",
+      "entries": [
+        ["ability", "ABIL_FUR_COAT", "FurCoatHandlers"],
+        ["ability", "ABIL_BULLETPROOF", "BulletProofHandlers"],
+        ["ability", "ABIL_OVERCOAT", "OvercoatUpdatedHandlers"],
+        ["ability", "ABIL_WATER_BUBBLE", "WaterBubbleHandlers"],
+        ["ability", "ABIL_FLUFFY", "FluffyHandlers"],
+        ["ability", "ABIL_PRISM_ARMOR", "PrismArmorHandlers"]
+      ]
+    },
+    {
+      "id": 6,
+      "name": "abilities/reactive",
+      "source": "abilities",
+      "entries": [
+        ["ability", "ABIL_COMPETITIVE", "CompetitiveHandlers"],
+        ["ability", "ABIL_GOOEY", "GooeyHandlers"],
+        ["ability", "ABIL_TANGLING_HAIR", "GooeyHandlers"],
+        ["ability", "ABIL_STAMINA", "StaminaHandlers"],
+        ["ability", "ABIL_WATER_COMPACTION", "WaterCompactionHandlers"],
+        ["ability", "ABIL_BERSERK", "BerserkHandlers"],
+        ["ability", "ABIL_SOUL_HEART", "SoulHeartHandlers"],
+        ["ability", "ABIL_BEAST_BOOST", "BeastBoostHandlers"]
+      ]
+    },
+    {
+      "id": 7,
+      "name": "abilities/priority_speed",
+      "source": "abilities",
+      "entries": [
+        ["ability", "ABIL_GALE_WINGS", "GaleWingsHandlers"],
+        ["ability", "ABIL_SLUSH_RUSH", "SlushRushHandlers"],
+        ["ability", "ABIL_TRIAGE", "TriageHandlers"],
+        ["ability", "ABIL_SURGE_SURFER", "SurgeSurferHandlers"],
+        ["ability", "ABIL_QUEENLY_MAGESTY", "QueenlyMajestyHandlers"],
+        ["ability", "ABIL_DAZZLING", "QueenlyMajestyHandlers"]
+      ]
+    },
+    {
+      "id": 8,
+      "name": "abilities/terrain",
+      "source": "abilities",
+      "dependency": "moves/terrain",
+      "entries": [
+        ["ability", "ABIL_ELECTRIC_SURGE", "TerrainSurgeHandlers"],
+        ["ability", "ABIL_PSYCHIC_SURGE", "TerrainSurgeHandlers"],
+        ["ability", "ABIL_MISTY_SURGE", "TerrainSurgeHandlers"],
+        ["ability", "ABIL_GRASSY_SURGE", "TerrainSurgeHandlers"]
+      ]
+    },
+    {
+      "id": 9,
+      "name": "abilities/forms",
+      "source": "abilities",
+      "entries": [
+        ["ability", "ABIL_STANCE_CHANGE", "StanceChangeHandlers"],
+        ["ability", "ABIL_SHIELDS_DOWN", "ShieldsDownHandlers"],
+        ["ability", "ABIL_SCHOOLING", "SchoolingHandlers"],
+        ["ability", "ABIL_POWER_CONSTRUCT", "PowerConstructHandlers"],
+        ["ability", "ABIL_DISGUISE", "DisguiseHandlers"],
+        ["ability", "ABIL_BATTLE_BOND", "BattleBondHandlers"]
+      ]
+    },
+    {
+      "id": 10,
+      "name": "abilities/battle_flow",
+      "source": "abilities",
+      "entries": [
+        ["ability", "ABIL_WIMP_OUT", "EmergencyExitAndWimpOutHandlers"],
+        ["ability", "ABIL_EMERGENCY_EXIT", "EmergencyExitAndWimpOutHandlers"],
+        ["ability", "ABIL_INNARDS_OUT", "InnardsOutHandlers"],
+        ["ability", "ABIL_DANCER", "DancerHandlers"],
+        ["ability", "ABIL_RECEIVER", "ReceiverHandlers"],
+        ["ability", "ABIL_POWER_OF_ALCHEMY", "ReceiverHandlers"]
+      ]
+    },
+    {
+      "id": 11,
+      "name": "items/gen6",
+      "source": "items",
+      "entries": [
+        ["item", "ITEM_TERRAIN_EXTENDER", "TerrainExtenderHandlers"],
+        ["item", "ITEM_ASSAULT_VEST", "AssaultVestHandlers"],
+        ["item", "ITEM_LUMINOUS_MOSS", "LuminousMossHandlers"],
+        ["item", "ITEM_SNOWBALL", "SnowballHandlers"],
+        ["item", "ITEM_WEAKNESS_POLICY", "WeaknessPolicyHandlers"],
+        ["item", "ITEM_MARANGA_BERRY", "MarangaBerryHandlers"],
+        ["item", "ITEM_FAIRY_FEATHER", "FairyFeatherHandlers"],
+        ["item", "ITEM_ROSELI_BERRY", "RoseliBerryHandlers"],
+        ["item", "ITEM_SAFETY_GOGGLES", "SafetyGogglesHandlers"],
+        ["item", "ITEM_ELECTRIC_SEED", "ElectricSeedHandlers"],
+        ["item", "ITEM_GRASSY_SEED", "GrassySeedHandlers"],
+        ["item", "ITEM_PSYCHIC_SEED", "PsychicSeedHandlers"],
+        ["item", "ITEM_MISTY_SEED", "MistySeedHandlers"]
+      ]
+    },
+    {
+      "id": 12,
+      "name": "moves/hazards",
+      "source": "moves",
+      "entries": [
+        ["move", "MOVE_RAPID_SPIN", "RapidSpinHandlers"],
+        ["move", "MOVE_DEFOG", "DefogHandlers"],
+        ["move", "MOVE_STICKY_WEB", "StickyWebHandlers"],
+        ["move", "MOVE_CEASELESS_EDGE", "DamagingHazardHandlers"],
+        ["move", "MOVE_STONE_AXE", "DamagingHazardHandlers"],
+        ["side", "SIDEEFF_STICKY_WEB", "SideStickyWebHandlers"]
+      ]
+    },
+    {
+      "id": 13,
+      "name": "moves/guards",
+      "source": "moves",
+      "entry_overrides": {
+        "position:POSEFF_MAT_BLOCK": {
+          "priority": "EVENTPRI_POS_DEFAULT"
+        },
+        "position:POSEFF_CRAFTY_SHIELD": {
+          "priority": "EVENTPRI_POS_DEFAULT"
+        },
+        "position:POSEFF_DAMAGE_SHIELD": {
+          "priority": "EVENTPRI_POS_DEFAULT"
+        }
+      },
+      "entries": [
+        ["move", "MOVE_MAT_BLOCK", "MatBlockHandlers"],
+        ["move", "MOVE_CRAFTY_SHIELD", "CraftyShieldHandlers"],
+        ["move", "MOVE_SPIKY_SHIELD", "ProtectLikeShieldHandlers"],
+        ["move", "MOVE_BANEFUL_BUNKER", "ProtectLikeShieldHandlers"],
+        ["move", "MOVE_KINGS_SHIELD", "DamageShieldHandlers"],
+        ["move", "MOVE_OBSTRUCT", "DamageShieldHandlers"],
+        ["move", "MOVE_SILK_TRAP", "DamageShieldHandlers"],
+        ["move", "MOVE_BURNING_BULWARK", "DamageShieldHandlers"],
+        ["position", "POSEFF_DAMAGE_SHIELD", "PosDamageShieldHandlers"],
+        ["position", "POSEFF_MAT_BLOCK", "PosMatBlockHandlers"],
+        ["position", "POSEFF_CRAFTY_SHIELD", "PosCraftyShieldHandlers"]
+      ]
+    },
+    {
+      "id": 14,
+      "name": "moves/terrain",
+      "source": "moves",
+      "entry_overrides": {
+        "field:FLDEFF_TERRAIN": {
+          "priority": "EVENTPRI_FIELD_DEFAULT"
+        }
+      },
+      "entries": [
+        ["move", "MOVE_ELECTRIC_TERRAIN", "ElectricTerrainHandlers"],
+        ["move", "MOVE_GRASSY_TERRAIN", "GrassyTerrainHandlers"],
+        ["move", "MOVE_FLORAL_HEALING", "FloralHealingHandlers"],
+        ["move", "MOVE_SHORE_UP", "ShoreUpHandlers"],
+        ["move", "MOVE_SOLAR_BLADE", "SolarBladeHandlers"],
+        ["move", "MOVE_MISTY_TERRAIN", "MistyTerrainHandlers"],
+        ["move", "MOVE_PSYCHIC_TERRAIN", "PsychicTerrainHandlers"],
+        ["move", "MOVE_PSYBLADE", "PsybladeHandlers"],
+        ["move", "MOVE_RISING_VOLTAGE", "RisingVoltageHandlers"],
+        ["move", "MOVE_TERRAIN_PULSE", "TerrainPulseHandlers"],
+        ["move", "MOVE_STEEL_ROLLER", "SteelRollerHandlers"],
+        ["field", "FLDEFF_TERRAIN", "FieldTerrainHandlers"]
+      ]
+    },
+    {
+      "id": 15,
+      "name": "moves/type",
+      "source": "moves",
+      "entries": [
+        ["move", "MOVE_AURA_WHEEL", "AuraWheelHandlers"],
+        ["move", "MOVE_MAGIC_POWDER", "MagicPowderHandlers"],
+        ["move", "MOVE_FLYING_PRESS", "FlyingPressHandlers"],
+        ["move", "MOVE_FREEZEDRY", "FreezeDryHandlers"],
+        ["move", "MOVE_TRICKORTREAT", "TrickOrTreatHandlers"],
+        ["move", "MOVE_FORESTS_CURSE", "ForestsCurseHandlers"],
+        ["move", "MOVE_BURN_UP", "BurnUpHandlers"],
+        ["move", "MOVE_DOUBLE_SHOCK", "BurnUpHandlers"],
+        ["move", "MOVE_REVELATION_DANCE", "RevelationDanceHandlers"],
+        ["move", "MOVE_BARB_BARRAGE", "BarbBarrageHandlers"],
+        ["move", "MOVE_DIRE_CLAW", "DireClawHandlers"],
+        ["move", "MOVE_HARD_PRESS", "HardPressHandlers"],
+        ["move", "MOVE_GRAV_APPLE", "GravAppleHandlers"],
+        ["move", "MOVE_BLEAKWIND_STORM", "StormRainAccuracyHandlers"],
+        ["move", "MOVE_SANDSEAR_STORM", "StormRainAccuracyHandlers"],
+        ["move", "MOVE_WILDBOLT_STORM", "StormRainAccuracyHandlers"],
+        ["move", "MOVE_HYDRO_STEAM", "HydroSteamHandlers"],
+        ["move", "MOVE_COLLISION_COURSE", "SuperEffectiveDamageHandlers"],
+        ["move", "MOVE_ELECTRO_DRIFT", "SuperEffectiveDamageHandlers"],
+        ["move", "MOVE_FICKLE_BEAM", "FickleBeamHandlers"]
+      ]
+    },
+    {
+      "id": 16,
+      "name": "moves/volatile",
+      "source": "moves",
+      "entry_overrides": {
+        "position:POSEFF_ION_DELUGE": {
+          "priority": "EVENTPRI_ABILITY_STALL"
+        },
+        "position:POSEFF_ELECTRIFY": {
+          "priority": "EVENTPRI_POS_DEFAULT"
+        }
+      },
+      "entries": [
+        ["move", "MOVE_BEAK_BLAST", "BeakBlastHandlers"],
+        ["move", "MOVE_SHELL_TRAP", "ShellTrapHandlers"],
+        ["move", "MOVE_ION_DELUGE", "IonDelugeHandlers"],
+        ["move", "MOVE_ELECTRIFY", "ElectrifyHandlers"],
+        ["move", "MOVE_POWDER", "PowderHandlers"],
+        ["move", "MOVE_LASER_FOCUS", "LaserFocusHandlers"],
+        ["move", "MOVE_PLASMA_FISTS", "PlasmaFistsHandlers"],
+        ["move", "MOVE_THROAT_CHOP", "ThroatChopHandlers"],
+        ["position", "POSEFF_ION_DELUGE", "PosIonDelugeHandlers"],
+        ["position", "POSEFF_ELECTRIFY", "PosElectrifyHandlers"]
+      ]
+    },
+    {
+      "id": 17,
+      "name": "moves/stats",
+      "source": "moves",
+      "entries": [
+        ["move", "MOVE_ROTOTILLER", "RototillerHandlers"],
+        ["move", "MOVE_FLOWER_SHIELD", "RototillerHandlers"],
+        ["move", "MOVE_FELL_STINGER", "FellStingerHandlers"],
+        ["move", "MOVE_SCALE_SHOT", "ScaleShotHandlers"],
+        ["move", "MOVE_TAKE_HEART", "TakeHeartHandlers"],
+        ["move", "MOVE_CLANGOROUS_SOUL", "HpCostBoostHandlers"],
+        ["move", "MOVE_FILLET_AWAY", "HpCostBoostHandlers"],
+        ["move", "MOVE_TOPSYTURVY", "TopsyTurvyHandlers"],
+        ["move", "MOVE_DARKEST_LARIAT", "DarkestLariatHandlers"],
+        ["move", "MOVE_FREEZY_FROST", "FreezyFrostHandlers"],
+        ["move", "MOVE_SPECTRAL_THIEF", "SpectralThiefHandlers"],
+        ["move", "MOVE_SPEED_SWAP", "SpeedSwapHandlers"],
+        ["move", "MOVE_STRENGTH_SAP", "StrengthSapHandlers"],
+        ["move", "MOVE_VENOM_DRENCH", "VenomDrenchHandlers"],
+        ["move", "MOVE_MAGNETIC_FLUX", "MagneticFluxHandlers"]
+      ]
+    },
+    {
+      "id": 18,
+      "name": "moves/flow",
+      "source": "moves",
+      "entries": [
+        ["move", "MOVE_PARTING_SHOT", "PartingShotHandlers"],
+        ["move", "MOVE_GEOMANCY", "GeomancyHandlers"],
+        ["move", "MOVE_HAPPY_HOUR", "HappyHourHandlers"],
+        ["move", "MOVE_FIRST_IMPRESSION", "FirstImpressionHandlers"],
+        ["move", "MOVE_INSTRUCT", "InstructHandlers"],
+        ["move", "MOVE_MIND_BLOWN", "MindBlownHandlers"],
+        ["move", "MOVE_STEEL_BEAM", "MindBlownHandlers"],
+        ["move", "MOVE_CHLOROBLAST", "ChloroblastHandlers"],
+        ["move", "MOVE_POLLEN_PUFF", "PollenPuffHandlers"],
+        ["move", "MOVE_PURIFY", "PurifyHandlers"],
+        ["move", "MOVE_SPOTLIGHT", "SpotlightHandlers"],
+        ["move", "MOVE_STOMPING_TANTRUM", "StompingTantrumHandlers"],
+        ["move", "MOVE_TEMPER_FLARE", "StompingTantrumHandlers"],
+        ["move", "MOVE_TORCH_SONG", "SoundDamageBypassHandlers"],
+        ["move", "MOVE_OVERDRIVE", "SoundDamageBypassHandlers"],
+        ["move", "MOVE_POLTERGEIST", "PoltergeistHandlers"],
+        ["move", "MOVE_SUPERCELL_SLAM", "SupercellSlamHandlers"],
+        ["move", "MOVE_TRIPLE_AXEL", "TripleAxelHandlers"],
+        ["move", "MOVE_BOLT_BEAK", "UnactedTargetPowerHandlers"],
+        ["move", "MOVE_FISHIOUS_REND", "UnactedTargetPowerHandlers"],
+        ["move", "MOVE_SPARKLY_SWIRL", "SparklySwirlHandlers"],
+        ["move", "MOVE_SPARKLING_ARIA", "SparklingAriaHandlers"]
+      ]
+    },
+    {
+      "id": 19,
+      "name": "moves/trapping",
+      "source": "moves",
+      "entries": [
+        ["move", "MOVE_ANCHOR_SHOT", "AnchorShotHandlers"],
+        ["move", "MOVE_SPIRIT_SHACKLE", "AnchorShotHandlers"],
+        ["move", "MOVE_SAPPY_SEED", "SappySeedHandlers"]
+      ]
+    },
+    {
+      "id": 20,
+      "name": "moves/screens",
+      "source": "moves",
+      "entries": [
+        ["move", "MOVE_BADDY_BAD", "BaddyBadHandlers"],
+        ["move", "MOVE_GLITZY_GLOW", "GlitzyGlowHandlers"],
+        ["move", "MOVE_AURORA_VEIL", "AuroraVeilHandlers"],
+        ["move", "MOVE_BRICK_BREAK", "BrickBreakAuroraVeilHandlers"],
+        ["side", "SIDEEFF_AURORA_VEIL", "SideAuroraVeilHandlers"]
+      ]
+    },
+    {
+      "id": 21,
+      "name": "moves/ability",
+      "source": "moves",
+      "entries": [
+        ["move", "MOVE_CORE_ENFORCER", "CoreEnforcerHandlers"],
+        ["move", "MOVE_MOONGEIST_BEAM", "MoongeistBeamHandlers"],
+        ["move", "MOVE_SUNSTEEL_STRIKE", "MoongeistBeamHandlers"],
+        ["move", "MOVE_PHOTON_GEYSER", "PhotonGeyserHandlers"],
+        ["move", "MOVE_WATER_SHURIKEN", "WaterShurikenHandlers"]
+      ]
+    }
+  ]
+}

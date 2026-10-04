@@ -3,6 +3,27 @@ vfs_build_dir = meson.project_build_root() / 'vfs' / 'data'
 relative_source_root = fs.relative_to(meson.project_source_root(), meson.project_build_root())
 gen5_text_py = find_program(meson.project_source_root() / 'tools' / 'text' / 'gen5_text.py', native: true)
 pwan_narc_py = find_program(meson.project_source_root() / 'tools' / 'pwan' / 'build_pwan_narc.py', native: true)
+double_battle_fix_py = find_program(meson.project_source_root() / 'tools' / 'stage_double_battle_fix.py', native: true)
+
+double_battle_fix = custom_target(
+  'stage_double_battle_fix_w2',
+  input: [
+    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'overlay' / 'overlay_0036.bin',
+    meson.project_source_root() / 'vfs' / 'y9.bin',
+  ],
+  output: 'stage_double_battle_fix_w2.stamp',
+  command: [
+    double_battle_fix_py,
+    '--base-overlay', '@INPUT0@',
+    '--overlay-table', '@INPUT1@',
+    '--output', meson.project_source_root() / 'vfs' / 'data' / 'patches' / 'DoubleBattleFixW2.dll',
+    '--stamp', '@OUTPUT@',
+  ],
+  # This also revalidates that no other patch has claimed either overlay hook.
+  build_always_stale: true,
+)
+
+vfs_files += double_battle_fix
 
 pwan_asset_list = run_command(
   'sh',

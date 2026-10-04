@@ -7728,3 +7728,194 @@ text = [
 text = [
   "$",
 ]
+
+[msg.section_0.entries.1316]
+text = [
+  "Aurora Veil made the team stronger\\n",
+  "against physical and special moves!$",
+]
+
+[msg.section_0.entries.1317]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1318]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1319]
+text = [
+  "Aurora Veil wore off!$",
+]
+
+[msg.section_0.entries.1320]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1321]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1322]
+text = [
+  "[VAR PKNICK(0)] started heating up\n",
+  "its beak!$",
+]
+
+[msg.section_0.entries.1323]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1324]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1325]
+text = [
+  "[VAR PKNICK(0)] burned itself out!$",
+]
+
+[msg.section_0.entries.1326]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1327]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1328]
+text = [
+  "[VAR PKNICK(0)] concentrated intensely!$",
+]
+
+[msg.section_0.entries.1329]
+text = [
+  "The wild [VAR PKNICK(0)] concentrated intensely!$",
+]
+
+[msg.section_0.entries.1330]
+text = [
+  "The foe's [VAR PKNICK(0)] concentrated intensely!$",
+]
+
+[msg.section_0.entries.1331]
+text = [
+  "[VAR PKNICK(0)] used its move\n",
+  "as instructed!$",
+]
+
+[msg.section_0.entries.1332]
+text = [
+  "The wild [VAR PKNICK(0)] used its move\n",
+  "as instructed!$",
+]
+
+[msg.section_0.entries.1333]
+text = [
+  "The foe's [VAR PKNICK(0)] used its move\n",
+  "as instructed!$",
+]
+
+[msg.section_0.entries.1334]
+text = [
+  "[VAR PKNICK(0)] set a shell trap!$",
+]
+
+[msg.section_0.entries.1335]
+text = [
+  "The wild [VAR PKNICK(0)] set a shell trap!$",
+]
+
+[msg.section_0.entries.1336]
+text = [
+  "The foe's [VAR PKNICK(0)] set a shell trap!$",
+]
+
+[msg.section_0.entries.1337]
+text = [
+  "[VAR PKNICK(0)]'s boosts were stolen!$",
+]
+
+[msg.section_0.entries.1338]
+text = [
+  "The wild [VAR PKNICK(0)]'s boosts were stolen!$",
+]
+
+[msg.section_0.entries.1339]
+text = [
+  "The foe's [VAR PKNICK(0)]'s boosts were stolen!$",
+]
+
+[msg.section_0.entries.1340]
+text = [
+  "[VAR PKNICK(0)] switched Speed with its target!$",
+]
+
+[msg.section_0.entries.1341]
+text = [
+  "The wild [VAR PKNICK(0)] switched Speed with its target!$",
+]
+
+[msg.section_0.entries.1342]
+text = [
+  "The foe's [VAR PKNICK(0)] switched Speed with its target!$",
+]
+
+[msg.section_0.entries.1343]
+text = [
+  "The effects of Throat Chop on\n",
+  "[VAR PKNICK(0)] wore off!$",
+]
+
+[msg.section_0.entries.1344]
+text = [
+  "The effects of Throat Chop on the wild\n",
+  "[VAR PKNICK(0)] wore off!$",
+]
+
+[msg.section_0.entries.1345]
+text = [
+  "The effects of Throat Chop on the foe's\n",
+  "[VAR PKNICK(0)] wore off!$",
+]
+
+[msg.section_0.entries.1346]
+text = [
+  "[VAR PKNICK(0)] used up all its electricity!$",
+]
+
+[msg.section_0.entries.1347]
+text = [
+  "The wild [VAR PKNICK(0)] used up all its electricity!$",
+]
+
+[msg.section_0.entries.1348]
+text = [
+  "The foe's [VAR PKNICK(0)] used up all its electricity!$",
+]
+
+[msg.section_0.entries.1349]
+text = [
+  "[VAR PKNICK(0)] is about to be attacked\n",
+  "by its [VAR ITEM2(1)]!$",
+]
+
+[msg.section_0.entries.1350]
+text = [
+  "The wild [VAR PKNICK(0)] is about to be attacked\n",
+  "by its [VAR ITEM2(1)]!$",
+]
+
+[msg.section_0.entries.1351]
+text = [
+  "The foe's [VAR PKNICK(0)] is about to be attacked\n",
+  "by its [VAR ITEM2(1)]!$",
+]

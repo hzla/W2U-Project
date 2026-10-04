@@ -33,7 +33,7 @@ typedef struct {
 
 Count = 0
 with open('src/arc/pml/Evolutions.c', 'w') as Personal:
-    Personal.write(f'#include "Species.h"\n#include "Evolutions.h"\n\nu32 __size = sizeof(EVOLUTION_DATA);\n\nconst EVOLUTION_DATA __data[] = {{\n')
+    Personal.write(f'#include "species_ids.h"\n#include "Evolutions.h"\n\nu32 __size = sizeof(EVOLUTION_DATA);\n\nconst EVOLUTION_DATA __data[] = {{\n')
     for Entry in sorted(PersonalExt.glob('*'), key=lambda x: int(x.stem[15:])):
         print(Entry)
         Personal.write(f'\t[SPECIES_{SpeciesNames[Count] if Count < len(SpeciesNames) else str(Count)}] = {{\n') # Header

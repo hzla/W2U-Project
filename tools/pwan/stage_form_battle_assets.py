@@ -19,6 +19,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
+from report_paths import write_report
 PORT = Path(os.environ.get("POKEWEB_SOURCE_ROOT", ROOT.parent / "pokeweb-source"))
 
 TRACKER = PORT / "White2Expansion" / "data" / "pokemon.gen6.json"
@@ -164,7 +165,7 @@ def main() -> int:
         "staged": staged,
         "errors": errors,
     }
-    REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    write_report(REPORT, report)
     print(f"Staged {len(staged)} form battle fallback set(s); errors={len(errors)}.")
     print(f"Wrote {REPORT}")
     return 1 if errors else 0

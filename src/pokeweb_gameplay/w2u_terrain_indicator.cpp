@@ -1,4 +1,5 @@
 #include "w2u_moves.h"
+#include "w2u_platform.h"
 
 namespace {
 
@@ -17,13 +18,15 @@ typedef void (*ClactWorkSetPosFn)(void* work, const void* position, u32 renderSc
 typedef void (*ClactWorkSetFlagFn)(void* work, u32 enabled);
 typedef void (*ClactWorkSetSequenceFn)(void* work, u32 sequence);
 
-const ClactUnitCreateFn ClactUnitCreate = (ClactUnitCreateFn)0x0204BF49u;
-const ClactUnitDeleteFn ClactUnitDelete = (ClactUnitDeleteFn)0x0204BFC5u;
-const ClactWorkCreateFn ClactWorkCreate = (ClactWorkCreateFn)0x0204C06Du;
-const ClactWorkRemoveFn ClactWorkRemove = (ClactWorkRemoveFn)0x0204C135u;
-const ClactWorkSetPosFn ClactWorkSetPos = (ClactWorkSetPosFn)0x0204C16Du;
-const ClactWorkSetFlagFn ClactWorkSetAutoAnimation = (ClactWorkSetFlagFn)0x0204C54Du;
-const ClactWorkSetSequenceFn ClactWorkSetSequence = (ClactWorkSetSequenceFn)0x0204C4B5u;
+const ClactUnitCreateFn ClactUnitCreate = (ClactUnitCreateFn)W2U_ADDR_CLACT_UNIT_CREATE;
+const ClactUnitDeleteFn ClactUnitDelete = (ClactUnitDeleteFn)W2U_ADDR_CLACT_UNIT_DELETE;
+const ClactWorkCreateFn ClactWorkCreate = (ClactWorkCreateFn)W2U_ADDR_CLACT_WORK_CREATE;
+const ClactWorkRemoveFn ClactWorkRemove = (ClactWorkRemoveFn)W2U_ADDR_CLACT_WORK_REMOVE;
+const ClactWorkSetPosFn ClactWorkSetPos = (ClactWorkSetPosFn)W2U_ADDR_CLACT_WORK_SET_POS;
+const ClactWorkSetFlagFn ClactWorkSetAutoAnimation =
+    (ClactWorkSetFlagFn)W2U_ADDR_CLACT_WORK_SET_AUTO_ANIMATION;
+const ClactWorkSetSequenceFn ClactWorkSetSequence =
+    (ClactWorkSetSequenceFn)W2U_ADDR_CLACT_WORK_SET_SEQUENCE;
 
 const u32 W2U_BTLV_INPUT_CHARACTER_ID_OFFSET = 0x104u;
 const u32 W2U_BTLV_INPUT_PALETTE_ID_OFFSET = 0x108u;

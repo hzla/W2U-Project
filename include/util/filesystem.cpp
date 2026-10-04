@@ -45,6 +45,43 @@ namespace w2u {
         return successful_read;
     }
 
+    b32 ReadDataFromFileAt(const char* fileName, u32 offset, u32 bufferSize, u8 *buffer) {
+        if (!buffer || !bufferSize) {
+            return false;
+        }
+
+        FSFile file;
+        finitAbs(&file);
+        if (!romfs_fopenAbs(&file, fileName)) {
+            return false;
+        }
+
+        const b32 seekResult = romfs_fseekAbs(&file, offset, IO_SEEK_SET);
+        const b32 successfulRead = seekResult &&
+            romfs_freadAbs(&file, buffer, bufferSize) == bufferSize;
+        romfs_fcloseAbs(&file);
+        return successfulRead;
+    }
+
+    b32 GetFileSize(const char* fileName, u32* fileSize) {
+        if (!fileSize) {
+            return false;
+        }
+
+        FSFile file;
+        finitAbs(&file);
+        if (!romfs_fopenAbs(&file, fileName)) {
+            return false;
+        }
+
+        const b32 seekResult = romfs_fseekAbs(&file, 0, IO_SEEK_END);
+        if (seekResult) {
+            *fileSize = romfs_ftellAbs(&file);
+        }
+        romfs_fcloseAbs(&file);
+        return seekResult;
+    }
+
     u8 ReadByteFromFile(const char* fileName, const u32 idx) {
         FSFile file;
         finitAbs(&file);

@@ -1,5 +1,31 @@
 {
   "version": 1,
+  "repairedBaseIcons": [
+    {
+      "targetIcon": 1802,
+      "paletteKey": 897,
+      "sourceStem": "SPECTRIER",
+      "palette": 0,
+      "species": 897,
+      "name": "Spectrier"
+    },
+    {
+      "targetIcon": 1804,
+      "paletteKey": 898,
+      "sourceStem": "CALYREX",
+      "palette": 0,
+      "species": 898,
+      "name": "Calyrex"
+    },
+    {
+      "targetIcon": 1806,
+      "paletteKey": 899,
+      "sourceStem": "WYRDEER",
+      "palette": 1,
+      "species": 899,
+      "name": "Wyrdeer"
+    }
+  ],
   "formIcons": [
     {
       "targetIcon": 2198,
@@ -2203,8 +2229,8 @@
       "previewSpecies": 89,
       "name": "Mega Glimmora",
       "staticAsset": 1090,
-      "sourceIcon": 2188,
-      "sourcePaletteKey": 1090,
+      "sourceIcon": 2368,
+      "sourcePaletteKey": 1180,
       "targetIcon": 186,
       "copiedOffsets": [
         0,
@@ -2215,8 +2241,8 @@
       "previewSpecies": 90,
       "name": "Mega Tatsugiri (Curly Form)",
       "staticAsset": 1091,
-      "sourceIcon": 2190,
-      "sourcePaletteKey": 1091,
+      "sourceIcon": 2370,
+      "sourcePaletteKey": 1181,
       "targetIcon": 188,
       "copiedOffsets": [
         0,
@@ -2227,8 +2253,8 @@
       "previewSpecies": 91,
       "name": "Mega Tatsugiri (Droopy Form)",
       "staticAsset": 1092,
-      "sourceIcon": 2192,
-      "sourcePaletteKey": 1092,
+      "sourceIcon": 2372,
+      "sourcePaletteKey": 1182,
       "targetIcon": 190,
       "copiedOffsets": [
         0,
@@ -2239,8 +2265,8 @@
       "previewSpecies": 92,
       "name": "Mega Tatsugiri (Stretchy Form)",
       "staticAsset": 1093,
-      "sourceIcon": 2194,
-      "sourcePaletteKey": 1093,
+      "sourceIcon": 2374,
+      "sourcePaletteKey": 1183,
       "targetIcon": 192,
       "copiedOffsets": [
         0,
@@ -2251,8 +2277,8 @@
       "previewSpecies": 93,
       "name": "Mega Baxcalibur",
       "staticAsset": 1094,
-      "sourceIcon": 2196,
-      "sourcePaletteKey": 1094,
+      "sourceIcon": 2376,
+      "sourcePaletteKey": 1184,
       "targetIcon": 194,
       "copiedOffsets": [
         0,
@@ -2263,8 +2289,8 @@
       "previewSpecies": 94,
       "name": "Mega Raichu X",
       "staticAsset": 1038,
-      "sourceIcon": 2084,
-      "sourcePaletteKey": 1038,
+      "sourceIcon": 2382,
+      "sourcePaletteKey": 1187,
       "targetIcon": 196,
       "copiedOffsets": [
         0,
@@ -2275,8 +2301,8 @@
       "previewSpecies": 95,
       "name": "Mega Raichu Y",
       "staticAsset": 1039,
-      "sourceIcon": 2086,
-      "sourcePaletteKey": 1039,
+      "sourceIcon": 2384,
+      "sourcePaletteKey": 1188,
       "targetIcon": 198,
       "copiedOffsets": [
         0,

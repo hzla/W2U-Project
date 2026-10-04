@@ -11,13 +11,24 @@ PMC_OVERLAY_HEAP_KIB_IMMEDIATE_OFFSET = 0x2BA
 OLD_SYSHEAP_KIB = 160
 DEFAULT_SYSHEAP_KIB = 164
 
+# The bundled PMC overlay was built with an older HeapArea::Realloc that uses
+# `old_size - new_size - 24` when splitting a shrunken allocation. Its block
+# header is 16 bytes, so every shrink permanently loses 8 bytes. A non-resident
+# RPM is expanded, fixed (shrunk), and freed on every use; without this fix its
+# allocation can be eight bytes too small for the very next reload.
+PMC_REALLOC_SHRINK_INSTRUCTION_OFFSET = 0x804
+BROKEN_REALLOC_SHRINK_INSTRUCTION = bytes.fromhex("18 3b")  # subs r3, #24
+FIXED_REALLOC_SHRINK_INSTRUCTION = bytes.fromhex("10 3b")  # subs r3, #16
+
 
 def parse_int(value: str) -> int:
     return int(value, 0)
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Patch the PMC system heap cap in overlay 344.")
+    parser = argparse.ArgumentParser(
+        description="Patch the PMC system heap cap and realloc shrink accounting in overlay 344."
+    )
     parser.add_argument(
         "overlay",
         nargs="?",
@@ -42,6 +53,7 @@ def main() -> int:
     offset = PMC_OVERLAY_HEAP_KIB_IMMEDIATE_OFFSET
     current = data[offset]
     patched = args.kib
+    changed = False
 
     if current == patched:
         print(
@@ -56,11 +68,41 @@ def main() -> int:
                 f"expected {OLD_SYSHEAP_KIB} or {args.kib}."
             )
         data[offset] = patched
-        overlay_path.write_bytes(data)
+        changed = True
         print(
             f"[+] Patched PMC system heap cap: {OLD_SYSHEAP_KIB} KiB -> "
             f"{args.kib} KiB at overlay 344 offset 0x{offset:x}."
         )
+
+    realloc_offset = PMC_REALLOC_SHRINK_INSTRUCTION_OFFSET
+    current_instruction = bytes(
+        data[realloc_offset : realloc_offset + len(BROKEN_REALLOC_SHRINK_INSTRUCTION)]
+    )
+    if current_instruction == FIXED_REALLOC_SHRINK_INSTRUCTION:
+        print(
+            "[+] PMC realloc shrink accounting already fixed "
+            f"at overlay 344 offset 0x{realloc_offset:x}."
+        )
+    elif current_instruction == BROKEN_REALLOC_SHRINK_INSTRUCTION:
+        data[
+            realloc_offset : realloc_offset + len(FIXED_REALLOC_SHRINK_INSTRUCTION)
+        ] = FIXED_REALLOC_SHRINK_INSTRUCTION
+        changed = True
+        print(
+            "[+] Fixed PMC realloc shrink accounting: subtracted block-header size "
+            f"24 -> 16 at overlay 344 offset 0x{realloc_offset:x}."
+        )
+    else:
+        raise SystemExit(
+            "Unexpected PMC realloc shrink instruction at "
+            f"overlay 344 offset 0x{realloc_offset:x}: found "
+            f"{current_instruction.hex(' ')}, expected "
+            f"{BROKEN_REALLOC_SHRINK_INSTRUCTION.hex(' ')} or "
+            f"{FIXED_REALLOC_SHRINK_INSTRUCTION.hex(' ')}."
+        )
+
+    if changed:
+        overlay_path.write_bytes(data)
 
     if args.stamp is not None:
         args.stamp.parent.mkdir(parents=True, exist_ok=True)

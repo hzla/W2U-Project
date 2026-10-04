@@ -14,6 +14,7 @@ sys.path.insert(0, str(TOOLS_ROOT / "pwan"))
 
 from ndspy import narc  # noqa: E402
 from compile_pwan import compile_pwan  # noqa: E402
+from report_paths import report_path, write_report  # noqa: E402
 from pwan_config import (  # noqa: E402
     PWAN_CONFIG_BACK_FLAG,
     PWAN_CONFIG_FRONT_FLAG,
@@ -51,6 +52,16 @@ GEN7_SPECIES_START = 722
 GEN7_SPECIES_END = 809
 GEN7_BATTLE_ARCHIVE_START = 19000
 GEN7_FILES_PER_SPRITE = 20
+# Native Substitute resource references are patched to this shared block in
+# Expansion_LimitAdjust.s. These slots must not become ordinary form graphics.
+SUBSTITUTE_GRAPHICS_START = 17940
+SUBSTITUTE_RESOURCE_LAYOUT = (
+    (b"RGCN", True), (b"RECN", False), (b"RNAN", True),
+    (b"RCMN", False), (b"RAMN", False), (None, False),
+    (b"RGCN", True), (b"RECN", False), (b"RNAN", True),
+    (b"RCMN", False), (b"RAMN", False), (None, False),
+    (b"RLCN", False),
+)
 PWAN_SEGMENTS = (
     (0x0000, 0, 0, 8, 8),
     (0x0800, 64, 0, 4, 8),
@@ -124,7 +135,7 @@ def load_incremental_manifest(path: Path) -> dict | None:
 
 def write_incremental_manifest(path: Path, manifest: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+    write_report(path, manifest, sort_keys=True)
 
 
 def incremental_config(args: argparse.Namespace) -> dict:
@@ -138,7 +149,7 @@ def incremental_config(args: argparse.Namespace) -> dict:
         "preserve_base_before": args.preserve_base_before,
         "base_archive": file_fingerprint(args.base_archive),
         "order": file_fingerprint(args.source / ORDER_FILE),
-        "extra_bin_source": str(args.extra_bin_source) if args.extra_bin_source else None,
+        "extra_bin_source": report_path(args.extra_bin_source) if args.extra_bin_source else None,
         "pwan_config": file_fingerprint(pwan_config),
         "skip_pwan": bool(args.skip_pwan),
     }
@@ -183,6 +194,30 @@ def lz11_decompress(data: bytes) -> bytes:
     from lzss import decompress_bytes  # type: ignore
 
     return bytes(decompress_bytes(data))
+
+
+def validate_substitute_graphics(battle_vfs: Path) -> None:
+    """Fail staging before malformed doll resources reach the native loader."""
+    for offset, (magic, compressed) in enumerate(SUBSTITUTE_RESOURCE_LAYOUT):
+        index = SUBSTITUTE_GRAPHICS_START + offset
+        data = (battle_vfs / str(index)).read_bytes()
+        if compressed:
+            # The native loader treats the first word as a compression header
+            # without checking its type. An RCMN here requests almost 5 MiB.
+            if len(data) < 4 or data[0] != 0x11:
+                raise ValueError(f"Substitute entry {index}: expected LZ11 resource")
+            size = int.from_bytes(data[1:4], "little")
+            if not 16 <= size <= 0x4040:
+                raise ValueError(f"Substitute entry {index}: invalid expanded size {size}")
+            data = lz11_decompress(data)
+            if len(data) != size:
+                raise ValueError(f"Substitute entry {index}: decompressed length mismatch")
+        if magic is None:
+            # Native NCEC: one 60-byte cell-effect record after its count.
+            if len(data) != 64 or int.from_bytes(data[:4], "little") != 1:
+                raise ValueError(f"Substitute entry {index}: invalid NCEC resource")
+        elif len(data) < 16 or data[:4] != magic or int.from_bytes(data[8:12], "little") != len(data):
+            raise ValueError(f"Substitute entry {index}: invalid {magic.decode()} resource")
 
 
 def lz11_compress_nlz(data: bytes) -> bytes:
@@ -1448,7 +1483,7 @@ def build_pwan_assets(source_root: Path, pwan_vfs: Path) -> list[dict]:
     )
     pwan_vfs.mkdir(parents=True, exist_ok=True)
     (pwan_vfs / "config.bin").write_bytes(header + b"".join(config_entries))
-    (pwan_vfs / "sources.json").write_text(json.dumps(sources, indent=2) + "\n")
+    write_report(pwan_vfs / "sources.json", sources)
     return sources
 
 
@@ -1500,6 +1535,8 @@ def run_stage(
         changed_outputs,
         force_full,
     )
+
+    validate_substitute_graphics(args.battle_vfs)
 
     (args.battle_vfs / ".arc").write_text(args.arc_text)
     if args.skip_pwan:

@@ -1,4 +1,4 @@
-#include "Species.h"
+#include "species_ids.h"
 #include "nds/fs.h"
 #include "pwan_types.h"
 #include "string.h"
@@ -64,7 +64,12 @@ struct RuntimeTimelineEntry {
 #define W2U_PWAN_MAX_TIMELINE 192u
 #define W2U_SUMMARY_CACHE_COUNT 1u
 #define W2U_PKM_PARAM_SPECIES 5u
+#define W2U_PKM_PARAM_PERSONAL_RND 0u
+#define W2U_PKM_PARAM_TRAINER_ID 7u
 #define W2U_PKM_PARAM_FORM 0x6fu
+#define W2U_MINIOR_CORE_FORM_START 7u
+#define W2U_MINIOR_FORM_COUNT 14u
+#define W2U_MINIOR_SHINY_CORE_ASSET 1196u
 
 typedef W2U_PwanConfigHeader PwanConfigHeader;
 typedef W2U_PwanConfigEntry PwanConfigEntry;
@@ -72,6 +77,7 @@ typedef W2U_PwanConfigEntry PwanConfigEntry;
 struct SummaryPokemonIdentity {
     u16 species;
     u16 form;
+    b32 shiny;
 };
 
 struct PstatusData {
@@ -992,7 +998,7 @@ static void ResetSessionIfChanged(SummaryWorkView *work, SummarySubWorkView *sub
 
 static SummaryPokemonIdentity GetCurrentIdentity(SummaryWorkView *work)
 {
-    SummaryPokemonIdentity identity = {SPECIES_NONE, 0};
+    SummaryPokemonIdentity identity = {SPECIES_NONE, 0, false};
     void *pp = PSTATUS_UTIL_GetCurrentPP_Fn(work);
     if (!pp) {
         return identity;
@@ -1000,6 +1006,10 @@ static SummaryPokemonIdentity GetCurrentIdentity(SummaryWorkView *work)
     identity.species = (u16)PP_Get_Fn(pp, W2U_PKM_PARAM_SPECIES, 0);
     if (identity.species != SPECIES_NONE) {
         identity.form = (u16)PP_Get_Fn(pp, W2U_PKM_PARAM_FORM, 0);
+        const u32 personality = PP_Get_Fn(pp, W2U_PKM_PARAM_PERSONAL_RND, 0);
+        const u32 trainerId = PP_Get_Fn(pp, W2U_PKM_PARAM_TRAINER_ID, 0);
+        identity.shiny = (((personality >> 16) ^ (personality & 0xffffu) ^
+                           (trainerId >> 16) ^ (trainerId & 0xffffu)) < 8u);
     }
     return identity;
 }
@@ -1022,6 +1032,14 @@ static SummaryAssetId GetAssetForEntrySide(const PwanConfigEntry *entry, b32 isF
 
 static SummaryAssetId GetAssetForSpeciesSide(SummaryPokemonIdentity identity, b32 isFront)
 {
+    if (identity.species == SPECIES_774 &&
+        identity.form >= W2U_MINIOR_CORE_FORM_START &&
+        identity.form < W2U_MINIOR_FORM_COUNT &&
+        identity.shiny) {
+        return (SummaryAssetId)(W2U_MINIOR_SHINY_CORE_ASSET * 2u +
+                                (isFront ? 0u : 1u));
+    }
+
     PwanConfigHeader header;
     if (!ReadConfigHeader(&header)) {
         return ASSET_NONE;

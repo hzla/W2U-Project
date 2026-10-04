@@ -3,14 +3,64 @@
 #include "Moves.h"
 #include "w2u_battle.h"
 #include "w2u_battle_lifecycle.h"
+#include "swan/gfl/core/gfl_heap.h"
 #include "swan/gfl/fs/gfl_archive.h"
 #include "swan/gfl/g3d/gfl_g3d_system.h"
+#include "swan/math/vector.h"
+
+extern "C" void* BTLV_EFFECT_GetMcssWork();
+extern "C" void BTLV_MCSS_GetPokeDefaultPos(void* mcssWork, VecFx32* position, int slot);
+extern "C" void* GFL_PTC_CreateEx(
+    void* work,
+    int workSize,
+    b32 personalCamera,
+    int fixedPolygonID,
+    int minimumPolygonID,
+    int maximumPolygonID,
+    HeapID heapID);
+extern "C" void GFL_PTC_Delete(void* particleSystem);
+extern "C" void* GFL_PTC_LoadArcResource(int archiveID, int member, HeapID heapID);
+extern "C" void GFL_PTC_SetResourceSetup(void* particleSystem, void* resource);
+extern "C" void GFL_PTC_LoadTex(void* particleSystem);
+extern "C" void* GFL_PTC_CreateEmitter(
+    void* particleSystem,
+    int resourceIndex,
+    const VecFx32* initialPosition);
+extern "C" fx32 GFL_PTC_GetEmitterRadius(void* emitter);
+extern "C" void GFL_PTC_SetEmitterRadius(void* emitter, fx32 radius);
+extern "C" fx32 GFL_PTC_GetEmitterLength(void* emitter);
+extern "C" void GFL_PTC_SetEmitterLength(void* emitter, fx32 length);
 
 namespace {
 
 constexpr u32 W2U_BATTGRA_ARC_ID = 11u;
+constexpr u32 W2U_PTC_ARC_ID = 6u;
+constexpr u32 W2U_ELECTRIC_AMBIENT_SPA_MEMBER = 787u;
+constexpr u32 W2U_GRASSY_AMBIENT_SPA_MEMBER = 788u;
+constexpr u32 W2U_MISTY_AMBIENT_SPA_MEMBER = 789u;
+constexpr u32 W2U_PSYCHIC_AMBIENT_SPA_MEMBER = 790u;
+constexpr u32 W2U_ELECTRIC_AMBIENT_ANCHOR_COUNT = 6u;
+constexpr u32 W2U_BATTLER_AMBIENT_ANCHOR_COUNT = 2u;
+constexpr u32 W2U_GRASSY_AMBIENT_STEP_COUNT = 4u;
+constexpr u32 W2U_GRASSY_AMBIENT_RESOURCES_PER_SIDE = 1u;
+constexpr u32 W2U_ELECTRIC_AMBIENT_STEP_FRAMES = 32u;
+constexpr u32 W2U_GRASSY_AMBIENT_STEP_FRAMES = 100u;
+constexpr u32 W2U_MISTY_AMBIENT_STEP_FRAMES = 200u;
+constexpr u32 W2U_PSYCHIC_AMBIENT_STEP_FRAMES = 60u;
+constexpr u32 W2U_PARTICLE_LIBRARY_HEAP_SIZE = 0x4800u;
+// Starting a terrain through a Surge ability happens while the switch-in and
+// terrain move animations still need this heap.  Leave room for those native
+// viewer allocations in addition to the standalone ambient SPA resource.
+constexpr u32 W2U_PARTICLE_ALLOCATION_HEADROOM = 0x3000u;
+constexpr u32 W2U_PARTICLE_POLYGON_ID_FIXED = 5u;
+constexpr u32 W2U_PARTICLE_POLYGON_ID_MINIMUM = 6u;
+constexpr u32 W2U_PARTICLE_POLYGON_ID_MAXIMUM = 54u;
+constexpr u32 W2U_PARTICLE_Z_PRIORITY_OFFSET = 0x500u;
+constexpr u32 W2U_MISTY_AMBIENT_Y_OFFSET = 0x2000u;
+constexpr u32 W2U_PSYCHIC_AMBIENT_Y_OFFSET = 0x2000u;
 constexpr u32 W2U_FIELD_RENDER_OFFSET = 0x14u;
 constexpr u32 W2U_FIELD_PALETTE_RESOURCES_OFFSET = 0x58u;
+constexpr u32 W2U_FIELD_HEAP_ID_OFFSET = 0x6Cu;
 constexpr u32 W2U_NO_DEFERRED_MESSAGE = 0xFFFFFFFFu;
 constexpr u32 W2U_PALETTE_FADE_MAX_EVY = 16u;
 constexpr u32 W2U_PALETTE_BACKUP_COLORS = 1024u;
@@ -22,6 +72,16 @@ constexpr u32 W2U_TERRAIN_TEXTURE_COUNT = 4u;
 
 const u8 W2U_FLOOR_ANIMATION_SOURCE_MATERIAL[W2U_NITRO_NAME_LENGTH] = {
     'p', 'a', 's', 't', 'e', 'd', '1', 0, 0, 0, 0, 0, 0, 0, 0, 0,
+};
+const s32 W2U_ELECTRIC_AMBIENT_RADIUS_QUARTERS[W2U_ELECTRIC_AMBIENT_ANCHOR_COUNT] = {
+    4, 40, 11, 33, 18, 26,
+};
+// user-left, target-right, user-right, target-left
+const u8 W2U_GRASSY_AMBIENT_ANCHORS[W2U_GRASSY_AMBIENT_STEP_COUNT] = {
+    0, 1, 0, 1,
+};
+const u8 W2U_GRASSY_AMBIENT_RESOURCE_BASES[W2U_GRASSY_AMBIENT_STEP_COUNT] = {
+    0, 1, 1, 0,
 };
 enum ElectricTransitionPhase {
     ELECTRIC_TRANSITION_IDLE = 0,
@@ -50,7 +110,10 @@ struct FieldPaletteFadeWork {
 // retargeted from pasted1 to the selected primary floor material.
 struct TerrainTextureMapping {
     u16 fieldMember;
-    u16 terrainTextureMembers[W2U_TERRAIN_TEXTURE_COUNT];
+    // The generated Electric/Grassy/Misty/Psychic resources are always four
+    // consecutive archive members. Store only the first member so expanding
+    // background coverage does not waste resident PMC heap on redundant IDs.
+    u16 terrainTextureBaseMember;
     u16 floorAnimationMember;
     char floorMaterial[W2U_NITRO_NAME_LENGTH];
 };
@@ -89,6 +152,334 @@ u16 sFloorAnimationMember = W2U_NO_FLOOR_ANIMATION_MEMBER;
 const char* sFloorAnimationMaterial = 0;
 const TerrainTextureMapping* sCurrentMapping = 0;
 u16 sPaletteBackup[W2U_PALETTE_BACKUP_COLORS];
+u32 sTerrainAmbientFrame = 0u;
+u32 sTerrainAmbientStep = 0u;
+void* sTerrainAmbientParticleHeap = 0;
+void* sTerrainAmbientParticleSystem = 0;
+u32 sTerrainAmbientParticleTerrain = TERRAIN_NULL;
+bool sTerrainAmbientTexturePending = false;
+bool sTerrainAmbientTextureReady = false;
+
+void ResetTerrainAmbientTimer()
+{
+    sTerrainAmbientFrame = 0u;
+    sTerrainAmbientStep = 0u;
+}
+
+HeapID GetFieldLowHeapID()
+{
+    if (!sFieldWork) {
+        return 0u;
+    }
+    const u32 heapID = *reinterpret_cast<const u32*>(
+        reinterpret_cast<const u8*>(sFieldWork) + W2U_FIELD_HEAP_ID_OFFSET);
+    return static_cast<HeapID>((heapID & 0x7FFFu) | 0x8000u);
+}
+
+void ReleaseTerrainAmbientParticles()
+{
+    if (sTerrainAmbientParticleSystem) {
+        GFL_PTC_Delete(sTerrainAmbientParticleSystem);
+        sTerrainAmbientParticleSystem = 0;
+    }
+    if (sTerrainAmbientParticleHeap) {
+        GFL_HeapFreeCore(sTerrainAmbientParticleHeap);
+        sTerrainAmbientParticleHeap = 0;
+    }
+    sTerrainAmbientParticleTerrain = TERRAIN_NULL;
+    sTerrainAmbientTexturePending = false;
+    sTerrainAmbientTextureReady = false;
+    ResetTerrainAmbientTimer();
+}
+
+u32 AmbientSpaMemberForTerrain(u32 terrain)
+{
+    if (terrain == TERRAIN_ELECTRIC) {
+        return W2U_ELECTRIC_AMBIENT_SPA_MEMBER;
+    }
+    if (terrain == TERRAIN_GRASSY) {
+        return W2U_GRASSY_AMBIENT_SPA_MEMBER;
+    }
+    if (terrain == TERRAIN_MISTY) {
+        return W2U_MISTY_AMBIENT_SPA_MEMBER;
+    }
+    if (terrain == TERRAIN_PSYCHIC) {
+        return W2U_PSYCHIC_AMBIENT_SPA_MEMBER;
+    }
+    return 0u;
+}
+
+bool PrepareTerrainAmbientParticles(u32 terrain)
+{
+    const u32 spaMember = AmbientSpaMemberForTerrain(terrain);
+    if (!spaMember) {
+        return false;
+    }
+    if (sTerrainAmbientParticleSystem &&
+        sTerrainAmbientParticleTerrain == terrain) {
+        return true;
+    }
+    if (sTerrainAmbientParticleSystem) {
+        ReleaseTerrainAmbientParticles();
+    }
+
+    const HeapID heapID = GetFieldLowHeapID();
+    if (!heapID) {
+        return false;
+    }
+
+    // GFL_HeapAllocate() treats allocation failure as a fatal assertion.  The
+    // ambient particle system is optional, so preflight its complete memory
+    // footprint and use the non-asserting core allocator for its work buffer.
+    // This lets the terrain mechanic, texture, and one-shot move animation
+    // continue when a switch-in leaves too little contiguous viewer heap.
+    const u32 resourceBytes = GFL_ArcSysGetDataLength(
+        W2U_PTC_ARC_ID,
+        static_cast<u16>(spaMember));
+    if (!resourceBytes ||
+        resourceBytes >
+            0xFFFFFFFFu - W2U_PARTICLE_LIBRARY_HEAP_SIZE -
+                W2U_PARTICLE_ALLOCATION_HEADROOM) {
+        return false;
+    }
+    const u32 requiredBytes =
+        W2U_PARTICLE_LIBRARY_HEAP_SIZE + resourceBytes +
+        W2U_PARTICLE_ALLOCATION_HEADROOM;
+    if (GFL_HeapGetHighestAllocatableSize(heapID) < requiredBytes) {
+        return false;
+    }
+
+    void* particleHeap =
+        GFL_HeapAllocateCore(heapID, W2U_PARTICLE_LIBRARY_HEAP_SIZE);
+    if (!particleHeap) {
+        return false;
+    }
+    void* resource = GFL_PTC_LoadArcResource(
+        W2U_PTC_ARC_ID,
+        spaMember,
+        heapID);
+    if (!resource) {
+        GFL_HeapFreeCore(particleHeap);
+        return false;
+    }
+
+    void* particleSystem = GFL_PTC_CreateEx(
+        particleHeap,
+        W2U_PARTICLE_LIBRARY_HEAP_SIZE,
+        false,
+        W2U_PARTICLE_POLYGON_ID_FIXED,
+        W2U_PARTICLE_POLYGON_ID_MINIMUM,
+        W2U_PARTICLE_POLYGON_ID_MAXIMUM,
+        heapID);
+    if (!particleSystem) {
+        GFL_FREE(resource);
+        GFL_HeapFreeCore(particleHeap);
+        return false;
+    }
+
+    GFL_PTC_SetResourceSetup(particleSystem, resource);
+    sTerrainAmbientParticleHeap = particleHeap;
+    sTerrainAmbientParticleSystem = particleSystem;
+    sTerrainAmbientParticleTerrain = terrain;
+    sTerrainAmbientTexturePending = true;
+    sTerrainAmbientTextureReady = false;
+    return true;
+}
+
+void FinishTerrainAmbientParticleSetup()
+{
+    if (!sTerrainAmbientTexturePending ||
+        !sTerrainAmbientParticleSystem ||
+        sAppliedTerrain != sTerrainAmbientParticleTerrain) {
+        return;
+    }
+
+    // This function runs from the existing post-viewer VBlank hook. Match the
+    // native move VM's split resource setup so texture VRAM is never updated
+    // from the main battle loop.
+    GFL_PTC_LoadTex(sTerrainAmbientParticleSystem);
+    sTerrainAmbientTexturePending = false;
+    sTerrainAmbientTextureReady = true;
+}
+
+void EmitElectricAmbientSpark(u32 anchorIndex)
+{
+    if (!sTerrainAmbientParticleSystem ||
+        anchorIndex >= W2U_ELECTRIC_AMBIENT_ANCHOR_COUNT) {
+        return;
+    }
+
+    void* mcssWork = BTLV_EFFECT_GetMcssWork();
+    if (!mcssWork) {
+        return;
+    }
+
+    VecFx32 position = { 0, 0, 0 };
+    BTLV_MCSS_GetPokeDefaultPos(
+        mcssWork,
+        &position,
+        static_cast<int>(anchorIndex));
+    position.z += static_cast<fx32>(W2U_PARTICLE_Z_PRIORITY_OFFSET);
+    void* emitter = GFL_PTC_CreateEmitter(
+        sTerrainAmbientParticleSystem,
+        0,
+        &position);
+    if (!emitter || emitter == reinterpret_cast<void*>(0xFFFFFFFFu)) {
+        return;
+    }
+
+    const s32 radiusQuarters = W2U_ELECTRIC_AMBIENT_RADIUS_QUARTERS[anchorIndex];
+    const fx32 radius = GFL_PTC_GetEmitterRadius(emitter);
+    const fx32 length = GFL_PTC_GetEmitterLength(emitter);
+    GFL_PTC_SetEmitterRadius(
+        emitter,
+        static_cast<fx32>((static_cast<s64>(radius) * radiusQuarters) / 4));
+    GFL_PTC_SetEmitterLength(
+        emitter,
+        static_cast<fx32>((static_cast<s64>(length) * radiusQuarters) / 4));
+}
+
+void EmitGrassyAmbientRootStep(u32 step)
+{
+    if (!sTerrainAmbientParticleSystem ||
+        step >= W2U_GRASSY_AMBIENT_STEP_COUNT) {
+        return;
+    }
+
+    void* mcssWork = BTLV_EFFECT_GetMcssWork();
+    if (!mcssWork) {
+        return;
+    }
+
+    // Compact SPA 788 stores the growing left root at resource 0 and growing
+    // right root at resource 1. The donor's delayed final-texture redraw
+    // emitters are omitted because their handoff makes the roots flicker.
+    // Stagger roots in user-left, target-right, user-right, target-left order.
+    const u32 anchor = W2U_GRASSY_AMBIENT_ANCHORS[step];
+    const u32 resourceBase = W2U_GRASSY_AMBIENT_RESOURCE_BASES[step];
+    VecFx32 position = { 0, 0, 0 };
+    BTLV_MCSS_GetPokeDefaultPos(mcssWork, &position, static_cast<int>(anchor));
+    position.z += static_cast<fx32>(W2U_PARTICLE_Z_PRIORITY_OFFSET);
+    for (u32 offset = 0u;
+         offset < W2U_GRASSY_AMBIENT_RESOURCES_PER_SIDE;
+         ++offset) {
+        GFL_PTC_CreateEmitter(
+            sTerrainAmbientParticleSystem,
+            static_cast<int>(resourceBase + offset),
+            &position);
+    }
+}
+
+void EmitMistyAmbientMist()
+{
+    if (!sTerrainAmbientParticleSystem) {
+        return;
+    }
+
+    void* mcssWork = BTLV_EFFECT_GetMcssWork();
+    if (!mcssWork) {
+        return;
+    }
+
+    // Preserve Mist Ball's exact fixed AA placement and +2px vertical offset.
+    // Its 5325/4096 scale parameter is baked into compact SPA 789.
+    VecFx32 position = { 0, 0, 0 };
+    BTLV_MCSS_GetPokeDefaultPos(mcssWork, &position, 0);
+    position.y += static_cast<fx32>(W2U_MISTY_AMBIENT_Y_OFFSET);
+    position.z += static_cast<fx32>(W2U_PARTICLE_Z_PRIORITY_OFFSET);
+    GFL_PTC_CreateEmitter(sTerrainAmbientParticleSystem, 0, &position);
+}
+
+void EmitPsychicAmbientEnergy(u32 anchor)
+{
+    if (!sTerrainAmbientParticleSystem ||
+        anchor >= W2U_BATTLER_AMBIENT_ANCHOR_COUNT) {
+        return;
+    }
+
+    void* mcssWork = BTLV_EFFECT_GetMcssWork();
+    if (!mcssWork) {
+        return;
+    }
+
+    // Alternate one slowed energy particle between the user and target. SPA
+    // 790 retains Shock Wave resource 2's purple parent/child appearance.
+    VecFx32 position = { 0, 0, 0 };
+    BTLV_MCSS_GetPokeDefaultPos(mcssWork, &position, static_cast<int>(anchor));
+    position.y += static_cast<fx32>(W2U_PSYCHIC_AMBIENT_Y_OFFSET);
+    position.z += static_cast<fx32>(W2U_PARTICLE_Z_PRIORITY_OFFSET);
+    GFL_PTC_CreateEmitter(sTerrainAmbientParticleSystem, 0, &position);
+}
+
+u32 TerrainAmbientStepInterval(u32 terrain)
+{
+    if (terrain == TERRAIN_ELECTRIC) {
+        return W2U_ELECTRIC_AMBIENT_STEP_FRAMES;
+    }
+    if (terrain == TERRAIN_GRASSY) {
+        return W2U_GRASSY_AMBIENT_STEP_FRAMES;
+    }
+    if (terrain == TERRAIN_MISTY) {
+        return W2U_MISTY_AMBIENT_STEP_FRAMES;
+    }
+    return W2U_PSYCHIC_AMBIENT_STEP_FRAMES;
+}
+
+void AdvanceTerrainAmbient()
+{
+    if (!sFieldWork) {
+        ResetTerrainAmbientTimer();
+        return;
+    }
+
+    const bool appliedTerrainHasAmbient =
+        AmbientSpaMemberForTerrain(sAppliedTerrain) != 0u;
+    if (!appliedTerrainHasAmbient) {
+        // Preserve a system prepared just before its terrain's next VBlank
+        // upload. Once terrain expires, release the
+        // private heap from this normal (non-VBlank) update path.
+        if (sTerrainAmbientParticleSystem &&
+            !AmbientSpaMemberForTerrain(sRequestedTerrain)) {
+            ReleaseTerrainAmbientParticles();
+        } else {
+            ResetTerrainAmbientTimer();
+        }
+        return;
+    }
+
+    if (sTerrainAmbientParticleTerrain != sAppliedTerrain ||
+        !sTerrainAmbientTextureReady ||
+        !sTerrainAmbientParticleSystem) {
+        ResetTerrainAmbientTimer();
+        return;
+    }
+
+    if (sTerrainAmbientFrame != 0u) {
+        sTerrainAmbientFrame -= 1u;
+        return;
+    }
+
+    // Emit one deliberately paced step without waiting for all existing
+    // particles to die. Each interval is matched to the slowed resource's
+    // visible lifetime, eliminating the old completed-batch dead time.
+    if (sAppliedTerrain == TERRAIN_ELECTRIC) {
+        EmitElectricAmbientSpark(sTerrainAmbientStep);
+        sTerrainAmbientStep = (sTerrainAmbientStep + 1u) %
+            W2U_ELECTRIC_AMBIENT_ANCHOR_COUNT;
+    } else if (sAppliedTerrain == TERRAIN_GRASSY) {
+        EmitGrassyAmbientRootStep(sTerrainAmbientStep);
+        sTerrainAmbientStep = (sTerrainAmbientStep + 1u) %
+            W2U_GRASSY_AMBIENT_STEP_COUNT;
+    } else if (sAppliedTerrain == TERRAIN_MISTY) {
+        EmitMistyAmbientMist();
+    } else {
+        EmitPsychicAmbientEnergy(sTerrainAmbientStep);
+        sTerrainAmbientStep = (sTerrainAmbientStep + 1u) %
+            W2U_BATTLER_AMBIENT_ANCHOR_COUNT;
+    }
+    const u32 interval = TerrainAmbientStepInterval(sAppliedTerrain);
+    sTerrainAmbientFrame = interval > 0u ? interval - 1u : 0u;
+}
 
 FieldPaletteFadeWork* GetFieldPaletteFadeWork()
 {
@@ -238,7 +629,7 @@ bool PrepareTerrainResource(u32 terrain, u32 serial)
     ReleasePreparedTerrainResource();
     G3DResource* resource = GFL_G3DSysReadArcSysResource(
         W2U_BATTGRA_ARC_ID,
-        sCurrentMapping->terrainTextureMembers[terrainIndex]);
+        sCurrentMapping->terrainTextureBaseMember + terrainIndex);
     if (!resource) {
         return false;
     }
@@ -417,6 +808,7 @@ bool EnsureFloorAnimation()
 void ClearFieldViewState()
 {
     SetFieldPaletteFadeResource(sFieldResource);
+    ReleaseTerrainAmbientParticles();
     ReleaseFloorAnimation();
     ReleasePreparedTerrainResource();
     ReleaseActiveTerrainResource();
@@ -435,6 +827,7 @@ void ClearFieldViewState()
     sPreparedSerial = 0u;
     sPrepareFailedSerial = 0u;
     sAppliedSerial = sRequestSerial;
+    ResetTerrainAmbientTimer();
 }
 
 bool UploadTexture(G3DResource* resource)
@@ -514,6 +907,7 @@ bool UploadTextureAtFade(
 
 extern "C" void W2U_TerrainTexture_Request(u32 terrain)
 {
+    ResetTerrainAmbientTimer();
     sDeferredResetMsgID = W2U_NO_DEFERRED_MESSAGE;
     sDeferredResetSerial = 0u;
     sRequestedTerrain = terrain;
@@ -570,6 +964,12 @@ extern "C" void W2U_TerrainTexture_OnMoveAnimationStart(u32 moveID)
     if (!PrepareTerrainResource(terrain, requestSerial)) {
         sPrepareFailedSerial = requestSerial;
         return;
+    }
+
+    if (AmbientSpaMemberForTerrain(terrain)) {
+        // Archive IO and particle-system allocation stay in the normal viewer
+        // update. Only the texture upload is deferred to the VBlank hook.
+        PrepareTerrainAmbientParticles(terrain);
     }
 
     sPrepareFailedSerial = 0u;
@@ -720,6 +1120,7 @@ extern "C" void W2U_TerrainTexture_ApplyPending()
             sPreparedTerrain = TERRAIN_NULL;
             sPreparedSerial = 0u;
             sAppliedTerrain = requestedTerrain;
+            ResetTerrainAmbientTimer();
             SetFieldPaletteFadeResource(sActiveTerrainResource);
             ReleaseTerrainResource(previousResource, previousTex);
             ResetFloorAnimation();
@@ -738,6 +1139,10 @@ extern "C" void W2U_TerrainTexture_ApplyPending()
 
 extern "C" void W2U_TerrainTexture_AdvanceAnimation()
 {
+    // Particle texture VRAM setup stays in VBlank. Emitter timing and creation
+    // run from the normal BTLV_EFFECT_Main path below.
+    FinishTerrainAmbientParticleSetup();
+
     if (sAppliedTerrain == TERRAIN_NULL || !EnsureFloorAnimation()) {
         return;
     }
@@ -745,6 +1150,14 @@ extern "C" void W2U_TerrainTexture_AdvanceAnimation()
     G3DAnim* animations[] = { sFloorAnimation };
     G3DActor proxy = { sFieldModel, animations, 1u, 0u };
     GFL_G3DActorStepAnmFrameLoop(&proxy, 0u, W2U_FLOOR_ANIMATION_STEP);
+}
+
+extern "C" void W2U_TerrainTexture_AdvanceAmbient()
+{
+    // BTLV_EFFECT_Main and GFL_PTC_Main continue to run while the native
+    // camera free-roams. This standalone system consequently neither waits on
+    // the move VM nor starts the HUD/background changes made by that VM.
+    AdvanceTerrainAmbient();
 }
 
 extern "C" void W2U_TerrainTexture_FieldExit()

@@ -1,5 +1,6 @@
 #include "w2u_battle.h"
-#include "Personal.h"
+#include "personal_data.h"
+#include "w2u_platform.h"
 
 extern "C" u32 PML_PersonalGetParamSingle(u32 species, u32 form, u32 field);
 
@@ -21,27 +22,27 @@ typedef void (*PlistPlateRedrawParamFn)(void* work, void* plateWork);
 typedef void (*PlistSubBagItemFn)(void* work, u32 itemID);
 
 const CanUseItemOnMonFn VanillaCanUseItemOnMon =
-    reinterpret_cast<CanUseItemOnMonFn>(0x021A2429u);
+    reinterpret_cast<CanUseItemOnMonFn>(W2U_ADDR_FIELD_CAN_USE_ITEM_ON_MON);
 const PlistMsgCreateWordSetFn PlistMsgCreateWordSet =
-    reinterpret_cast<PlistMsgCreateWordSetFn>(0x0219FA19u);
+    reinterpret_cast<PlistMsgCreateWordSetFn>(W2U_ADDR_FIELD_MSG_CREATE_WORD_SET);
 const PlistMsgAddPokeNameFn PlistMsgAddPokeName =
-    reinterpret_cast<PlistMsgAddPokeNameFn>(0x0219FA39u);
+    reinterpret_cast<PlistMsgAddPokeNameFn>(W2U_ADDR_FIELD_MSG_ADD_POKE_NAME);
 const PlistMsgDeleteWordSetFn PlistMsgDeleteWordSet =
-    reinterpret_cast<PlistMsgDeleteWordSetFn>(0x0219FA29u);
+    reinterpret_cast<PlistMsgDeleteWordSetFn>(W2U_ADDR_FIELD_MSG_DELETE_WORD_SET);
 const WordSetRegisterTokuseiNameFn WordSetRegisterTokuseiName =
-    reinterpret_cast<WordSetRegisterTokuseiNameFn>(0x0202452Du);
+    reinterpret_cast<WordSetRegisterTokuseiNameFn>(W2U_ADDR_WORD_SET_REGISTER_ABILITY_NAME);
 const PlistMessageWaitInitFn PlistMessageWaitInit =
-    reinterpret_cast<PlistMessageWaitInitFn>(0x0219D78Du);
+    reinterpret_cast<PlistMessageWaitInitFn>(W2U_ADDR_FIELD_MESSAGE_WAIT_INIT);
 const PlistYesNoWaitInitFn PlistYesNoWaitInit =
-    reinterpret_cast<PlistYesNoWaitInitFn>(0x0219D815u);
+    reinterpret_cast<PlistYesNoWaitInitFn>(W2U_ADDR_FIELD_YES_NO_WAIT_INIT);
 const PlistMsgCloseWindowFn PlistMsgCloseWindow =
-    reinterpret_cast<PlistMsgCloseWindowFn>(0x0219F83Du);
+    reinterpret_cast<PlistMsgCloseWindowFn>(W2U_ADDR_FIELD_MSG_CLOSE_WINDOW);
 const PlistReturnAfterItemUseFn PlistReturnAfterItemUse =
-    reinterpret_cast<PlistReturnAfterItemUseFn>(0x0219DE59u);
+    reinterpret_cast<PlistReturnAfterItemUseFn>(W2U_ADDR_FIELD_RETURN_AFTER_ITEM_USE);
 const PlistPlateRedrawParamFn PlistPlateRedrawParam =
-    reinterpret_cast<PlistPlateRedrawParamFn>(0x0219F351u);
+    reinterpret_cast<PlistPlateRedrawParamFn>(W2U_ADDR_FIELD_PLATE_REDRAW_PARAM);
 const PlistSubBagItemFn PlistSubBagItem =
-    reinterpret_cast<PlistSubBagItemFn>(0x0219E689u);
+    reinterpret_cast<PlistSubBagItemFn>(W2U_ADDR_FIELD_SUB_BAG_ITEM);
 
 constexpr u32 W2U_ABILITY_ITEM_SUCCESS_MSG = 0x39;
 constexpr u32 W2U_ABILITY_ITEM_CONFIRM_MSG = 0x3C;

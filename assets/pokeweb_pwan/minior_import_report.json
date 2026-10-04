@@ -1,0 +1,259 @@
+{
+  "version": 1,
+  "species": 774,
+  "formCount": 14,
+  "meteorForms": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "coreForms": {
+    "red": 7,
+    "orange": 8,
+    "yellow": 9,
+    "green": 10,
+    "blue": 11,
+    "indigo": 12,
+    "violet": 13
+  },
+  "personalRange": [
+    1273,
+    1285
+  ],
+  "spriteFormRange": [
+    459,
+    471
+  ],
+  "coreAssetRange": [
+    1189,
+    1195
+  ],
+  "shinyCoreAsset": 1196,
+  "regionalDexFileIndex": 1286,
+  "sources": {
+    "front": "../Port-Pokeweb/minior-core-front.gif",
+    "back": "../Port-Pokeweb/minior-core-back.gif"
+  },
+  "slices": {
+    "front": {
+      "red": "assets/pokeweb_pwan/sources/minior/minior-core-red-front.gif",
+      "orange": "assets/pokeweb_pwan/sources/minior/minior-core-orange-front.gif",
+      "yellow": "assets/pokeweb_pwan/sources/minior/minior-core-yellow-front.gif",
+      "green": "assets/pokeweb_pwan/sources/minior/minior-core-green-front.gif",
+      "blue": "assets/pokeweb_pwan/sources/minior/minior-core-blue-front.gif",
+      "indigo": "assets/pokeweb_pwan/sources/minior/minior-core-indigo-front.gif",
+      "violet": "assets/pokeweb_pwan/sources/minior/minior-core-violet-front.gif",
+      "shiny": "assets/pokeweb_pwan/sources/minior/minior-core-shiny-front.gif"
+    },
+    "back": {
+      "red": "assets/pokeweb_pwan/sources/minior/minior-core-red-back.gif",
+      "orange": "assets/pokeweb_pwan/sources/minior/minior-core-orange-back.gif",
+      "yellow": "assets/pokeweb_pwan/sources/minior/minior-core-yellow-back.gif",
+      "green": "assets/pokeweb_pwan/sources/minior/minior-core-green-back.gif",
+      "blue": "assets/pokeweb_pwan/sources/minior/minior-core-blue-back.gif",
+      "indigo": "assets/pokeweb_pwan/sources/minior/minior-core-indigo-back.gif",
+      "violet": "assets/pokeweb_pwan/sources/minior/minior-core-violet-back.gif",
+      "shiny": "assets/pokeweb_pwan/sources/minior/minior-core-shiny-back.gif"
+    }
+  },
+  "pwan": {
+    "red": {
+      "front": {
+        "frames": 41,
+        "timeline": 90,
+        "ticks": 658,
+        "bytes": 189368,
+        "paletteStrategy": "exact",
+        "sourceColors": 10,
+        "visibleColors": 10
+      },
+      "back": {
+        "frames": 81,
+        "timeline": 91,
+        "ticks": 658,
+        "bytes": 373692,
+        "paletteStrategy": "exact",
+        "sourceColors": 8,
+        "visibleColors": 8
+      }
+    },
+    "orange": {
+      "front": {
+        "frames": 42,
+        "timeline": 90,
+        "ticks": 658,
+        "bytes": 193976,
+        "paletteStrategy": "exact",
+        "sourceColors": 9,
+        "visibleColors": 9
+      },
+      "back": {
+        "frames": 81,
+        "timeline": 91,
+        "ticks": 658,
+        "bytes": 373692,
+        "paletteStrategy": "exact",
+        "sourceColors": 7,
+        "visibleColors": 7
+      }
+    },
+    "yellow": {
+      "front": {
+        "frames": 42,
+        "timeline": 90,
+        "ticks": 658,
+        "bytes": 193976,
+        "paletteStrategy": "exact",
+        "sourceColors": 9,
+        "visibleColors": 9
+      },
+      "back": {
+        "frames": 81,
+        "timeline": 91,
+        "ticks": 658,
+        "bytes": 373692,
+        "paletteStrategy": "exact",
+        "sourceColors": 7,
+        "visibleColors": 7
+      }
+    },
+    "green": {
+      "front": {
+        "frames": 42,
+        "timeline": 90,
+        "ticks": 658,
+        "bytes": 193976,
+        "paletteStrategy": "exact",
+        "sourceColors": 11,
+        "visibleColors": 11
+      },
+      "back": {
+        "frames": 81,
+        "timeline": 91,
+        "ticks": 658,
+        "bytes": 373692,
+        "paletteStrategy": "exact",
+        "sourceColors": 11,
+        "visibleColors": 11
+      }
+    },
+    "blue": {
+      "front": {
+        "frames": 42,
+        "timeline": 90,
+        "ticks": 658,
+        "bytes": 193976,
+        "paletteStrategy": "exact",
+        "sourceColors": 12,
+        "visibleColors": 12
+      },
+      "back": {
+        "frames": 81,
+        "timeline": 91,
+        "ticks": 658,
+        "bytes": 373692,
+        "paletteStrategy": "exact",
+        "sourceColors": 10,
+        "visibleColors": 10
+      }
+    },
+    "indigo": {
+      "front": {
+        "frames": 42,
+        "timeline": 90,
+        "ticks": 658,
+        "bytes": 193976,
+        "paletteStrategy": "exact",
+        "sourceColors": 11,
+        "visibleColors": 11
+      },
+      "back": {
+        "frames": 81,
+        "timeline": 91,
+        "ticks": 658,
+        "bytes": 373692,
+        "paletteStrategy": "exact",
+        "sourceColors": 7,
+        "visibleColors": 7
+      }
+    },
+    "violet": {
+      "front": {
+        "frames": 42,
+        "timeline": 90,
+        "ticks": 658,
+        "bytes": 193976,
+        "paletteStrategy": "exact",
+        "sourceColors": 12,
+        "visibleColors": 12
+      },
+      "back": {
+        "frames": 81,
+        "timeline": 91,
+        "ticks": 658,
+        "bytes": 373692,
+        "paletteStrategy": "exact",
+        "sourceColors": 7,
+        "visibleColors": 7
+      }
+    },
+    "shiny": {
+      "front": {
+        "frames": 42,
+        "timeline": 90,
+        "ticks": 658,
+        "bytes": 193976,
+        "paletteStrategy": "exact",
+        "sourceColors": 10,
+        "visibleColors": 10
+      },
+      "back": {
+        "frames": 81,
+        "timeline": 91,
+        "ticks": 658,
+        "bytes": 373692,
+        "paletteStrategy": "exact",
+        "sourceColors": 14,
+        "visibleColors": 14
+      }
+    }
+  },
+  "battleAssets": {
+    "red": {
+      "asset": 1189,
+      "shinyPalette": true
+    },
+    "orange": {
+      "asset": 1190,
+      "shinyPalette": true
+    },
+    "yellow": {
+      "asset": 1191,
+      "shinyPalette": true
+    },
+    "green": {
+      "asset": 1192,
+      "shinyPalette": true
+    },
+    "blue": {
+      "asset": 1193,
+      "shinyPalette": true
+    },
+    "indigo": {
+      "asset": 1194,
+      "shinyPalette": true
+    },
+    "violet": {
+      "asset": 1195,
+      "shinyPalette": true
+    },
+    "shiny": {
+      "asset": 1196,
+      "shinyPalette": true
+    }
+  }
+}

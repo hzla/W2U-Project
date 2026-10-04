@@ -31,6 +31,7 @@ SOURCE_SLUG_RE = re.compile(r"gen7-sprite-work/downloads/([^;]+)")
 ASSET_NOTE_RE = re.compile(r"PWAN asset index \d+")
 
 sys.path.insert(0, str(ROOT / "tools" / "pwan"))
+from report_paths import write_report  # noqa: E402
 from compile_pwan import compile_pwan  # noqa: E402
 from pwan_config import (  # noqa: E402
     PWAN_CONFIG_BACK_FLAG,
@@ -134,7 +135,7 @@ def update_tracker_rows(assignments: dict[int, int]) -> int:
         else:
             row["runtimeNotes"] = (notes + f"; {replacement}").strip("; ")
         changed += 1
-    TRACKER.write_text(json.dumps(rows, indent=2) + "\n", encoding="utf-8")
+    write_report(TRACKER, rows)
     return changed
 
 
@@ -191,7 +192,7 @@ def main() -> int:
         "pwanConfigEntries": len(entries),
         "maxAssetIndex": max(int(entry["assetIndex"]) for entry in entries.values()),
     }
-    REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    write_report(REPORT, report)
     print(
         f"Relocated {len(compiled)} base PWAN asset(s) to "
         f"{target_asset(GEN7_START)}-{target_asset(GEN9_END)}; missing sides={len(missing)}."

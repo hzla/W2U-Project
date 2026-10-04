@@ -1,9 +1,13 @@
 background,seasons,nsbmd_member,material,texture,palette,width,height,format,electric_member,grassy_member,misty_member,psychic_member,notes
 0,Spring; Summer (fallback); Autumn (fallback); Winter (fallback),74,batt_field04,batt_field01,batt_field01_pl,64,64,256-color,573,574,575,576,
+1,Spring (packed low half),76,batt_field23a_1,batt_field23a,batt_field23a_pl,64,64,256-color,857,858,859,860,Packed low-half field variant
 1,Spring; Autumn (fallback); Winter (fallback),77,batt_field01_1,batt_field01,batt_field01_pl,64,64,256-color,577,578,579,580,
+1,Summer (packed low half),78,batt_field23c_1,batt_field23c,batt_field23c_pl,64,64,256-color,853,854,855,856,Loaded by newnoterrain.dst; packed low-half field variant
 1,Summer,79,batt_field23d_1,batt_field23d,batt_field23d_pl,64,64,256-color,581,582,583,584,
 2,Spring; Summer (fallback); Autumn (fallback); Winter (fallback),84,batt_field04a_1,batt_field04a,batt_field04a_pl,64,64,256-color,585,586,587,588,
+3,Spring (packed low half),86,batt_field04a_1,batt_field04a,batt_field04a_pl,64,64,256-color,861,862,863,864,Packed low-half field variant
 3,Spring; Autumn (fallback); Winter (fallback),87,batt_field04b_1,batt_field04b,batt_field04b_pl,64,64,256-color,589,590,591,592,
+3,Summer (packed low half),88,batt_field04c_1,batt_field04c,batt_field04c_pl,64,64,256-color,865,866,867,868,Packed low-half field variant
 3,Summer,89,batt_field04d_1,batt_field04d,batt_field04d_pl,64,64,256-color,593,594,595,596,
 4,Spring; Summer (fallback); Autumn (fallback); Winter (fallback),94,batt_field05_1,batt_field05,batt_field05_pl,64,64,256-color,597,598,599,600,
 5,Spring; Summer (fallback); Autumn (fallback); Winter (fallback),95,batt_field05_1,batt_field05,batt_field05_pl,64,64,256-color,601,602,603,604,
@@ -22,40 +26,58 @@ background,seasons,nsbmd_member,material,texture,palette,width,height,format,ele
 19,Spring; Summer (fallback); Autumn (fallback); Winter (fallback),118,batt_fd_vs3_1,batt_fd_vs3,batt_fd_vs3_pl,64,64,256-color,653,654,655,656,
 20,Spring; Summer (fallback); Autumn (fallback); Winter (fallback),120,batt_field04,pkwd_field00a,pkwd_field00a_pl,128,64,256-color,657,658,659,660,
 21,Spring; Summer (fallback),121,roof_road_1,roof_road,roof_road_pl,32,32,16-color,661,662,663,664,
+21,Autumn (packed low half),122,roof_road_1,roof_road,roof_road_pl,32,32,16-color,869,870,871,872,Packed low-half field variant
 21,Autumn,123,roof_road_1,roof_road,roof_road_pl,32,32,16-color,665,666,667,668,
+21,Winter (packed low half),124,roof_road_1,roof_road,roof_road_pl,32,32,16-color,873,874,875,876,Packed low-half field variant
 21,Winter,125,roof_road_1,roof_road,roof_road_pl,32,32,16-color,669,670,671,672,
 22,Spring; Summer (fallback),141,park_ground_1,park_ground,park_ground_pl,32,32,256-color,673,674,675,676,
+22,Autumn (packed low half),142,park_ground_1,park_ground,park_ground_pl,32,32,256-color,877,878,879,880,Packed low-half field variant
 22,Autumn,143,park_ground_1,park_ground,park_ground_pl,32,32,256-color,677,678,679,680,
+22,Winter (packed low half),144,park_ground_1,park_ground,park_ground_pl,32,32,256-color,881,882,883,884,Packed low-half field variant
 22,Winter,145,park_ground,park_ground,park_ground_pl,32,32,256-color,681,682,683,684,
 23,Spring; Summer (fallback),161,city_ground_1,city_ground,city_ground_pl,64,64,256-color,685,686,687,688,
+23,Autumn (packed low half),162,city_ground_1,city_ground,city_ground_pl,64,64,256-color,885,886,887,888,Packed low-half field variant
 23,Autumn,163,city_ground_1,city_ground,city_ground_pl,64,64,256-color,689,690,691,692,
+23,Winter (packed low half),164,city_ground_1,city_ground,city_ground_pl,64,64,256-color,889,890,891,892,Packed low-half field variant
 23,Winter,165,city_ground_1,city_ground,city_ground_pl,64,64,256-color,693,694,695,696,
 24,Spring; Summer (fallback); Winter (fallback),181,future_line_1,future_line,future_line_pl,32,32,256-color,697,698,699,700,Large untextured base plane also present
 24,Autumn,182,future_line_1,future_line,future_line_pl,32,32,256-color,701,702,703,704,Large untextured base plane also present
 25,Spring; Summer (fallback),189,sands_sea_1,sands_sea,sands_sea_pl,32,32,16-color,705,706,707,708,
+25,Autumn (packed low half),190,sands_sea_1,sands_sea,sands_sea_pl,32,32,16-color,893,894,895,896,Packed low-half field variant
 25,Autumn,191,sands_sea_1,sands_sea,sands_sea_pl,32,32,16-color,709,710,711,712,
 25,Winter,192,sands_sea_1,sands_sea,sands_sea_pl,32,32,16-color,713,714,715,716,
 26,Spring; Summer (fallback),205,wharf_ground_1,wharf_ground,wharf_ground_pl,32,32,256-color,717,718,719,720,
+26,Autumn (packed low half),206,wharf_ground_1,wharf_ground,wharf_ground_pl,32,32,256-color,897,898,899,900,Packed low-half field variant
 26,Autumn,207,wharf_ground_1,wharf_ground,wharf_ground_pl,32,32,256-color,721,722,723,724,
 26,Winter,208,wharf_wave_1,wharf_wave,wharf_wave_pl,32,32,A5I3,725,726,727,728,
 27,Spring; Summer (fallback),221,park_ground_1,park_ground,park_ground_pl,32,32,256-color,729,730,731,732,
+27,Autumn (packed low half),222,park_ground_1,park_ground,park_ground_pl,32,32,256-color,901,902,903,904,Packed low-half field variant
 27,Autumn,223,park_ground_1,park_ground,park_ground_pl,32,32,256-color,733,734,735,736,
 27,Winter,224,park_ground_1,park_ground,park_ground_pl,32,32,256-color,737,738,739,740,
 28,Spring; Summer (fallback),237,magi_ground_1,magi_ground,magi_ground_pl,32,32,256-color,741,742,743,744,
+28,Autumn (packed low half),238,magi_ground_1,magi_ground,magi_ground_pl,32,32,256-color,905,906,907,908,Packed low-half field variant
 28,Autumn,239,magi_ground_1,magi_ground2,magi_ground2_pl,32,32,256-color,745,746,747,748,Large untextured base plane also present
 28,Winter,240,magi_ground2_1,magi_ground2,magi_ground2_pl,32,32,256-color,749,750,751,752,
 29,Spring; Summer (fallback),253,cmtry_ground_1,cmtry_ground,cmtry_ground_pl,32,32,256-color,753,754,755,756,
+29,Autumn (packed low half),254,cmtry_ground_1,cmtry_ground,cmtry_ground_pl,32,32,256-color,909,910,911,912,Packed low-half field variant
 29,Autumn,255,cmtry_ground_1,cmtry_ground,cmtry_ground_pl,32,32,256-color,757,758,759,760,
+29,Winter (packed low half),256,cmtry_ground_1,cmtry_ground,cmtry_ground_pl,32,32,256-color,913,914,915,916,Packed low-half field variant
 29,Winter,257,cmtry_ground_1,cmtry_ground,cmtry_ground_pl,32,32,256-color,761,762,763,764,
 30,Spring; Summer (fallback),273,fctry_floor2_1,fctry_floor2,fctry_floor2_pl,32,32,16-color,765,766,767,768,
+30,Autumn (packed low half),274,fctry_floor2_1,fctry_floor2,fctry_floor2_pl,32,32,16-color,917,918,919,920,Packed low-half field variant
 30,Autumn,275,fctry_floor2_2,fctry_floor2,fctry_floor2_pl,32,32,16-color,769,770,771,772,
+30,Winter (packed low half),276,fctry_floor2_1,fctry_floor2,fctry_floor2_pl,32,32,16-color,921,922,923,924,Packed low-half field variant
 30,Winter,277,fctry_floor2_1,fctry_floor2,fctry_floor2_pl,32,32,16-color,773,774,775,776,
 31,Spring; Summer (fallback),293,room_ground_1,room_ground,room_ground_pl,32,32,256-color,777,778,779,780,
+31,Autumn (packed low half),294,room_ground_1,room_ground,room_ground_pl,32,32,256-color,925,926,927,928,Packed low-half field variant
 31,Autumn,295,room_ground_1,room_ground,room_ground_pl,32,32,256-color,781,782,783,784,
+31,Winter (packed low half),296,room_ground_1,room_ground,room_ground_pl,32,32,256-color,929,930,931,932,Packed low-half field variant
 31,Winter,297,room_ground_1,room_ground,room_ground_pl,32,32,256-color,785,786,787,788,
 32,Spring; Summer (fallback); Winter (fallback),313,city_ground_1,city_ground,city_ground_pl,64,64,256-color,789,790,791,792,
+32,Autumn (packed low half),314,city_ground_1,city_ground,city_ground_pl,64,64,256-color,933,934,935,936,Packed low-half field variant
 32,Autumn,315,city_ground_1,city_ground,city_ground_pl,64,64,256-color,793,794,795,796,
 33,Spring; Summer (fallback); Winter (fallback),325,sky_cloud_1,sky_cloud,sky_cloud_pl,64,64,A3I5,797,798,799,800,Large untextured base plane also present
+33,Autumn (packed low half),326,space_field_1,space_field,space_field_pl,128,128,256-color,937,938,939,940,Packed low-half field variant
 33,Autumn,327,space_field_1,space_field,space_field_pl,128,128,256-color,801,802,803,804,
 34; 35; 36,Spring; Summer (fallback); Autumn (fallback); Winter (fallback),335,batt_field04,pkwd_field01,pkwd_field01_pl,128,64,256-color,805,806,807,808,
 37,Spring; Summer (fallback); Autumn (fallback); Winter (fallback),336,batt_field27_1,batt_field27,batt_field27_pl,64,64,256-color,809,810,811,812,

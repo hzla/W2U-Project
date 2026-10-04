@@ -33,6 +33,55 @@ subdir('src')
 # Assets
 subdir('data')
 
+black2_package_builder = meson.project_source_root() / 'tools' / 'build_black2upgrade_package.py'
+black2_clean_rom = meson.project_source_root() / get_option('black2_base_rom')
+black2_clean_w2_rom = meson.project_source_root() / '..' / 'Port-Pokeweb' / 'cleanwhite2.nds'
+
+black2upgrade_data_package = custom_target(
+  'black2upgrade-data-package',
+  input: [black2_clean_rom, black2_clean_w2_rom],
+  output: ['black2upgrade-data.tar.gz', 'black2upgrade-package-manifest.json'],
+  depends: vfs_files,
+  depend_files: [
+    black2_package_builder,
+    meson.project_source_root() / 'tools' / 'text' / 'gen5_text.py',
+    meson.project_source_root() / 'tools' / 'item_icons' / 'build_item_icon_patch.py',
+    meson.project_source_root() / 'assets' / 'move_backgrounds' / 'terrains' / 'battle-background-floor-targets.csv',
+  ],
+  command: [
+    'python3', black2_package_builder,
+    '--clean-b2', '@INPUT0@',
+    '--clean-w2', '@INPUT1@',
+    '--vfs', meson.project_source_root() / 'vfs' / 'data',
+    '--root', meson.project_source_root(),
+    '--output', '@OUTPUT0@',
+    '--manifest-output', '@OUTPUT1@',
+    '--expanded-files', meson.project_build_root() / 'black2upgrade-expanded-files',
+  ],
+)
+
+black2upgrade_release_artifacts = custom_target(
+  'stage_black2upgrade_release_artifacts',
+  input: [black2upgrade_data_package],
+  output: 'black2upgrade-release-artifacts.stamp',
+  command: ['sh', '-eu', '-c', '''
+    package="$1"
+    manifest="$2"
+    out_dir="$3"
+    stamp="$4"
+    mkdir -p "$out_dir"
+    cp "$package" "$out_dir/black2upgrade-data.tar.gz"
+    cp "$manifest" "$out_dir/black2upgrade-package-manifest.json"
+    shasum -a 256 "$package" > "$out_dir/black2upgrade-data.tar.gz.sha256"
+    touch "$stamp"
+  ''',
+    'stage_black2upgrade_release_artifacts',
+    '@INPUT@',
+    meson.project_build_root() / 'black2upgrade-artifacts',
+    '@OUTPUT@',
+  ],
+)
+
 item_icon_patch_py = find_program(meson.project_source_root() / 'tools' / 'item_icons' / 'build_item_icon_patch.py', native: true)
 patch_pmc_sysheap_py = find_program(meson.project_source_root() / 'tools' / 'patch_pmc_sysheap.py', native: true)
 patch_arm9_footer_py = meson.project_source_root() / 'tools' / 'patch_arm9_footer.py'
@@ -113,19 +162,23 @@ rom = custom_target('White2Upgrade.nds',
   input: [
     vfs_files,
     w2u_main_patch,
+    w2u_battle_module_stage,
     pwan_runtime_patch,
     main_menu_skip_patch,
     pmc_arm9,
     pmc_overlay,
     pmc_symbols
   ],
+  depend_files: [patch_arm9_footer_py, rom_layout_finalizer_py],
   command: ['sh', '-eu', '-c',
-    '"${JAVA:-java}" -cp "$1" ctrmap.cli.ROMBuilder --input "$2" --output "$3"; python3 "$4" --rom "$3" --arm9 "$5"',
+    '"${JAVA:-java}" "-Xmx$6" -cp "$1" ctrmap.cli.ROMBuilder --input "$2" --output "$3"; python3 "$4" --rom "$3" --arm9 "$5"; python3 "$7" --rom "$3"',
     'rombuilder',
     ctrmap_jar,
     meson.project_source_root() / 'White2Upgrade.cmproj',
     '@OUTPUT@',
     patch_arm9_footer_py,
     meson.project_source_root() / 'vfs' / 'arm9.bin',
+    get_option('rombuilder_java_heap'),
+    rom_layout_finalizer_py,
   ],
 )

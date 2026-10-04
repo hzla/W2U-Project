@@ -13,3 +13,24 @@ option(
   value: 6,
   description: 'Worker process count for Gen 7 pokegra native fallback recompression.'
 )
+
+option(
+  'strip_rpms',
+  type: 'boolean',
+  value: false,
+  description: 'Strip unused RPM symbols, symbol names, and redundant internal relocations from generated ROM DLLs while retaining unstripped ELF build artifacts.'
+)
+
+option(
+  'black2_base_rom',
+  type: 'string',
+  value: '../Port-Pokeweb/cleanblack2.nds',
+  description: 'Exact clean US IREO ROM used to generate Black2Upgrade signatures and the canonical expanded build.'
+)
+
+option(
+  'rombuilder_java_heap',
+  type: 'string',
+  value: '4g',
+  description: 'Maximum Java heap passed to CTRMap ROMBuilder. Oversized ROM digest generation needs substantially more heap than the final ROM size.'
+)

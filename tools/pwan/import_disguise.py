@@ -11,6 +11,7 @@ from pathlib import Path
 
 import import_essentials_gen8_gen9 as form_import
 from pwan_config import parse_config, write_config
+from report_paths import write_report
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -158,7 +159,7 @@ def main() -> int:
         "inheritedCarrierOffsets": inherited_carrier_offsets,
         "icon": BUSTED_ICON,
     }
-    REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    write_report(REPORT, report)
     print(
         f"Imported Mimikyu-Busted form {BUSTED_FORM} as PWAN asset {BUSTED_ASSET}, "
         f"personal 1272, sprite form 458."

@@ -2,7 +2,7 @@
 #define __W2U_BATTLE_H
 
 #include "swan/swantypes.h"
-#include "Species.h"
+#include "species_ids.h"
 #include "Items.h"
 
 #define W2U_ARRAY_COUNT(arr) (sizeof(arr) / sizeof((arr)[0]))
@@ -24,6 +24,8 @@ typedef u32 BattleStyle;
 #define ABIL_PLUS 0x39
 #define ABIL_MINUS 0x3A
 #define ABIL_KLUTZ 0x67
+#define ABIL_SHEER_FORCE 0x7D
+#define ABIL_INFILTRATOR 0x97
 
 #define BATTLE_MAX_SLOTS 31
 
@@ -48,17 +50,21 @@ typedef u32 BattleStyle;
 #define CONDITION_LEECHSEED 0x12
 #define CONDITION_BLOCK_ITEM 0x13
 #define CONDITION_ENCORE 0x17
+#define CONDITION_ROOST 0x18
 #define CONDITION_MOVELOCK 0x19
 #define CONDITION_CHARGELOCK 0x1A
 #define CONDITION_CHOICELOCK 0x1B
 #define CONDITION_SKYDROP 0x21
 #define CONDITIONFLAG_NULL 0x0F
 #define CONDITIONFLAG_BATONPASS 0x0E
+#define CONDITIONFLAG_MINIMIZED 0x08
 #define TURNFLAG_ACTIONSTART 0x00
 #define TURNFLAG_ACTIONDONE 0x01
+#define TURNFLAG_DAMAGED 0x02
 #define TURNFLAG_MOVEPROCDONE 0x03
 #define TURNFLAG_PROTECT 0x07
 #define TURNFLAG_ITEMCONSUMED 0x08
+#define TURNFLAG_CANTUSEITEM 0x09
 #define TURNFLAG_MOVED 0x0C
 #define TURNFLAG_USINGFLING 0x0F
 
@@ -80,6 +86,18 @@ typedef u32 BattleStyle;
 #define BATTLE_MISTY_TERRAIN_MSGID 1298
 #define BATTLE_TERRAIN_END_MSGID 1301
 #define BATTLE_PSYCHIC_TERRAIN_MSGID 1313
+#define BATTLE_AURORA_VEIL_START_MSGID 1316
+#define BATTLE_AURORA_VEIL_END_MSGID 1319
+#define BATTLE_BEAK_BLAST_CHARGE_MSGID 1322
+#define BATTLE_BURN_UP_MSGID 1325
+#define BATTLE_LASER_FOCUS_MSGID 1328
+#define BATTLE_INSTRUCT_MSGID 1331
+#define BATTLE_SHELL_TRAP_SET_MSGID 1334
+#define BATTLE_SPECTRAL_THIEF_STEAL_MSGID 1337
+#define BATTLE_SPEED_SWAP_MSGID 1340
+#define BATTLE_THROAT_CHOP_END_MSGID 1343
+#define BATTLE_DOUBLE_SHOCK_MSGID 1346
+#define BATTLE_SPOTLIGHT_MSGID 670
 #define BATTLE_BLADE_FORME_MSGID 1304
 #define BATTLE_SHIELD_FORME_MSGID 1307
 #define BATTLE_ION_DELUGE_MSGID 1310
@@ -101,6 +119,8 @@ typedef u32 BattleStyle;
 #define BATTLE_POWDER_COVER_MSGID 1283
 #define BATTLE_POWDER_EXPLODE_MSGID 1286
 #define BATTLE_SPIKY_SHIELD_DAMAGE_MSGID 1289
+#define BATTLE_RECOIL_MSGID 378
+#define BATTLE_SOLAR_BEAM_CHARGE_MSGID 553
 
 #define SIDEEFF_REFLECT 0
 #define SIDEEFF_LIGHT_SCREEN 1
@@ -110,12 +130,14 @@ typedef u32 BattleStyle;
 #define SIDEEFF_TOXIC_SPIKES 7
 #define SIDEEFF_STEALTH_ROCK 8
 #define SIDEEFF_STICKY_WEB 14
+#define SIDEEFF_AURORA_VEIL 15
 
 #define POSEFF_ION_DELUGE 5
 #define POSEFF_CRAFTY_SHIELD 6
 #define POSEFF_ELECTRIFY 7
 #define POSEFF_KINGS_SHIELD 8
 #define POSEFF_MAT_BLOCK 9
+#define POSEFF_DAMAGE_SHIELD 10
 
 #define TERRAIN_NULL 0
 #define TERRAIN_ELECTRIC 1
@@ -160,6 +182,8 @@ enum BattleMonValue : u32 {
     VALUE_SPEED_STAGE = 0x5,
     VALUE_ACCURACY_STAGE = 0x6,
     VALUE_EVASION_STAGE = 0x7,
+    VALUE_ATTACK_STAT = 0x8,
+    VALUE_SPECIAL_ATTACK_STAT = 0xA,
     VALUE_SPEED_STAT = 0xC,
     VALUE_CURRENT_HP = 0xD,
     VALUE_MAX_HP = 0xE,
@@ -173,11 +197,14 @@ enum BattleHandlerEffect : u32 {
     EFFECT_ABILITY_POPUP_REMOVE = 0x3,
     EFFECT_MESSAGE = 0x4,
     EFFECT_RECOVER_HP = 0x5,
+    EFFECT_DRAIN = 0x6,
     EFFECT_DAMAGE = 0x7,
+    EFFECT_SHIFT_HP = 0x8,
     EFFECT_CURE_STATUS = 0xB,
     EFFECT_ADD_CONDITION = 0xC,
     EFFECT_CHANGE_STAT_STAGE = 0xE,
     EFFECT_SET_STAT_STAGE = 0xF,
+    EFFECT_SET_BASE_STATS = 0x11,
     EFFECT_CHANGE_TYPE = 0x14,
     EFFECT_SET_TURN_FLAG = 0x15,
     EFFECT_RESET_TURN_FLAG = 0x16,
@@ -187,9 +214,15 @@ enum BattleHandlerEffect : u32 {
     EFFECT_REMOVE_FIELD_EFFECT = 0x1C,
     EFFECT_ADD_POS_EFFECT = 0x1E,
     EFFECT_CHANGE_ABILITY = 0x1F,
+    EFFECT_CHECK_ITEM = 0x21,
     EFFECT_SWAP_ITEM = 0x24,
+    EFFECT_QUIT_BATTLE = 0x28,
     EFFECT_SWITCH = 0x29,
+    EFFECT_INTERRUPT_ACTION = 0x2F,
+    EFFECT_ADD_ANIMATION = 0x37,
     EFFECT_CHANGE_FORM = 0x39,
+    EFFECT_SET_ANIMATION_ID = 0x3A,
+    EFFECT_FORCE_MOVE_SUCCESS = 0x3B,
 };
 
 enum StatStage : u32 {
@@ -203,11 +236,20 @@ enum StatStage : u32 {
     STATSTAGE_EVASION = 0x7,
 };
 
+enum BattleType : u32 {
+    BTL_TYPE_WILD = 0x0,
+    BTL_TYPE_TRAINER = 0x1,
+    BTL_TYPE_FACILITY = 0x2,
+    BTL_TYPE_ONLINE = 0x3,
+    BTL_TYPE_DEMO = 0x4,
+};
+
 enum ServerCommandID : u32 {
     SCID_ConsumeItem = 0x17,
     SCID_ChangeAbility = 0x1D,
     SCID_SetItem = 0x1E,
     SCID_MoveAnim = 0x30,
+    SCID_Exp = 0x45,
     SCID_ChangeForm = 0x4F,
     SCID_SetMessage = 0x5B,
 };
@@ -248,10 +290,10 @@ struct MoveSet {
 struct MoveDamageRec {
     u16 moveID;
     u16 damage;
-    u8 damageType;
     u8 moveType;
     u8 pokeID;
     u8 pokePos;
+    u8 padding;
 };
 
 struct BattleAction_Fight {
@@ -313,7 +355,8 @@ struct BattleMon {
     u8 moveConditionCounter[36];
     u8 confrontRecCount;
     u8 confrontRec[24];
-    u8 gapE9[5];
+    u8 gapE9[3];
+    u16 transformedSpecies; // Unused native base-param word; filled on successful Transform.
     u16 attack;
     u16 defense;
     u16 specialAttack;
@@ -354,6 +397,11 @@ struct BattleMon {
     u8 comboPokeID;
     u8 field_1F7;
 };
+
+static_assert(__builtin_offsetof(BattleMon, transformedSpecies) == 0xEC,
+    "BattleMon::transformedSpecies layout changed");
+static_assert(__builtin_offsetof(BattleMon, attack) == 0xEE,
+    "BattleMon::attack layout changed");
 
 struct BattleParty {
     BattleMon* members[6];
@@ -488,6 +536,22 @@ struct HandlerParam_SendLast {
     HandlerParam_StrParams exStr;
 };
 
+struct HandlerParam_AddAnimation {
+    HandlerParam_Header header;
+    u16 effectNo;
+    u8 posFrom;
+    u8 posTo;
+    u16 reservedQueuePos;
+    u8 reserveQueue;
+    u8 hideMessageWindow;
+    HandlerParam_StrParams exStr;
+};
+
+struct HandlerParam_SetAnimationID {
+    HandlerParam_Header header;
+    u8 effectIndex;
+};
+
 struct HandlerParam_RecoverHP {
     HandlerParam_Header header;
     u16 recoverHP;
@@ -495,6 +559,37 @@ struct HandlerParam_RecoverHP {
     u8 failCheckThru;
     HandlerParam_StrParams exStr;
 };
+
+struct HandlerParam_Drain {
+    HandlerParam_Header header;
+    u16 recoverHP;
+    u8 recipientSlot;
+    u8 damageSourceSlot;
+    HandlerParam_StrParams exStr;
+};
+
+// Native HP payment, not damage/recovery. US W2/B2 Belly Drum writes
+// count/item-disable/slot/volume at offsets 4/6/7/16 respectively.
+struct HandlerParam_ShiftHP {
+    HandlerParam_Header header;
+    u8 pokeCount;
+    u8 effectDisable;
+    u8 itemReactionDisable;
+    u8 pokeID[6];
+    s32 volume[6];
+};
+
+struct HandlerParam_CheckItem {
+    HandlerParam_Header header;
+    u8 pokeID;
+    u32 reactionType;
+};
+
+static_assert(sizeof(HandlerParam_ShiftHP) == 0x28, "Native HP payment layout changed");
+static_assert(sizeof(HandlerParam_CheckItem) == 0xC, "Native item check layout changed");
+
+static_assert(sizeof(HandlerParam_Drain) == 0x30,
+    "HandlerParam_Drain layout changed");
 
 struct HandlerParam_Damage {
     HandlerParam_Header header;
@@ -578,6 +673,21 @@ struct HandlerParam_SetStatStage {
     s8 evasion;
 };
 
+struct HandlerParam_SetBaseStats {
+    HandlerParam_Header header;
+    u16 attack;
+    u16 defense;
+    u16 specialAttack;
+    u16 specialDefense;
+    u16 speed;
+    u8 pokeID;
+    u8 enableFlags;
+    HandlerParam_StrParams exStr;
+};
+
+static_assert(sizeof(HandlerParam_SetBaseStats) == 0x38,
+    "HandlerParam_SetBaseStats layout changed");
+
 struct HandlerParam_SetTurnFlag {
     HandlerParam_Header header;
     TURN_FLAG flag;
@@ -654,12 +764,17 @@ struct ServerFlow {
     FaintRecord faintRecord;
     u8 pad_4A4[0x2A];
     u16 field_4CE;
-    u8 pad_4D0[0x2AE];
+    u8 pad_4D0[0x2A4];
+    u32 simulationCounter;
+    u32 moveStatEffectSerial;
+    u8 commandBuildStep;
+    u8 actionOrderStep;
     u8 turnCheckSeq;
     u8 defaultTargetPos;
+    u16 heapID;
     u8 numActOrder;
     u8 numEndActOrder;
-    u8 pad_782[0x08];
+    u8 pad_784[0x06];
     u8 field_78A;
     u8 pad_78B[0x55];
     ActionOrderWork actionOrderWork[6];
@@ -669,17 +784,31 @@ struct ServerFlow {
     u32 HEManager;
 };
 
+static_assert(sizeof(ActionOrderWork) == 0x10, "ActionOrderWork layout changed");
+static_assert(__builtin_offsetof(ServerFlow, numActOrder) == 0x782,
+    "ServerFlow::numActOrder offset changed");
+static_assert(__builtin_offsetof(ServerFlow, simulationCounter) == 0x774,
+    "ServerFlow::simulationCounter offset changed");
+static_assert(__builtin_offsetof(ServerFlow, field_78A) == 0x78A,
+    "ServerFlow::field_78A offset changed");
+static_assert(__builtin_offsetof(ServerFlow, actionOrderWork) == 0x7E0,
+    "ServerFlow::actionOrderWork offset changed");
+
 extern "C" u32 BattleAction_GetAction(BattleActionParam* param);
 extern "C" void BattleAction_SetNull(BattleActionParam* actionParam);
 extern "C" u32 BattleViewCmd_UI_SelectMove_Wait(BtlvCore* btlCore);
 extern "C" u32 BattleRandom(u32 range);
 extern "C" BattleStyle BtlSetup_GetBattleStyle(MainModule* mainModule);
+extern "C" BattleType MainModule_GetBattleType(MainModule* mainModule);
+extern "C" void MainModule_NotifyBattleResult(MainModule* mainModule, u32 result);
 extern "C" b32 IsCenterInTripleBattle(u32 battlePos);
 
 extern "C" u32 GCTX_HIDGetPressedKeys();
 
 extern "C" b32 MainModule_IsAllyMonID(u32 slot1, u32 slot2);
 extern "C" BattleMon* PokeCon_GetBattleMon(PokeCon* pokeCon, u32 index);
+extern "C" BattleParty* PokeCon_GetBattleParty(PokeCon* pokeCon, u32 clientID);
+extern "C" BattleMon* BattleParty_GetPartyMember(BattleParty* battleParty, u32 partySlot);
 extern "C" void PokeSet_SeekStart(PokeSet* pokeSet);
 extern "C" BattleMon* PokeSet_SeekNext(PokeSet* pokeSet);
 extern "C" void PokeSet_Remove(PokeSet* pokeSet, BattleMon* battleMon);
@@ -688,6 +817,7 @@ extern "C" ITEM BattleMon_GetHeldItem(BattleMon* battleMon);
 extern "C" bool BattleMon_IsFainted(BattleMon* battleMon);
 extern "C" b32 BattleMon_IsStatChangeValid(BattleMon* battleMon, StatStage stat, int volume);
 extern "C" void Turnflag_Clear(BattleMon* battleMon, TURN_FLAG turnFlag);
+extern "C" void TurnFlag_Set(BattleMon* battleMon, TURN_FLAG turnFlag);
 extern "C" u32 BattleMon_TransformCheck(BattleMon* battleMon);
 extern "C" bool BattleMon_ChangeForm(BattleMon* battleMon, u32 form);
 extern "C" void BattleMon_ChangeAbility(BattleMon* battleMon, u16 ability);
@@ -700,6 +830,7 @@ extern "C" bool BattleMon_GetTurnFlag(BattleMon* battleMon, TURN_FLAG turnFlag);
 extern "C" bool BattleMon_IsSubstituteActive(BattleMon* battleMon);
 extern "C" void BattleMon_SetMovesAndPP(BattleMon* battleMon);
 extern "C" bool BattleMon_GetConditionFlag(BattleMon* battleMon, CONDITION_FLAG conditionFlag);
+extern "C" b32 BattleField_CheckEffect(FIELD_EFFECT fieldEffect);
 extern "C" void BattleMon_ClearTransformChange(BattleMon* battleMon);
 extern "C" void BattleMon_ClearUsedMoveFlag(BattleMon* battleMon);
 extern "C" void BattleMon_ClearComboMoveData(BattleMon* battleMon);
@@ -718,8 +849,10 @@ extern "C" u32 ServerDisplay_IllusionSet(ServerFlow* serverFlow, u16* switchWork
 extern "C" void ServerDisplay_UseHeldItem(ServerFlow* serverFlow, BattleMon* battleMon);
 extern "C" void ServerDisplay_SetConditionFlag(ServerFlow* serverFlow, BattleMon* battleMon, CONDITION_FLAG flag);
 extern "C" void ServerDisplay_SetTurnFlag(ServerFlow* serverFlow, BattleMon* battleMon, TURN_FLAG flag);
+extern "C" void ServerDisplay_SimpleHP(ServerFlow* serverFlow, BattleMon* battleMon, int damage, b32 animate);
 extern "C" void BattleHandler_StrSetup(HandlerParam_StrParams* str, u32 strType, u32 msgID);
 extern "C" void BattleHandler_AddArg(HandlerParam_StrParams* str, u32 arg);
+extern "C" void BattleHandler_StrClear(HandlerParam_StrParams* str);
 extern "C" void* BattleHandler_PushWork(ServerFlow* serverFlow, BattleHandlerEffect effect, u32 pokemonSlot);
 extern "C" void BattleHandler_PopWork(ServerFlow* serverFlow, void* work);
 extern "C" void BattleHandler_SetString(ServerFlow* serverFlow, HandlerParam_StrParams* str);
@@ -767,6 +900,7 @@ extern "C" void CommonTypeBoostingItem(BattleEventItem* item, ServerFlow* server
 extern "C" void CommonResistBerry(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work, u8 pokeType, b32 skipEffectivenessCheck);
 extern "C" void HandlerCommonResistBerryDamageAfter(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work);
 extern "C" void ServerControl_CheckItemReaction(ServerFlow* serverFlow, BattleMon* battleMon, u32 flags);
+extern "C" b32 ServerControl_CheckFainted(ServerFlow* serverFlow, BattleMon* battleMon);
 extern "C" b32 ServerControl_IsGuaranteedHit(ServerFlow* serverFlow, BattleMon* attackingMon, BattleMon* defendingMon);
 extern "C" b32 ServerControl_CheckNoEffectCore(
     ServerFlow* serverFlow,
@@ -784,7 +918,9 @@ extern "C" u32 ServerFlow_ReqChangePokeForServer(ServerFlow* serverFlow, u16* sw
 extern "C" void ServerControl_SwitchInCore(ServerFlow* serverFlow, u32 clientID, u32 switchInSlot, u32 switchOutSlot);
 extern "C" void ServerControl_ChangeHeldItem(ServerFlow* serverFlow, BattleMon* battleMon, ITEM itemID, b32 consumeItem);
 extern "C" b32 HandlerCommon_CheckIfCanStealPokeItem(ServerFlow* serverFlow, u32 thiefSlot, u32 targetSlot);
-extern "C" b32 HandlerCommon_IsUnremovableItem(BattleMon* battleMon, ITEM itemID);
+extern "C" b32 HandlerCommon_CheckTargetMonID(u32 pokemonSlot);
+extern "C" b32 HandlerCommon_IsUnremovableItem(SPECIES species, ITEM itemID);
+extern "C" b32 Handler_CheckMatchup(ServerFlow* serverFlow);
 extern "C" b32 Handler_IsSimulationMode(ServerFlow* serverFlow);
 extern "C" u32 Handler_IsPosOpenForRevivedMon(ServerFlow* serverFlow);
 extern "C" void HandlerOvercoat(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work);
@@ -807,6 +943,7 @@ extern "C" u32 j_j_FaintRecord_GetCount_1(FaintRecord* faintRecord, u32 turn);
 extern "C" ConditionData Condition_MakePermanent();
 extern "C" ConditionData Condition_MakeTurn(u32 turnCount);
 extern "C" ConditionData Condition_MakeTurnParam(u32 maxTurns, u32 param);
+extern "C" ConditionData MakeBasicStatus(CONDITION condition);
 extern "C" ConditionData MakeCondition(CONDITION condition, BattleMon* battleMon, ConditionData* condData);
 extern "C" MOVE_ID Condition_GetParam(ConditionData conditionData);
 extern "C" void MoveEvent_ForceRemoveItemFromBattleMon(BattleMon* battleMon, MOVE_ID moveID);
@@ -815,6 +952,5 @@ extern "C" void sys_memset(void* dst, int value, u32 size);
 extern "C" u32 GetSideFromMonID(u32 pokemonSlot);
 extern "C" u32 GetSideFromOpposingMonID(u32 pokemonSlot);
 
-extern "C" bool GiratinaArceusGenesectItemCheck(BattleMon* battleMon, ITEM itemID);
 
 #endif

@@ -8,6 +8,7 @@ java_bin="${JAVA:-java}"
 rom_out="${ROM_OUT:-build/White2Upgrade.nds}"
 copy_to="${COPY_ROM_TO:-build/White2Upgrade-copy.nds}"
 quick_rom_method="${QUICK_ROM_METHOD:-patch}"
+rombuilder_java_heap="${ROMBUILDER_JAVA_HEAP:-4g}"
 
 usage() {
   cat <<'EOF'
@@ -27,7 +28,16 @@ Environment:
   ROM_OUT           Output ROM path, default build/White2Upgrade.nds
   COPY_ROM_TO       Copy destination, default build/White2Upgrade-copy.nds
   QUICK_ROM_METHOD  patch (default) or rombuilder
+  ROMBUILDER_JAVA_HEAP  CTRMap maximum Java heap, default 4g
 EOF
+}
+
+run_rombuilder() {
+  "$java_bin" "-Xmx${rombuilder_java_heap}" \
+    -cp tools/CTRMap/CTRMapV-dirty.jar \
+    ctrmap.cli.ROMBuilder --input White2Upgrade.cmproj --output "$rom_out"
+  python3 tools/patch_arm9_footer.py --rom "$rom_out" --arm9 vfs/arm9.bin
+  python3 tools/finalize_white2_rom.py --rom "$rom_out"
 }
 
 if [[ $# -eq 0 ]]; then
@@ -95,18 +105,22 @@ if [[ "$quick_rom_method" == "patch" && "$rom_only" -ne 1 && ${#patch_archives[@
   for archive in "${patch_archives[@]}"; do
     patch_args+=(--archive "$archive")
   done
-  python3 tools/dev_rom_patch.py --rom "$rom_out" --output "$rom_out" "${patch_args[@]}"
+  if python3 tools/dev_rom_patch.py --rom "$rom_out" --output "$rom_out" --dry-run "${patch_args[@]}"; then
+    python3 tools/dev_rom_patch.py --rom "$rom_out" --output "$rom_out" "${patch_args[@]}"
+    python3 tools/finalize_white2_rom.py --rom "$rom_out"
+  else
+    patch_status=$?
+    if [[ "$patch_status" -ne 75 ]]; then
+      exit "$patch_status"
+    fi
+    echo "A replacement outgrew its FAT allocation; falling back to CTRMap ROMBuilder." >&2
+    run_rombuilder
+  fi
 elif [[ "$quick_rom_method" == "patch" && "$rom_only" -ne 1 && ${#patch_archives[@]} -gt 0 ]]; then
   echo "$rom_out does not exist; falling back to CTRMap ROMBuilder. Run one full build first to use the patch path." >&2
-  "$java_bin" \
-    -cp tools/CTRMap/CTRMapV-dirty.jar \
-    ctrmap.cli.ROMBuilder --input White2Upgrade.cmproj --output "$rom_out"
-  python3 tools/patch_arm9_footer.py --rom "$rom_out" --arm9 vfs/arm9.bin
+  run_rombuilder
 elif [[ "$quick_rom_method" == "rombuilder" || "$rom_only" -eq 1 ]]; then
-  "$java_bin" \
-    -cp tools/CTRMap/CTRMapV-dirty.jar \
-    ctrmap.cli.ROMBuilder --input White2Upgrade.cmproj --output "$rom_out"
-  python3 tools/patch_arm9_footer.py --rom "$rom_out" --arm9 vfs/arm9.bin
+  run_rombuilder
 else
   echo "Unknown QUICK_ROM_METHOD: $quick_rom_method" >&2
   exit 2

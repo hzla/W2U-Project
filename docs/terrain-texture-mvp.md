@@ -8,9 +8,9 @@ model identified by the background table.
 
 - Terrains: Electric, Grassy, Misty, and Psychic
 - Displayed vanilla backgrounds: 0 through 46
-- Distinct seasonal/reused field NSBMDs: 70
-- Generated exact-layout NSBTX resources: 280
-- Battle graphics member range: 573 through 852
+- Distinct table-declared field NSBMDs: 92
+- Generated exact-layout NSBTX resources: 368
+- Battle graphics member range: 573 through 940
 - UV animation template: native NSBTA member 119
 
 The source-of-truth target list is
@@ -20,12 +20,19 @@ distilled from the White 2 floor analysis in
 For each distinct NSBMD, the selected target is the `primary` candidate with
 the greatest projected area. The material's palette name is resolved from the
 actual NSBMD material-to-palette binding rather than inferred from its name.
+Coverage includes both valid low and high halves of the packed resource IDs in
+the built ROM's battle-background table. White 2 normally selects 70 of these
+models, but the other packed variants remain valid field assets and can be
+selected by custom battle-background logic.
 
 `docs/terrain-texture-mappings.csv` is the generated reference table. It lists
 the displayed background and season, source model/material/texture/palette,
 native format and dimensions, and all four replacement member IDs. The C++
 mapping used at runtime is generated at
-`src/pokeweb_gameplay/w2u_terrain_texture_mappings.inc`.
+`src/pokeweb_gameplay/w2u_terrain_texture_mappings.inc`. Because each terrain
+set is consecutive, the resident runtime table stores only its Electric member
+and derives the other three IDs; this keeps full packed-model coverage from
+needlessly increasing PMC heap use.
 
 The four seamless, square source tiles are:
 
@@ -35,8 +42,10 @@ The four seamless, square source tiles are:
 - `assets/move_backgrounds/terrains/psychic-tileable.png`
 
 `tools/graphics/build_terrain_texture_mvp.py` generates the catalog in sorted
-NSBMD-member order. Each row receives four consecutive resources in Electric,
-Grassy, Misty, Psychic order. Every output clones the model's complete TEX0
+NSBMD-member order. Each row receives four resources in Electric, Grassy,
+Misty, Psychic order. Existing rows retain their original sequential IDs;
+newly discovered models can set `output_base_member` so they append resources
+without renumbering the catalog. Every output clones the model's complete TEX0
 block and replaces only the selected floor image and its bound palette. Texture
 names, formats, dimensions, offsets, allocation sizes, other materials, and
 model geometry stay unchanged. Rectangular allocations repeat a square
@@ -82,11 +91,39 @@ field intact.
 
 The runtime loads a private copy of native NSBTA member 119 and retargets its
 single `pasted1` track to the mapped primary material. Only that material's
-texture matrix scrolls; secondary floor layers, effects, sky, props, Pokémon
-platforms, model geometry, and draw calls remain untouched. The 101-frame track
-translates by one complete tile and advances by half a frame per VBlank (about
-one loop every 3.4 seconds at 60 Hz). It resets to frame zero on each terrain
-change and runs while any terrain texture is active.
+texture matrix animates; secondary floor layers, effects, sky, props, Pokémon
+platforms, model geometry, and draw calls remain untouched. Electric, Grassy,
+Misty, and Psychic advance the 101-frame one-tile translation track by half a
+frame per VBlank (about one loop every 3.4 seconds at 60 Hz). Animation resets
+to frame zero on each terrain change.
+
+Electric Terrain additionally advances an ambient step timer from the normal
+`BTLV_EFFECT_Main` path immediately before `GFL_PTC_Main`. A standalone
+particle system preloads compact SPA `787`, uploads its textures through the
+existing VBlank hook, and cycles one 32-frame spark through six native MCSS
+floor anchors at 32-frame intervals. Moves and the free-roaming battle camera
+can run concurrently. The timer resets on terrain
+requests, successful terrain uploads, and field teardown. This path never
+starts the shared move-effect VM and therefore never
+changes the camera, palettes, sounds, sprites, or HUD. Reserved particles-only
+member `626` remains available as a fallback/test representation of the same
+distribution but is not invoked by runtime ambient playback.
+
+Grassy, Misty, and Psychic Terrain use the same standalone particle-system
+lifecycle with per-terrain pacing and no completed-batch cooldown. Grassy
+loads compact SPA `788` and starts one root every 100 frames in user-left,
+target-right, user-right, target-left order. It retains only Ingrain's growing
+left/right emitters with 100-frame particle life; the delayed final-texture
+redraw emitters that cause handoff flicker, the absorption emitter, and its
+child particles are absent. Misty loads compact SPA `789` and emits only
+Mist Ball SPA `466` resource `1` at `AA`, retaining the command's `+2px` Y
+offset and `5325/4096` scale. Its timing is doubled, velocity halved, and the
+mist restarts every 200 frames. Psychic loads compact SPA `790`, containing one
+half-speed, 60-frame Shock Wave SPA `528` resource `2` parent and its child
+energy particles, hue-shifted to the Psychic Terrain texture color. It
+alternates every 60 frames between the `AA` user and `BB` target positions with
+the donor's `+2px` Y offset. Switching directly among terrains replaces the one
+private ambient system rather than retaining multiple particle heaps.
 
 Animation creation is deferred until the first post-init viewer update because
 the native texture-upload call occurs before `BTLV_FIELD_Init` constructs its
@@ -119,6 +156,8 @@ The English White 2 overlay assumptions remain isolated in
   primary-floor NSBTA after native battle VBlank work.
 - Overlay 168 `0x021DF1DE`: detach borrowed keys and free terrain resources
   before vanilla destroys the field resource.
+- Overlay 168 `0x021DF2F2`: advance the independent Electric/Grassy/Misty/Psychic Terrain
+  ambient timer immediately before the native global particle draw.
 - Overlay 167 `0x021B733E`: synchronize terrain expiry with the disappearance
   message reaching the viewer.
 

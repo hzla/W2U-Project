@@ -4,12 +4,46 @@ This repository uses the HZLA GIF animation workflow for expanded Pokemon sprite
 
 ## Runtime
 
-Pokeweb animation support is split between `w2u_main.dll` hooks and the
-resident `PokewebPwanW2.dll` runtime from `src/pwan_animation`.
+Pokeweb animation support is split between `w2u_main.dll` hooks and three
+overlay-scoped runtimes from `src/pwan_animation`:
+
+| Runtime | Overlay scope | Expanded load | Fixed size |
+| --- | --- | ---: | ---: |
+| `PokewebPwanSummaryW2.dll` | Summary (`207`) | 20,736 bytes | 20,244 bytes |
+| `PokewebPwanBattleW2.dll` | Battle (`167`, `168`) | 36,560 bytes | 36,044 bytes |
+| `PokewebPwanMiscW2.dll` | Evolution, egg hatch, and other non-battle views (`265`, `284`, `298`, `307`) | 44,512 bytes | 43,616 bytes |
+
+Each DLL contains its own archive cache and scratch storage, so it has no
+runtime dependency on either of the other PWAN DLLs. Summary carries only the
+4.5 KiB frame scratch; battle and misc also carry the 12 KiB texture scratch.
+The staging target removes the old `PokewebPwanW2.dll` monolith to prevent PMC
+from loading both layouts.
+
+The same source tree also builds three clean-US Black 2 (`IREO`) runtimes:
+
+| Runtime | Overlay scope |
+| --- | --- |
+| `PokewebPwanSummaryB2.dll` | Summary (`207`) |
+| `PokewebPwanBattleB2.dll` | Battle (`167`, `168`) |
+| `PokewebPwanMiscB2.dll` | Evolution, egg hatch, and other non-battle views (`265`, `284`, `298`, `307`) |
+
+These targets have dedicated B2 hooks and an `IREO` symbol/address profile.
+They do not replace or alter the three White 2 targets and are consumed by
+Pokeweb-Serverless rather than the White 2 Upgrade VFS staging target.
+`PokewebPwanLegacyRetiredW2.dll` is a tiny hook-free module used only to retire
+the known old Serverless monolith without shifting an existing ROM file ID.
 
 The runtime loads one archive from the ROM filesystem:
 
 - `zz_pokeweb_pwan/pwan.narc`
+
+Because the DLL is overlay-scoped, the PMC overlay staged by the build includes
+a fix for its bundled heap allocator. The original `HeapArea::Realloc` shrink
+path reserved 24 bytes for a 16-byte block header, losing 8 bytes every time an
+RPM was fixed. The former monolithic PWAN runtime expanded to 59,856 bytes and
+fixed to 58,360 bytes; after one unload, the buggy allocator recovered only
+59,848 bytes and the second load failed. `tools/patch_pmc_sysheap.py` applies
+the allocator fix while staging overlay 344.
 
 NARC member `0` is the `PWNC` v3 config from
 `assets/pokeweb_pwan/config.bin`. Runtime asset members are sparse:
@@ -159,5 +193,5 @@ If the bad state reports a clean `copiedFrame` but texture VRAM does not match
 that PWAN frame, and the image fixes itself at the next timeline frame, another
 renderer overwrote VRAM after PWAN. Fix ownership or ordering; repeatedly
 uploading earlier in the frame will not solve it. Also verify that the rebuilt
-resident DLL is actually loaded and restart the emulator after replacing a
-resident runtime build.
+DLL is loaded for the target overlay and restart the emulator after replacing
+the runtime build.

@@ -6,6 +6,8 @@ import re
 import sys
 import tomllib
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pwan"))
+from report_paths import write_report
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -149,7 +151,7 @@ def main() -> int:
 
         audit["entries"].append(record)
 
-    args.audit.write_text(json.dumps(audit, indent=2) + "\n")
+    write_report(args.audit, audit)
     print(
         f"changed {changed}, unchanged {unchanged}, animated {animated}, "
         f"static {static}, missing {len(audit['missing'])}, audit {args.audit}"

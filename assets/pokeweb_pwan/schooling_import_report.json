@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "species": 746,
+  "forms": {
+    "solo": 0,
+    "school": 1
+  },
+  "schoolPersonal": 1286,
+  "schoolSpriteForm": 473,
+  "schoolAsset": 1197,
+  "schoolIcon": 2402,
+  "regionalDexFileIndex": 1287,
+  "formListRecords": 183,
+  "sources": {
+    "front": "../Port-Pokeweb/essentials_gifs/Front/WISHIWASHI_1.gif",
+    "back": "../Port-Pokeweb/essentials_gifs/Back/WISHIWASHI_1.gif",
+    "frontShiny": "../Port-Pokeweb/essentials_pngs/Front shiny/WISHIWASHI_1.png",
+    "backShiny": "../Port-Pokeweb/essentials_pngs/Back shiny/WISHIWASHI_1.png"
+  },
+  "import": {
+    "assetIndex": 1197,
+    "front": "../Port-Pokeweb/essentials_gifs/Front/WISHIWASHI_1.gif",
+    "back": "../Port-Pokeweb/essentials_gifs/Back/WISHIWASHI_1.gif",
+    "frontShiny": "../Port-Pokeweb/essentials_pngs/Front shiny/WISHIWASHI_1.png",
+    "backShiny": "../Port-Pokeweb/essentials_pngs/Back shiny/WISHIWASHI_1.png",
+    "stats": {
+      "front": {
+        "frames": 20,
+        "timeline": 20,
+        "ticks": 120,
+        "bytes": 92320,
+        "paletteStrategy": "exact",
+        "sourceColors": 14,
+        "visibleColors": 14
+      },
+      "back": {
+        "frames": 20,
+        "timeline": 20,
+        "ticks": 120,
+        "bytes": 92320,
+        "paletteStrategy": "exact",
+        "sourceColors": 13,
+        "visibleColors": 13
+      }
+    },
+    "missingSides": [],
+    "nativeFallback": true,
+    "nativeFallbackError": "",
+    "shinyPalette": true
+  },
+  "icon": {
+    "targetIcon": 2402,
+    "paletteKey": 1197,
+    "sourceStem": "WISHIWASHI_1",
+    "palette": 2
+  }
+}

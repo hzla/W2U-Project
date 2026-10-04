@@ -8,6 +8,7 @@ import urllib.request
 from pathlib import Path
 
 from compile_pwan import compile_pwan
+from report_paths import write_report
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -184,7 +185,7 @@ def build_assets(force_download: bool) -> None:
                 f"{stats['bytes']:>6} bytes"
             )
     write_config(OUTPUT_ROOT)
-    SOURCE_MANIFEST.write_text(json.dumps(sources, indent=2) + "\n")
+    write_report(SOURCE_MANIFEST, sources)
     print(f"wrote {OUTPUT_ROOT / 'config.bin'} ({len(GEN6_SPECIES)} mappings)")
     print(f"wrote {SOURCE_MANIFEST}")
     print(f"max timeline {max_timeline}, total PWAN bytes {total_bytes}")

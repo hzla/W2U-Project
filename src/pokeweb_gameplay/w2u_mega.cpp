@@ -1,10 +1,15 @@
 #include "w2u_battle.h"
 #include "w2u_battle_lifecycle.h"
+#if defined(W2U_DYNAMIC_BATTLE_CORE)
+#include "w2u_battle_module_loader.h"
+#endif
 #include "w2u_abilities.h"
 #include "w2u_field_effects.h"
 #include "w2u_moves.h"
 #include "w2u_mega_native_button_assets.h"
-#include "Personal.h"
+#include "personal_data.h"
+#include "w2u_platform.h"
+#include "w2u_native_item_protection.h"
 
 #define W2U_ENABLE_MEGA_EVOLUTION 1
 #define W2U_KEY_START 0x8
@@ -27,23 +32,23 @@
 #define W2U_MEGA_NATIVE_BUTTON_EXIST_OFFSET 0x2DEu
 #define W2U_MEGA_NATIVE_HIT_NONE 0xFFFFFFFFu
 #define W2U_MEGA_NATIVE_WAZA_INFO_MASK 0x8000u
-#define W2U_MEGA_NATIVE_CHECK_KEY 0x021EECFDu
-#define W2U_MEGA_NATIVE_INPUT_TABLE_NORMAL_US 0x021F3644u
-#define W2U_MEGA_NATIVE_INPUT_TABLE_TRIPLE_US 0x021F3650u
-#define W2U_GFL_UI_TP_HIT_TRG 0x0203DA39u
+#define W2U_MEGA_NATIVE_CHECK_KEY W2U_ADDR_MEGA_NATIVE_CHECK_KEY
+#define W2U_MEGA_NATIVE_INPUT_TABLE_NORMAL_US W2U_ADDR_MEGA_INPUT_TABLE_NORMAL
+#define W2U_MEGA_NATIVE_INPUT_TABLE_TRIPLE_US W2U_ADDR_MEGA_INPUT_TABLE_TRIPLE
+#define W2U_GFL_UI_TP_HIT_TRG W2U_ADDR_GFL_UI_TP_HIT_TRG
 #define W2U_SEQ_SE_DECIDE2 1357u
 #define W2U_SEQ_SE_CANCEL2 1362u
 #define W2U_BATTLE_ANIMATIONS_COUNT 115u
 #define W2U_MEGA_ANIMATION_SCRIPT_ID 622u
 #define W2U_MEGA_ANIMATION_CMD_ID(scriptID) ((scriptID) + W2U_BATTLE_ANIMATIONS_COUNT)
-#define W2U_CMD_ACT_WAIT_ADDRESS 0x021D3171u
+#define W2U_CMD_ACT_WAIT_ADDRESS W2U_ADDR_CMD_ACT_WAIT
 #define W2U_BTLVSCU_VIEW_MON_SELECTOR_OFFSET 0x134u
 #define W2U_BTLVSCU_VIEW_MON_TABLE_OFFSET 0x138u
-#define W2U_BATTLE_VIEW_RESOLVE_VIEW_MON_ADDRESS 0x0219C785u
-#define W2U_BATTLE_VIEW_LOOKUP_MON_ADDRESS 0x0219D1C9u
-#define W2U_BATTLE_VIEW_DEREF_MON_ADDRESS 0x021BB085u
-#define W2U_BATTLE_VIEW_REFRESH_FORM_SPRITE_ADDRESS 0x021DF7ADu
-#define W2U_MEGA_FORM_REFRESH_FRAME 144u
+#define W2U_BATTLE_VIEW_RESOLVE_VIEW_MON_ADDRESS W2U_ADDR_BATTLE_VIEW_RESOLVE_VIEW_MON
+#define W2U_BATTLE_VIEW_LOOKUP_MON_ADDRESS W2U_ADDR_BATTLE_VIEW_LOOKUP_MON
+#define W2U_BATTLE_VIEW_DEREF_MON_ADDRESS W2U_ADDR_BATTLE_VIEW_DEREF_MON
+#define W2U_BATTLE_VIEW_REFRESH_FORM_SPRITE_ADDRESS W2U_ADDR_BATTLE_VIEW_REFRESH_FORM_SPRITE
+#define W2U_MEGA_FORM_REFRESH_FRAME 244u
 #define W2U_MEGA_PENDING_CLIENT_CHANGE_COUNT 4u
 
 #if W2U_ENABLE_MEGA_EVOLUTION
@@ -69,6 +74,10 @@ const u8 W2U_MEGA_NO_SLOT = 0xFF;
 const u8 W2U_MEGA_NO_FORM = 0;
 const u16 W2U_MEGA_NO_ABILITY = 0xFFFF;
 const u8 W2U_RAYQUAZA_DRAGON_ASCENT_MEGA_FORM = 1u;
+const u8 W2U_ZYGARDE_50_FORM = 0u;
+const u8 W2U_ZYGARDE_10_FORM = 1u;
+const u8 W2U_ZYGARDE_COMPLETE_FORM = 2u;
+const u8 W2U_ZYGARDE_MEGA_FORM = 3u;
 const u8 W2U_CLIENT_FORM_VISUAL_MEGA = 1u;
 const u8 W2U_CLIENT_FORM_VISUAL_INSTANT_DISGUISE = 2u;
 const u8 W2U_MIMIKYU_BUSTED_FORM = 1u;
@@ -115,6 +124,7 @@ struct MegaBattleState {
     u8 selectedForm;
     u8 committedFormBySide[2];
     u8 committedSlotBySide[2];
+    u8 originalFormBySide[2];
     u16 originalAbilityBySide[2];
 };
 
@@ -200,6 +210,7 @@ MegaBattleState gMegaState = {
     W2U_MEGA_NO_FORM,
     {W2U_MEGA_NO_FORM, W2U_MEGA_NO_FORM},
     {W2U_MEGA_NO_SLOT, W2U_MEGA_NO_SLOT},
+    {W2U_MEGA_NO_FORM, W2U_MEGA_NO_FORM},
     {W2U_MEGA_NO_ABILITY, W2U_MEGA_NO_ABILITY},
 };
 
@@ -390,6 +401,7 @@ const MegaEvolutionEntry W2U_MEGA_TABLE[] = {
     {SPECIES_BARBARACLE, ITEM_MEGITE, 1},
     {SPECIES_DRAGALGE, ITEM_MEGITE, 1},
     {SPECIES_HAWLUCHA, ITEM_MEGITE, 1},
+    {SPECIES_ZYGARDE, ITEM_MEGITE, W2U_ZYGARDE_MEGA_FORM},
     {SPECIES_740, ITEM_MEGITE, 1},
     {SPECIES_768, ITEM_MEGITE, 1},
     {SPECIES_780, ITEM_MEGITE, 1},
@@ -401,7 +413,7 @@ const MegaEvolutionEntry W2U_MEGA_TABLE[] = {
     {SPECIES_998, ITEM_MEGITE, 1},
 };
 
-const u32 W2U_BATTLE_SUMMARY_CACHE_KNOWN_ADDRESS = 0x022C4760u;
+const u32 W2U_BATTLE_SUMMARY_CACHE_KNOWN_ADDRESS = W2U_ADDR_BATTLE_SUMMARY_CACHE;
 
 extern "C" {
 #pragma GCC diagnostic push
@@ -1056,6 +1068,21 @@ u8 GetMegaFormForBattleMon(const BattleMon* battleMon)
     return mega ? mega->form : W2U_MEGA_NO_FORM;
 }
 
+bool IsMegaSourceFormEligible(const BattleMon* battleMon)
+{
+    if (!battleMon) {
+        return false;
+    }
+
+    if (battleMon->species == SPECIES_ZYGARDE) {
+        // Mega Zygarde is only reachable after Power Construct has produced
+        // Complete Form.
+        return battleMon->form == W2U_ZYGARDE_COMPLETE_FORM;
+    }
+
+    return battleMon->form == 0;
+}
+
 u8 GetKnownMegaFormForBattleMon(const BattleMon* battleMon)
 {
     const u8 itemMegaForm = GetMegaFormForBattleMon(battleMon);
@@ -1116,6 +1143,8 @@ void ResetMegaBattleState()
     gMegaState.committedFormBySide[1] = W2U_MEGA_NO_FORM;
     gMegaState.committedSlotBySide[0] = W2U_MEGA_NO_SLOT;
     gMegaState.committedSlotBySide[1] = W2U_MEGA_NO_SLOT;
+    gMegaState.originalFormBySide[0] = W2U_MEGA_NO_FORM;
+    gMegaState.originalFormBySide[1] = W2U_MEGA_NO_FORM;
     gMegaState.originalAbilityBySide[0] = W2U_MEGA_NO_ABILITY;
     gMegaState.originalAbilityBySide[1] = W2U_MEGA_NO_ABILITY;
     gMegaBattleServerFlow = nullptr;
@@ -1129,6 +1158,10 @@ void ResetMegaBattleState()
 
 extern "C" void W2U_BattleState_OnBattleExit()
 {
+#if defined(W2U_DYNAMIC_BATTLE_CORE)
+    W2U_BattleModules_Reset();
+#endif
+
     // The battle heap commonly reuses these exact addresses. Invalidate the
     // cached identity explicitly so SetupBeforeFirstTurn performs its full
     // reset in the next battle even when every pointer value is unchanged.
@@ -1138,6 +1171,7 @@ extern "C" void W2U_BattleState_OnBattleExit()
     gMegaBattlePokeCon = nullptr;
 
     W2U_AuraField_ResetBattleState();
+    W2U_AbilityState_ResetBattleState();
     W2U_MoveState_ResetBattleState();
 }
 
@@ -1206,7 +1240,7 @@ bool CanMegaEvolveCore(
         *skipReasonOut = MEGA_SKIP_TRANSFORMED;
         return false;
     }
-    if (battleMon->form != 0) {
+    if (!IsMegaSourceFormEligible(battleMon)) {
         *skipReasonOut = MEGA_SKIP_ALREADY_FORMED;
         return false;
     }
@@ -1729,11 +1763,25 @@ void RestoreMegaBattleMonToBaseForm(BattleMon* battleMon)
         return;
     }
 
-    battleMon->form = 0;
+    const u8 side = MegaSideForSlot(battleMon->battleSlot);
+    u8 restoreForm = side < W2U_ARRAY_COUNT(gMegaState.originalFormBySide) ?
+        gMegaState.originalFormBySide[side] : W2U_MEGA_NO_FORM;
+    if (battleMon->species == SPECIES_ZYGARDE &&
+        restoreForm == W2U_ZYGARDE_COMPLETE_FORM) {
+        // Complete Form is battle-only. The party record retains the stable
+        // 10%/50% origin while the in-battle form changes.
+        const u32 partyForm = battleMon->partySrc ?
+            PokeParty_GetParam(battleMon->partySrc, PF_Forme, nullptr) :
+            W2U_ZYGARDE_50_FORM;
+        restoreForm = partyForm == W2U_ZYGARDE_10_FORM ?
+            W2U_ZYGARDE_10_FORM : W2U_ZYGARDE_50_FORM;
+    }
+
+    battleMon->form = restoreForm;
     if (!battleMon->partySrc) {
         return;
     }
-    RestorePartyBaseForm(battleMon, 0);
+    RestorePartyBaseForm(battleMon, restoreForm);
     const u16 ability =
         (u16)PokeParty_GetParam(battleMon->partySrc, PF_Ability, nullptr);
     battleMon->Type1 =
@@ -1991,7 +2039,7 @@ bool ProcessMegaActionWork(ServerFlow* serverFlow, ActionOrderWork* actionWork)
     if (!battleMon ||
         BattleMon_IsFainted(battleMon) ||
         BattleMon_TransformCheck(battleMon) ||
-        battleMon->form != 0 ||
+        !IsMegaSourceFormEligible(battleMon) ||
         (GetMegaFormForBattleMon(battleMon) != megaForm &&
          GetMoveTriggeredMegaFormForAction(actionParam, battleMon) != megaForm) ||
         (gMegaState.usedSideMask & MegaSideMaskForSlot(battleMon->battleSlot)) != 0) {
@@ -2005,11 +2053,13 @@ bool ProcessMegaActionWork(ServerFlow* serverFlow, ActionOrderWork* actionWork)
     }
 
     u8 pokemonSlot = battleMon->battleSlot;
+    const u8 side = MegaSideForSlot(pokemonSlot);
     u8 sideMask = MegaSideMaskForSlot(pokemonSlot);
+    gMegaState.originalFormBySide[side] = battleMon->form;
     gMegaState.usedSideMask |= sideMask;
     gMegaState.committedSideMask &= ~sideMask;
-    gMegaState.committedFormBySide[MegaSideForSlot(pokemonSlot)] = W2U_MEGA_NO_FORM;
-    gMegaState.committedSlotBySide[MegaSideForSlot(pokemonSlot)] = W2U_MEGA_NO_SLOT;
+    gMegaState.committedFormBySide[side] = W2U_MEGA_NO_FORM;
+    gMegaState.committedSlotBySide[side] = W2U_MEGA_NO_SLOT;
     W2U_MegaVisualState.usedSideMask = gMegaState.usedSideMask;
 
     if (GetMoveTriggeredMegaFormForAction(actionParam, battleMon) == W2U_MEGA_NO_FORM) {
@@ -2048,7 +2098,14 @@ extern "C" u8 W2U_CanMegaEvolve(BattleMon* battleMon)
         return W2U_MEGA_NO_FORM;
     }
 
-    return GetMegaFormForBattleMon(battleMon);
+    const u8 megaForm = GetMegaFormForBattleMon(battleMon);
+    if (megaForm == W2U_MEGA_NO_FORM || !battleMon) {
+        return W2U_MEGA_NO_FORM;
+    }
+    if (battleMon->form == megaForm) {
+        return megaForm;
+    }
+    return IsMegaSourceFormEligible(battleMon) ? megaForm : W2U_MEGA_NO_FORM;
 }
 
 extern "C" u32 W2U_Mega_WrapNativeInputCheckKey(
@@ -2231,6 +2288,16 @@ extern "C" bool THUMB_BRANCH_BattleHandler_ChangeForm(ServerFlow* serverFlow, Ha
         return false;
     }
 
+    const u8 previousForm = battleMon->form;
+    const bool isPowerConstructChange =
+        battleMon->species == SPECIES_ZYGARDE &&
+        (previousForm == W2U_ZYGARDE_10_FORM ||
+         previousForm == W2U_ZYGARDE_50_FORM) &&
+        params->newForm == W2U_ZYGARDE_COMPLETE_FORM;
+    const u32 previousDamage =
+        battleMon->maxHP > battleMon->currentHP ?
+        (u32)battleMon->maxHP - (u32)battleMon->currentHP : 0u;
+
     if ((params->header.flags & HANDLER_ABILITY_POPUP_FLAG) != 0) {
         ServerDisplay_AbilityPopupAdd(serverFlow, battleMon);
     }
@@ -2242,6 +2309,16 @@ extern "C" bool THUMB_BRANCH_BattleHandler_ChangeForm(ServerFlow* serverFlow, Ha
         ApplyMegaFormBattleData(battleMon);
     } else {
         ApplyFormBattleData(battleMon);
+    }
+    if (isPowerConstructChange && battleMon->maxHP != 0) {
+        // Complete Form adds its larger HP pool while preserving the amount
+        // of damage already taken, matching Power Construct's HP behavior.
+        battleMon->currentHP = battleMon->maxHP > previousDamage ?
+            (u16)((u32)battleMon->maxHP - previousDamage) : 1u;
+        if (battleMon->partySrc) {
+            PokeParty_SetParam(battleMon->partySrc, PF_NowHP, battleMon->currentHP);
+        }
+        RecordMegaVisualStats(battleMon);
     }
     ServerDisplay_AddCommon(serverFlow->serverCommandQueue, SCID_ChangeForm, params->pokeID, params->newForm);
     if (StringParamIsEnabled(&params->exStr)) {
@@ -2282,7 +2359,7 @@ extern "C" u32 W2U_Mega_OnClientChangeFormStart(
         gMegaCustomAnimationState.pokeID = pokeID;
         gMegaCustomAnimationState.form = form;
         gMegaCustomAnimationState.viewPos = (u8)(viewPos & 0xffu);
-        // Keep the native identity/form preparation, while the resident PWAN
+        // Keep the native identity/form preparation, while the PWAN runtime
         // hook suppresses only Mimikyu's final static carrier replacement.
         gMegaCustomAnimationState.spriteRefreshed =
             RefreshMegaFormSprite(btlCore->btlvScu, viewPos) ? 1u : 0u;
@@ -2431,6 +2508,9 @@ extern "C" void THUMB_BRANCH_LINK_ServerFlow_SetupBeforeFirstTurn_0x6E(
 {
     const bool resetBattleState = ShouldResetMegaBattleStateForSetup(serverFlow);
     if (resetBattleState) {
+#if defined(W2U_DYNAMIC_BATTLE_CORE)
+        W2U_BattleModules_Reset();
+#endif
         ResetMegaBattleState();
     }
     gMegaBattleServerFlow = serverFlow;
@@ -2439,6 +2519,7 @@ extern "C" void THUMB_BRANCH_LINK_ServerFlow_SetupBeforeFirstTurn_0x6E(
         serverFlow ? serverFlow->pokeCon : nullptr);
     if (resetBattleState) {
         W2U_AuraField_ResetBattleState();
+        W2U_AbilityState_ResetBattleState();
         W2U_MoveState_ResetBattleState();
         RepairLeakedMegaForms(serverFlow ? serverFlow->pokeCon : nullptr);
         RepairLeakedBaseMegaAbilities(serverFlow ? serverFlow->pokeCon : nullptr);
@@ -2446,6 +2527,24 @@ extern "C" void THUMB_BRANCH_LINK_ServerFlow_SetupBeforeFirstTurn_0x6E(
         RepairLeakedMegaStateBeforeUse(serverFlow ? serverFlow->pokeCon : nullptr);
     }
     ServerControl_SwitchInCore(serverFlow, clientID, switchInSlot, switchOutSlot);
+    // BattleEvent_AddItem cannot register the resident field tracker until
+    // SwitchInCore has initialized the battle's event storage.  Installing it
+    // before this call silently returned null, leaving vanilla move failures
+    // (such as Thunder Wave into a Ground type) unobserved.  Begin is
+    // idempotent, so retry after every setup switch-in; the first successful
+    // registration is then shared for the rest of the battle.
+    u32 trackingSlot = BATTLE_MAX_SLOTS;
+    if (serverFlow && serverFlow->pokeCon) {
+        BattleParty* battleParty = PokeCon_GetBattleParty(serverFlow->pokeCon, clientID);
+        BattleMon* battleMon = battleParty
+            ? BattleParty_GetPartyMember(battleParty, switchInSlot)
+            : nullptr;
+        if (battleMon) {
+            trackingSlot = BattleMon_GetID(battleMon);
+        }
+    }
+    W2U_MoveState_BeginBattleTracking(trackingSlot);
+    W2U_AbilityState_RecordInitialMon(serverFlow, clientID, switchInSlot);
     if (resetBattleState) {
         RepairLeakedMegaForms(serverFlow ? serverFlow->pokeCon : nullptr);
         RepairLeakedBaseMegaAbilities(serverFlow ? serverFlow->pokeCon : nullptr);
@@ -2524,14 +2623,16 @@ extern "C" void THUMB_BRANCH_BattleMon_ClearForSwitchOut(BattleMon* battleMon)
     RestorePartyBaseForm(battleMon, battleMon->form);
 }
 
-extern "C" bool THUMB_BRANCH_HandlerCommon_IsUnremovableItem(BattleMon* battleMon, ITEM itemID)
+extern "C" bool THUMB_BRANCH_HandlerCommon_IsUnremovableItem(SPECIES species, ITEM itemID)
 {
-    if (GiratinaArceusGenesectItemCheck(battleMon, itemID)) {
+    // Native callers pass species in r0, not a BattleMon pointer. The former
+    // Giratina/Arceus/Genesect import also aliased this very replaced address.
+    if (W2U_IsNativeProtectedFormItem(species, itemID)) {
         return true;
     }
 
-    ITEM megaStone = W2U_GetMegaStone(battleMon->species);
-    return megaStone != ITEM_NULL && megaStone == itemID;
+    // Check every supported stone, including species with two Mega forms.
+    return itemID != ITEM_NULL && FindMegaEntry(species, itemID) != nullptr;
 }
 
 #endif

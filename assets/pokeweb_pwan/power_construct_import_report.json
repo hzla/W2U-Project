@@ -1,0 +1,110 @@
+{
+  "version": 2,
+  "species": 718,
+  "formCount": 4,
+  "forms": {
+    "50Stable": 0,
+    "10Stable": 1,
+    "complete": 2,
+    "mega": 3
+  },
+  "formAssets": {
+    "0": 718,
+    "1": 1502,
+    "2": 1505,
+    "3": 1081
+  },
+  "nativeCarrierSources": {
+    "1502": 1502,
+    "1503": 1505,
+    "1504": 1081
+  },
+  "personalRange": [
+    1287,
+    1289
+  ],
+  "spriteFormRange": [
+    778,
+    780
+  ],
+  "regionalDexFileIndex": 1290,
+  "formListRecords": 183,
+  "imports": {
+    "10Percent": {
+      "assetIndex": 1502,
+      "front": "../Port-Pokeweb/essentials_gifs/Front/ZYGARDE_1.gif",
+      "back": "../Port-Pokeweb/essentials_gifs/Back/ZYGARDE_1.gif",
+      "frontShiny": "../Port-Pokeweb/essentials_pngs/Front shiny/ZYGARDE_1.png",
+      "backShiny": "../Port-Pokeweb/essentials_pngs/Back shiny/ZYGARDE_1.png",
+      "stats": {
+        "front": {
+          "frames": 33,
+          "timeline": 75,
+          "ticks": 450,
+          "bytes": 152444,
+          "paletteStrategy": "exact",
+          "sourceColors": 12,
+          "visibleColors": 12
+        },
+        "back": {
+          "frames": 32,
+          "timeline": 75,
+          "ticks": 450,
+          "bytes": 147836,
+          "paletteStrategy": "exact",
+          "sourceColors": 10,
+          "visibleColors": 10
+        }
+      },
+      "missingSides": [],
+      "nativeFallback": true,
+      "nativeFallbackError": "",
+      "shinyPalette": true
+    },
+    "complete": {
+      "assetIndex": 1505,
+      "front": "../Port-Pokeweb/essentials_gifs/Front/ZYGARDE_2.gif",
+      "back": "../Port-Pokeweb/essentials_gifs/Back/ZYGARDE_2.gif",
+      "frontShiny": "../Port-Pokeweb/essentials_pngs/Front shiny/ZYGARDE_2.png",
+      "backShiny": "../Port-Pokeweb/essentials_pngs/Back shiny/ZYGARDE_2.png",
+      "stats": {
+        "front": {
+          "frames": 40,
+          "timeline": 40,
+          "ticks": 240,
+          "bytes": 184560,
+          "paletteStrategy": "exact",
+          "sourceColors": 15,
+          "visibleColors": 15
+        },
+        "back": {
+          "frames": 5,
+          "timeline": 8,
+          "ticks": 96,
+          "bytes": 23152,
+          "paletteStrategy": "exact",
+          "sourceColors": 14,
+          "visibleColors": 14
+        }
+      },
+      "missingSides": [],
+      "nativeFallback": true,
+      "nativeFallbackError": "",
+      "shinyPalette": true
+    }
+  },
+  "icons": [
+    {
+      "targetIcon": 3012,
+      "paletteKey": 1502,
+      "sourceStem": "ZYGARDE_1",
+      "palette": 1
+    },
+    {
+      "targetIcon": 3014,
+      "paletteKey": 1503,
+      "sourceStem": "ZYGARDE_2",
+      "palette": 1
+    }
+  ]
+}

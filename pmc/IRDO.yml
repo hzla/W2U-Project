@@ -25675,12 +25675,54 @@ Symbols:
   - Name: BtlvEffect_LoadAnimationScript
     Segment: 0x1E
     Address: 0x21E3EDD
+  - Name: BTLV_EFFECT_GetMcssWork
+    Segment: 0x1E
+    Address: 0x21E00AD
+  - Name: BTLV_MCSS_GetPokeDefaultPos
+    Segment: 0x1E
+    Address: 0x21E7195
+  - Name: GFL_PTC_CreateEx
+    Segment: 0x0
+    Address: 0x204F9AD
+  - Name: GFL_PTC_Delete
+    Segment: 0x0
+    Address: 0x204FAB1
+  - Name: GFL_PTC_LoadArcResource
+    Segment: 0x0
+    Address: 0x204FE25
+  - Name: GFL_PTC_SetResourceSetup
+    Segment: 0x0
+    Address: 0x204FF25
+  - Name: GFL_PTC_LoadTex
+    Segment: 0x0
+    Address: 0x204FF31
+  - Name: GFL_PTC_CreateEmitter
+    Segment: 0x0
+    Address: 0x2050099
+  - Name: GFL_PTC_GetEmitterNum
+    Segment: 0x0
+    Address: 0x20500D5
+  - Name: GFL_PTC_GetEmitterRadius
+    Segment: 0x0
+    Address: 0x20501FD
+  - Name: GFL_PTC_SetEmitterRadius
+    Segment: 0x0
+    Address: 0x2050201
+  - Name: GFL_PTC_GetEmitterLength
+    Segment: 0x0
+    Address: 0x2050205
+  - Name: GFL_PTC_SetEmitterLength
+    Segment: 0x0
+    Address: 0x2050209
   - Name: BattleHandler_ChangeForm
     Segment: 0x1D
     Address: 0x21AE2A1
   - Name: BattleHandler_StrSetup
     Segment: 0x1D
     Address: 0x21AC3B9
+  - Name: BattleHandler_StrClear
+    Segment: 0x1D
+    Address: 0x21AC391
   - Name: BattleHandler_AddArg
     Segment: 0x1D
     Address: 0x21AC3E1
@@ -25783,9 +25825,15 @@ Symbols:
   - Name: ServerControl_TurnCheck
     Segment: 0x1D
     Address: 0x21A7F5D
+  - Name: ServerControl_MoveExecute
+    Segment: 0x1D
+    Address: 0x21A2741
   - Name: ServerEvent_GetMoveParam
     Segment: 0x1D
     Address: 0x21AA00D
+  - Name: ServerEvent_CalcMoveHealAmount
+    Segment: 0x1D
+    Address: 0x21AB539
   - Name: ServerEvent_CheckDamageToRecover
     Segment: 0x1D
     Address: 0x21AA6B5
@@ -25798,9 +25846,27 @@ Symbols:
   - Name: TypeEffectivenessPowerMod
     Segment: 0x1D
     Address: 0x21BD2C1
+  - Name: fixed_round
+    Segment: 0x1D
+    Address: 0x21BD365
+  - Name: MultiplyValueByRatio
+    Segment: 0x1D
+    Address: 0x21BD391
+  - Name: BTL_CALC_CheckCritical
+    Segment: 0x1D
+    Address: 0x21BD185
   - Name: ServerEvent_CheckDamageEffectiveness
     Segment: 0x1D
     Address: 0x21AAB91
+  - Name: ServerEvent_CheckMoveDamageEffectiveness
+    Segment: 0x1D
+    Address: 0x21AA995
+  - Name: ServerControl_DamageRoot
+    Segment: 0x1D
+    Address: 0x21A4401
+  - Name: ServerFlow_SetupBeforeFirstTurn
+    Segment: 0x1D
+    Address: 0x219F5C9
   - Name: IsUnselectableMove
     Segment: 0x1D
     Address: 0x21B47F9
@@ -25903,12 +25969,18 @@ Symbols:
   - Name: BattleMon_GetHeldItem
     Segment: 0x1D
     Address: 0x21BB381
+  - Name: CanMonUseHeldItem
+    Segment: 0x1D
+    Address: 0x21B4AE5
   - Name: BattleMon_GetMoveCondition
     Segment: 0x1D
     Address: 0x21BBB55
   - Name: BattleMon_GetPokeType
     Segment: 0x1D
     Address: 0x21BB03D
+  - Name: BattleMon_GetPreviousMoveID
+    Segment: 0x1D
+    Address: 0x21BBFE9
   - Name: BattleMon_GetPreviousMove
     Segment: 0x1D
     Address: 0x21BBFF9
@@ -25927,6 +25999,9 @@ Symbols:
   - Name: BattleMon_IsSubstituteActive
     Segment: 0x1D
     Address: 0x21BC5BD
+  - Name: BattleMon_AddSubstituteDamage
+    Segment: 0x1D
+    Address: 0x21BC5DD
   - Name: BattleMon_RemoveSubstitute
     Segment: 0x1D
     Address: 0x21BC5B1
@@ -25942,12 +26017,21 @@ Symbols:
   - Name: Turnflag_Clear
     Segment: 0x1D
     Address: 0x21BBC81
+  - Name: TurnFlag_Set
+    Segment: 0x1D
+    Address: 0x21BB801
   - Name: BattleViewCmd_UI_SelectMove_Wait
     Segment: 0x1D
     Address: 0x21CF181
   - Name: BtlSetup_GetBattleStyle
     Segment: 0x1D
     Address: 0x219BDC1
+  - Name: MainModule_GetBattleType
+    Segment: 0x1D
+    Address: 0x219BF15
+  - Name: MainModule_GetBtlSetup
+    Segment: 0x1D
+    Address: 0x219E34D
   - Name: Btlv_StringParam_AddArg
     Segment: 0x1D
     Address: 0x21D0B65
@@ -25966,6 +26050,18 @@ Symbols:
   - Name: CommonResistBerry
     Segment: 0x1D
     Address: 0x21C3541
+  - Name: IsAffectedBySheerForce
+    Segment: 0x1D
+    Address: 0x21C183D
+  - Name: HandlerSheerForcePower
+    Segment: 0x1D
+    Address: 0x21C1791
+  - Name: HandlerSheerForceCheckFail
+    Segment: 0x1D
+    Address: 0x21C17C1
+  - Name: HandlerSheerForceHitCheck
+    Segment: 0x1D
+    Address: 0x21C1805
   - Name: CommonConditionCodeMatch
     Segment: 0x1D
     Address: 0x21C2A41
@@ -25996,12 +26092,36 @@ Symbols:
   - Name: EventAddBind
     Segment: 0x1D
     Address: 0x21C6B8D
+  - Name: EventAddSuperFang
+    Segment: 0x1D
+    Address: 0x21C6CE5
+  - Name: EventAddReturn
+    Segment: 0x1D
+    Address: 0x21C82ED
+  - Name: EventAddStoredPower
+    Segment: 0x1D
+    Address: 0x21CC8F5
+  - Name: EventAddHex
+    Segment: 0x1D
+    Address: 0x21CC881
   - Name: EventAddFalseSwipe
     Segment: 0x1D
     Address: 0x21C92B5
   - Name: EventAddShadowForce
     Segment: 0x1D
     Address: 0x21CBA8D
+  - Name: EventAddReflect
+    Segment: 0x1D
+    Address: 0x21CAB41
+  - Name: EventAddLightScreen
+    Segment: 0x1D
+    Address: 0x21CAB85
+  - Name: EventAddHaze
+    Segment: 0x1D
+    Address: 0x21C65C1
+  - Name: EventAddHealBell
+    Segment: 0x1D
+    Address: 0x21CA1B5
   - Name: EventAddSpiderWeb
     Segment: 0x1D
     Address: 0x21C6545
@@ -26038,6 +26158,9 @@ Symbols:
   - Name: HandlerProtect
     Segment: 0x1D
     Address: 0x21C946D
+  - Name: HandlerProtectStart
+    Segment: 0x1D
+    Address: 0x21C938D
   - Name: HandlerProtectCheckFail
     Segment: 0x1D
     Address: 0x21C93DD
@@ -26098,6 +26221,9 @@ Symbols:
   - Name: Move_IsUsable
     Segment: 0x1D
     Address: 0x21BAF91
+  - Name: MainModule_NotifyBattleResult
+    Segment: 0x1D
+    Address: 0x219CA89
   - Name: PokeSet_Remove
     Segment: 0x1D
     Address: 0x21A506D
@@ -26119,6 +26245,15 @@ Symbols:
   - Name: ServerControl_CheckItemReaction
     Segment: 0x1D
     Address: 0x21A543D
+  - Name: ServerControl_SimpleDamageCore
+    Segment: 0x1D
+    Address: 0x21A5BC1
+  - Name: ServerControl_CheckFainted
+    Segment: 0x1D
+    Address: 0x21A8A65
+  - Name: ServerControl_RegisterTargets
+    Segment: 0x1D
+    Address: 0x21AE36D
   - Name: ServerControl_CheckNoEffectCore
     Segment: 0x1D
     Address: 0x21A31D1
@@ -26140,6 +26275,9 @@ Symbols:
   - Name: ServerDisplay_AbilityPopupAdd
     Segment: 0x1D
     Address: 0x21A9575
+  - Name: ServerDisplay_SimpleHP
+    Segment: 0x1D
+    Address: 0x21A96CD
   - Name: ServerDisplay_AbilityPopupRemove
     Segment: 0x1D
     Address: 0x21A958D
@@ -26179,6 +26317,18 @@ Symbols:
   - Name: ServerEvent_CalculateSpeed
     Segment: 0x1D
     Address: 0x21A041D
+  - Name: ServerEvent_CalcDamage
+    Segment: 0x1D
+    Address: 0x21A5959
+  - Name: ServerEvent_GetAttackPower
+    Segment: 0x1D
+    Address: 0x21AAECD
+  - Name: ServerEvent_GetTargetDefenses
+    Segment: 0x1D
+    Address: 0x21AAFCD
+  - Name: CommonCounterGetRecord
+    Segment: 0x1D
+    Address: 0x21C735D
   - Name: ServerEvent_GetWeather
     Segment: 0x1D
     Address: 0x21A65A1
@@ -26203,3 +26353,75 @@ Symbols:
   - Name: Pokedex_ReadMonEntry
     Segment: 0x18
     Address: 0x21A0555
+  - Name: AbilityEvent_RollEffectChance
+    Segment: 0x1D
+    Address: 0x21BDE29
+  - Name: CommonContactStatusAbility
+    Segment: 0x1D
+    Address: 0x21BF671
+  - Name: CommonGetItemParam
+    Segment: 0x1D
+    Address: 0x21C2861
+  - Name: HandlerAftermath
+    Segment: 0x1D
+    Address: 0x21BF785
+  - Name: HandlerCommon_CheckTargetMonID
+    Segment: 0x1D
+    Address: 0x21CDE79
+  - Name: HandlerMummy
+    Segment: 0x1D
+    Address: 0x21C2231
+  - Name: HandlerPickpocket
+    Segment: 0x1D
+    Address: 0x21C1555
+  - Name: HandlerPoisonTouch
+    Segment: 0x1D
+    Address: 0x21C1D3D
+  - Name: HandlerRockyHelmet
+    Segment: 0x1D
+    Address: 0x21C5325
+  - Name: HandlerRoughSkin
+    Segment: 0x1D
+    Address: 0x21BF6E9
+  - Name: HandlerStickyBarbDamageReaction
+    Segment: 0x1D
+    Address: 0x21C49B9
+  - Name: Handler_CheckMatchup
+    Segment: 0x1D
+    Address: 0x21ABF55
+  - Name: MakeBasicStatus
+    Segment: 0x1D
+    Address: 0x21BD56D
+  - Name: BattleParty_GetPartyMember
+    Segment: 0x1D
+    Address: 0x219D525
+  - Name: PokeCon_GetBattleParty
+    Segment: 0x1D
+    Address: 0x219D409
+  - Name: HandlerBrickBreakStart
+    Segment: 0x1D
+    Address: 0x21C6089
+  - Name: HandlerBrickBreakEnd
+    Segment: 0x1D
+    Address: 0x21C60A9
+  - Name: HandlerBrickBreakCheck
+    Segment: 0x1D
+    Address: 0x21C60C1
+  - Name: HandlerMoldBreakerSkipCheck
+    Segment: 0x1D
+    Address: 0x21C0A11
+  - Name: IsMoldBreakerAffectedAbility
+    Segment: 0x1D
+    Address: 0x21C0A2D
+  - Name: HandlerMoldBreakerStart
+    Segment: 0x1D
+    Address: 0x21C0A3D
+  - Name: HandlerMoldBreakerEnd
+    Segment: 0x1D
+    Address: 0x21C0A69
+  - Name: SideEffectEvent_IsActive
+    Segment: 0x1F
+    Address: 0x6898CF5
+  - Name: CommonScreenEffect
+    Segment: 0x1F
+    Address: 0x6898E55

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import shutil
 import struct
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -15,8 +16,6 @@ HEADER_FNT_OFFSET = 0x40
 HEADER_FNT_LENGTH = 0x44
 HEADER_FAT_OFFSET = 0x48
 HEADER_FAT_LENGTH = 0x4C
-HEADER_PAYLOAD_LIMIT = 0x80
-NDS_FILE_ALIGNMENT = 0x200
 
 
 @dataclass(frozen=True)
@@ -24,13 +23,16 @@ class RomTables:
     filenames: ndspy.fnt.Folder
     fat_offset: int
     fat_length: int
-    payload_limit: int
 
 
 @dataclass(frozen=True)
 class ArchivePatch:
     rom_path: str
     source: Path
+
+
+class RelocationRequiredError(ValueError):
+    pass
 
 
 def read_u32(data: bytes | bytearray, offset: int) -> int:
@@ -40,13 +42,6 @@ def read_u32(data: bytes | bytearray, offset: int) -> int:
 def write_u32(file, offset: int, value: int) -> None:
     file.seek(offset)
     file.write(struct.pack("<I", value))
-
-
-def align(value: int, alignment: int) -> int:
-    remainder = value % alignment
-    if remainder == 0:
-        return value
-    return value + alignment - remainder
 
 
 def parse_archive(value: str) -> ArchivePatch:
@@ -76,14 +71,13 @@ def load_rom_tables(rom_path: Path) -> RomTables:
         fnt_length = read_u32(header, HEADER_FNT_LENGTH)
         fat_offset = read_u32(header, HEADER_FAT_OFFSET)
         fat_length = read_u32(header, HEADER_FAT_LENGTH)
-        payload_limit = read_u32(header, HEADER_PAYLOAD_LIMIT)
 
         file.seek(fnt_offset)
         fnt_data = file.read(fnt_length)
         if len(fnt_data) != fnt_length:
             raise ValueError(f"{rom_path} ended before the filename table")
 
-    return RomTables(ndspy.fnt.load(fnt_data), fat_offset, fat_length, payload_limit)
+    return RomTables(ndspy.fnt.load(fnt_data), fat_offset, fat_length)
 
 
 def resolve_file_id(tables: RomTables, rom_path: str) -> int:
@@ -176,23 +170,6 @@ def read_fat_entry(file, tables: RomTables, file_id: int) -> tuple[int, int]:
     return struct.unpack("<II", entry)
 
 
-def max_fat_end(file, tables: RomTables) -> int:
-    file.seek(tables.fat_offset)
-    fat = file.read(tables.fat_length)
-    if len(fat) != tables.fat_length:
-        raise ValueError("ROM ended before the full FAT could be read")
-    return max(struct.unpack_from("<II", fat, offset)[1] for offset in range(0, len(fat), 8))
-
-
-def choose_relocation_offset(file, tables: RomTables, payload_size: int) -> int:
-    high_water = align(max_fat_end(file, tables), NDS_FILE_ALIGNMENT)
-    if tables.payload_limit and high_water + payload_size <= tables.payload_limit:
-        return high_water
-
-    file.seek(0, 2)
-    return align(file.tell(), NDS_FILE_ALIGNMENT)
-
-
 def replace_file_payload(
     rom_path: Path,
     tables: RomTables,
@@ -204,23 +181,12 @@ def replace_file_payload(
     with rom_path.open("r+b") as file:
         start, end = read_fat_entry(file, tables, file_id)
         old_size = end - start
-        appended = len(payload) > old_size
-
-        if appended:
-            new_start = choose_relocation_offset(file, tables, len(payload))
-            new_end = new_start + len(payload)
-            if dry_run:
-                return old_size, len(payload), new_start, True
-            file.seek(0, 2)
-            eof = file.tell()
-            if new_start > eof:
-                file.write(b"\xFF" * (new_start - eof))
-            else:
-                file.seek(new_start)
-            file.write(payload)
-            write_u32(file, tables.fat_offset + file_id * 8, new_start)
-            write_u32(file, tables.fat_offset + file_id * 8 + 4, new_end)
-            return old_size, len(payload), new_start, True
+        if len(payload) > old_size:
+            raise RelocationRequiredError(
+                f"file ID {file_id} grows from {old_size} to {len(payload)} bytes; "
+                "a full CTRMap ROMBuilder rebuild is required so NTR digest tables and "
+                "the TWL tail can be placed after the expanded file data"
+            )
 
         if dry_run:
             return old_size, len(payload), start, False
@@ -298,4 +264,8 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except RelocationRequiredError as error:
+        print(error, file=sys.stderr)
+        raise SystemExit(75)

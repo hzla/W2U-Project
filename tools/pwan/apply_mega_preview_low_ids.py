@@ -38,6 +38,7 @@ ICON_ARCHIVE_OFFSET = 8
 MAX_OVERRIDES = 768
 
 sys.path.insert(0, str(ROOT / "tools" / "pwan"))
+from report_paths import write_report  # noqa: E402
 from pwan_config import parse_config, write_config as write_pwan_config  # noqa: E402
 
 
@@ -209,7 +210,7 @@ def main() -> int:
         "maxAssetIndex": max(int(entry["assetIndex"]) for entry in entries.values()),
         "rows": preview_rows,
     }
-    REPORT_PATH.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    write_report(REPORT_PATH, report)
     print(
         f"Applied {len(preview_rows)} low-ID Mega previews "
         f"{PREVIEW_START_SPECIES}-{preview_rows[-1]['previewSpecies']} "

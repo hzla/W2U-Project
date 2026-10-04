@@ -4,6 +4,7 @@
 .type THUMB_BRANCH_LINK_168_0x21DF2F8, %function
 .type THUMB_BRANCH_LINK_168_0x21DF248, %function
 .type THUMB_BRANCH_LINK_167_0x21D3700, %function
+.type THUMB_BRANCH_LINK_168_0x21E0822, %function
 .type THUMB_BRANCH_LINK_168_0x21E0912, %function
 .type THUMB_BRANCH_LINK_168_0x21DF7DC, %function
 
@@ -12,6 +13,7 @@
 .extern W2U_BattleAnim_Term
 .extern W2U_BattleAnim_BeginNativeFormChange
 .extern W2U_BattleAnim_EndNativeFormChange
+.extern W2U_BattleAnim_OnNativeFormChangeSwap
 .extern W2U_BattleAnim_ShouldSuppressNativeFormCarrier
 .extern W2U_BattleAnim_RefreshPositionNow
 
@@ -53,6 +55,30 @@ THUMB_BRANCH_LINK_167_0x21D3700:
     bx r1
     .size THUMB_BRANCH_LINK_167_0x21D3700, . - THUMB_BRANCH_LINK_167_0x21D3700
 
+@ At the midpoint of the native mosaic, the game normally replaces the whole
+@ MAW. A different form's NCER/NCEC anchor moves the still-mosaicked pixels. For
+@ PWAN-backed changes, retain the original carrier and replace only its texture
+@ and palette at this exact visual swap point. Vanilla changes keep the call.
+THUMB_BRANCH_LINK_168_0x21E0822:
+    push {r0-r4, lr}
+    bl W2U_BattleAnim_OnNativeFormChangeSwap
+    cmp r0, #0
+    beq .Lnative_henge_swap
+    ldr r0, [sp, #4]
+    bl W2U_BattleAnim_RefreshPositionNow
+    b .Lhenge_swap_done
+.Lnative_henge_swap:
+    ldr r0, [sp, #0]
+    ldr r1, [sp, #4]
+    ldr r2, [sp, #8]
+    ldr r3, =0x021E7FBD
+    blx r3
+.Lhenge_swap_done:
+    pop {r0-r4}
+    pop {r1}
+    bx r1
+    .size THUMB_BRANCH_LINK_168_0x21E0822, . - THUMB_BRANCH_LINK_168_0x21E0822
+
 @ Release the position when the native task reaches its final state. The next
 @ PWAN update may then install the form carrier once, after the effect can no
 @ longer restore its old snapshot over it.
@@ -66,7 +92,7 @@ THUMB_BRANCH_LINK_168_0x21E0912:
     bx r1
     .size THUMB_BRANCH_LINK_168_0x21E0912, . - THUMB_BRANCH_LINK_168_0x21E0912
 
-@ Preserve BTLV_CLACT_Main, then update custom battle PWAN actors before
+@ Preserve the native actor update, then update custom battle PWAN actors before
 @ the native battle MCSS draw pass.
 THUMB_BRANCH_LINK_168_0x21DF2C0:
     push {r0-r3, lr}

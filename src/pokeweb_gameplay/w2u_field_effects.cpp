@@ -1,4 +1,5 @@
 #include "w2u_field_effects.h"
+#include "w2u_battle_module_loader.h"
 
 #define W2U_AURA_FIELD_EFFECT_COUNT (FLDEFF_FAIRY_AURA + 1)
 #define W2U_AURA_FIELD_SLOT_COUNT 24u
@@ -7,6 +8,7 @@
 
 namespace {
 
+#if !defined(W2U_BATTLE_CHILD)
 struct AuraFieldEffectState {
     BattleEventItem* item;
     u32 ownerMask;
@@ -43,10 +45,29 @@ u32 SlotMask(u32 pokemonSlot)
     return 1u << pokemonSlot;
 }
 
+#if !defined(W2U_DYNAMIC_BATTLE_CORE)
 BattleEventHandlerTableEntry* GetAuraFieldHandlers(FIELD_EFFECT fieldEffect, u32* handlerAmount);
+#endif
 
 BattleEventItem* AddAuraFieldEvent(FIELD_EFFECT fieldEffect, u32 ownerSlot)
 {
+#if defined(W2U_DYNAMIC_BATTLE_CORE)
+    const W2UBattleHandlerExport* entry =
+        W2U_BattleModules_FindLoaded(W2U_MECHANIC_FIELD, (u16)fieldEffect);
+    if (!entry) {
+        return 0;
+    }
+    return BattleEvent_AddItem(
+        EVENTITEM_FIELD,
+        (u16)fieldEffect,
+        entry->priority == W2U_BATTLE_MODULE_DEFAULT_PRIORITY
+            ? EVENTPRI_FIELD_DEFAULT
+            : (BattleEventPriority)entry->priority,
+        0,
+        ownerSlot,
+        entry->handlers,
+        entry->handlerCount);
+#else
     u32 handlerAmount = 0;
     BattleEventHandlerTableEntry* handlers = GetAuraFieldHandlers(fieldEffect, &handlerAmount);
     if (handlerAmount == 0 || handlers == 0) {
@@ -61,6 +82,7 @@ BattleEventItem* AddAuraFieldEvent(FIELD_EFFECT fieldEffect, u32 ownerSlot)
         ownerSlot,
         handlers,
         (u16)handlerAmount);
+#endif
 }
 
 void ApplyAuraPower(u32 moveType)
@@ -73,9 +95,20 @@ void ApplyAuraPower(u32 moveType)
         VAR_MOVE_POWER_RATIO,
         W2U_AuraField_GetAuraBreakMons() ? W2U_AURA_BREAK_RATIO : W2U_AURA_POWER_RATIO);
 }
+#else
+void ApplyAuraPower(u32 moveType)
+{
+    if (BattleEventVar_GetValue(VAR_MOVE_TYPE) == (int)moveType) {
+        BattleEventVar_MulValue(
+            VAR_MOVE_POWER_RATIO,
+            W2U_AuraField_GetAuraBreakMons() ? W2U_AURA_BREAK_RATIO : W2U_AURA_POWER_RATIO);
+    }
+}
+#endif
 
 } // namespace
 
+#if !defined(W2U_BATTLE_CHILD)
 extern "C" void W2U_AuraField_ResetBattleState()
 {
     ClearAuraFieldState();
@@ -173,7 +206,9 @@ extern "C" u32 W2U_AuraField_GetAuraBreakMons()
 {
     return sAuraFieldState.auraBreakCount;
 }
+#endif
 
+#if !defined(W2U_DYNAMIC_BATTLE_CORE)
 extern "C" void HandlerFieldDarkAura(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
     (void)item;
@@ -211,7 +246,9 @@ extern "C" BattleEventHandlerTableEntry* EventAddFieldFairyAura(u32* handlerAmou
     *handlerAmount = W2U_ARRAY_COUNT(FieldFairyAuraHandlers);
     return FieldFairyAuraHandlers;
 }
+#endif
 
+#if !defined(W2U_DYNAMIC_BATTLE_CORE)
 namespace {
 
 BattleEventHandlerTableEntry* GetAuraFieldHandlers(FIELD_EFFECT fieldEffect, u32* handlerAmount)
@@ -228,3 +265,4 @@ BattleEventHandlerTableEntry* GetAuraFieldHandlers(FIELD_EFFECT fieldEffect, u32
 }
 
 } // namespace
+#endif

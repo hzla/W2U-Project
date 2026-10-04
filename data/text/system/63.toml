@@ -789,16 +789,16 @@ text = [
 
 [msg.section_0.entries.114]
 text = [
-  "One of the mysterious Mega Stones.\\n",
-  "It resonates with certain Pokémon that\\n",
-  "Mega Evolve into an X form.$",
+  "An item to be held by a Pokémon.\\n",
+  "These pads protect the holder from effects\\n",
+  "caused by making direct contact.$",
 ]
 
 [msg.section_0.entries.115]
 text = [
-  "One of the mysterious Mega Stones.\\n",
-  "It resonates with certain Pokémon that\\n",
-  "Mega Evolve into a Y form.$",
+  "An item to be held by a Pokémon. It\\n",
+  "extends the duration of terrain caused\\n",
+  "by the holder's move or Ability.$",
 ]
 
 [msg.section_0.entries.116]
@@ -3293,26 +3293,22 @@ text = [
 
 [msg.section_0.entries.485]
 text = [
-  "A red Apricorn.\\n",
-  "It assails your nostrils.$",
+  "An item to be held by a Pokemon. It boosts Defense on Electric Terrain. It can only be used once.$",
 ]
 
 [msg.section_0.entries.486]
 text = [
-  "A blue Apricorn.\\n",
-  "It smells a bit like grass.$",
+  "An item to be held by a Pokemon. It boosts Defense on Grassy Terrain. It can only be used once.$",
 ]
 
 [msg.section_0.entries.487]
 text = [
-  "A yellow Apricorn.\\n",
-  "It has an invigorating scent.$",
+  "An item to be held by a Pokemon. It boosts Sp. Def on Psychic Terrain. It can only be used once.$",
 ]
 
 [msg.section_0.entries.488]
 text = [
-  "A green Apricorn.\\n",
-  "It has a mysterious, aromatic scent.$",
+  "An item to be held by a Pokemon. It boosts Sp. Def on Misty Terrain. It can only be used once.$",
 ]
 
 [msg.section_0.entries.489]

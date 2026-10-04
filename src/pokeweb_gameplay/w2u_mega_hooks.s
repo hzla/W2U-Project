@@ -5,11 +5,8 @@
 .type THUMB_BRANCH_LINK_167_0x21B3CDA, %function
 .type THUMB_BRANCH_LINK_168_0x21EB65C, %function
 .type THUMB_BRANCH_LINK_169_0x689ACE8, %function
-.type W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56, %function
 .type THUMB_BRANCH_LINK_167_0x21B8A52, %function
 .type THUMB_BRANCH_LINK_167_0x21B8A60, %function
-.type THUMB_BRANCH_LINK_207_0x21B3388, %function
-.type THUMB_BRANCH_LINK_207_0x21B9204, %function
 
 @ Preserve the original BattleAction_SetNull call and run Mega root cleanup.
 THUMB_BRANCH_LINK_167_0x21B348C:
@@ -102,15 +99,6 @@ W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x3A:
     bx r1
     .size W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x3A, . - W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x3A
 
-@ Disabled: Dancer now replaces ServerFlow_ActOrderProcMain as a whole loop.
-@ r0 is ServerFlow*, r1 is current ActionOrderWork*.
-W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56:
-    push {lr}
-    bl W2U_ActionOrder_ProcWithExtras
-    pop {r1}
-    bx r1
-    .size W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56, . - W2U_DISABLED_THUMB_BRANCH_LINK_ServerFlow_ActOrderProcMain_0x56
-
 @ Replace the client SC_ACT_CHANGE_FORM visual for Mega transformations only.
 @ r6 is the server command args and r7 is the resolved view pos. The saved
 @ r0-r3 values are still passed for diagnostics/future vanilla re-entry work.
@@ -165,32 +153,6 @@ THUMB_BRANCH_LINK_167_0x21B8A60:
     pop {r2}
     bx r2
     .size THUMB_BRANCH_LINK_167_0x21B8A60, . - THUMB_BRANCH_LINK_167_0x21B8A60
-
-@ Battle summary redraw path. Preserve the original draw helper, then refresh
-@ the Mega summary cache from the gameplay DLL while overlay 207 is active.
-THUMB_BRANCH_LINK_207_0x21B3388:
-    push {r0-r3, lr}
-    ldr r3, =0x02049AC5
-    blx r3
-    bl W2U_Mega_PatchKnownSummaryCache
-    pop {r0-r3}
-    pop {r1}
-    bx r1
-    .size THUMB_BRANCH_LINK_207_0x21B3388, . - THUMB_BRANCH_LINK_207_0x21B3388
-
-@ Ability text uses the current summary PP directly instead of the stat cache.
-@ Replay PP_Get(PF_Ability), then substitute the mirrored Mega ability if this
-@ summary entry is the active Mega.
-THUMB_BRANCH_LINK_207_0x21B9204:
-    push {r4, lr}
-    mov r4, r0
-    bl PokeParty_GetParam
-    mov r1, r4
-    bl W2U_Mega_OverrideSummaryAbilityParam
-    pop {r4}
-    pop {r1}
-    bx r1
-    .size THUMB_BRANCH_LINK_207_0x21B9204, . - THUMB_BRANCH_LINK_207_0x21B9204
 
 @ Pass the BattleMon pointer to the unremovable-item check used by Trick.
 FULL_COPY_HandlerTrick_0x6C:

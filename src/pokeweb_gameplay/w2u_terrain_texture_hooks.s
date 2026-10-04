@@ -3,11 +3,13 @@
 .type THUMB_BRANCH_LINK_168_0x21DE1D0, %function
 .type THUMB_BRANCH_LINK_168_0x21E05C2, %function
 .type THUMB_BRANCH_LINK_168_0x21DF1DE, %function
+.type THUMB_BRANCH_LINK_168_0x21DF2F2, %function
 .type THUMB_BRANCH_LINK_167_0x21B733E, %function
 
 .extern W2U_TerrainTexture_FieldInit
 .extern W2U_TerrainTexture_ApplyPending
 .extern W2U_TerrainTexture_AdvanceAnimation
+.extern W2U_TerrainTexture_AdvanceAmbient
 .extern W2U_TerrainTexture_FieldExit
 .extern W2U_TerrainTexture_OnSetMessageStart
 
@@ -66,6 +68,19 @@ THUMB_BRANCH_LINK_168_0x21DF1DE:
     pop {r1}
     bx r1
     .size THUMB_BRANCH_LINK_168_0x21DF1DE, . - THUMB_BRANCH_LINK_168_0x21DF1DE
+
+@ BTLV_EFFECT_Main is the battle's normal per-frame 3D update and continues
+@ while the camera free-roams. Advance the independent ambient emitter just
+@ before the native global particle draw, then preserve that draw call.
+THUMB_BRANCH_LINK_168_0x21DF2F2:
+    push {r0-r3, lr}
+    bl W2U_TerrainTexture_AdvanceAmbient
+    pop {r0-r3}
+    ldr r3, =0x0204F981
+    blx r3
+    pop {r1}
+    bx r1
+    .size THUMB_BRANCH_LINK_168_0x21DF2F2, . - THUMB_BRANCH_LINK_168_0x21DF2F2
 
 @ SC_MSG_SET has reached the viewer and is about to start drawing its text.
 @ Notify the terrain texture layer with the message ID before preserving the

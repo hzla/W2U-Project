@@ -17,15 +17,43 @@ new particle during scale/lifetime changes.
 Files are named by their destination animation index. For Gen 6 move IDs
 `560..621`, W2U starts battle-view move animations with `moveID + 115` so the
 vanilla loader does not treat the ID as a fixed battle-effect animation, then
-the loader hook subtracts `115` and reads the real per-move file here.
+the loader hook subtracts `115` and reads the real per-move file here. Custom
+Gen 7+ move animations need the same explicit routing in
+`src/pokeweb_gameplay/w2u_moves.cpp`; otherwise the fallback path intentionally
+plays Tackle.
 
 The initial files are clones of each move's `Move Animation ID` source from
 `data/pml/moves/*.yml`. Future custom animation work should edit the destination
 file directly, for example `5_00000573.bin` for Freeze-Dry.
 
-Grassy Terrain uses its custom SPA `754` sequence in `5_00000580.bin` without
-the donor's scene-wide background hue commands. Misty Terrain uses its custom
-sequence in `5_00000581.bin`. Psychic Terrain's logical move ID `678` routes to
+Grassy Terrain uses custom SPA `754` resource `0` in `5_00000580.bin` without
+the donor's scene-wide background hue or attacker camera. Six perspective
+emitters at fixed `AA`, `BB`, and `A` through `D` positions use a shallow
+horizontal volume with `1x` through `10x` radius multipliers to distribute
+rising leaves across both depths of the battlefield. The SPA contains only
+this sanitized emitter and its three used leaf textures; unused Razor Leaf
+emitters, its child emitter, and positional constraints are removed. Resource
+`0` remains self-maintaining so it terminates once its particles die and does
+not hold `LetCMDsFinish ALL` indefinitely. While Grassy Terrain remains on the
+field, the terrain runtime emits compact SPA `788` in a staggered user-left,
+target-right, user-right, target-left sequence, starting one root every 100
+frames. These are Ingrain SPA `444` growing-left resource `1` and SPA `445`
+growing-right resource `0`, with particle life doubled to 100 frames. The
+delayed final-texture redraw resources `444:2` and `445:1` are removed to avoid
+handoff flicker; the absorption emitter and its child particles are also
+absent. Misty Terrain uses its
+custom sequence in `5_00000581.bin`; while it remains active,
+the terrain runtime periodically emits compact SPA `789` resource `0`. This is
+only Mist Ball SPA `466` resource `1`, preserving the donor's `AA`, `+2px`
+Y-offset, and `5325/4096` scale parameters without its projectile or impact
+emitters. Its timing is doubled and velocity halved, and runtime restarts the
+mist every 200 frames with no completed-batch cooldown. Psychic Terrain emits
+compact SPA `790` resource `0` as one half-speed, 60-frame parent particle,
+cloned from Shock Wave SPA `528` resource `2` and hue-shifted to match the
+Psychic Terrain texture while retaining its child energy particles. Runtime
+alternates it every 60 frames between the `AA` user and `BB` target anchors
+with the donor's `+2px` Y offset. Psychic Terrain's
+logical move ID `678` routes to
 reserved script member `624`, which uses only the attacker-side opening of
 Electrify with its particles recolored purple in SPA `786`.
 
@@ -84,7 +112,18 @@ through the VM script.
 
 Electric Terrain (`5_00000604.bin`) is generated from Discharge with the
 target-camera hit section removed and a custom floor spark SPA installed at
-`/a/0/0/6` member `742`.
+`/a/0/0/6` member `742`. Its six resource `1` emissions mirror Grassy
+Terrain's `AA`, `BB`, and `A` through `D` battlefield anchors and interleaved
+`1x`, `10x`, `2.75x`, `8.25x`, `4.5x`, and `6.5x` radius multipliers. The
+resource remains self-maintaining so the final animation wait releases.
+Reserved member `626` remains a particles-only fallback/test replay for compact
+SPA `787`. Runtime ambient playback deliberately does not invoke it through the
+shared effect VM: the terrain layer owns a standalone particle system and
+cycles one 32-frame SPA `787` resource `0` spark at a time through the same six
+native MCSS field anchors every 32 frames, applying the matching radius/length
+multipliers directly. The
+global particle renderer therefore keeps advancing it during free-camera work,
+and ambient playback never enters the move startup path that hides the HUD.
 
 Topsy-Turvy (`5_00000576.bin`) is generated from Psychic's background sequence
 and rotates the field sprite selector upside down and back.
@@ -133,6 +172,18 @@ Thousand Waves (`5_00000615.bin`) is generated from Aurora Beam's animation
 script. It keeps Aurora Beam's projectile cadence, sounds, background-color
 dim/restore, target camera, target shake, and target freeze timing, but redirects
 the particles from Aurora Beam SPA `227` to custom hexagon SPA `774`.
+
+Spectral Thief (`5_00000712.bin`) preserves both of Thief's native effect-index
+variants and their SPA `338`/`339` effects. Each variant is
+prefixed with Grudge's attacker-side SPA `459` flame resources; Thief begins as
+the flame phase fades and the darkened background restores. If gameplay finds
+positive target stat stages, it queues Me First (`382`) before this main move
+animation so its defender-to-attacker projectile acts as the conditional steal
+cue. The accompanying boost-steal message and a separately queued main variant
+follow it. An internal third no-op variant consumes the native move animation's
+earlier reserved queue slot on this path, avoiding an out-of-order or duplicate
+main animation. All three donors remain vanilla SPAs, so no new particle
+archive is staged.
 
 `tools/import_move_animations_from_rom.py` imports replacement-map animations
 from donor ROMs into these per-move override files. For example, the Blaze

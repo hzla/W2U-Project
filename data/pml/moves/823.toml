@@ -1,7 +1,7 @@
 [MOVE_THUNDEROUS_KICK]
 Type = "TYPE_FIGHTING"
 Quality = "EFFECT_DAMAGE_AND_TARGET_STAT_EFFECT"
-Category = "SPLIT_SPECIAL"
+Category = "SPLIT_PHYSICAL"
 Power = 90
 Accuracy = 100
 "Base PP" = 10

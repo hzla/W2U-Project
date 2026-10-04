@@ -5,10 +5,13 @@ from __future__ import annotations
 import argparse
 import json
 import shutil
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
 from PIL import Image
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pwan"))
+from report_paths import write_report
 
 
 @dataclass(frozen=True)
@@ -86,8 +89,22 @@ LOW_ITEM_ICONS: tuple[ItemIconReplacement, ...] = (
     ItemIconReplacement(130, "ITEM_ABILITY_PATCH", "Ability Patch"),
 )
 
+GEN7_UTILITY_ITEM_ICONS: tuple[ItemIconReplacement, ...] = (
+    ItemIconReplacement(114, "ITEM_PROTECTIVE_PADS", "Protective Pads"),
+    ItemIconReplacement(115, "ITEM_TERRAIN_EXTENDER", "Terrain Extender"),
+)
+
+TERRAIN_SEED_ICONS: tuple[ItemIconReplacement, ...] = (
+    ItemIconReplacement(485, "ITEM_ELECTRIC_SEED", "Electric Seed"),
+    ItemIconReplacement(486, "ITEM_GRASSY_SEED", "Grassy Seed"),
+    ItemIconReplacement(487, "ITEM_PSYCHIC_SEED", "Psychic Seed"),
+    ItemIconReplacement(488, "ITEM_MISTY_SEED", "Misty Seed"),
+)
+
 MEGA_ITEM_IDS = frozenset(stone.item_id for stone in MEGA_STONES)
 LOW_ITEM_IDS = frozenset(item.item_id for item in LOW_ITEM_ICONS)
+GEN7_UTILITY_ITEM_IDS = frozenset(item.item_id for item in GEN7_UTILITY_ITEM_ICONS)
+TERRAIN_SEED_ITEM_IDS = frozenset(item.item_id for item in TERRAIN_SEED_ICONS)
 VANILLA_ITEM_COUNT = 639
 DEFAULT_ICON_ARCHIVE_MEMBER_COUNT = 1025
 ENTRY_SIZE = 4
@@ -168,9 +185,35 @@ def main() -> int:
 
     if not args.skip_low_items:
         patch_icon_group(
+            "gen7_utility_items",
+            GEN7_UTILITY_ITEM_ICONS,
+            GEN7_UTILITY_ITEM_IDS,
+            "mega_reference_mass",
+            arm9,
+            table_offset,
+            archive_file_ids,
+            args,
+            staged_icons,
+            report,
+        )
+
+        patch_icon_group(
             "gen6_low_items",
             LOW_ITEM_ICONS,
             LOW_ITEM_IDS,
+            "mega_reference_mass",
+            arm9,
+            table_offset,
+            archive_file_ids,
+            args,
+            staged_icons,
+            report,
+        )
+
+        patch_icon_group(
+            "terrain_seeds",
+            TERRAIN_SEED_ICONS,
+            TERRAIN_SEED_ITEM_IDS,
             "mega_reference_mass",
             arm9,
             table_offset,
@@ -186,7 +229,7 @@ def main() -> int:
 
     if args.report is not None:
         args.report.parent.mkdir(parents=True, exist_ok=True)
-        args.report.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        write_report(args.report, report)
 
     args.stamp.parent.mkdir(parents=True, exist_ok=True)
     args.stamp.write_text(f"{len(staged_icons)}\n", encoding="ascii")
@@ -201,7 +244,12 @@ def require_paths(args: argparse.Namespace) -> None:
     for path in (args.arm9_input, args.icons, args.palettes):
         if not path.exists():
             raise FileNotFoundError(path)
-    for icon in (*MEGA_STONES, *LOW_ITEM_ICONS):
+    for icon in (
+        *MEGA_STONES,
+        *GEN7_UTILITY_ITEM_ICONS,
+        *LOW_ITEM_ICONS,
+        *TERRAIN_SEED_ICONS,
+    ):
         png_path, palette_path = icon_source_paths(args, icon.constant)
         if not png_path.exists():
             raise FileNotFoundError(png_path)

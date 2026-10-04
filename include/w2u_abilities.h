@@ -11,6 +11,9 @@ typedef u32 MOVE_ID;
 #endif
 
 enum W2UAbilityId : u32 {
+    ABIL_NORMALIZE = 96,
+    ABIL_MULTITYPE = 121,
+    ABIL_OVERCOAT = 142,
     ABIL_AROMA_VEIL = 165,
     ABIL_FLOWER_VEIL = 166,
     ABIL_CHEEK_POUCH = 167,
@@ -80,6 +83,8 @@ enum W2UAbilityId : u32 {
     ABIL_FULL_METAL_BODY = 230,
     ABIL_SHADOW_SHIELD = 231,
     ABIL_PRISM_ARMOR = 232,
+    ABIL_AS_ONE_ICE_RIDER = 266,
+    ABIL_AS_ONE_SHADOW_RIDER = 267,
 };
 
 enum BattleEventVar : u32 {
@@ -91,6 +96,7 @@ enum BattleEventVar : u32 {
     NEW_VAR_MON_ID = 0x7,
     NEW_VAR_ATTACKING_MON = 0x8,
     NEW_VAR_DEFENDING_MON = 0x9,
+    VAR_ACTION = 0xC,
     VAR_MOVE_ID = 0x12,
     VAR_POKE_TYPE = 0x15,
     VAR_MOVE_TYPE = 0x16,
@@ -100,9 +106,13 @@ enum BattleEventVar : u32 {
     VAR_TARGET_TYPE = 0x1B,
     VAR_USER_TYPE = 0x1C,
     VAR_CONDITION_ID = 0x1D,
+    VAR_CONDITION_DATA = 0x1E,
     VAR_VOLUME = 0x20,
     VAR_FAIL_CAUSE = 0x22,
     VAR_EFFECT_TURN_COUNT = 0x24,
+    VAR_ADDED_EFFECT_CHANCE = 0x26,
+    VAR_MAX_HIT_COUNT = 0x29,
+    VAR_HIT_COUNT = 0x2A,
     VAR_CRIT_STAGE = 0x2C,
     VAR_ITEM = 0x2D,
     VAR_ITEM_REACTION = 0x2E,
@@ -116,6 +126,8 @@ enum BattleEventVar : u32 {
     VAR_NO_EFFECT_FLAG = 0x40,
     VAR_MOVE_FAIL_FLAG = 0x41,
     VAR_SUBSTITUTE_FLAG = 0x46,
+    VAR_SHIELD_DUST_FLAG = 0x47,
+    VAR_FLAT_FLAG = 0x4B,
     VAR_NO_TYPE_EFFECTIVENESS = 0x4B,
     VAR_SET_TYPE_EFFECTIVENESS = 0x4C,
     VAR_DELAY_ATTACK_FLAG = 0x4D,
@@ -145,6 +157,7 @@ enum BattleEventType : u32 {
     EVENT_CHECK_FLOATING = 0x12,
     EVENT_CALC_SPEED = 0x13,
     EVENT_BEFORE_ATTACKS = 0x15,
+    EVENT_SKIP_TARGET_ACCURACY_CHECK = 0x1C,
     EVENT_MOVE_EXECUTE_CHECK1 = 0x1E,
     EVENT_MOVE_EXECUTE_CHECK2 = 0x1F,
     EVENT_MOVE_EXECUTE_FAIL = 0x21,
@@ -152,18 +165,28 @@ enum BattleEventType : u32 {
     EVENT_MOVE_EXECUTE_NOEFFECT = 0x26,
     EVENT_MOVE_EXECUTE_END = 0x27,
     EVENT_MOVE_PARAM = 0x28,
+    EVENT_REDIRECT_TARGET = 0x2A,
     EVENT_REDIRECT_TARGETEND = 0x2B,
     EVENT_NOEFFECT_CHECK = 0x2C,
     EVENT_ABILITY_CHECK_NO_EFFECT = 0x2D,
+    EVENT_CHECK_PROTECT_BREAK = 0x2E,
     EVENT_CHECK_DAMAGE_TO_RECOVER = 0x30,
+    EVENT_DAMAGE_TO_RECOVER = 0x31,
+    EVENT_SKIP_ACCURACY_CHECK = 0x32,
+    EVENT_MOVE_ACCURACY_STAGE = 0x33,
+    EVENT_MOVE_HIT_COUNT = 0x35,
     EVENT_CRITICAL_CHECK = 0x36,
     EVENT_MOVE_BASE_POWER = 0x37,
     EVENT_MOVE_POWER = 0x38,
+    EVENT_BEFORE_DEFENDER_GUARD = 0x3A,
     EVENT_ATTACKER_POWER = 0x3B,
     EVENT_DEFENDER_GUARD = 0x3C,
     EVENT_CHECK_TYPE_EFFECTIVENESS = 0x3E,
     EVENT_AFTER_DAMAGE_REACTION = 0x44,
+    EVENT_DETERMINE_MOVE_DAMAGE = 0x45,
+    EVENT_MOVE_DAMAGE_PROCESSING_1 = 0x46,
     EVENT_MOVE_DAMAGE_PROCESSING_2 = 0x47,
+    EVENT_MOVE_DAMAGE_PROCESSING_END = 0x48,
     EVENT_MOVE_DAMAGE_REACTION_1 = 0x4B,
     EVENT_MOVE_DAMAGE_SIDE_AFTER = 0x4D,
     EVENT_SWITCH_OUT_END = 0x54,
@@ -171,6 +194,8 @@ enum BattleEventType : u32 {
     EVENT_STAT_STAGE_CHANGE_LAST_CHECK = 0x5B,
     EVENT_STAT_STAGE_CHANGE_FAIL = 0x5C,
     EVENT_STAT_STAGE_CHANGE_APPLIED = 0x5D,
+    EVENT_MOVE_CONDITION_PARAM = 0x62,
+    EVENT_ADDED_STATUS_CHANCE = 0x64,
     EVENT_ADD_CONDITION_CHECK_FAIL = 0x65,
     EVENT_ADD_CONDITION_FAIL = 0x67,
     EVENT_ABILITY_NULLIFIED = 0x6A,
@@ -179,6 +204,7 @@ enum BattleEventType : u32 {
     EVENT_USE_ITEM = 0x72,
     EVENT_USE_ITEM_TEMP = 0x73,
     EVENT_TURN_CHECK_BEGIN = 0x76,
+    EVENT_TURN_CHECK_END = 0x77,
     EVENT_TURN_CHECK_DONE = 0x78,
     EVENT_WEATHER_CHECK = 0x7A,
     EVENT_MOVE_WEATHER_TURN_COUNT = 0x7C,
@@ -188,6 +214,7 @@ enum BattleEventType : u32 {
     EVENT_BEFORE_ABILITY_CHANGE = 0x89,
     EVENT_AFTER_ABILITY_CHANGE = 0x8A,
     EVENT_RECOVER_HP = 0x8F,
+    EVENT_CHECK_ITEM_REACTION = 0x91,
     EVENT_CHECK_CHARGE_UP_FAIL = 0x93,
     EVENT_CHECK_CHARGE_UP_SKIP = 0x94,
     EVENT_CHARGE_UP_START = 0x95,
@@ -196,12 +223,18 @@ enum BattleEventType : u32 {
     EVENT_CHARGE_UP_END = 0x98,
     EVENT_DAMAGE_PROCESSING_START = 0x81,
     EVENT_DAMAGE_PROCESSING_END_HIT_REAL = 0x83,
+    EVENT_DAMAGE_PROCESSING_END_HIT_1 = 0x84,
     EVENT_DAMAGE_PROCESSING_END_HIT_2 = 0x85,
     EVENT_ITEM_REWRITE_DONE = 0x9D,
     EVENT_CALL_FIELD_EFFECT = 0x9E,
     EVENT_UNCATEGORIZED_MOVE = 0xA0,
     EVENT_UNCATEGORIZED_MOVE_NO_TARGET = 0xA1,
     EVENT_NOTIFY_FAINTED = 0xA3,
+    // W2U-only weather/final-parameter notifications. Native dispatch compares table
+    // tags rather than indexing an event-sized array.
+    EVENT_W2U_DAMAGE_WEATHER = 0x100,
+    EVENT_W2U_MOVE_PARAM_FINAL = 0x101,
+    EVENT_SIMPLE_DAMAGE_REACTION = EVENT_CHECK_ITEM_REACTION,
     EVENT_PROTECT_BROKEN = EVENT_MOVE_EXECUTE_CHECK2,
     EVENT_PROTECT_SUCCESS = EVENT_BEFORE_ATTACKS,
     EVENT_GROUNDED_BY_GRAVITY = EVENT_CHECK_FLOATING,
@@ -234,12 +267,16 @@ enum BattleEventPriority : u32 {
 enum W2UMoveFlagIndex : u32 {
     MOVE_FLAG_INDEX_CONTACT = 0x0,
     MOVE_FLAG_INDEX_REQUIRES_CHARGE = 0x1,
+    MOVE_FLAG_INDEX_RECHARGE_TURN = 0x2,
     MOVE_FLAG_INDEX_BLOCKED_BY_PROTECT = 0x3,
+    MOVE_FLAG_INDEX_SOUND = 0x8,
     MOVE_FLAG_INDEX_GROUNDED_BY_GRAVITY = 0x9,
+    MOVE_FLAG_INDEX_TRIPLE_FAR = 0xB,
+    MOVE_FLAG_INDEX_HEALING_MOVE = 0xC,
     MOVE_FLAG_INDEX_POWDER = 0xE,
     MOVE_FLAG_INDEX_WIND = 0x10,
     MOVE_FLAG_INDEX_SHARP = 0x11,
-    MOVE_FLAG_INDEX_HEALING = 0x12,
+    MOVE_FLAG_INDEX_HEALING_PROPERTY = 0x12,
     MOVE_FLAG_INDEX_DANCE = 0x13,
     MOVE_FLAG_INDEX_BULLET = 0x14,
     MOVE_FLAG_INDEX_BITE = 0x15,
@@ -252,6 +289,8 @@ struct ServerFlow;
 typedef void (*BattleEventHandler)(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work);
 
 enum MoveField : u32 {
+    MVDATA_PRIORITY = 0x6,
+    MVDATA_HEAL = 0x1A,
     MVDATA_TARGET = 0x1B,
 };
 
@@ -280,10 +319,12 @@ extern "C" u32 BattleMon_GetID(BattleMon* battleMon);
 extern "C" u16 BattleMon_GetPokeType(BattleMon* battleMon);
 extern "C" u16 PokeTypePair_MakeMonotype(u16 type);
 extern "C" u32 DivideMaxHPZeroCheck(BattleMon* battleMon, u32 denominator);
+extern "C" u32 PML_MoveGetQuality(MOVE_ID moveID);
 extern "C" u8 PML_MoveGetType(MOVE_ID moveID);
 extern "C" u32 PML_MoveGetCategory(MOVE_ID moveID);
 extern "C" u32 PML_MoveGetParam(MOVE_ID moveID, MoveField field);
 extern "C" b32 PML_MoveIsDamaging(MOVE_ID moveID);
+extern "C" b32 IsAffectedBySheerForce(MOVE_ID moveID);
 extern "C" u32 getMoveFlag(MOVE_ID moveID, u32 flagIndex);
 extern "C" b32 PML_ItemIsBerry(ITEM itemID);
 extern "C" b32 PML_ItemIsMail(ITEM itemID);
@@ -305,6 +346,11 @@ extern "C" void THUMB_BRANCH_ServerEvent_GetMoveParam(
     MOVE_ID moveID,
     BattleMon* battleMon,
     MoveParam* moveParam);
+extern "C" void W2U_ServerEvent_GetMoveParam(
+    ServerFlow* serverFlow,
+    MOVE_ID moveID,
+    BattleMon* battleMon,
+    MoveParam* moveParam);
 
 extern "C" BattleEventItem* BattleEvent_AddItem(
     BattleEventItemType eventType,
@@ -320,5 +366,11 @@ extern "C" u32 AbilityEvent_GetSubPriority(BattleMon* battleMon);
 extern "C" BattleEventPriority GetHandlerMainPriority(u32* handlerAmount);
 extern "C" int W2U_GetQueuedMovePriority(ServerFlow* serverFlow, BattleMon* attackingMon);
 extern "C" void BattleHandler_PushRun(ServerFlow* serverFlow, BattleHandlerEffect effect, u32 pokemonSlot);
+extern "C" void W2U_AbilityState_ResetBattleState();
+extern "C" void W2U_AbilityState_RecordInitialMon(ServerFlow* serverFlow, u32 clientID, u32 partySlot);
+extern "C" b32 W2U_BattleMonCanUseHeldItem(BattleMon* battleMon);
+extern "C" b32 W2U_MoveMakesContact(ServerFlow* serverFlow, MOVE_ID moveID, u32 attackingSlot);
+extern "C" b32 AbilityEvent_RollEffectChance(ServerFlow* serverFlow, u32 chance);
+extern "C" u32 CommonGetItemParam(BattleEventItem* item, u32 field);
 
 #endif

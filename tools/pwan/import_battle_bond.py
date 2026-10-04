@@ -35,6 +35,7 @@ ICON_ARCHIVE_OFFSET = 8
 sys.path.insert(0, str(ROOT / "tools" / "pwan"))
 from compile_pwan import compile_pwan  # noqa: E402
 from pwan_config import parse_config, write_config  # noqa: E402
+from report_paths import write_report  # noqa: E402
 
 
 def load_module(name: str, path: Path):
@@ -155,7 +156,7 @@ def main() -> int:
         "ashStatic": ash_static,
         "ashIcon": ash_icon,
     }
-    REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    write_report(REPORT, report)
     print(f"Staged Mega Greninja at asset {NEW_MEGA_ASSET} and Ash-Greninja at asset {ASH_ASSET}.")
     return 0
 

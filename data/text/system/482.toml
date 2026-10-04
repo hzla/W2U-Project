@@ -573,12 +573,12 @@ text = [
 
 [msg.section_0.entries.114]
 text = [
-  "Megite Xs$",
+  "Protective Pads$",
 ]
 
 [msg.section_0.entries.115]
 text = [
-  "Megite Ys$",
+  "Terrain Extenders$",
 ]
 
 [msg.section_0.entries.116]
@@ -2428,22 +2428,22 @@ text = [
 
 [msg.section_0.entries.485]
 text = [
-  "Red Apricorns$",
+  "Electric Seeds$",
 ]
 
 [msg.section_0.entries.486]
 text = [
-  "Blu Apricorns$",
+  "Grassy Seeds$",
 ]
 
 [msg.section_0.entries.487]
 text = [
-  "Ylw Apricorns$",
+  "Psychic Seeds$",
 ]
 
 [msg.section_0.entries.488]
 text = [
-  "Grn Apricorns$",
+  "Misty Seeds$",
 ]
 
 [msg.section_0.entries.489]

@@ -1,17 +1,31 @@
 {
   "source": "Cascade White",
   "archive": "/a/0/6/5",
+  "particleArchive": "/a/0/0/6",
+  "particleRemaps": [
+    {
+      "target": "pollenpuff",
+      "sourceId": 769,
+      "targetId": 807,
+      "expectedReferences": 6
+    },
+    {
+      "target": "solarblade",
+      "sourceId": 781,
+      "targetId": 812,
+      "expectedReferences": 10
+    }
+  ],
   "replacementMap": {
     "pound": "concuss",
+    "scratch": "supercellslam",
     "visegrip": "dualwingbeat",
     "razorwind": "razorwinds",
-    "slam": "brutalswing",
     "megakick": "highhorsepower",
-    "rollingkick": "headlongrush",
     "hornattack": "devour",
     "furyattack": "firelash",
     "sonicboom": "scorchingswarm",
-    "acid": "paraboliccharge",
+    "acid": "paraboliczap",
     "mimic": "psychicnoise",
     "withdraw": "breakingswipe",
     "bide": "hiddenforce",
@@ -58,6 +72,7 @@
     "powerswap": "psyblade",
     "guardswap": "clangingscales",
     "punishment": "wavecrash",
+    "heartswap": "headlongrush",
     "judgment": "spiritbreak",
     "roaroftime": "starburst",
     "spacialrend": "steelbeam",
@@ -72,6 +87,7 @@
     "simplebeam": "stompintantrum",
     "afteryou": "icehammer",
     "round": "disarmingvoice",
+    "quickguard": "brutalswing",
     "quash": "fairywind",
     "boltstrike": "zingzap",
     "freezeshock": "meteorbeam",

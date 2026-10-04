@@ -6,6 +6,8 @@
 
 namespace w2u {
     b32 ReadDataFromFile(const char* fileName, u32 bufferSize, u8 *buffer);
+    b32 ReadDataFromFileAt(const char* fileName, u32 offset, u32 bufferSize, u8 *buffer);
+    b32 GetFileSize(const char* fileName, u32* fileSize);
     u8 ReadByteFromFile(const char* fileName, const u32 idx);
 }
 

@@ -32,6 +32,7 @@ MAX_OVERRIDES = 768
 ASSET_NOTE_RE = re.compile(r"PWAN asset index \d+")
 
 sys.path.insert(0, str(ROOT / "tools" / "pwan"))
+from report_paths import write_report  # noqa: E402
 from pwan_config import (  # noqa: E402
     PWAN_CONFIG_BACK_FLAG,
     PWAN_CONFIG_FRONT_FLAG,
@@ -122,7 +123,7 @@ def main() -> int:
             row["runtimeNotes"] = ASSET_NOTE_RE.sub(replacement, notes, count=1)
 
     write_pwan_config(CONFIG_PATH, entries, max_timeline, max_overrides=MAX_OVERRIDES)
-    TRACKER.write_text(json.dumps(rows, indent=2) + "\n", encoding="utf-8")
+    write_report(TRACKER, rows)
 
     report = {
         "version": 1,
@@ -132,7 +133,7 @@ def main() -> int:
         "pwanConfigEntries": len(entries),
         "maxAssetIndex": max(int(entry["assetIndex"]) for entry in entries.values()),
     }
-    REPORT_PATH.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    write_report(REPORT_PATH, report)
     print(
         f"Repaired {len(repaired)} Gen 7 PWAN config row(s); "
         f"copied {len(copied)} missing direct side(s)."

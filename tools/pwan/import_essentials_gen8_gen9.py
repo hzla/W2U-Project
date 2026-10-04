@@ -43,7 +43,7 @@ VFS_EVOLUTIONS = ROOT / "vfs" / "data" / "a" / "0" / "1" / "9"
 POKE_FORM_LIST = PML_ROOT / "poke_form_list.bin"
 ICON_PALETTE_MAP = PML_ROOT / "pokeicon_palette_map.bin"
 REGIONAL_DEX = PML_ROOT / "RegionalDex.bin"
-SPECIES_HEADER = ROOT / "include" / "species.h"
+SPECIES_HEADER = ROOT / "include" / "species_ids.h"
 SPECIES_ENUM = ROOT / "tools" / "mkdata" / "enum" / "species.toml"
 POKEGRA_SOURCE = ROOT / "src" / "pokedex_expansion" / "w2u_pokegra.cpp"
 POKEDEX_SOURCE = ROOT / "src" / "pokedex_expansion" / "w2u_pokedex.cpp"
@@ -72,6 +72,7 @@ MAX_TIMELINE = 192
 
 sys.path.insert(0, str(ROOT / "tools" / "pwan"))
 from compile_pwan import compile_pwan  # noqa: E402
+from report_paths import report_path, write_report  # noqa: E402
 from pwan_config import (  # noqa: E402
     PWAN_CONFIG_BACK_FLAG,
     PWAN_CONFIG_FRONT_FLAG,
@@ -588,10 +589,10 @@ def compile_sources(species: int, form: int, asset: int, paths: dict[str, Path |
     native_ok, shiny_ok, native_error = patch_static_fallback(asset, normal_sources, shiny_sources)
     return {
         "assetIndex": asset,
-        "front": str(paths["front"]) if paths["front"] and paths["front"].exists() else None,
-        "back": str(paths["back"]) if paths["back"] and paths["back"].exists() else None,
-        "frontShiny": str(paths["frontShiny"]) if paths["frontShiny"] and paths["frontShiny"].exists() else None,
-        "backShiny": str(paths["backShiny"]) if paths["backShiny"] and paths["backShiny"].exists() else None,
+        "front": report_path(paths["front"]) if paths["front"] and paths["front"].exists() else None,
+        "back": report_path(paths["back"]) if paths["back"] and paths["back"].exists() else None,
+        "frontShiny": report_path(paths["frontShiny"]) if paths["frontShiny"] and paths["frontShiny"].exists() else None,
+        "backShiny": report_path(paths["backShiny"]) if paths["backShiny"] and paths["backShiny"].exists() else None,
         "stats": stats,
         "missingSides": missing,
         "nativeFallback": native_ok,
@@ -975,15 +976,15 @@ def main() -> int:
     tracker_rows.extend(imported_base_rows)
     tracker_rows.extend(new_tracker_rows)
     tracker_rows.sort(key=lambda row: (0 if row.get("kind") == "base species" else 1, int(row.get("id", 0)), row.get("key", "")))
-    TRACKER.write_text(json.dumps(tracker_rows, indent=2) + "\n", encoding="utf-8")
+    write_report(TRACKER, tracker_rows)
 
     progress_data = json.loads(PROGRESS.read_text(encoding="utf-8"))
     pokemon_progress = progress_data.setdefault("progress", {}).setdefault("pokemon", {})
     for row in imported_base_rows + new_tracker_rows:
         pokemon_progress[row["key"]] = row["defaultProgress"]
-    PROGRESS.write_text(json.dumps(progress_data, indent=2) + "\n", encoding="utf-8")
+    write_report(PROGRESS, progress_data)
 
-    SAVE_LINEUP.write_text(json.dumps(save_lineup, indent=2) + "\n", encoding="utf-8")
+    write_report(SAVE_LINEUP, save_lineup)
 
     imported_stems = {source.source_stem for source in form_sources}
     ignored_gmax = []
@@ -1016,7 +1017,7 @@ def main() -> int:
         "ignoredUnknownNumericSuffixes": ignored_unknown_suffix,
         "saveLineup": str(SAVE_LINEUP),
     }
-    REPORT_PATH.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    write_report(REPORT_PATH, report)
 
     print(
         f"Imported {len(imported_base_rows)} base species and {len(new_tracker_rows)} forms; "

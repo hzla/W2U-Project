@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "artifacts": {
+    "w2u_main.dll": "0e3293adca689f5bed68e19ed4760d17a41a65d743578863a41c18578189088b",
+    "w2u_field.dll": "5969edc742540c121e5ad9e90ac5e08868972fcec122f24b17a26aea81f4eadb",
+    "w2u_pokedex_ui.dll": "a8a3a1051dc5a699ca19d7c6908ab72dcbdcbfcb2b7b983a51b86df30812dbe9",
+    "w2u_menu_ui.dll": "a798a26787e33eef2ea6fa8fddddbb95b368aab24da6b37663851c35742315ed"
+  }
+}

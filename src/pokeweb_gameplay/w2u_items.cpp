@@ -1,12 +1,17 @@
 #include "w2u_abilities.h"
-#include "Types.h"
+#include "w2u_battle_module_api.h"
+#include "w2u_battle_module_loader.h"
+#include "type_constants.h"
+#include "w2u_moves.h"
+#include "w2u_platform.h"
 
 namespace {
 
-constexpr u32 W2U_ITEM_EVENT_TABLE = 0x021D8F68;
+constexpr u32 W2U_ITEM_EVENT_TABLE = W2U_ADDR_ITEM_EVENT_TABLE;
 constexpr u32 W2U_ITEM_EVENT_TABLE_COUNT = 172;
 constexpr u32 W2U_ASSAULT_VEST_SPDEF_RATIO = 6144;
 constexpr u32 W2U_EFFECTIVENESS_2 = 4;
+constexpr u32 W2U_ITSTAT_USE_PARAM = 2;
 
 typedef BattleEventHandlerTableEntry* (*ItemEventAddFunc)(u32* handlerAmount);
 
@@ -20,6 +25,7 @@ struct W2UItemEventAddTable {
     ItemEventAddFunc func;
 };
 
+#if !defined(W2U_DYNAMIC_BATTLE_CORE)
 bool IsEventDefender(u32 pokemonSlot)
 {
     return pokemonSlot == static_cast<u32>(BattleEventVar_GetValue(VAR_DEFENDING_MON));
@@ -274,6 +280,227 @@ BattleEventHandlerTableEntry* EventAddSafetyGoggles(u32* handlerAmount)
     return SafetyGogglesHandlers;
 }
 
+void HandlerTerrainExtenderTurnCount(
+    BattleEventItem* item,
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    u32* work)
+{
+    (void)serverFlow;
+    (void)work;
+
+    // Port PW2Code's terrain-specific payload on the native weather duration
+    // event. NEW_VAR_ATTACKING_MON keeps this from extending actual weather.
+    if (pokemonSlot == static_cast<u32>(BattleEventVar_GetValue(NEW_VAR_ATTACKING_MON)) &&
+        BattleEventVar_GetValue(VAR_WEATHER) != TERRAIN_NULL) {
+        BattleEventVar_RewriteValue(
+            VAR_EFFECT_TURN_COUNT,
+            static_cast<int>(CommonGetItemParam(item, W2U_ITSTAT_USE_PARAM)));
+    }
+}
+
+BattleEventHandlerTableEntry TerrainExtenderHandlers[] = {
+    {EVENT_MOVE_TERRAIN_TURN_COUNT, HandlerTerrainExtenderTurnCount},
+};
+
+BattleEventHandlerTableEntry* EventAddTerrainExtender(u32* handlerAmount)
+{
+    *handlerAmount = W2U_ARRAY_COUNT(TerrainExtenderHandlers);
+    return TerrainExtenderHandlers;
+}
+
+bool IsNewEventForPokemon(u32 pokemonSlot)
+{
+    return BattleEventVar_GetValue(VAR_MON_ID) == -1 &&
+        BattleEventVar_GetValue(VAR_ATTACKING_MON) == -1 &&
+        BattleEventVar_GetValue(VAR_DEFENDING_MON) == -1 &&
+        pokemonSlot == static_cast<u32>(BattleEventVar_GetValue(NEW_VAR_MON_ID));
+}
+
+void TryPushTerrainSeed(
+    BattleEventItem* item,
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    u32* work,
+    TERRAIN terrain,
+    StatStage stat)
+{
+    // Terrain Seeds intentionally do not require the holder to be grounded.
+    // This matches the original mechanic and permits airborne Unburden users.
+    if ((!work || work[0] == 0) &&
+        W2U_MoveState_GetTerrain() == terrain &&
+        CanBoostStat(serverFlow, pokemonSlot, stat, 1)) {
+        if (work) {
+            // A Surge can dispatch the terrain-change event from inside the
+            // outer switch-in event. Keep that pair from queuing two uses.
+            work[0] = 1;
+        }
+        ItemEvent_PushRun(item, serverFlow, pokemonSlot);
+    }
+}
+
+void TryPushTerrainSeedOnSwitchOrItemCheck(
+    BattleEventItem* item,
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    u32* work,
+    TERRAIN terrain,
+    StatStage stat)
+{
+    if (pokemonSlot == static_cast<u32>(BattleEventVar_GetValue(VAR_MON_ID))) {
+        TryPushTerrainSeed(item, serverFlow, pokemonSlot, work, terrain, stat);
+    }
+}
+
+void TryPushTerrainSeedAfterTerrainChange(
+    BattleEventItem* item,
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    u32* work,
+    TERRAIN terrain,
+    StatStage stat)
+{
+    // EVENT_AFTER_TERRAIN_CHANGE shares its native event ID with
+    // EVENT_AFTER_ABILITY_CHANGE, so require the new-event terrain payload.
+    if (IsNewEventForPokemon(pokemonSlot) &&
+        BattleEventVar_GetValue(VAR_WEATHER) == terrain) {
+        TryPushTerrainSeed(item, serverFlow, pokemonSlot, work, terrain, stat);
+    }
+}
+
+void HandlerElectricSeedCheck(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    TryPushTerrainSeedOnSwitchOrItemCheck(
+        item, serverFlow, pokemonSlot, work, TERRAIN_ELECTRIC, STATSTAGE_DEFENSE);
+}
+
+void HandlerElectricSeedTerrainChange(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    TryPushTerrainSeedAfterTerrainChange(
+        item, serverFlow, pokemonSlot, work, TERRAIN_ELECTRIC, STATSTAGE_DEFENSE);
+}
+
+void HandlerElectricSeedUse(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    if (work) {
+        work[0] = 0;
+    }
+    HandlerStatBoostItemUse(item, serverFlow, pokemonSlot, work, STATSTAGE_DEFENSE);
+}
+
+BattleEventHandlerTableEntry ElectricSeedHandlers[] = {
+    {EVENT_SWITCH_IN, HandlerElectricSeedCheck},
+    {EVENT_CHECK_ITEM_REACTION, HandlerElectricSeedCheck},
+    {EVENT_AFTER_TERRAIN_CHANGE, HandlerElectricSeedTerrainChange},
+    {EVENT_USE_ITEM, HandlerElectricSeedUse},
+};
+
+BattleEventHandlerTableEntry* EventAddElectricSeed(u32* handlerAmount)
+{
+    *handlerAmount = W2U_ARRAY_COUNT(ElectricSeedHandlers);
+    return ElectricSeedHandlers;
+}
+
+void HandlerGrassySeedCheck(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    TryPushTerrainSeedOnSwitchOrItemCheck(
+        item, serverFlow, pokemonSlot, work, TERRAIN_GRASSY, STATSTAGE_DEFENSE);
+}
+
+void HandlerGrassySeedTerrainChange(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    TryPushTerrainSeedAfterTerrainChange(
+        item, serverFlow, pokemonSlot, work, TERRAIN_GRASSY, STATSTAGE_DEFENSE);
+}
+
+void HandlerGrassySeedUse(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    if (work) {
+        work[0] = 0;
+    }
+    HandlerStatBoostItemUse(item, serverFlow, pokemonSlot, work, STATSTAGE_DEFENSE);
+}
+
+BattleEventHandlerTableEntry GrassySeedHandlers[] = {
+    {EVENT_SWITCH_IN, HandlerGrassySeedCheck},
+    {EVENT_CHECK_ITEM_REACTION, HandlerGrassySeedCheck},
+    {EVENT_AFTER_TERRAIN_CHANGE, HandlerGrassySeedTerrainChange},
+    {EVENT_USE_ITEM, HandlerGrassySeedUse},
+};
+
+BattleEventHandlerTableEntry* EventAddGrassySeed(u32* handlerAmount)
+{
+    *handlerAmount = W2U_ARRAY_COUNT(GrassySeedHandlers);
+    return GrassySeedHandlers;
+}
+
+void HandlerPsychicSeedCheck(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    TryPushTerrainSeedOnSwitchOrItemCheck(
+        item, serverFlow, pokemonSlot, work, TERRAIN_PSYCHIC, STATSTAGE_SPECIAL_DEFENSE);
+}
+
+void HandlerPsychicSeedTerrainChange(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    TryPushTerrainSeedAfterTerrainChange(
+        item, serverFlow, pokemonSlot, work, TERRAIN_PSYCHIC, STATSTAGE_SPECIAL_DEFENSE);
+}
+
+void HandlerPsychicSeedUse(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    if (work) {
+        work[0] = 0;
+    }
+    HandlerStatBoostItemUse(item, serverFlow, pokemonSlot, work, STATSTAGE_SPECIAL_DEFENSE);
+}
+
+BattleEventHandlerTableEntry PsychicSeedHandlers[] = {
+    {EVENT_SWITCH_IN, HandlerPsychicSeedCheck},
+    {EVENT_CHECK_ITEM_REACTION, HandlerPsychicSeedCheck},
+    {EVENT_AFTER_TERRAIN_CHANGE, HandlerPsychicSeedTerrainChange},
+    {EVENT_USE_ITEM, HandlerPsychicSeedUse},
+};
+
+BattleEventHandlerTableEntry* EventAddPsychicSeed(u32* handlerAmount)
+{
+    *handlerAmount = W2U_ARRAY_COUNT(PsychicSeedHandlers);
+    return PsychicSeedHandlers;
+}
+
+void HandlerMistySeedCheck(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    TryPushTerrainSeedOnSwitchOrItemCheck(
+        item, serverFlow, pokemonSlot, work, TERRAIN_MISTY, STATSTAGE_SPECIAL_DEFENSE);
+}
+
+void HandlerMistySeedTerrainChange(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    TryPushTerrainSeedAfterTerrainChange(
+        item, serverFlow, pokemonSlot, work, TERRAIN_MISTY, STATSTAGE_SPECIAL_DEFENSE);
+}
+
+void HandlerMistySeedUse(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    if (work) {
+        work[0] = 0;
+    }
+    HandlerStatBoostItemUse(item, serverFlow, pokemonSlot, work, STATSTAGE_SPECIAL_DEFENSE);
+}
+
+BattleEventHandlerTableEntry MistySeedHandlers[] = {
+    {EVENT_SWITCH_IN, HandlerMistySeedCheck},
+    {EVENT_CHECK_ITEM_REACTION, HandlerMistySeedCheck},
+    {EVENT_AFTER_TERRAIN_CHANGE, HandlerMistySeedTerrainChange},
+    {EVENT_USE_ITEM, HandlerMistySeedUse},
+};
+
+BattleEventHandlerTableEntry* EventAddMistySeed(u32* handlerAmount)
+{
+    *handlerAmount = W2U_ARRAY_COUNT(MistySeedHandlers);
+    return MistySeedHandlers;
+}
+#endif
+
 BattleEventItem* GetItemEvent(BattleMon* battleMon, ITEM itemID, ItemEventAddFunc func)
 {
     if (!battleMon || !func) {
@@ -298,6 +525,7 @@ BattleEventItem* GetItemEvent(BattleMon* battleMon, ITEM itemID, ItemEventAddFun
         static_cast<u16>(handlerAmount));
 }
 
+#if !defined(W2U_DYNAMIC_BATTLE_CORE) && !defined(W2U_BATTLE_STATIC_GROUPS)
 W2UItemEventAddTable sItemEventAddTable[] = {
     {ITEM_ASSAULT_VEST, EventAddAssaultVest},
     {ITEM_LUMINOUS_MOSS, EventAddLuminousMoss},
@@ -307,18 +535,59 @@ W2UItemEventAddTable sItemEventAddTable[] = {
     {ITEM_FAIRY_FEATHER, EventAddFairyFeather},
     {ITEM_ROSELI_BERRY, EventAddRoseliBerry},
     {ITEM_SAFETY_GOGGLES, EventAddSafetyGoggles},
+    {ITEM_TERRAIN_EXTENDER, EventAddTerrainExtender},
+    {ITEM_ELECTRIC_SEED, EventAddElectricSeed},
+    {ITEM_GRASSY_SEED, EventAddGrassySeed},
+    {ITEM_PSYCHIC_SEED, EventAddPsychicSeed},
+    {ITEM_MISTY_SEED, EventAddMistySeed},
 };
+#endif
 
 } // namespace
 
 extern "C" BattleEventItem* THUMB_BRANCH_ItemEvent_AddItemCore(BattleMon* battleMon, ITEM itemID)
 {
+#if defined(W2U_DYNAMIC_BATTLE_CORE)
+    if (W2U_BattleModules_IsManaged(W2U_MECHANIC_ITEM, (u16)itemID)) {
+        const W2UBattleHandlerExport* entry =
+            W2U_BattleModules_Resolve(W2U_MECHANIC_ITEM, (u16)itemID);
+        if (!entry || !battleMon) {
+            return 0;
+        }
+        return BattleEvent_AddItem(
+            EVENTITEM_ITEM,
+            (u16)itemID,
+            entry->priority == W2U_BATTLE_MODULE_DEFAULT_PRIORITY
+                ? EVENTPRI_ITEM_DEFAULT
+                : (BattleEventPriority)entry->priority,
+            BattleMon_GetRealStat(battleMon, VALUE_SPEED_STAT),
+            BattleMon_GetID(battleMon),
+            entry->handlers,
+            entry->handlerCount);
+    }
+#elif defined(W2U_BATTLE_STATIC_GROUPS)
+    const W2UBattleHandlerExport* entry =
+        W2U_BattleStatic_Resolve(W2U_MECHANIC_ITEM, (u16)itemID);
+    if (entry && battleMon) {
+        return BattleEvent_AddItem(
+            EVENTITEM_ITEM,
+            (u16)itemID,
+            entry->priority == W2U_BATTLE_MODULE_DEFAULT_PRIORITY
+                ? EVENTPRI_ITEM_DEFAULT
+                : (BattleEventPriority)entry->priority,
+            BattleMon_GetRealStat(battleMon, VALUE_SPEED_STAT),
+            BattleMon_GetID(battleMon),
+            entry->handlers,
+            entry->handlerCount);
+    }
+#else
     for (u32 i = 0; i < W2U_ARRAY_COUNT(sItemEventAddTable); ++i) {
         W2UItemEventAddTable* eventAdd = &sItemEventAddTable[i];
         if (itemID == eventAdd->itemID) {
             return GetItemEvent(battleMon, itemID, eventAdd->func);
         }
     }
+#endif
 
     ItemEventAddTable* vanillaTable = reinterpret_cast<ItemEventAddTable*>(W2U_ITEM_EVENT_TABLE);
     for (u32 i = 0; i < W2U_ITEM_EVENT_TABLE_COUNT; ++i) {
@@ -330,3 +599,7 @@ extern "C" BattleEventItem* THUMB_BRANCH_ItemEvent_AddItemCore(BattleMon* battle
 
     return 0;
 }
+
+#define W2U_BATTLE_API_SOURCE_ITEMS
+#include "w2u_battle_module_api_entries.inc"
+#undef W2U_BATTLE_API_SOURCE_ITEMS

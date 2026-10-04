@@ -1,12 +1,13 @@
 #include "swan/swantypes.h"
 #include "gfl/fs/gfl_archive.h"
-#include "Species.h"
-#include "Personal.h"
+#include "species_ids.h"
+#include "personal_data.h"
 #include "FileSystem.h"
+#include "w2u_platform.h"
 
-#define REGIONAL_DEX_FILE_INDEX 1273
+#define REGIONAL_DEX_FILE_INDEX 1290
 
-#define POKE_FORM_LIST_SIZE 0xB5
+#define POKE_FORM_LIST_SIZE 0xB7
 #define POKEDEX_MAGIC 0xBEEFCAFE
 #define POKEDEX_LEGACY_FLAG_BYTES 84
 #define POKEDEX_LEGACY_SPECIES_MAX 672
@@ -76,7 +77,7 @@ namespace w2u {
 		extern "C" u32 PML_PersonalGetParam(PersonalData* personal, PersonalField field);
 		extern "C" void PML_PersonalFree(PersonalData* personal);
 
-        extern ArcTool **g_PMLPersonalArcBW2 = (ArcTool **)0x2141428;
+        extern ArcTool **g_PMLPersonalArcBW2 = (ArcTool **)W2U_ADDR_PERSONAL_ARC_BW2;
 
         static inline void ClearMemory(void *data, u32 size) {
             u8 *bytes = (u8 *)data;
@@ -312,7 +313,7 @@ namespace w2u {
 
         static inline void SetDrawData(PokedexSave *pokedex, u32 species, u32 sex, u32 shiny, u32 form) {
             Poke_form pokemonFormList[POKE_FORM_LIST_SIZE];
-            if (ReadDataFromFile("poke_form_list.bin", POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
+            if (ReadDataFromFile(W2U_PATH_POKE_FORM_LIST, POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
                 s32 formIdx = 0;
                 for (u32 formListIdx = 0; formListIdx < POKE_FORM_LIST_SIZE && pokemonFormList[formListIdx].species; ++formListIdx) {
                     Poke_form* pokeForm = &pokemonFormList[formListIdx];
@@ -491,7 +492,7 @@ namespace w2u {
 
         extern "C" s32 THUMB_BRANCH_getIndexPokemonWithForms(u32 species) {
 			Poke_form pokemonFormList[POKE_FORM_LIST_SIZE];
-			if (!ReadDataFromFile("poke_form_list.bin", POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
+			if (!ReadDataFromFile(W2U_PATH_POKE_FORM_LIST, POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
 				return -1;
 			}
 			
@@ -510,7 +511,7 @@ namespace w2u {
 
         extern "C" s16 THUMB_BRANCH_getIndexNumOfPkmForm(u16 species) {
 			Poke_form pokemonFormList[POKE_FORM_LIST_SIZE];
-			if (!ReadDataFromFile("poke_form_list.bin", POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
+			if (!ReadDataFromFile(W2U_PATH_POKE_FORM_LIST, POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
 				return -1;
 			}
 
@@ -526,7 +527,7 @@ namespace w2u {
         extern "C" s16 THUMB_BRANCH_getNumberOfForms(u16 species)
 		{
 			Poke_form pokemonFormList[POKE_FORM_LIST_SIZE];
-			if (!ReadDataFromFile("poke_form_list.bin", POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
+			if (!ReadDataFromFile(W2U_PATH_POKE_FORM_LIST, POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
 				return -1;
 			}
 
@@ -585,7 +586,7 @@ namespace w2u {
 				s32 formIdx = getIndexPokemonWithForms(species);
 		
 				Poke_form pokemonFormList[POKE_FORM_LIST_SIZE];
-				if (!ReadDataFromFile("poke_form_list.bin", POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
+				if (!ReadDataFromFile(W2U_PATH_POKE_FORM_LIST, POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
 					return;
 				}
 		

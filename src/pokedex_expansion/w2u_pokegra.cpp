@@ -1,10 +1,11 @@
-#include "Personal.h"
-#include "Species.h"
+#include "personal_data.h"
+#include "species_ids.h"
 #include "FileSystem.h"
 #include "pml/poke_param.h"
 #include "pml/poke_party.h"
 #include "pml/poke_data.h"
 #include "gfl/fs/gfl_archive.h"
+#include "w2u_platform.h"
 
 #define EGG_INDEX 722
 #define PLACEHOLDER_SPECIES_START 722
@@ -26,7 +27,7 @@
 
 #define FORM_START 14480
 #define RARE_FORM_START 17953
-#define REGIONAL_DEX_FILE_INDEX 1273
+#define REGIONAL_DEX_FILE_INDEX 1290
 
 #define ICON_FORM_START 1456
 
@@ -313,7 +314,7 @@ namespace w2u {
 				
 			}
 
-			u32 palette = ReadByteFromFile("pokeicon_palette_map.bin", paletteIndex);
+			u32 palette = ReadByteFromFile(W2U_PATH_POKEICON_PALETTE_MAP, paletteIndex);
 			// Each Pokémon entry has 2 posible palettes, first 4 bits for male and the last 4 bits for female.
 			// (this is only used for frillish and jellycent in vanilla but the new icons don't make use of if for now)
 			if (Gender) {

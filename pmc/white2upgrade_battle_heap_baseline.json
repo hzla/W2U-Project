@@ -1,0 +1,11 @@
+{
+  "description": "Pre-refactor stripped White 2 battle resident-set baseline captured before enabling dynamic battle categories.",
+  "heap_bytes": 167936,
+  "core_fixed_bytes": 63700,
+  "resident_fixed_bytes": 103300,
+  "resident_modules": [
+    "White2Upgrade.dll",
+    "PokewebPwanBattleW2.dll",
+    "White2UpgradeBattleLog.dll"
+  ]
+}

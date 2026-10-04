@@ -50,7 +50,7 @@ with open('txtdmp/Species.txt') as Species:
         SpeciesNames.append(CurrSpecies.upper().replace('É', 'E').replace('.', '').replace('-', '').replace(' ', '_').replace('\'', '')[:-1])
 
 with open('src/arc/pml/Personal.c', 'w') as Personal:
-    Personal.write('#include "Species.h"\n#include "Personal.h"\nu32 __size = sizeof(PERSONAL_DATA);\n\n')
+    Personal.write('#include "species_ids.h"\n#include "personal_data.h"\nu32 __size = sizeof(PERSONAL_DATA);\n\n')
     Personal.write('const PERSONAL_DATA __data[] = {\n')
     for Entry in sorted(PersonalExt.glob('*')):
         Personal.write(f'\t[SPECIES_{SpeciesNames[Count] if Count < len(SpeciesNames) else Count}] = {{\n') # Header

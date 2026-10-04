@@ -573,12 +573,12 @@ text = [
 
 [msg.section_0.entries.114]
 text = [
-  "[COLORRESET]a [COLOR(255)]Megite X$",
+  "[COLORRESET]some [COLOR(255)]Protective Pads$",
 ]
 
 [msg.section_0.entries.115]
 text = [
-  "[COLORRESET]a [COLOR(255)]Megite Y$",
+  "[COLORRESET]a [COLOR(255)]Terrain Extender$",
 ]
 
 [msg.section_0.entries.116]
@@ -2428,22 +2428,22 @@ text = [
 
 [msg.section_0.entries.485]
 text = [
-  "[COLORRESET]a [COLOR(255)]Red Apricorn$",
+  "[COLORRESET]an [COLOR(255)]Electric Seed$",
 ]
 
 [msg.section_0.entries.486]
 text = [
-  "[COLORRESET]a [COLOR(255)]Blu Apricorn$",
+  "[COLORRESET]a [COLOR(255)]Grassy Seed$",
 ]
 
 [msg.section_0.entries.487]
 text = [
-  "[COLORRESET]a [COLOR(255)]Ylw Apricorn$",
+  "[COLORRESET]a [COLOR(255)]Psychic Seed$",
 ]
 
 [msg.section_0.entries.488]
 text = [
-  "[COLORRESET]a [COLOR(255)]Grn Apricorn$",
+  "[COLORRESET]a [COLOR(255)]Misty Seed$",
 ]
 
 [msg.section_0.entries.489]

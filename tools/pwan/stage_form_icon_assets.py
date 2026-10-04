@@ -19,6 +19,7 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[2]
+from report_paths import write_report
 PORT = Path(os.environ.get("POKEWEB_SOURCE_ROOT", ROOT.parent / "pokeweb-source"))
 
 TRACKER = PORT / "White2Expansion" / "data" / "pokemon.gen6.json"
@@ -74,6 +75,14 @@ OFFICIAL_MEGA_BASES = {
     "SWAMPERT",
     "TYRANITAR",
     "VENUSAUR",
+}
+
+# These three base entries were left as zero-length placeholders by the
+# original Gen 8 import even though their Essentials icons are present.
+MISSING_BASE_ICONS = {
+    897: "SPECTRIER",
+    898: "CALYREX",
+    899: "WYRDEER",
 }
 
 
@@ -225,6 +234,14 @@ def stage_form_icons(palettes: list[list[tuple[int, int, int, int]]], palette_ma
     return staged
 
 
+def stage_missing_base_icons(palettes: list[list[tuple[int, int, int, int]]], palette_map: bytearray) -> list[dict]:
+    return [
+        write_generated_icon(species * 2 + 8, species, stem, palettes, palette_map)
+        | {"species": species, "name": stem.title()}
+        for species, stem in MISSING_BASE_ICONS.items()
+    ]
+
+
 def mega_icon_stem(row: dict) -> str | None:
     base = str(row.get("baseSpecies", "")).removeprefix("SPECIES_")
     if base not in OFFICIAL_MEGA_BASES:
@@ -307,20 +324,22 @@ def stage_preview_icons(palette_map: bytearray) -> list[dict]:
 def main() -> int:
     palettes = read_icon_palettes()
     palette_map = bytearray(PALETTE_MAP.read_bytes())
+    base_icons = stage_missing_base_icons(palettes, palette_map)
     form_icons = stage_form_icons(palettes, palette_map)
     mega_species_icons = stage_mega_species_icons(palettes, palette_map)
     preview_icons = stage_preview_icons(palette_map)
     PALETTE_MAP.write_bytes(bytes(palette_map))
     report = {
         "version": 1,
+        "repairedBaseIcons": base_icons,
         "formIcons": form_icons,
         "megaSpeciesIcons": mega_species_icons,
         "previewIcons": preview_icons,
         "errors": [],
     }
-    REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    write_report(REPORT, report)
     print(
-        f"Staged {len(form_icons)} form icon set(s), "
+        f"Staged {len(base_icons)} repaired base icon set(s), {len(form_icons)} form icon set(s), "
         f"{len(mega_species_icons)} Mega species icon set(s), "
         f"and {len(preview_icons)} Mega preview icon set(s)."
     )

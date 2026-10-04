@@ -7,13 +7,13 @@
   "assetIndex": 1182,
   "formListRecords": 181,
   "sources": {
-    "front": "/Users/andylee/Repos/Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-front.gif",
-    "back": "/Users/andylee/Repos/Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-back.gif"
+    "front": "../Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-front.gif",
+    "back": "../Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-back.gif"
   },
   "import": {
     "assetIndex": 1182,
-    "front": "/Users/andylee/Repos/Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-front.gif",
-    "back": "/Users/andylee/Repos/Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-back.gif",
+    "front": "../Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-front.gif",
+    "back": "../Port-Pokeweb/sprites/smogon-gifs-g7/mimikyu-busted-back.gif",
     "frontShiny": null,
     "backShiny": null,
     "stats": {

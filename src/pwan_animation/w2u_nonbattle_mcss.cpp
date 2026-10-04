@@ -1,4 +1,4 @@
-#include "Species.h"
+#include "species_ids.h"
 #include "nds/fs.h"
 #include "pwan_types.h"
 #include "w2u_pwan_archive.h"

@@ -44,6 +44,20 @@ pwan_misc_b2_sources = files(
   'b2_nonbattle_hooks.s',
 )
 
+pwan_trainer_sources = files(
+  'w2u_pwan_frame_scratch.cpp',
+  'w2u_pwan_archive.cpp',
+  'w2u_trainer_anim.cpp',
+  'w2u_trainer_hooks.s',
+)
+
+pwan_trainer_b2_sources = files(
+  'w2u_pwan_frame_scratch.cpp',
+  'w2u_pwan_archive.cpp',
+  'w2u_trainer_anim.cpp',
+  'b2_trainer_hooks.s',
+)
+
 pwan_runtime_modules = [
   {
     'name': 'PokewebPwanSummaryW2',
@@ -59,6 +73,11 @@ pwan_runtime_modules = [
     'name': 'PokewebPwanMiscW2',
     'sources': pwan_misc_sources,
     'overlays': ['298', '284', '307', '265'],
+  },
+  {
+    'name': 'PokewebPwanTrainerW2',
+    'sources': pwan_trainer_sources,
+    'overlays': ['168'],
   },
 ]
 

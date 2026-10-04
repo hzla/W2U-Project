@@ -497722,6 +497722,24 @@ Symbols:
   - Name: LAB_020425bc
     Segment: 0x12
     Address: 0x20425BD
+  - Name: finit
+    Segment: 0x12
+    Address: 0x2070C7D
+  - Name: romfs_fclose
+    Segment: 0x12
+    Address: 0x2070DB5
+  - Name: romfs_fseek
+    Segment: 0x12
+    Address: 0x2070E29
+  - Name: romfs_fread
+    Segment: 0x12
+    Address: 0x2070E41
+  - Name: romfs_fopen
+    Segment: 0x12
+    Address: 0x2070EA1
+  - Name: memset
+    Segment: 0x12
+    Address: 0x20839D0
   - Name: LAB_overlay_d_257__021adc4c
     Segment: 0x1C
     Address: 0x21ADC4D

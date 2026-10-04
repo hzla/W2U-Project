@@ -11,13 +11,14 @@ from PIL import Image
 
 
 TERRAINS = ("electric", "grassy", "misty", "psychic")
-PANEL_WIDTH = 48
+PANEL_WIDTH = 32
 PANEL_HEIGHT = 32
 PALETTE_SLOT = 6
-LEFT_OBJECT_TILE_WIDTH = 4
-RIGHT_OBJECT_TILE_WIDTH = 2
 OBJECT_TILE_HEIGHT = 4
-PANEL_TILE_COUNT = (LEFT_OBJECT_TILE_WIDTH + RIGHT_OBJECT_TILE_WIDTH) * OBJECT_TILE_HEIGHT
+OBJECT_TILE_WIDTH = 4
+PANEL_TILE_COUNT = OBJECT_TILE_WIDTH * OBJECT_TILE_HEIGHT
+SCENE_WIDTH = 22
+SCENE_HEIGHT = 16
 
 
 def u16(data: bytes | bytearray, offset: int) -> int:
@@ -47,28 +48,28 @@ def crop_cover(image: Image.Image, width: int, height: int) -> Image.Image:
 
 def label_mask() -> Image.Image:
     glyphs = {
-        "T": (0b11111, 0b00100, 0b00100, 0b00100, 0b00100, 0b00100, 0b00100),
-        "E": (0b11111, 0b10000, 0b10000, 0b11110, 0b10000, 0b10000, 0b11111),
-        "R": (0b11110, 0b10001, 0b10001, 0b11110, 0b10100, 0b10010, 0b10001),
-        "A": (0b01110, 0b10001, 0b10001, 0b11111, 0b10001, 0b10001, 0b10001),
-        "I": (0b11111, 0b00100, 0b00100, 0b00100, 0b00100, 0b00100, 0b11111),
-        "N": (0b10001, 0b11001, 0b11001, 0b10101, 0b10011, 0b10011, 0b10001),
+        "T": (0b111, 0b010, 0b010, 0b010, 0b010),
+        "E": (0b111, 0b100, 0b110, 0b100, 0b111),
+        "R": (0b110, 0b101, 0b110, 0b101, 0b101),
+        "A": (0b010, 0b101, 0b111, 0b101, 0b101),
+        "I": (0b111, 0b010, 0b010, 0b010, 0b111),
+        "N": (0b101, 0b111, 0b111, 0b111, 0b101),
     }
     mask = Image.new("1", (PANEL_WIDTH, 10), 0)
     word = "TERRAIN"
-    left = (PANEL_WIDTH - (len(word) * 6 - 1)) // 2
+    left = (PANEL_WIDTH - (len(word) * 4 - 1)) // 2
     for glyph_index, letter in enumerate(word):
         for y, row in enumerate(glyphs[letter]):
-            for x in range(5):
-                if row & (1 << (4 - x)):
-                    mask.putpixel((left + glyph_index * 6 + x, y + 1), 1)
+            for x in range(3):
+                if row & (1 << (2 - x)):
+                    mask.putpixel((left + glyph_index * 4 + x, y + 2), 1)
     return mask
 
 
 def terrain_colors(crops: list[Image.Image]) -> list[tuple[int, int, int]]:
-    strip = Image.new("RGB", (38, 16 * len(crops)))
+    strip = Image.new("RGB", (SCENE_WIDTH, SCENE_HEIGHT * len(crops)))
     for index, crop in enumerate(crops):
-        strip.paste(crop, (0, index * 16))
+        strip.paste(crop, (0, index * SCENE_HEIGHT))
     quantized = strip.quantize(colors=11, method=Image.Quantize.MEDIANCUT)
     raw_palette = quantized.getpalette() or []
     colors: list[tuple[int, int, int]] = []
@@ -87,7 +88,7 @@ def build_panels(source_dir: Path) -> tuple[list[list[int]], list[tuple[int, int
         matches = list(source_dir.glob(f"{terrain}.*"))
         if len(matches) != 1:
             raise ValueError(f"expected exactly one source image for {terrain}, found {len(matches)}")
-        sources.append(crop_cover(Image.open(matches[0]), 38, 16))
+        sources.append(crop_cover(Image.open(matches[0]), SCENE_WIDTH, SCENE_HEIGHT))
 
     palette = [(0, 0, 0), (16, 16, 16), (255, 255, 255), (70, 70, 70), (176, 176, 176)]
     palette.extend(terrain_colors(sources))
@@ -111,15 +112,18 @@ def build_panels(source_dir: Path) -> tuple[list[list[int]], list[tuple[int, int
                     pixels[y * PANEL_WIDTH + x] = 2
         draw_colors = {1: 1, 2: 3, 3: 4}
         for inset, color in draw_colors.items():
-            left, top, right, bottom = 2 + inset - 1, 10 + inset - 1, 45 - inset + 1, 31 - inset + 1
+            left = 1 + inset
+            top = 9 + inset
+            right = PANEL_WIDTH - 2 - inset
+            bottom = PANEL_HEIGHT - 1 - inset
             for x in range(left, right + 1):
                 pixels[top * PANEL_WIDTH + x] = color
                 pixels[bottom * PANEL_WIDTH + x] = color
             for y in range(top, bottom + 1):
                 pixels[y * PANEL_WIDTH + left] = color
                 pixels[y * PANEL_WIDTH + right] = color
-        for y in range(16):
-            for x in range(38):
+        for y in range(SCENE_HEIGHT):
+            for x in range(SCENE_WIDTH):
                 rgb = crop.getpixel((x, y))
                 pixels[(13 + y) * PANEL_WIDTH + 5 + x] = 5 + nearest_color(rgb, palette[5:])
         panels.append(pixels)
@@ -151,21 +155,17 @@ def patch_ncgr(base: bytes, panels: list[list[int]]) -> tuple[bytes, int]:
     sheet_width = u16(base, 0x20)
     if sheet_width != 16:
         raise ValueError(f"expected a 16-tile-wide battgra sheet, got {sheet_width}")
-    # Battle's sub engine uses GX_OBJVRAMMODE_CHAR_1D_32K. Keep the first new
-    # character on a clean 32-tile boundary, then pack the tiles for each OAM
-    # object contiguously in its own row-major block. A previous 2D-style
-    # 32-tile row stride made later rows fetch copies of the TERRAIN label.
-    tile_base = ((old_tile_count + 31) // 32) * 32
-    appended = bytes((tile_base - old_tile_count) * 32)
+    # Battle's sub engine uses GX_OBJVRAMMODE_CHAR_1D_32K, so character names
+    # address individual 32-byte tiles and do not require a 32-tile-aligned
+    # base.  Packing directly after the native sheet is important: padding to
+    # the next 32-tile boundary leaves too little sub-OBJ VRAM for both party
+    # icons on the second command screen of a Double Battle.
+    tile_base = old_tile_count
+    appended = b""
     object_tiles = []
     for panel in panels:
-        # Left 32x32 OBJ.
         for tile_y in range(OBJECT_TILE_HEIGHT):
-            for tile_x in range(LEFT_OBJECT_TILE_WIDTH):
-                object_tiles.append(encode_tile(panel, tile_x, tile_y))
-        # Right 16x32 OBJ.
-        for tile_y in range(OBJECT_TILE_HEIGHT):
-            for tile_x in range(LEFT_OBJECT_TILE_WIDTH, LEFT_OBJECT_TILE_WIDTH + RIGHT_OBJECT_TILE_WIDTH):
+            for tile_x in range(OBJECT_TILE_WIDTH):
                 object_tiles.append(encode_tile(panel, tile_x, tile_y))
     appended += b"".join(object_tiles)
     out = bytearray(base + appended)
@@ -213,10 +213,9 @@ def patch_ncer(base: bytes, tile_base: int) -> bytes:
     new_records = bytearray()
     new_oam = bytearray()
     for index in range(4):
-        new_records.extend(struct.pack("<HHI", 2, 0, len(old_oam) + len(new_oam)))
+        new_records.extend(struct.pack("<HHI", 1, 0, len(old_oam) + len(new_oam)))
         first_tile = tile_base + index * PANEL_TILE_COUNT
-        new_oam.extend(oam(32, 32, -24, -16, first_tile))
-        new_oam.extend(oam(16, 32, 8, -16, first_tile + LEFT_OBJECT_TILE_WIDTH * OBJECT_TILE_HEIGHT))
+        new_oam.extend(oam(32, 32, -16, -16, first_tile))
     new_block = bytearray(base[0x10:old_oam_start])
     put_u16(new_block, payload - 0x10, count + 4)
     new_block.extend(new_records)

@@ -4,7 +4,7 @@ with open('txtdmp/Species.txt') as Species:
     while (CurrSpecies := Species.readline()) != '':
         SpeciesNames.append(CurrSpecies.upper().replace('\X2019', '').replace('É', 'E').replace('.', '').replace('-', '').replace(' ', '_').replace('\'', '')[:-1])
 
-with open('include/Species.h', 'w') as SpeciesH:
+with open('include/species_ids.h', 'w') as SpeciesH:
     SpeciesH.write('''
 #ifndef __SPECIES_H
 #define __SPECIES_H\n

@@ -19,6 +19,7 @@ import tomllib
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+from report_paths import write_report
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -28,7 +29,7 @@ PWAN_DIR = ROOT / "assets" / "pokeweb_pwan"
 CONFIG_PATH = PWAN_DIR / "config.bin"
 REPORT_PATH = PWAN_DIR / "pwan_grounding_report.json"
 PML_ROOT = ROOT / "data" / "pml"
-SPECIES_HEADER = ROOT / "include" / "species.h"
+SPECIES_HEADER = ROOT / "include" / "species_ids.h"
 TRACKER = PORT / "White2Expansion" / "data" / "pokemon.gen6.json"
 SPECIES_NAMES = PORT / "reference_repos" / "PKHeX" / "PKHeX.Core" / "Resources" / "text" / "other" / "en" / "text_Species_en.txt"
 SHOWDOWN_SPECIES = PORT / "reference_repos" / "Pokeweb-Live" / "public" / "dist" / "calc" / "data" / "species.js"
@@ -735,7 +736,7 @@ def main() -> int:
         "errors": errors,
     }
     args.report.parent.mkdir(parents=True, exist_ok=True)
-    args.report.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    write_report(args.report, report)
 
     print(
         f"{'Would shift' if args.dry_run else 'Shifted'} {len(shifted_sides)} side(s) "

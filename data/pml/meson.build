@@ -1274,6 +1274,23 @@ personal_sources = [
   '1270/personal.toml',
   '1271/personal.toml',
   '1272/personal.toml',
+  '1273/personal.toml',
+  '1274/personal.toml',
+  '1275/personal.toml',
+  '1276/personal.toml',
+  '1277/personal.toml',
+  '1278/personal.toml',
+  '1279/personal.toml',
+  '1280/personal.toml',
+  '1281/personal.toml',
+  '1282/personal.toml',
+  '1283/personal.toml',
+  '1284/personal.toml',
+  '1285/personal.toml',
+  '1286/personal.toml',
+  '1287/personal.toml',
+  '1288/personal.toml',
+  '1289/personal.toml',
 ]
 
 learnset_sources = [
@@ -2550,6 +2567,23 @@ learnset_sources = [
   '1270/learnset.toml',
   '1271/learnset.toml',
   '1272/learnset.toml',
+  '1273/learnset.toml',
+  '1274/learnset.toml',
+  '1275/learnset.toml',
+  '1276/learnset.toml',
+  '1277/learnset.toml',
+  '1278/learnset.toml',
+  '1279/learnset.toml',
+  '1280/learnset.toml',
+  '1281/learnset.toml',
+  '1282/learnset.toml',
+  '1283/learnset.toml',
+  '1284/learnset.toml',
+  '1285/learnset.toml',
+  '1286/learnset.toml',
+  '1287/learnset.toml',
+  '1288/learnset.toml',
+  '1289/learnset.toml',
 ]
 
 evolution_sources = [
@@ -3826,6 +3860,23 @@ evolution_sources = [
   '1270/evolutions.toml',
   '1271/evolutions.toml',
   '1272/evolutions.toml',
+  '1273/evolutions.toml',
+  '1274/evolutions.toml',
+  '1275/evolutions.toml',
+  '1276/evolutions.toml',
+  '1277/evolutions.toml',
+  '1278/evolutions.toml',
+  '1279/evolutions.toml',
+  '1280/evolutions.toml',
+  '1281/evolutions.toml',
+  '1282/evolutions.toml',
+  '1283/evolutions.toml',
+  '1284/evolutions.toml',
+  '1285/evolutions.toml',
+  '1286/evolutions.toml',
+  '1287/evolutions.toml',
+  '1288/evolutions.toml',
+  '1289/evolutions.toml',
 ]
 
 personal_arc = 'a' / '0' / '1' / '6'
@@ -3870,6 +3921,23 @@ vfs_files += custom_target(
   command: [pack_narc_py, '@OUTPUT@', meson.project_source_root() / 'vfs' / 'data' / learnsets_arc, '@INPUT@'],
 )
 
+ko_learnset_builder = meson.project_source_root() / 'tools' / 'battle_log' / 'build_ko_learnset_narc.py'
+vfs_files += custom_target(
+  'build_ko_learnset_narc',
+  input: learnset_files,
+  output: 'build_ko_learnset_narc.stamp',
+  depend_files: [
+    ko_learnset_builder,
+    meson.project_source_root() / 'tools' / 'battle_log' / 'build_ancestry_narc.py',
+  ],
+  command: [
+    'python3', ko_learnset_builder,
+    '--output', meson.project_source_root() / 'vfs' / 'data' / 'battlelog_ko' / 'learnsets.narc',
+    '--stamp', '@OUTPUT@',
+    '--learnset-members', '@INPUT@',
+  ],
+)
+
 evolutions_arc = 'a' / '0' / '1' / '9'
 evolution_files = []
 evolution_index = 0
@@ -3889,4 +3957,18 @@ vfs_files += custom_target(
   input: evolution_files,
   output: 'pack_evolutions_narc.stamp',
   command: [pack_narc_py, '@OUTPUT@', meson.project_source_root() / 'vfs' / 'data' / evolutions_arc, '@INPUT@'],
+)
+
+battle_log_ancestry_builder = meson.project_source_root() / 'tools' / 'battle_log' / 'build_ancestry_narc.py'
+vfs_files += custom_target(
+  'build_battle_log_ancestry_narc',
+  input: evolution_files,
+  output: 'build_battle_log_ancestry_narc.stamp',
+  depend_files: battle_log_ancestry_builder,
+  command: [
+    'python3', battle_log_ancestry_builder,
+    '--output', meson.project_source_root() / 'vfs' / 'data' / 'battlelog' / 'ancestry.narc',
+    '--stamp', '@OUTPUT@',
+    '--evolution-members', '@INPUT@',
+  ],
 )

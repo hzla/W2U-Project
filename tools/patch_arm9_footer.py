@@ -19,21 +19,28 @@ def main() -> int:
     parser.add_argument("--offset", type=lambda value: int(value, 0), default=DEFAULT_FOOTER_OFFSET)
     args = parser.parse_args()
 
-    rom = bytearray(args.rom.read_bytes())
     arm9 = args.arm9.read_bytes()
 
     if args.offset + 4 > len(arm9):
         raise ValueError(f"ARM9 footer offset 0x{args.offset:x} is outside {args.arm9}")
 
-    arm9_rom_offset = read_u32(rom, ARM9_ROM_OFFSET_HEADER_OFFSET)
-    rom_footer_offset = arm9_rom_offset + args.offset
-    if rom_footer_offset + 4 > len(rom):
-        raise ValueError(f"ROM ARM9 footer offset 0x{rom_footer_offset:x} is outside {args.rom}")
-
     footer = arm9[args.offset : args.offset + 4]
-    if rom[rom_footer_offset : rom_footer_offset + 4] != footer:
-        rom[rom_footer_offset : rom_footer_offset + 4] = footer
-        args.rom.write_bytes(rom)
+    with args.rom.open("r+b") as rom:
+        header = rom.read(ARM9_ROM_OFFSET_HEADER_OFFSET + 4)
+        if len(header) != ARM9_ROM_OFFSET_HEADER_OFFSET + 4:
+            raise ValueError(f"{args.rom} is too small to contain a Nintendo DS header")
+        arm9_rom_offset = read_u32(header, ARM9_ROM_OFFSET_HEADER_OFFSET)
+        rom_footer_offset = arm9_rom_offset + args.offset
+        rom.seek(0, 2)
+        rom_size = rom.tell()
+        if rom_footer_offset + 4 > rom_size:
+            raise ValueError(
+                f"ROM ARM9 footer offset 0x{rom_footer_offset:x} is outside {args.rom}"
+            )
+        rom.seek(rom_footer_offset)
+        if rom.read(4) != footer:
+            rom.seek(rom_footer_offset)
+            rom.write(footer)
     return 0
 
 

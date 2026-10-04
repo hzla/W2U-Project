@@ -31,7 +31,7 @@ typedef struct {
   Personal.write(f'\n#endif\n')
 
 with open('src/arc/pml/Learnsets.c', 'w') as Personal:
-  Personal.write(f'#include "Moves.h"\n#include "Learnsets.h"\n#include "Species.h"\n\nu32 __size = sizeof(LEARNSET_DATA);\n\nconst LEARNSET_DATA __data[] = {{\n')
+  Personal.write(f'#include "Moves.h"\n#include "Learnsets.h"\n#include "species_ids.h"\n\nu32 __size = sizeof(LEARNSET_DATA);\n\nconst LEARNSET_DATA __data[] = {{\n')
   Index = 0
   for Entry in sorted(PersonalExt.glob('*')):
     Personal.write(f'\t[SPECIES_{SpeciesNames[Index] if Index < len(SpeciesNames) else str(Index)}] = {{\n') # Header

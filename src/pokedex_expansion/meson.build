@@ -3,3 +3,7 @@ pokedex_expansion = files(
     'w2u_pokegra.cpp',
     'Expansion_LimitAdjust.s',
 )
+
+pokedex_nonbattle = files(
+    'Expansion_NonBattleLimitAdjust.s',
+)

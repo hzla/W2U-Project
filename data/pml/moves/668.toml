@@ -1,6 +1,6 @@
 [MOVE_STRENGTH_SAP]
 Type = "TYPE_GRASS"
-Quality = "EFFECT_TARGET_STAT_CHANGING"
+Quality = "EFFECT_OTHERS"
 Category = "SPLIT_STATUS"
 Power = 0
 Accuracy = 100
@@ -18,8 +18,8 @@ Hit = "0 | 0"
 Recoil = 0
 Heal = 0
 Target = "TARGET_OTHER_SELECT"
-"Status Change Stats" = ["STAT_ATK", 0, 0]
-"Status Change Stages" = [-1, 0, 0]
+"Status Change Stats" = [0, 0, 0]
+"Status Change Stages" = [0, 0, 0]
 "Status Change Chances" = [0, 0, 0]
 Padding = 21331
 Flags = "FLAG_BLOCKED_BY_PROTECT | FLAG_REFLECTED_BY_MAGIC_COAT | FLAG_COPIED_BY_MIRROR_MOVE | FLAG_HEALING_MOVE | FLAG_HEALING_PROPERTY"
