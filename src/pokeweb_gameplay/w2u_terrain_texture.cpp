@@ -3,6 +3,7 @@
 #include "Moves.h"
 #include "w2u_battle.h"
 #include "w2u_battle_lifecycle.h"
+#include "w2u_platform.h"
 #include "swan/gfl/core/gfl_heap.h"
 #include "swan/gfl/fs/gfl_archive.h"
 #include "swan/gfl/g3d/gfl_g3d_system.h"
@@ -173,6 +174,18 @@ HeapID GetFieldLowHeapID()
     }
     const u32 heapID = *reinterpret_cast<const u32*>(
         reinterpret_cast<const u8*>(sFieldWork) + W2U_FIELD_HEAP_ID_OFFSET);
+#if !defined(W2U_TARGET_B2)
+    // The native heap queries resolve the ID to a heap handle without checking
+    // it: an ID whose heap does not exist (for example when a battle starts
+    // without the field, as the direct battle harness does) makes
+    // GFL_HeapGetHighestAllocatableSize walk a free list from address 0 and
+    // never return.  Treat a missing heap like an unavailable one.
+    typedef void* (*HeapHandleForIdFn)(u32 heapID);
+    const HeapHandleForIdFn heapHandleForId = (HeapHandleForIdFn)W2U_ADDR_GFL_HEAP_HANDLE_FOR_ID;
+    if (!heapHandleForId(heapID & 0x7FFFu)) {
+        return 0u;
+    }
+#endif
     return static_cast<HeapID>((heapID & 0x7FFFu) | 0x8000u);
 }
 
