@@ -65,6 +65,7 @@
 #define W2U_ADDR_MEGA_INPUT_TABLE_NORMAL             0x021F3644u
 #define W2U_ADDR_MEGA_INPUT_TABLE_TRIPLE             0x021F3650u
 #define W2U_ADDR_GFL_UI_TP_HIT_TRG                   0x0203DA39u
+#define W2U_ADDR_GFL_HEAP_HANDLE_FOR_ID              0x02039AADu  // heap ID -> handle, 0 if the heap does not exist (W2 only so far)
 #define W2U_ADDR_CMD_ACT_WAIT                        0x021D3171u
 #define W2U_ADDR_BATTLE_VIEW_RESOLVE_VIEW_MON        0x0219C785u
 #define W2U_ADDR_BATTLE_VIEW_LOOKUP_MON              0x0219D1C9u
