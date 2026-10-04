@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Build the battle command-screen terrain indicator into battgra members 420-423."""
+"""Build the battle command-screen terrain indicator into battgra members 420-423.
+
+Superseded by build_command_indicators.py (weather + terrain indicators, art member 941); running this would
+put back the static terrain icons that w2u_terrain_indicator.cpp no longer uses.
+"""
 
 from __future__ import annotations
 

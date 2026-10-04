@@ -5,13 +5,18 @@
 .type THUMB_BRANCH_LINK_168_0x21EE2E2, %function
 
 .extern W2U_TerrainIndicator_Create
+.extern W2U_CommandIndicators_WeatherForPanel
 .extern W2U_TerrainIndicator_Hide
 .extern W2U_TerrainIndicator_Term
 
-@ The vanilla command-screen path has just created Weather. Build Terrain from
+@ The command screen creates its Weather panel here (native 0x21EE748(input, weather)). Pick the weather value it
+@ gets (strong weathers: W2U_CommandIndicators_WeatherForPanel), let it build the panel, then build Terrain from
 @ the same battgra resource group so both indicators share native OAM lifetime.
 THUMB_BRANCH_LINK_168_0x21EACD0:
     push {r0-r3, lr}
+    bl W2U_CommandIndicators_WeatherForPanel
+    mov r1, r0
+    ldr r0, [sp, #0]
     ldr r3, =0x021EE749
     blx r3
     ldr r0, [sp, #0]
