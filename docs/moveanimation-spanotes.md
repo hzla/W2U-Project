@@ -94,9 +94,12 @@ already active, so the cracked sphere
 fade-out reveals the Mega sprite directly without running the vanilla
 form-change animation. The cracked fade-out also plays
 `PlaySound 1504, 1, 14, 0, 0, 120, 0, 0, 0` and a light VM `ShakeScreen`.
-Eight frames into that fade-out, the script spawns Mega symbol SPA `769`
-above the user; the symbol fades in, drifts upward, and fades away as the
-transformation completes. The full-size intact hold starts early enough to cover the expanding
+The Mega symbol is no longer part of the script (2026-10-05, MegaB2W2
+integration phase 5): the `LoadSPA 769` and the `DoSPAAnimation2 769` spawn
+that showed it at a fixed spot above the user were removed (every other
+command is unchanged); the resident `megab2w2/mb_mega_extras.cpp` draws
+MegaB2W2's glyph as an OBJ above the Mega's own sprite at that moment
+instead. SPA `769` stays in the archive, unused. The full-size intact hold starts early enough to cover the expanding
 particle's final-frame culling, and hold particles live longer than their
 script waits, so adjacent sphere stages overlap instead of flickering blank. Do not add parallel sphere
 spawns or child emitters unless the in-battle centering has been revalidated.

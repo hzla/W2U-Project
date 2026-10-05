@@ -1183,6 +1183,21 @@ extern "C" void W2U_BattleState_OnBattleExit()
 #endif
 }
 
+// For MegaB2W2's Mega extras (megab2w2/mb_mega_extras.cpp, White 2): a Pokemon
+// shown in a Mega form, and the view position whose Mega animation is playing
+// (-1: none; its gauge icon waits for the animation's end).
+extern "C" bool W2U_Mega_IsMegaEvolved(const BattleMon* battleMon)
+{
+    return IsBattleMonInMegaForm(battleMon);
+}
+
+extern "C" s32 W2U_Mega_AnimatingViewPos()
+{
+    return gMegaCustomAnimationState.active == W2U_CLIENT_FORM_VISUAL_MEGA
+        ? (s32)gMegaCustomAnimationState.viewPos
+        : -1;
+}
+
 u8 MegaSideForSlot(u8 battleSlot)
 {
     if (battleSlot == W2U_MEGA_NO_SLOT) {
@@ -2237,8 +2252,15 @@ extern "C" u8 W2U_BattleAction_CheckMegaEvolution(const BattleActionParam* actio
     return actionParam->baFight.pad;
 }
 
+// START: edge detection on the held keys. The pressed-key trigger lasts one
+// HID update and the move-select wait polls about every other frame, so a
+// press could be missed (MegaB2W2 lost START in doubles). true at the screen's
+// start: a START already held when it opens does not toggle.
+static bool sMegaPrevStartHeld = true;
+
 extern "C" void W2U_Mega_OnActionSelectRoot(BattleActionParam* actionParam)
 {
+    sMegaPrevStartHeld = true;
     ReleaseCommittedMegaForm(W2U_BattleAction_CheckMegaEvolution(actionParam));
     ResetPendingMega();
     ClearMegaButtonState(MEGA_SKIP_NONE);
@@ -2249,9 +2271,15 @@ extern "C" void W2U_Mega_OnActionSelectFightWait(BtlvCore* btlCore)
 {
     gMegaActiveBtlCore = btlCore;
     MaintainMegaBattleContext(btlCore);
-    if ((GCTX_HIDGetPressedKeys() & W2U_KEY_START) == W2U_KEY_START) {
+    const bool startHeld = (GCTX_HIDGetHeldKeys() & W2U_KEY_START) != 0;
+    const bool startPressed = startHeld && !sMegaPrevStartHeld;
+    sMegaPrevStartHeld = startHeld;
+    if (startPressed) {
         ToggleMegaSelectionForActiveMon(btlCore, MEGA_TOGGLE_SOURCE_START);
     }
+#if !defined(W2U_TARGET_B2)
+    W2U_MB_CacheSpritePlaces();         // MegaB2W2's Mega glyph: the default camera's sprite places
+#endif
     RefreshMegaButtonState(btlCore);
     UpdateMegaButtonBg();
 }
@@ -2397,6 +2425,11 @@ extern "C" u32 W2U_Mega_OnClientChangeFormStart(
         btlCore->btlvScu,
         viewPos,
         W2U_MEGA_ANIMATION_SCRIPT_ID);
+#if !defined(W2U_TARGET_B2)
+    if (BattleMon* megaMon = PokeCon_GetBattleMon(btlCore->pokeCon, pokeID)) {
+        W2U_MB_MegaCryBegin(megaMon->species, form, viewPos, W2U_MEGA_FORM_REFRESH_FRAME);
+    }
+#endif
     return 1;
 }
 
@@ -2422,6 +2455,21 @@ extern "C" void W2U_Mega_OnClientChangeFormWait(const u32* args, u32 waitResult)
     if (IsMegaServerStateReady()) {
         W2U_MegaVisualState.visualOverrideReady = 1u;
     }
+}
+
+// MegaB2W2's Mega glyph (megab2w2/mb_mega_extras.cpp, White 2) starts with the sprite refresh.
+static void ArmMegaGlyph(BtlvCore* btlCore)
+{
+#if !defined(W2U_TARGET_B2)
+    BattleMon* megaMon = btlCore && btlCore->pokeCon
+        ? PokeCon_GetBattleMon(btlCore->pokeCon, gMegaCustomAnimationState.pokeID)
+        : nullptr;
+    if (gMegaCustomAnimationState.spriteRefreshed && megaMon) {
+        W2U_MB_MegaGlyphArm(gMegaCustomAnimationState.viewPos, megaMon->species, gMegaCustomAnimationState.form);
+    }
+#else
+    (void)btlCore;
+#endif
 }
 
 extern "C" u32 W2U_Mega_OnClientChangeFormWaitOverride(BtlvCore* btlCore, const u32* args)
@@ -2451,6 +2499,7 @@ extern "C" u32 W2U_Mega_OnClientChangeFormWaitOverride(BtlvCore* btlCore, const 
             RefreshMegaFormSprite(
                 btlCore->btlvScu,
                 gMegaCustomAnimationState.viewPos) ? 1u : 0u;
+        ArmMegaGlyph(btlCore);
     }
 
     u32 animDone = 1u;
@@ -2462,15 +2511,27 @@ extern "C" u32 W2U_Mega_OnClientChangeFormWaitOverride(BtlvCore* btlCore, const 
         if (gMegaCustomAnimationState.waitFrames != 0xFFFFu) {
             ++gMegaCustomAnimationState.waitFrames;
         }
+#if !defined(W2U_TARGET_B2)
+        W2U_MB_MegaCryFrame(gMegaCustomAnimationState.waitFrames);
+#endif
         return 0;
     }
+#if !defined(W2U_TARGET_B2)
+    W2U_MB_MegaCryEnd();
+#endif
 
     if (btlCore && !gMegaCustomAnimationState.spriteRefreshed) {
         gMegaCustomAnimationState.spriteRefreshed =
             RefreshMegaFormSprite(
                 btlCore->btlvScu,
                 gMegaCustomAnimationState.viewPos) ? 1u : 0u;
+        ArmMegaGlyph(btlCore);
     }
+#if !defined(W2U_TARGET_B2)
+    if (W2U_MB_MegaGlyphBusy()) {
+        return 0;                       // MegaB2W2's glyph is still above the Mega
+    }
+#endif
 
     CompleteMegaClientChangeForm(args);
     ClearMegaCustomAnimationState();

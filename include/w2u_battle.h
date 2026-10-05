@@ -804,6 +804,7 @@ extern "C" void MainModule_NotifyBattleResult(MainModule* mainModule, u32 result
 extern "C" b32 IsCenterInTripleBattle(u32 battlePos);
 
 extern "C" u32 GCTX_HIDGetPressedKeys();
+extern "C" u32 GCTX_HIDGetHeldKeys();
 
 extern "C" b32 MainModule_IsAllyMonID(u32 slot1, u32 slot2);
 extern "C" BattleMon* PokeCon_GetBattleMon(PokeCon* pokeCon, u32 index);

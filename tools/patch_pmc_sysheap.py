@@ -9,7 +9,10 @@ from pathlib import Path
 
 PMC_OVERLAY_HEAP_KIB_IMMEDIATE_OFFSET = 0x2BA
 OLD_SYSHEAP_KIB = 160
-DEFAULT_SYSHEAP_KIB = 164
+# 200 KiB (MegaB2W2's value): the heap is the top of ARM9 arena region 0 (it ends at 0x023E0000). The game takes
+# its heaps from that region once at boot and never again; measured in a W2U battle, the region's free part is
+# 0x023AC104-0x023B7000 below a 164 KiB heap (44,796 bytes), so 200 KiB (start 0x023AE000) leaves 7,932 bytes.
+DEFAULT_SYSHEAP_KIB = 200
 
 # The bundled PMC overlay was built with an older HeapArea::Realloc that uses
 # `old_size - new_size - 24` when splitting a shrunken allocation. Its block
@@ -61,11 +64,11 @@ def main() -> int:
             f"at overlay 344 offset 0x{offset:x}."
         )
     else:
-        if current != OLD_SYSHEAP_KIB:
+        if current not in (OLD_SYSHEAP_KIB, 164):
             raise SystemExit(
                 "Unexpected PMC system heap immediate at "
                 f"overlay 344 offset 0x{offset:x}: found {current}, "
-                f"expected {OLD_SYSHEAP_KIB} or {args.kib}."
+                f"expected {OLD_SYSHEAP_KIB}, 164 or {args.kib}."
             )
         data[offset] = patched
         changed = True

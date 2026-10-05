@@ -26602,3 +26602,27 @@ Symbols:
   - Name: HandlerDampNullified
     Segment: 0x1D
     Address: 0x21C0715
+  - Name: BtlvGauge_Create
+    Segment: 0x1E
+    Address: 0x21EF7D5
+  - Name: BtlvGauge_Delete
+    Segment: 0x1E
+    Address: 0x21EF881
+  - Name: BtlvGauge_Setup
+    Segment: 0x1E
+    Address: 0x21EFAE1
+  - Name: BtlvCore_SetupGauge
+    Segment: 0x1E
+    Address: 0x21DFA45
+  - Name: dma_copy16
+    Segment: 0x0
+    Address: 0x2078115
+  - Name: MCSS_Main
+    Segment: 0x0
+    Address: 0x2019B15
+  - Name: MCSS_DelSprite
+    Segment: 0x0
+    Address: 0x201AAAD
+  - Name: MCSS_FreeSpriteResources
+    Segment: 0x0
+    Address: 0x201BAA9
