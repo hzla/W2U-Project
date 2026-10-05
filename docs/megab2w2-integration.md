@@ -32,7 +32,7 @@ Licence and asset terms for contributed code and art are still open. Assets with
 | 1 | Baseline build on this branch + battle-harness smoke test | done |
 | 2a | Primal weathers (Primordial Sea, Desolate Land, Delta Stream) | done (White 2) |
 | 2b | Merged weather / terrain indicator | done (White 2) |
-| 3 | Abilities by group (Gen 8 / 9 and custom), terrain extras, Booster Energy | in progress (wave A + storage done) |
+| 3 | Abilities by group (Gen 8 / 9 and custom), terrain extras, Booster Energy | in progress (wave A tested + storage done) |
 | 4 | `w2anim` PWAN writer (tool-side; lives in the w2anim repository) | planned |
 | 5 | Mega extras (held-START toggle, Mega sound cues, HP-gauge Mega icon) | planned |
 | 6 | Fixes for differences found in shared abilities | planned |
@@ -129,6 +129,8 @@ Battle with heavy rain + Electric Terrain: both command screens show both indica
 | `package_rpm_checked.py` rejects `__gnu_thumb1_case_*` | a jump-table switch packaged without error and hung the boot |
 | `CTRMapV-dirty.jar` via `files()` | Windows hosts could not configure |
 | mkdata targets depend on the serializer scripts (`mkdata_deps` in `tools/mkdata/meson.build`; encounters, items, pml, pml/moves, trainers) | editing an mkdata script never rebuilt the data (`data/text` not checked yet) |
+| Move flags synced with Showdown (wind, slicing, bite, pulse, bullet, dance, powder): 53 moves gain flags, 41 lose wrong ones | `FLAG_POWDER` is bit 14, which vanilla data uses for "not in Sky Battles": 39 moves (Earthquake, Surf, Body Slam, Seismic Toss, Substitute, Spikes ...) counted as powder moves, so Overcoat and Safety Goggles blocked them. Old moves lacked the newer flags (Gust / Hurricane not wind, Slash / Leaf Blade not slicing, Fire / Ice / Thunder Fang not biting, Aura Sphere not pulse, Shadow Ball / Sludge Bomb not ball moves), so W2U's Strong Jaw / Mega Launcher / Bulletproof and the ported Sharpness / Wind Rider / Wind Power missed them. Bullet Punch was a ball move and Bug Bite a biting move (neither is in Showdown) |
+| `IsW2UIgnorableAbility` lists the breakable Gen 8 / 9 abilities (Showdown `breakable`) and Aura Guard | Mold Breaker / Teravolt / Turboblaze could not get past any ported ability (Good as Gold blocked a Mold Breaker Thunder Wave) |
 
 ## Phase 3: abilities
 
@@ -152,7 +154,35 @@ Supporting changes: registry `extra_sources` (and the source check reads them), 
 113 managed abilities, the ability enum completed (official IDs to 306, MegaB2W2 custom 307-314), 48 ESDB names,
 messages in bank 18 (1352-1396) and bank 19 (213-214).
 
-Headless checks so far: Perish Body; Sword of Ruin and Good as Gold (abilities above 255, below).
+#### Wave A results (headless, 2026-10-04)
+
+All 51 abilities are checked by 66 battle scenarios (converted from MegaB2W2's, same names) plus 5 move-flag
+regression scenarios; all 71 pass. Messages and ability pop-ups come from the battle-message transcript, damage from
+the real damage calculation (with the random roll pinned at 100% and critical hits off where a check compares two
+hits). Fixed on the way:
+
+- Mold Breaker: `IsW2UIgnorableAbility` now lists Mirror Armor, Punk Rock, Ice Scales, Pastel Veil, Thermal Exchange,
+  Purifying Salt, Well-Baked Body, Wind Rider, Guard Dog, Good as Gold, Armor Tail, Earth Eater, Mind's Eye, Tera
+  Shell (Showdown's `breakable` flag) and Aura Guard (MegaB2W2 custom). Thermal Exchange is breakable in Showdown but
+  was not marked in MegaB2W2's registry; it is listed here.
+- Guard Dog: it recognises Intimidate through a tracked copy of Intimidate's handler (records its user while it
+  runs). That half was not ported: Intimidate (ability 22, `ABIL_INTIMIDATE` added to `w2u_abilities.h`) now routes
+  to `abilities/mb_defense` with `MB_IntimidateTrackedHandlers` (same events and handler as vanilla). Primary
+  ability count 113 -> 114 (`tools/generate_w2u_battle_registry.py`).
+- Sharpness, Wind Rider, Wind Power: the move-flag fix above (Slash, Gust).
+- Mega Evolution is announced in W2U's words ("... is reacting to a Mega Ring!", "... is Mega Evolving!"); the
+  scenarios check those.
+
+Measured: Sharpness x1.49 (Slash / Headbutt), Neuroforce x3.07 (super effective / neutral), Punk Rock x1.45 and
+x2.0 taken, Purifying Salt x1.93 taken from Ghost moves, the four Ruin abilities x0.75 / x1.33, Transistor x1.29,
+Dragon's Maw / Rocky Payload / Fire Mane x1.5, Ice Scales / Aura Guard x0.5, Supreme Overlord x1.1 with one fainted,
+Power Spot / Steely Spirit gone once the holder left (x0.77 / x0.67), W2U's Strong Jaw x1.48 on Fire Fang.
+
+The scenario runner is local tooling (`w2u-local/harness/wave.py`, spec `wave_a.yml`; D8: MegaB2W2's suite is not
+ported into this repository). It drives Pokeweb battle-harness ROMs in headless melonDS and reads everything from the
+emulator (no ROM instrumentation): one ROM per foe side, the player team in a per-scenario save, battle animations
+off through the save's Battle Scene option (byte 0x19400 bit 7, CRC16 block checksum), 10 parallel workers. A full
+run takes 9.5 min (17.7 before these speed-ups).
 
 ### Abilities above 255
 
