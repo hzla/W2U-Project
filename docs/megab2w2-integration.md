@@ -233,8 +233,9 @@ Runtime (`src/w2anim/w2u_anim_streams.cpp`, resident in White2Upgrade.dll): Mega
 - Any MCSS system: a stream starts at MCSS's three `LoadMCSSGraphicsData` calls (ARM9), ticks at every caller of
   `MCSS_Main` (ov168 battle, ov194, ov207 summary, ov265, ov284, ov294, ov298, ov307: every BL to 0x2019B14 in White 2's
   ARM9 and decompressed overlays) and ends at `MCSS_DelSprite` (also reached from `MCSS_Exit`). So battle, summary,
-  evolution, egg hatch and the other MCSS screens are covered by the same eleven hooks (PWAN had 35, per screen), and
-  form changes, Transform and Substitute need no special case: each reloads MCSS graphics.
+  evolution, egg hatch and the other MCSS screens are covered by the same eleven generic hooks (plus four for
+  evolution's morph renderer, Phase 4b; PWAN had 35), and form changes, Transform and Substitute need no special
+  case: each reloads MCSS graphics.
 - Index read from the ROM at sprite load (binary search, nothing kept in RAM); all buffers on the sprite's own game
   heap (at most 8,084 bytes per stream); nothing in PMC's heap but the code.
 - TEX4 mode (new): the sprite keeps its native 4 bpp texture, cells and palette slot; each frame replaces the 96 rows
@@ -264,6 +265,48 @@ checked headlessly (W2U ROMs do not boot to the field in melonDS-headless): summ
 MCSS screens.
 Regression on this build: wave_mega 5/5, A 71/71, B 10/10, C 20/20, field 18/18, shared 61/61 (EMERGENCY_EXIT made
 deterministic first: it only passed while the damage roll left the holder above half HP), shared extra 3/3.
+
+### Phase 4b: every MCSS screen, evolution, trainers, first frame (2026-10-05)
+
+Screens. Every screen that shows a Pokemon sprite through MCSS builds it with the same ARM9 helpers as battle
+(`AddPokeMcss` 0x201C178, or `BuildSpriteParams` 0x201C070 / `...FromPp` 0x201C008 + `MCSS_Add`), found by scanning White
+2's ARM9 and every decompressed overlay for their callers: ov168 battle, ov194, ov207 summary, ov265 Hall of Fame, ov284
+evolution, ov294, ov298, ov307 egg hatch. They resolve the sheet through `GetPokemonDataIDBase`, so the same index entry
+streams the sprite on all of them, from the generic hooks. PWAN's summary and egg-hatch runtimes hid the MCSS sprite and
+drew a 2D OBJ copy instead; that is not needed. PWAN covered neither ov194 nor ov294 (PWAN species showed their carrier
+art there). Hall of Fame (ov265) shows the first frame only, as PWAN did.
+
+First frame ("priming"). Most carrier sets hold an older sprite (see above). MCSS uploads a sprite's texture and palette
+from its work in a VBlank task after `LoadMCSSGraphicsData` (ARM9 0x201B788: work +0x00 NNSG2dCharacterData, pRawData
++0x14, linear 256-texel rows; +0x04 NNSG2dPaletteData, pRawData +0x0C; the work is found from the sprite's task handle).
+The runtime writes the stream's frame 0 and palette there right after the load, so the carrier's own art never reaches
+the screen, on any screen.
+
+Evolution (ov284). Its morph sequence draws the Pokemon before / after with a second renderer from its own 128x128
+bitmaps built from the native sheets (work +0x58 -> +0x08 / +0x0C; bitmap +0x10, VRAM +0x14, palette +0x2C faded towards
++0x4C at +0x56: the layout PWAN's evolution runtime documented). Without help it showed the carrier's older pose (checked
+with Frogadier, whose carrier is a different sprite). The runtime tags the two evolution sprites when the scene adds them
+and writes their streams' current frame (the decoded frame the sprite already holds: no new buffer) and faded palette
+into those bitmaps around the renderer's update and draw. Checked headlessly: a won battle levels Froakie to 16 and the
+scene plays after it (the harness loads the overworld after a win); silhouette and colour reveal now show the streamed
+Frogadier.
+
+Trainers. Pokeweb's trainer animation format is supported: `assets/pokeweb_pwan/trainers/` with a `PWNT` config.bin
+({graphic, asset} rows) and NNN.pwan (none exist in W2U yet). A trainer graphic (arc 71, sheet graphic * 8 + 1) gets an
+index entry with a CARRIER flag: the runtime loads the front set of a Pokemon carrier block instead (the most common
+carrier cell set, block 650 today), primes it with the trainer's frame 0 and palette, and streams the rest; frames move
+up 8 rows (trainer canvas on row 96, carrier ground point row 88); graphics sharing an asset share its stream. Checked
+headlessly with a temporary test set (every graphic -> one animation): the defeated trainer slides in animated, in its
+own colours, with no carrier art on the first frame; the test set is not committed.
+
+Heap: all of this uses the stream's existing buffers (the per-frame streaming rule: one compressed frame, one decoded
+frame per sprite, on the sprite's game heap); nothing new in PMC's heap but code.
+
+Harness (local, `w2u-local/harness/wave.py`): `post` (frames after the last turn, A presses, keys), `capture`,
+`capture_intro`, `capture_turns`, `heap_at_menu`, `peek`, `stuck_pc` / `stuck_heap`, a `P<n>[@x,y]` party action,
+`--runs=DIR` / `--leave=K` (a second run alongside a regression). After a win the harness loads the overworld, but the
+bundled save's field menu has no POKeMON entry, so the field summary is not reachable that way; summary, egg hatch,
+Hall of Fame and ov194 / ov294 / ov298 still want an in-game look.
 
 Notes:
 - Not converted: Raichu forms 1 / 2 and Slowbro form 1, whose pokegra blocks 1097 / 1098 / 1117 are missing from the
