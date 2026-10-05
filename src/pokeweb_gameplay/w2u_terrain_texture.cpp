@@ -51,8 +51,10 @@ constexpr u32 W2U_MISTY_AMBIENT_SPA_MEMBER = 789u;
 constexpr u32 W2U_PSYCHIC_AMBIENT_SPA_MEMBER = 790u;
 constexpr u32 W2U_ELECTRIC_AMBIENT_ANCHOR_COUNT = 6u;
 constexpr u32 W2U_BATTLER_AMBIENT_ANCHOR_COUNT = 2u;
-constexpr u32 W2U_GRASSY_AMBIENT_STEP_COUNT = 4u;
-constexpr u32 W2U_GRASSY_AMBIENT_RESOURCES_PER_SIDE = 1u;
+// Grassy (motes) and Misty (fog) emit over the whole floor: player side, middle, foe side in turn
+// (tools/graphics/build_terrain_ambient_effects.py draws both SPAs).
+constexpr u32 W2U_FIELD_AMBIENT_ANCHOR_COUNT = 3u;
+constexpr s32 W2U_MISTY_FOG_X_OFFSET = -FX32_ONE * 5 / 2;   // the fog rolls towards +X (screen right)
 constexpr u32 W2U_PARTICLE_LIBRARY_HEAP_SIZE = 0x4800u;
 // Starting a terrain through a Surge ability happens while the switch-in and
 // terrain move animations still need this heap.  Leave room for those native
@@ -62,7 +64,6 @@ constexpr u32 W2U_PARTICLE_POLYGON_ID_FIXED = 5u;
 constexpr u32 W2U_PARTICLE_POLYGON_ID_MINIMUM = 6u;
 constexpr u32 W2U_PARTICLE_POLYGON_ID_MAXIMUM = 54u;
 constexpr u32 W2U_PARTICLE_Z_PRIORITY_OFFSET = 0x500u;
-constexpr u32 W2U_MISTY_AMBIENT_Y_OFFSET = 0x2000u;
 constexpr u32 W2U_PSYCHIC_AMBIENT_Y_OFFSET = 0x2000u;
 constexpr u32 W2U_FIELD_RENDER_OFFSET = 0x14u;
 constexpr u32 W2U_FIELD_PALETTE_RESOURCES_OFFSET = 0x58u;
@@ -80,13 +81,6 @@ const u8 W2U_FLOOR_ANIMATION_SOURCE_MATERIAL[W2U_NITRO_NAME_LENGTH] = {
 };
 const s32 W2U_ELECTRIC_AMBIENT_RADIUS_QUARTERS[W2U_ELECTRIC_AMBIENT_ANCHOR_COUNT] = {
     4, 40, 11, 33, 18, 26,
-};
-// user-left, target-right, user-right, target-left
-const u8 W2U_GRASSY_AMBIENT_ANCHORS[W2U_GRASSY_AMBIENT_STEP_COUNT] = {
-    0, 1, 0, 1,
-};
-const u8 W2U_GRASSY_AMBIENT_RESOURCE_BASES[W2U_GRASSY_AMBIENT_STEP_COUNT] = {
-    0, 1, 1, 0,
 };
 enum ElectricTransitionPhase {
     ELECTRIC_TRANSITION_IDLE = 0,
@@ -107,8 +101,8 @@ struct TerrainPace {
 };
 const TerrainPace W2U_TERRAIN_PACE[W2U_TERRAIN_TEXTURE_COUNT] = {
     { FX32_ONE * 5 / 4, 20u, 10u, 14u },     // Electric
-    { FX32_ONE * 5 / 16, 130u, 26u, 40u },   // Grassy
-    { FX32_ONE / 4, 240u, 30u, 46u },        // Misty
+    { FX32_ONE * 5 / 16, 44u, 26u, 40u },    // Grassy (a 96-frame mote emitter every 44 frames)
+    { FX32_ONE / 4, 56u, 30u, 46u },         // Misty (a 110-frame fog emitter every 56 frames)
     { FX32_ONE * 9 / 16, 60u, 20u, 30u },    // Psychic (floorStep: mean; ambientInterval unused)
 };
 constexpr u32 W2U_NATIVE_FLOOR_FADE_OUT_FRAMES = 20u;
@@ -171,6 +165,9 @@ struct TerrainTextureMapping {
     u16 terrainTextureBaseMember;
     u16 floorAnimationMember;
     char floorMaterial[W2U_NITRO_NAME_LENGTH];
+    // The backdrop's (batt_sky*) palette range in colours; Grassy / Misty clones replace that sky (0: none).
+    u16 skyPaletteFirst;
+    u16 skyPaletteCount;
 };
 
 const TerrainTextureMapping sMappings[] = {
@@ -250,6 +247,31 @@ HeapID GetFieldLowHeapID()
     return static_cast<HeapID>((heapID & 0x7FFFu) | 0x8000u);
 }
 
+#if !defined(W2U_TARGET_B2)
+// The battle's own graphics heap (the heap MCSS gave its sprites: core +0x190 wrapper, entry +8 sprite, +0x14C), for
+// battles whose field heap does not exist (a battle started without the field, as the direct battle harness does).
+HeapID GetBattleSpriteLowHeapID()
+{
+    constexpr u32 BTLV_CORE_PTR = 0x021F4280u;
+    const u8* core = *reinterpret_cast<u8* const*>(BTLV_CORE_PTR);
+    const u8* wrap = core ? *reinterpret_cast<u8* const*>(core + 0x190) : 0;
+    if (!wrap) {
+        return 0u;
+    }
+    typedef void* (*HeapHandleForIdFn)(u32 heapID);
+    const HeapHandleForIdFn heapHandleForId = (HeapHandleForIdFn)W2U_ADDR_GFL_HEAP_HANDLE_FOR_ID;
+    for (u32 entry = 0; entry < 14u; ++entry) {
+        const u8* sprite = *reinterpret_cast<u8* const*>(wrap + entry * 0x5Cu + 8u);
+        if (!sprite) {
+            continue;
+        }
+        const u32 heapID = *reinterpret_cast<const u32*>(sprite + 0x14C) & 0x7FFFu;
+        return heapHandleForId(heapID) ? static_cast<HeapID>(heapID | 0x8000u) : 0u;
+    }
+    return 0u;
+}
+#endif
+
 void ReleaseTerrainAmbientParticles()
 {
     if (sTerrainAmbientParticleSystem) {
@@ -299,7 +321,12 @@ bool PrepareTerrainAmbientParticles(u32 terrain)
         ReleaseTerrainAmbientParticles();
     }
 
-    const HeapID heapID = GetFieldLowHeapID();
+    HeapID heapID = GetFieldLowHeapID();
+#if !defined(W2U_TARGET_B2)
+    if (!heapID) {
+        heapID = GetBattleSpriteLowHeapID();     // same preflight below: only when it has the room
+    }
+#endif
     if (!heapID) {
         return false;
     }
@@ -415,54 +442,38 @@ void EmitElectricAmbientSpark(u32 anchorIndex)
         static_cast<fx32>((static_cast<s64>(length) * radiusQuarters) / 4));
 }
 
-void EmitGrassyAmbientRootStep(u32 step)
+// One floor-wide emitter (a disk lying on the floor, see the SPA) at the step's anchor: the player's side, the
+// middle of the field, the foe's side (the singles default positions; doubles share the same field).
+bool FieldAmbientAnchor(u32 step, VecFx32* position)
 {
-    if (!sTerrainAmbientParticleSystem ||
-        step >= W2U_GRASSY_AMBIENT_STEP_COUNT) {
-        return;
-    }
-
     void* mcssWork = BTLV_EFFECT_GetMcssWork();
     if (!mcssWork) {
-        return;
+        return false;
     }
-
-    // Compact SPA 788 stores the growing left root at resource 0 and growing
-    // right root at resource 1. The donor's delayed final-texture redraw
-    // emitters are omitted because their handoff makes the roots flicker.
-    // Stagger roots in user-left, target-right, user-right, target-left order.
-    const u32 anchor = W2U_GRASSY_AMBIENT_ANCHORS[step];
-    const u32 resourceBase = W2U_GRASSY_AMBIENT_RESOURCE_BASES[step];
-    VecFx32 position = { 0, 0, 0 };
-    BTLV_MCSS_GetPokeDefaultPos(mcssWork, &position, static_cast<int>(anchor));
-    position.z += static_cast<fx32>(W2U_PARTICLE_Z_PRIORITY_OFFSET);
-    for (u32 offset = 0u;
-         offset < W2U_GRASSY_AMBIENT_RESOURCES_PER_SIDE;
-         ++offset) {
-        GFL_PTC_CreateEmitter(
-            sTerrainAmbientParticleSystem,
-            static_cast<int>(resourceBase + offset),
-            &position);
+    VecFx32 player = { 0, 0, 0 };
+    VecFx32 foe = { 0, 0, 0 };
+    BTLV_MCSS_GetPokeDefaultPos(mcssWork, &player, 0);
+    BTLV_MCSS_GetPokeDefaultPos(mcssWork, &foe, 1);
+    const u32 anchor = step % W2U_FIELD_AMBIENT_ANCHOR_COUNT;
+    if (anchor == 0u) {
+        *position = player;
+    } else if (anchor == 2u) {
+        *position = foe;
+    } else {
+        position->x = (player.x + foe.x) >> 1;
+        position->y = (player.y + foe.y) >> 1;
+        position->z = (player.z + foe.z) >> 1;
     }
+    return true;
 }
 
-void EmitMistyAmbientMist()
+void EmitFieldAmbient(u32 step, fx32 xOffset)
 {
-    if (!sTerrainAmbientParticleSystem) {
+    VecFx32 position;
+    if (!sTerrainAmbientParticleSystem || !FieldAmbientAnchor(step, &position)) {
         return;
     }
-
-    void* mcssWork = BTLV_EFFECT_GetMcssWork();
-    if (!mcssWork) {
-        return;
-    }
-
-    // Preserve Mist Ball's exact fixed AA placement and +2px vertical offset.
-    // Its 5325/4096 scale parameter is baked into compact SPA 789.
-    VecFx32 position = { 0, 0, 0 };
-    BTLV_MCSS_GetPokeDefaultPos(mcssWork, &position, 0);
-    position.y += static_cast<fx32>(W2U_MISTY_AMBIENT_Y_OFFSET);
-    position.z += static_cast<fx32>(W2U_PARTICLE_Z_PRIORITY_OFFSET);
+    position.x += xOffset;
     GFL_PTC_CreateEmitter(sTerrainAmbientParticleSystem, 0, &position);
 }
 
@@ -553,11 +564,11 @@ void AdvanceTerrainAmbient()
         sTerrainAmbientStep = (sTerrainAmbientStep + 1u) %
             W2U_ELECTRIC_AMBIENT_ANCHOR_COUNT;
     } else if (sAppliedTerrain == TERRAIN_GRASSY) {
-        EmitGrassyAmbientRootStep(sTerrainAmbientStep);
-        sTerrainAmbientStep = (sTerrainAmbientStep + 1u) %
-            W2U_GRASSY_AMBIENT_STEP_COUNT;
+        EmitFieldAmbient(sTerrainAmbientStep, 0);
+        sTerrainAmbientStep = (sTerrainAmbientStep + 1u) % W2U_FIELD_AMBIENT_ANCHOR_COUNT;
     } else if (sAppliedTerrain == TERRAIN_MISTY) {
-        EmitMistyAmbientMist();
+        EmitFieldAmbient(sTerrainAmbientStep, W2U_MISTY_FOG_X_OFFSET);
+        sTerrainAmbientStep = (sTerrainAmbientStep + 1u) % W2U_FIELD_AMBIENT_ANCHOR_COUNT;
     } else {
         EmitPsychicAmbientEnergy(sTerrainAmbientStep);
         sTerrainAmbientStep = (sTerrainAmbientStep + 1u) %
@@ -1027,6 +1038,17 @@ NNSG3DResTex* sFloorFadeTex = 0;
 G3DResource* sFloorFadeFrom = 0;           // the palette faded out
 u32 sFloorPaletteFirst = 0u;
 u32 sFloorPaletteCount = 0u;               // 0: not known yet
+// The backdrop: Grassy / Misty clones replace it too (its own blend colour in a fade, no haze on it). Owned: the
+// palette shown there comes from the terrain clone rather than the native one.
+u32 sSkyFirst = 0u;
+u32 sSkyCount = 0u;
+u16 sSkyFadeColor = 0u;
+bool sSkyOwned = false;
+
+bool InSkyRange(u32 index)
+{
+    return index >= sSkyFirst && index < sSkyFirst + sSkyCount;
+}
 bool sEffectSeenBusy = false;
 u32 sEffectWaitFrames = 0u;
 
@@ -1082,7 +1104,7 @@ bool FindFloorPaletteRange(G3DResource* terrainResource)
     }
     u32 first = colorCount, last = 0u;
     for (u32 index = 0; index < colorCount; ++index) {
-        if (native[index] != terrain[index]) {
+        if (native[index] != terrain[index] && !InSkyRange(index)) {
             if (first == colorCount) {
                 first = index;
             }
@@ -1100,6 +1122,40 @@ bool FindFloorPaletteRange(G3DResource* terrainResource)
     sFloorPaletteFirst = first;
     sFloorPaletteCount = last - first + 1u;
     return true;
+}
+
+u16 AverageRangeColor(G3DResource* resource, u32 first, u32 count)
+{
+    const u16* palette = resource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(resource)) : 0;
+    if (!palette || !count) {
+        return 0u;
+    }
+    u32 red = 0u, green = 0u, blue = 0u;
+    for (u32 index = 0; index < count; ++index) {
+        const u16 color = palette[first + index];
+        red += color & 0x1Fu;
+        green += (color >> 5) & 0x1Fu;
+        blue += (color >> 10) & 0x1Fu;
+    }
+    const u64 n = count;                         // u64: no __aeabi_uidiv
+    return static_cast<u16>(static_cast<u32>(red / n) | (static_cast<u32>(green / n) << 5) |
+                            (static_cast<u32>(blue / n) << 10));
+}
+
+// The resource's backdrop differs from the native one (a Grassy / Misty clone).
+bool SkyDiffers(G3DResource* resource)
+{
+    const u16* palette = resource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(resource)) : 0;
+    const u16* native = sFieldResource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(sFieldResource)) : 0;
+    if (!palette || !native || !sSkyCount || resource == sFieldResource) {
+        return false;
+    }
+    for (u32 index = sSkyFirst; index < sSkyFirst + sSkyCount; ++index) {
+        if (palette[index] != native[index]) {
+            return true;
+        }
+    }
+    return false;
 }
 
 u16 AverageFloorColor(G3DResource* resource)
@@ -1121,26 +1177,264 @@ u16 AverageFloorColor(G3DResource* resource)
                             (static_cast<u32>(blue / n) << 10));
 }
 
-// The floor range of `resource`'s palette, faded to `color` by evy / 16, straight to palette VRAM.
-bool UploadFloorPalette(G3DResource* resource, u32 evy)
+// Floor palette animation while a terrain is shown (Grassy: the grass glows softly brighter and back; Misty: random
+// floor colours twinkle towards white, dew catching the light). Only between animations: a running effect script
+// owns the field palette (its fades), so the animation pauses and leaves the plain floor.
+struct FloorTwinkle {
+    u16 index;                                 // in the floor range
+    u8 age;
+    u8 active;
+};
+constexpr u32 W2U_FLOOR_TWINKLES = 8u;
+constexpr u16 W2U_TWINKLE_COLOR = 0x7FDF;      // (31, 30, 31): white with a breath of pink
+constexpr u16 W2U_GRASSY_GLOW_COLOR = 0x4BFA;  // (26, 31, 18): sunlit yellow-green
+constexpr u32 W2U_GRASSY_GLOW_MAX_EVY = 3u;
+constexpr u32 W2U_GRASSY_GLOW_PERIOD_STEP = 65536u / 200u;   // one swell every 200 frames
+// A twinkle's brightness per frame of its life (evy towards W2U_TWINKLE_COLOR): quick rise, slow fall. A table:
+// -Os turns even a constant divisor into a helper call PMC cannot link.
+const u8 W2U_TWINKLE_LEVELS[] = { 2, 4, 7, 9, 11, 11, 10, 10, 9, 8, 8, 7, 6, 6, 5, 4, 4, 3, 2, 2, 1, 1 };
+FloorTwinkle sTwinkles[W2U_FLOOR_TWINKLES];
+u32 sFloorAnimFrame = 0u;
+u32 sFloorAnimSpawn = 0u;
+u32 sFloorAnimEvy = 0xFFu;
+u32 sFloorAnimRandom = 0x2545F491u;
+bool sFloorAnimDirty = false;
+
+u32 FloorAnimRandom(u32 range)                 // 0 .. range - 1 (no division)
+{
+    sFloorAnimRandom = sFloorAnimRandom * 1103515245u + 12345u;
+    return static_cast<u32>((static_cast<u64>(sFloorAnimRandom >> 16) * range) >> 16);
+}
+
+// Scene haze (Sun / Moon): while Grassy or Misty Terrain is up, the rest of the battle background (every field palette
+// entry outside the floor range) is washed towards the terrain's colour. It fades with the floor; once a terrain is
+// in, it is also written into the terrain clone's palette in RAM (BakeHaze), the source every field palette fade of
+// a move animation starts from, so animations start and end on the hazed scene.
+struct TerrainHaze {
+    u16 color;
+    u8 evy;
+};
+TerrainHaze HazeFor(u32 terrain)
+{
+    if (terrain == TERRAIN_GRASSY) {
+        return { 0x47D6u, 7u };                  // (22, 30, 17): light, fresh green
+    }
+    if (terrain == TERRAIN_MISTY) {
+        return { 0x773Fu, 7u };                  // (31, 25, 29): soft pink
+    }
+    return { 0u, 0u };
+}
+u16 sHazeColor = 0u;
+u32 sHazeEvy = 0u;                             // the haze on screen now
+TerrainHaze sHazeFrom = { 0u, 0u };
+TerrainHaze sHazeTo = { 0u, 0u };
+
+u32 FieldPaletteColorCount()
+{
+    return sFieldTex ? (static_cast<u32>(sFieldTex->PaletteHeader.ImageSize) << 3) / sizeof(u16) : 0u;
+}
+
+bool InFloorRange(u32 index)
+{
+    return index >= sFloorPaletteFirst && index < sFloorPaletteFirst + sFloorPaletteCount;
+}
+
+// The whole field palette straight to palette VRAM: the floor range from `resource`, faded to `color` by evy / 16
+// (and the live twinkles brightened); every other entry the native colour under the current haze.
+bool UploadFloorPaletteTo(G3DResource* resource, u32 evy, u16 color, bool twinkles)
 {
     const u16* palette = resource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(resource)) : 0;
-    if (!palette || !sFieldTex || !sFloorPaletteCount) {
+    const u16* native = sFieldResource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(sFieldResource)) : 0;
+    const u32 colorCount = FieldPaletteColorCount();
+    if (!palette || !native || !sFloorPaletteCount || !colorCount || colorCount > W2U_PALETTE_BACKUP_COLORS) {
         return false;
     }
     if (evy > W2U_PALETTE_FADE_MAX_EVY) {
         evy = W2U_PALETTE_FADE_MAX_EVY;
     }
-    for (u32 index = 0; index < sFloorPaletteCount; ++index) {
-        sPaletteBackup[index] = FadeColor(palette[sFloorPaletteFirst + index], sFloorFadeColor, evy);
+    for (u32 index = 0; index < colorCount; ++index) {
+        if (InFloorRange(index)) {
+            sPaletteBackup[index] = evy ? FadeColor(palette[index], color, evy) : palette[index];
+        } else if (sSkyOwned && InSkyRange(index)) {
+            sPaletteBackup[index] = evy ? FadeColor(palette[index], sSkyFadeColor, evy) : palette[index];
+        } else {
+            sPaletteBackup[index] = sHazeEvy ? FadeColor(native[index], sHazeColor, sHazeEvy) : native[index];
+        }
     }
-    const u32 bytes = sFloorPaletteCount * sizeof(u16);
+    for (u32 t = 0; twinkles && t < W2U_FLOOR_TWINKLES; ++t) {
+        const FloorTwinkle& twinkle = sTwinkles[t];
+        if (!twinkle.active || twinkle.index >= sFloorPaletteCount || twinkle.age >= sizeof(W2U_TWINKLE_LEVELS)) {
+            continue;
+        }
+        const u32 index = sFloorPaletteFirst + twinkle.index;
+        sPaletteBackup[index] = FadeColor(palette[index], W2U_TWINKLE_COLOR, W2U_TWINKLE_LEVELS[twinkle.age]);
+    }
+    const u32 bytes = colorCount * sizeof(u16);
     cp15_flushDC(sPaletteBackup, bytes);
     const u32 base = (sFieldTex->PaletteHeader.RTVRAMAddr & 0xFFFFu) << 3;   // NNS palette key -> address
     gfxBeginPaletteUpload();
-    gfxUploadPalette(sPaletteBackup, base + sFloorPaletteFirst * sizeof(u16), bytes);
+    gfxUploadPalette(sPaletteBackup, base, bytes);
     gfxEndPaletteUpload();
     return true;
+}
+
+// Glow (Sun / Moon): the battle lights the field model (light 0; diffuse 25/31, ambient 31/31, no emission), and in
+// the evening / at night that light is dim and blue, so no floor texture can look luminous. Grassy and Misty Terrain
+// give the floor material an emission in their colour (the hardware adds it to the lit vertex colour and clamps:
+// under full daylight it changes little, at night it lifts the floor to the texture's own colours) and the field's
+// other materials a share of it (the scene brightens with the haze). Written into the field model's material data
+// in RAM, which the renderer reads every frame; restored when the terrain fades out and at field exit.
+struct FieldMaterial {
+    u32* specEmi;                              // NNSG3dResMatData +8: specular (0-14), emission (16-30)
+    u32 original;
+    bool floor;
+};
+constexpr u32 W2U_FIELD_MATERIALS_MAX = 8u;
+constexpr u32 W2U_SCENE_GLOW_SHARE = 10u;      // the other materials get 10/16 of the floor's glow
+FieldMaterial sFieldMaterials[W2U_FIELD_MATERIALS_MAX];
+u32 sFieldMaterialCount = 0u;
+bool sFieldMaterialsSearched = false;
+u16 sGlowColor = 0u;
+u32 sGlowLevel = 0u;                           // 0..16 of the glow on screen now
+TerrainHaze sGlowFrom = { 0u, 0u };
+TerrainHaze sGlowTo = { 0u, 0u };
+
+TerrainHaze GlowFor(u32 terrain)               // (emission colour, unused)
+{
+    if (terrain == TERRAIN_GRASSY) {
+        return { 0x19AAu, 16u };               // (10, 13, 6): soft mint-green
+    }
+    if (terrain == TERRAIN_MISTY) {
+        return { 0x2D0Cu, 16u };               // (12, 8, 11): pink
+    }
+    return { 0u, 0u };
+}
+
+u16 ReadU16(const u8* p) { return static_cast<u16>(p[0] | (p[1] << 8)); }
+u32 ReadU32(const u8* p) { return p[0] | (p[1] << 8) | (p[2] << 16) | (static_cast<u32>(p[3]) << 24); }
+
+// The field NSBMD's first model's materials (MDL0 -> model dictionary -> NNSG3dResMat dictionary), the floor by name.
+void FindFieldMaterials()
+{
+    sFieldMaterialsSearched = true;
+    sFieldMaterialCount = 0u;
+    NNSG3DResData* data = sFieldResource ? GFL_G3DResGetResData(sFieldResource) : 0;
+    if (!data || !sFloorAnimationMaterial) {
+        return;
+    }
+    const u8* file = reinterpret_cast<const u8*>(data);
+    const u32 fileSize = data->Header.FileSize;
+    const u32 blockCount = ReadU16(file + 0x0E);
+    const u8* mdl0 = 0;
+    for (u32 block = 0; block < blockCount && 0x10u + block * 4u + 4u <= fileSize; ++block) {
+        const u32 offset = ReadU32(file + 0x10 + block * 4u);
+        if (offset + 8u <= fileSize && ReadU32(file + offset) == 0x304C444Du) {   // 'MDL0'
+            mdl0 = file + offset;
+            break;
+        }
+    }
+    if (!mdl0) {
+        return;
+    }
+    // NNSG3dResDict: +1 entry count, +6 entry table; table: +0 data unit size, +2 names offset, +4 data
+    const u8* modelDict = mdl0 + 8;
+    const u8* modelTable = modelDict + ReadU16(modelDict + 6);
+    if (!modelDict[1]) {
+        return;
+    }
+    const u8* model = mdl0 + ReadU32(modelTable + 4);
+    const u8* materials = model + ReadU32(model + 8);                // NNSG3dResMdl +8: ofsMat
+    const u8* matDict = materials + 4;                                // NNSG3dResMat: dictionary at +4
+    const u32 count = matDict[1];
+    const u8* matTable = matDict + ReadU16(matDict + 6);
+    const u32 unit = ReadU16(matTable);
+    const u8* names = matTable + ReadU16(matTable + 2);
+    for (u32 index = 0; index < count && sFieldMaterialCount < W2U_FIELD_MATERIALS_MAX; ++index) {
+        u8* matData = const_cast<u8*>(materials + ReadU32(matTable + 4 + index * unit));
+        if (reinterpret_cast<u32>(matData) & 3u || matData < file || matData + 12 > file + fileSize) {
+            continue;
+        }
+        bool floor = true;
+        for (u32 c = 0; c < W2U_NITRO_NAME_LENGTH; ++c) {
+            const char want = c + 1u < W2U_NITRO_NAME_LENGTH ? sFloorAnimationMaterial[c] : 0;
+            if (names[index * W2U_NITRO_NAME_LENGTH + c] != static_cast<u8>(want)) {
+                floor = false;
+                break;
+            }
+            if (!want) {
+                break;
+            }
+        }
+        FieldMaterial& material = sFieldMaterials[sFieldMaterialCount++];
+        material.specEmi = reinterpret_cast<u32*>(matData + 8);
+        material.original = *material.specEmi;
+        material.floor = floor;
+    }
+}
+
+// Emission `color` at level / 16 on the floor (the share elsewhere); 0 restores the model's own values.
+void SetFieldGlow(u16 color, u32 level)
+{
+    if (!sFieldMaterialsSearched) {
+        FindFieldMaterials();
+    }
+    sGlowColor = color;
+    sGlowLevel = level;
+    for (u32 index = 0; index < sFieldMaterialCount; ++index) {
+        FieldMaterial& material = sFieldMaterials[index];
+        const u32 share = material.floor ? 16u : W2U_SCENE_GLOW_SHARE;
+        const u32 scale = level * share;                              // /256
+        const u32 own = material.original >> 16;
+        u32 emission = 0u;
+        for (u32 shift = 0; shift < 15u; shift += 5u) {
+            const u32 add = (((color >> shift) & 31u) * scale) >> 8;
+            const u32 sum = ((own >> shift) & 31u) + add;
+            emission |= (sum > 31u ? 31u : sum) << shift;
+        }
+        *material.specEmi = (material.original & 0x8000FFFFu) | (emission << 16);
+    }
+}
+
+void RestoreFieldGlow()
+{
+    for (u32 index = 0; index < sFieldMaterialCount; ++index) {
+        *sFieldMaterials[index].specEmi = sFieldMaterials[index].original;
+    }
+    sFieldMaterialCount = 0u;
+    sFieldMaterialsSearched = false;
+    sGlowLevel = 0u;
+}
+
+// The terrain clone's own palette (RAM) takes the haze outside the floor range.
+void BakeHaze()
+{
+    u16* palette = sActiveTerrainResource
+        ? static_cast<u16*>(GFL_G3DResGetTexPaletteData(sActiveTerrainResource)) : 0;
+    const u16* native = sFieldResource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(sFieldResource)) : 0;
+    const u32 colorCount = FieldPaletteColorCount();
+    if (!palette || !native || !sHazeEvy || !sFloorPaletteCount) {
+        return;
+    }
+    for (u32 index = 0; index < colorCount; ++index) {
+        if (!InFloorRange(index) && !(sSkyOwned && InSkyRange(index))) {
+            palette[index] = FadeColor(native[index], sHazeColor, sHazeEvy);
+        }
+    }
+    cp15_flushDC(palette, colorCount * sizeof(u16));
+}
+
+bool UploadFloorPalette(G3DResource* resource, u32 evy)
+{
+    return UploadFloorPaletteTo(resource, evy, sFloorFadeColor, false);
+}
+
+void ResetFloorPaletteAnimation()
+{
+    for (u32 t = 0; t < W2U_FLOOR_TWINKLES; ++t) {
+        sTwinkles[t].active = 0u;
+    }
+    sFloorAnimEvy = 0xFFu;
+    sFloorAnimSpawn = 0u;
 }
 
 // Image and palette of `resource`, with the floor range already at evy / 16 towards the blend colour.
@@ -1154,9 +1448,18 @@ bool UploadTextureFloorFaded(G3DResource* resource, u32 evy)
         sPaletteBackup[index] = palette[sFloorPaletteFirst + index];
         palette[sFloorPaletteFirst + index] = FadeColor(sPaletteBackup[index], sFloorFadeColor, evy);
     }
+    const u32 skyCount = sSkyOwned ? sSkyCount : 0u;
+    u16* skyBackup = sPaletteBackup + sFloorPaletteCount;
+    for (u32 index = 0; index < skyCount && sFloorPaletteCount + index < W2U_PALETTE_BACKUP_COLORS; ++index) {
+        skyBackup[index] = palette[sSkyFirst + index];
+        palette[sSkyFirst + index] = FadeColor(skyBackup[index], sSkyFadeColor, evy);
+    }
     const bool uploaded = UploadTexture(resource);
     for (u32 index = 0; index < sFloorPaletteCount; ++index) {
         palette[sFloorPaletteFirst + index] = sPaletteBackup[index];
+    }
+    for (u32 index = 0; index < skyCount && sFloorPaletteCount + index < W2U_PALETTE_BACKUP_COLORS; ++index) {
+        palette[sSkyFirst + index] = skyBackup[index];
     }
     return uploaded;
 }
@@ -1178,6 +1481,11 @@ u32 FadeEvy(u32 frame, u32 frames)
 
 void EndFloorFade()
 {
+    sHazeColor = sHazeTo.color;
+    sHazeEvy = sHazeTo.evy;
+    sSkyOwned = SkyDiffers(sActiveTerrainResource);
+    BakeHaze();
+    SetFieldGlow(sGlowTo.color, sGlowTo.evy);
     sFloorFadePhase = FLOOR_FADE_IDLE;
     sFloorFadeFrom = 0;
     sAppliedSerial = sFloorFadeSerial;
@@ -1197,6 +1505,13 @@ void ReleaseFloorFade()
     sFloorFadeFrom = 0;
     sFloorFadePhase = FLOOR_FADE_IDLE;
     sFloorPaletteCount = 0u;
+    sHazeEvy = 0u;
+    sSkyFirst = 0u;
+    sSkyCount = 0u;
+    sSkyOwned = false;
+    RestoreFieldGlow();
+    sFloorAnimDirty = false;
+    ResetFloorPaletteAnimation();
     ResetEffectWatch();
 }
 
@@ -1215,11 +1530,22 @@ bool StartFloorFade(G3DResource* resource, NNSG3DResTex* texture, u32 terrain, u
     sFloorFadeSerial = serial;
     sFloorFadeFrom = GetVisiblePaletteResource();
     sFloorFadeColor = AverageFloorColor(resource ? resource : sFieldResource);
+    // the backdrop fades with the floor when either side replaces it
+    sSkyOwned = SkyDiffers(sFloorFadeFrom) || SkyDiffers(resource);
+    sSkyFadeColor = AverageRangeColor(resource ? resource : sFieldResource, sSkyFirst, sSkyCount);
     sFloorFadeOutFrames = from ? from->fadeOutFrames : W2U_NATIVE_FLOOR_FADE_OUT_FRAMES;
     sFloorFadeInFrames = to ? to->fadeInFrames : (from ? from->fadeInFrames : W2U_NATIVE_FLOOR_FADE_OUT_FRAMES);
     sFloorFadeWobble = sAppliedTerrain == TERRAIN_PSYCHIC ? 1u : 0u;
+    sHazeFrom = HazeFor(sAppliedTerrain);
+    sHazeTo = HazeFor(terrain);
+    sGlowFrom = GlowFor(sAppliedTerrain);
+    sGlowTo = GlowFor(terrain);
+    sHazeColor = sHazeFrom.color;
+    sHazeEvy = sHazeFrom.evy;
     sFloorFadeFrame = 0u;
     sFloorFadePhase = FLOOR_FADE_OUT;
+    sFloorAnimDirty = false;                     // the fade takes over the floor palette
+    ResetFloorPaletteAnimation();
     if (sAppliedTerrain != TERRAIN_NULL) {
         sTerrainAmbientStopping = true;          // the old terrain's particles finish, no new ones
     }
@@ -1274,11 +1600,17 @@ void AdvanceFloorFade()
     if (sFloorFadePhase == FLOOR_FADE_OUT) {
         if (!hurry && sFloorFadeFrame < sFloorFadeOutFrames) {
             ++sFloorFadeFrame;
-            UploadFloorPalette(sFloorFadeFrom, FadeEvy(sFloorFadeFrame, sFloorFadeOutFrames));
+            const u32 progress = FadeEvy(sFloorFadeFrame, sFloorFadeOutFrames);
+            sHazeColor = sHazeFrom.color;
+            sHazeEvy = (sHazeFrom.evy * (W2U_PALETTE_FADE_MAX_EVY - progress)) >> 4;
+            SetFieldGlow(sGlowFrom.color, (sGlowFrom.evy * (W2U_PALETTE_FADE_MAX_EVY - progress)) >> 4);
+            UploadFloorPalette(sFloorFadeFrom, progress);
             if (sFloorFadeFrame < sFloorFadeOutFrames) {
                 return;
             }
         }
+        sHazeEvy = 0u;                           // the incoming palette is uploaded untinted
+        SetFieldGlow(sGlowTo.color, 0u);
         SwapFloorUnderFade(hurry ? 0u : W2U_PALETTE_FADE_MAX_EVY);
         sFloorFadePhase = FLOOR_FADE_IN;
         sFloorFadeFrame = 0u;
@@ -1287,6 +1619,9 @@ void AdvanceFloorFade()
         }
     }
     if (hurry) {
+        sHazeColor = sHazeTo.color;
+        sHazeEvy = sHazeTo.evy;
+        sSkyOwned = SkyDiffers(sActiveTerrainResource);
         if (!vmFading) {
             UploadFloorPalette(GetVisiblePaletteResource(), 0u);
         }
@@ -1295,10 +1630,75 @@ void AdvanceFloorFade()
     }
     ++sFloorFadeFrame;
     const u32 frames = sFloorFadeInFrames;
-    UploadFloorPalette(GetVisiblePaletteResource(),
-        sFloorFadeFrame >= frames ? 0u : W2U_PALETTE_FADE_MAX_EVY - FadeEvy(sFloorFadeFrame, frames));
+    const u32 progress = sFloorFadeFrame >= frames ? W2U_PALETTE_FADE_MAX_EVY : FadeEvy(sFloorFadeFrame, frames);
+    sHazeColor = sHazeTo.color;
+    sHazeEvy = (sHazeTo.evy * progress) >> 4;
+    SetFieldGlow(sGlowTo.color, (sGlowTo.evy * progress) >> 4);
+    UploadFloorPalette(GetVisiblePaletteResource(), W2U_PALETTE_FADE_MAX_EVY - progress);
     if (sFloorFadeFrame >= frames) {
         EndFloorFade();
+    }
+}
+
+// One VBlank of the Grassy / Misty floor animation (W2U_TerrainTexture_AdvanceAnimation).
+void AdvanceFloorPaletteAnimation()
+{
+    const u32 terrain = sAppliedTerrain;
+    const bool animated = (terrain == TERRAIN_GRASSY || terrain == TERRAIN_MISTY) &&
+        sFloorFadePhase == FLOOR_FADE_IDLE && sActiveTerrainResource && sFloorPaletteCount;
+    FieldPaletteFadeWork* vm = GetFieldPaletteFadeWork();
+    const bool vmFading = vm && vm->active;
+    const u32 vcount = *reinterpret_cast<volatile u16*>(0x04000006);
+    if (vcount < 0xC0u || vcount > W2U_FLOOR_UPLOAD_LAST_LINE) {
+        return;
+    }
+    if (!animated || vmFading || EffectBusy()) {
+        // leave the plain floor to the fade / the effect (once; a field fade uploads the whole palette itself)
+        if (sFloorAnimDirty && animated && !vmFading) {
+            UploadFloorPaletteTo(sActiveTerrainResource, 0u, 0u, false);
+        }
+        sFloorAnimDirty = false;
+        ResetFloorPaletteAnimation();
+        return;
+    }
+    ++sFloorAnimFrame;
+    if (terrain == TERRAIN_GRASSY) {
+        // 0 .. W2U_GRASSY_GLOW_MAX_EVY .. 0: (1 - cos) / 2 over the period, rounded
+        const fx32 wave = FX32_ONE - SinTurn(sFloorAnimFrame * W2U_GRASSY_GLOW_PERIOD_STEP + 0x4000u);
+        const u32 evy = static_cast<u32>((wave * static_cast<fx32>(W2U_GRASSY_GLOW_MAX_EVY) + FX32_ONE) >> 13);
+        if (evy != sFloorAnimEvy) {
+            sFloorAnimEvy = evy;
+            UploadFloorPaletteTo(sActiveTerrainResource, evy, W2U_GRASSY_GLOW_COLOR, false);
+            sFloorAnimDirty = true;
+        }
+        return;
+    }
+    // Misty: start a twinkle every 2-6 frames, age the live ones, upload while any is lit
+    bool any = false;
+    for (u32 t = 0; t < W2U_FLOOR_TWINKLES; ++t) {
+        FloorTwinkle& twinkle = sTwinkles[t];
+        if (twinkle.active && ++twinkle.age >= sizeof(W2U_TWINKLE_LEVELS)) {
+            twinkle.active = 0u;
+        }
+        any |= twinkle.active != 0u;
+    }
+    if (sFloorAnimSpawn) {
+        --sFloorAnimSpawn;
+    } else {
+        for (u32 t = 0; t < W2U_FLOOR_TWINKLES; ++t) {
+            if (!sTwinkles[t].active) {
+                sTwinkles[t].index = static_cast<u16>(FloorAnimRandom(sFloorPaletteCount));
+                sTwinkles[t].age = 0u;
+                sTwinkles[t].active = 1u;
+                any = true;
+                break;
+            }
+        }
+        sFloorAnimSpawn = 2u + FloorAnimRandom(5u);
+    }
+    if (any || sFloorAnimDirty) {
+        UploadFloorPaletteTo(sActiveTerrainResource, 0u, 0u, true);
+        sFloorAnimDirty = any;
     }
 }
 #endif
@@ -1417,6 +1817,10 @@ extern "C" void W2U_TerrainTexture_FieldInit(
     sFieldResource = fieldResource;
     sFieldTex = GFL_G3DResGetTexData(fieldResource);
     sCurrentMapping = mapping;
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+    sSkyFirst = mapping->skyPaletteFirst;
+    sSkyCount = mapping->skyPaletteCount;
+#endif
     sFloorAnimationMember = mapping->floorAnimationMember;
     sFloorAnimationMaterial = mapping->floorMaterial;
 
@@ -1595,6 +1999,9 @@ extern "C" void W2U_TerrainTexture_AdvanceAnimation()
     // Particle texture VRAM setup stays in VBlank. Emitter timing and creation
     // run from the normal BTLV_EFFECT_Main path below.
     FinishTerrainAmbientParticleSetup();
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+    AdvanceFloorPaletteAnimation();
+#endif
 
     if (sAppliedTerrain == TERRAIN_NULL || !EnsureFloorAnimation()) {
         return;
