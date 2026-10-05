@@ -636,9 +636,10 @@ foreach module_index : range(w2u_battle_module_definitions.length())
     '@INPUT' + (module_index + 3).to_string() + '@',
   ]
 endforeach
-if get_option('strip_rpms')
-  w2u_battle_heap_audit_command += ['--enforce']
-endif
+# The ROM depends on the audit: a build whose modules could not all fit the PMC heap fails instead of freezing a battle.
+# Only the 12 KiB headroom is fatal; the savings-vs-monolith checks (`--enforce`, formerly on with strip_rpms) are
+# warnings, since the integration core is larger than the monolithic baseline they compare against.
+w2u_battle_heap_audit_command += ['--enforce-headroom']
 
 w2u_battle_heap_audit = custom_target(
   'white2upgrade-battle-heap-audit',

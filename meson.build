@@ -33,28 +33,6 @@ subdir('src')
 # Assets
 subdir('data')
 
-vfs_base_stage = custom_target(
-  'stage_vfs_base',
-  input: [
-    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'y9.bin',
-    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'data' / 'a' / '0' / '1' / '2',
-    meson.project_source_root() / 'pmc' / 'OVL344.bin',
-    meson.project_source_root() / 'MainMenuSkip(1).dll',
-  ],
-  depend_files: files('tools/stage_vfs_base.py'),
-  output: 'stage_vfs_base.stamp',
-  build_always_stale: true,
-  command: [
-    python3_native, meson.project_source_root() / 'tools' / 'stage_vfs_base.py',
-    '--base', meson.project_source_root() / '..' / 'IRDO_Extracted',
-    '--output', meson.project_source_root() / 'vfs',
-    '--pmc-overlay', '@INPUT2@',
-    '--main-menu-patch', '@INPUT3@',
-    '--stamp', '@OUTPUT@',
-  ],
-)
-vfs_files += vfs_base_stage
-
 black2_package_builder = meson.project_source_root() / 'tools' / 'build_black2upgrade_package.py'
 black2_clean_rom = meson.project_source_root() / get_option('black2_base_rom')
 black2_clean_w2_rom = meson.project_source_root() / '..' / 'Port-Pokeweb' / 'cleanwhite2.nds'
@@ -107,7 +85,7 @@ black2upgrade_release_artifacts = custom_target(
 item_icon_patch_py = find_program(meson.project_source_root() / 'tools' / 'item_icons' / 'build_item_icon_patch.py', native: true)
 patch_pmc_sysheap_py = find_program(meson.project_source_root() / 'tools' / 'patch_pmc_sysheap.py', native: true)
 patch_arm9_footer_py = meson.project_source_root() / 'tools' / 'patch_arm9_footer.py'
-main_menu_skip_patch = vfs_base_stage
+main_menu_skip_patch = meson.project_source_root() / 'vfs' / 'data' / 'patches' / 'MainMenuSkip(1).dll'
 
 item_icon_asset_list = run_command(
   'sh',
@@ -192,6 +170,7 @@ rom = custom_target('White2Upgrade.nds',
     pmc_symbols
   ],
   depend_files: [patch_arm9_footer_py, rom_layout_finalizer_py],
+  depends: [w2u_battle_heap_audit],             # the PMC heap guard (src/meson.build)
   command: ['sh', '-eu', '-c',
     '"${JAVA:-java}" "-Xmx$6" -cp "$1" ctrmap.cli.ROMBuilder --input "$2" --output "$3"; python3 "$4" --rom "$3" --arm9 "$5"; python3 "$7" --rom "$3"',
     'rombuilder',
