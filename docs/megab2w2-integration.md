@@ -19,6 +19,7 @@ what it actually did below.
 | D7 | Memory | 164 KiB PMC heap unchanged; ported mechanics go into on-demand module groups, not the resident core |
 | D8 | Testing | Pokeweb-Serverless's battle harness (`runtime/battle-harness`, direct boot into a trainer battle) run in headless melonDS (PlatinumMaster/melonDS-headless, `headless` branch); MegaB2W2's scenario suite is not ported |
 | D9 | Mega | W2U's Mega implementation stays; only MegaB2W2 extras are added |
+| D10 | Species ability storage | Pokeweb's packing (`personalAbilityPacking.ts`): ability byte = low 8 bits, bits 14-15 of the matching wild-item word = bits 8-9; max ID 1023. Pokeweb shows and edits the same values |
 
 Licence and asset terms for contributed code and art are still open. Assets with restricted permissions
 (PokeRogue art: private use only) are not added on this branch.
@@ -127,6 +128,7 @@ Battle with heavy rain + Electric Terrain: both command screens show both indica
 | compile targets depend on the shared headers | a header edit left stale DLLs (custom targets without depfiles) |
 | `package_rpm_checked.py` rejects `__gnu_thumb1_case_*` | a jump-table switch packaged without error and hung the boot |
 | `CTRMapV-dirty.jar` via `files()` | Windows hosts could not configure |
+| mkdata targets depend on the serializer scripts (`mkdata_deps` in `tools/mkdata/meson.build`; encounters, items, pml, pml/moves, trainers) | editing an mkdata script never rebuilt the data (`data/text` not checked yet) |
 
 ## Phase 3: abilities
 
@@ -157,13 +159,21 @@ Headless checks so far: Perish Body; Sword of Ruin and Good as Gold (abilities a
 W2U stored abilities in one byte (species data and each Pokemon), so no ability above 255 could be used; Gen 9
 species had placeholders (e.g. Gholdengo: Overgrow). Now (White 2):
 
-- species data: ability byte = low 8 bits, EV Yield bit 13 + slot = bit 8 (EV Yield uses bits 0-12; no species set
-  bits 13-15); `tools/mkdata` packs abilities up to 511;
+- species data (D10): ability byte = low 8 bits, bits 14-15 of the matching wild-item word (personal +0x0C / +0x0E /
+  +0x10; item IDs use bits 0-13) = bits 8-9, Pokeweb's packing; `tools/mkdata` packs abilities up to 1023 and
+  errors above it (or on an item above 0x3FFF); `PML_PersonalGetParam` masks the wild-item params to 0x3FFF. (The
+  first version used EV Yield bit 13 + slot, max 511; Pokeweb could not read it);
 - Pokemon data: byte 0x42 bits 6-7 = bits 8-9 (vanilla uses bit 0 hidden ability, bit 1 N's Pokemon; byte 0x43 and
   0x5E / 0x64-0x67 are taken by the battle log / PKHeX's probe); old saves read as before;
 - `w2u_ability_storage.cpp` decodes at `PML_PersonalGetParam` (re-implemented 1:1) and the four Pokemon parameter
   get / set call sites; `w2u_ability_storage_ui.cpp` (UI companion) handles the PC box panel's display byte.
 
-Data: Gholdengo (Good as Gold) and Chien-Pao (Sword of Ruin) corrected; the other Gen 8 / 9 species with
-placeholder abilities still need their real ones. Pokeweb's battle harness writes player abilities itself (1-255);
-abilities above 255 are therefore checked on trainer Pokemon, which the game generates through the hooked path.
+Data: the Gen 8 / 9 species have their real abilities (68 species, `e2f658e7a`). Checked: the built personal NARC
+decodes to the toml values for all 566 numbered species (70 with abilities above 255).
+
+Pokeweb battle harness: it capped `abilityId` at 255. A local patch (Pokeweb-Serverless is hzla's repository; to be
+offered upstream) raises it to `PERSONAL_ABILITY_MAX_ID` (1023) and writes / reads byte 0x42 bits 6-7 in
+`battleHarness.ts` and `testBattleTeam.ts`; trainer overrides already go through Pokeweb's personal packer, which
+W2U now reads. Headless battle (player Snorlax Sword of Ruin 285 vs foe Snorlax Beads of Ruin 287): both pop-ups,
+"The foe's Snorlax weakened the Sp. Def of all surrounding Pokemon!" (set 1382, foe variant) and "Snorlax weakened
+the Defense of all surrounding Pokemon!" (set 1376, player variant).
