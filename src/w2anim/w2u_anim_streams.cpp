@@ -152,12 +152,26 @@ void Free(Stream& s) {
     if (!any && g_vblankTask) { GFL_TCBRemove(g_vblankTask); g_vblankTask = nullptr; }
 }
 
+// While an upload runs, texture / palette VRAM is mapped to the CPU and the 3D engine reads nothing from it. The 3D
+// engine starts drawing the next frame at about scanline 214, so every upload has to end before then: one that ends
+// later blanks every textured polygon (sprites, battle background) for a frame. Measured in battle: a TEX4 frame costs
+// about 9 scanlines per 96 rows (one call per row), and three 96-row sprites changing frame in the same VBlank ended at
+// line 218. An upload that would not end by UPLOAD_LAST_LINE waits for the next VBlank (its sprite's frame shows 1/60 s
+// later; its timeline waits too).
+constexpr u32 UPLOAD_LAST_LINE = 211;
+inline u32 VCount() { return *(volatile u16*)0x04000006; }
+inline bool UploadFits(u32 lines) { return VCount() + lines <= UPLOAD_LAST_LINE; }
+inline u32 StreamUploadLines(const Stream& s) {
+    return (s.flags & MANI_TEX4) ? s.boxH * 3u / 32u + 1u : s.boxH * A3I5_ROW_BYTES / 4096u + 1u;
+}
+
 void VBlankUpload(void*, void*) {
     u16 vcount = *(volatile u16*)0x04000006;
     if (vcount < 0xC0 || vcount > 0xC8) return;        // like MCSS's own upload: only at the start of VBlank
     bool begun = false;
     for (auto& s : g_streams) {
         if (!s.active || !s.pending) continue;
+        if (!UploadFits(StreamUploadLines(s))) continue;
         if (!begun) { gfxBeginTextureUpload(); begun = true; }
         const u32 tex = SysTexBase(s.sys) + s.slot * SLOT_TEX_BYTES;
         if (s.flags & MANI_TEX4) {
@@ -172,6 +186,7 @@ void VBlankUpload(void*, void*) {
     }
     for (auto& s : g_streams) {                        // evolution: the morph renderer's bitmap
         if (!s.active || !s.indepPending || !s.indepBmp) continue;
+        if (!UploadFits(0x2000 / 4096 + 1)) continue;
         if (!begun) { gfxBeginTextureUpload(); begun = true; }
         gfxUploadTexture(s.indepBmp, s.indepTex, 0x2000);
         s.indepPending = 0;
@@ -180,6 +195,7 @@ void VBlankUpload(void*, void*) {
     begun = false;
     for (auto& s : g_streams) {
         if (!s.active || !s.palettePending) continue;
+        if (!UploadFits(1)) continue;
         if (!begun) { gfxBeginPaletteUpload(); begun = true; }
         gfxUploadPalette(s.palette, SysPalBase(s.sys) + s.slot * SLOT_PAL_BYTES, sizeof(s.palette));
         s.palettePending = 0;
