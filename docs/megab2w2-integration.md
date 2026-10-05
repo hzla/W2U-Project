@@ -367,6 +367,43 @@ Terrains (`w2u_terrain_texture.cpp`, White 2; Black 2 keeps the immediate swap):
   (PRIMAL_RAIN_END given `no_crits`: a critical Flamethrower could knock Wobbuffet out), wave_b 10/10. Heap audit:
   core 111,112 bytes resident, 88.4 KB free with no module, 20.1 KB with every module.
 
+## Polish: Sun / Moon style Grassy and Misty Terrain (2026-10-05)
+
+Grassy and Misty Terrain now follow their Sun / Moon look (soft, luminous, the whole scene washed in the terrain's
+colour); Electric and Psychic are unchanged. This supersedes the Grassy / Misty rows of the pace table above
+(emit gaps 44 / 56 frames, new particles).
+
+- Floors (`tools/graphics/draw_terrain_floor_tiles.py`, my own art): soft seamless tiles from spectral noise (white
+  noise filtered in frequency space, periodic by construction) instead of the shared water-caustic pattern: a pale
+  glowing mint-green ground with a faint grass sheen, a sea of pink-white cloud.
+- Backdrop: the 43 outdoor backgrounds with a `batt_sky*` material get a Grassy / Misty sky in those clones
+  (`build_terrain_texture_mvp.py` now also replaces that texture and palette and writes each background's sky
+  palette range into the mapping include: 4 bytes per background). Measured with a banded test sky: the camera shows
+  the lower half of the texture (the bottom row on the horizon) and stretches it about 4.5x wider than tall, so the
+  scenery is drawn at true proportions on a 4.5x wider canvas and squeezed in: grass clumps under light shafts,
+  rising out of a horizon glow in the floor's colour; cloud banks with lilac undersides and sparkles. The other 49
+  backgrounds (towns, parks, factories, interiors) keep their backdrop under the haze and glow.
+- Glow: the battle lights the field model (light 0; diffuse 25/31, ambient 31/31, no emission), dim and blue in the
+  evening, so no texture alone could look luminous (in-game floor about 0.6x the texture). The floor material's
+  emission takes the terrain's colour (the share 10/16 on the field's other materials), written into the model's
+  material data in RAM (read every frame), faded with the floor and restored at the end and at field exit. The
+  hardware adds emission to the lit colour and clamps, so daylight scenes change little.
+- Haze: the rest of the field palette is washed towards the terrain colour (7/16), faded with the floor; once in, it
+  is written into the clone's palette in RAM, the source of every move animation's field fade, so animations start and
+  end on the hazed scene. The backdrop is its own fade group (its own blend colour) when a clone replaces it.
+- Particles (`tools/graphics/build_terrain_ambient_effects.py`, my own textures): Grassy: pale glowing motes rising
+  slowly from the whole floor with a gentle wander (replaces the growing roots); Misty: wide, faint mist puffs rolling
+  sideways along the ground (replaces the Mist Ball puff). Both spawn from a disk lying on the floor at the player's
+  side, the middle and the foe's side in turn.
+- Floor animation between move animations: Grassy's grass slowly brightens and dims (a 200-frame swell); Misty's floor
+  twinkles (random floor colours flash towards white). Paused while an effect script runs.
+- Ambient particles in battles without the field (the harness): their heap (the field's, ID 6) does not exist there,
+  so no terrain ever showed particles headlessly; they now fall back to the battle's sprite heap, with the same
+  free-space preflight. Battles from the field are unchanged.
+- Verified (recordings, `w2u-local/harness/previews.yml`): all five previews; wave_field 18/18
+  (PRIMAL_RAIN_AIR_LOCK made deterministic: Kyogre level 70, no crits), wave_b 10/10. Heap audit: core 115,496 bytes
+  resident (+4.4 KB), 84.0 KB free with no module, 15.7 KB with every module loaded (floor 12 KB).
+
 ## Fix: PMC heap out of memory (2026-10-05)
 
 Symptom: a battle froze after both sides chose (top screen "What will X do?", bottom screen the idle Poke Ball), e.g.
