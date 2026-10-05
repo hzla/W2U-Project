@@ -414,6 +414,26 @@ colour); Electric and Psychic are unchanged. This supersedes the Grassy / Misty 
   resident (+5.0 KB with the sky repeat and drift: 116,984), 82.5 KB free with no module, 14.2 KB with every module
   loaded (floor 12 KB).
 
+## Polish: Surge abilities set terrain without a move animation (2026-10-05)
+
+User request: the Surge abilities spawn their terrain without playing the terrain move's animation; the terrain
+moves keep theirs. Every ability path goes through `SetTerrainFromAbilityCore` (`w2u_moves.cpp`): the four Surges,
+Seed Sower and Hadron Engine (`megab2w2/terrain.h`).
+
+- White 2: no `SCID_MoveAnim` after the ability popup. `W2U_TerrainTexture_DeferStartUntilMessage(msgID)` arms the
+  terrain's start for its start message. The viewer's `OnSetMessageStart` then prepares texture and particles as a
+  terrain move's animation start would (`PrepareRequestedTerrain(terrain, animated = false)`, the old body of
+  `OnMoveAnimationStart`), unless a newer terrain request came in since (request serial). With no animation, the
+  floor fade counts as already past its animation and starts as soon as no effect script runs, so the floor fades in
+  while the message prints. Electric skips its masked black dip (which needed the animation) and takes the same floor
+  fade. `FieldExit` clears the deferral. The request is made in `SetTerrainState`, before the deferral, so the
+  stored serial is the new terrain's.
+- Black 2 keeps the animation (`W2U_TARGET_B2`): it has no terrain fades, and Electric's masked swap needs the
+  animation's black fade.
+- Verified (recordings, `previews.yml`): the four Surge previews show the popup, no animation, and the floor fading in
+  during the start message (Electric included); the new `PREVIEW_GRASSY_TERRAIN_MOVE` (the move, Grassy Terrain 580)
+  still plays its leaf animation before the fade. wave_field 18/18, wave_b 10/10.
+
 ## Fix: PMC heap out of memory (2026-10-05)
 
 Symptom: a battle froze after both sides chose (top screen "What will X do?", bottom screen the idle Poke Ball), e.g.

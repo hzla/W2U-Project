@@ -178,6 +178,8 @@ volatile u32 sRequestedTerrain = TERRAIN_NULL;
 volatile u32 sRequestSerial = 1u;
 volatile u32 sDeferredResetMsgID = W2U_NO_DEFERRED_MESSAGE;
 volatile u32 sDeferredResetSerial = 0u;
+volatile u32 sDeferredStartMsgID = W2U_NO_DEFERRED_MESSAGE;   // an ability's terrain: starts with this message
+volatile u32 sDeferredStartSerial = 0u;
 volatile u32 sElectricTransitionSerial = 0u;
 volatile u32 sElectricTransitionPhase = ELECTRIC_TRANSITION_IDLE;
 volatile bool sElectricAnimationStarted = false;
@@ -1943,8 +1945,61 @@ extern "C" void W2U_TerrainTexture_DeferResetUntilMessage(u32 msgID)
     sDeferredResetSerial = sRequestSerial;
 }
 
+namespace {
+// Load the requested terrain's texture and particles (the viewer's normal update, never VBlank). `animated`: a
+// terrain move's animation is starting and the floor fades in once it has ended; otherwise (an ability, which plays
+// no animation) at once.
+void PrepareRequestedTerrain(u32 terrain, bool animated)
+{
+    const u32 requestSerial = sRequestSerial;
+    if (!PrepareTerrainResource(terrain, requestSerial)) {
+        sPrepareFailedSerial = requestSerial;
+        return;
+    }
+
+    if (AmbientSpaMemberForTerrain(terrain)) {
+        // Archive IO and particle-system allocation stay in the normal viewer
+        // update. Only the texture upload is deferred to the VBlank hook.
+        PrepareTerrainAmbientParticles(terrain);
+    }
+
+    sPrepareFailedSerial = 0u;
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+    ResetEffectWatch();                          // the floor fades in once this animation has ended
+    if (!animated) {
+        sEffectSeenBusy = true;                  // no animation: "ended" as soon as no effect runs
+    }
+#else
+    (void)animated;
+#endif
+    if (terrain == TERRAIN_ELECTRIC && sAppliedTerrain != TERRAIN_ELECTRIC) {
+        // (no animation: no masking black fade either; the floor fade takes over, ApplyPending)
+        sElectricAnimationStarted = true;
+        sElectricTransitionSerial = sRequestSerial;
+        sElectricTransitionPhase = ELECTRIC_TRANSITION_WAIT_FADE_START;
+    }
+}
+} // namespace
+
+extern "C" void W2U_TerrainTexture_DeferStartUntilMessage(u32 msgID)
+{
+    sDeferredStartMsgID = msgID;
+    sDeferredStartSerial = sRequestSerial;
+}
+
 extern "C" void W2U_TerrainTexture_OnSetMessageStart(u32 msgID)
 {
+    if (msgID == sDeferredStartMsgID) {
+        const u32 startSerial = sDeferredStartSerial;
+        sDeferredStartMsgID = W2U_NO_DEFERRED_MESSAGE;
+        sDeferredStartSerial = 0u;
+        const u32 terrain = sRequestedTerrain;
+        // (a newer terrain request since then has its own start)
+        if (sRequestSerial == startSerial && terrain >= TERRAIN_ELECTRIC && terrain <= TERRAIN_PSYCHIC) {
+            PrepareRequestedTerrain(terrain, false);
+        }
+    }
+
     if (msgID != sDeferredResetMsgID) {
         return;
     }
@@ -1967,28 +2022,7 @@ extern "C" void W2U_TerrainTexture_OnMoveAnimationStart(u32 moveID)
     if (terrain == TERRAIN_NULL || sRequestedTerrain != terrain) {
         return;
     }
-
-    const u32 requestSerial = sRequestSerial;
-    if (!PrepareTerrainResource(terrain, requestSerial)) {
-        sPrepareFailedSerial = requestSerial;
-        return;
-    }
-
-    if (AmbientSpaMemberForTerrain(terrain)) {
-        // Archive IO and particle-system allocation stay in the normal viewer
-        // update. Only the texture upload is deferred to the VBlank hook.
-        PrepareTerrainAmbientParticles(terrain);
-    }
-
-    sPrepareFailedSerial = 0u;
-#if defined(W2U_TERRAIN_FLOOR_FADES)
-    ResetEffectWatch();                          // the floor fades in once this animation has ended
-#endif
-    if (terrain == TERRAIN_ELECTRIC && sAppliedTerrain != TERRAIN_ELECTRIC) {
-        sElectricAnimationStarted = true;
-        sElectricTransitionSerial = sRequestSerial;
-        sElectricTransitionPhase = ELECTRIC_TRANSITION_WAIT_FADE_START;
-    }
+    PrepareRequestedTerrain(terrain, true);
 }
 
 extern "C" void W2U_TerrainTexture_FieldInit(
@@ -2240,6 +2274,8 @@ extern "C" void W2U_TerrainTexture_FieldExit()
     sRequestedTerrain = TERRAIN_NULL;
     sDeferredResetMsgID = W2U_NO_DEFERRED_MESSAGE;
     sDeferredResetSerial = 0u;
+    sDeferredStartMsgID = W2U_NO_DEFERRED_MESSAGE;
+    sDeferredStartSerial = 0u;
     sRequestSerial = sRequestSerial + 1u;
     if (sRequestSerial == 0u) {
         sRequestSerial = 1u;

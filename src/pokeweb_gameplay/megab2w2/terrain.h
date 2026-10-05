@@ -27,12 +27,12 @@ inline u8 TypeOf(u8 t) {
     }
 }
 
-// W2U's terrain start messages (bank 18, no argument) and the terrain moves whose animation plays
+// W2U's terrain start messages (bank 18, no argument) and the terrain moves whose animation plays (Black 2 only)
 constexpr u16 START_MSG[5] = { 0, 1292, 1295, 1298, 1313 };
 constexpr u16 ANIM_MOVE[5] = { 0, 604, 580, 581, 678 };   // Electric / Grassy / Misty / Psychic Terrain
 
-// Start terrain t under pokeID's ability popup (W2U's Surge path: popup, the terrain move's animation, the start
-// message; W2U fires its after-terrain-change event). Nothing if t is already up. The ported files only set terrain
+// Start terrain t under pokeID's ability popup (W2U's Surge path: popup, then the start message, with which the
+// terrain fades in - no move animation on White 2; W2U fires its after-terrain-change event). Nothing if t is already up. The ported files only set terrain
 // from abilities (Seed Sower; Hadron Engine uses SetNamed).
 inline bool Set(ServerFlow* sf, u32 pokeID, u8 t, bool /*popup: always, as W2U's Surges*/) {
     return t && t <= PSYCHIC && W2U_MoveState_SetTerrainFromAbility(sf, pokeID, t, START_MSG[t], ANIM_MOVE[t]);

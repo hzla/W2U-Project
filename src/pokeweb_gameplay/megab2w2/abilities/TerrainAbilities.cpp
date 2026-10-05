@@ -31,7 +31,7 @@ void PulseMessage(ServerFlow* sf, u32 pokeID, u16 msg) {
 void HandlerPulseStart(BattleEventItem*, ServerFlow* sf, u32 pokeID, u32*) {
     if (ability::Subject() != pokeID) return;
     if (ability::HolderAbility(sf, pokeID) == ABIL_HADRON_ENGINE) {
-        // W2U: starting the terrain shows its own popup, animation and the message naming the holder at once
+        // W2U: starting the terrain shows its own popup and the message naming the holder at once
         // (terrain::SetNamed), so the queued popup is only used when Electric Terrain is already up.
         if (terrain::Current() != terrain::ELECTRIC &&
             terrain::SetNamed(sf, pokeID, terrain::ELECTRIC, BTLMSG_SET_HADRON_START)) {

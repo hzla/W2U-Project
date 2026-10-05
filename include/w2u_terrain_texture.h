@@ -20,6 +20,10 @@ void W2U_TerrainTexture_OnSetMessageStart(u32 msgID);
 // logical terrain move reaches the viewer, rather than loading it in VBlank.
 void W2U_TerrainTexture_OnMoveAnimationStart(u32 moveID);
 
+// A terrain set by an ability plays no move animation: prepare it when its
+// start message (msgID) reaches the viewer and fade it in straight away.
+void W2U_TerrainTexture_DeferStartUntilMessage(u32 msgID);
+
 // Battle-view lifecycle callbacks installed in overlay 168.
 void W2U_TerrainTexture_FieldInit(void* fieldWork, G3DResource* fieldResource, u32 battgraMember);
 void W2U_TerrainTexture_ApplyPending();
