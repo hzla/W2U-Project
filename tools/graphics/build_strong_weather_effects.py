@@ -41,11 +41,19 @@ PARTICLE_RESOURCES = {
 }
 BASE_ALPHA = 0x45
 COLOR = 0x22
+EMISSION_COUNT = 0x10   # fx32 particles per emission
+PARTICLE_LIFE = 0x3E    # u16 frames
+SPRITES_ALL = 14        # ChangeColor (1B) target: every battler
 VANILLA_ARGS = {0x06: 1, 0x3A: 1, 0x34: 9, 0x09: 11, 0x39: 1, 0x38: 1, 0x4D: 0, 0x2A: 5, 0x40: 2, 0x1B: 5}
 SCRIPT_START = 0x3C
 
+# Heavy rain: denser than Rain Dance. The battle's particle pool is the limit (Rain Dance already fills it: its drops
+# fall in waves, 40-frame lives mostly spent below the screen), so the drops live only about as long as they take to
+# cross the screen (22 frames) and the emission is x1.5: steady, denser rain from the same pool. The background dims
+# towards a dark blue-grey instead of black and the battlers take a faint blue tint (3/16) while it falls.
 HEAVY_RAIN = {"particle_color": (200, 216, 248), "base_alpha": 31, "fade": 13, "se": 1562,
-              "se_extra": (1514, 60)}
+              "se_extra": (1514, 60), "emission_scale": 1.5, "particle_life": 22, "fade_color": (16, 28, 64),
+              "sprite_tint": (3, (88, 136, 248))}
 EXTREME_SUN = {"particle_color": (248, 128, 40), "fade": 9, "fade_color": (248, 96, 16), "se": 1565,
                "se_extra": (1425, 80)}
 
@@ -82,7 +90,8 @@ def strong_winds_script(spa: int) -> bytes:
     return s.file()
 
 
-def patched_particles(spa: bytes, source: int, alpha: int | None = None, color: int | None = None) -> bytes:
+def patched_particles(spa: bytes, source: int, alpha: int | None = None, color: int | None = None,
+                      emission_scale: float | None = None, life: int | None = None) -> bytes:
     out = bytearray(spa)
     if out[:8] != b" APS12_1":
         raise ValueError(f"SPA {source} is not an SPL particle file")
@@ -93,6 +102,11 @@ def patched_particles(spa: bytes, source: int, alpha: int | None = None, color: 
             out[offset + BASE_ALPHA] = alpha
         if color is not None:
             struct.pack_into("<H", out, offset + COLOR, color)
+        if emission_scale is not None:
+            count = struct.unpack_from("<i", out, offset + EMISSION_COUNT)[0]
+            struct.pack_into("<i", out, offset + EMISSION_COUNT, round(count * emission_scale))
+        if life is not None:
+            struct.pack_into("<H", out, offset + PARTICLE_LIFE, life)
     return bytes(out)
 
 
@@ -114,6 +128,7 @@ def decode_script(data: bytes) -> list[tuple[int, list[int]]]:
 def adapted_script(vanilla: list[tuple[int, list[int]]], spa: int, v: dict, turn: bool) -> bytes:
     fade = v["fade"] if not turn else max(1, v["fade"] * 2 // 3)
     color = bgr555(v["fade_color"]) if "fade_color" in v else None
+    tint = v.get("sprite_tint")
     s = Script()
     for code, args in vanilla:
         if code == 0x06:
@@ -124,8 +139,12 @@ def adapted_script(vanilla: list[tuple[int, list[int]]], spa: int, v: dict, turn
                 args[2] = fade
             else:
                 args[1] = fade
-            if color is not None and args[4]:
+            if color is not None:
                 args[4] = color
+            if code == 0x2A and tint:            # the battlers' tint follows the background fade
+                evy, rgb = tint
+                fade_in = args[1] == 0
+                s.op(0x1B, SPRITES_ALL, 0 if fade_in else evy, evy if fade_in else 0, args[3], bgr555(rgb))
         elif code == 0x34:
             if turn:
                 continue
@@ -162,7 +181,8 @@ def main() -> None:
     spa_out = {
         SPA_WINDS: patched_particles(spas[SPA_SRC_WINDS], SPA_SRC_WINDS, alpha=20),
         SPA_RAIN: patched_particles(spas[SPA_SRC_RAIN], SPA_SRC_RAIN, HEAVY_RAIN["base_alpha"],
-                                    bgr555(HEAVY_RAIN["particle_color"])),
+                                    bgr555(HEAVY_RAIN["particle_color"]), HEAVY_RAIN["emission_scale"],
+                                    HEAVY_RAIN["particle_life"]),
         SPA_SUN: patched_particles(spas[SPA_SRC_SUN], SPA_SRC_SUN, None, bgr555(EXTREME_SUN["particle_color"])),
     }
     script_out = {

@@ -326,6 +326,47 @@ scanlines and leaves one that would not end by line 211 for the next VBlank (tha
 Showcase re-recorded: no blank frames (32 before). wave_mega 5/5; wave_sprites singles still match PWAN's frames
 (median 0-4 differing pixels); SPR_DOUBLE still fails only on its known turn input.
 
+## Polish: heavy rain and terrain animations (2026-10-05)
+
+Heavy rain (Primordial Sea; `tools/graphics/build_strong_weather_effects.py`, SPA 1032, scripts 961 / 962):
+- Denser rain. Rain Dance's emitter already fills the battle's particle pool: its drops fell in waves (a burst, about
+  0.4 s of nothing, another burst), each drop living 40 frames, most of them below the screen. The drops now live 22
+  frames (about one crossing of the screen) and the emission is x1.5: steady rain, 1.58x the rain pixels of the same
+  scene before (A/B in the harness), with gaps gone.
+- Tint: the background dims towards a dark blue-grey (16, 28, 64) instead of black, at the same strength, and the
+  battlers take a faint blue tint (3/16, ChangeColor on every battler) that follows the background fade in and out.
+
+Terrains (`w2u_terrain_texture.cpp`, White 2; Black 2 keeps the immediate swap):
+- Fades. A terrain clone changes only the floor's image and its palette range (one contiguous run from entry 0 on
+  every field, found at run time by comparing the palettes), and the image indices differ, so the floors cannot
+  cross-fade through one palette. The floor's palette range fades to the incoming floor's average colour, the image is
+  swapped while every floor colour is that colour, and the incoming palette fades in; only the floor range is uploaded
+  (palette VRAM, in the VBlank hook). A new terrain fades in once its move's animation has ended (Misty's and
+  Electric's animations fade the whole field palette themselves; the two would fight); Electric keeps its masked swap
+  under its animation's black field fade as its fade-in. Every terrain fades out at its end message (expiry, Steel
+  Roller, Defog) or into a replacing terrain. Ambient particles stop spawning when the fade-out starts and the system is
+  released once its emitters have died out (`GFL_PTC_GetEmitterNum`, at most 6 s), so nothing is cut off. An animation
+  that starts a field fade during a floor fade finishes the floor fade at once.
+- Pace (`W2U_TERRAIN_PACE`): floor UV animation per 60 fps frame / ambient emit gap / fade halves.
+
+  | Terrain | Floor step | Emit gap | Fade out / in | Feel |
+  |---|---|---|---|---|
+  | Electric | 1.25 (was 0.5) | 20 (was 32) | 10 / 14 | quick, busy |
+  | Grassy | 0.31 | 130 (was 100) | 26 / 40 | calm |
+  | Misty | 0.25 | 240 (was 200) | 30 / 46 | calmest |
+  | Psychic | 0.56 mean, two out-of-step waves (0.04-1.3) | 28-110, irregular | 20 / 30, wobbling | uneven, surging |
+
+  Measured floor motion while idle (mean frame difference): Electric 1.8, Psychic 0.6-2.6 drifting, Grassy 0.7,
+  Misty 0.45.
+- Build guard: the ESDB maps `__aeabi_uidivmod` / `__aeabi_idivmod` but not the plain `__aeabi_uidiv` /
+  `__aeabi_idiv`; a call to one stayed a branch to itself after relocation (an endless loop: the first version hung
+  every Grassy / Misty / Psychic battle at the Surge popup). `-Os` emits them even for constant divisors. The
+  `w2u_main.dll` rule now fails when the ELF imports either (the PWAN runtimes already had this check).
+- Verified headless (recordings `w2u-local/harness/previews.yml`): Surge → fade-in after the animation, idle turn,
+  Steel Roller → fade-out, for all four terrains; heavy rain start and turn-end effects. wave_field 18/18
+  (PRIMAL_RAIN_END given `no_crits`: a critical Flamethrower could knock Wobbuffet out), wave_b 10/10. Heap audit:
+  core 111,112 bytes resident, 88.4 KB free with no module, 20.1 KB with every module.
+
 ## Fix: PMC heap out of memory (2026-10-05)
 
 Symptom: a battle froze after both sides chose (top screen "What will X do?", bottom screen the idle Poke Ball), e.g.

@@ -108,6 +108,13 @@ w2u_main_dll = custom_target(
     strip_flag="$6"
     checked_packager="$7"
 
+    # The ESDB maps __aeabi_uidivmod / __aeabi_idivmod but not the plain division helpers: a call to one stays a
+    # branch to itself after relocation (an endless loop at run time). -Os emits them even for constant divisors.
+    if arm-none-eabi-nm -u "$input" | grep -E ' __aeabi_u?idiv$'; then
+      echo "[!] w2u_main imports a division helper PMC cannot resolve (use u64 division or a multiply)." >&2
+      exit 1
+    fi
+
     set -- python3 "$checked_packager" --jar "$ctrmap" --output "$output" -- -i "$input" --fourcc DLXF --esdb "$esdb" --generate-relocations
     if [ "$strip_flag" = '--strip' ]; then
       set -- "$@" --strip
