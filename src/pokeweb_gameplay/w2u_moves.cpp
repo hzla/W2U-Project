@@ -1786,10 +1786,11 @@ static bool SetTerrainFromAbilityCore(
         return false;
     }
 
-    // Queue the same visual sequence used by PW2Code's terrain field-effect
-    // handler, keeping the move animation between the popup and message.
     ServerDisplay_AbilityPopupAdd(serverFlow, battleMon);
 
+#if defined(W2U_TARGET_B2)
+    // Black 2 (no terrain fades yet): the terrain move's animation between the
+    // popup and the message, as PW2Code's terrain field-effect handler does.
     u32 pokePos = Handler_PokeIDToPokePos(serverFlow, pokemonSlot);
     ServerDisplay_AddCommon(
         serverFlow->serverCommandQueue,
@@ -1799,6 +1800,12 @@ static bool SetTerrainFromAbilityCore(
         animationMoveID,
         0,
         0);
+#else
+    // An ability plays no move animation (the terrain moves keep theirs): the
+    // terrain fades in as its start message appears.
+    (void)animationMoveID;
+    W2U_TerrainTexture_DeferStartUntilMessage(msgID);
+#endif
 
     HandlerParam_StrParams terrainMessage = {};
     BattleHandler_StrSetup(&terrainMessage, 2u, (u16)msgID);
