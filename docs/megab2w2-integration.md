@@ -132,6 +132,29 @@ Battle with heavy rain + Electric Terrain: both command screens show both indica
 | Move flags synced with Showdown (wind, slicing, bite, pulse, bullet, dance, powder): 53 moves gain flags, 41 lose wrong ones | `FLAG_POWDER` is bit 14, which vanilla data uses for "not in Sky Battles": 39 moves (Earthquake, Surf, Body Slam, Seismic Toss, Substitute, Spikes ...) counted as powder moves, so Overcoat and Safety Goggles blocked them. Old moves lacked the newer flags (Gust / Hurricane not wind, Slash / Leaf Blade not slicing, Fire / Ice / Thunder Fang not biting, Aura Sphere not pulse, Shadow Ball / Sludge Bomb not ball moves), so W2U's Strong Jaw / Mega Launcher / Bulletproof and the ported Sharpness / Wind Rider / Wind Power missed them. Bullet Punch was a ball move and Bug Bite a biting move (neither is in Showdown) |
 | `IsW2UIgnorableAbility` lists the breakable Gen 8 / 9 abilities (Showdown `breakable`) and Aura Guard | Mold Breaker / Teravolt / Turboblaze could not get past any ported ability (Good as Gold blocked a Mold Breaker Thunder Wave) |
 
+## Fix: Gen 1 sprites (Mega preview leftovers)
+
+Reported by hzla: mostly Gen 1 sprites are broken. Cause: `tools/pwan/apply_mega_preview_low_ids.py`, a temporary
+preview that shows every Mega form under species 1, 2, 3 ... (96 Megas -> species 1-96), had left its state in the
+data:
+
+- `assets/pokeweb_pwan/config.bin`: 89 rows (species < 650, form 0) pointing at Mega PWAN assets, so Bulbasaur was
+  drawn with Mega Gengar's animation data, Pikachu with another Mega's (broken back sprites, missing fronts);
+- `data/graphics/pokegra/icons`: the party icons of species 1-96 were Mega icons, and
+  `data/pml/pokeicon_palette_map.bin` gave them the Megas' icon palettes;
+- `src/pokedex_expansion/w2u_pokegra.cpp`: `MEGA_PREVIEW_SPECIES_START/END` = 1-96 marked them as expanded graphics.
+
+Fixed (`69c7eab82`): the 89 rows removed (each matches the preview report's species and asset; the 118 real form rows
+below 650 stay), icons and icon palettes of species 1-96 restored from before the preview (`5351a2970^`), the preview
+range set to 1-0. The battle sprite files themselves (a/0/0/4 below file 13000) are vanilla's and were never touched.
+
+Checked in battle: every species 1-649, front and back, side by side with vanilla White 2 - all match (survey: one
+trainer battle per 6 species; the foes use Memento so each faints in turn, the player switches through the same
+6). Species 650-1023 (PWAN sprites, no vanilla counterpart): every front and back drawn whole and with its own
+colours, Goodra (706) included. Not covered: 722-724, which Pokeweb's battle harness refuses to build (it treats
+personal records 722-724 as Deoxys' form records); the harness, not W2U, is the limit there. Tools (local,
+`w2u-local/harness`): `sprite_survey.py` (battles), `survey_grid.py` (24 species per sheet, vanilla | W2U).
+
 ## Phase 3: abilities
 
 ### Wave A: 51 hook-free abilities
