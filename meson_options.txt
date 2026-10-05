@@ -17,7 +17,7 @@ option(
 option(
   'strip_rpms',
   type: 'boolean',
-  value: false,
+  value: true,
   description: 'Strip unused RPM symbols, symbol names, and redundant internal relocations from generated ROM DLLs while retaining unstripped ELF build artifacts.'
 )
 
