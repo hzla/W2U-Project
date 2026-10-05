@@ -1111,6 +1111,8 @@ b2u_main_asm_inputs = [
   files('pokeweb_gameplay/w2u_move_animation_hooks.s'),
   files('pokeweb_gameplay/w2u_transform_hooks.s'),
   files('pokeweb_gameplay/w2u_damage_hooks.s'),
+  files('pokeweb_gameplay/w2u_revival_hooks.s'),
+  files('pokeweb_gameplay/w2u_weather_hooks.s'),
   files('pokeweb_gameplay/w2u_terrain_indicator_hooks.s'),
   files('pokeweb_gameplay/w2u_terrain_texture_hooks.s'),
 ]
@@ -1416,6 +1418,8 @@ b2u_main_sources = [
   files('pokeweb_gameplay/w2u_items.cpp'),
   files('pokeweb_gameplay/w2u_mega.cpp'),
   files('pokeweb_gameplay/w2u_moves.cpp'),
+  files('pokeweb_gameplay/w2u_revival.cpp'),
+  files('pokeweb_gameplay/w2u_weather.cpp'),
   files('pokeweb_gameplay/w2u_terrain_indicator.cpp'),
   files('pokeweb_gameplay/w2u_terrain_texture.cpp'),
   files('../include/util/filesystem.cpp'),

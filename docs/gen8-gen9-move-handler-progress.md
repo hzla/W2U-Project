@@ -1,8 +1,10 @@
 # Gen 8/9 move-handler progress
 
 Scope: the [reference](gen8-gen9-move-handler-reference.md), easiest first.
-Hard entries and entries requiring doubles-format validation are deferred.
-Unlisted moves remain pending; this is an incremental batch, not full coverage.
+The Hard rollout is in progress; the non-Hard doubles rollout is complete.
+Inventory: 159 reference entries; 153 wired/implemented, 4 Hard pending/blocked,
+0 non-Hard doubles-specific deferred, and 2 blocked by missing specification/data.
+This is move-handler coverage, not a claim of every dependent ability/item system.
 Animations are not changed.
 
 Testing policy: reused/native-data effects are wired and build-checked without
@@ -11,6 +13,27 @@ tests. "Wired" below is not a claim of new emulator or full regression coverage.
 
 | Move | Implementation | Focused tests | Status |
 | --- | --- | --- | --- |
+| Last Respects (854) | Existing `moves/flow` reads a resident per-trainer faint-event counter; native committed-faint hook and party-membership ownership; cap 5,050 | 5 doubles cases: fresh battle, elapsed turns, allied self-KO, opposing self-KO and one faint on each side; exact power/HP/PP; compiled caps, simulation, lifetime, ownership and clean-US W2/B2 guards | Implemented for non-multi battles; multi-trainer battles explicitly fail |
+| Revival Blessing (863) | Existing `moves/flow` starts a resident adapter transaction; native fainted-party chooser and authoritative revival work, with no item consumption or user switch | 9 cases: either fainted choice, living-choice retry, cancel, odd/even half HP, no fainted member, Heal Block, native AI revival and a doubles revive/faint sequence proving 150-power Last Respects; compiled native layouts, transaction bounds, ownership, reset and Sketch restrictions | Implemented, focused-tested; actual revived-Mega, multi/network and replay coverage pending |
+| Dragon Darts (751) | Existing `moves/flow` expands unredirected doubles targets, then uses native one-pass eligibility filtering; resident hit-count/spread adapters preserve per-foe Pressure and called-Prankster origin | 27 doubles cases: two full-power hits, ally selection, either/both type-immune/protected/airborne foes, either accuracy miss, selected/other/immune Follow Me centers, Pressure, Wonder Guard/Mold Breaker, Parental Bond, Wide Guard, Substitute, direct and Rest/Sleep Talk-called Prankster; exact HP/doll/PP, target counts and accuracy-roll counts plus 6 compiled/native ABI checks | Implemented, focused doubles-tested; Ice Face, Ally Switch, triples and multi-battle coverage pending |
+| Shed Tail (880) | Existing `moves/flow` pays half-ceil HP, creates the native quarter-HP Substitute, then uses native replacement selection; resident switch-out filter transfers only the doll to both server and client | 19 singles cases: odd/even boundaries, low HP, existing doll, no bench, Sitrus ordering, trapping, hazards, actual incoming damage to the doll, excluded stages/Focus Energy/Gastro Acid/Aqua Ring/Power Trick, and an ordinary Baton Pass control; compiled preflight, simulation, two-copy lifetime and clean-US W2/B2 checks | Implemented, focused-tested; multi-battle ownership and revived-Mega coverage pending |
+| Chilly Reception (881) | Existing `moves/terrain` snow transaction followed by native replacement selection; resident once-per-turn preparation message only for direct selection | 9 singles cases: ordinary/native choice, existing snow, Rain replacement, Icy Rock, Mean Look bypass, entry hazards, Sleep Talk without early cue, no bench and both effects unavailable; compiled callback and resident turn-boundary guards | Implemented, focused-tested |
+| Snowscape (883) | Existing `moves/terrain` queue plus resident logical snow; native cold-weather transport preserves distinct Hail, duration and delayed display ownership | 19 singles cases: no chip, Ice physical Defense only, 5/8-turn expiry, repeat failure, Hail/Rain replacement, restored hail chip, Ice Body, Snow Cloak accuracy boundary, Slush Rush, Cloud Nine/Air Lock, Veil, Weather Ball and Synthesis; compiled lifecycle/transport and clean-US W2/B2 call checks | Implemented, focused-tested; native hail graphics reused, no new assets |
+| Shell Side Arm (801) | Final-target damage forecast in existing `moves/type`; per-action category/contact cache and separate retaliation history; no shared move-data mutation | 20 singles and 2 doubles cases: raw/staged stats, rounding ties, Wonder Room, poison, excluded item/ability modifiers, Helmet/Rough Skin/Fluffy, Counter/Mirror Coat and Follow Me's final target; compiled forecast, simulation and native ABI checks | Implemented, focused-tested; broader AI/multi-battle coverage pending |
+| Court Change (756) | Transactional native side-factor re-registration in existing `moves/screens`; preserves duration/layers, swaps custom Web/Veil ownership, excludes current-turn guards | 16 doubles cases: empty sides, Reflect/Light Screen and Light Clay durations, hazard layers, Mist/Safeguard/Tailwind/Lucky Chant, Web/Veil ownership, actual damage and screen non-stacking; compiled asymmetric duration/pledge/guard checks | Implemented, focused doubles-tested; future entry/expiry and multi-battle coverage pending |
+| Rage Fist (889) | Battle-long resident per-party direct-hit counter; existing `moves/flow` power callback; narrow Disguise/Transform services | 12 doubles cases: 0/1/2/5/6/7 hits, Double Kick, Skill Link Bullet Seed, Substitute, Disguise, native Transform and Mimic registration; compiled caps/simulation/self-hit/lifetime guards | Implemented, focused doubles-tested; native switch/revival coverage pending |
+| Teatime (752) | Snapshot eligible native-filtered recipients, then synchronous native consumption/temporary berry work in `moves/flow` | 16 doubles cases: four mixed berries, full HP/no status, no holders, Unnerve, Magic Room, Embargo, Substitute/hiding, Cheek Pouch, Symbiosis, Ion Deluge/Electrify, three absorbers, retained absorber berry and Ground holder; compiled bounds/duplicate/transaction guards | Implemented, focused doubles-tested |
+| Doodle (867) | Atomic active-ally ability transaction in existing `moves/ability`; native ability work preserves party truth and re-registers changed abilities | 10 doubles cases: two/one/no changes, protected user/partner/target, Receiver asymmetry, custom Fur Coat registration, repeat no-op; compiled restriction/capacity checks and old-ROM negative control | Implemented, focused doubles-tested |
+| Decorate (777) | Native target boosts in `moves/stats`; hiding filter and narrow Crafty Shield correction | 9 doubles cases: boosts/caps, Simple, Contrary, Protect, Substitute, Fly, Crafty Shield, Magic Bounce | Implemented, focused doubles-tested |
+| Expanding Force (797) | Execution-time grounded Psychic Terrain power/target resolution in `moves/terrain` | 3 doubles cases: ordinary single target, grounded terrain spread, Air Balloon; independent terrain/spread damage oracle | Implemented, focused doubles-tested |
+| Snipe Shot (745) | Resident redirection query with scoped `moves/flow` veto; target immunities remain native | 4 doubles cases: Follow Me with Water Gun control, remote Storm Drain, selected Water Absorb; critical stage observed | Implemented, focused doubles-tested |
+| Jungle Healing (816), Lunar Blessing (849) | Shared active-ally quarter-heal/cure work in `moves/flow`; user-target metadata avoids native empty ally target lists | 8 doubles cases each: both allies, full/capped HP, actual burn/poison cures, status-only benefit, Substitute, hiding, ally Heal Block | Implemented, focused doubles-tested |
+| Life Dew (791) | Same active-ally helper, without curing; native recipient Water immunity dispatch | 10 doubles cases: healing/caps, Substitute, hiding, Water Absorb, Dry Skin, Storm Drain, statuses remain with residual damage, ally Heal Block | Implemented, focused doubles-tested |
+| Dragon Cheer (913) | `moves/stats` applies a fixed resident critical bonus using native Focus Energy exclusion; narrow Psych Up/Transform copy service | 10 doubles cases plus two attack follow-ups: Dragon/non-Dragon ranks, repeat/Focus Energy, Protect/Substitute/hiding, Soak type change, Psych Up and Transform copies | Implemented, focused doubles-tested |
+| Make It Rain (874) | `moves/flow` queues one native self drop per action and delegates successful-hit coins to Pay Day; SV metadata | 5 doubles cases: two hits, one/both protected, Contrary, Simple; native bonus pool and independent spread damage checked | Implemented, focused doubles-tested |
+| Matcha Gotcha (902) | `moves/flow` records actual hit damage; queues Ooze reversals before ordinary native drains; scoped native thaw adapter | 9 doubles cases: both drains, burn chance boundary, Big Root, either Ooze target, actual frozen user/targets, Substitute | Implemented, focused doubles-tested |
+| Mortal Spin (866) | Existing expanded Rapid Spin cleanup in `moves/hazards`, guarded against fainted/departed user; native poison metadata | 7 doubles cases: both targets, Steel immunity, three native hazards, native Bind/Leech Seed cleanup; compiled faint guard | Implemented, focused doubles-tested |
+| Coaching (811) | Ally-only selector/filter and recipient-owned native boost work in existing `moves/stats`; explicit hiding/Sky Drop exclusion; no new DLL or resident hook | 13 headless cases passed: doubles ally only, both/one capped, Simple/clamping, Contrary/floor/ceiling, Protect, Substitute, Crafty Shield, Fly exclusion, singles no-ally failure; all four battlers' commands/PP/stages and next turn checked | Implemented, focused doubles-tested |
 | Ruination (877) | Resident Super Fang alias; no new DLL | 9 headless cases passed: full/odd/even/1 HP, boosted Defense, Protect, Wonder Guard, Substitute, miss; next-turn smoke passed | Implemented, focused-tested |
 | Infernal Parade (844) | Resident Hex alias + existing 30% burn data | Skipped: native reuse | Wired |
 | Flip Turn (812) | Resident U-turn alias; preserves Water typing | Skipped: native reuse | Wired |
@@ -58,6 +81,33 @@ tests. "Wired" below is not a claim of new emulator or full regression coverage.
 | Chloroblast (835) | Same cost callback, but native hit-only marker and effective Rock Head veto | Same 15 cases plus one follow-up passed; misses/protection/immunity do not charge, and absorbed hits do | Implemented, focused-tested |
 | Clangorous Soul (775) | Shared direct HP-payment/stat transaction in `moves/stats`; documented 33%-floor policy, five +1 boosts | 21 singles cases and one repeat-action follow-up passed: HP boundaries/rounding, caps, Simple, Contrary, Substitute, Magic Guard, Rock Head, Sitrus, Snatch and Throat Chop selection rejection | Implemented, focused-tested |
 | Fillet Away (868) | Same executor-local transaction; floor-half payment and Attack/Special Attack/Speed +2 | Same 21 cases plus one follow-up passed; remains selectable after Throat Chop | Implemented, focused-tested |
+| Ice Spinner (861) | Hit marker and post-reaction terrain removal in `moves/terrain`; living/on-field user required | 15 singles cases plus follow-up passed: all terrains, no terrain, airborne, KO, protection, immunity, miss, Substitute, contact KO, Red Card and Life Orb KO | Implemented, focused-tested |
+| Body Press (776) | Defense selector in `moves/stats`; resident native attack-stat and critical-stage adapters | 12 singles cases passed: distinct Attack/Defense, either stat's stages, critical positive/negative stages, Huge Power, Fur Coat, Choice Band, Eviolite, burn and Unaware | Implemented, focused-tested |
+| Tidy Up (882) | Both sides' hazards and active Substitutes cleared in `moves/hazards`; native Attack/Speed boosts, not Snatchable | 14 singles cases plus two follow-ups passed: caps, either/both dolls, all hazards/Web reapplication, Simple, Contrary, screens, terrain and Snatch | Implemented, focused-tested; no doubles-format claim |
+| Lash Out (808) | Applied-stat history and same-turn doubling in `moves/flow` | 11 cases passed: actual/prevented/capped drops, Contrary, entry Intimidate, turn reset, Haze/Topsy-Turvy and Gooey/Instruct | Implemented, focused-tested |
+| Burning Jealousy (807) | Pre-damage raised-stat snapshot; native burn work in `moves/flow` | 12 singles cases passed: current/earlier turn, caps, Weakness Policy ordering, Contrary, Sheer Force, Water Veil, Shield Dust and Substitute | Implemented, focused-tested |
+| Alluring Voice (914) | Same eligibility family; native confusion and sound/Substitute routing | 12 cases passed, including Own Tempo, confusion veto, Sheer Force and sound bypass | Implemented, focused-tested |
+| Eerie Spell (826) | Native last-used move/active-slot PP drain in `moves/flow` | 10 cases passed: PP boundaries, no history, Struggle, KO, Shield Dust, Sheer Force and Substitute | Implemented, focused-tested |
+| Dynamax Cannon (744) | Ordinary damage data; resident Encore exclusion | Native damage tests skipped; exclusion and ordinary Encore control passed | Wired, restriction tested; no Dynamax system |
+| Meteor Beam (800) | Native charge flow; confirmed charge-phase Special Attack boost in `moves/terrain` | 10 cases passed: two-turn/Herb, Magic Room, weather, Cloud Nine, caps, Simple, Contrary and Sheer Force | Implemented, focused-tested |
+| Electro Shot (905) | Same boost flow; effective-rain charge skip | 11 cases passed: rain/Herb priority, sun, Cloud Nine, Magic Room, caps, Simple, Contrary and Sheer Force | Implemented, focused-tested |
+| Upper Hand (918) | Pending damaging-action priority bracket in `moves/flow`; native flinch data | 10 cases passed: priority 0–4, priority status, already-acted target, Inner Focus, Shield Dust and Sheer Force | Implemented, focused-tested |
+| Blazing Torque, Wicked Torque, Noxious Torque, Combat Torque, Magical Torque (896–900) | Native damage/status; shared resident copy/call restrictions | All 40 exclusion cases passed for Encore, Mimic, Sketch, Me First, Copycat, Instruct, Sleep Talk and Assist | Wired, restrictions tested |
+| Scorching Sands (815) | Existing burn/user-thaw data; native target-thaw adapter with unchanged Ground damage context | Native effects not redundantly emulator-tested; compiled host adapter checks passed | Wired, source/build/host checked |
+| Misty Explosion (802) | Native Explosion transaction; grounded Misty Terrain boost and expanded Damp predicate | All 11 singles cases passed: terrain/removal/replacement, airborne/Gravity, Damp/Mold Breaker, Protect, Magic Guard and Parental Bond | Implemented, focused-tested |
+| Tar Shot (749) | One non-stacking Fire-effectiveness flag; native Speed -1 in `moves/type` | All 15 cases passed: repeat/cap/Clear Body/Contrary, type changes/added types, 16× weakness, resistance, Wonder Guard, Flash Fire, Substitute and switch cleanup | Implemented, focused-tested |
+| Raging Bull (873) | Base type before ability/position conversions; native Brick Break and existing Veil removal in `moves/screens` | 15 singles cases passed across focused runs: four Tauros forms, non-Tauros, Normalize/-ates, Electrify/Ion Deluge, all screens, Protect and immunity | Implemented, focused-tested |
+| Snap Trap (779), Thunder Cage (819) | Native Bind aliases; scoped 1/8 residual damage or 1/6 with Binding Band, safe overlay veneer | 8 cases each passed: activation, residual fractions, ordinary Bind control, Shield Dust, Sheer Force, Protect and Substitute | Implemented, focused-tested |
+| No Retreat (748) | Five native stat boosts and source-dependent self-trap in `moves/trapping`; resident once-per-occupant flag | 7 cases passed: cap, repeat, Simple, Contrary, Ghost and pre-existing trap | Implemented, focused-tested |
+| Jaw Lock (746) | Real-hit reciprocal native traps in `moves/trapping` | 8 cases passed: both Ghost exemptions, prior trap, Shield Dust, Sheer Force, Protect and Substitute | Implemented, focused-tested |
+| Octolock (753) | Core-owned source-linked state; field residual in `moves/trapping` | 10 cases passed: repeated ticks, floor, reapplication, Clear Body, Simple, Contrary, Ghost, protection/Substitute and source exit | Implemented, focused-tested |
+| Salt Cure (864) | Native secondary eligibility; resident occupant state and current-type residual in `moves/volatile` | 10 cases passed: ordinary/Water/Steel fractions, reapplication, Shield Dust, Sheer Force, Magic Guard, Protect/Substitute and source exit | Implemented, focused-tested |
+| Syrup Bomb (903) | Same lifetime service; three non-refreshing, source-linked Speed drops | 11 cases passed: exact duration, reapplication, Clear Body, Simple, Contrary, Shield Dust, Sheer Force, Bulletproof, Protect/Substitute and source exit | Implemented, focused-tested |
+| Stuff Cheeks (747) | Forced native berry consumption/effect work plus Defense +2 in `moves/flow`; resident selection gate | 15 cases passed: full HP, healing once, cap/no berry, Simple, Contrary, Recycle, Belch, Cheek Pouch, Unnerve, Magic Room, Embargo and execution-time removal | Implemented, focused-tested |
+| Corrosive Gas (810) | Native item-destruction work in `moves/flow`; no consumption/Recycle bookkeeping | 13 singles cases passed: Sticky Hold/Mold Breaker, protected species items/Mega stones, unrelated holders, no item, Magic Room, Recycle, Protect/Substitute | Implemented, focused-tested; no doubles claim |
+| Glaive Rush (862) | Resident next-action window; `moves/volatile` activation uses native attacker ownership | 9 cases passed: either speed order, Protect, accuracy/evasion, immunity, fixed damage/OHKO, NPC ownership and Truant | Implemented, focused-tested |
+| Blood Moon (901), Gigaton Hammer (893) | Resident successful selected-move history and selection-only rejection; no child allocation | 9 cases each passed: repeat rejection, intervening move, miss/Protect, Instruct, Sleep Talk, Choice lock, no alternatives and faster Encore/Struggle | Implemented, focused-tested |
+| Psychic Noise (917) | Native damage + 100% two-turn Heal Block data; existing sound/Substitute, Aroma Veil and healing gates | Packed record and native overwrite rejection audited; no new DLL or redundant emulator suite | Wired, native-data checked |
 
 ## Native data audited (51 moves)
 
@@ -101,302 +151,126 @@ and packed Chilling Water record were checked. No extra exclusion hook or DLL
 is needed with that pool. Expanding Metronome later requires an explicit
 Chilling Water exclusion, rather than silently admitting it.
 
-## Pending/partial
+## Deferred and dependencies
 
-Scorching Sands' user-thaw flag is wired; its target-thaw path still needs
-audit. The legacy `FLAG_DEFROSTS_TARGETS` name is misleading: native bit 10
-allows a frozen user to thaw when using the move, rather than proving target
-thaw. Torque copy/call restrictions remain pending. Other unlisted eligible
-moves are pending; Hard/doubles entries
-remain deferred. Remaining small families include protection and weather
-rules. Utility Umbrella is not an implemented item; Hydro Steam's umbrella
-exception remains an item dependency. No item ID or working item behavior is
-invented for that dependency.
+Hard pending (1): Population Bomb. Its
+ordinary and Skill Link branches passed 16 focused cases, but Loaded Dice's
+missing item system awaits a scope decision. It is not counted complete.
 
-## Build and lifetime checks
+Hard blocked by explicit scope choice (3): Tera Blast, Tera Starstorm, Order Up.
+The missing Tera/Stellar and Commander systems are outside this rollout.
 
-White 2 uses the existing dynamic resolver for managed mechanics; exact vanilla
-aliases remain resident. Black 2 retains the same static registration route.
-No compatibility baselines are refreshed merely to obtain passing checks.
+After this rollout, audit existing Gen 6/7 custom move logic against the linked
+Bulbapedia move descriptions and add focused headless tests. Exclude plain
+metadata effects and handlers that merely copy/reuse a Gen 5-or-earlier native
+handler. Report generation-specific rules and unverified dependencies explicitly.
 
-The registry has 101 managed moves, 59 managed abilities, 22 groups and 183 API
-entries. Native aliases resolve getters from each game's own table without extra child allocations or
-redundant getter imports. Stripped W2 packaging/export/import checks and the B2
-static compatibility report passed; B2 behavioral tests were not run. The
-stripped heap audit passed against the unchanged 164 KiB baseline: core 55,368
-bytes (67,728 expanded); `moves/guards` 3,300, `moves/flow` 4,276, `moves/type` 3,540,
-`moves/terrain` 4,148, `moves/hazards` 2,116 and `moves/stats` 3,756 fixed bytes;
-`abilities/defense` 1,604 and `abilities/forms` 1,892 fixed bytes; conservative all-group free space 57,456
-bytes including the audit's resident set and allocation overhead. This is a
-static budget calculation, not an emulator stress/load-peak test.
+Incomplete specification/data (2):
 
-Ruination testing exposed and fixed a pre-existing resident end-of-turn lookup
-past the native 24-battler array. The event sentinel (31) remains unchanged.
-The pre-change ROM was rejected as a negative control (1 damage, expected 117).
-Ruination's emulator results precede the final native-ID alias consolidation;
-that consolidation and the subsequent reused effects were build-checked only.
+- Ivy Cudgel: mask item IDs and working Ogerpon/mask data are absent. Its
+  critical-stage data is not counted as a completed mask-dependent handler.
+- Nihil Light: no assigned move ID or approved conventional turn-based
+  adaptation. The move-range sentinel is not repurposed.
 
-The old Barb Barrage/Hex build was rejected as a real negative control: burn
-incorrectly doubled its power. Repeat-action tests retain completion before
-end-of-turn flags reset, require correct PP per action, and recheck target
-action state and already-applied damage. Normal BIOS IRQ/SWI execution is not
-misclassified as an ARM abort. Fast outcome-oracle/deadline tests: 95 passed;
-these do not substitute for each new handler's emulator suite.
+Related systems not implemented by this batch: Hunger Switch (Aura Wheel),
+Utility Umbrella (Hydro Steam), Loaded Dice (Triple Axel), Dynamax and Tera.
+Existing BW2 protection success odds and Parental Bond's half-power rule remain.
+No animation, learnset, new item or global generation-rules migration is claimed.
 
-Focused interaction checks exposed three missing ESDB owners: battle setup,
-Parental Bond's damage-root call, and added-type effectiveness. Their existing
-hooks are now wired to clean-US W2/B2 call sites; the effectiveness wrapper
-preserves the native fifth argument (including temporary type changes).
-Branch-hook verification rejects unresolved owners. Legacy `FULL_COPY`
-aliases are outside this new branch-hook check. Core/child/B2-core packaging
-uses a fresh temporary RPM and validates it before replacing the output:
-an exit-zero RPMTool parser error can no longer validate an old DLL. The
-11 focused hook/packaging/native-item/route-layout unit checks, two
-Transform-hook CPU/translation checks and one compiled native-Overcoat
-fallback guard passed.
-The compiled shared protection-start policy also passed, covering all eleven
-native/custom counter moves, non-protection history and wrong-owner callbacks.
-The compiled damage-weather adapter/child callback passed 720 combinations
-of weather, move/type, owner and module availability, without changing real
-weather or the native damage context's ID/type/owner. These are host checks,
-not emulator fault-injection or lifecycle coverage.
-The compiled final-parameter dispatcher and Terrain Pulse callbacks passed
-1,920 combinations of move, terrain, grounding, ability, module availability,
-Electrify/Ion Deluge and owner. The same context supplies the final parameters;
-native conversions stay unchanged without a matching child callback.
+## Verification and build
 
-Fickle Beam interaction testing also exposed Parental Bond's rewrite-once
-conflict: its second-hit base-power rewrite was rejected after the move's
-rewrite. The ability now applies the same half-power rule through the later
-power-ratio stage. This is not a switch to modern quarter-damage rules.
+Focused custom-handler tests run with the sibling Pokeweb-Serverless headless
+runner. They observe native PP, completion/history, events and actual HP/stages;
+RNG control changes draws, not calculated outcomes. Native data and exact reuse
+skip redundant emulator tests as requested. Generated output is ignored;
+fixture ROMs and snapshots are cleaned up, while fixture saves are retained.
 
-Prior delivery: `White2Upgrade-gen89-batch2-20261003-234000.nds`.
-SHA-256: `50da1a7a6e91f447ab4ea0290a36e955ed03e14acc1e166da70af1061976f8bb`.
-All nine new custom-handler suites were rerun against this exact final build:
-151 cases passed. Ruination's earlier native-reuse tests are not included in
-that total. Reused effects, including Double Shock, were build-checked only.
+```sh
+# Run from the sibling Pokeweb-Serverless repository:
+python3 scripts/test-move-handlers.py --move octolock --rom <relative-ROM-path>
+python3 scripts/test-move-handlers.py --move blood-moon --rom <relative-ROM-path>
+python3 scripts/test-move-handlers.py --move coaching --rom <relative-ROM-path>
+python3 scripts/test-move-handlers.py --move dragon-darts --rom <relative-ROM-path>
+python3 scripts/test-move-handlers.py --move last-respects --rom <relative-ROM-path>
+python3 scripts/test-move-handlers.py --move revival-blessing --rom <relative-ROM-path>
+# Run from this repository:
+python3 -m unittest discover -s tools/tests -p 'test_*.py'
+ninja -C build-stripped src/black2upgrade-compatibility.json src/white2upgrade-battle-heap-audit.json
+```
 
-Prior delivery: `White2Upgrade-gen89-batch3-20261004.nds`.
-SHA-256: `0e7ceb1513be66b365830d972ddf74c3034ebb0304b11a4ec8c6b3e28295806f`.
-Poltergeist and Grassy Glide were rerun on this exact final build: 24 cases
-passed. The prior 151-case batch was not rerun on this build. Native message
-construction/arguments were checked, not visual rendering. Full teardown,
-load-peak stress, doubles, Mega, nonbattle and B2 behavioral suites were not run.
+The sibling runner's `runtime/battle-harness/INTERACTION-TESTS.md` describes
+fixture authoring and CLI use. Detailed per-case reports remain in its ignored
+`work/move-handlers/` output. Cases in the table were validated across successive
+builds; all earlier suites were not rerun on the final ROM.
 
-Grassy Glide's first child-only implementation failed the action-order test:
-native priority queries precede temporary move registration. Its adjustment
-now lives in the existing resident field tracker, using the event's actual
-attacker rather than its sentinel owner. No new module or raw hook is added.
-The terrain getter uses the type's existing null-on-reset/removal invariant.
-Terrain setup, removal and replacement were exercised by the focused suite.
+The current registry contains 145 managed moves, 59 abilities, 13 items,
+229 API entries and 22 children (capacity 24). No new child group was required.
+W2 remains dynamically resolved; B2 links the same groups statically.
+Stripped RPM/export/import/linkage/staging checks and the B2 compatibility
+report pass (199 hooks, 256 imports, 50 raw anchors). No B2 baseline was refreshed.
 
-Poltergeist's Knock Off setup exposed a pre-existing item-hook ABI bug: native
-callers pass species, not a BattleMon pointer. The replacement now preserves
-native Giratina/Arceus/Genesect item protection without calling an alias of
-its own patched address, then checks every supported Mega stone. Host predicate
-and ABI guards passed; this is not full Mega or Symbiosis battle coverage.
-Shared-ROM fixture construction now rejects conflicting Personal ability-slot
-edits, preventing one trainer variant from silently changing another.
+Latest stripped heap audit: core 65,128 fixed / 80,336 expanded bytes.
+The no-custom resident set uses 74,832 bytes, saving 28,468 against the unchanged
+103,300-byte monolithic resident baseline. The largest one-group case saves
+19,288 bytes. Conservative all-group use is 131,920 bytes, leaving 36,016 of
+the patched 164 KiB heap, including the audit's residents and allocation overhead.
+These are static budgets, not observed peak allocations or load-time proof.
 
-Prior delivery: `White2Upgrade-gen89-batch4-20261004.nds`.
-SHA-256: `c9a843d8dc3a27f4164ff7397f8636baa5c6c6594e4ea733b22272cba49eaeaf`.
-All three storm suites passed on this exact build: 27 singles cases. Their
-accuracy draws are observed at the native RNG return, separately from secondary
-rolls. The initial Fly fixture incorrectly tested after landing; it was fixed
-to attack during the next native charge, without changing the move handler.
-The prior move suites were not rerun on this build. Native secondary/spread
-effects, visual behavior, lifecycle stress and full W2/B2 regressions are not
-claimed. No new module was added. Private route records now use four bytes;
-host checks enumerate every key, preserve 16-bit IDs/public ABI and reject an
-index capacity that would truncate the byte-sized module field.
+Focused tests also repaired shared defects: unmapped battle/Parental Bond/type
+hooks; native item-protection ABI; missing W2 resident consumption bookkeeping;
+source-trap continuation encoding; sound/Substitute classification; rewrite
+ordering and native event ownership. The linkage check now requires resident
+item-consumption and held-item-change hooks. New compiled host guards preserve
+these native context, lifetime, route and budget contracts.
 
-Prior delivery: `White2Upgrade-gen89-batch5-20261004.nds`.
-SHA-256: `f80e8aed185cbd555a673007fe8bc2aa5814c3bf74ea6515534ba6758aeadfa4`.
-Rising Voltage and Scale Shot passed on this exact build: 31 singles cases.
-Rising Voltage observes native floating results instead of inferring them from
-items alone. Scale Shot verifies unchanged user stages at every strike and one
-post-sequence change, and traces separate HP/Substitute damage without spillover.
-Its old per-hit self-stat metadata was removed. Native hit-count selection is
-reused, not replaced; four controlled draws cover 2–5 hits, not a statistical
-sample. Loaded Dice support is not claimed. Earlier suites were not rerun on
-this build; full W2/B2, lifecycle and visual regressions remain unverified.
+Broader doubles, Mega, vanilla/nonbattle, overlay/PWAN and B2 behavioral regressions,
+missing-module fault injection, repeated-battle unload/reload stress and peak-load
+heap acceptance were not run by this batch. Build/host checks do not substitute
+for those broader suites.
 
-Prior delivery: `White2Upgrade-gen89-batch6-20261004.nds`.
-SHA-256: `2866d922d5455c3fb15336f01efc23e796a7635af255e360b00f274eddd8dd22`.
-Steel Roller, Ceaseless Edge and Stone Axe passed on this exact build: 40 singles
-cases. The pre-handler ROM failed the native hazard-count assertion despite
-dealing ordinary damage, confirming the negative control. Hazard tests observe
-native side records without writing them; native layer caps and permanent
-conditions are checked. Sheer Force gains its native boost but suppresses the
-hazard; each Parental Bond strike can add a layer. Steel Roller checks native
-terrain-end message construction and follow-up execution, not visual rendering.
-No new group, hook or shared state was added. Earlier suites were not rerun on
-this build; full W2/B2, lifecycle and visual regressions remain unverified.
+Latest delivery: `White2Upgrade-gen89-batch40-20261005.nds`, copied to the outer
+`Repos/` directory without replacing existing ROMs or saves.
+SHA-256: `a5760f1ed082ea56c9eeb998df9cace9bdb6c7b9ab9bb9b7e29e6b887bfd16fc`.
+The final Last Respects and Revival Blessing reports contain 14 passing native
+cases in total; their input ROM hash matches this delivery. This batch also
+passes 88 repository host tests, 136 harness oracle/lifecycle tests, 20 fixture
+input tests and the fixture builder's strict TypeScript check. Privacy validation
+found no violations in publishable files or archive members.
+SHA-256: `8610bc5150ee2efe27b4c527109d3442714ec1a96e1164fabc6c090f0a699cc8`.
+This exact ROM passed all 27 Dragon Darts cases. The preceding batch 38 ROM
+passed all 19 Shed Tail cases, including a real attack on the transferred doll
+and both native server/client copies; its preceding focused build passed all
+9 Chilly Reception cases. The doubles fixtures
+configure both trainer data and the cold-boot runtime, supply two Pokémon per
+side, independently check native rule/counts and all four slots, submit both
+player commands, and restore one battle-start snapshot per case. The new input
+driver selects move slots and explicit ally/foe targets through signature-pinned
+native UI phases. HP/stages and selected major statuses are bounded pre-input
+fixtures; protection, hiding, traps, hazards and Heal Block use real move setup.
+No battle commands or calculated effects are overwritten. Triples and
+multi-battle ownership are not emulator-tested.
 
-Prior delivery: `White2Upgrade-gen89-batch7-20261004.nds`.
-SHA-256: `f2a39931e58f9858b24d40c62ef0e3bc610ef812697b02d8da80159a688e8f01`.
-Dire Claw passed all 116 singles cases on this exact build. An older core/child
-build with matching move metadata dealt damage but failed the secondary-status
-assertion, providing a real negative control. Activation precedes one uniform
-choice; immunities do not reroll. RNG observations are scoped to the hit-reaction
-handler window, excluding the AI's later full-paralysis check. Native sleep
-duration draws are distinguished from status selection. This enumerates
-controlled draws, not stochastic frequencies. No new module, hook or shared
-state was added; the core's fixed size is unchanged. Earlier suites, rainbow
-in doubles, full W2/B2, lifecycle and visual regressions were not run.
+The tests exposed and fixed native direct-stat Substitute rejection and
+MUST_HIT status reachability during Fly. Boosts use native work (including
+Simple/Contrary, caps and success), without removing Substitute or overwriting
+stages. The native hiding table/accessor and work-result signatures are pinned
+by the fixture builder. The harness now rejects doubles saves with fewer than
+two eligible living non-Egg Pokémon.
 
-Prior delivery: `White2Upgrade-gen89-batch8-20261004.nds`.
-SHA-256: `a46659a52886240247c89465b34766c762441f3aea9e452be90406c4eb41d0bc`.
-Take Heart passed all 24 singles cases on this exact build, including an
-additional repeated execution. The older core/children with matching final
-metadata failed the boost assertion. Native event/work-result observation
-checks the executing owner and combined success, not merely unchanged stats
-on failed attempts. Orbs and Thunder Wave establish statuses through normal
-battle actions; Snatch cures only its executing user, including at stat caps.
-No new DLL, hook or shared state was added; the core's fixed size is unchanged.
-Earlier suites, sleeping/frozen-user execution, doubles, full W2/B2, lifecycle
-and visual regressions were not run on this build.
+Earlier suites are recorded above and were not all rerun on this ROM. No
+Retreat/Jaw Lock/Octolock/Glaive Rush/Salt Cure/Syrup Bomb's 55 cases passed on
+batch 29; Blood Moon/Gigaton Hammer's 18 cases passed on batch 28. Final checks:
+84 repository host tests, 133 runner/oracle/deadline tests, 20 harness fixture
+tests, fixture TypeScript checking and the tracked/archive privacy scans passed.
+Generated fixture ROM cleanup and snapshot release were verified; fixture saves
+remain retained and output stays ignored. No full B2 behavioral suite was run.
 
-Prior delivery: `White2Upgrade-gen89-batch9-20261004-2.nds`.
-SHA-256: `e327050a6e1c5d39ef17a64349590a03acb14bf7923d7b077a94518dbac9e00d`.
-Aura Wheel passed all 15 singles cases on this exact build. The old build
-damaged a target when a non-Morpeko used the move, and the same oracle rejected
-it. Native Transform runs normally; the harness now reads active surface PP
-separately from preserved original PP. The resident hook is 12 bytes of code,
-adds no allocation/global state, and only fills the unused species word on
-successful Transform. Its exact W2/B2 success sites were checked against the
-clean US binaries; B2's static report has 171 hooks, 230 imports and 48 raw
-anchors. No new child group is added. Earlier move suites, automatic Hunger
-Switch, actual Mimic/Imposter, full W2/B2, lifecycle and visual regressions
-were not run on this build.
-
-Prior delivery: `White2Upgrade-gen89-batch10-20261004-2.nds`.
-SHA-256: `e3f81c77954d38a0fec11ab648fe6d5111fb02870e91333bd3489ea50dee0794`.
-Magic Powder passed all 23 singles cases and three follow-ups on this exact
-build. An older ROM with matching move data failed the type-change oracle.
-Native switch-in events track the same returning party battler, including
-cached ability events. Swift fails against added Ghost before replacement and
-hits afterward. The explicit missing-child Overcoat weather fallback is
-host-checked, not emulator fault-injected. No new module, hook or shared state
-is added. Earlier suites, Tera, doubles, full W2/B2, lifecycle and visual
-regressions were not run on this build.
-
-Prior delivery: `White2Upgrade-gen89-batch11-20261004-3.nds`.
-SHA-256: `ca5dc975273c77dcc036821ab3bee31e3617e7f85fb384f28785d42e23575652`.
-Obstruct, Silk Trap and Burning Bulwark each passed all 15 singles cases and
-one follow-up on this exact ROM. The older no-handler ROM failed the protection
-oracle. A targeted fix defers only genuinely blocked type immunity until the
-protection pass; immune Hyper Drill stays immune and cannot retaliate. All
-retaliation callbacks remain child-owned; no module group or shared mutable
-state is added. King’s Shield reuses the corrected damage-only path and retains
-Attack -2, but was source/build-checked rather than separately emulator-tested.
-Native Protect-family chaining recognizes the new IDs in both directions;
-BW2's existing consecutive-use odds are intentionally retained. Modern one-third
-odds, Mirror Armor and Unseen Fist remain generation/ability dependencies.
-B2's static report has 172 hooks, 229 imports and 48 raw anchors. Prior suites,
-full W2/B2 behavior, switching/fainting/doubles, lifecycle and visual regressions
-were not run on this build.
-
-Prior delivery: `White2Upgrade-gen89-batch12-20261004-2.nds`.
-SHA-256: `8a3b778b5b46e3935d67220a482dd9ed5f903163eb5af4e7e93d52a1218b960d`.
-Hydro Steam's nine cases and Supercell Slam's three cases passed on this exact
-ROM; both suites reject the prior build as a real negative control. The native
-crash/Stomp handlers are composed through a narrow resident getter; all new
-mechanic callbacks remain file-local in the existing two groups. The new weather
-hook is verified at matching clean-US W2/B2 call sites. B2's static report has
-173 hooks, 229 imports and 48 raw anchors. All 92 fast harness tests and 16
-focused host checks passed. Stripped packaging, registry-only staging and the
-unchanged heap audit passed; conservative all-group free space is 58,576 bytes.
-The core remains 8,196 bytes below its monolithic baseline (only four bytes
-above the 8 KiB threshold), so future resident additions require more savings.
-Utility Umbrella, prior emulator suites, full W2/B2 behavior, doubles, lifecycle
-stress and visual regressions were not tested on this build. Hard/doubles moves
-remain deferred; this is incremental coverage, not completion of the reference.
-
-Prior delivery: `White2Upgrade-gen89-batch13-20261004-2.nds`.
-SHA-256: `4bad13f031f488841af0916d5207295b895ec83867cad57722135e9f5f1e7f7c`.
-Terrain Pulse passed its complete 36-case singles suite on this exact ROM;
-the prior build failed its resolved-type oracle. The initial implementation
-failed Normalize ordering; the final parameter phase fixes that without a new
-raw hook, group, ABI layout or shared state. Protect/Substitute fixtures now
-use entry-time Surge instead of repeated protection or pre-checkpoint dolls.
-W2 packaging/staging, B2 static compatibility, 95 fast harness tests and 17
-focused host checks passed. Conservative all-group free space is 58,184 bytes;
-core savings remain 8,196 bytes. Chilling Water is source/build-checked only.
-Prior emulator suites, full W2/B2 behavior, doubles, lifecycle/stress and visual
-regressions were not run on this build. Other eligible moves remain pending.
-
-Prior delivery: `White2Upgrade-gen89-batch14-20261004-2.nds`.
-SHA-256: `ab127a0ef0cd56f2e303fb2d2d5a656f6468832070d190c8650714edfc0359cb`.
-Triple Axel passed its complete 24-case singles suite and one next-turn reset
-follow-up on this exact ROM. The prior build failed the second-strike power
-oracle (11 damage instead of 22). Disguise previously removed the defender
-before the multi-hit loop; it now absorbs one strike and changes form only
-during real execution. Fixed/single damage, miss, Substitute and Mold Breaker
-cases passed. The first Substitute fixture was too slow to create its doll;
-the corrected case requires a genuine native doll before the first strike.
-All 99 fast harness tests and 29 repository host checks passed. Compiled checks
-cover repeated normal/fixed damage estimates without form/HP mutations,
-action-owned scratch reset, path reconstruction and buffer canaries. W2 stripped
-packaging/staging and B2 static compatibility passed (174 hooks, 229 imports,
-48 raw anchors), without refreshing baselines. Prefix deduplication offsets
-the new resident adapter: core savings are 8,348 bytes and conservative
-all-group free space is 58,096 bytes. No new module group was added. Prior
-emulator suites, full W2/B2 behavior, Loaded Dice, doubles, lifecycle/load-peak
-stress and visual regressions were not run. Other eligible moves remain pending.
-
-Prior delivery: `White2Upgrade-gen89-batch15-20261004-1.nds`.
-SHA-256: `1ac49d3514300efb038a1dc3161994d5671b145279e31ca5cf07fdd59ecddb81`.
-Steel Beam and Chloroblast each passed their complete 15-case singles suite
-and one Magic Guard repeat-action check on this exact ROM. Both pre-handler
-builds fail the HP-cost oracle. The shared callback corrects Mind Blown's
-odd-HP rounding as well; that existing move has compiled/source checks, not a
-new emulator suite. The compiled callbacks cover 3,078 HP/move/ability
-combinations, owner guards, unmarked actions, AI hit estimates, scratch reset
-and duplicate sequence-end notifications. Native no-target rejection is
-source/host-checked, not emulator-tested. A fatal-cost experiment reached
-normal whiteout, but the runner cannot certify terminal battle completion;
-its passing low-HP cases stay nonterminal rather than weakening that oracle.
-All 102 fast harness tests and 30 repository host checks passed. W2 stripped
-packaging/staging, B2 static compatibility (174 hooks, 229 imports, 48 raw
-anchors) and the unchanged heap baseline passed. Core savings are 8,332 bytes;
-conservative all-group free space is 57,888 bytes. No new module group, core
-hook or shared storage was added. Prior emulator suites, full W2/B2 behavior,
-doubles, terminal battle/lifecycle/load-peak and visual regressions were not
-run. Other eligible moves remain pending.
-
-Current delivery: `White2Upgrade-gen89-batch16-20261004-2.nds`.
-SHA-256: `d1f2c49fc0ebe7342bf9fb26e1e95aaf07de513de0f7110039bcbb98996b2443`.
-Clangorous Soul and Fillet Away each passed their complete 21-case singles
-suite plus one repeat-action follow-up on this exact ROM. The pre-handler
-ROM fails both native effect-work oracles. Native direct payment, queued
-stat work and delayed item reaction keep Magic Guard/Rock Head from canceling
-the cost and make Snatch charge the actual executor. Compiled checks verify
-both payment formulas across all 65,535 native maximum-HP values, work layouts,
-effective-direction eligibility, owner/no-target/fainted guards and ordering.
-Soul's 33%-floor rounding is an explicit reviewed integration policy, not a
-claim of extracting the Sword/Shield game binary's formula.
-
-The Throat Chop case for Soul verifies native move-selection rejection with
-unchanged PP, action history, HP and stages and no effect execution; it is not
-a completed-action claim. The command client's battler copy is matched by
-native identity rather than the server allocation address. Fillet succeeds;
-its payment is checked before the later opponent attack, whose damage and PP
-are independently certified. Initial harness assumptions incorrectly waited
-for a rejected action and conflated later attack damage with payment; the
-final tests fix those oracles without writing expected outcomes or relaxing
-completion checks.
-
-All 108 fast harness tests and 31 repository host checks passed. Exact packed
-core/22-child bytes and move metadata, registry-only staging, stripped RPM
-linkage/export checks, B2 static compatibility (174 hooks, 229 imports, 48 raw
-anchors) and the unchanged heap baseline passed. Core size remains 55,368
-fixed bytes with 8,332 bytes saved; `moves/stats` is 3,756 fixed bytes and
-conservative all-group free space is 57,456 bytes. No new group, resident hook,
-shared state or compiler-runtime import is added. Prior emulator suites,
-Dancer, full W2/B2 behavior, doubles, lifecycle/load-peak stress and visual
-regressions were not run. Work is paused after this shared family at the
-user's request; other eligible moves remain pending.
-
-Generated test ROMs are temporary and deleted by default. Fixture saves and
-small diagnostic reports are retained, and generated test output is Git-ignored.
+The doubles rollout also corrected the harness's obsolete status bit masks:
+BW2 party status is an ID (0–5). Cure/thaw tests now assert the condition before
+execution, so a healthy fixture cannot produce a false-positive pass. Matcha
+damage checks include native fixed-point spread rounding rather than reading
+an unsupported private-stack alias. Dragon Cheer leaves the project's global
+critical odds unchanged; Costar/Opportunist/Mirror Herb depend on separate
+systems. Full prize payout, Baton Pass, switching/teardown stress, drain-induced
+KO and Mortal Spin contact-KO remain outside this native doubles case set;
+compiled guards are not substitutes for those emulator regressions.

@@ -4,6 +4,7 @@
 #include "w2u_field_effects.h"
 #include "w2u_moves.h"
 #include "w2u_platform.h"
+#include "w2u_weather.h"
 
 #define W2U_ABILITY_POWER_RATIO_1_2X 4915
 #define W2U_ABILITY_POWER_RATIO_1_3_DECIMAL 5325
@@ -634,6 +635,22 @@ extern "C" MOVE_ID W2U_ExtraAction_GetPendingMove(
     return MOVE_NONE;
 }
 
+extern "C" bool W2U_ExtraAction_GetPendingMovePriority(
+    ServerFlow* flow, u32 pokemonSlot, MOVE_ID* moveID, int* priority)
+{
+    BattleMon* mon = W2U_GetActiveBattleMon(flow, pokemonSlot);
+    if (!mon || !moveID || !priority || BattleMon_GetTurnFlag(mon, TURNFLAG_ACTIONDONE)) return false;
+    for (u32 i = 0; i < W2U_GetActionOrderCount(flow); ++i) {
+        ActionOrderWork* action = &flow->actionOrderWork[i];
+        if (action->battleMon == mon && !action->done && BattleAction_GetAction(&action->action) == 1) {
+            *moveID = (MOVE_ID)action->action.baFight.moveID;
+            *priority = (int)((action->speed >> 16) & 0x3Fu) - W2U_ACTION_ORDER_PRIO_OFFSET;
+            return true;
+        }
+    }
+    return false;
+}
+
 extern "C" bool W2U_ExtraAction_HasMoveWithPP(
     ServerFlow* serverFlow,
     u32 pokemonSlot,
@@ -1120,6 +1137,7 @@ extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, 
             }
 
             if (action == 1) {
+                W2U_Weather_PrepareChillyReception(serverFlow, currentActionIdx);
                 // Beak Blast and Shell Trap arm at the same boundary where
                 // native ActionOrder_Proc is about to run Focus Punch's
                 // scproc_BeforeFirstFight pass. Keep client command enqueueing
@@ -1745,6 +1763,7 @@ bool MoveIgnoresParentalBond(MOVE_ID moveID)
     case MOVE_FLING:
     case MOVE_SELFDESTRUCT:
     case MOVE_EXPLOSION:
+    case MOVE_MISTY_EXPLOSION:
     case MOVE_FINAL_GAMBIT:
     case MOVE_UPROAR:
     case MOVE_ROLLOUT:
@@ -1837,7 +1856,9 @@ extern "C" b32 W2U_MoveMakesContact(
     MOVE_ID moveID,
     u32 attackingSlot)
 {
-    if (!getMoveFlag(moveID, MOVE_FLAG_INDEX_CONTACT)) {
+    if (!(moveID == MOVE_SHELL_SIDE_ARM
+          ? W2U_MoveState_ShellSideArmCategory(attackingSlot) == SPLIT_PHYSICAL
+          : getMoveFlag(moveID, MOVE_FLAG_INDEX_CONTACT))) {
         return 0;
     }
 
@@ -2179,6 +2200,8 @@ extern "C" void THUMB_BRANCH_ServerEvent_GetMoveParam(
     BattleEventVar_SetValue(VAR_TARGET_TYPE, PML_MoveGetParam(moveID, MVDATA_TARGET));
     BattleEventVar_SetRewriteOnceValue(VAR_NO_TYPE_EFFECTIVENESS, 0);
 
+    // Move-owned base parameters precede ordinary conversion abilities.
+    BattleEvent_CallHandlers(serverFlow, EVENT_W2U_MOVE_PARAM_BASE);
     BattleEvent_CallHandlers(serverFlow, EVENT_MOVE_PARAM);
     // Native type-conversion abilities can run after ordinary move entries.
     // Give exceptional move types a final, module-owned parameter phase;
@@ -2680,6 +2703,7 @@ static void HandlerDisguiseBreak(BattleEventItem* item, ServerFlow* serverFlow, 
     (void)work;
     BattleMon* currentMon = DisguiseIntactTarget(serverFlow, pokemonSlot);
     if (!currentMon) return;
+    W2U_MoveState_RecordDisguiseHit(serverFlow, pokemonSlot);
     // Native damage determination runs for real execution after the first
     // calculated strike, including zero damage, but not AI simulation.
 
@@ -3951,6 +3975,10 @@ BattleEventHandlerTableEntry SymbiosisHandlers[] = {
 };
 
 
+#endif // grouped ability handlers
+
+#if !defined(W2U_BATTLE_CHILD)
+// Shared consumption bookkeeping stays resident even without an ability DLL.
 extern "C" int THUMB_BRANCH_BattleHandler_ConsumeItem(
     ServerFlow* serverFlow,
     HandlerParam_ConsumeItem* params)
@@ -4014,6 +4042,9 @@ extern "C" void THUMB_BRANCH_ServerControl_ChangeHeldItem(
     }
 }
 
+#endif
+
+#if !defined(W2U_DYNAMIC_BATTLE_CORE)
 extern "C" void HandlerProtean(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
     (void)item;

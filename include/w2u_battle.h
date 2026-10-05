@@ -41,6 +41,7 @@ typedef u32 BattleStyle;
 #define CONDITION_CONFUSION 0x06
 #define CONDITION_ATTRACT 0x07
 #define CONDITION_BIND 0x08
+#define CONDITION_ESCAPE_PREVENTION 0x16
 #define CONDITION_TAUNT 0x0B
 #define CONDITION_TORMENT 0x0C
 #define CONDITION_DISABLE 0x0D
@@ -55,6 +56,10 @@ typedef u32 BattleStyle;
 #define CONDITION_CHARGELOCK 0x1A
 #define CONDITION_CHOICELOCK 0x1B
 #define CONDITION_SKYDROP 0x21
+#define CONDITIONFLAG_FLY 0x03
+#define CONDITIONFLAG_DIVE 0x04
+#define CONDITIONFLAG_DIG 0x05
+#define CONDITIONFLAG_SHADOW_FORCE 0x06
 #define CONDITIONFLAG_NULL 0x0F
 #define CONDITIONFLAG_BATONPASS 0x0E
 #define CONDITIONFLAG_MINIMIZED 0x08
@@ -121,6 +126,7 @@ typedef u32 BattleStyle;
 #define BATTLE_SPIKY_SHIELD_DAMAGE_MSGID 1289
 #define BATTLE_RECOIL_MSGID 378
 #define BATTLE_SOLAR_BEAM_CHARGE_MSGID 553
+#define BATTLE_ENERGY_CHARGE_MSGID 1352
 
 #define SIDEEFF_REFLECT 0
 #define SIDEEFF_LIGHT_SCREEN 1
@@ -183,7 +189,9 @@ enum BattleMonValue : u32 {
     VALUE_ACCURACY_STAGE = 0x6,
     VALUE_EVASION_STAGE = 0x7,
     VALUE_ATTACK_STAT = 0x8,
+    VALUE_DEFENSE_STAT = 0x9,
     VALUE_SPECIAL_ATTACK_STAT = 0xA,
+    VALUE_SPECIAL_DEFENSE_STAT = 0xB,
     VALUE_SPEED_STAT = 0xC,
     VALUE_CURRENT_HP = 0xD,
     VALUE_MAX_HP = 0xE,
@@ -200,6 +208,7 @@ enum BattleHandlerEffect : u32 {
     EFFECT_DRAIN = 0x6,
     EFFECT_DAMAGE = 0x7,
     EFFECT_SHIFT_HP = 0x8,
+    EFFECT_REDUCE_PP = 0xA,
     EFFECT_CURE_STATUS = 0xB,
     EFFECT_ADD_CONDITION = 0xC,
     EFFECT_CHANGE_STAT_STAGE = 0xE,
@@ -214,7 +223,10 @@ enum BattleHandlerEffect : u32 {
     EFFECT_REMOVE_FIELD_EFFECT = 0x1C,
     EFFECT_ADD_POS_EFFECT = 0x1E,
     EFFECT_CHANGE_ABILITY = 0x1F,
+    EFFECT_SET_ITEM = 0x20,
     EFFECT_CHECK_ITEM = 0x21,
+    EFFECT_USE_TEMP_ITEM = 0x22,
+    EFFECT_CONSUME_ITEM = 0x23,
     EFFECT_SWAP_ITEM = 0x24,
     EFFECT_QUIT_BATTLE = 0x28,
     EFFECT_SWITCH = 0x29,
@@ -248,9 +260,11 @@ enum ServerCommandID : u32 {
     SCID_ConsumeItem = 0x17,
     SCID_ChangeAbility = 0x1D,
     SCID_SetItem = 0x1E,
+    SCID_CreateSubstitute = 0x27,
     SCID_MoveAnim = 0x30,
     SCID_Exp = 0x45,
     SCID_ChangeForm = 0x4F,
+    SCID_SubstituteAppear = 0x51,
     SCID_SetMessage = 0x5B,
 };
 
@@ -612,6 +626,18 @@ struct HandlerParam_CureCondition {
     HandlerParam_StrParams exStr;
 };
 
+// Native Spite work: amount/target/slot at 4/5/6, message at 8.
+struct HandlerParam_ReducePP {
+    HandlerParam_Header header;
+    u8 amount;
+    u8 pokeID;
+    u8 moveSlot;
+    u8 pad;
+    HandlerParam_StrParams exStr;
+};
+static_assert(__builtin_offsetof(HandlerParam_ReducePP, exStr) == 8,
+    "Native PP work message offset changed");
+
 struct HandlerParam_AddCondition {
     HandlerParam_Header header;
     CONDITION condition;
@@ -744,6 +770,15 @@ struct HandlerParam_ConsumeItem {
     HandlerParam_StrParams exStr;
 };
 
+// Clean W2/B2 Pluck's special-use work: target at +4, berry ID at +6.
+struct HandlerParam_UseTempItem {
+    HandlerParam_Header header;
+    u8 pokeID;
+    u8 padding;
+    u16 itemID;
+};
+static_assert(sizeof(HandlerParam_UseTempItem) == 8, "Native forced-item layout changed");
+
 struct HandlerParam_Switch {
     HandlerParam_Header header;
     HandlerParam_StrParams preStr;
@@ -811,6 +846,8 @@ extern "C" BattleParty* PokeCon_GetBattleParty(PokeCon* pokeCon, u32 clientID);
 extern "C" BattleMon* BattleParty_GetPartyMember(BattleParty* battleParty, u32 partySlot);
 extern "C" void PokeSet_SeekStart(PokeSet* pokeSet);
 extern "C" BattleMon* PokeSet_SeekNext(PokeSet* pokeSet);
+struct MoveParam;
+extern "C" void ServerControl_ThawHitTargets(ServerFlow*, const MoveParam*, BattleMon*, PokeSet*);
 extern "C" void PokeSet_Remove(PokeSet* pokeSet, BattleMon* battleMon);
 extern "C" u32 BattleMon_GetValue(BattleMon* battleMon, BattleMonValue value);
 extern "C" ITEM BattleMon_GetHeldItem(BattleMon* battleMon);
@@ -828,8 +865,11 @@ extern "C" ConditionData BattleMon_GetMoveCondition(BattleMon* battleMon, CONDIT
 extern "C" CONDITION BattleMon_GetStatus(BattleMon* battleMon);
 extern "C" bool BattleMon_GetTurnFlag(BattleMon* battleMon, TURN_FLAG turnFlag);
 extern "C" bool BattleMon_IsSubstituteActive(BattleMon* battleMon);
+extern "C" void BattleMon_CreateSubstitute(BattleMon* battleMon, u16 hp);
 extern "C" void BattleMon_SetMovesAndPP(BattleMon* battleMon);
 extern "C" bool BattleMon_GetConditionFlag(BattleMon* battleMon, CONDITION_FLAG conditionFlag);
+extern "C" void BattleMon_SetConditionFlag(BattleMon* battleMon, CONDITION_FLAG conditionFlag);
+extern "C" void BattleMon_ResetConditionFlag(BattleMon* battleMon, CONDITION_FLAG conditionFlag);
 extern "C" b32 BattleField_CheckEffect(FIELD_EFFECT fieldEffect);
 extern "C" void BattleMon_ClearTransformChange(BattleMon* battleMon);
 extern "C" void BattleMon_ClearUsedMoveFlag(BattleMon* battleMon);
@@ -848,6 +888,7 @@ extern "C" void ServerDisplay_AbilityPopupRemove(ServerFlow* serverFlow, BattleM
 extern "C" u32 ServerDisplay_IllusionSet(ServerFlow* serverFlow, u16* switchWork);
 extern "C" void ServerDisplay_UseHeldItem(ServerFlow* serverFlow, BattleMon* battleMon);
 extern "C" void ServerDisplay_SetConditionFlag(ServerFlow* serverFlow, BattleMon* battleMon, CONDITION_FLAG flag);
+extern "C" void ServerDisplay_ResetConditionFlag(ServerFlow* serverFlow, BattleMon* battleMon, CONDITION_FLAG flag);
 extern "C" void ServerDisplay_SetTurnFlag(ServerFlow* serverFlow, BattleMon* battleMon, TURN_FLAG flag);
 extern "C" void ServerDisplay_SimpleHP(ServerFlow* serverFlow, BattleMon* battleMon, int damage, b32 animate);
 extern "C" void BattleHandler_StrSetup(HandlerParam_StrParams* str, u32 strType, u32 msgID);
@@ -857,6 +898,7 @@ extern "C" void* BattleHandler_PushWork(ServerFlow* serverFlow, BattleHandlerEff
 extern "C" void BattleHandler_PopWork(ServerFlow* serverFlow, void* work);
 extern "C" void BattleHandler_SetString(ServerFlow* serverFlow, HandlerParam_StrParams* str);
 extern "C" u32 BattleMon_GetRealStat(BattleMon* battleMon, BattleMonValue statStage);
+extern "C" u32 BattleMon_GetCriticalStat(BattleMon* battleMon, BattleMonValue stat);
 
 extern "C" u32 HEManager_PushState(u32* HEManager);
 extern "C" void HEManager_PopState(u32* HEManager, u32 HEID);

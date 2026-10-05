@@ -179,7 +179,9 @@
       "name": "moves/hazards",
       "source": "moves",
       "entries": [
+        ["move", "MOVE_MORTAL_SPIN", "MortalSpinHandlers"],
         ["move", "MOVE_RAPID_SPIN", "RapidSpinHandlers"],
+        ["move", "MOVE_TIDY_UP", "TidyUpHandlers"],
         ["move", "MOVE_DEFOG", "DefogHandlers"],
         ["move", "MOVE_STICKY_WEB", "StickyWebHandlers"],
         ["move", "MOVE_CEASELESS_EDGE", "DamagingHazardHandlers"],
@@ -226,17 +228,24 @@
         }
       },
       "entries": [
+        ["move", "MOVE_EXPANDING_FORCE", "ExpandingForceHandlers"],
+        ["move", "MOVE_SNOWSCAPE", "SnowscapeHandlers"],
+        ["move", "MOVE_CHILLY_RECEPTION", "ChillyReceptionHandlers"],
         ["move", "MOVE_ELECTRIC_TERRAIN", "ElectricTerrainHandlers"],
         ["move", "MOVE_GRASSY_TERRAIN", "GrassyTerrainHandlers"],
         ["move", "MOVE_FLORAL_HEALING", "FloralHealingHandlers"],
         ["move", "MOVE_SHORE_UP", "ShoreUpHandlers"],
         ["move", "MOVE_SOLAR_BLADE", "SolarBladeHandlers"],
+        ["move", "MOVE_METEOR_BEAM", "MeteorBeamHandlers"],
+        ["move", "MOVE_ELECTRO_SHOT", "ElectroShotHandlers"],
         ["move", "MOVE_MISTY_TERRAIN", "MistyTerrainHandlers"],
         ["move", "MOVE_PSYCHIC_TERRAIN", "PsychicTerrainHandlers"],
         ["move", "MOVE_PSYBLADE", "PsybladeHandlers"],
         ["move", "MOVE_RISING_VOLTAGE", "RisingVoltageHandlers"],
+        ["move", "MOVE_MISTY_EXPLOSION", "MistyExplosionHandlers"],
         ["move", "MOVE_TERRAIN_PULSE", "TerrainPulseHandlers"],
         ["move", "MOVE_STEEL_ROLLER", "SteelRollerHandlers"],
+        ["move", "MOVE_ICE_SPINNER", "IceSpinnerHandlers"],
         ["field", "FLDEFF_TERRAIN", "FieldTerrainHandlers"]
       ]
     },
@@ -247,6 +256,7 @@
       "entries": [
         ["move", "MOVE_AURA_WHEEL", "AuraWheelHandlers"],
         ["move", "MOVE_MAGIC_POWDER", "MagicPowderHandlers"],
+        ["move", "MOVE_SHELL_SIDE_ARM", "ShellSideArmHandlers"],
         ["move", "MOVE_FLYING_PRESS", "FlyingPressHandlers"],
         ["move", "MOVE_FREEZEDRY", "FreezeDryHandlers"],
         ["move", "MOVE_TRICKORTREAT", "TrickOrTreatHandlers"],
@@ -258,6 +268,7 @@
         ["move", "MOVE_DIRE_CLAW", "DireClawHandlers"],
         ["move", "MOVE_HARD_PRESS", "HardPressHandlers"],
         ["move", "MOVE_GRAV_APPLE", "GravAppleHandlers"],
+        ["move", "MOVE_TAR_SHOT", "TarShotHandlers"],
         ["move", "MOVE_BLEAKWIND_STORM", "StormRainAccuracyHandlers"],
         ["move", "MOVE_SANDSEAR_STORM", "StormRainAccuracyHandlers"],
         ["move", "MOVE_WILDBOLT_STORM", "StormRainAccuracyHandlers"],
@@ -277,6 +288,9 @@
         },
         "position:POSEFF_ELECTRIFY": {
           "priority": "EVENTPRI_POS_DEFAULT"
+        },
+        "field:14": {
+          "priority": "EVENTPRI_ABILITY_STALL"
         }
       },
       "entries": [
@@ -288,6 +302,10 @@
         ["move", "MOVE_LASER_FOCUS", "LaserFocusHandlers"],
         ["move", "MOVE_PLASMA_FISTS", "PlasmaFistsHandlers"],
         ["move", "MOVE_THROAT_CHOP", "ThroatChopHandlers"],
+        ["move", "MOVE_SALT_CURE", "PersistentSecondaryHandlers"],
+        ["move", "MOVE_GLAIVE_RUSH", "GlaiveRushHandlers"],
+        ["move", "MOVE_SYRUP_BOMB", "PersistentSecondaryHandlers"],
+        ["field", "14", "FieldPersistentResidualHandlers"],
         ["position", "POSEFF_ION_DELUGE", "PosIonDelugeHandlers"],
         ["position", "POSEFF_ELECTRIFY", "PosElectrifyHandlers"]
       ]
@@ -297,10 +315,15 @@
       "name": "moves/stats",
       "source": "moves",
       "entries": [
+        ["move", "MOVE_DECORATE", "DecorateHandlers"],
+        ["move", "MOVE_DRAGON_CHEER", "DragonCheerHandlers"],
         ["move", "MOVE_ROTOTILLER", "RototillerHandlers"],
         ["move", "MOVE_FLOWER_SHIELD", "RototillerHandlers"],
+        ["move", "MOVE_COACHING", "CoachingHandlers"],
         ["move", "MOVE_FELL_STINGER", "FellStingerHandlers"],
         ["move", "MOVE_SCALE_SHOT", "ScaleShotHandlers"],
+        ["move", "MOVE_BODY_PRESS", "BodyPressHandlers"],
+        ["move", "MOVE_NO_RETREAT", "NoRetreatHandlers"],
         ["move", "MOVE_TAKE_HEART", "TakeHeartHandlers"],
         ["move", "MOVE_CLANGOROUS_SOUL", "HpCostBoostHandlers"],
         ["move", "MOVE_FILLET_AWAY", "HpCostBoostHandlers"],
@@ -319,6 +342,20 @@
       "name": "moves/flow",
       "source": "moves",
       "entries": [
+        ["move", "MOVE_JUNGLE_HEALING", "AllyHealingHandlers"],
+        ["move", "MOVE_SNIPE_SHOT", "SnipeShotHandlers"],
+        ["move", "MOVE_LIFE_DEW", "AllyHealingHandlers"],
+        ["move", "MOVE_LUNAR_BLESSING", "AllyHealingHandlers"],
+        ["move", "MOVE_MAKE_IT_RAIN", "MakeItRainHandlers"],
+        ["move", "MOVE_MATCHA_GOTCHA", "MatchaGotchaHandlers"],
+        ["move", "MOVE_RAGE_FIST", "RageFistHandlers"],
+        ["move", "MOVE_LAST_RESPECTS", "LastRespectsHandlers"],
+        ["move", "MOVE_REVIVAL_BLESSING", "RevivalBlessingHandlers"],
+        ["move", "MOVE_STUFF_CHEEKS", "StuffCheeksHandlers"],
+        ["move", "MOVE_TEATIME", "TeatimeHandlers"],
+        ["move", "MOVE_SHED_TAIL", "ShedTailHandlers"],
+        ["move", "MOVE_DRAGON_DARTS", "DragonDartsHandlers"],
+        ["move", "MOVE_CORROSIVE_GAS", "CorrosiveGasHandlers"],
         ["move", "MOVE_PARTING_SHOT", "PartingShotHandlers"],
         ["move", "MOVE_GEOMANCY", "GeomancyHandlers"],
         ["move", "MOVE_HAPPY_HOUR", "HappyHourHandlers"],
@@ -332,11 +369,17 @@
         ["move", "MOVE_SPOTLIGHT", "SpotlightHandlers"],
         ["move", "MOVE_STOMPING_TANTRUM", "StompingTantrumHandlers"],
         ["move", "MOVE_TEMPER_FLARE", "StompingTantrumHandlers"],
+        ["move", "MOVE_LASH_OUT", "LashOutHandlers"],
+        ["move", "MOVE_BURNING_JEALOUSY", "BurningJealousyHandlers"],
+        ["move", "MOVE_ALLURING_VOICE", "AlluringVoiceHandlers"],
+        ["move", "MOVE_EERIE_SPELL", "EerieSpellHandlers"],
+        ["move", "MOVE_UPPER_HAND", "UpperHandHandlers"],
         ["move", "MOVE_TORCH_SONG", "SoundDamageBypassHandlers"],
         ["move", "MOVE_OVERDRIVE", "SoundDamageBypassHandlers"],
         ["move", "MOVE_POLTERGEIST", "PoltergeistHandlers"],
         ["move", "MOVE_SUPERCELL_SLAM", "SupercellSlamHandlers"],
         ["move", "MOVE_TRIPLE_AXEL", "TripleAxelHandlers"],
+        ["move", "MOVE_POPULATION_BOMB", "PopulationBombHandlers"],
         ["move", "MOVE_BOLT_BEAK", "UnactedTargetPowerHandlers"],
         ["move", "MOVE_FISHIOUS_REND", "UnactedTargetPowerHandlers"],
         ["move", "MOVE_SPARKLY_SWIRL", "SparklySwirlHandlers"],
@@ -347,7 +390,13 @@
       "id": 19,
       "name": "moves/trapping",
       "source": "moves",
+      "entry_overrides": {
+        "field:13": { "priority": "EVENTPRI_ABILITY_STALL" }
+      },
       "entries": [
+        ["move", "MOVE_JAW_LOCK", "JawLockHandlers"],
+        ["move", "MOVE_OCTOLOCK", "OctolockHandlers"],
+        ["field", "13", "FieldOctolockResidualHandlers"],
         ["move", "MOVE_ANCHOR_SHOT", "AnchorShotHandlers"],
         ["move", "MOVE_SPIRIT_SHACKLE", "AnchorShotHandlers"],
         ["move", "MOVE_SAPPY_SEED", "SappySeedHandlers"]
@@ -362,6 +411,8 @@
         ["move", "MOVE_GLITZY_GLOW", "GlitzyGlowHandlers"],
         ["move", "MOVE_AURORA_VEIL", "AuroraVeilHandlers"],
         ["move", "MOVE_BRICK_BREAK", "BrickBreakAuroraVeilHandlers"],
+        ["move", "MOVE_RAGING_BULL", "RagingBullHandlers"],
+        ["move", "MOVE_COURT_CHANGE", "CourtChangeHandlers"],
         ["side", "SIDEEFF_AURORA_VEIL", "SideAuroraVeilHandlers"]
       ]
     },
@@ -370,6 +421,7 @@
       "name": "moves/ability",
       "source": "moves",
       "entries": [
+        ["move", "MOVE_DOODLE", "DoodleHandlers"],
         ["move", "MOVE_CORE_ENFORCER", "CoreEnforcerHandlers"],
         ["move", "MOVE_MOONGEIST_BEAM", "MoongeistBeamHandlers"],
         ["move", "MOVE_SUNSTEEL_STRIKE", "MoongeistBeamHandlers"],

@@ -2601,6 +2601,7 @@ extern "C" void THUMB_BRANCH_BattleMon_ClearForSwitchOut(BattleMon* battleMon)
     ClearCounter(battleMon);
     BattleMon_ClearComboMoveData(battleMon);
     BattleMon_IllusionBreak(battleMon);
+    W2U_MoveState_PrepareShedTailExit(battleMon);
     if (!BattleMon_GetConditionFlag(battleMon, CONDITIONFLAG_BATONPASS)) {
         BattleMon_RemoveSubstitute(battleMon);
         ClearMoveStatusWork(battleMon, false);

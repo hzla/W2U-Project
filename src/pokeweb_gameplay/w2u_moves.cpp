@@ -5,6 +5,7 @@
 #include "w2u_terrain_texture.h"
 #include "type_constants.h"
 #include "w2u_platform.h"
+#include "w2u_weather.h"
 
 #define W2U_MOVE_EVENT_TABLE ((MoveEventAddTable*)W2U_ADDR_MOVE_EVENT_TABLE)
 #define W2U_MOVE_EVENT_TABLE_COUNT 258u
@@ -34,6 +35,7 @@
 #define W2U_EFFECTIVENESS_4 5u
 #define W2U_EFFECTIVENESS_1_8 6u
 #define W2U_EFFECTIVENESS_8 7u
+#define W2U_EFFECTIVENESS_16 8u
 
 #define W2U_EFFECT_COUNTER ((BattleHandlerEffect)0x26)
 #define W2U_COUNTER_PROTECT 0x03u
@@ -138,12 +140,32 @@ struct MoveState {
     u8 craftyShieldOwner[W2U_SIDE_COUNT];
     u8 extraTypes[BATTLE_MAX_SLOTS];
     u8 laserFocusTurns[BATTLE_MAX_SLOTS];
+    u8 dragonCheerBoost[BATTLE_MAX_SLOTS];
     u8 throatChopTurns[BATTLE_MAX_SLOTS];
     u32 photonGeyserCategoryValidFlags;
     u32 photonGeyserPhysicalFlags;
+    u32 shellSideArmCategoryValidFlags;
+    u32 shellSideArmPhysicalFlags;
+    u32 shellSideArmRecordedValidFlags;
+    u32 shellSideArmRecordedPhysicalFlags;
     u32 stompingFailureLastTurnFlags;
     u32 stompingFailureThisTurnFlags;
     u32 stompingProtectedThisMoveFlags;
+    u32 statsRaisedThisTurnFlags;
+    u32 statsLoweredThisTurnFlags;
+    u32 tarShotFlags;
+    u32 noRetreatFlags;
+    u32 glaiveRushFlags;
+    u32 shedTailTransferFlags;
+    u32 redirectedTargetFlags;
+    u32 calledDartsFlags;
+    u16 lastSuccessfulSelectedMove[BATTLE_MAX_SLOTS];
+    u8 directHitsReceived[24];
+    u8 faintEvents[4]; // Battle-long counts, including repeated revived faints.
+    u32 persistentFlags[3];
+    u8 persistentSources[3][BATTLE_MAX_SLOTS];
+    u8 persistentTurns[3][BATTLE_MAX_SLOTS];
+    BattleEventItem* auxItems[2];
     bool battleTrackingActive;
     BattleEventItem* spotlightItem;
     PartyPkm* spotlightTargetParty;
@@ -187,8 +209,33 @@ extern "C" void HandlerMoldBreakerStart(
     BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work);
 extern "C" void HandlerMoldBreakerEnd(
     BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work);
-extern "C" b32 SideEffectEvent_IsActive(u32 side, SIDE_EFFECT sideEffect);
-extern "C" void CommonScreenEffect(ServerFlow* serverFlow, u32 side, u32 screenKind);
+extern "C" b32 SideEffectEvent_IsActive(u32 side, SIDE_EFFECT sideEffect)
+    __attribute__((long_call));
+#if !defined(W2U_BATTLE_CHILD)
+// Overlay 169 lives in VRAM, beyond a Thumb BL's range from PMC's heap.
+// Force an absolute indirect call; an RPM-relocated short call would wrap.
+extern "C" BattleEventItem* SideEffectEvent_AddItem(u32 side, SIDE_EFFECT effect, ConditionData condition)
+    __attribute__((long_call));
+struct NativeSideEffectRecord {
+    BattleEventItem* item;
+    ConditionData condition;
+    u32 elapsed;
+    u32 layers;
+};
+static_assert(sizeof(NativeSideEffectRecord) == 16, "Native side-state layout changed");
+
+static NativeSideEffectRecord (*GetNativeSideState())[14]
+{
+    // Reviewed clean-US W2/B2 IsActive has the same PC-relative state literal
+    // at entry + 0x18. Resolve from the mapped game function, not a child or
+    // a second region-specific BSS address. Reject an altered native anchor.
+    const u16* code = (const u16*)((u32)SideEffectEvent_IsActive & ~1u);
+    if (code[0] != 0x22E0 || code[2] != 0x4804) return 0;
+    return (NativeSideEffectRecord (*)[14])*(const u32*)((const u8*)code + 0x18);
+}
+#endif
+extern "C" void CommonScreenEffect(ServerFlow* serverFlow, u32 side, u32 screenKind)
+    __attribute__((long_call));
 extern "C" void HandlerBrickBreakStart(
     BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work);
 extern "C" void HandlerBrickBreakEnd(
@@ -352,6 +399,8 @@ W2U_MOVE_STATE_SCALAR_STORAGE(
 #if !defined(W2U_BATTLE_CHILD)
 void ClearMoveState()
 {
+    W2U_Weather_Reset();
+    W2U_Revival_Reset();
     volatile u8* bytes = (volatile u8*)&sMoveState;
     for (u32 idx = 0; idx < sizeof(sMoveState); ++idx) {
         bytes[idx] = 0;
@@ -785,6 +834,7 @@ u32 EffectivenessPowerMod(u32 damage, u32 effectiveness)
     if (checkedEffectiveness == W2U_EFFECTIVENESS_8) {
         return damage * 8;
     }
+    if (checkedEffectiveness == W2U_EFFECTIVENESS_16) return damage * 16;
     return damage;
 }
 
@@ -814,6 +864,7 @@ u32 EffectivenessScaledMultiplier(u32 effectiveness)
     if (effectiveness == W2U_EFFECTIVENESS_8) {
         return 64;
     }
+    if (effectiveness == W2U_EFFECTIVENESS_16) return 128;
     return 0xFFFFFFFFu;
 }
 
@@ -1018,6 +1069,10 @@ bool IsMatBlockFresh(ServerFlow* serverFlow, u32 pokemonSlot)
 
 void ClearEndOfTurnMoveState()
 {
+#if !defined(W2U_BATTLE_CHILD)
+    sMoveState.statsRaisedThisTurnFlags = 0;
+    sMoveState.statsLoweredThisTurnFlags = 0;
+#endif
     ClearMatBlockState();
     ClearCraftyShieldState();
     W2U_MoveState_ClearElectrified();
@@ -1317,10 +1372,284 @@ extern "C" void W2U_MoveState_BeginBattleTracking(u32 fallbackPokemonSlot)
             W2U_MoveState_EnsureTransientEvent(fallbackPokemonSlot));
 }
 
+extern "C" void FaintRecord_Add(FaintRecord*, u32 slot);
+extern "C" void W2U_RecordCommittedFaint(FaintRecord* record, u32 slot, ServerFlow* flow)
+{
+    // Called only after native CheckFainted has changed its dead latch 0->1.
+    // Do not count notify-dead events: the engine also emits those on switches.
+    FaintRecord_Add(record, slot);
+    if (flow && !flow->simulationCounter && slot < 24) {
+        const u32 party = W2U_GetBattlePartyOwner(flow, slot);
+        if (party >= 4) return;
+        u8& count = sMoveState.faintEvents[party];
+        if (count < 100) ++count;
+    }
+}
+
+extern "C" u32 W2U_MoveState_LastRespectsPower(ServerFlow* flow, u32 slot)
+{
+    if (!flow || !flow->pokeCon || slot >= 24 ||
+        flow->pokeCon->party[2].memberCount || flow->pokeCon->party[3].memberCount)
+        return 0; // Multi-trainer semantics deliberately excluded for now.
+    const u32 party = W2U_GetBattlePartyOwner(flow, slot);
+    if (party >= 4) return 0;
+    return 50u + 50u * sMoveState.faintEvents[party];
+}
+
 extern "C" bool W2U_MoveState_DidLastMoveFailForStomping(u32 pokemonSlot)
 {
     const u32 mask = SlotMask(pokemonSlot);
     return mask && (sStompingFailureLastTurnFlags & mask);
+}
+
+extern "C" bool W2U_MoveState_HadStatChangeThisTurn(u32 pokemonSlot, bool raised)
+{
+    if (!IsValidSlot(pokemonSlot)) return false;
+    return ((raised ? sMoveState.statsRaisedThisTurnFlags :
+        sMoveState.statsLoweredThisTurnFlags) & SlotMask(pokemonSlot)) != 0;
+}
+
+extern "C" bool W2U_MoveState_CreateShedTailSub(ServerFlow* flow, u32 slot)
+{
+    if (!flow || flow->simulationCounter || !IsValidSlot(slot)) return false;
+    BattleMon* mon = GetBattleMon(flow, slot);
+    const u32 pos = Handler_PokeIDToPokePos(flow, slot);
+    if (!mon || BattleMon_IsFainted(mon) || BattleMon_IsSubstituteActive(mon) ||
+        pos >= W2U_NULL_BATTLE_POS) return false;
+    const u32 maximum = BattleMon_GetValue(mon, VALUE_MAX_HP);
+    const u32 cost = (maximum + 1) / 2;
+    const u32 doll = maximum / 4;
+    if (!doll || BattleMon_GetValue(mon, VALUE_CURRENT_HP) <= cost ||
+        !W2U_MoveState_EnsureTransientEvent(slot)) return false;
+
+    // Same order as native Substitute, with Shed Tail's different payment.
+    // SimpleHP is direct payment, not damage/recoil; HP berries react before
+    // the doll is created or the mandatory replacement request is issued.
+    ServerDisplay_SimpleHP(flow, mon, -(s32)cost, true);
+    ServerControl_CheckItemReaction(flow, mon, 1);
+    BattleMon_CreateSubstitute(mon, (u16)doll);
+    ServerDisplay_AddCommon(flow->serverCommandQueue, SCID_CreateSubstitute, slot, doll);
+    ServerDisplay_AddCommon(flow->serverCommandQueue, SCID_SubstituteAppear, pos);
+    ServerDisplay_AddMessageImpl(flow->serverCommandQueue, SCID_SetMessage, 785, slot, 0xFFFF0000);
+    sMoveState.shedTailTransferFlags |= SlotMask(slot);
+    return true;
+}
+
+extern "C" void W2U_MoveState_PrepareShedTailExit(BattleMon* mon)
+{
+    if (!mon || !(sMoveState.shedTailTransferFlags & SlotMask(mon->battleSlot)) ||
+        !BattleMon_GetConditionFlag(mon, CONDITIONFLAG_BATONPASS)) return;
+    // Called by the existing native exit replacement on both server and
+    // client copies, before Baton Pass tests Gastro Acid or copies state.
+    // Keep the doll and Baton flag only. Major status is not cured.
+    ClearMoveStatusWork(mon, false);
+    ResetStatStages(&mon->statStageParam);
+    BattleMon_ResetConditionFlag(mon, 9);  // Focus Energy
+    BattleMon_ResetConditionFlag(mon, 10); // Power Trick
+    // Do not clear the resident marker here: the delayed client still needs
+    // it. The source's next real action (including ordinary Baton Pass)
+    // retires it; battle teardown clears the entire resident state.
+}
+
+static void RecordPartyMemberDirectHit(u32 slot)
+{
+    if (slot < W2U_ARRAY_COUNT(sMoveState.directHitsReceived) &&
+        sMoveState.directHitsReceived[slot] < 6) ++sMoveState.directHitsReceived[slot];
+}
+
+extern "C" u32 W2U_MoveState_RageFistPower(u32 slot)
+{
+    return 50u + 50u * (slot < W2U_ARRAY_COUNT(sMoveState.directHitsReceived)
+        ? sMoveState.directHitsReceived[slot] : 0);
+}
+
+extern "C" void W2U_MoveState_RecordDisguiseHit(ServerFlow* flow, u32 slot)
+{
+    // Disguise's zero-damage strike never reaches the ordinary positive-HP
+    // test. Its real-execution callback records it once, before form work.
+    if (flow && !flow->simulationCounter &&
+        slot == (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON) &&
+        (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) < 24 &&
+        (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) != slot)
+        RecordPartyMemberDirectHit(slot);
+}
+
+extern "C" void W2U_CopyTransformMoveState(BattleMon* user, BattleMon* target)
+{
+    W2U_CopyCriticalBoost(user, target);
+    if (user && target && user->battleSlot < 24 && target->battleSlot < 24)
+        sMoveState.directHitsReceived[user->battleSlot] = sMoveState.directHitsReceived[target->battleSlot];
+}
+
+extern "C" bool W2U_MoveState_CourtChange(ServerFlow* flow)
+{
+    if (!flow || flow->simulationCounter) return false;
+    NativeSideEffectRecord (*native)[14] = GetNativeSideState();
+    if (!native) return false;
+    const u16 customIds[] = { SIDEEFF_STICKY_WEB, SIDEEFF_AURORA_VEIL };
+    const W2UBattleHandlerExport* customApis[2] = {};
+    for (u32 i = 0; i < 2; ++i) {
+        const bool active = i ? (sMoveState.auroraVeil[0].active || sMoveState.auroraVeil[1].active)
+                             : (sMoveState.stickyWeb[0].active || sMoveState.stickyWeb[1].active);
+        if (!active) continue;
+#if defined(W2U_DYNAMIC_BATTLE_CORE)
+        customApis[i] = W2U_BattleModules_FindLoaded(W2U_MECHANIC_SIDE, customIds[i]);
+#else
+        customApis[i] = W2U_BattleStatic_Resolve(W2U_MECHANIC_SIDE, customIds[i]);
+#endif
+        if (!customApis[i]) return false;
+    }
+    // This turn's Wide/Quick/Mat Block/Crafty Shield are not swappable.
+    // Native layers, original duration and elapsed turns travel
+    // together; recreating ownership does not re-run Light Clay or entry work.
+    const u8 effects[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13 };
+    bool changed = false;
+    for (u32 i = 0; i < W2U_ARRAY_COUNT(effects); ++i) {
+        const u32 effect = effects[i];
+        const NativeSideEffectRecord old[2] = { native[0][effect], native[1][effect] };
+        if (!old[0].item && !old[1].item) continue;
+        changed = true;
+        for (u32 side = 0; side < 2; ++side) {
+            if (native[side][effect].item) BattleEventItem_Remove(native[side][effect].item);
+            native[side][effect].item = 0;
+            native[side][effect].layers = 0;
+        }
+        for (u32 side = 0; side < 2; ++side) {
+            const NativeSideEffectRecord& incoming = old[1 - side];
+            if (!incoming.item) continue;
+            BattleEventItem* item = SideEffectEvent_AddItem(side, effect, incoming.condition);
+            if (!item) continue; // no stale pointer if native registration fails
+            native[side][effect].elapsed = incoming.elapsed;
+            native[side][effect].layers = incoming.layers;
+        }
+    }
+    for (u32 i = 0; i < 2; ++i) {
+        if (!customApis[i]) continue;
+        const bool active[2] = { i ? sMoveState.auroraVeil[0].active : sMoveState.stickyWeb[0].active,
+                                i ? sMoveState.auroraVeil[1].active : sMoveState.stickyWeb[1].active };
+        const u8 turns[2] = { sMoveState.auroraVeil[0].turns, sMoveState.auroraVeil[1].turns };
+        for (u32 side = 0; side < 2; ++side) {
+            BattleEventItem* item = i ? sMoveState.auroraVeil[side].item : sMoveState.stickyWeb[side].item;
+            if (item) BattleEventItem_Remove(item);
+        }
+        for (u32 side = 0; side < 2; ++side) {
+            BattleEventItem* item = active[1 - side] ? BattleEvent_AddItem(EVENTITEM_SIDE,
+                customIds[i], EVENTPRI_SIDE_DEFAULT, 0, side, customApis[i]->handlers, customApis[i]->handlerCount) : 0;
+            if (i) {
+                sMoveState.auroraVeil[side].item = item;
+                sMoveState.auroraVeil[side].active = item != 0;
+                sMoveState.auroraVeil[side].turns = item ? turns[1 - side] : 0;
+            } else {
+                sMoveState.stickyWeb[side].item = item;
+                sMoveState.stickyWeb[side].active = item != 0;
+            }
+        }
+        changed = true;
+    }
+    return changed;
+}
+
+extern "C" void W2U_MoveState_SetShellSideArmCategory(u32 slot, u32 category)
+{
+    const u32 mask = SlotMask(slot);
+    if (!mask) return;
+    sMoveState.shellSideArmCategoryValidFlags |= mask;
+    if (category == SPLIT_PHYSICAL) sMoveState.shellSideArmPhysicalFlags |= mask;
+    else sMoveState.shellSideArmPhysicalFlags &= ~mask;
+}
+
+extern "C" u32 W2U_MoveState_ShellSideArmCategory(u32 slot)
+{
+    const u32 mask = SlotMask(slot);
+    return (mask && (sMoveState.shellSideArmCategoryValidFlags & mask) &&
+        (sMoveState.shellSideArmPhysicalFlags & mask)) ? SPLIT_PHYSICAL : SPLIT_SPECIAL;
+}
+
+extern "C" bool W2U_MoveState_ApplyTarShot(u32 slot)
+{
+    if (!IsValidSlot(slot)) return false;
+    const bool changed = !(sMoveState.tarShotFlags & SlotMask(slot));
+    sMoveState.tarShotFlags |= SlotMask(slot);
+    return changed;
+}
+
+extern "C" bool W2U_MoveState_HasTarShot(u32 slot)
+{
+    return IsValidSlot(slot) && (sMoveState.tarShotFlags & SlotMask(slot));
+}
+
+extern "C" bool W2U_MoveState_HasNoRetreat(u32 slot)
+{
+    return IsValidSlot(slot) && (sMoveState.noRetreatFlags & SlotMask(slot));
+}
+
+extern "C" bool W2U_MoveState_TryNoRetreat(u32 slot)
+{
+    if (!IsValidSlot(slot) || W2U_MoveState_HasNoRetreat(slot)) return false;
+    sMoveState.noRetreatFlags |= SlotMask(slot);
+    return true;
+}
+
+static int PersistentEffectIndex(MOVE_ID move)
+{
+    return move == MOVE_OCTOLOCK ? 0 : move == MOVE_SALT_CURE ? 1 :
+        move == MOVE_SYRUP_BOMB ? 2 : -1;
+}
+
+extern "C" void W2U_MoveState_StartGlaiveRush(u32 slot)
+{
+    sMoveState.glaiveRushFlags |= SlotMask(slot);
+}
+
+extern "C" bool W2U_MoveState_EnsureAuxEvent(u16 fieldId, u32 owner)
+{
+    (void)owner;
+    if (fieldId < 13 || fieldId > 14) return false;
+    BattleEventItem*& item = sMoveState.auxItems[fieldId - 13];
+    if (item) return true;
+#if defined(W2U_DYNAMIC_BATTLE_CORE)
+    const W2UBattleHandlerExport* entry = W2U_BattleModules_FindLoaded(W2U_MECHANIC_FIELD, fieldId);
+#else
+    const W2UBattleHandlerExport* entry = W2U_BattleStatic_Resolve(W2U_MECHANIC_FIELD, fieldId);
+#endif
+    if (!entry) return false;
+    item = BattleEvent_AddItem(EVENTITEM_FIELD, fieldId, EVENTPRI_ABILITY_STALL,
+        0, BATTLE_MAX_SLOTS, entry->handlers, entry->handlerCount);
+    // A battle-long cached event must not depend on a departing battler.
+    return item != 0;
+}
+
+extern "C" bool W2U_MoveState_HasPersistentEffect(MOVE_ID move, u32 target)
+{
+    const int index = PersistentEffectIndex(move);
+    return index >= 0 && IsValidSlot(target) &&
+        (sMoveState.persistentFlags[index] & SlotMask(target));
+}
+
+extern "C" bool W2U_MoveState_StartPersistentEffect(MOVE_ID move, u32 source, u32 target)
+{
+    const int index = PersistentEffectIndex(move);
+    if (index < 0 || !IsValidSlot(source) || !IsValidSlot(target) ||
+        W2U_MoveState_HasPersistentEffect(move, target)) return false;
+    sMoveState.persistentSources[index][target] = (u8)source;
+    sMoveState.persistentTurns[index][target] = move == MOVE_SYRUP_BOMB ? 3 : 255;
+    sMoveState.persistentFlags[index] |= SlotMask(target);
+    return true;
+}
+
+extern "C" u32 W2U_MoveState_PersistentSource(MOVE_ID move, u32 target)
+{
+    return W2U_MoveState_HasPersistentEffect(move, target)
+        ? sMoveState.persistentSources[PersistentEffectIndex(move)][target] : BATTLE_MAX_SLOTS;
+}
+
+extern "C" void W2U_MoveState_TickPersistentEffect(MOVE_ID move, u32 target)
+{
+    const int index = PersistentEffectIndex(move);
+    if (index >= 0 && W2U_MoveState_HasPersistentEffect(move, target) &&
+        sMoveState.persistentTurns[index][target] != 255 &&
+        --sMoveState.persistentTurns[index][target] == 0)
+        sMoveState.persistentFlags[index] &= ~SlotMask(target);
 }
 
 extern "C" void W2U_MoveState_SetConsumedBerryFlag(u32 pokemonSlot)
@@ -1409,6 +1738,28 @@ extern "C" void W2U_MoveState_StartLaserFocus(u32 pokemonSlot)
         // the effect active through the end of the user's next turn.
         sMoveState.laserFocusTurns[pokemonSlot] = 2;
     }
+}
+
+extern "C" bool W2U_MoveState_ApplyDragonCheer(ServerFlow* flow, u32 slot)
+{
+    BattleMon* mon = GetBattleMon(flow, slot);
+    if (!IsValidSlot(slot) || !mon || BattleMon_GetConditionFlag(mon, 9)) return false;
+    if (!W2U_MoveState_EnsureTransientEvent(slot)) return false;
+    sMoveState.dragonCheerBoost[slot] = HasTypeWithExtra(mon, TYPE_DRAGON) ? 2 : 1;
+    ServerDisplay_SetConditionFlag(flow, mon, 9);
+    return true;
+}
+
+extern "C" void W2U_CopyCriticalBoost(BattleMon* user, BattleMon* target)
+{
+    if (!user || !target || !IsValidSlot(user->battleSlot) || !IsValidSlot(target->battleSlot)) return;
+    sMoveState.dragonCheerBoost[user->battleSlot] =
+        BattleMon_GetConditionFlag(target, 9) ? sMoveState.dragonCheerBoost[target->battleSlot] : 0;
+    // Native Transform clears persistent flags after copying the surface.
+    // This routine also runs for its client BattleMon, so update each local
+    // flag through the native primitive rather than a server-only command.
+    if (BattleMon_GetConditionFlag(target, 9)) BattleMon_SetConditionFlag(user, 9);
+    else BattleMon_ResetConditionFlag(user, 9);
 }
 
 extern "C" bool W2U_MoveState_IsLaserFocused(u32 pokemonSlot)
@@ -1822,6 +2173,8 @@ extern "C" bool W2U_MoveState_RemoveAuroraVeilSide(
 
 static u32 ResolveRuntimeMoveCategory(MOVE_ID moveID, BattleMon* attackingMon)
 {
+    if (moveID == MOVE_SHELL_SIDE_ARM && attackingMon)
+        return W2U_MoveState_ShellSideArmCategory(BattleMon_GetID(attackingMon));
     if (moveID == MOVE_PHOTON_GEYSER && attackingMon) {
         // These values include the stored stat stages but precede held-item
         // and ability event modifiers. Ties are special.
@@ -1876,6 +2229,389 @@ extern "C" void HandlerRapidSpin(BattleEventItem* item, ServerFlow* serverFlow, 
 
 BattleEventHandlerTableEntry RapidSpinHandlers[] = {
     { EVENT_MOVE_DAMAGE_SIDE_AFTER, HandlerRapidSpin },
+};
+
+static void HandlerMortalSpin(BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
+{
+    BattleMon* user = GetBattleMon(flow, slot);
+    // Successful sequence notification follows contact/item reactions.
+    if (!user || BattleMon_IsFainted(user) ||
+        Handler_PokeIDToPokePos(flow, slot) >= W2U_NULL_BATTLE_POS) return;
+    HandlerRapidSpin(item, flow, slot, work);
+}
+
+static BattleEventHandlerTableEntry MortalSpinHandlers[] = {
+    { EVENT_MOVE_DAMAGE_SIDE_AFTER, HandlerMortalSpin },
+};
+
+static void HandlerExpandingForceTarget(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_MON_ID) &&
+        W2U_MoveState_GetTerrain() == TERRAIN_PSYCHIC && IsGrounded(flow, GetBattleMon(flow, slot)))
+        BattleEventVar_RewriteValue(VAR_TARGET_TYPE, TARGET_ENEMY_ALL);
+}
+
+static void HandlerExpandingForcePower(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) &&
+        W2U_MoveState_GetTerrain() == TERRAIN_PSYCHIC && IsGrounded(flow, GetBattleMon(flow, slot)))
+        BattleEventVar_RewriteValue(VAR_MOVE_POWER,
+            BattleEventVar_GetValue(VAR_MOVE_POWER) * 3 / 2);
+}
+
+static BattleEventHandlerTableEntry ExpandingForceHandlers[] = {
+    { EVENT_W2U_MOVE_PARAM_FINAL, HandlerExpandingForceTarget },
+    { EVENT_MOVE_BASE_POWER, HandlerExpandingForcePower },
+};
+
+static bool IsMoveRecipientHidden(BattleMon* mon)
+{
+    for (u32 flag = CONDITIONFLAG_FLY; flag <= CONDITIONFLAG_SHADOW_FORCE; ++flag)
+        if (BattleMon_GetConditionFlag(mon, flag)) return true;
+    return BattleMon_CheckIfMoveCondition(mon, CONDITION_SKYDROP);
+}
+
+static void HandlerDecorate(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) return;
+    BattleMon* target = GetBattleMon(flow, (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON));
+    // Boosts use native target-stat data: retain Substitute/Contrary/caps.
+    if (target && IsMoveRecipientHidden(target))
+        BattleEventVar_RewriteValue(VAR_NO_EFFECT_FLAG, 1);
+}
+
+static BattleEventHandlerTableEntry DecorateHandlers[] = {
+    { EVENT_ABILITY_CHECK_NO_EFFECT, HandlerDecorate },
+};
+
+static void HandlerSnipeShotRedirection(BattleEventItem*, ServerFlow*, u32 slot, u32*)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON))
+        BattleEventVar_RewriteValue(VAR_MOVE_FAIL_FLAG, 1);
+}
+
+static BattleEventHandlerTableEntry SnipeShotHandlers[] = {
+    { EVENT_W2U_REDIRECTION_CHECK, HandlerSnipeShotRedirection },
+};
+
+static void HandlerDragonDartsTargets(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    // Request an additional foe only after native redirection/dead-target
+    // correction. Immunity, hiding, protection and accuracy remain native.
+    if ((u32)BattleEventVar_GetValue(VAR_MOVE_ID) == MOVE_DRAGON_DARTS &&
+        slot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) &&
+        BtlSetup_GetBattleStyle(flow->mainModule) == BTL_STYLE_DOUBLE &&
+        !BattleEventVar_GetValue(VAR_MOVE_FAIL_FLAG) &&
+        !MainModule_IsAllyMonID(slot, (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON)))
+        BattleEventVar_RewriteValue(VAR_GENERAL_USE_FLAG, 1);
+}
+
+static void HandlerDragonDartsPrankster(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    const u32 target = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
+    if ((u32)BattleEventVar_GetValue(VAR_MOVE_ID) == MOVE_DRAGON_DARTS &&
+        slot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) &&
+        !MainModule_IsAllyMonID(slot, target) &&
+        HasTypeWithExtra(GetBattleMon(flow, target), TYPE_DARK) &&
+        W2U_DragonDartsHasPranksterOrigin(flow, slot))
+        BattleEventVar_RewriteValue(VAR_NO_EFFECT_FLAG, 1);
+}
+
+static BattleEventHandlerTableEntry DragonDartsHandlers[] = {
+    { EVENT_W2U_TARGET_PARAM_FINAL, HandlerDragonDartsTargets },
+    { EVENT_NOEFFECT_CHECK, HandlerDragonDartsPrankster },
+};
+
+static void HandlerDragonCheer(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) return;
+    for (u32 index = 0; index < W2U_ARRAY_COUNT(flow->pokeCon->activeBattleMon); ++index) {
+        BattleMon* mon = flow->pokeCon->activeBattleMon[index];
+        if (!mon) continue;
+        const u32 ally = BattleMon_GetID(mon);
+        const u32 userPos = Handler_PokeIDToPokePos(flow, slot);
+        const u32 allyPos = ally < BATTLE_MAX_SLOTS ? Handler_PokeIDToPokePos(flow, ally) : W2U_NULL_BATTLE_POS;
+        if (ally == slot || ally >= BATTLE_MAX_SLOTS || !MainModule_IsAllyMonID(slot, ally) ||
+            allyPos >= W2U_NULL_BATTLE_POS ||
+            // Native positions interleave the two sides (0,2,4 / 1,3,5).
+            // Only same-side opposite corners are nonadjacent in triples.
+            (allyPos > userPos ? allyPos - userPos : userPos - allyPos) > 2 ||
+            BattleMon_IsFainted(mon) || IsMoveRecipientHidden(mon)) continue;
+        if (W2U_MoveState_ApplyDragonCheer(flow, ally)) {
+            PushMessageArg(flow, slot, 2u, 1041u, ally);
+            BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, slot);
+        }
+    }
+}
+
+static BattleEventHandlerTableEntry DragonCheerHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerDragonCheer },
+};
+
+static void HandlerAllyHealing(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) return;
+    const MOVE_ID move = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
+    for (u32 index = 0; index < W2U_ARRAY_COUNT(flow->pokeCon->activeBattleMon); ++index) {
+        BattleMon* mon = flow->pokeCon->activeBattleMon[index];
+        if (!mon) continue;
+        const u32 recipient = BattleMon_GetID(mon);
+        if (recipient >= BATTLE_MAX_SLOTS) continue;
+        if (Handler_PokeIDToPokePos(flow, recipient) >= W2U_NULL_BATTLE_POS ||
+            BattleMon_IsFainted(mon) || !MainModule_IsAllyMonID(slot, recipient) ||
+            IsMoveRecipientHidden(mon)) continue;
+        if (move == MOVE_LIFE_DEW && recipient != slot) {
+            // Native Water immunity/absorption, in its own complete scope.
+            // Storm Drain boosts rather than heals; Water Absorb/Dry Skin
+            // perform their own quarter recovery, never an additional one.
+            HandlerParam_StrParams message = {};
+            BattleEventVar_Push();
+            BattleEventVar_SetConstValue(VAR_ATTACKING_MON, slot);
+            BattleEventVar_SetConstValue(VAR_DEFENDING_MON, recipient);
+            BattleEventVar_SetConstValue(VAR_MOVE_ID, move);
+            BattleEventVar_SetConstValue(VAR_MOVE_TYPE, TYPE_WATER);
+            BattleEventVar_SetConstValue(VAR_MAGIC_COAT_FLAG, 0);
+            BattleEventVar_SetConstValue(VAR_WORK_ADDRESS, (int)&message);
+            BattleEventVar_SetConstValue(VAR_TYPE_EFFECTIVENESS, 3);
+            BattleEventVar_SetRewriteOnceValue(VAR_NO_EFFECT_FLAG, 0);
+            BattleEventVar_SetRewriteOnceValue(VAR_GENERAL_USE_FLAG, 0);
+            BattleEvent_CallHandlers(flow, EVENT_ABILITY_CHECK_NO_EFFECT);
+            const bool immune = BattleEventVar_GetValue(VAR_NO_EFFECT_FLAG);
+            BattleEventVar_Pop();
+            if (immune) continue;
+        }
+        const CONDITION status = (CONDITION)BattleMon_GetStatus(mon);
+        if (move != MOVE_LIFE_DEW && status != CONDITION_NONE)
+            CureMoveCondition(flow, recipient, status);
+        if (BattleMon_GetValue(mon, VALUE_CURRENT_HP) < BattleMon_GetValue(mon, VALUE_MAX_HP)) {
+            HandlerParam_RecoverHP* heal = (HandlerParam_RecoverHP*)
+                BattleHandler_PushWork(flow, EFFECT_RECOVER_HP, slot);
+            heal->recoverHP = (u16)DivideMaxHPZeroCheck(mon, 4);
+            heal->pokeID = (u8)recipient;
+            heal->failCheckThru = false;
+            BattleHandler_StrSetup(&heal->exStr, 2u, 387u);
+            BattleHandler_AddArg(&heal->exStr, recipient);
+            BattleHandler_PopWork(flow, heal);
+        }
+    }
+}
+
+static BattleEventHandlerTableEntry AllyHealingHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerAllyHealing },
+};
+
+static void HandlerMakeItRainCoins(BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) || flow->simulationCounter) return;
+    ++work[0];
+    // Pay Day owns native limits and payout bookkeeping (including items).
+    W2UNativeMoveGetter getter = W2U_FindNativeMoveGetter(MOVE_PAY_DAY);
+    if (!getter) return;
+    u32 count = 0;
+    BattleEventHandlerTableEntry* table = getter(&count);
+    for (u32 i = 0; table && i < count; ++i)
+        if (table[i].eventType == EVENT_DETERMINE_MOVE_DAMAGE)
+            table[i].handler(item, flow, slot, work);
+}
+
+static void HandlerMakeItRainReset(BattleEventItem*, ServerFlow*, u32 slot, u32* work)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_MON_ID)) work[0] = 0;
+}
+
+static void HandlerMakeItRainDrop(BattleEventItem*, ServerFlow* flow, u32 slot, u32* work)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) || !work[0] || flow->simulationCounter) return;
+    work[0] = 0;
+    ApplyStatChange(flow, slot, slot, STATSTAGE_SPECIAL_ATTACK, -1, false);
+}
+
+static BattleEventHandlerTableEntry MakeItRainHandlers[] = {
+    { EVENT_MOVE_SEQUENCE_START, HandlerMakeItRainReset },
+    { EVENT_DETERMINE_MOVE_DAMAGE, HandlerMakeItRainCoins },
+    { EVENT_MOVE_DAMAGE_SIDE_AFTER, HandlerMakeItRainDrop },
+};
+
+static void HandlerMatchaReset(BattleEventItem*, ServerFlow*, u32 slot, u32* work)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_MON_ID))
+        for (u32 i = 0; i < 7; ++i) work[i] = 0;
+}
+
+static void HandlerMatchaRecord(BattleEventItem*, ServerFlow* flow, u32 slot, u32* work)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) || flow->simulationCounter ||
+        work[0] >= 6) return;
+    const u32 target = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
+    const u32 damage = (u32)BattleEventVar_GetValue(VAR_DAMAGE);
+    BattleMon* mon = GetBattleMon(flow, target);
+    if (!mon || !damage) return;
+    // Seven native work words: count and six packed (amount, target, Ooze)
+    // records. Record actual damage, including Substitute and HP clipping.
+    const u32 amount = damage / 2 ? damage / 2 : 1;
+    const u32 ooze = BattleMon_GetValue(mon, VALUE_EFFECTIVE_ABILITY) == ABIL_LIQUID_OOZE;
+    work[++work[0]] = amount | (target << 16) | (ooze << 24);
+}
+
+static void HandlerMatchaDrain(BattleEventItem*, ServerFlow* flow, u32 slot, u32* work)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) || flow->simulationCounter) return;
+    BattleMon* user = GetBattleMon(flow, slot);
+    if (!user || BattleMon_IsFainted(user)) { work[0] = 0; return; }
+    // Process every reversal before any recovery. Native drain work applies
+    // Big Root, Liquid Ooze, Heal Block and the no-revival check itself.
+    for (u32 phase = 1; ; --phase) {
+        for (u32 i = 1; i <= work[0] && i <= 6; ++i) {
+            const u32 record = work[i];
+            if ((record >> 24) != phase) continue;
+            HandlerParam_Drain* drain = (HandlerParam_Drain*)
+                BattleHandler_PushWork(flow, EFFECT_DRAIN, slot);
+            drain->recoverHP = (u16)record;
+            drain->recipientSlot = (u8)slot;
+            drain->damageSourceSlot = (u8)(record >> 16);
+            BattleHandler_StrSetup(&drain->exStr, 2u, 387u);
+            BattleHandler_AddArg(&drain->exStr, slot);
+            BattleHandler_PopWork(flow, drain);
+        }
+        if (!phase) break;
+    }
+    work[0] = 0;
+}
+
+static BattleEventHandlerTableEntry MatchaGotchaHandlers[] = {
+    { EVENT_MOVE_SEQUENCE_START, HandlerMatchaReset },
+    { EVENT_MOVE_DAMAGE_REACTION_1, HandlerMatchaRecord },
+    { EVENT_MOVE_DAMAGE_SIDE_AFTER, HandlerMatchaDrain },
+};
+
+static void HandlerRageFistPower(BattleEventItem*, ServerFlow*, u32 slot, u32*)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON))
+        BattleEventVar_RewriteValue(VAR_MOVE_POWER, W2U_MoveState_RageFistPower(slot));
+}
+
+static BattleEventHandlerTableEntry RageFistHandlers[] = {
+    { EVENT_MOVE_BASE_POWER, HandlerRageFistPower },
+};
+
+static void HandlerLastRespectsCheck(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_MON_ID) &&
+        !W2U_MoveState_LastRespectsPower(flow, slot))
+        BattleEventVar_RewriteValue(VAR_FAIL_CAUSE, MOVE_FAIL_OTHER);
+}
+
+static void HandlerLastRespectsPower(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) return;
+    const u32 power = W2U_MoveState_LastRespectsPower(flow, slot);
+    if (power) BattleEventVar_RewriteValue(VAR_MOVE_POWER, power);
+}
+
+static BattleEventHandlerTableEntry LastRespectsHandlers[] = {
+    { EVENT_MOVE_EXECUTE_CHECK2, HandlerLastRespectsCheck },
+    { EVENT_MOVE_BASE_POWER, HandlerLastRespectsPower },
+};
+
+static void HandlerRevivalBlessingCheck(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_MON_ID) &&
+        !W2U_Revival_CanUse(flow, slot))
+        BattleEventVar_RewriteValue(VAR_FAIL_CAUSE, MOVE_FAIL_OTHER);
+}
+
+static void HandlerRevivalBlessing(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) return;
+    BattleMon* user = GetBattleMon(flow, slot);
+    if (user && !BattleMon_CheckIfMoveCondition(user, CONDITION_HEALBLOCK))
+        W2U_Revival_Begin(flow, slot);
+}
+
+static BattleEventHandlerTableEntry RevivalBlessingHandlers[] = {
+    { EVENT_MOVE_EXECUTE_CHECK2, HandlerRevivalBlessingCheck },
+    { EVENT_UNCATEGORIZED_MOVE, HandlerRevivalBlessing },
+};
+
+static void HandlerCourtChange(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) &&
+        W2U_MoveState_CourtChange(flow))
+        BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, slot);
+}
+
+static BattleEventHandlerTableEntry CourtChangeHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerCourtChange },
+};
+
+static void HandlerSnowscape(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) &&
+        W2U_Weather_QueueSnow(flow, slot))
+        BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, slot);
+}
+
+static BattleEventHandlerTableEntry SnowscapeHandlers[] = {
+    { EVENT_CALL_FIELD_EFFECT, HandlerSnowscape },
+};
+
+static void HandlerChillyReception(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (!flow || flow->simulationCounter ||
+        slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) return;
+    bool success = W2U_Weather_QueueSnow(flow, slot);
+    // Pivot even if snow is already active (or weather cannot be replaced).
+    // Native switching owns recipient selection, Pursuit and entry hazards.
+    if (Handler_GetFightEnableBenchPokeNum(flow, slot) &&
+        Handler_CheckReservedMemberChangeAction(flow)) {
+        HandlerParam_Switch* pivot = (HandlerParam_Switch*)
+            BattleHandler_PushWork(flow, EFFECT_SWITCH, slot);
+        if (pivot) {
+            pivot->pokeID = (u8)slot;
+            pivot->intrDisable = false;
+            BattleHandler_StrClear(&pivot->preStr);
+            BattleHandler_StrClear(&pivot->exStr);
+            BattleHandler_PopWork(flow, pivot);
+            success = true;
+        }
+    }
+    if (success) BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, slot);
+}
+
+static BattleEventHandlerTableEntry ChillyReceptionHandlers[] = {
+    { EVENT_CALL_FIELD_EFFECT, HandlerChillyReception },
+};
+
+static void HandlerTidyUp(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    (void)item; (void)work;
+    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        BattleEventVar_GetValue(VAR_TARGET_COUNT) == 0) return;
+    bool removedSubstitute = false;
+    for (u32 slot = 0; slot < W2U_ARRAY_COUNT(flow->pokeCon->activeBattleMon); ++slot) {
+        BattleMon* mon = GetBattleMon(flow, slot);
+        if (mon && !BattleMon_IsFainted(mon) &&
+            Handler_PokeIDToPokePos(flow, slot) < W2U_NULL_BATTLE_POS &&
+            BattleMon_IsSubstituteActive(mon)) {
+            BattleMon_RemoveSubstitute(mon);
+            removedSubstitute = true;
+        }
+    }
+    const SIDE_EFFECT hazards[] = {
+        SIDEEFF_SPIKES, SIDEEFF_TOXIC_SPIKES, SIDEEFF_STEALTH_ROCK, SIDEEFF_STICKY_WEB
+    };
+    for (u32 side = 0; side < W2U_SIDE_COUNT; ++side) {
+        RemoveSideEffects(flow, pokemonSlot, side, hazards, W2U_ARRAY_COUNT(hazards));
+        if (RemoveStickyWebSide(flow, pokemonSlot, side, true)) removedSubstitute = true;
+    }
+    ApplyStatChange(flow, pokemonSlot, pokemonSlot, STATSTAGE_ATTACK, 1, true);
+    ApplyStatChange(flow, pokemonSlot, pokemonSlot, STATSTAGE_SPEED, 1, true);
+    if (removedSubstitute) BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, pokemonSlot);
+}
+
+static BattleEventHandlerTableEntry TidyUpHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerTidyUp },
 };
 
 static void HandlerDamagingHazard(
@@ -1957,6 +2693,166 @@ extern "C" void HandlerAnchorShot(
 
 BattleEventHandlerTableEntry AnchorShotHandlers[] = {
     { EVENT_MOVE_DAMAGE_SIDE_AFTER, HandlerAnchorShot },
+};
+
+static bool QueueSourceTrap(ServerFlow* flow, u32 source, u32 target)
+{
+    BattleMon* mon = GetBattleMon(flow, target);
+    if (!mon || BattleMon_IsFainted(mon) || HasTypeWithExtra(mon, TYPE_GHOST)) return false;
+    if (BattleMon_CheckIfMoveCondition(mon, CONDITION_ESCAPE_PREVENTION)) return false;
+    HandlerParam_AddCondition* effect = (HandlerParam_AddCondition*)
+        BattleHandler_PushWork(flow, EFFECT_ADD_CONDITION, source);
+    if (!effect) return false;
+    effect->condition = CONDITION_ESCAPE_PREVENTION;
+    // Clean US W2/B2 native Spider Web: poke-dependent kind 3, source in
+    // bits 3–8. The engine clears dependents on source departure/fainting.
+    effect->condData = 3u | (source << 3);
+    effect->pokeID = (u8)target;
+    effect->almost = 0;
+    BattleHandler_StrSetup(&effect->exStr, 2, 872);
+    BattleHandler_AddArg(&effect->exStr, target);
+    BattleHandler_PopWork(flow, effect);
+    return true;
+}
+
+static void HandlerNoRetreat(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        !BattleEventVar_GetValue(VAR_TARGET_COUNT) || flow->simulationCounter ||
+        W2U_MoveState_HasNoRetreat(slot)) return;
+    BattleMon* user = GetBattleMon(flow, slot);
+    if (!user) return;
+    const bool alreadyTrapped = BattleMon_CheckIfMoveCondition(user, CONDITION_ESCAPE_PREVENTION);
+    if (!alreadyTrapped) {
+        if (!W2U_MoveState_TryNoRetreat(slot)) return;
+        QueueSourceTrap(flow, slot, slot);
+        BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, slot);
+    }
+    for (u32 stat = STATSTAGE_ATTACK; stat <= STATSTAGE_SPEED; ++stat)
+        ApplyStatChange(flow, slot, slot, (StatStage)stat, 1, true);
+}
+
+static BattleEventHandlerTableEntry NoRetreatHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerNoRetreat },
+};
+
+static bool HasNativeTrap(BattleMon* mon)
+{
+    return BattleMon_CheckIfMoveCondition(mon, CONDITION_ESCAPE_PREVENTION) ||
+        BattleMon_CheckIfMoveCondition(mon, CONDITION_BIND) ||
+        BattleMon_CheckIfMoveCondition(mon, (CONDITION)20); // Ingrain.
+}
+
+static void HandlerJawLock(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        flow->simulationCounter || BattleEventVar_GetValue(VAR_SUBSTITUTE_FLAG)) return;
+    const u32 target = (u32)BattleEventVar_GetValue(VAR_TARGET_MON_ID);
+    BattleMon* user = GetBattleMon(flow, slot);
+    BattleMon* foe = GetBattleMon(flow, target);
+    if (!user || !foe || BattleMon_IsFainted(user) || BattleMon_IsFainted(foe) ||
+        HasNativeTrap(user) || HasNativeTrap(foe)) return;
+    QueueSourceTrap(flow, slot, target);
+    QueueSourceTrap(flow, target, slot);
+}
+
+static BattleEventHandlerTableEntry JawLockHandlers[] = {
+    { EVENT_DAMAGE_PROCESSING_END_HIT_REAL, HandlerJawLock },
+};
+
+static void HandlerOctolock(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        !BattleEventVar_GetValue(VAR_TARGET_COUNT) || flow->simulationCounter) return;
+    const u32 target = (u32)BattleEventVar_GetValue(VAR_TARGET_MON_ID);
+    BattleMon* mon = GetBattleMon(flow, target);
+    if (!mon || BattleMon_IsFainted(mon) || HasTypeWithExtra(mon, TYPE_GHOST) ||
+        !W2U_MoveState_EnsureAuxEvent(13, slot) ||
+        !W2U_MoveState_StartPersistentEffect(MOVE_OCTOLOCK, slot, target)) return;
+    QueueSourceTrap(flow, slot, target);
+    BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, slot);
+}
+
+static void HandlerOctolockResidual(BattleEventItem*, ServerFlow* flow, u32, u32*)
+{
+    const u32 target = (u32)BattleEventVar_GetValue(VAR_MON_ID);
+    if (flow->simulationCounter || !W2U_MoveState_HasPersistentEffect(MOVE_OCTOLOCK, target)) return;
+    BattleMon* mon = GetBattleMon(flow, target);
+    const u32 source = W2U_MoveState_PersistentSource(MOVE_OCTOLOCK, target);
+    BattleMon* user = GetBattleMon(flow, source);
+    if (!mon || !user || BattleMon_IsFainted(mon) || BattleMon_IsFainted(user) ||
+        Handler_PokeIDToPokePos(flow, source) >= W2U_NULL_BATTLE_POS) return;
+    ApplyStatChange(flow, source, target, STATSTAGE_DEFENSE, -1, false);
+    ApplyStatChange(flow, source, target, STATSTAGE_SPECIAL_DEFENSE, -1, false);
+}
+
+static BattleEventHandlerTableEntry OctolockHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerOctolock },
+};
+static BattleEventHandlerTableEntry FieldOctolockResidualHandlers[] = {
+    { EVENT_TURN_CHECK_END, HandlerOctolockResidual },
+};
+
+static void HandlerPersistentSecondary(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) || flow->simulationCounter ||
+        BattleEventVar_GetValue(VAR_DAMAGE) <= 0 || BattleEventVar_GetValue(VAR_SUBSTITUTE_FLAG) ||
+        BattleEventVar_GetValue(VAR_SHIELD_DUST_FLAG)) return;
+    BattleMon* user = GetBattleMon(flow, slot);
+    const u32 target = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
+    BattleMon* mon = GetBattleMon(flow, target);
+    if (!user || !mon || BattleMon_IsFainted(mon) ||
+        BattleMon_GetValue(user, VALUE_EFFECTIVE_ABILITY) == ABIL_SHEER_FORCE) return;
+    const MOVE_ID move = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
+    if (W2U_MoveState_EnsureAuxEvent(14, slot))
+        W2U_MoveState_StartPersistentEffect(move, slot, target);
+}
+
+static void HandlerPersistentResidual(BattleEventItem*, ServerFlow* flow, u32, u32*)
+{
+    const u32 target = (u32)BattleEventVar_GetValue(VAR_MON_ID);
+    BattleMon* mon = GetBattleMon(flow, target);
+    if (!mon || BattleMon_IsFainted(mon) || flow->simulationCounter ||
+        Handler_PokeIDToPokePos(flow, target) >= W2U_NULL_BATTLE_POS) return;
+    if (W2U_MoveState_HasPersistentEffect(MOVE_SALT_CURE, target)) {
+        HandlerParam_Damage* damage = (HandlerParam_Damage*)
+            BattleHandler_PushWork(flow, EFFECT_DAMAGE, target);
+        if (damage) {
+            const u32 divisor = HasTypeWithExtra(mon, TYPE_WATER) ||
+                HasTypeWithExtra(mon, TYPE_STEEL) ? 4 : 8;
+            damage->damage = (u16)DivideMaxHPZeroCheck(mon, divisor);
+            damage->pokeID = (u8)target;
+            BattleHandler_PopWork(flow, damage);
+        }
+    }
+    if (W2U_MoveState_HasPersistentEffect(MOVE_SYRUP_BOMB, target)) {
+        const u32 source = W2U_MoveState_PersistentSource(MOVE_SYRUP_BOMB, target);
+        BattleMon* user = GetBattleMon(flow, source);
+        if (user && !BattleMon_IsFainted(user) &&
+            Handler_PokeIDToPokePos(flow, source) < W2U_NULL_BATTLE_POS)
+            ApplyStatChange(flow, source, target, STATSTAGE_SPEED, -1, false);
+        W2U_MoveState_TickPersistentEffect(MOVE_SYRUP_BOMB, target);
+    }
+}
+
+static BattleEventHandlerTableEntry PersistentSecondaryHandlers[] = {
+    { EVENT_MOVE_DAMAGE_REACTION_1, HandlerPersistentSecondary },
+};
+
+static void HandlerGlaiveRush(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    // Clean W2/B2 side-after dispatch publishes attacker (3), not mon (2).
+    if (slot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) && !flow->simulationCounter)
+        W2U_MoveState_StartGlaiveRush(slot);
+}
+
+static BattleEventHandlerTableEntry GlaiveRushHandlers[] = {
+    // The native successful-sequence callback includes Substitute hits, and
+    // runs before slower attacks in the same turn. No secondary suppression.
+    { EVENT_MOVE_DAMAGE_SIDE_AFTER, HandlerGlaiveRush },
+};
+static BattleEventHandlerTableEntry FieldPersistentResidualHandlers[] = {
+    { EVENT_TURN_CHECK_END, HandlerPersistentResidual },
 };
 
 
@@ -2178,6 +3074,47 @@ BattleEventHandlerTableEntry RototillerHandlers[] = {
     { EVENT_ABILITY_CHECK_NO_EFFECT, HandlerRototiller },
 };
 
+// Never boost the user or foe if a called move or invalid target reaches the
+// ordinary effect pipeline. Protection/substitute eligibility stays in data.
+static void HandlerCoaching(BattleEventItem*, ServerFlow* serverFlow, u32 pokemonSlot, u32*)
+{
+    u32 attacker = (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON);
+    if (pokemonSlot != attacker) return;
+    u32 target = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
+    if (target == attacker || !MainModule_IsAllyMonID(attacker, target) ||
+        !GetBattleMon(serverFlow, target)) {
+        BattleEventVar_RewriteValue(VAR_NO_EFFECT_FLAG, 1);
+    }
+}
+
+static void HandlerCoachingApply(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        !BattleEventVar_GetValue(VAR_TARGET_COUNT)) return;
+    const u32 targetSlot = (u32)BattleEventVar_GetValue(VAR_TARGET_MON_ID);
+    BattleMon* target = GetBattleMon(flow, targetSlot);
+    if (!target || BattleMon_IsFainted(target) || targetSlot == slot ||
+        !MainModule_IsAllyMonID(slot, targetSlot)) return;
+    // MUST_HIT status moves are not excluded by native accuracy's hiding
+    // checks. Coaching explicitly cannot reach a semi-invulnerable partner.
+    for (u32 flag = CONDITIONFLAG_FLY; flag <= CONDITIONFLAG_SHADOW_FORCE; ++flag) {
+        if (BattleMon_GetConditionFlag(target, flag)) return;
+    }
+    if (BattleMon_CheckIfMoveCondition(target, CONDITION_SKYDROP)) return;
+    // Native direct target-stat effects reject Substitute a second time even
+    // when bit 13 allowed the target. Attribute the cooperative boosts to the
+    // recipient, like self-boost work: bypass that check without removing the
+    // doll or overwriting stages. Native work still owns caps, Simple, Contrary,
+    // messages and aggregate move success. No resident hook is necessary.
+    ApplyStatChange(flow, targetSlot, targetSlot, STATSTAGE_ATTACK, 1, false);
+    ApplyStatChange(flow, targetSlot, targetSlot, STATSTAGE_DEFENSE, 1, false);
+}
+
+static BattleEventHandlerTableEntry CoachingHandlers[] = {
+    { EVENT_ABILITY_CHECK_NO_EFFECT, HandlerCoaching },
+    { EVENT_UNCATEGORIZED_MOVE, HandlerCoachingApply },
+};
+
 
 extern "C" void HandlerSideStickyWeb(BattleEventItem* item, ServerFlow* serverFlow, u32 side, u32* work)
 {
@@ -2306,6 +3243,10 @@ extern "C" void HandlerSideAuroraVeilGuard(
     if (side >= W2U_SIDE_COUNT || !sAuroraVeilActive(side)) {
         return;
     }
+    // The native Brick Break skip callback knows only Reflect/Light Screen.
+    // These attacks also ignore Veil during calculation, before queued removal.
+    const MOVE_ID move = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
+    if (move == MOVE_BRICK_BREAK || move == MOVE_RAGING_BULL) return;
 
     u32 attackingSlot = (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON);
     BattleMon* attackingMon = GetBattleMon(serverFlow, attackingSlot);
@@ -2357,7 +3298,9 @@ extern "C" void HandlerSideAuroraVeilTurnCheckDone(
 }
 
 BattleEventHandlerTableEntry SideAuroraVeilHandlers[] = {
-    { EVENT_DEFENDER_GUARD, HandlerSideAuroraVeilGuard },
+    // CommonScreenEffect multiplies the final damage ratio. Calling it during
+    // defense-stat calculation instead lowers Defense and increases damage.
+    { EVENT_MOVE_DAMAGE_PROCESSING_2, HandlerSideAuroraVeilGuard },
     { EVENT_TURN_CHECK_DONE, HandlerSideAuroraVeilTurnCheckDone },
 };
 
@@ -2454,6 +3397,32 @@ extern "C" void HandlerBrickBreakAuroraVeil(
 }
 
 BattleEventHandlerTableEntry BrickBreakAuroraVeilHandlers[] = {
+    { EVENT_MOVE_DAMAGE_PROCESSING_1, HandlerBrickBreakStart },
+    { EVENT_MOVE_DAMAGE_PROCESSING_END, HandlerBrickBreakEnd },
+    { EVENT_DETERMINE_MOVE_DAMAGE, HandlerBrickBreakCheck },
+    { EVENT_DETERMINE_MOVE_DAMAGE, HandlerBrickBreakAuroraVeil },
+};
+
+static void HandlerRagingBullType(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_MON_ID) ||
+        BattleEventVar_GetValue(VAR_MOVE_ID) != MOVE_RAGING_BULL) return;
+    BattleMon* user = GetBattleMon(flow, slot);
+    if (!user) return;
+    const u32 species = user->flags & 0x20 ? user->transformedSpecies : user->species;
+    u32 type = TYPE_NORMAL;
+    if (species == SPECIES_TAUROS) {
+        switch (user->form) {
+        case 1: type = TYPE_FIGHTING; break;
+        case 2: type = TYPE_FIRE; break;
+        case 3: type = TYPE_WATER; break;
+        }
+    }
+    BattleEventVar_RewriteValue(VAR_MOVE_TYPE, type);
+}
+
+static BattleEventHandlerTableEntry RagingBullHandlers[] = {
+    { EVENT_W2U_MOVE_PARAM_BASE, HandlerRagingBullType },
     { EVENT_MOVE_DAMAGE_PROCESSING_1, HandlerBrickBreakStart },
     { EVENT_MOVE_DAMAGE_PROCESSING_END, HandlerBrickBreakEnd },
     { EVENT_DETERMINE_MOVE_DAMAGE, HandlerBrickBreakCheck },
@@ -2584,6 +3553,150 @@ static void HandlerHpCostBoost(
 
 static BattleEventHandlerTableEntry HpCostBoostHandlers[] = {
     { EVENT_UNCATEGORIZED_MOVE, HandlerHpCostBoost },
+};
+
+static void HandlerStuffCheeksCheck(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_MON_ID)) {
+        BattleMon* user = GetBattleMon(flow, slot);
+        if (!user || !PML_ItemIsBerry(BattleMon_GetHeldItem(user)))
+            BattleEventVar_RewriteValue(VAR_FAIL_CAUSE, MOVE_FAIL_OTHER);
+    }
+}
+
+static void HandlerStuffCheeks(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        !BattleEventVar_GetValue(VAR_TARGET_COUNT) || flow->simulationCounter) return;
+    BattleMon* user = GetBattleMon(flow, slot);
+    const ITEM berry = user ? BattleMon_GetHeldItem(user) : ITEM_NULL;
+    const int direction = user && BattleMon_GetValue(user, VALUE_EFFECTIVE_ABILITY) == 126 ? -2 : 2;
+    if (!user || !PML_ItemIsBerry(berry) ||
+        !BattleMon_IsStatChangeValid(user, STATSTAGE_DEFENSE, direction)) return;
+    ApplyStatChange(flow, slot, slot, STATSTAGE_DEFENSE, 2, true);
+    // Remove the held-item factor before creating the temporary one; otherwise
+    // the same berry could receive the forced-use event twice. Consumption
+    // goes through the resident native transaction (Recycle/Belch/Cheek Pouch).
+    HandlerParam_ConsumeItem* consume = (HandlerParam_ConsumeItem*)
+        BattleHandler_PushWork(flow, EFFECT_CONSUME_ITEM, slot);
+    if (!consume) return;
+    consume->dontUse = 0;
+    BattleHandler_PopWork(flow, consume);
+    HandlerParam_UseTempItem* effect = (HandlerParam_UseTempItem*)
+        BattleHandler_PushWork(flow, EFFECT_USE_TEMP_ITEM, slot);
+    if (!effect) return;
+    effect->pokeID = (u8)slot;
+    effect->itemID = (u16)berry;
+    // Pluck's reviewed fail-skip bit: full HP/no matching status must not turn
+    // the already-successful Defense boost and berry consumption into failure.
+    effect->header.flags |= 1u << 24;
+    BattleHandler_PopWork(flow, effect);
+}
+
+static BattleEventHandlerTableEntry StuffCheeksHandlers[] = {
+    { EVENT_MOVE_EXECUTE_CHECK2, HandlerStuffCheeksCheck },
+    { EVENT_UNCATEGORIZED_MOVE, HandlerStuffCheeks },
+};
+
+static void HandlerTeatime(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (!flow || flow->simulationCounter ||
+        slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) return;
+    // Snapshot eligible recipients, not their items. Native target filtering
+    // has already dispatched converted-type immunities (including absorbers).
+    // Each synchronous PopWork completes consumption/Symbiosis before the next
+    // recipient is examined; an item transferred away cannot be eaten twice.
+    u8 recipients[6];
+    u32 count = 0;
+    const u32 targets = (u32)BattleEventVar_GetValue(VAR_TARGET_COUNT);
+    if (targets > W2U_ARRAY_COUNT(recipients)) return;
+    for (u32 i = 0; i < targets; ++i) {
+        const u32 target = (u32)BattleEventVar_GetValue((BattleEventVar)(VAR_TARGET_MON_ID + i));
+        BattleMon* mon = GetBattleMon(flow, target);
+        if (!mon || BattleMon_IsFainted(mon) || IsMoveRecipientHidden(mon) ||
+            Handler_PokeIDToPokePos(flow, target) >= W2U_NULL_BATTLE_POS ||
+            !PML_ItemIsBerry(BattleMon_GetHeldItem(mon))) continue;
+        bool duplicate = false;
+        for (u32 j = 0; j < count; ++j) if (recipients[j] == target) duplicate = true;
+        if (!duplicate) recipients[count++] = (u8)target;
+    }
+    for (u32 i = 0; i < count; ++i) {
+        BattleMon* mon = GetBattleMon(flow, recipients[i]);
+        const ITEM berry = BattleMon_GetHeldItem(mon);
+        if (!PML_ItemIsBerry(berry)) continue;
+        HandlerParam_ConsumeItem* consume = (HandlerParam_ConsumeItem*)
+            BattleHandler_PushWork(flow, EFFECT_CONSUME_ITEM, recipients[i]);
+        if (!consume) continue;
+        consume->dontUse = 0;
+        BattleHandler_PopWork(flow, consume);
+        HandlerParam_UseTempItem* effect = (HandlerParam_UseTempItem*)
+            BattleHandler_PushWork(flow, EFFECT_USE_TEMP_ITEM, slot);
+        if (!effect) continue;
+        effect->pokeID = recipients[i];
+        effect->itemID = (u16)berry;
+        effect->header.flags |= 1u << 24;
+        BattleHandler_PopWork(flow, effect);
+        // Consumption is success even when the berry had no useful effect.
+        BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, slot);
+    }
+}
+
+static BattleEventHandlerTableEntry TeatimeHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerTeatime },
+};
+
+static void HandlerShedTail(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (!flow || flow->simulationCounter || slot >= BATTLE_MAX_SLOTS ||
+        slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        !BattleEventVar_GetValue(VAR_TARGET_COUNT)) return;
+    BattleMon* user = GetBattleMon(flow, slot);
+    const u32 maximum = user ? BattleMon_GetValue(user, VALUE_MAX_HP) : 0;
+    const u32 pos = Handler_PokeIDToPokePos(flow, slot);
+    if (!user || BattleMon_IsFainted(user) || BattleMon_IsSubstituteActive(user) ||
+        maximum < 4 || BattleMon_GetValue(user, VALUE_CURRENT_HP) <= (maximum + 1) / 2 ||
+        pos >= W2U_NULL_BATTLE_POS || !Handler_GetFightEnableBenchPokeNum(flow, slot) ||
+        !Handler_CheckReservedMemberChangeAction(flow) ||
+        !W2U_MoveState_CreateShedTailSub(flow, slot)) return;
+
+    // Native Baton Pass's position event owns the delayed replacement copy.
+    // The resident exit filter makes that copy Substitute-only, including
+    // the delayed client, without adding child pointers to battle state.
+    HandlerParam_AddPosEffect* transfer = (HandlerParam_AddPosEffect*)
+        BattleHandler_PushWork(flow, EFFECT_ADD_POS_EFFECT, slot);
+    transfer->posEffect = 4; // native Baton Pass
+    transfer->targetPos = pos;
+    transfer->workToCopy[0] = slot;
+    transfer->workCount = 1;
+    BattleHandler_PopWork(flow, transfer);
+    ServerDisplay_SetConditionFlag(flow, user, CONDITIONFLAG_BATONPASS);
+    HandlerParam_Switch* pivot = (HandlerParam_Switch*)BattleHandler_PushWork(flow, EFFECT_SWITCH, slot);
+    pivot->header.flags |= 1u << 24; // native fail-skip ordering
+    pivot->pokeID = (u8)slot;
+    pivot->intrDisable = true;
+    BattleHandler_StrClear(&pivot->preStr);
+    BattleHandler_StrClear(&pivot->exStr);
+    BattleHandler_PopWork(flow, pivot);
+}
+
+static BattleEventHandlerTableEntry ShedTailHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerShedTail },
+};
+
+static void HandlerBodyPressStat(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    (void)item; (void)flow; (void)work;
+    if (pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) &&
+        BattleEventVar_GetValue(VAR_MOVE_ID) == MOVE_BODY_PRESS) {
+        // Raw/staged/critical-aware native readers all use selector 9 for
+        // Defense. Attack-side ability/item multipliers still run afterwards.
+        BattleEventVar_RewriteValue(VAR_ATTACK_STAT_SELECTOR, 9);
+    }
+}
+
+static BattleEventHandlerTableEntry BodyPressHandlers[] = {
+    { EVENT_W2U_ATTACK_STAT_SELECTOR, HandlerBodyPressStat },
 };
 
 static void HandlerScaleShotEnd(
@@ -2984,6 +4097,129 @@ BattleEventHandlerTableEntry PhotonGeyserHandlers[] = {
     { EVENT_MOVE_SEQUENCE_END, HandlerAbilityIgnoringMoveEnd },
 };
 
+// The reviewed native EABI divmod returns the quotient in r0. Naming the
+// existing import avoids a separate toolchain-specific uidiv dependency.
+extern "C" u32 W2U_UnsignedQuotient(u32 numerator, u32 denominator) __asm__("__aeabi_uidivmod");
+static u32 ShellSideArmStagedStat(BattleMon* mon, BattleMonValue stat, BattleMonValue stage)
+{
+    const u32 raw = BattleMon_GetRealStat(mon, stat);
+    const u32 rank = BattleMon_GetValue(mon, stage);
+    return rank >= 6 ? raw * (2 + rank - 6) / 2 : W2U_UnsignedQuotient(raw * 2, 2 + 6 - rank);
+}
+
+static void HandlerShellSideArmReset(BattleEventItem*, ServerFlow* flow, u32 slot, u32* work)
+{
+    if (!flow->simulationCounter && work && slot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON))
+        work[0] = 0;
+}
+
+static void HandlerShellSideArmCategory(BattleEventItem*, ServerFlow* flow, u32 slot, u32* work)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) return;
+    BattleMon* user = GetBattleMon(flow, slot);
+    BattleMon* target = GetBattleMon(flow, (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON));
+    if (!user || !target) return;
+    u32 category;
+    if (!flow->simulationCounter && work && work[0]) category = work[0];
+    else {
+        // Wonder Room exchanges the Defense ranks in this forecast, not the
+        // raw defensive stats. Items/abilities/screens/weather are excluded.
+        const bool room = BattleField_CheckEffect(6u);
+        const u32 attack = ShellSideArmStagedStat(user, VALUE_ATTACK_STAT, VALUE_ATTACK_STAGE);
+        const u32 specialAttack = ShellSideArmStagedStat(user, VALUE_SPECIAL_ATTACK_STAT, VALUE_SPECIAL_ATTACK_STAGE);
+        // Native raw readers already exchange their selectors in Wonder Room;
+        // invert that selector here to keep the original raw forecast stat.
+        const u32 defense = ShellSideArmStagedStat(target, room ? VALUE_SPECIAL_DEFENSE_STAT : VALUE_DEFENSE_STAT,
+            room ? VALUE_SPECIAL_DEFENSE_STAGE : VALUE_DEFENSE_STAGE);
+        const u32 specialDefense = ShellSideArmStagedStat(target, room ? VALUE_DEFENSE_STAT : VALUE_SPECIAL_DEFENSE_STAT,
+            room ? VALUE_DEFENSE_STAGE : VALUE_SPECIAL_DEFENSE_STAGE);
+        const u32 factor = W2U_UnsignedQuotient(2u * user->level, 5u) + 2u;
+        const u32 physical = W2U_UnsignedQuotient(W2U_UnsignedQuotient(factor * 90u * attack, defense ? defense : 1u), 50u);
+        const u32 special = W2U_UnsignedQuotient(W2U_UnsignedQuotient(factor * 90u * specialAttack, specialDefense ? specialDefense : 1u), 50u);
+        category = physical > special || (physical == special &&
+            !flow->simulationCounter && BattleRandom(2u) == 0u) ? SPLIT_PHYSICAL : SPLIT_SPECIAL;
+        if (!flow->simulationCounter && work) work[0] = category;
+    }
+    BattleEventVar_RewriteValue(VAR_MOVE_CATEGORY, category);
+    if (!flow->simulationCounter) W2U_MoveState_SetShellSideArmCategory(slot, category);
+}
+
+static BattleEventHandlerTableEntry ShellSideArmHandlers[] = {
+    { EVENT_MOVE_SEQUENCE_START, HandlerShellSideArmReset },
+    { EVENT_W2U_TARGET_PARAM_FINAL, HandlerShellSideArmCategory },
+};
+
+// Validate the complete Doodle transaction before any native ability work is
+// queued. Ability-change work owns removal/re-registration, client updates,
+// switch-in callbacks and restoration on switch; no child pointers are shared.
+static bool IsDoodleProtectedAbility(ABILITY ability)
+{
+    switch (ability) {
+    case ABIL_MULTITYPE:
+    case 161: // Zen Mode
+    case ABIL_STANCE_CHANGE:
+    case ABIL_SHIELDS_DOWN:
+    case ABIL_SCHOOLING:
+    case ABIL_DISGUISE:
+    case ABIL_BATTLE_BOND:
+    case ABIL_POWER_CONSTRUCT:
+    case ABIL_COMATOSE:
+    case ABIL_RKS_SYSTEM:
+    case ABIL_GULP_MISSILE:
+    case ABIL_ICE_FACE:
+    case ABIL_AS_ONE_ICE_RIDER:
+    case ABIL_AS_ONE_SHADOW_RIDER:
+    case ABIL_PROTOSYNTHESIS:
+    case ABIL_QUARK_DRIVE:
+    case ABIL_ZERO_TO_HERO:
+    case ABIL_COMMANDER:
+    case ABIL_POISON_PUPPETEER:
+        return true;
+    default:
+        return false;
+    }
+}
+
+static void HandlerDoodle(BattleEventItem*, ServerFlow* flow, u32 owner, u32*)
+{
+    if (owner != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        BattleEventVar_GetValue(VAR_TARGET_COUNT) != 1) return;
+    BattleMon* target = GetBattleMon(flow, BattleEventVar_GetValue(VAR_TARGET_MON_ID));
+    BattleMon* user = GetBattleMon(flow, owner);
+    if (!target || !user || BattleMon_IsFainted(target) || BattleMon_IsFainted(user)) return;
+    const ABILITY ability = BattleMon_GetValue(target, VALUE_ABILITY);
+    if (IsDoodleProtectedAbility(ability) || ability == ABIL_RECEIVER) return;
+
+    u8 recipients[W2U_SIDE_SLOT_COUNT];
+    u32 count = 0;
+    for (u32 slot = 0; slot < 24; ++slot) {
+        BattleMon* mon = GetBattleMon(flow, slot);
+        if (!mon || BattleMon_IsFainted(mon) || !MainModule_IsAllyMonID(owner, slot) ||
+            Handler_PokeIDToPokePos(flow, slot) >= W2U_NULL_BATTLE_POS) continue;
+        const ABILITY old = BattleMon_GetValue(mon, VALUE_ABILITY);
+        if (IsDoodleProtectedAbility(old)) return;
+        if (old == ability) continue;
+        if (count == W2U_ARRAY_COUNT(recipients)) return;
+        recipients[count++] = (u8)slot;
+    }
+    for (u32 i = 0; i < count; ++i) {
+        HandlerParam_ChangeAbility* change = (HandlerParam_ChangeAbility*)
+            BattleHandler_PushWork(flow, EFFECT_CHANGE_ABILITY, owner);
+        change->ability = (u16)ability;
+        change->pokeID = recipients[i];
+        change->sameAbilityEffective = 0;
+        change->skipSwitchInEvent = 0;
+        BattleHandler_StrSetup(&change->exStr, 2u, 463u);
+        BattleHandler_AddArg(&change->exStr, recipients[i]);
+        BattleHandler_AddArg(&change->exStr, ability);
+        BattleHandler_PopWork(flow, change);
+    }
+}
+
+static BattleEventHandlerTableEntry DoodleHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerDoodle },
+};
+
 
 extern "C" void HandlerWaterShurikenBasePower(
     BattleEventItem* item,
@@ -3282,6 +4518,24 @@ static BattleEventHandlerTableEntry GravAppleHandlers[] = {
     { EVENT_MOVE_BASE_POWER, HandlerGravAppleBasePower },
 };
 
+static void HandlerTarShot(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        !BattleEventVar_GetValue(VAR_TARGET_COUNT) || flow->simulationCounter) return;
+    const u32 target = (u32)BattleEventVar_GetValue(VAR_TARGET_MON_ID);
+    ApplyStatChange(flow, slot, target, STATSTAGE_SPEED, -1, true);
+    if (W2U_MoveState_ApplyTarShot(target)) {
+        PushMessageArg(flow, slot, 2u, 1355u, target);
+        // New tar still succeeds at a stat cap or through Clear Body. Neither
+        // speed reductions nor the Fire multiplier can accumulate the tar.
+        BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, slot);
+    }
+}
+
+static BattleEventHandlerTableEntry TarShotHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerTarShot },
+};
+
 static void HandlerPsybladeBasePower(
     BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
@@ -3400,6 +4654,46 @@ static BattleEventHandlerTableEntry SteelRollerHandlers[] = {
     { EVENT_DAMAGE_PROCESSING_END_HIT_1, HandlerSteelRollerRemoveTerrain },
 };
 
+static void HandlerIceSpinnerRemoveTerrain(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    (void)work;
+    if (!work || !work[0] ||
+        pokemonSlot != (u32)BattleEventVar_GetValue(VAR_MON_ID)) return;
+    work[0] = 0;
+    BattleMon* user = GetBattleMon(flow, pokemonSlot);
+    // Sequence end is after contact/item reactions. SV does not clear
+    // terrain if those reactions faint or eject the user. Substitute counts
+    // as a hit, and neither a terrain prerequisite nor a grounding test applies.
+    if (user && !BattleMon_IsFainted(user) &&
+        Handler_PokeIDToPokePos(flow, pokemonSlot) < W2U_NULL_BATTLE_POS) {
+        W2U_MoveState_RemoveTerrain(flow);
+    }
+}
+
+static void HandlerIceSpinnerMarkHit(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    if (work && !flow->simulationCounter &&
+        pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) &&
+        BattleEventVar_GetValue(VAR_DAMAGE) > 0) work[0] = 1;
+}
+
+static void HandlerIceSpinnerReset(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    (void)item; (void)flow;
+    if (work && pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) work[0] = 0;
+}
+
+static BattleEventHandlerTableEntry IceSpinnerHandlers[] = {
+    { EVENT_MOVE_SEQUENCE_START, HandlerIceSpinnerReset },
+    { EVENT_MOVE_DAMAGE_SIDE_AFTER, HandlerIceSpinnerMarkHit },
+    { EVENT_MOVE_SEQUENCE_END, HandlerIceSpinnerRemoveTerrain },
+};
+
 static void HandlerStormRainAccuracy(
     BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
@@ -3454,6 +4748,32 @@ static void InvokeNativeMoveEvent(
     }
 }
 
+static void HandlerMistyExplosionPower(
+    BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) &&
+        W2U_MoveState_GetTerrain() == TERRAIN_MISTY &&
+        IsGrounded(flow, GetBattleMon(flow, slot))) {
+        BattleEventVar_RewriteValue(VAR_MOVE_POWER,
+            BattleEventVar_GetValue(VAR_MOVE_POWER) * 3 / 2);
+    }
+}
+
+#define W2U_EXPLOSION_DELEGATE(name, event) \
+static void name(BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work) \
+{ InvokeNativeMoveEvent(MOVE_EXPLOSION, event, item, flow, slot, work); }
+W2U_EXPLOSION_DELEGATE(HandlerMistyExplosionStart, (BattleEventType)0x24)
+W2U_EXPLOSION_DELEGATE(HandlerMistyExplosionDamage, EVENT_DETERMINE_MOVE_DAMAGE)
+W2U_EXPLOSION_DELEGATE(HandlerMistyExplosionEnd, EVENT_MOVE_EXECUTE_END)
+#undef W2U_EXPLOSION_DELEGATE
+
+static BattleEventHandlerTableEntry MistyExplosionHandlers[] = {
+    { EVENT_MOVE_BASE_POWER, HandlerMistyExplosionPower },
+    { (BattleEventType)0x24, HandlerMistyExplosionStart },
+    { EVENT_DETERMINE_MOVE_DAMAGE, HandlerMistyExplosionDamage },
+    { EVENT_MOVE_EXECUTE_END, HandlerMistyExplosionEnd },
+};
+
 static void HandlerSupercellSlamCrash(
     BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
 {
@@ -3488,6 +4808,25 @@ static void HandlerTripleAxelHitCount(
 static BattleEventHandlerTableEntry TripleAxelHandlers[] = {
     { EVENT_MOVE_BASE_POWER, HandlerTripleAxelPower },
     { EVENT_MOVE_HIT_COUNT, HandlerTripleAxelHitCount },
+};
+
+static void HandlerPopulationBombHitCount(
+    BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) return;
+    BattleMon* user = GetBattleMon(flow, slot);
+    if (!user) return;
+    // Ten fixed strikes come from move data. Unlike native 2–5-hit moves,
+    // the engine's Skill Link shortcut does not cover a maximum above five.
+    // Leaving the per-strike flag unset explicitly gives Skill Link its one
+    // initial accuracy check; ordinary users reuse Triple Kick's stop-on-miss.
+    if (BattleMon_GetValue(user, VALUE_EFFECTIVE_ABILITY) != ABIL_SKILL_LINK)
+        InvokeNativeMoveEvent(MOVE_TRIPLE_KICK,
+            EVENT_MOVE_HIT_COUNT, item, flow, slot, work);
+}
+
+static BattleEventHandlerTableEntry PopulationBombHandlers[] = {
+    { EVENT_MOVE_HIT_COUNT, HandlerPopulationBombHitCount },
 };
 
 static void HandlerSupercellSlamMinimizeDamage(
@@ -3575,6 +4914,150 @@ static BattleEventHandlerTableEntry DireClawHandlers[] = {
     { EVENT_MOVE_DAMAGE_REACTION_1, HandlerDireClaw },
 };
 
+static void HandlerLashOutPower(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    (void)item; (void)flow; (void)work;
+    if (pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) &&
+        W2U_MoveState_HadStatChangeThisTurn(pokemonSlot, false)) {
+        BattleEventVar_RewriteValue(VAR_MOVE_POWER,
+            BattleEventVar_GetValue(VAR_MOVE_POWER) * 2);
+    }
+}
+
+static BattleEventHandlerTableEntry LashOutHandlers[] = {
+    { EVENT_MOVE_BASE_POWER, HandlerLashOutPower },
+};
+
+static void HandlerStatRiseStatusReset(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    (void)item; (void)flow;
+    if (work && pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON))
+        work[0] = 0;
+}
+
+static void HandlerStatRiseStatusSnapshot(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    if (!work || !flow || flow->simulationCounter ||
+        pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) return;
+    const u32 target = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
+    // Freeze eligibility before damage reactions can activate Weakness Policy
+    // or a reactive ability. Later reactions cannot qualify this same hit.
+    SetSlotFlag(work[0], target, W2U_MoveState_HadStatChangeThisTurn(target, true));
+}
+
+static void HandlerStatRiseStatusApply(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    const u32 targetSlot = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
+    const MOVE_ID move = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
+    if (!work || !flow || flow->simulationCounter ||
+        pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        !(work[0] & SlotMask(targetSlot)) || BattleEventVar_GetValue(VAR_DAMAGE) <= 0 ||
+        BattleEventVar_GetValue(VAR_SUBSTITUTE_FLAG) ||
+        BattleEventVar_GetValue(VAR_SHIELD_DUST_FLAG)) return;
+    BattleMon* target = GetBattleMon(flow, targetSlot);
+    if (!target || BattleMon_IsFainted(target)) return;
+    const CONDITION status = move == MOVE_ALLURING_VOICE ?
+        CONDITION_CONFUSION : CONDITION_BURN;
+    BattleEventVar_Push();
+    BattleEventVar_SetConstValue(VAR_ATTACKING_MON, pokemonSlot);
+    BattleEventVar_SetConstValue(VAR_DEFENDING_MON, targetSlot);
+    BattleEventVar_SetConstValue(VAR_MOVE_ID, move);
+    BattleEventVar_SetValue(VAR_CONDITION_ID, status);
+    BattleEventVar_SetRewriteOnceValue(VAR_MOVE_FAIL_FLAG, 0);
+    BattleEventVar_SetValue(VAR_ADDED_EFFECT_CHANCE, 100);
+    BattleEvent_CallHandlers(flow, EVENT_ADDED_STATUS_CHANCE);
+    const bool failed = BattleEventVar_GetValue(VAR_MOVE_FAIL_FLAG) != 0 ||
+        BattleEventVar_GetValue(VAR_ADDED_EFFECT_CHANCE) == 0;
+    BattleEventVar_Pop();
+    if (failed) return;
+    HandlerParam_AddCondition* effect = (HandlerParam_AddCondition*)
+        BattleHandler_PushWork(flow, EFFECT_ADD_CONDITION, pokemonSlot);
+    if (!effect) return;
+    effect->condition = status;
+    if (status == CONDITION_CONFUSION) MakeCondition(status, target, &effect->condData);
+    else effect->condData = MakeBasicStatus(status);
+    effect->almost = 0;
+    effect->pokeID = (u8)targetSlot;
+    BattleHandler_PopWork(flow, effect);
+}
+
+static BattleEventHandlerTableEntry BurningJealousyHandlers[] = {
+    { EVENT_MOVE_SEQUENCE_START, HandlerStatRiseStatusReset },
+    { EVENT_MOVE_DAMAGE_PROCESSING_1, HandlerStatRiseStatusSnapshot },
+    { EVENT_MOVE_DAMAGE_REACTION_1, HandlerStatRiseStatusApply },
+};
+
+static BattleEventHandlerTableEntry AlluringVoiceHandlers[] = {
+    { EVENT_MOVE_SEQUENCE_START, HandlerStatRiseStatusReset },
+    { EVENT_MOVE_DAMAGE_PROCESSING_1, HandlerStatRiseStatusSnapshot },
+    { EVENT_MOVE_DAMAGE_REACTION_1, HandlerStatRiseStatusApply },
+    { EVENT_BYPASS_SUBSTITUTE, HandlerBypassSubstitute },
+};
+
+static void HandlerEerieSpellPP(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    (void)item; (void)work;
+    if (!flow || flow->simulationCounter ||
+        pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        BattleEventVar_GetValue(VAR_DAMAGE) <= 0 ||
+        BattleEventVar_GetValue(VAR_SUBSTITUTE_FLAG) ||
+        BattleEventVar_GetValue(VAR_SHIELD_DUST_FLAG)) return;
+    BattleMon* user = GetBattleMon(flow, pokemonSlot);
+    const u32 targetSlot = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
+    BattleMon* target = GetBattleMon(flow, targetSlot);
+    if (!user || !target || BattleMon_IsFainted(target) ||
+        BattleMon_GetValue(user, VALUE_EFFECTIVE_ABILITY) == ABIL_SHEER_FORCE) return;
+    // Spite's native history getter and surface-slot lookup remain valid for
+    // Transform/Mimic. A replaced or absent move must not drain another slot.
+    const MOVE_ID previous = BattleMon_GetPreviousMove(target);
+    if (previous == MOVE_NONE || previous == MOVE_STRUGGLE) return;
+    for (u32 slot = 0; slot < W2U_ARRAY_COUNT(target->moves); ++slot) {
+        const MoveCore& move = target->moves[slot].surface;
+        if (move.moveID != previous) continue;
+        const u8 amount = move.currentPP < 3 ? move.currentPP : 3;
+        if (!amount) return;
+        HandlerParam_ReducePP* effect = (HandlerParam_ReducePP*)
+            BattleHandler_PushWork(flow, EFFECT_REDUCE_PP, pokemonSlot);
+        if (!effect) return;
+        effect->amount = amount;
+        effect->pokeID = (u8)targetSlot;
+        effect->moveSlot = (u8)slot;
+        // Reuse Spite's existing target/move/amount message, not a new text ID.
+        BattleHandler_StrSetup(&effect->exStr, 2u, 641u);
+        BattleHandler_AddArg(&effect->exStr, targetSlot);
+        BattleHandler_AddArg(&effect->exStr, previous);
+        BattleHandler_AddArg(&effect->exStr, amount);
+        BattleHandler_PopWork(flow, effect);
+        return;
+    }
+}
+
+static BattleEventHandlerTableEntry EerieSpellHandlers[] = {
+    { EVENT_MOVE_DAMAGE_REACTION_1, HandlerEerieSpellPP },
+    { EVENT_BYPASS_SUBSTITUTE, HandlerBypassSubstitute },
+};
+
+static void HandlerCorrosiveGas(BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        !BattleEventVar_GetValue(VAR_TARGET_COUNT) || flow->simulationCounter) return;
+    // The reviewed native Knock Off callback only queues non-consumption
+    // item removal. Its item-set validation preserves Sticky Hold and the
+    // resident protected-form-item predicate, without recording an eaten item.
+    InvokeNativeMoveEvent(MOVE_KNOCK_OFF, EVENT_DAMAGE_PROCESSING_END_HIT_REAL, item, flow, slot, work);
+}
+
+static BattleEventHandlerTableEntry CorrosiveGasHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerCorrosiveGas },
+};
+
 static void HandlerSuperEffectiveDamageBonus(
     BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
@@ -3584,7 +5067,8 @@ static void HandlerSuperEffectiveDamageBonus(
     const u32 effectiveness = (u32)BattleEventVar_GetValue(VAR_TYPE_EFFECTIVENESS);
     if (pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) &&
         (effectiveness == RESULT_SUPER_EFFECTIVE ||
-         effectiveness == W2U_EFFECTIVENESS_4 || effectiveness == W2U_EFFECTIVENESS_8)) {
+         effectiveness == W2U_EFFECTIVENESS_4 || effectiveness == W2U_EFFECTIVENESS_8 ||
+         effectiveness == W2U_EFFECTIVENESS_16)) {
         // Collision Course / Electro Drift modify final damage, not power
         // or the type chart. Native fixed-point chaining supplies rounding.
         BattleEventVar_MulValue(VAR_RATIO, 5461);
@@ -3838,7 +5322,8 @@ extern "C" void HandlerPosCraftyShield(BattleEventItem* item, ServerFlow* server
     u32 defendingSlot = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
     u32 attackingSlot = (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON);
     if (defendingSlot != attackingSlot &&
-        !MainModule_IsAllyMonID(attackingSlot, defendingSlot) &&
+        (!MainModule_IsAllyMonID(attackingSlot, defendingSlot) ||
+            BattleEventVar_GetValue(VAR_MOVE_ID) == MOVE_DECORATE) &&
         MainModule_IsAllyMonID(pokemonSlot, defendingSlot) &&
         PML_MoveGetCategory((MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID)) == SPLIT_STATUS) {
         BattleEventVar_RewriteValue(VAR_NO_EFFECT_FLAG, 1);
@@ -3981,6 +5466,45 @@ BattleEventHandlerTableEntry SolarBladeHandlers[] = {
     { EVENT_CHECK_CHARGE_UP_SKIP, HandlerSolarBladeChargeSkip },
     { EVENT_CHARGE_UP_START, HandlerSolarBladeChargeStart },
     { EVENT_MOVE_POWER, HandlerSolarBladeWeatherPower },
+};
+
+extern "C" void HandlerEnergyChargeStart(
+    BattleEventItem*, ServerFlow* flow, u32 pokemonSlot, u32*)
+{
+    if (pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) {
+        PushMessageArg(flow, pokemonSlot, 2u, BATTLE_ENERGY_CHARGE_MSGID, pokemonSlot);
+    }
+}
+
+extern "C" void HandlerEnergyChargeBoost(
+    BattleEventItem*, ServerFlow* flow, u32 pokemonSlot, u32*)
+{
+    // Native confirmed-charge dispatch runs once on the initial turn, even
+    // when weather or Power Herb skips the wait. It does not run on release.
+    if (!flow->simulationCounter &&
+        pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) {
+        ApplyStatChange(flow, pokemonSlot, pokemonSlot, STATSTAGE_SPECIAL_ATTACK, 1, true);
+    }
+}
+
+extern "C" void HandlerElectroShotChargeSkip(
+    BattleEventItem*, ServerFlow* flow, u32 pokemonSlot, u32*)
+{
+    if (pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) &&
+        ServerEvent_GetWeather(flow) == WEATHER_RAIN) {
+        BattleEventVar_RewriteValue(VAR_GENERAL_USE_FLAG, 1);
+    }
+}
+
+BattleEventHandlerTableEntry MeteorBeamHandlers[] = {
+    { EVENT_CHARGE_UP_START, HandlerEnergyChargeStart },
+    { EVENT_CHARGE_UP_START_DONE, HandlerEnergyChargeBoost },
+};
+
+BattleEventHandlerTableEntry ElectroShotHandlers[] = {
+    { EVENT_CHECK_CHARGE_UP_SKIP, HandlerElectroShotChargeSkip },
+    { EVENT_CHARGE_UP_START, HandlerEnergyChargeStart },
+    { EVENT_CHARGE_UP_START_DONE, HandlerEnergyChargeBoost },
 };
 
 
@@ -4248,6 +5772,79 @@ BattleEventHandlerTableEntry PosElectrifyHandlers[] = {
 extern "C" u32 fixed_round(u32 value, u32 ratio);
 extern "C" u32 MultiplyValueByRatio(u32 value, u32 ratio);
 
+extern "C" b32 W2U_CheckDamagingSubstitute(BattleMon* target, const MoveParam* move)
+{
+    // This query is scoped to the native hit-damage classifier, not a global
+    // replacement of IsSubstituteActive. The actual doll is never modified.
+    if (move && (getMoveFlag((MOVE_ID)move->moveID, MOVE_FLAG_INDEX_SOUND) ||
+                 getMoveFlag((MOVE_ID)move->moveID, 13u))) return false;
+    return BattleMon_IsSubstituteActive(target);
+}
+
+extern "C" bool W2U_MoveIsRestrictedNpcAttack(MOVE_ID moveID)
+{
+    return moveID >= MOVE_BLAZING_TORQUE && moveID <= MOVE_MAGICAL_TORQUE;
+}
+
+extern "C" b32 BattleMove_AssistIsForbidden(MOVE_ID);
+extern "C" b32 BattleMove_SleepTalkIsForbidden(MOVE_ID);
+extern "C" b32 BattleMove_MeFirstIsForbidden(MOVE_ID);
+extern "C" b32 BattleMove_CopycatIsForbidden(MOVE_ID);
+
+#define W2U_NPC_CALL_POLICY(hook, native) \
+    extern "C" b32 hook(MOVE_ID moveID) { \
+        return W2U_MoveIsRestrictedNpcAttack(moveID) || native(moveID); \
+    }
+W2U_NPC_CALL_POLICY(THUMB_BRANCH_LINK_167_0x21CC4DC, BattleMove_AssistIsForbidden)
+W2U_NPC_CALL_POLICY(THUMB_BRANCH_LINK_167_0x21CC5A2, BattleMove_SleepTalkIsForbidden)
+W2U_NPC_CALL_POLICY(THUMB_BRANCH_LINK_167_0x21CC754, BattleMove_MeFirstIsForbidden)
+W2U_NPC_CALL_POLICY(THUMB_BRANCH_LINK_167_0x21CC7D6, BattleMove_CopycatIsForbidden)
+#undef W2U_NPC_CALL_POLICY
+
+extern "C" void THUMB_BRANCH_LINK_167_0x21A5542(
+    ServerFlow* flow, const MoveParam* move, BattleMon* attacker, PokeSet* targets)
+{
+    // Reuse the native post-secondary thaw pass and its actual-hit target set.
+    // The fire classification is local to this pass; damage/type/STAB and the
+    // original move context remain Ground (or their already-resolved type).
+    if (move->moveID == MOVE_SCORCHING_SANDS || move->moveID == MOVE_MATCHA_GOTCHA) {
+        MoveParam thaw = *move;
+        thaw.moveType = TYPE_FIRE;
+        ServerControl_ThawHitTargets(flow, &thaw, attacker, targets);
+    } else {
+        ServerControl_ThawHitTargets(flow, move, attacker, targets);
+    }
+}
+
+// Preserve the native Damp factor's five callbacks, including Mold Breaker
+// skip handling and its ability popup. Only expand its execution predicate.
+extern "C" void THUMB_BRANCH_HandlerDampCheck(
+    BattleEventItem*, ServerFlow*, u32, u32* work)
+{
+    const MOVE_ID move = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
+    work[0] = 0;
+    if ((move == MOVE_EXPLOSION || move == MOVE_SELFDESTRUCT ||
+         move == MOVE_MISTY_EXPLOSION || move == MOVE_MIND_BLOWN) &&
+        BattleEventVar_GetValue(VAR_FAIL_CAUSE) == MOVE_FAIL_NULL) {
+        work[0] = BattleEventVar_RewriteValue(VAR_FAIL_CAUSE, 0x13);
+        work[1] = move;
+    }
+}
+
+// Replace the bind-local import veneer, not its BL call. Overlay 169 lives
+// outside Thumb BL range of the PMC heap; an eight-byte absolute branch is
+// required. Clean W2/B2 both call this veneer only from bind residual.
+extern "C" u32 W2U_BindResidualQuotient(BattleMon* mon, u32 divisor)
+{
+    const MOVE_ID move = (MOVE_ID)Condition_GetParam(
+        BattleMon_GetMoveCondition(mon, CONDITION_BIND));
+    // The native bind record snapshots Binding Band when the trap is set.
+    // This call site is bind residual only, not poison, burn or item damage.
+    if (move == MOVE_SNAP_TRAP || move == MOVE_THUNDER_CAGE)
+        divisor = divisor == 8 ? 6u : 8u;
+    return DivideMaxHPZeroCheck(mon, divisor);
+}
+
 extern "C" W2UNativeMoveGetter W2U_FindNativeMoveGetter(MOVE_ID nativeMove)
 {
     for (u32 i = 0; i < W2U_MOVE_EVENT_TABLE_COUNT; ++i) {
@@ -4256,6 +5853,32 @@ extern "C" W2UNativeMoveGetter W2U_FindNativeMoveGetter(MOVE_ID nativeMove)
         }
     }
     return 0;
+}
+
+extern "C" u32 W2U_DispatchAttackStatSelector(
+    ServerFlow* flow, BattleEventType nativeEvent, MoveParam* move, u32 selector)
+{
+    BattleEvent_CallHandlers(flow, nativeEvent);
+    // A nested scope preserves the native Foul Play/Unaware context and does
+    // not leave duplicate ID/value labels when native calculation continues.
+    BattleEventVar_Push();
+    BattleEventVar_SetConstValue(VAR_MOVE_ID, move->moveID);
+    BattleEventVar_SetValue(VAR_ATTACK_STAT_SELECTOR, selector);
+    BattleEvent_CallHandlers(flow, EVENT_W2U_ATTACK_STAT_SELECTOR);
+    const u32 result = BattleEventVar_GetValue(VAR_ATTACK_STAT_SELECTOR);
+    BattleEventVar_Pop();
+    return result;
+}
+
+extern "C" u32 THUMB_BRANCH_LINK_ServerEvent_GetAttackPower_0x86(
+    BattleMon* mon, BattleMonValue selector)
+{
+    if (selector != VALUE_DEFENSE_STAT) return BattleMon_GetCriticalStat(mon, selector);
+    // The native critical reader treats Defense as a defending stat and
+    // ignores positive stages. Here it is offensive: ignore negative stages,
+    // retain boosts. Unaware already takes the separate raw-stat branch.
+    return BattleMon_GetValue(mon, VALUE_DEFENSE_STAGE) < 6
+        ? BattleMon_GetRealStat(mon, selector) : BattleMon_GetValue(mon, selector);
 }
 
 extern "C" void W2U_DispatchFinalMoveDamage(
@@ -4296,7 +5919,88 @@ extern "C" u32 THUMB_BRANCH_LINK_ServerEvent_CalcDamage_0x10(
     MOVE_ID moveID,
     BattleMon* attackingMon)
 {
-    return ResolveRuntimeMoveCategory(moveID, attackingMon);
+    const u32 category = ResolveRuntimeMoveCategory(moveID, attackingMon);
+    if (moveID == MOVE_SHELL_SIDE_ARM && attackingMon) {
+        const u32 mask = SlotMask(BattleMon_GetID(attackingMon));
+        if (sMoveState.shellSideArmCategoryValidFlags & mask) {
+            sMoveState.shellSideArmRecordedValidFlags |= mask;
+            if (category == SPLIT_PHYSICAL) sMoveState.shellSideArmRecordedPhysicalFlags |= mask;
+            else sMoveState.shellSideArmRecordedPhysicalFlags &= ~mask;
+        }
+    }
+    return category;
+}
+
+// RegisterTargets' +0xBA call corrects dead/replaced targets after ordinary
+// redirection. Its existing entry hook belongs to Battle Log and stays intact.
+extern "C" b32 ServerControl_CorrectTargetDead(ServerFlow*, u32, BattleMon*, const MoveParam*, u32, PokeSet*);
+extern "C" b32 THUMB_BRANCH_LINK_ServerControl_RegisterTargets_0xBA(
+    ServerFlow* flow, u32 rule, BattleMon* user, MoveParam* params, u32 position, PokeSet* targets)
+{
+    // The retail helper returns zero when no replacement was made, including
+    // the ordinary live-target path. The final set, not that return value,
+    // determines whether category forecasting has a valid target.
+    const b32 corrected = ServerControl_CorrectTargetDead(flow, rule, user, params, position, targets);
+    if (user && params && params->moveID == MOVE_DRAGON_DARTS) {
+        // Native called-move parameters retain the selected original move and
+        // bit 2 (fReqWaza). Never infer this from previous-turn history.
+        SetSlotFlag(sMoveState.calledDartsFlags, BattleMon_GetID(user),
+            (params->flags & 4) && params->originalMoveID &&
+            !PML_MoveIsDamaging(params->originalMoveID));
+    }
+    if (!user || !params || (params->moveID != MOVE_SHELL_SIDE_ARM && params->moveID != MOVE_DRAGON_DARTS) ||
+        !targets || targets->count != 1 || !targets->battleMon[0]) return corrected;
+    BattleEventVar_Push();
+    BattleEventVar_SetConstValue(VAR_MOVE_ID, params->moveID);
+    BattleEventVar_SetConstValue(VAR_ATTACKING_MON, BattleMon_GetID(user));
+    BattleEventVar_SetConstValue(VAR_DEFENDING_MON, BattleMon_GetID(targets->battleMon[0]));
+    BattleEventVar_SetValue(VAR_MOVE_CATEGORY, params->category);
+    BattleEventVar_SetConstValue(VAR_MOVE_FAIL_FLAG,
+        !!(sMoveState.redirectedTargetFlags & SlotMask(BattleMon_GetID(user))));
+    BattleEventVar_SetRewriteOnceValue(VAR_GENERAL_USE_FLAG, 0);
+    BattleEvent_CallHandlers(flow, EVENT_W2U_TARGET_PARAM_FINAL);
+    params->category = (u32)BattleEventVar_GetValue(VAR_MOVE_CATEGORY);
+    const bool expandTargets = BattleEventVar_GetValue(VAR_GENERAL_USE_FLAG) != 0;
+    BattleEventVar_Pop();
+    if (expandTargets && params->moveID == MOVE_DRAGON_DARTS) {
+        for (u32 index = 0; index < W2U_ARRAY_COUNT(flow->pokeCon->activeBattleMon); ++index) {
+            BattleMon* other = flow->pokeCon->activeBattleMon[index];
+            if (!other || other == targets->battleMon[0] || BattleMon_IsFainted(other)) continue;
+            const u32 otherSlot = BattleMon_GetID(other);
+            if (MainModule_IsAllyMonID(BattleMon_GetID(user), otherSlot) ||
+                Handler_PokeIDToPokePos(flow, otherSlot) >= W2U_NULL_BATTLE_POS) continue;
+            // Native PokeSet::Add contract, for the sole second doubles foe.
+            const u32 at = targets->count;
+            targets->battleMon[at] = other;
+            targets->damage[at] = targets->substituteDamage[at] = 0;
+            targets->damageType[at] = 0;
+            targets->count = targets->countMax = at + 1;
+            break;
+        }
+    }
+    return corrected;
+}
+
+extern "C" bool W2U_DragonDartsHasPranksterOrigin(ServerFlow* flow, u32 slot)
+{
+    if (!(sMoveState.calledDartsFlags & SlotMask(slot))) return false;
+    BattleMon* user = GetBattleMon(flow, slot);
+    return user && BattleMon_GetValue(user, VALUE_EFFECTIVE_ABILITY) == ABIL_PRANKSTER;
+}
+
+// DamageRoot has already filtered the expanded set exactly once. A single
+// surviving foe takes the ordinary two-hit path; two foes each take one hit.
+// Keep the original target count intact for Pressure and all other moves.
+extern "C" u32 W2U_GetFilteredMultiHitTargetCount(const PokeSet* targets, const MoveParam* params)
+{
+    return params->moveID == MOVE_DRAGON_DARTS ? targets->count : targets->countMax;
+}
+
+// Splitting the two darts does not make this a spread-damage move. Override
+// only the native ratio selector, before any damage rounding or modifiers.
+extern "C" u32 W2U_GetDamageSpreadTargetCount(const PokeSet* targets, const MoveParam* params)
+{
+    return params->moveID == MOVE_DRAGON_DARTS ? 1 : targets->countMax;
 }
 
 extern "C" u32 THUMB_BRANCH_LINK_ServerEvent_GetAttackPower_0xC(
@@ -4321,6 +6025,11 @@ extern "C" __attribute__((noinline)) u32 W2U_ResolveCounterRecordedMoveCategory(
     MOVE_ID moveID,
     const u8* damageRecord)
 {
+    if (moveID == MOVE_SHELL_SIDE_ARM && damageRecord) {
+        const u32 mask = SlotMask(damageRecord[5]);
+        if (mask && (sMoveState.shellSideArmRecordedValidFlags & mask))
+            return (sMoveState.shellSideArmRecordedPhysicalFlags & mask) ? SPLIT_PHYSICAL : SPLIT_SPECIAL;
+    }
     if (moveID == MOVE_PHOTON_GEYSER && damageRecord) {
         const u32 slotMask = SlotMask(damageRecord[5]);
         if (slotMask && (sMoveState.photonGeyserCategoryValidFlags & slotMask)) {
@@ -4359,6 +6068,46 @@ extern "C" b32 THUMB_BRANCH_BTL_CALC_CheckCritical(u8 rank)
         return 0;
     }
     return BattleRandom(criticalRankTable[rank]) == 0;
+}
+
+extern "C" u32 THUMB_BRANCH_BattleMon_GetCriticalRank(BattleMon* mon)
+{
+    u32 rank = mon->critStage;
+    if (BattleMon_GetConditionFlag(mon, 9)) {
+        const u32 slot = mon->battleSlot;
+        const u32 boost = IsValidSlot(slot) ? sMoveState.dragonCheerBoost[slot] : 0;
+        rank = (u8)(rank + (boost ? boost : 2));
+        if (rank > 4) rank = 4;
+    }
+    return rank;
+}
+
+extern "C" void THUMB_BRANCH_LINK_167_0x21AEDCE(ServerFlow* flow, BattleEventType event)
+{
+    BattleEvent_CallHandlers(flow, event);
+    const u32 mask = SlotMask((u32)BattleEventVar_GetValue(VAR_ATTACKING_MON));
+    sMoveState.redirectedTargetFlags &= ~mask;
+    if ((u32)BattleEventVar_GetValue(VAR_DEFENDING_MON) < BATTLE_MAX_SLOTS)
+        sMoveState.redirectedTargetFlags |= mask;
+}
+
+extern "C" void THUMB_BRANCH_LINK_167_0x21AEE28(ServerFlow* flow, BattleEventType event)
+{
+    // Query the loaded move table before redirection, not target immunities.
+    BattleEventVar_SetValue(VAR_MOVE_FAIL_FLAG, 0);
+    BattleEvent_CallHandlers(flow, EVENT_W2U_REDIRECTION_CHECK);
+    if (!BattleEventVar_GetValue(VAR_MOVE_FAIL_FLAG)) BattleEvent_CallHandlers(flow, event);
+    if ((u32)BattleEventVar_GetValue(VAR_MOVE_ID) == MOVE_DRAGON_DARTS) {
+        // TEMPT_TARGET starts with the ordinary selected target, unlike the
+        // earlier query's null ID. After all handlers finish, a no-op write
+        // distinguishes an untouched rewrite-once variable from one already
+        // claimed by Follow Me/Rage Powder (even the selected center itself).
+        // This cannot alter its value or preempt any handler: the only remaining
+        // native operations are GetValue, Pop, and comparison with the input.
+        const u32 target = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
+        if (!BattleEventVar_RewriteValue(VAR_DEFENDING_MON, target))
+            sMoveState.redirectedTargetFlags |= SlotMask((u32)BattleEventVar_GetValue(VAR_ATTACKING_MON));
+    }
 }
 
 // White 2's original recovery calculation does not expose EVENT_RECOVER_HP.
@@ -4407,11 +6156,10 @@ extern "C" void HandlerFieldTransientMoveStateNoEffect(
     if (!IsValidSlot(defendingSlot) || !IsValidSlot(attackingSlot) || attackingSlot == defendingSlot) {
         return;
     }
-    if (MainModule_IsAllyMonID(attackingSlot, defendingSlot)) {
+    MOVE_ID moveID = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
+    if (MainModule_IsAllyMonID(attackingSlot, defendingSlot) && moveID != MOVE_DECORATE) {
         return;
     }
-
-    MOVE_ID moveID = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
     BattleMon* defendingMon = GetBattleMon(serverFlow, defendingSlot);
     if (((sSpikyShieldFlags | sBanefulBunkerFlags) & SlotMask(defendingSlot)) &&
         defendingMon &&
@@ -4684,6 +6432,16 @@ extern "C" void HandlerFieldTransientMoveStateDamageReaction(
     u32 pokemonSlot,
     u32* work)
 {
+#if !defined(W2U_BATTLE_CHILD)
+    if (serverFlow && !serverFlow->simulationCounter &&
+        !BattleEventVar_GetValue(VAR_SUBSTITUTE_FLAG) && BattleEventVar_GetValue(VAR_DAMAGE) > 0) {
+        const u32 attacker = (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON);
+        const u32 target = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
+        // This native reaction is per strike and includes allies/fatal hits.
+        // Confusion, recoil and residual HP work do not emit this payload.
+        if (attacker < 24 && attacker != target) RecordPartyMemberDirectHit(target);
+    }
+#endif
     // The native event dispatcher stops after the first matching event type
     // in a factor's handler table. Keep the two independent reactions behind
     // one table entry so Shell Trap is not shadowed by Beak Blast.
@@ -4717,6 +6475,27 @@ static void ClearPreparedMovesForEventMon()
 static void ClearSwitchedOrFaintedTransientState()
 {
     const u32 currentSlot = (u32)BattleEventVar_GetValue(VAR_MON_ID);
+#if !defined(W2U_BATTLE_CHILD)
+    sMoveState.statsRaisedThisTurnFlags &= ~SlotMask(currentSlot);
+    sMoveState.statsLoweredThisTurnFlags &= ~SlotMask(currentSlot);
+    sMoveState.tarShotFlags &= ~SlotMask(currentSlot);
+    sMoveState.noRetreatFlags &= ~SlotMask(currentSlot);
+    sMoveState.glaiveRushFlags &= ~SlotMask(currentSlot);
+    sMoveState.shellSideArmCategoryValidFlags &= ~SlotMask(currentSlot);
+    sMoveState.shellSideArmRecordedValidFlags &= ~SlotMask(currentSlot);
+    sMoveState.calledDartsFlags &= ~SlotMask(currentSlot);
+    if (IsValidSlot(currentSlot)) {
+        sMoveState.dragonCheerBoost[currentSlot] = 0;
+        sMoveState.lastSuccessfulSelectedMove[currentSlot] = MOVE_NONE;
+    }
+    for (u32 index = 0; index < 3; ++index) {
+        sMoveState.persistentFlags[index] &= ~SlotMask(currentSlot);
+        if (index == 1) continue; // Salt Cure does not depend on its source.
+        for (u32 target = 0; target < BATTLE_MAX_SLOTS; ++target)
+            if (sMoveState.persistentSources[index][target] == currentSlot)
+                sMoveState.persistentFlags[index] &= ~SlotMask(target);
+    }
+#endif
     ClearStompingOutcomeState(currentSlot);
     W2U_MoveState_ClearBeakBlast(currentSlot);
     W2U_MoveState_ClearShellTrap(currentSlot);
@@ -4757,6 +6536,11 @@ extern "C" void HandlerFieldTransientMoveStateMoveSequenceStart(
     (void)pokemonSlot;
     (void)work;
 
+#if !defined(W2U_BATTLE_CHILD)
+    if (!serverFlow->simulationCounter)
+        sMoveState.shellSideArmCategoryValidFlags &= ~SlotMask((u32)BattleEventVar_GetValue(VAR_ATTACKING_MON));
+#endif
+
     SetSlotFlag(
         sStompingProtectedThisMoveFlags,
         (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON),
@@ -4780,6 +6564,17 @@ extern "C" void HandlerFieldTransientMoveStateMoveSequenceEnd(
     // state (notably a triggered Shell Trap owned by slot 0).
     const u32 currentSlot = (u32)BattleEventVar_GetValue(VAR_MON_ID);
     const u32 currentMask = SlotMask(currentSlot);
+#if !defined(W2U_BATTLE_CHILD)
+    if (currentMask && serverFlow && !serverFlow->simulationCounter) {
+        BattleMon* user = GetBattleMon(serverFlow, currentSlot);
+        // Native history has already been updated here. Record the selected
+        // move, not a Sleep Talk payload. Failed/inhibited actions clear the
+        // rule without altering native counters or last-move bookkeeping.
+        sMoveState.lastSuccessfulSelectedMove[currentSlot] =
+            user && BattleEventVar_GetValue(VAR_GENERAL_USE_FLAG)
+                ? user->previousMove : MOVE_NONE;
+    }
+#endif
     if (currentMask) {
         const bool moveFailed = !BattleEventVar_GetValue(VAR_GENERAL_USE_FLAG) &&
             !(sStompingProtectedThisMoveFlags & currentMask);
@@ -4787,6 +6582,10 @@ extern "C" void HandlerFieldTransientMoveStateMoveSequenceEnd(
         SetSlotFlag(sStompingProtectedThisMoveFlags, currentSlot, false);
     }
     W2U_MoveState_ClearElectrifiedSlot(currentSlot);
+#if !defined(W2U_BATTLE_CHILD)
+    sMoveState.shellSideArmCategoryValidFlags &= ~currentMask;
+    sMoveState.calledDartsFlags &= ~currentMask;
+#endif
     W2U_MoveState_ClearBeakBlast(currentSlot);
     W2U_MoveState_ClearShellTrap(currentSlot);
     sPowderedFlags &= ~SlotMask(currentSlot);
@@ -4821,6 +6620,7 @@ extern "C" void HandlerFieldTransientMoveStateTurnCheckDone(
     (void)work;
 
     if (BattleEventVar_GetValue(VAR_MON_ID) == BATTLE_MAX_SLOTS) {
+        W2U_Weather_EndTurn();
         for (u32 slot = 0; slot < BATTLE_MAX_SLOTS; ++slot) {
             BattleMon* battleMon = GetBattleMon(serverFlow, slot);
             if (battleMon && BattleMon_CheckIfMoveCondition(battleMon, CONDITION_SKYDROP)) {
@@ -4848,7 +6648,51 @@ extern "C" void HandlerFieldTransientMoveStateTurnCheckDone(
     }
 }
 
+#if !defined(W2U_BATTLE_CHILD)
+static void HandlerFieldAppliedStatHistory(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    (void)item; (void)pokemonSlot; (void)work;
+    if (!flow || flow->simulationCounter) return;
+    const u32 slot = (u32)BattleEventVar_GetValue(VAR_MON_ID);
+    const int volume = BattleEventVar_GetValue(VAR_VOLUME);
+    if (!IsValidSlot(slot) || !volume) return;
+    (volume > 0 ? sMoveState.statsRaisedThisTurnFlags :
+        sMoveState.statsLoweredThisTurnFlags) |= SlotMask(slot);
+}
+
+static void HandlerFieldGlaiveRushActionStart(BattleEventItem*, ServerFlow* flow, u32, u32*)
+{
+    if (!flow->simulationCounter) {
+        sMoveState.glaiveRushFlags &= ~SlotMask((u32)BattleEventVar_GetValue(VAR_MON_ID));
+        sMoveState.shedTailTransferFlags &= ~SlotMask((u32)BattleEventVar_GetValue(VAR_MON_ID));
+    }
+}
+
+static void HandlerFieldGlaiveRushAccuracy(BattleEventItem*, ServerFlow*, u32, u32*)
+{
+    if (sMoveState.glaiveRushFlags & SlotMask((u32)BattleEventVar_GetValue(VAR_DEFENDING_MON)))
+        BattleEventVar_RewriteValue(VAR_GENERAL_USE_FLAG, 1);
+}
+
+static void HandlerFieldGlaiveRushDamage(BattleEventItem*, ServerFlow*, u32, u32*)
+{
+    // Only the ordinary native damage calculation emits this ratio phase;
+    // fixed damage and OHKO transactions do not receive the multiplier.
+    if (sMoveState.glaiveRushFlags & SlotMask((u32)BattleEventVar_GetValue(VAR_DEFENDING_MON)))
+        BattleEventVar_MulValue(VAR_RATIO, 8192);
+}
+#endif
+
 static BattleEventHandlerTableEntry FieldTransientMoveStateHandlers[] = {
+#if !defined(W2U_BATTLE_CHILD)
+    { EVENT_DEFENDER_GUARD, W2U_Weather_Defense },
+    { EVENT_AFTER_WEATHER_CHANGE, W2U_Weather_AfterChange },
+    { (BattleEventType)1, HandlerFieldGlaiveRushActionStart },
+    { EVENT_SKIP_TARGET_ACCURACY_CHECK, HandlerFieldGlaiveRushAccuracy },
+    { EVENT_MOVE_DAMAGE_PROCESSING_2, HandlerFieldGlaiveRushDamage },
+    { EVENT_STAT_STAGE_CHANGE_APPLIED, HandlerFieldAppliedStatHistory },
+#endif
     { EVENT_ACTION_PROCESSING_END, HandlerFieldTransientMoveStateActionEnd },
     { EVENT_GET_MOVE_PRIORITY, HandlerFieldTransientMoveStateMovePriority },
     { EVENT_MOVE_SEQUENCE_START, HandlerFieldTransientMoveStateMoveSequenceStart },
@@ -5041,7 +6885,10 @@ extern "C" void HandlerEncoreShellTrapAware(
     }
 
     const u32 targetSlot = (u32)BattleEventVar_GetValue(VAR_TARGET_MON_ID);
-    if (W2U_MoveState_IsShellTrapWaiting(targetSlot)) {
+    BattleMon* target = GetBattleMon(serverFlow, targetSlot);
+    if (W2U_MoveState_IsShellTrapWaiting(targetSlot) ||
+        (target && (BattleMon_GetPreviousMove(target) == MOVE_DYNAMAX_CANNON ||
+                    W2U_MoveIsRestrictedNpcAttack(BattleMon_GetPreviousMove(target))))) {
         // Leaving the handler-extension result empty makes the normal
         // uncategorized-move path display "But it failed!".
         return;
@@ -5071,6 +6918,56 @@ BattleEventHandlerTableEntry* EventAddShellTrapAwareEncore(u32* handlerAmount)
     }
     return ShellTrapAwareEncoreHandlers;
 }
+
+static void HandlerNativeCopyRestricted(
+    BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
+{
+    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+        !BattleEventVar_GetValue(VAR_TARGET_COUNT)) return;
+    BattleMon* target = GetBattleMon(flow, (u32)BattleEventVar_GetValue(VAR_TARGET_MON_ID));
+    if (target && GetEventItemMove(item) == MOVE_SKETCH &&
+        (BattleMon_GetPreviousMove(target) == MOVE_REVIVAL_BLESSING ||
+         BattleMon_GetPreviousMoveID(target) == MOVE_REVIVAL_BLESSING)) return;
+    if (target && (W2U_MoveIsRestrictedNpcAttack(BattleMon_GetPreviousMove(target)) ||
+                   W2U_MoveIsRestrictedNpcAttack(BattleMon_GetPreviousMoveID(target)))) return;
+    W2UNativeMoveGetter getter = W2U_FindNativeMoveGetter(GetEventItemMove(item));
+    u32 count = 0;
+    BattleEventHandlerTableEntry* handlers = getter ? getter(&count) : 0;
+    for (u32 i = 0; handlers && i < count; ++i) {
+        if (handlers[i].eventType == EVENT_UNCATEGORIZED_MOVE && handlers[i].handler) {
+            handlers[i].handler(item, flow, pokemonSlot, work);
+            return;
+        }
+    }
+}
+
+static BattleEventHandlerTableEntry NativeCopyRestrictedHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerNativeCopyRestricted },
+};
+
+static void HandlerPsychUpCritical(BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) || !BattleEventVar_GetValue(VAR_TARGET_COUNT)) return;
+    W2UNativeMoveGetter getter = W2U_FindNativeMoveGetter(MOVE_PSYCH_UP);
+    u32 count = 0;
+    BattleEventHandlerTableEntry* table = getter ? getter(&count) : 0;
+    for (u32 i = 0; table && i < count; ++i)
+        if (table[i].eventType == EVENT_UNCATEGORIZED_MOVE) table[i].handler(item, flow, slot, work);
+    BattleMon* user = GetBattleMon(flow, slot);
+    BattleMon* target = GetBattleMon(flow, (u32)BattleEventVar_GetValue(VAR_TARGET_MON_ID));
+    if (user && target && BattleMon_GetConditionFlag(target, 9)) {
+        ServerDisplay_SetConditionFlag(flow, user, 9);
+        W2U_CopyCriticalBoost(user, target);
+        BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, slot);
+    } else if (user && target) {
+        ServerDisplay_ResetConditionFlag(flow, user, 9);
+        W2U_CopyCriticalBoost(user, target);
+    }
+}
+
+static BattleEventHandlerTableEntry PsychUpCriticalHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE, HandlerPsychUpCritical },
+};
 #endif
 
 #if !defined(W2U_DYNAMIC_BATTLE_CORE)
@@ -5478,8 +7375,28 @@ BattleEventHandlerTableEntry FirstImpressionHandlers[] = {
 };
 
 
+static void HandlerUpperHandEligibility(
+    BattleEventItem*, ServerFlow* flow, u32 pokemonSlot, u32*)
+{
+    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) return;
+    MOVE_ID pending = MOVE_NONE;
+    int priority = 0;
+    const u32 targetSlot = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
+    if ((!W2U_ExtraAction_GetPendingMovePriority(flow, targetSlot, &pending, &priority) ||
+         priority < 1 || priority > 3 || !PML_MoveIsDamaging(pending)) &&
+        BattleEventVar_RewriteValue(VAR_NO_EFFECT_FLAG, 1)) {
+        HandlerParam_StrParams* message = (HandlerParam_StrParams*)BattleEventVar_GetValue(VAR_WORK_ADDRESS);
+        if (message) BattleHandler_StrSetup(message, 1u, 71u);
+    }
+}
+
+static BattleEventHandlerTableEntry UpperHandHandlers[] = {
+    { EVENT_NOEFFECT_CHECK, HandlerUpperHandEligibility },
+};
+
 static bool IsInstructForbiddenMove(MOVE_ID moveID)
 {
+    if (W2U_MoveIsRestrictedNpcAttack(moveID)) return true;
     if (moveID == MOVE_NONE ||
         getMoveFlag(moveID, MOVE_FLAG_INDEX_REQUIRES_CHARGE) ||
         getMoveFlag(moveID, MOVE_FLAG_INDEX_RECHARGE_TURN)) {
@@ -6337,6 +8254,8 @@ const W2UVanillaMoveAlias W2U_VANILLA_MOVE_ALIASES[] = {
     { MOVE_FAIRY_LOCK, MOVE_SPIDER_WEB },
     { MOVE_HOLD_BACK, MOVE_FALSE_SWIPE },
     { MOVE_INFESTATION, MOVE_BIND },
+    { MOVE_SNAP_TRAP, MOVE_BIND },
+    { MOVE_THUNDER_CAGE, MOVE_BIND },
     { MOVE_NATURES_MADNESS, MOVE_SUPER_FANG },
     { MOVE_RUINATION, MOVE_SUPER_FANG },
     { MOVE_PIKA_PAPOW, MOVE_RETURN },
@@ -6376,6 +8295,11 @@ b32 IsAffectedBySheerForceIncludingCustomMoves(MOVE_ID moveID)
         moveID == MOVE_THROAT_CHOP ||
         moveID == MOVE_CEASELESS_EDGE ||
         moveID == MOVE_STONE_AXE ||
+        moveID == MOVE_BURNING_JEALOUSY ||
+        moveID == MOVE_ALLURING_VOICE ||
+        moveID == MOVE_EERIE_SPELL ||
+        moveID == MOVE_SALT_CURE || moveID == MOVE_SYRUP_BOMB ||
+        moveID == MOVE_ELECTRO_SHOT ||
         IsAffectedBySheerForce(moveID);
 }
 
@@ -6635,6 +8559,14 @@ extern "C" bool THUMB_BRANCH_MoveEvent_AddItem(BattleMon* battleMon, MOVE_ID mov
     if (moveID == MOVE_ENCORE) {
         return GetMoveEvent(battleMon, moveID, speed, EventAddShellTrapAwareEncore) != 0;
     }
+    if (moveID == MOVE_MIMIC || moveID == MOVE_SKETCH) {
+        return AddMoveEvent(battleMon, moveID, speed, NativeCopyRestrictedHandlers,
+            W2U_ARRAY_COUNT(NativeCopyRestrictedHandlers)) != 0;
+    }
+    if (moveID == MOVE_PSYCH_UP) {
+        return AddMoveEvent(battleMon, moveID, speed, PsychUpCriticalHandlers,
+            W2U_ARRAY_COUNT(PsychUpCriticalHandlers)) != 0;
+    }
 #endif
 
     MOVE_ID vanillaMoveID = moveID;
@@ -6644,12 +8576,8 @@ extern "C" bool THUMB_BRANCH_MoveEvent_AddItem(BattleMon* battleMon, MOVE_ID mov
             break;
         }
     }
-    for (u32 idx = 0; idx < W2U_MOVE_EVENT_TABLE_COUNT; ++idx) {
-        MoveEventAddTable* addEvent = &W2U_MOVE_EVENT_TABLE[idx];
-        if (vanillaMoveID == addEvent->moveID) {
-            return GetMoveEvent(battleMon, moveID, speed, addEvent->func) != 0;
-        }
-    }
+    W2UNativeMoveGetter nativeGetter = W2U_FindNativeMoveGetter(vanillaMoveID);
+    if (nativeGetter) return GetMoveEvent(battleMon, moveID, speed, nativeGetter) != 0;
     return false;
 }
 
@@ -6802,6 +8730,7 @@ extern "C" u32 THUMB_BRANCH_GetTypeEffectivenessMultiplier(u32 effectiveness1, u
     if (multiplier == 128) {
         return W2U_EFFECTIVENESS_8;
     }
+    if (multiplier == 256) return W2U_EFFECTIVENESS_16;
     return RESULT_EFFECTIVE;
 }
 
@@ -6830,6 +8759,12 @@ extern "C" u32 THUMB_BRANCH_LINK_ServerEvent_CheckMoveDamageEffectiveness_0x32(
         effectiveness = THUMB_BRANCH_GetTypeEffectivenessMultiplier(effectiveness, extraEffectiveness);
     }
 
+    // This adapter runs once on the first native type, before the engine
+    // combines the second type and checks Wonder Guard/ability immunity.
+    // Added types are included above. Never apply the factor once per type.
+    if (moveType == TYPE_FIRE && W2U_MoveState_HasTarShot(defendingMon->battleSlot))
+        effectiveness = THUMB_BRANCH_GetTypeEffectivenessMultiplier(effectiveness, RESULT_SUPER_EFFECTIVE);
+
     return effectiveness;
 }
 
@@ -6852,6 +8787,22 @@ extern "C" b32 THUMB_BRANCH_SAFESTACK_IsUnselectableMove(
     if (moveID == MOVE_STRUGGLE) {
         return 0;
     }
+
+#if !defined(W2U_BATTLE_CHILD)
+    // This is selection-only: Instruct/Sleep Talk and a faster Encore's
+    // already-queued action rewrite may repeat the move. At the next command
+    // menu native no-usable-move handling supplies Struggle when locked.
+    const u32 slot = BattleMon_GetID(battleMon);
+    if ((moveID == MOVE_BLOOD_MOON || moveID == MOVE_GIGATON_HAMMER) &&
+        IsValidSlot(slot) && sMoveState.lastSuccessfulSelectedMove[slot] == moveID) {
+        if (strparam) {
+            Btlv_StringParam_Setup(strparam, 2, 580);
+            Btlv_StringParam_AddArg(strparam, slot);
+            Btlv_StringParam_AddArg(strparam, moveID);
+        }
+        return 1;
+    }
+#endif
 
     if (BattleMon_GetHeldItem(battleMon) &&
         BattleMon_CheckIfMoveCondition(battleMon, CONDITION_CHOICELOCK)) {
@@ -6963,6 +8914,15 @@ extern "C" b32 THUMB_BRANCH_SAFESTACK_IsUnselectableMove(
             }
             return 1;
         }
+    }
+
+    if (moveID == MOVE_STUFF_CHEEKS && !PML_ItemIsBerry(BattleMon_GetHeldItem(battleMon))) {
+        if (strparam) {
+            Btlv_StringParam_Setup(strparam, 2, 905);
+            Btlv_StringParam_AddArg(strparam, BattleMon_GetID(battleMon));
+            Btlv_StringParam_AddArg(strparam, moveID);
+        }
+        return 1;
     }
 
     if (moveID == MOVE_FIRST_IMPRESSION && battleMon->turnCount != 0) {

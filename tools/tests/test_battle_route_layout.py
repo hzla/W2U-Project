@@ -56,13 +56,14 @@ class BattleRouteLayout(unittest.TestCase):
         registry = generator.load_registry(ROOT / "src/pokeweb_gameplay/battle_modules/registry.json")
         modules = sorted(registry["modules"], key=lambda module: module["id"])
         entries = [(module["id"], *entry[:2]) for module in modules for entry in module["entries"]]
-        names = list(dict.fromkeys(entry[2] for entry in entries))
+        names = list(dict.fromkeys(entry[2] for entry in entries if not entry[2].isdigit()))
         # Deliberately use IDs above 255, including the full u16 limit. The
         # private route kind/module are bytes; public mechanic IDs stay u16.
         values = {name: 65535 - index for index, name in enumerate(names)}
+        values.update({entry[2]: int(entry[2]) for entry in entries if entry[2].isdigit()})
         source = "typedef unsigned char u8; typedef unsigned short u16;\n"
         source += "enum {" + ",".join(f"{name}={index}" for index, name in enumerate(generator.KIND_ENUM.values())) + "};\n"
-        source += "enum {" + ",".join(f"{name}={value}" for name, value in values.items()) + "};\n"
+        source += "enum {" + ",".join(f"{name}={value}" for name, value in values.items() if not name.isdigit()) + "};\n"
         source += generator.render_cpp(registry)
         source += "int main() {\n"
         for index, (module_id, kind, name) in enumerate(entries):
