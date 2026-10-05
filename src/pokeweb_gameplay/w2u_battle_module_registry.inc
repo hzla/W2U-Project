@@ -27,6 +27,7 @@ enum W2UBattleModuleId : u8 {
     W2U_MODULE_ABILITIES_MB_DEFENSE,
     W2U_MODULE_ABILITIES_MB_REACTIVE,
     W2U_MODULE_ABILITIES_MB_ENTRY,
+    W2U_MODULE_ABILITIES_MB_TERRAIN,
     W2U_BATTLE_MODULE_COUNT,
     W2U_NO_MODULE = 0xFF,
 };
@@ -72,6 +73,7 @@ static const W2UBattleModuleDescriptor sBattleModuleDescriptors[] = {
     {"abilities/mb_defense.dll", W2U_NO_MODULE},
     {"abilities/mb_reactive.dll", W2U_NO_MODULE},
     {"abilities/mb_entry.dll", W2U_NO_MODULE},
+    {"abilities/mb_terrain.dll", W2U_MODULE_MOVES_TERRAIN},
 };
 
 #define W2U_ROUTE(kind, id, module) {(u16)(id), (u8)(kind), (u8)(module)}
@@ -315,6 +317,13 @@ static const W2UBattleMechanicRoute sBattleMechanicRoutes[] = {
     W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_AS_ONE_GLASTRIER, W2U_MODULE_ABILITIES_MB_ENTRY),
     W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_AS_ONE_SPECTRIER, W2U_MODULE_ABILITIES_MB_ENTRY),
     W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_SCREEN_CLEANER, W2U_MODULE_ABILITIES_MB_ENTRY),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_PROTOSYNTHESIS, W2U_MODULE_ABILITIES_MB_TERRAIN),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_QUARK_DRIVE, W2U_MODULE_ABILITIES_MB_TERRAIN),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_ORICHALCUM_PULSE, W2U_MODULE_ABILITIES_MB_TERRAIN),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_HADRON_ENGINE, W2U_MODULE_ABILITIES_MB_TERRAIN),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_MIMICRY, W2U_MODULE_ABILITIES_MB_TERRAIN),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_SAND_SPIT, W2U_MODULE_ABILITIES_MB_TERRAIN),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_SEED_SOWER, W2U_MODULE_ABILITIES_MB_TERRAIN),
 };
 
 #undef W2U_ROUTE
@@ -357,6 +366,9 @@ extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_R
 #endif
 #if !defined(W2U_TARGET_B2)
 extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_ENTRY();
+#endif
+#if !defined(W2U_TARGET_B2)
+extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_TERRAIN();
 #endif
 #if defined(W2U_TARGET_B2)
 // White 2-only modules (registry "white2_only"): not built for Black 2.
@@ -410,6 +422,11 @@ static const W2UBattleStaticApiGetter sBattleStaticApiGetters[] = {
     W2U_UnavailableStaticBattleModule,
 #else
     W2U_GetStaticBattleModuleApi_ABILITIES_MB_ENTRY,
+#endif
+#if defined(W2U_TARGET_B2)
+    W2U_UnavailableStaticBattleModule,
+#else
+    W2U_GetStaticBattleModuleApi_ABILITIES_MB_TERRAIN,
 #endif
 };
 #endif

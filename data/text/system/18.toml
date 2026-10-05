@@ -8185,3 +8185,273 @@ text = [
   "The foe's [VAR PKNICK(0)] made its shell gleam!\\n",
   "It's distorting type matchups!$",
 ]
+
+[msg.section_0.entries.1397]
+text = [
+  "The harsh sunlight activated\\n",
+  "[VAR PKNICK(0)]'s Protosynthesis!$",
+]
+
+[msg.section_0.entries.1398]
+text = [
+  "The harsh sunlight activated\\n",
+  "the wild [VAR PKNICK(0)]'s Protosynthesis!$",
+]
+
+[msg.section_0.entries.1399]
+text = [
+  "The harsh sunlight activated\\n",
+  "the foe's [VAR PKNICK(0)]'s Protosynthesis!$",
+]
+
+[msg.section_0.entries.1400]
+text = [
+  "[VAR PKNICK(0)] used its Booster Energy\\n",
+  "to activate Protosynthesis!$",
+]
+
+[msg.section_0.entries.1401]
+text = [
+  "The wild [VAR PKNICK(0)] used its Booster Energy\\n",
+  "to activate Protosynthesis!$",
+]
+
+[msg.section_0.entries.1402]
+text = [
+  "The foe's [VAR PKNICK(0)] used its Booster Energy\\n",
+  "to activate Protosynthesis!$",
+]
+
+[msg.section_0.entries.1403]
+text = [
+  "[VAR PKNICK(0)]'s Attack\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1404]
+text = [
+  "The wild [VAR PKNICK(0)]'s Attack\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1405]
+text = [
+  "The foe's [VAR PKNICK(0)]'s Attack\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1406]
+text = [
+  "[VAR PKNICK(0)]'s Defense\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1407]
+text = [
+  "The wild [VAR PKNICK(0)]'s Defense\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1408]
+text = [
+  "The foe's [VAR PKNICK(0)]'s Defense\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1409]
+text = [
+  "[VAR PKNICK(0)]'s Sp. Atk\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1410]
+text = [
+  "The wild [VAR PKNICK(0)]'s Sp. Atk\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1411]
+text = [
+  "The foe's [VAR PKNICK(0)]'s Sp. Atk\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1412]
+text = [
+  "[VAR PKNICK(0)]'s Sp. Def\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1413]
+text = [
+  "The wild [VAR PKNICK(0)]'s Sp. Def\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1414]
+text = [
+  "The foe's [VAR PKNICK(0)]'s Sp. Def\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1415]
+text = [
+  "[VAR PKNICK(0)]'s Speed\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1416]
+text = [
+  "The wild [VAR PKNICK(0)]'s Speed\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1417]
+text = [
+  "The foe's [VAR PKNICK(0)]'s Speed\\n",
+  "was heightened!$",
+]
+
+[msg.section_0.entries.1418]
+text = [
+  "The effects of [VAR PKNICK(0)]'s\\n",
+  "Protosynthesis wore off!$",
+]
+
+[msg.section_0.entries.1419]
+text = [
+  "The effects of the wild [VAR PKNICK(0)]'s\\n",
+  "Protosynthesis wore off!$",
+]
+
+[msg.section_0.entries.1420]
+text = [
+  "The effects of the foe's [VAR PKNICK(0)]'s\\n",
+  "Protosynthesis wore off!$",
+]
+
+[msg.section_0.entries.1421]
+text = [
+  "The Electric Terrain activated\\n",
+  "[VAR PKNICK(0)]'s Quark Drive!$",
+]
+
+[msg.section_0.entries.1422]
+text = [
+  "The Electric Terrain activated\\n",
+  "the wild [VAR PKNICK(0)]'s Quark Drive!$",
+]
+
+[msg.section_0.entries.1423]
+text = [
+  "The Electric Terrain activated\\n",
+  "the foe's [VAR PKNICK(0)]'s Quark Drive!$",
+]
+
+[msg.section_0.entries.1424]
+text = [
+  "[VAR PKNICK(0)] used its Booster Energy\\n",
+  "to activate its Quark Drive!$",
+]
+
+[msg.section_0.entries.1425]
+text = [
+  "The wild [VAR PKNICK(0)] used its Booster Energy\\n",
+  "to activate its Quark Drive!$",
+]
+
+[msg.section_0.entries.1426]
+text = [
+  "The foe's [VAR PKNICK(0)] used its Booster Energy\\n",
+  "to activate its Quark Drive!$",
+]
+
+[msg.section_0.entries.1427]
+text = [
+  "The effects of [VAR PKNICK(0)]'s\\n",
+  "Quark Drive wore off!$",
+]
+
+[msg.section_0.entries.1428]
+text = [
+  "The effects of the wild [VAR PKNICK(0)]'s\\n",
+  "Quark Drive wore off!$",
+]
+
+[msg.section_0.entries.1429]
+text = [
+  "The effects of the foe's [VAR PKNICK(0)]'s\\n",
+  "Quark Drive wore off!$",
+]
+
+[msg.section_0.entries.1430]
+text = [
+  "[VAR PKNICK(0)] turned the sunlight harsh, sending\\n",
+  "its ancient pulse into a frenzy!$",
+]
+
+[msg.section_0.entries.1431]
+text = [
+  "The wild [VAR PKNICK(0)] turned the sunlight harsh,\\n",
+  "sending its ancient pulse into a frenzy!$",
+]
+
+[msg.section_0.entries.1432]
+text = [
+  "The foe's [VAR PKNICK(0)] turned the sunlight harsh,\\n",
+  "sending its ancient pulse into a frenzy!$",
+]
+
+[msg.section_0.entries.1433]
+text = [
+  "[VAR PKNICK(0)] basked in the sunlight, sending\\n",
+  "its ancient pulse into a frenzy!$",
+]
+
+[msg.section_0.entries.1434]
+text = [
+  "The wild [VAR PKNICK(0)] basked in the sunlight,\\n",
+  "sending its ancient pulse into a frenzy!$",
+]
+
+[msg.section_0.entries.1435]
+text = [
+  "The foe's [VAR PKNICK(0)] basked in the sunlight,\\n",
+  "sending its ancient pulse into a frenzy!$",
+]
+
+[msg.section_0.entries.1436]
+text = [
+  "[VAR PKNICK(0)] turned the ground into Electric\\n",
+  "Terrain, energizing its futuristic engine!$",
+]
+
+[msg.section_0.entries.1437]
+text = [
+  "The wild [VAR PKNICK(0)] turned the ground into Electric\\n",
+  "Terrain, energizing its futuristic engine!$",
+]
+
+[msg.section_0.entries.1438]
+text = [
+  "The foe's [VAR PKNICK(0)] turned the ground into Electric\\n",
+  "Terrain, energizing its futuristic engine!$",
+]
+
+[msg.section_0.entries.1439]
+text = [
+  "[VAR PKNICK(0)] used the Electric Terrain to\\n",
+  "energize its futuristic engine!$",
+]
+
+[msg.section_0.entries.1440]
+text = [
+  "The wild [VAR PKNICK(0)] used the Electric Terrain\\n",
+  "to energize its futuristic engine!$",
+]
+
+[msg.section_0.entries.1441]
+text = [
+  "The foe's [VAR PKNICK(0)] used the Electric Terrain\\n",
+  "to energize its futuristic engine!$",
+]

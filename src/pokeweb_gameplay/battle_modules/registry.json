@@ -475,6 +475,23 @@
         ["ability", "ABIL_AS_ONE_SPECTRIER", "MB_NeighHandlers"],
         ["ability", "ABIL_SCREEN_CLEANER", "MB_ScreenCleanerHandlers"]
       ]
+    },
+    {
+      "id": 27,
+      "name": "abilities/mb_terrain",
+      "source": "abilities",
+      "dependency": "moves/terrain",
+      "white2_only": true,
+      "extra_sources": ["megab2w2/abilities/Protosynthesis.cpp", "megab2w2/abilities/TerrainAbilities.cpp", "megab2w2/abilities/SandSpit.cpp"],
+      "entries": [
+        ["ability", "ABIL_PROTOSYNTHESIS", "MB_ProtosynthesisHandlers"],
+        ["ability", "ABIL_QUARK_DRIVE", "MB_ProtosynthesisHandlers"],
+        ["ability", "ABIL_ORICHALCUM_PULSE", "MB_PulseHandlers"],
+        ["ability", "ABIL_HADRON_ENGINE", "MB_PulseHandlers"],
+        ["ability", "ABIL_MIMICRY", "MB_MimicryHandlers"],
+        ["ability", "ABIL_SAND_SPIT", "MB_SandSpitHandlers"],
+        ["ability", "ABIL_SEED_SOWER", "MB_SandSpitHandlers"]
+      ]
     }
   ]
 }

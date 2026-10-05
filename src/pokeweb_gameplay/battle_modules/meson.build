@@ -135,4 +135,9 @@ w2u_battle_module_definitions = [
     'slug': 'abilities_mb_entry',
     'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/EntryEffects.cpp', '../megab2w2/abilities/Hospitality.cpp', '../megab2w2/abilities/IntrepidSword.cpp', '../megab2w2/abilities/Neigh.cpp', '../megab2w2/abilities/ScreenCleaner.cpp'),
   },
+  {
+    'id': 27,
+    'slug': 'abilities_mb_terrain',
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Protosynthesis.cpp', '../megab2w2/abilities/TerrainAbilities.cpp', '../megab2w2/abilities/SandSpit.cpp'),
+  },
 ]

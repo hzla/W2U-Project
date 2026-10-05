@@ -265,6 +265,22 @@ static const W2UBattleModuleApi sBattleModuleApi = {
     (u16)W2U_ARRAY_COUNT(sBattleModuleEntries),
     sBattleModuleEntries,
 };
+#elif W2U_BATTLE_MODULE_ID == 27
+static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROTOSYNTHESIS), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUARK_DRIVE), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ORICHALCUM_PULSE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HADRON_ENGINE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIMICRY), (u16)W2U_ARRAY_COUNT(MB_MimicryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MimicryHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SAND_SPIT), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SEED_SOWER), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+};
+static const W2UBattleModuleApi sBattleModuleApi = {
+    W2U_BATTLE_MODULE_MAGIC,
+    W2U_BATTLE_MODULE_ABI_VERSION,
+    (u16)W2U_ARRAY_COUNT(sBattleModuleEntries),
+    sBattleModuleEntries,
+};
 #else
 #error Unsupported abilities battle module ID
 #endif
@@ -590,6 +606,27 @@ static const W2UBattleModuleApi sBattleModule_abilities_mb_entryApi = {
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_ENTRY()
 {
     return &sBattleModule_abilities_mb_entryApi;
+}
+#endif
+#if !defined(W2U_TARGET_B2)
+static const W2UBattleHandlerExport sBattleModule_abilities_mb_terrainEntries[] = {
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROTOSYNTHESIS), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUARK_DRIVE), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ORICHALCUM_PULSE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HADRON_ENGINE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIMICRY), (u16)W2U_ARRAY_COUNT(MB_MimicryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MimicryHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SAND_SPIT), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SEED_SOWER), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+};
+static const W2UBattleModuleApi sBattleModule_abilities_mb_terrainApi = {
+    W2U_BATTLE_MODULE_MAGIC,
+    W2U_BATTLE_MODULE_ABI_VERSION,
+    (u16)W2U_ARRAY_COUNT(sBattleModule_abilities_mb_terrainEntries),
+    sBattleModule_abilities_mb_terrainEntries,
+};
+extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_TERRAIN()
+{
+    return &sBattleModule_abilities_mb_terrainApi;
 }
 #endif
 #endif
