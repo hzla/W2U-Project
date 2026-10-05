@@ -4,6 +4,14 @@ This repository uses the HZLA GIF animation workflow for expanded Pokemon sprite
 
 ## Runtime
 
+**White 2 (since 2026-10-05, `megab2w2-integration` branch):** the PWAN assets
+stay the authoring format, but White 2 no longer stages the PWAN runtimes or
+`pwan.narc`. The build converts the assets into `w2anim/streams.bin`
+(`tools/w2anim/build_w2anim_streams.py`) for the resident w2anim runtime
+(`src/w2anim/w2u_anim_streams.cpp`), which streams them into MCSS sprites on
+every screen. See `docs/megab2w2-integration.md`, "Phase 4". The rest of this
+section describes the PWAN runtimes, which Black 2 still uses.
+
 Pokeweb animation support is split between `w2u_main.dll` hooks and three
 overlay-scoped runtimes from `src/pwan_animation`:
 

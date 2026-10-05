@@ -3894,12 +3894,13 @@ foreach personal_file : personal_sources
   personal_index += 1
 endforeach
 
-vfs_files += custom_target(
+personal_narc_stage = custom_target(
   'pack_personal_narc',
   input: [personal_files, meson.current_source_dir() / 'RegionalDex.bin'],
   output: 'pack_personal_narc.stamp',
   command: [pack_narc_py, '@OUTPUT@', meson.project_source_root() / 'vfs' / 'data' / personal_arc, '@INPUT@'],
 )
+vfs_files += personal_narc_stage
 
 learnsets_arc = 'a' / '0' / '1' / '8'
 learnset_files = []

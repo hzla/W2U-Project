@@ -42,6 +42,7 @@ sources = [
     type_expansion,
     pokeweb_gameplay,
     files('../include/util/filesystem.cpp'),
+    files('w2anim/w2u_anim_streams.cpp'),   # animated sprites (replaces the PWAN runtimes, Phase 4)
     files('battle_setup_patch.s'),
     files('battle_log/w2u_battle_log_save_patch.s'),
 ]
@@ -597,12 +598,12 @@ pwan_runtime_patch = custom_target(
     patch_dir="$5"
     stamp="$6"
 
+    # White 2 animates its sprites with the resident w2anim runtime (src/w2anim, Phase 4 of
+    # docs/megab2w2-integration.md): the PWAN DLLs are still built (Black 2 shares the sources) but no
+    # longer staged, so PMC loads none of them (they held 46.5 KB of its heap in battle).
+    : "$summary" "$battle" "$misc" "$trainer"
     mkdir -p "$patch_dir"
-    rm -f "$patch_dir/PokewebPwanW2.dll"
-    cp "$summary" "$patch_dir/PokewebPwanSummaryW2.dll"
-    cp "$battle" "$patch_dir/PokewebPwanBattleW2.dll"
-    cp "$misc" "$patch_dir/PokewebPwanMiscW2.dll"
-    cp "$trainer" "$patch_dir/PokewebPwanTrainerW2.dll"
+    rm -f "$patch_dir/PokewebPwanW2.dll" "$patch_dir/PokewebPwanSummaryW2.dll" "$patch_dir/PokewebPwanBattleW2.dll"       "$patch_dir/PokewebPwanMiscW2.dll" "$patch_dir/PokewebPwanTrainerW2.dll"
     touch "$stamp"
   ''',
     'stage_pokeweb_pwan_runtime_patch',
@@ -616,9 +617,8 @@ w2u_battle_heap_audit_command = [
   'python3',
   meson.project_source_root() / 'tools' / 'audit_white2upgrade_battle_heap.py',
   '--core', '@INPUT0@',
-  '--pwan-battle', '@INPUT1@',
-  '--battle-log', '@INPUT2@',
-  '--battle-counters', '@INPUT3@',
+  '--battle-log', '@INPUT1@',
+  '--battle-counters', '@INPUT2@',
   '--registry', w2u_battle_registry,
   '--baseline', meson.project_source_root() / 'pmc' / 'white2upgrade_battle_heap_baseline.json',
   '--output', '@OUTPUT@',
@@ -626,7 +626,7 @@ w2u_battle_heap_audit_command = [
 foreach module_index : range(w2u_battle_module_definitions.length())
   w2u_battle_heap_audit_command += [
     '--module',
-    '@INPUT' + (module_index + 4).to_string() + '@',
+    '@INPUT' + (module_index + 3).to_string() + '@',
   ]
 endforeach
 if get_option('strip_rpms')
@@ -637,7 +637,6 @@ w2u_battle_heap_audit = custom_target(
   'white2upgrade-battle-heap-audit',
   input: [
     w2u_main_dll,
-    pwan_runtime_dlls[1],
     w2u_nonresident_dlls[3],
     w2u_nonresident_dlls[4],
     w2u_battle_module_dlls,

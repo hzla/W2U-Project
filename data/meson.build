@@ -2,14 +2,14 @@ vfs_files = []
 vfs_build_dir = meson.project_build_root() / 'vfs' / 'data'
 relative_source_root = fs.relative_to(meson.project_source_root(), meson.project_build_root())
 gen5_text_py = find_program(meson.project_source_root() / 'tools' / 'text' / 'gen5_text.py', native: true)
-pwan_narc_py = find_program(meson.project_source_root() / 'tools' / 'pwan' / 'build_pwan_narc.py', native: true)
+w2anim_streams_py = find_program(meson.project_source_root() / 'tools' / 'w2anim' / 'build_w2anim_streams.py', native: true)
 double_battle_fix_py = find_program(meson.project_source_root() / 'tools' / 'stage_double_battle_fix.py', native: true)
 
 double_battle_fix = custom_target(
   'stage_double_battle_fix_w2',
   input: [
     meson.project_source_root() / '..' / 'IRDO_Extracted' / 'overlay' / 'overlay_0036.bin',
-    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'y9.bin',
+    meson.project_source_root() / 'vfs' / 'y9.bin',
   ],
   output: 'stage_double_battle_fix_w2.stamp',
   command: [
@@ -41,20 +41,6 @@ foreach pwan_asset : pwan_asset_list.split('\n')
   endif
 endforeach
 
-pwan_runtime_archive = custom_target(
-  'build_pokeweb_pwan_narc',
-  input: pwan_assets,
-  output: 'build_pokeweb_pwan_narc.stamp',
-  command: [
-    pwan_narc_py,
-    '--src', meson.project_source_root() / 'assets' / 'pokeweb_pwan',
-    '--output', meson.project_source_root() / 'vfs' / 'data' / 'zz_pokeweb_pwan' / 'pwan.narc',
-    '--stamp', '@OUTPUT@',
-  ],
-  build_always_stale: true,
-)
-
-vfs_files += pwan_runtime_archive
 
 sidecar_vfs_files = {
   'poke_form_list.bin': meson.current_source_dir() / 'pml' / 'poke_form_list.bin',
@@ -85,6 +71,33 @@ subdir('items')
 subdir('pml')
 subdir('trainers')
 subdir('text')
+
+# Animated Pokemon sprites (D2, docs/megab2w2-integration.md Phase 4): the PWAN assets converted into w2anim streams for
+# the resident runtime (src/w2anim). PWAN's NARC and runtime DLLs are no longer staged; an old staged NARC is removed.
+w2anim_streams = custom_target(
+  'build_w2anim_streams',
+  input: pwan_assets,
+  output: 'build_w2anim_streams.stamp',
+  depends: [pokegra_battle_stage, personal_narc_stage],
+  command: ['sh', '-eu', '-c', '''
+    rm -f "$7/zz_pokeweb_pwan/pwan.narc"
+    rmdir "$7/zz_pokeweb_pwan" 2>/dev/null || true
+    python3 "$1" --pwan "$2" --pokegra "$3" --personal "$4" --output "$5" --cache "$6" --stamp "$8"
+  ''',
+    'build_w2anim_streams',
+    w2anim_streams_py.full_path(),
+    meson.project_source_root() / 'assets' / 'pokeweb_pwan',
+    meson.project_source_root() / 'vfs' / 'data' / 'a' / '0' / '0' / '4',
+    meson.project_source_root() / 'vfs' / 'data' / 'a' / '0' / '1' / '6',
+    meson.project_source_root() / 'vfs' / 'data' / 'w2anim' / 'streams.bin',
+    meson.current_build_dir() / 'w2anim_cache',
+    meson.project_source_root() / 'vfs' / 'data',
+    '@OUTPUT@',
+  ],
+  build_always_stale: true,
+)
+
+vfs_files += w2anim_streams
 
 # System Text (/a/0/0/2)
 system_text_arc = 'a' / '0' / '0' / '2'

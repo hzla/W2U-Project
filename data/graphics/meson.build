@@ -64,7 +64,7 @@ foreach stage_spec : binary_archive_stages
   )
 endforeach
 
-vfs_files += custom_target(
+pokegra_battle_stage = custom_target(
   'stage_pokegra_battle',
   output: 'stage_pokegra_battle.stamp',
   command: [
@@ -84,6 +84,7 @@ vfs_files += custom_target(
   ],
   build_always_stale: true,
 )
+vfs_files += pokegra_battle_stage
 
 vfs_files += custom_target(
   'stage_pokegra_icons',
