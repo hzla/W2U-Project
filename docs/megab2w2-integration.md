@@ -434,6 +434,42 @@ Seed Sower and Hadron Engine (`megab2w2/terrain.h`).
   during the start message (Electric included); the new `PREVIEW_GRASSY_TERRAIN_MOVE` (the move, Grassy Terrain 580)
   still plays its leaf animation before the fade. wave_field 18/18, wave_b 10/10.
 
+## Polish: Sun / Moon style Electric and Psychic Terrain (2026-10-05)
+
+User request: Electric and Psychic Terrain brought in line with Grassy / Misty and closer to Sun / Moon. Same machinery
+as the section above (floor and sky clones, haze, glow, floor palette animation, ambient particles); the differences:
+
+- Art (`draw_terrain_floor_tiles.py`, my own; `rng` seed 20261006, drawn after Grassy / Misty so theirs are
+  unchanged): Electric, a bright yellow ground with fine pale streaks and a sky of yellow storm light; Psychic, a
+  brighter pink-violet ground of soft wavy bands and a pink-magenta sky of four wavy cloud ridges melting into a horizon
+  in the floor's mean colour. Both skies are now sky clones (`SKY_SOURCES` in `build_terrain_texture_mvp.py`): 184
+  battle members rebuilt.
+- Haze / glow per terrain (tables indexed by terrain): Electric 0x4BBF at 6/16, glow 0x116C; Psychic 0x7A9D at 7/16,
+  glow 0x34CC.
+- Drift: Psychic slides sideways like Grassy / Misty; Electric keeps the template's fast vertical scroll (asked for).
+- Psychic raster wave: Sun / Moon's rippling field. Every second main update, one of the floor / sky textures (they
+  alternate) is redrawn from the clone's image in RAM with each column of texels moved along the texture by two
+  travelling sines (3:1, opposite directions, whole waves so it still tiles; the floor 2 waves across, the sky 3),
+  amplitude up to 3 texels, ramped in over 64 turns. A sideways row shift was tried first and barely showed on
+  horizontal streaks. One staging buffer (the larger texture, on the field's or the battle sprites' game heap with a
+  4 KB preflight) is flushed and uploaded in VBlank only between lines 0xC0 and 0xC6, else the next VBlank. 4 bpp
+  textures are handled per nibble; formats other than 4 / 8 bpp / A3I5 / A5I3 get no wave.
+- Floor palette animation (a style per terrain): Psychic's floor swells pink (150 frames) with pale twinkles; Electric
+  flashes: every 50-140 frames a quick surge (levels 4, 8, 6, 7, 5, 3, 2, 1 of 16 towards pale yellow) with yellow
+  twinkles.
+- Electric sky lightning (SPA 787 resource 1, my own 32x64 bolt texture): a point emitter, one particle, life 40
+  (variance 1/4), in over about 3 frames and a slow fade over the rest; self-maintaining (flag bit 14), else
+  every emitter stays alive and the system fills up. One every 80-239 frames at a random spot, now and then (1 in 4) a
+  second close by 6-13 frames later. Grounded: each bolt comes down from above the top of the screen and its foot lands
+  on the horizon. Measured with test bolts: the battle camera maps world x mirrored (screen x about 177 - 12.2 x at
+  z -16.5), the foot moves about 20 px per unit of y, y 4.375 puts it on the horizon (screen y 30); further back than
+  z -16.5 the bolts are clipped. One bolt size (a random scale would lift the foot off the ground).
+- Verified on the stripped ROM (frozen copy, `previews.yml --record`, 6/6): Electric's Surge goes straight from the
+  popup to its message and the yellow floor fades in; 14 bolt events in 45 s, each a thin zigzag from above the screen
+  to the horizon, quick in and slow out, now and then a pair; Psychic's wave visibly reshapes the sky ridges and floor
+  bands frame to frame; both fade out after Steel Roller. wave_field 18/18 (PRIMAL_SUN made deterministic: a critical
+  Weather Ball could knock Kyogre out before its third Surf), wave_b 10/10, wave_mega 5/5.
+
 ## Fix: PMC heap out of memory (2026-10-05)
 
 Symptom: a battle froze after both sides chose (top screen "What will X do?", bottom screen the idle Poke Ball), e.g.
@@ -477,6 +513,34 @@ glyph place table: about 4 KB; the hooks and the 160-byte gauge icon stay reside
 exports functions rather than handler tables (the registry and loader only know handler exports today). Other options
 if that is not enough, in order: art and tables into ROM files read on demand (MegaB2W2's habit); a larger cap is
 limited by the 7.9 KB of arena left.
+
+### Heap saving steps (2026-10-05)
+
+The Electric / Psychic polish (wave, bolts, per-terrain styles) brought the core to 119,864 bytes resident and left
+11,340 bytes free with every module loaded, under the 12 KB floor. Steps from the heap plan, measured with
+`src/white2upgrade-battle-heap-audit.json`:
+
+| Step | Core resident | Free, no module | Free, every module |
+|---|---:|---:|---:|
+| before | 119,864 | 79,648 | 11,340 |
+| 1. `-Dstrip_rpms=true` (measured only, separate build dir) | 85,992 | 114,672 | 46,364 |
+| 2. `sPaletteBackup` (2 KB BSS) to the game heap | 117,912 | 81,600 | 13,292 |
+| 1 applied on top of 2: `strip_rpms` now defaults to true (user, 2026-10-05) | 84,040 | 116,624 | 48,316 |
+
+- Step 1, applied at the user's request: `strip_rpms` defaults to true (existing build dirs keep their configured
+  value: `meson configure build -Dstrip_rpms=true`). The audit's savings-vs-monolith checks (formerly `--enforce`
+  with strip) fail against the old monolithic baseline, so they are warnings now; the ROM target depends on the audit
+  and fails only when every module loaded leaves less than 12 KiB (`--enforce-headroom`). A second build directory
+  must never run alongside `build/`: both stage into the same in-tree `vfs/`. Tested on a frozen copy of the stripped
+  ROM: `previews.yml` 6/6, wave_field 18/18, wave_b 10/10, wave_mega 5/5 (battle modules load and unload as before);
+  in-battle dump at the first menu (wave_dbg HEAP_W2ANIM): 99,584 bytes used, 105,248 free of the 204,832-byte heap
+  (about 87 KB free before the strip).
+- Step 2: the terrain renderer's palette staging / backup buffer is allocated with the first terrain resource (main
+  update, the field's heap or the battle sprites', 4 KB preflight) and freed last in `ClearFieldViewState`, after the
+  state the VBlank uploads check (the pointer is cleared before the free). Null: the fades, haze and floor palette
+  animation are off; the terrain itself still works. The other BSS objects above 128 bytes (`g_streams` 800,
+  `sModuleRecords` 640: loader state; `sArtBuffer` 480; `sMoveState` 248; `sAuraFieldState` 140; `g_place` 128) are
+  left as they are: the floor is met.
 
 ## Phase 3: abilities
 
