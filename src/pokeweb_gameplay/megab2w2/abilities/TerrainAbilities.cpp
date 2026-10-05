@@ -1,6 +1,7 @@
 // Ported from MegaB2W2 (src/patches/MegaEvolution/abilities/TerrainAbilities.cpp); see docs/megab2w2-integration.md.
-// Terrain abilities (Gen 7-9), one file with several logic names (Gen 9 / Showdown). W2U port: only Orichalcum Pulse /
-// Hadron Engine and Mimicry (W2U has its own Surges, Grass Pelt and Surge Surfer); terrain = W2U's (../terrain.h).
+// Terrain abilities (Gen 7-9), one file with several logic names (Gen 9 / Showdown). W2U port: Orichalcum Pulse /
+// Hadron Engine, Mimicry and Grass Pelt (W2U has its own Surges and Surge Surfer; Grass Pelt was only in its Mold
+// Breaker list, with no effect - phase 6, 2026-10-05); terrain = W2U's (../terrain.h).
 //   `logic: Surge`        Electric / Psychic / Misty / Grassy Surge: on entry (or gaining the ability) the terrain
 //                         starts, under the popup; nothing if it is already up.
 //   `logic: TerrainStat`  Grass Pelt: Defense x1.5 on Grassy Terrain (breakable). Surge Surfer: Speed x2 on Electric
@@ -72,6 +73,17 @@ const BattleEventHandlerTableEntry PULSE_HANDLERS[] = {
     { EVENT_ATTACKING_STAT, HandlerPulseAttackingStat },
 };
 
+// ---- Grass Pelt -----------------------------------------------------------------------------------------------
+void HandlerGrassPeltDefense(BattleEventItem*, ServerFlow* sf, u32 pokeID, u32*) {
+    if (ability::Defender() != pokeID) return;
+    if (terrain::Current() != terrain::GRASSY || BattleEventVar_GetValue(VAR_DAMAGE_CATEGORY) != 1) return;
+    ability::MulRatio(6144);
+    if (!ability::Simulating(sf)) MLOG("[ABIL] Grass Pelt: poke %d Defense x1.5", pokeID);
+}
+const BattleEventHandlerTableEntry GRASS_PELT_HANDLERS[] = {
+    { EVENT_DEFENDING_STAT, HandlerGrassPeltDefense },
+};
+
 // ---- Mimicry -------------------------------------------------------------------------------------------------
 u16 g_mimicryOwn[ability::MAX_POKE_ID];   // its own type pair while changed (0 = not changed)
 void MimicryCheck(ServerFlow* sf, u32 pokeID) {
@@ -130,3 +142,5 @@ static_assert(sizeof(PULSE_HANDLERS) / sizeof(PULSE_HANDLERS[0]) == 3, "MB_Pulse
 // W2U battle module tables (registry: src/pokeweb_gameplay/battle_modules/registry.json)
 BattleEventHandlerTableEntry MB_MimicryHandlers[5] = {MIMICRY_HANDLERS[0], MIMICRY_HANDLERS[1], MIMICRY_HANDLERS[2], MIMICRY_HANDLERS[3], MIMICRY_HANDLERS[4]};
 static_assert(sizeof(MIMICRY_HANDLERS) / sizeof(MIMICRY_HANDLERS[0]) == 5, "MB_MimicryHandlers");
+BattleEventHandlerTableEntry MB_GrassPeltHandlers[1] = {GRASS_PELT_HANDLERS[0]};
+static_assert(sizeof(GRASS_PELT_HANDLERS) / sizeof(GRASS_PELT_HANDLERS[0]) == 1, "MB_GrassPeltHandlers");

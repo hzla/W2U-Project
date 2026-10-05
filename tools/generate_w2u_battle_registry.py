@@ -19,7 +19,7 @@ KIND_ENUM = {
 }
 
 EXPECTED_PRIMARY_COUNTS = {
-    "ability": 135,    # + Intimidate (Guard Dog), + 7 terrain-dependent (mb_terrain), + 13 wave C (mb_hooked, Dragonize), + Damp
+    "ability": 136,    # + Intimidate (Guard Dog), + 7 terrain-dependent (mb_terrain), + 13 wave C (mb_hooked, Dragonize), + Damp, Grass Pelt
     "move": 101,
     "item": 13,
 }
