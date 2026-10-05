@@ -93,7 +93,7 @@ enum ElectricTransitionPhase {
 
 // Each terrain's pace: the floor's UV animation (NSBTA frames per 60 fps frame), the gap between ambient particle
 // emits, and the floor fade's two halves (old floor -> blend colour, blend colour -> new floor; frames). Every
-// terrain drifts its floor sideways with its sky (W2U_SKY_DRIFT), Electric six times faster (quick and busy);
+// terrain drifts its floor sideways with its sky (W2U_SKY_DRIFT), Electric twenty times faster (quick and busy);
 // Psychic's emit gaps keep changing (W2U_PSYCHIC_AMBIENT_GAPS), its fade wobbles and its floor and sky
 // ripple (the raster wave below).
 struct TerrainPace {
@@ -1345,7 +1345,7 @@ struct FloorAnimStyle {
     u8 twinkleRange;
 };
 const FloorAnimStyle W2U_FLOOR_ANIM[W2U_TERRAIN_TEXTURE_COUNT] = {
-    { 0x63FFu, 0u, 1u, 0u, 0x67FFu, 3u, 8u },          // Electric: (31, 31, 24) surges, (31, 31, 25) sparkles
+    { 0x63FFu, 0u, 0u, 0u, 0x67FFu, 3u, 8u },          // Electric: (31, 31, 25) sparkles (surges off: read as flashes)
     { 0x4BFAu, 3u, 0u, 65536u / 200u, 0u, 0u, 0u },    // Grassy: (26, 31, 18) one swell every 200 frames
     { 0u, 0u, 0u, 0u, 0x7FDFu, 2u, 5u },               // Misty: (31, 30, 31) white with a breath of pink
     { 0x7F1Fu, 3u, 0u, 65536u / 150u, 0x7EFFu, 4u, 7u },   // Psychic: (31, 24, 31) swell, (31, 23, 31) shimmer
@@ -1593,10 +1593,10 @@ void RestoreFieldGlow()
 // Sky and floor drift: texture translation per 60 fps frame in 1/65536 texture widths (wrapped at one width).
 // Measured on screen just above / below the horizon, a floor drift 8x the sky's moves the two together (both the
 // same way); 4 / 32 is about 3 screen pixels a second: very slow and subtle (Grassy, Misty, Psychic). Electric is
-// quick and busy: six times that, about 18 px a second.
+// quick and busy: twenty times that, about 60 px a second.
 constexpr u32 W2U_SKY_DRIFT = 4u;
 constexpr u32 W2U_FLOOR_DRIFT = 32u;
-constexpr u32 W2U_ELECTRIC_DRIFT_SCALE = 6u;
+constexpr u32 W2U_ELECTRIC_DRIFT_SCALE = 20u;
 u32 DriftScale(u32 terrain) { return terrain == TERRAIN_ELECTRIC ? W2U_ELECTRIC_DRIFT_SCALE : 1u; }
 u32 sDriftSky = 0u;                            // 16.16 texture widths
 u32 sDriftFloor = 0u;
