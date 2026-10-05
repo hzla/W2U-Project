@@ -78,7 +78,8 @@ int main() {
             subprocess.run([str(executable)], check=True)
 
     def test_both_builds_include_native_stack_adapter(self):
-        assembly = (ROOT / "src/pokeweb_gameplay/w2u_damage_hooks.s").read_text()
+        assembly = (ROOT / "src/pokeweb_gameplay/w2u_damage_hooks.s").read_text().split(
+            "THUMB_BRANCH_LINK_ServerEvent_CalcDamage_0x1C0:", 1)[1].split(".size", 1)[0]
         self.assertIn("add r2, sp, #8", assembly)
         self.assertIn("bx r3", assembly)
         self.assertNotIn("push", assembly)

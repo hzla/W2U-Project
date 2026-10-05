@@ -53,14 +53,14 @@ Use [the existing battle-module guide](w2u-battle-modules.md) and these reposito
 | Child verification and packaging | `tools/verify_w2u_battle_module.py`; `tools/stage_w2u_battle_modules.py` |
 | Black 2 compatibility reporting | `tools/generate_black2upgrade_compatibility.py` |
 
-All 158 included moves other than Nihil Light already have named IDs in `include/Moves.h`. An ID or TOML record is not evidence that its special effect exists. For example, Order Up and Salt Cure have ordinary-damage records but need additional logic. Current data already contains useful ordinary effects such as Headlong Rush's two self-stat drops and Surging Strikes' three-hit/critical settings.
+All 158 included moves other than Nihil Light already have named IDs in `include/Moves.h`. An ID or TOML record is not evidence that its special effect exists. Order Up still needs its dependent system; Salt Cure now has a focused-tested residual handler. Current data contains useful ordinary effects such as Headlong Rush's two self-stat drops and Surging Strikes' three-hit/critical settings. See the progress ledger for current implementation status; the proposed per-entry integration below remains a research specification.
 
-The registry currently has 22 modules against a fixed capacity of 24, with 101 managed move entries. Prefer an existing cohesive module; only two additional groups fit without a reviewed loader-capacity change. The table's module column is a recommendation, not a reason to load a child for a wholly data-driven move. Exact vanilla aliases should remain resident unless a reviewed exception requires new logic.
+The registry currently has 22 modules against a fixed capacity of 24, with 122 managed move entries. Prefer an existing cohesive module; only two additional groups fit without a reviewed loader-capacity change. The table's module column is a recommendation, not a reason to load a child for a wholly data-driven move. Exact vanilla aliases should remain resident unless a reviewed exception requires new logic.
 
 For new handlers:
 
 1. Update the declarative registry, non-generated source/data, and any relevant reviewed service declarations; regenerate the route table, API definitions, and Meson group manifest. Do not hand-edit generated files.
-2. The generator currently enforces primary counts of 59 abilities, 101 managed moves, and 13 items. Update those expectations coherently when adding managed entries, retaining duplicate and coverage checks rather than bypassing validation. The ability count includes Overcoat's updated powder immunity.
+2. The generator currently enforces primary counts of 59 abilities, 122 managed moves, and 13 items. Update those expectations coherently when adding managed entries, retaining duplicate and coverage checks rather than bypassing validation. The ability count includes Overcoat's updated powder immunity.
 3. White 2 must resolve the child through the existing versioned API at registration, not import child handler addresses into the core. Keep handlers/tables hidden and the single child API export unchanged. Black 2 must use the same logic through its generated static resolver.
 4. Add subordinate field/side/position entries and dependencies where needed. A native move caller, copied move, or newly acquired ability can introduce a module not present in the initial moveset; audit registration for those paths instead of assuming all children were preloaded.
 5. Store shared mutable state in the resident core behind narrow `W2U_*` services. Do not expose mutable structure layouts or add child-owned history that disappears on switch/removal. Keep one-action scratch state separate from per-turn, per-field-occupant, per-party-member, and per-side state.
@@ -121,7 +121,7 @@ A future implementation agent should use this as one batch's checklist, but work
 4. Address hard systemic dependencies first, then enable their moves. If a system or adaptation decision is missing, report the exact blocked behavior; do not count ordinary damage fallback as completion.
 5. Run W2 dynamic/B2 static builds, registry/export/import/package checks, and the existing Mega/vanilla/nonbattle/overlay/PWAN regressions. Do not perform browser-emulator testing unless requested; user-run battle testing remains a valid separate acceptance step.
 
-Current implementation scope excludes Hard entries and effects requiring doubles-format validation. At the user's request, native-data effects and exact existing-handler reuse get source/build checks, not separate per-move emulator suites. New custom logic gets focused singles tests for the affected interactions. The per-entry case lists below remain research checklists, not claims that those tests were performed or instructions to override this narrower scope.
+The Hard rollout is now in progress, following the completed non-Hard singles and doubles rollout; see the progress tracker for implemented and blocked entries. At the user's request, native-data effects and exact existing-handler reuse get source/build checks, not separate per-move emulator suites. New custom logic gets focused native headless tests in the appropriate format. The per-entry case lists below remain research checklists, not claims that every listed test was performed.
 
 Loader acceptance must include a custom move present but unused, two users sharing one group, called moves acquiring another group, a missing/corrupt module, and repeated battles with unload/reload at different addresses. Every teardown must return child counts/current bytes to zero with no retained pointers.
 
@@ -490,6 +490,13 @@ Move ID: 811 (`MOVE_COACHING`). Complexity: **Easy**. Proposed route: `moves/sta
 
 **Implementation:** Use ally-only target resolution and normal stat-change work, with explicit guard bypass rather than a Helping Hand alias. Preserve multi-battle ownership and adjacency rules.
 
+Current implementation uses the native ally-selector and recipient-owned
+stat-change work in `moves/stats`. The ordinary target-stat path has a second
+Substitute check despite the move's bypass flag; recipient ownership bypasses
+that check without removing the doll or writing stages. Explicit native hiding
+flags/Sky Drop exclude semi-invulnerable partners. See the progress ledger for
+the tested battle formats; multi-battle/triples are not claimed by the doubles MVP.
+
 **Focused checks:** Singles; doubles ally; Crafty Shield; semi-invulnerability; Contrary.
 
 ### Corrosive Gas
@@ -538,7 +545,7 @@ Move ID: 751 (`MOVE_DRAGON_DARTS`). Complexity: **Hard**. Proposed route: `moves
 
 **Effect:** Two strikes. In doubles against opponents, normally one hits each foe; redirect both to the other if one would be immune, protected, semi-invulnerable, or missed. Targeting an ally sends both strikes there. Follow Me can force both even into immunity; Wide Guard does not block it. Pressure is counted per targeted foe. Called Prankster/Dark immunity also affects rerouting. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Dragon_Darts_(move)>) (reviewed revision 4621909).
 
-**Implementation:** Requires per-strike target planning without duplicate accuracy rolls or side effects during preflight. Bulbapedia explicitly leaves Substitute, Ice Face, Mold Breaker, Ally Switch, and some both-immune interactions unresolved; resolve these separately.
+**Implementation:** Implemented in the existing `moves/flow` group: expand eligible unredirected doubles target registration, then let native type/ability/protection/hiding/accuracy passes filter each foe once. Two survivors receive one full-power strike each; one survivor receives both. Native original target counts still determine Pressure. Explicit native redirection claims distinguish an already-selected Follow Me center from ordinary selection. A move-scoped called-status/Prankster predicate handles Dark immunity without applying it to directly selected Dragon Darts or changing global Prankster rules. The 27-case native suite verifies ordinary Substitute absorption without rerouting, effective Mold Breaker versus Wonder Guard, and both-immune failure in the supported engine. Bulbapedia's unresolved questions are not presented as canonical answers: Ice Face is a missing dependency, and Ally Switch, triples and multi-battle behavior remain untested.
 
 **Focused checks:** Singles/doubles; one immune/protected foe; Follow Me; Pressure; accuracy reroute.
 
@@ -738,7 +745,7 @@ Move ID: 816 (`MOVE_JUNGLE_HEALING`). Complexity: **Medium**. Proposed route: `m
 
 **Effect:** Restores up to one quarter of maximum HP to the user and allies, and cures their major status conditions. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Jungle_Healing_(move)>) (reviewed revision 4511658).
 
-**Implementation:** Share a multi-recipient healing/cure helper with Lunar Blessing. Queue the two operations per eligible battler with correct Heal Block/status-only handling; do not heal bench Pokémon as Heal Bell does.
+**Implementation:** Implemented in `moves/flow` with Lunar Blessing's shared active-recipient helper. Native user targeting reaches the uncategorized event reliably; the handler visits only living on-field allies, excludes hiding recipients, and queues native cure/recovery work. Bench Pokémon are untouched. Recipient Heal Block and status-only benefits are doubles-tested.
 
 **Focused checks:** User and ally; full HP plus status; Heal Block; fainted/no ally.
 
@@ -758,7 +765,7 @@ Move ID: 791 (`MOVE_LIFE_DEW`). Complexity: **Medium**. Proposed route: `moves/f
 
 **Effect:** Restores up to one quarter of maximum HP to the user and allies. Substitute does not block it, but semi-invulnerability can. Allied Water Absorb, Storm Drain, or Dry Skin can trigger their own Water immunity response instead of receiving normal Life Dew healing. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Life_Dew_(move)>) (reviewed revision 4589562).
 
-**Implementation:** Use target-aware healing with the Water ability/no-effect pipeline intact. A simple global HP loop would bypass these ability interactions.
+**Implementation:** Implemented through the same active-recipient helper, without cures. Each non-user recipient receives a complete nested native Water immunity/no-effect scope before normal healing. Water Absorb/Dry Skin recover once; Storm Drain boosts without ordinary healing. Native work retains Heal Block.
 
 **Focused checks:** Substitute; airborne/semi-invulnerable ally; Water Absorb; Storm Drain; Heal Block.
 
@@ -768,7 +775,7 @@ Move ID: 849 (`MOVE_LUNAR_BLESSING`). Complexity: **Medium**. Proposed route: `m
 
 **Effect:** Scarlet/Violet: restores one quarter maximum HP to the user and allies and cures major status. Arceus instead healed the user by half and supplied its obscured effect. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Lunar_Blessing_(move)>) (reviewed revision 4523532).
 
-**Implementation:** Share Jungle Healing's reviewed helper and targeting. Do not import Arceus's obscured status or silently interpret it as evasion stages.
+**Implementation:** Shares the implemented Jungle Healing helper and native user-target entry point. Uses Scarlet/Violet's quarter-heal/cure behavior; no Arceus obscured/evasion substitute is introduced.
 
 **Focused checks:** User/ally; status-only benefit; full HP; Heal Block.
 
@@ -972,7 +979,7 @@ Move ID: 801 (`MOVE_SHELL_SIDE_ARM`). Complexity: **Hard**. Proposed route: `mov
 
 **Effect:** Chooses physical versus special by comparing Attack/Defense with Special Attack/Special Defense using raw stats and stages, not other modifiers; a tie is random. Physical use makes contact, special use does not. It has a 20% poison chance. Wonder Room's stat/stage interaction requires care. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Shell_Side_Arm_(move)>) (reviewed revision 4615223).
 
-**Implementation:** Resolve category and contact dynamically for this action without mutating shared move data. Category must be visible to screens, Counter/Mirror Coat, abilities, animation, and per-hit reactions.
+**Implementation:** Implemented in `moves/type` with a final-target event after native redirection/replacement. Compare floored base-damage forecasts using raw stats and stages; cache the one tie roll per action. Wonder Room exchanges defensive ranks while the raw selectors preserve the original stats. Resident damage/category/contact adapters and separate successful-hit history support Counter/Mirror Coat without mutating shared move data. Twenty singles and two doubles cases verify category, contact reactions, retaliation and Follow Me. Full AI, multi-battle and rendered-animation regression coverage is not claimed.
 
 **Focused checks:** Tie RNG; stages; Wonder Room; Choice items; physical contact; special noncontact.
 
@@ -1329,7 +1336,7 @@ Move ID: 881 (`MOVE_CHILLY_RECEPTION`). Complexity: **Hard**. Proposed route: `m
 
 **Effect:** Starts five-turn snow, extended to eight by Icy Rock, then switches the user out. Existing snow does not prevent the switch; no replacement means weather only. Direct selection has an early preparation message, unlike calling the move indirectly. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Chilly_Reception_(move)>) (reviewed revision 4614463).
 
-**Implementation:** Depends on a real snow weather implementation. Combine weather work and a Parting Shot/U-turn-style switch without requiring a damaging hit. Queue the early message once with safe action ownership; do not reuse Beak Blast's phase assumptions.
+**Implementation:** Implemented in the existing `moves/terrain` DLL using the resident snow service, followed by native replacement selection without requiring a damaging hit. Weather and pivot success are independent. A resident natural-action preparation pass queues the early message once per user per turn, with no early cue for indirect calls. Nine focused native cases verify weather, Icy Rock, trapping, entry hazards, Sleep Talk and no-bench behavior; the harness selects a replacement through signature-pinned native party UI rather than rewriting battle commands.
 
 **Focused checks:** Existing snow; Icy Rock; no bench; trapped user; indirect call; early message.
 
@@ -1389,7 +1396,7 @@ Move ID: 913 (`MOVE_DRAGON_CHEER`). Complexity: **Medium**. Proposed route: `mov
 
 **Effect:** Raises adjacent allies' critical stage by one, or two if Dragon-type at application time. That bonus stays fixed if typing later changes. Fail with no ally or if it already has Focus Energy/Dragon Cheer. Current Scarlet/Violet clears it on switching; it is not sound-based there. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Dragon_Cheer_(move)>) (reviewed revision 4628118).
 
-**Implementation:** Reuse Focus Energy storage through a distinct application service, preserving copy behavior through Psych Up/Transform and later Costar/Opportunist/Mirror Herb if supported. Do not confuse Champions' sound flag with Scarlet/Violet.
+**Implementation:** Implemented in `moves/stats` with a narrow resident application/copy service. A fixed one/two-stage bonus is stored in the core; the native Focus Energy flag provides mutual exclusion. Psych Up/Transform copy the bonus and flag; ordinary switch/faint cleanup resets the core value. The native position layout interleaves sides, so same-side distance two is adjacent. Existing global critical odds remain unchanged. Costar/Opportunist/Mirror Herb are separate dependencies; Baton Pass is not covered by this native test set. Scarlet/Violet's non-sound flag is retained.
 
 **Focused checks:** Dragon versus non-Dragon; later type change; Focus Energy; switch; copying.
 
@@ -1544,9 +1551,9 @@ Move ID: 854 (`MOVE_LAST_RESPECTS`). Complexity: **Hard**. Proposed route: `move
 
 **Effect:** Starts at 50 power and adds 50 for every fainting event on the user's side during the battle, including a revived Pokémon fainting again. Caps at 5,050 after 100 events. The source leaves multi-battle ally scope unresolved. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Last_Respects_(move)>) (reviewed revision 4614671).
 
-**Implementation:** Use a resident side/party faint-event counter that exists before the move module loads, with a wide enough power representation. Counting currently fainted party members is wrong. Resolve multi-owner scope before implementation.
+**Implementation:** Implemented in the existing `moves/flow` group. Resident per-trainer counters observe the native committed-faint path before any move module needs to load, cap at 100 events, and reset only at battle cleanup. Resolve ownership by native party membership, not battler-ID division. Revival does not erase prior events. Ordinary singles/doubles are supported; multi-trainer battles explicitly fail under the approved scope rather than using an ambiguous ally count.
 
-**Focused checks:** Pre-registration faints; repeat revival/faint; self KO; power >255; multi battles.
+**Focused checks:** Five native doubles cases cover 50/100 power, allied/opposing self-KO and both sides fainting. Compiled guards cover the 5,050 cap, simulation exclusion, ownership and battle lifetime. Repeat revival/faint is exercised by the companion revival suite. Native singles/triples and multi-trainer behavior remain separately unverified.
 
 ### Lumina Crash
 
@@ -1574,7 +1581,7 @@ Move ID: 874 (`MOVE_MAKE_IT_RAIN`). Complexity: **Medium**. Proposed route: `mov
 
 **Effect:** Damages adjacent opponents and lowers the user's Special Attack one stage once per use. Successful hits scatter prize coins at five times user level per hit target; Amulet Coin/Luck Incense affects the final payout. Scarlet/Violet uses -1 and 100% accuracy; Champions uses -2 and 95%. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Make_It_Rain_(move)>) (reviewed revision 4620155).
 
-**Implementation:** Combine spread/self-stat metadata with a Pay Day-style payout service. Count successful targets without multiplying the self drop, and preserve trainer/wild/battle-end money handling.
+**Implementation:** Implemented in `moves/flow`: count successful native damage determinations, delegate each hit's coins to the resident Pay Day getter, then queue one native Special Attack drop after the action. Per-target self-stat metadata is cleared to avoid duplicate drops. Coin pool bookkeeping is native-tested; complete battle-end payout/item multiplication is not newly tested.
 
 **Focused checks:** Doubles two hits; one protected foe; drop once; payout; Amulet Coin.
 
@@ -1594,7 +1601,7 @@ Move ID: 902 (`MOVE_MATCHA_GOTCHA`). Complexity: **Medium**. Proposed route: `mo
 
 **Effect:** Damages both opponents, drains half damage, and has a 20% burn chance. Big Root increases healing by 30%. Liquid Ooze reverses the drain; if one foe has it, that damage is processed before healing from the other. It thaws the user on execution and frozen targets on hit. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Matcha_Gotcha_(move)>) (reviewed revision 4614876).
 
-**Implementation:** Use a shared spread-drain service that explicitly orders Liquid Ooze before other healing. Add Scald-style thaw work and independent burn rolls; do not heal from planned rather than actual damage.
+**Implementation:** Implemented in `moves/flow` using seven native event work words: a count and six packed actual-hit records. Queue Ooze records first, then ordinary native drain work for Big Root, Heal Block and no revival. Native burn metadata remains; ordinary recoil/drain metadata is cleared to avoid double healing. A resident scoped thaw adapter preserves the real move type/category while reusing native target thaw work. User-thaw flags remain intact.
 
 **Focused checks:** Mixed Liquid Ooze foes; Big Root; frozen user/target; Substitute; drain KO.
 
@@ -1614,7 +1621,7 @@ Move ID: 866 (`MOVE_MORTAL_SPIN`). Complexity: **Medium**. Proposed route: `move
 
 **Effect:** Damages adjacent opponents and poisons each eligible hit target. Removes the user's binding/Leech Seed and hazards on its side, unless the user has fainted from the move's reactions. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Mortal_Spin_(move)>) (reviewed revision 4631936).
 
-**Implementation:** Adapt the expanded Rapid Spin cleanup for Sticky Web too, but do not inherit an unrelated Speed boost. Separate per-target poisoning from once-per-action cleanup and respect reaction timing.
+**Implementation:** Implemented in `moves/hazards` by delegating to the existing expanded Rapid Spin cleanup after damage, only if the user is still living and on field. Reuses Sticky Web removal without adding Speed. Per-target poison remains native move data. Native tests cover Spikes/Toxic Spikes/Stealth Rock and Bind/Leech Seed; contact-KO exclusion has a compiled guard, not a new emulator case.
 
 **Focused checks:** Two foes; poison immunity; Sticky Web; binding; Rough Skin user KO.
 
@@ -1684,7 +1691,7 @@ Move ID: 917 (`MOVE_PSYCHIC_NOISE`). Complexity: **Medium**. Proposed route: `mo
 
 **Effect:** Damages and applies two-turn Heal Block without refreshing an existing block. This stops relevant healing and draining moves. It is sound-based; Shield Dust and Aroma Veil can prevent the added effect, and Sheer Force suppresses it. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Psychic_Noise_(move)>) (reviewed revision 4628390).
 
-**Implementation:** Reuse the native Heal Block condition with a damage-triggered, non-refreshing duration. Extend selection and execution gates where required, sharing Throat Chop's immediate same-turn blocking lessons but not its sound-move predicate.
+**Implementation:** Wired through native damage/secondary metadata: Heal Block 15, guaranteed chance, turn-counted duration 2. Native condition-add checks reject an already-active condition unless an explicit overwrite is requested. Existing healing selection/execution gates, Aroma Veil prevention and sound/Substitute routing are reused; no child table is added. This entry is source/packed-data checked, not newly emulator-tested under the native-reuse policy.
 
 **Focused checks:** Faster hit then healing; draining move; refresh attempt; Aroma Veil; Sheer Force; Substitute.
 
@@ -1714,9 +1721,9 @@ Move ID: 863 (`MOVE_REVIVAL_BLESSING`). Complexity: **Hard**. Proposed route: `m
 
 **Effect:** Selects a fainted party member and revives it at half maximum HP; fails if none exists. Heal Block prevents it. A revived Mega retains its Mega form. Sketch cannot copy the move. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Revival_Blessing_(move)>) (reviewed revision 4628400).
 
-**Implementation:** Needs a safe in-battle fainted-party selection command/UI and authoritative party mutation, not a heal effect on an active slot. Preserve trainer/multi-battle ownership, cancellation behavior, and existing Mega state.
+**Implementation:** Implemented in the existing `moves/flow` group with a resident asynchronous transaction. A tagged native adapter request opens the originating trainer's party chooser; the server validates its reply and queues native revival work for half-floor maximum HP (minimum one), then resumes the remaining actions without switching the user or consuming an item. Living selections reopen the chooser; cancellation revives nobody and still spends the move's PP. Native AI selects its own first fainted member. Party identity/form is preserved, shared Mega state is not replaced, and Sketch copying is explicitly rejected.
 
-**Focused checks:** No fainted member; selected bench member; Mega; Heal Block; cancel; multi battles.
+**Focused checks:** Nine passing native cases cover either bench choice, invalid living choice, cancellation, odd/even half HP, no fainted member, Heal Block, enemy AI revival and an ordinary doubles revival/repeated-faint sequence yielding 150-power Last Respects. Server/client party HP agrees. Compiled checks pin clean-US W2/B2 client/server call sites and layouts, validate reply bounds/ownership, and cover reset and Sketch restrictions. Actual revived-Mega, multi/network and recorded replay behavior remain unverified.
 
 ### Ruination
 
@@ -1744,7 +1751,7 @@ Move ID: 880 (`MOVE_SHED_TAIL`). Complexity: **Hard**. Proposed route: `moves/fl
 
 **Effect:** Costs half the user's maximum HP rounded up, creates a Substitute worth one quarter of that user's maximum HP, then switches and transfers it. A triggered Berry is eaten before switching. Fail with an existing Substitute, insufficient HP, or no replacement. Entry hazards still affect the incoming Pokémon. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Shed_Tail_(move)>) (reviewed revision 4578277).
 
-**Implementation:** Compose Substitute and switching transactionally, transferring only the intended substitute state rather than all Baton Pass effects. Audit rounding, eligibility, trap bypass, and the bench selection command.
+**Implementation:** Implemented in `moves/flow` using native Substitute creation, half-ceil direct HP payment and berry reaction before the native Baton Pass position event/replacement transaction. A resident exit filter clears transferable stages/volatiles and Focus Energy/Power Trick before both server and delayed client copies, preserving only the doll and major status. Nineteen native cases verify rounding, failures without payment, real party selection, Sitrus ordering, trap bypass, entry hazards, incoming damage absorption and an ordinary Baton Pass control. Multi-battle ownership and revived-Mega behavior are not newly tested.
 
 **Focused checks:** Odd max HP; boundary HP; Sitrus ordering; no bench; existing Sub; hazards; no stat pass.
 
@@ -1764,7 +1771,7 @@ Move ID: 883 (`MOVE_SNOWSCAPE`). Complexity: **Hard**. Proposed route: `moves/te
 
 **Effect:** Sets five-turn snow, extended to eight by Icy Rock. Snow replaces other weather, fails if already active, and boosts Ice Defense by 50% without hail chip damage. Ice Body, Snow Cloak, Slush Rush, Aurora Veil, Weather Ball, and reduced Synthesis-family recovery must recognize snow. [Bulbapedia](<https://bulbapedia.bulbagarden.net/wiki/Snowscape_(move)>) (reviewed revision 4636006).
 
-**Implementation:** Implement a distinct core weather or explicitly approved replacement policy; merely renaming Hail is incorrect. Cover weather enums, duration, damage, abilities, move eligibility, displays, and weather graphics. No snow runtime implementation was found in this audit.
+**Implementation:** Implemented as logical snow in the resident core with the existing `moves/terrain` DLL. Native cold-weather consumers receive Hail transport, while logical state suppresses hail chip and adds Ice physical Defense only under effective weather. Queued display commands preserve distinct snow start/end text even after server expiry; client graphics reuse native Hail without new assets. Nineteen focused native cases cover duration, replacement, suppression and cold-weather interactions; clean-US W2/B2 call/trampoline checks pin the transport ABI.
 
 **Focused checks:** No chip; Ice Defense; Icy Rock; weather overwrite; Veil; Weather Ball; healing.
 

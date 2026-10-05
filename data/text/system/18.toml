@@ -7919,3 +7919,36 @@ text = [
   "The foe's [VAR PKNICK(0)] is about to be attacked\n",
   "by its [VAR ITEM2(1)]!$",
 ]
+
+[msg.section_0.entries.1352]
+text = [
+  "[VAR PKNICK(0)] is gathering energy!$",
+]
+
+[msg.section_0.entries.1353]
+text = [
+  "The wild [VAR PKNICK(0)] is gathering energy!$",
+]
+
+[msg.section_0.entries.1354]
+text = [
+  "The foe's [VAR PKNICK(0)] is gathering energy!$",
+]
+
+[msg.section_0.entries.1355]
+text = ["[VAR PKNICK(0)] became weaker to Fire!$"]
+
+[msg.section_0.entries.1356]
+text = ["The wild [VAR PKNICK(0)] became weaker to Fire!$"]
+
+[msg.section_0.entries.1357]
+text = ["The foe's [VAR PKNICK(0)] became weaker to Fire!$"]
+
+[msg.section_0.entries.1358]
+text = ["[VAR PKNICK(0)] is preparing to tell\na chillingly bad joke!$"]
+
+[msg.section_0.entries.1359]
+text = ["The wild [VAR PKNICK(0)] is preparing to tell\na chillingly bad joke!$"]
+
+[msg.section_0.entries.1360]
+text = ["The foe's [VAR PKNICK(0)] is preparing to tell\na chillingly bad joke!$"]

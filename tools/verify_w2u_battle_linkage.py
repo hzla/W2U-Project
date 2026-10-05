@@ -44,6 +44,17 @@ def symbols(path: Path, *arguments: str) -> set[str]:
     return {line.split()[-1] for line in output.splitlines() if line.split()}
 
 
+def verify_vram_branch_relocations(path: Path, addresses: dict[str, int]) -> None:
+    # PMC battle modules live in main RAM. Short ARM/Thumb branches cannot
+    # reach overlay 169's VRAM address, even if packaging accepts the RPM.
+    output = subprocess.run(["arm-none-eabi-objdump", "-r", str(path)],
+        check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True).stdout
+    for symbol in re.findall(r"R_ARM_(?:THM_CALL|THM_JUMP24|CALL|JUMP24)\s+(\S+)", output):
+        name = symbol.split("+", 1)[0]
+        if 0x06000000 <= addresses.get(name, 0) < 0x07000000:
+            raise RuntimeError(f"{path.name}: out-of-range relative call to VRAM symbol {name}; use an absolute long call")
+
+
 def rpm_export_hashes(path: Path) -> set[int]:
     data = path.read_bytes()
 
@@ -82,8 +93,19 @@ def main() -> int:
             f"expected {args.expected_count} child ELFs, got {len(args.child)}"
         )
     core_imports = symbols(args.core, "-u")
+    core_definitions = symbols(args.core, "--defined-only")
+    required_resident_hooks = {
+        "THUMB_BRANCH_BattleHandler_ConsumeItem",
+        "THUMB_BRANCH_ServerControl_ChangeHeldItem",
+    }
+    missing_hooks = required_resident_hooks - core_definitions
+    if missing_hooks:
+        raise RuntimeError("missing resident consumption bookkeeping hooks: " + ", ".join(sorted(missing_hooks)))
     database = yaml.safe_load(args.esdb.read_text(encoding="utf-8"))
-    verify_hook_targets(symbols(args.core, "--defined-only"), {entry["Name"] for entry in database["Symbols"]})
+    verify_hook_targets(core_definitions, {entry["Name"] for entry in database["Symbols"]})
+    addresses = {entry["Name"]: int(entry["Address"]) for entry in database["Symbols"]}
+    for module in [args.core, *args.child]:
+        verify_vram_branch_relocations(module, addresses)
     direct_pmc_imports = sorted(
         symbol for symbol in core_imports if symbol.startswith("_ZN3pmc3fwk")
     )

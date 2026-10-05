@@ -16,6 +16,26 @@ ALLOCATOR_BYTES_PER_MODULE = 16
 # The fixed record array and telemetry live in White2Upgrade.dll's BSS and are
 # already included in the core RPM's post-fix size.
 LOADER_FIXED_BYTES = 0
+
+
+def acceptance_failures(baseline_resident: int, no_custom: int,
+                        typical: int, all_groups: int) -> list[str]:
+    """Acceptance compares complete battle sets, not only the core RPM.
+
+    Keep the captured pre-refactor baseline unchanged. Loader state and all
+    current resident modules/allocator headers are charged in each scenario.
+    Core-only savings remain a reported diagnostic, not a separate requirement.
+    """
+    failures = []
+    if baseline_resident - no_custom < 8 * 1024:
+        failures.append("no-custom battle saves less than 8 KiB")
+    if baseline_resident - typical < 4 * 1024:
+        failures.append("largest one-group scenario saves less than 4 KiB")
+    if HEAP_BYTES - all_groups < REQUIRED_HEADROOM:
+        failures.append("all-group scenario leaves less than 12 KiB headroom")
+    return failures
+
+
 def u32(data: bytes, offset: int) -> int:
     return struct.unpack_from("<I", data, offset)[0]
 
@@ -111,6 +131,7 @@ def main() -> int:
         "loader_state_included_in_core": True,
         "baseline": str(args.baseline),
         "monolithic_core_baseline_bytes": monolithic_core_baseline,
+        "core_saving_vs_monolith": monolithic_core_baseline - core["fixed_bytes"],
         "monolithic_resident_baseline_bytes": monolithic_resident_baseline,
         "core": core,
         "pwan_battle": pwan,
@@ -141,14 +162,7 @@ def main() -> int:
         args.output.write_text(json.dumps(portable_report(report), indent=2) + "\n")
     print(json.dumps(portable_report(report), indent=2))
 
-    failures = []
-    no_custom_saving = monolithic_core_baseline - core["fixed_bytes"]
-    if no_custom_saving < 8 * 1024:
-        failures.append(f"core saving is only {no_custom_saving} bytes")
-    if monolithic_resident_baseline - typical < 4 * 1024:
-        failures.append("largest one-group scenario saves less than 4 KiB")
-    if HEAP_BYTES - all_groups < REQUIRED_HEADROOM:
-        failures.append("all-group scenario leaves less than 12 KiB headroom")
+    failures = acceptance_failures(monolithic_resident_baseline, no_custom, typical, all_groups)
     if args.enforce and failures:
         raise RuntimeError("; ".join(failures))
     if failures:
