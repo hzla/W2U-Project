@@ -123,7 +123,7 @@ w2u_battle_module_definitions = [
   {
     'id': 24,
     'slug': 'abilities_mb_defense',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/BeastBoost.cpp', '../megab2w2/abilities/EarthEater.cpp', '../megab2w2/abilities/Fluffy.cpp', '../megab2w2/abilities/GoodAsGold.cpp', '../megab2w2/abilities/GuardDog.cpp', '../megab2w2/abilities/MirrorArmor.cpp', '../megab2w2/abilities/PurifyingSalt.cpp', '../megab2w2/abilities/QueenlyMajesty.cpp', '../megab2w2/abilities/Shields.cpp', '../megab2w2/abilities/Veil.cpp', '../megab2w2/abilities/WellBakedBody.cpp', '../megab2w2/abilities/WindRider.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/BeastBoost.cpp', '../megab2w2/abilities/EarthEater.cpp', '../megab2w2/abilities/Fluffy.cpp', '../megab2w2/abilities/GoodAsGold.cpp', '../megab2w2/abilities/GuardDog.cpp', '../megab2w2/abilities/MirrorArmor.cpp', '../megab2w2/abilities/PurifyingSalt.cpp', '../megab2w2/abilities/QueenlyMajesty.cpp', '../megab2w2/abilities/Shields.cpp', '../megab2w2/abilities/Veil.cpp', '../megab2w2/abilities/WellBakedBody.cpp', '../megab2w2/abilities/WindRider.cpp', '../megab2w2/abilities/Damp.cpp'),
   },
   {
     'id': 25,

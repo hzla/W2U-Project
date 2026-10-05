@@ -84,9 +84,30 @@ Notes for review:
 - A base-form Rayquaza given Delta Stream through the harness has it reset by the existing leaked-Mega-ability
   repair (expected for normal play); Mega Rayquaza is the natural holder and was not tested here.
 - A blocked weather move also shows the retail "But it failed!" after the block text (same as in MegaB2W2).
-- Not yet tested: ending on switch-out / faint, Air Lock / Cloud Nine negation.
+- Ending on switch-out / faint and Air Lock / Cloud Nine negation: tested 2026-10-05 (below, "Field checks").
 - Host tests: four failures on Windows only (python3 alias lookup in two transform tests, path separators in two
   privacy-report tests); unrelated to this branch.
+
+## Field checks: strong weathers, negation, terrain moves (2026-10-05)
+
+Spec `w2u-local/harness/wave_field.yml`, 18 scenarios, all pass:
+
+- Strong weathers (MegaB2W2's scenarios): heavy rain (Fire fizzles, Thunder sure-hit, Rain Dance "no relief",
+  Weather Ball Water x2), extremely harsh sun (Water evaporates x3, Drizzle / Sunny Day "not lessened", one-turn
+  SolarBeam, Weather Ball Fire), the holder switching out ("lifted") and, new, fainting (heavy rain and harsh sun
+  both end; the next foe's Fire / Water move hits), Defog leaves it, Fire status moves still work.
+- Negation: Air Lock with heavy rain (Flamethrower hits, Rain Dance still blocked); Cloud Nine with Desolate Land
+  (Water Gun hits); and the resident `ServerEvent_GetWeather` (replaced in wave C for Mega Sol): Cloud Nine cancels
+  Sunny Day's Fire boost (x1.000; control without Cloud Nine x1.500); Cloud Nine leaves Grassy Terrain's healing.
+- Expanding Force and Misty Explosion, which W2U lacked: x1.5 for a grounded user on Psychic / Misty Terrain in W2U's
+  terrain power handler (`HandlerTerrainPower`); Misty Explosion aliases Explosion's handlers (the user faints).
+  Measured: Expanding Force x1.906 (x1.5 and the terrain's Psychic x1.3, integer rounding at 53 damage), Misty
+  Explosion x1.490. Expanding Force's Gen 9 spread to every foe is not modelled.
+- Damp: vanilla Damp's move check compares the move with Explosion / Self-Destruct only, so Misty Explosion and
+  W2U's Mind Blown went off next to Damp. W2U's Damp (`megab2w2/abilities/Damp.cpp`, module `abilities/mb_defense`,
+  White 2) is vanilla's table with that check replaced by Showdown's list (Self-Destruct, Explosion, Mind Blown,
+  Misty Explosion); vanilla's message and other handlers are reused (four ESDB names). Checked: all three stopped
+  ("X cannot use Y!"), Explosion still stopped, Mind Blown hits without Damp. Primary ability count 134 -> 135.
 
 ## Fix: terrain moves hung in battles started without the field
 

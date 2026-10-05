@@ -26590,3 +26590,15 @@ Symbols:
   - Name: BattleHandler_ForceUseItem
     Segment: 0x1D
     Address: 0x21AD9BD
+  - Name: HandlerDampMessage
+    Segment: 0x1D
+    Address: 0x21C06A1
+  - Name: HandlerDampMoveStart
+    Segment: 0x1D
+    Address: 0x21C06FD
+  - Name: HandlerDampMoveEnd
+    Segment: 0x1D
+    Address: 0x21C070D
+  - Name: HandlerDampNullified
+    Segment: 0x1D
+    Address: 0x21C0715

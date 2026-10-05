@@ -11,6 +11,7 @@ typedef u32 MOVE_ID;
 #endif
 
 enum W2UAbilityId : u32 {
+    ABIL_DAMP = 6,          // overridden in module abilities/mb_defense: Damp also stops Mind Blown / Misty Explosion
     ABIL_INTIMIDATE = 22,   // overridden in module abilities/mb_defense for Guard Dog (tracked Intimidate)
     ABIL_NORMALIZE = 96,
     ABIL_MULTITYPE = 121,

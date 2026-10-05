@@ -6213,6 +6213,15 @@ extern "C" void HandlerTerrainPower(BattleEventItem* item, ServerFlow* serverFlo
         (terrain == TERRAIN_PSYCHIC && moveType == TYPE_PSYCHIC)) {
         BattleEventVar_MulValue(VAR_MOVE_POWER_RATIO, W2U_TERRAIN_POWER_RATIO);
     }
+
+    // Misty Explosion on Misty Terrain, Expanding Force on Psychic Terrain:
+    // x1.5 for a grounded user (Expanding Force also keeps the Psychic boost
+    // above). Expanding Force's Gen 9 spread to every foe is not modelled.
+    const MOVE_ID moveID = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
+    if ((terrain == TERRAIN_MISTY && moveID == MOVE_MISTY_EXPLOSION) ||
+        (terrain == TERRAIN_PSYCHIC && moveID == MOVE_EXPANDING_FORCE)) {
+        BattleEventVar_MulValue(VAR_MOVE_POWER_RATIO, 6144);
+    }
 }
 
 extern "C" void HandlerPsychicTerrainPriorityGuard(
@@ -6391,6 +6400,9 @@ const W2UVanillaMoveAlias W2U_VANILLA_MOVE_ALIASES[] = {
     { MOVE_COMEUPPANCE, MOVE_METAL_BURST },
     { MOVE_AXE_KICK, MOVE_HI_JUMP_KICK },
     { MOVE_DRAGON_ENERGY, MOVE_ERUPTION },
+    // Explosion's handlers make the user faint; the terrain boost is
+    // HandlerTerrainPower's.
+    { MOVE_MISTY_EXPLOSION, MOVE_EXPLOSION },
 };
 
 #if !defined(W2U_DYNAMIC_BATTLE_CORE) && !defined(W2U_BATTLE_STATIC_GROUPS)
