@@ -1769,12 +1769,13 @@ extern "C" bool W2U_MoveState_RemoveTerrain(ServerFlow* serverFlow)
     return RemoveTerrainState(serverFlow, true);
 }
 
-extern "C" bool W2U_MoveState_SetTerrainFromAbility(
+static bool SetTerrainFromAbilityCore(
     ServerFlow* serverFlow,
     u32 pokemonSlot,
     TERRAIN terrain,
     u32 msgID,
-    MOVE_ID animationMoveID)
+    MOVE_ID animationMoveID,
+    bool messageNamesMon)
 {
     BattleMon* battleMon = GetBattleMon(serverFlow, pokemonSlot);
     if (!serverFlow || !serverFlow->serverCommandQueue || !battleMon ||
@@ -1798,11 +1799,35 @@ extern "C" bool W2U_MoveState_SetTerrainFromAbility(
 
     HandlerParam_StrParams terrainMessage = {};
     BattleHandler_StrSetup(&terrainMessage, 2u, (u16)msgID);
+    if (messageNamesMon) {
+        BattleHandler_AddArg(&terrainMessage, pokemonSlot);
+    }
     BattleHandler_SetString(serverFlow, &terrainMessage);
 
     ServerDisplay_AbilityPopupRemove(serverFlow, battleMon);
     NotifyTerrainChanged(serverFlow, terrain);
     return true;
+}
+
+extern "C" bool W2U_MoveState_SetTerrainFromAbility(
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    TERRAIN terrain,
+    u32 msgID,
+    MOVE_ID animationMoveID)
+{
+    return SetTerrainFromAbilityCore(serverFlow, pokemonSlot, terrain, msgID, animationMoveID, false);
+}
+
+// The same, with the setter as the message's argument (Hadron Engine: "X turned the ground into Electric Terrain...").
+extern "C" bool W2U_MoveState_SetTerrainFromAbilityNamed(
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    TERRAIN terrain,
+    u32 msgID,
+    MOVE_ID animationMoveID)
+{
+    return SetTerrainFromAbilityCore(serverFlow, pokemonSlot, terrain, msgID, animationMoveID, true);
 }
 
 extern "C" bool W2U_MoveState_RemoveStickyWebSide(u32 side)

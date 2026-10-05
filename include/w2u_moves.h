@@ -100,6 +100,12 @@ extern "C" bool W2U_MoveState_SetTerrainFromAbility(
     TERRAIN terrain,
     u32 msgID,
     MOVE_ID animationMoveID);
+extern "C" bool W2U_MoveState_SetTerrainFromAbilityNamed(
+    ServerFlow* serverFlow,
+    u32 pokemonSlot,
+    TERRAIN terrain,
+    u32 msgID,
+    MOVE_ID animationMoveID);
 extern "C" bool W2U_MoveState_RemoveTerrain(ServerFlow* serverFlow);
 extern "C" bool W2U_MoveState_RemoveStickyWebSide(u32 side);
 extern "C" bool W2U_MoveState_RemoveAuroraVeilSide(

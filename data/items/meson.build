@@ -425,7 +425,7 @@ items = [
   'hm04.toml',
   'hm05.toml',
   'hm06.toml',
-  'unknown_17.toml',
+  'booster_energy.toml',
   'unknown_18.toml',
   'explorer_kit.toml',
   'loot_sack.toml',

@@ -207,6 +207,42 @@ emulator (no ROM instrumentation): one ROM per foe side, the player team in a pe
 off through the save's Battle Scene option (byte 0x19400 bit 7, CRC16 block checksum), 10 parallel workers. A full
 run takes 9.5 min (17.7 before these speed-ups).
 
+### Wave B: terrain-dependent abilities and Booster Energy
+
+Seven abilities in one module, `abilities/mb_terrain` (registry id 27, White 2 only): Protosynthesis, Quark Drive
+(`Protosynthesis.cpp`), Orichalcum Pulse, Hadron Engine, Mimicry (`TerrainAbilities.cpp`), Sand Spit, Seed Sower
+(`SandSpit.cpp`). W2U already has the Surges, Grass Pelt and Surge Surfer, so MegaB2W2's versions of those were not
+ported. Primary ability count 114 -> 121.
+
+- Terrain is W2U's: `megab2w2/terrain.h` maps MegaB2W2's `terrain::` calls onto `W2U_MoveState_GetTerrain` and
+  `W2U_MoveState_SetTerrainFromAbility` (the Surges' path: popup, the terrain move's animation, the start message,
+  `EVENT_AFTER_TERRAIN_CHANGE`). New `W2U_MoveState_SetTerrainFromAbilityNamed` (`w2u_moves.cpp`): the same with the
+  setter as the message argument, for Hadron Engine's "X turned the ground into Electric Terrain, ...".
+- The module depends on `moves/terrain`, like `abilities/terrain`: in the dynamic battle core the terrain field
+  handlers come from that module, and without it loaded setting terrain fails (Seed Sower and Hadron Engine did
+  nothing in a battle without a terrain move).
+- Booster Energy: item 426 (was `unknown_17`; `data/items/booster_energy.toml`, `ITEM_BOOSTER_ENERGY` in `Items.h`
+  and `mb_ids.h`), name and description in banks 64 / 63, icon `assets/item_icons/icons/booster_energy.png` + palette
+  (from Showdown's item sprite sheet; credit needed if kept). Used on entry when neither sun nor Electric Terrain is
+  up.
+- Messages: bank 18, 1397-1441 (15 sets: Protosynthesis / Quark Drive activation, the five stats, the end messages,
+  Orichalcum Pulse, Hadron Engine).
+
+#### Wave B results (headless, 2026-10-05)
+
+10 scenarios (`w2u-local/harness/wave_b.yml`), all pass:
+
+| Scenario | Checked |
+|---|---|
+| PROTOSYNTHESIS_BOOSTER | "used its Booster Energy to activate Protosynthesis", Attack x1.291 (Strength, holder vs plain Snorlax) |
+| PROTOSYNTHESIS_SUN | the foe's Sunny Day activates it; Mantine's Sp. Def is boosted |
+| PROTOSYNTHESIS_STAGES | stat stages count: Gardevoir after Swords Dance boosts Attack, not Sp. Atk |
+| QUARK_DRIVE / QUARK_DRIVE_BOOSTER | its own Electric Terrain / Booster Energy activate it |
+| SAND_SPIT, SEED_SOWER | hit by Tackle: sandstorm / Grassy Terrain, once |
+| HADRON_ENGINE | Electric Terrain on entry with its own message; Thunderbolt x0.758 plain / holder |
+| ORICHALCUM_PULSE | sun on entry; Strength x0.748 plain / holder |
+| MIMICRY | Electric-type in Electric Terrain: the same Earthquake is neutral, then super effective |
+
 ### Abilities above 255
 
 W2U stored abilities in one byte (species data and each Pokemon), so no ability above 255 could be used; Gen 9

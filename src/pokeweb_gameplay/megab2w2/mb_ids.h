@@ -192,8 +192,24 @@ namespace moves { inline bool HasFlag(u16 move, MoveFlagExt flag) { return flag 
 #define BTLMSG_SET_SUPREME_OVERLORD 1388   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
 #define BTLMSG_SET_SWEET_VEIL 1391   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
 #define BTLMSG_SET_TERA_SHELL 1394   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+// wave B (Protosynthesis / Quark Drive, Orichalcum Pulse / Hadron Engine)
+#define BTLMSG_SET_PROTO_SUN 1397   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_PROTO_BOOSTER 1400   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_PROTO_ATTACK 1403   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_PROTO_DEFENSE 1406   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_PROTO_SP_ATK 1409   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_PROTO_SP_DEF 1412   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_PROTO_SPEED 1415   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_PROTO_END 1418   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_QUARK_TERRAIN 1421   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_QUARK_BOOSTER 1424   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_QUARK_END 1427   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_ORICHALCUM_START 1430   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_ORICHALCUM_BASK 1433   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_HADRON_START 1436   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_HADRON_USE 1439   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
 #define BTLMSG_STD_DISGUISE_DECOY 213   // W2U text bank 19
 #define BTLMSG_STD_PERISH_BODY 214   // W2U text bank 19
 #define BTL_STRTYPE_STD 1
 #define BTL_STRTYPE_SET 2
-#define ITEM_BOOSTER_ENERGY 0xFFFF   // not in W2U yet
+#define ITEM_BOOSTER_ENERGY 426   // W2U item 426 (a free vanilla slot; data/items/booster_energy.toml)

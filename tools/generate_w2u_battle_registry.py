@@ -19,7 +19,7 @@ KIND_ENUM = {
 }
 
 EXPECTED_PRIMARY_COUNTS = {
-    "ability": 114,    # + Intimidate, tracked for Guard Dog (abilities/mb_defense)
+    "ability": 121,    # + Intimidate (Guard Dog), + 7 terrain-dependent (abilities/mb_terrain)
     "move": 101,
     "item": 13,
 }
