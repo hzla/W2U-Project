@@ -109,13 +109,23 @@ def psychic(rng: np.random.Generator) -> np.ndarray:
     return image
 
 
+def toward_floor(horizon: tuple[int, int, int], depth: float, accent: tuple[int, int, int],
+                 accent_share: float = 0.25) -> tuple[float, float, float]:
+    """A sky colour in the floor's own hue: the floor's mean colour darkened by `depth`, a little of the terrain's
+    accent mixed in (as Grassy / Misty's skies: deeper towards the top, never a different colour)."""
+    base = np.array(horizon, float) * (1 - depth)
+    return tuple(base * (1 - accent_share) + np.array(accent, float) * accent_share)
+
+
 def electric_sky(rng: np.random.Generator, horizon: tuple[int, int, int]) -> np.ndarray:
-    # a warm gold haze: deeper gold up high, pale cream at the horizon, soft horizontal glow bands (the lightning is a
+    # a warm haze in the floor's hue: a little deeper and golder up high, pale cream at the horizon, soft horizontal glow bands (the lightning is a
     # particle effect of its own, not part of this texture)
     yy, xx = np.mgrid[0:SKY_H, 0:SKY_DW].astype(float)
     v = window(yy / (SKY_H - 1))
-    image = vertical(np.clip(v, 0, 1), [(0.0, (232, 168, 58)), (0.45, (246, 202, 92)), (0.8, (253, 232, 150)),
-                                        (1.0, horizon)])
+    gold = (255, 214, 96)
+    image = vertical(np.clip(v, 0, 1), [(0.0, toward_floor(horizon, 0.15, gold)),
+                                        (0.45, toward_floor(horizon, 0.08, gold, 0.2)),
+                                        (0.8, toward_floor(horizon, 0.02, gold, 0.1)), (1.0, horizon)])
     bands = spectral_noise(rng, 340, 8, (SKY_H, SKY_DW))
     glow = np.clip((bands - 0.45) / 0.35, 0, 1) * np.clip(v + 0.2, 0, 1)
     image += mix((0, 0, 0), (12, 20, 44), glow)
@@ -125,12 +135,14 @@ def electric_sky(rng: np.random.Generator, horizon: tuple[int, int, int]) -> np.
 
 
 def psychic_sky(rng: np.random.Generator, horizon: tuple[int, int, int]) -> np.ndarray:
-    # magenta above, lilac at the horizon, and four layered ridges of wavy cloud (lit tops, darker undersides), the
+    # deeper lilac-magenta above (the floor's hue), lilac at the horizon, and four layered ridges of wavy cloud (lit tops, darker undersides), the
     # nearer ones lower and paler, as in Sun / Moon
     yy, xx = np.mgrid[0:SKY_H, 0:SKY_DW].astype(float)
     v = window(yy / (SKY_H - 1))
-    image = vertical(np.clip(v, 0, 1), [(0.0, (160, 66, 184)), (0.4, (206, 104, 212)), (0.82, (236, 168, 236)),
-                                        (1.0, horizon)])
+    magenta = (214, 110, 226)
+    image = vertical(np.clip(v, 0, 1), [(0.0, toward_floor(horizon, 0.2, magenta)),
+                                        (0.4, toward_floor(horizon, 0.1, magenta, 0.2)),
+                                        (0.82, toward_floor(horizon, 0.03, magenta, 0.1)), (1.0, horizon)])
     span = SKY_H * (1 - SKY_WINDOW)
     for centre, amp, k, shade in ((0.18, 7.0, 3, 0.55), (0.42, 8.0, 4, 0.7), (0.64, 6.0, 5, 0.85), (0.84, 5.0, 6, 1.0)):
         ridge = (SKY_H - span * (1 - centre)) + amp * np.sin(2 * np.pi * k * xx / SKY_DW + rng.uniform(0, 6.3)) \
@@ -139,7 +151,7 @@ def psychic_sky(rng: np.random.Generator, horizon: tuple[int, int, int]) -> np.n
         mask = np.clip((yy - ridge) / 4.0, 0, 1)               # inside the cloud bank (a soft edge at its crest)
         depth = np.clip((yy - ridge) / 40.0, 0, 1)             # lit near the crest, deeper colour further down
         top = np.array((250, 182, 246)) * (1 - shade * 0.15)
-        body = np.array((214, 96, 214)) * shade + np.array((240, 168, 240)) * (1 - shade)
+        body = np.array(toward_floor(horizon, 0.12, magenta, 0.3)) * shade + np.array((240, 176, 242)) * (1 - shade)
         cloud = mix(top, body, depth)
         image = image * (1 - mask[..., None] * 0.85) + cloud * mask[..., None] * 0.85
         crest = np.exp(-((yy - ridge) / 3.0) ** 2) * (yy > SKY_H * SKY_WINDOW)

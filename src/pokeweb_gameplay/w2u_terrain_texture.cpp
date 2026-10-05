@@ -92,9 +92,9 @@ enum ElectricTransitionPhase {
 };
 
 // Each terrain's pace: the floor's UV animation (NSBTA frames per 60 fps frame), the gap between ambient particle
-// emits, and the floor fade's two halves (old floor -> blend colour, blend colour -> new floor; frames). Electric
-// is quick and busy (its floor keeps the template's fast scroll); Grassy, Misty and Psychic drift their floor sideways
-// with their sky; Psychic's emit gaps keep changing (W2U_PSYCHIC_AMBIENT_GAPS), its fade wobbles and its floor and sky
+// emits, and the floor fade's two halves (old floor -> blend colour, blend colour -> new floor; frames). Every
+// terrain drifts its floor sideways with its sky (W2U_SKY_DRIFT), Electric six times faster (quick and busy);
+// Psychic's emit gaps keep changing (W2U_PSYCHIC_AMBIENT_GAPS), its fade wobbles and its floor and sky
 // ripple (the raster wave below).
 struct TerrainPace {
     fx32 floorStep;
@@ -933,9 +933,9 @@ void ReleaseFloorAnimation()
 }
 
 #if !defined(W2U_TARGET_B2)
-// Grassy / Misty drift their floor sideways with their sky (UpdateSkyRepeat): both translate tracks of the loaded
+// The terrains drift their floor sideways with their sky (UpdateSkyRepeat): both translate tracks of the loaded
 // floor animation are made constant and translate S's value is written every frame (the animation reads the resource
-// every frame); the others keep the template's vertical scroll. Template member 119: {info, value} words of
+// every frame); the native floor (no terrain) keeps the template's vertical scroll. Template member 119: {info, value} words of
 // translate S at 0x78, translate T at 0x80 (tracks: scale S 0x60, scale T 0x68, rotation 0x70, translate S, T).
 constexpr u32 W2U_SRT_TRANS_S_WORD = 0x78u / 4u, W2U_SRT_TRANS_T_WORD = 0x80u / 4u;
 constexpr u32 W2U_SRT_CONST_TRACK = 0x30000000u;
@@ -1407,7 +1407,7 @@ bool InFloorRange(u32 index)
 
 // The whole field palette straight to palette VRAM: the floor range from `resource`, faded to `color` by evy / 16
 // (and the live twinkles brightened); every other entry the native colour under the current haze.
-bool UploadFloorPaletteTo(G3DResource* resource, u32 evy, u16 color, bool twinkles)
+bool UploadFloorPaletteTo(G3DResource* resource, u32 evy, u16 color, bool twinkles, bool skyFades = false)
 {
     const u16* palette = resource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(resource)) : 0;
     const u16* native = sFieldResource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(sFieldResource)) : 0;
@@ -1423,7 +1423,9 @@ bool UploadFloorPaletteTo(G3DResource* resource, u32 evy, u16 color, bool twinkl
         if (InFloorRange(index)) {
             sPaletteBackup[index] = evy ? FadeColor(palette[index], color, evy) : palette[index];
         } else if (sSkyOwned && InSkyRange(index)) {
-            sPaletteBackup[index] = evy ? FadeColor(palette[index], sSkyFadeColor, evy) : palette[index];
+            // the sky dips with the floor only in a terrain fade: the floor animation's swells and surges are the
+            // floor's (with them the sky flashed towards its own blend colour)
+            sPaletteBackup[index] = skyFades && evy ? FadeColor(palette[index], sSkyFadeColor, evy) : palette[index];
         } else {
             sPaletteBackup[index] = sHazeEvy ? FadeColor(native[index], sHazeColor, sHazeEvy) : native[index];
         }
@@ -1588,11 +1590,14 @@ void RestoreFieldGlow()
     sGlowLevel = 0u;
 }
 
-// Sky and floor drift (Grassy / Misty): texture translation per 60 fps frame in 1/65536 texture widths (wrapped at
-// one width). Measured on screen just above / below the horizon, a floor drift 8x the sky's moves the two together
-// (both the same way); 4 / 32 is about 3 screen pixels a second: very slow and subtle.
+// Sky and floor drift: texture translation per 60 fps frame in 1/65536 texture widths (wrapped at one width).
+// Measured on screen just above / below the horizon, a floor drift 8x the sky's moves the two together (both the
+// same way); 4 / 32 is about 3 screen pixels a second: very slow and subtle (Grassy, Misty, Psychic). Electric is
+// quick and busy: six times that, about 18 px a second.
 constexpr u32 W2U_SKY_DRIFT = 4u;
 constexpr u32 W2U_FLOOR_DRIFT = 32u;
+constexpr u32 W2U_ELECTRIC_DRIFT_SCALE = 6u;
+u32 DriftScale(u32 terrain) { return terrain == TERRAIN_ELECTRIC ? W2U_ELECTRIC_DRIFT_SCALE : 1u; }
 u32 sDriftSky = 0u;                            // 16.16 texture widths
 u32 sDriftFloor = 0u;
 
@@ -1929,7 +1934,7 @@ void BakeHaze()
 
 bool UploadFloorPalette(G3DResource* resource, u32 evy)
 {
-    return UploadFloorPaletteTo(resource, evy, sFloorFadeColor, false);
+    return UploadFloorPaletteTo(resource, evy, sFloorFadeColor, false, true);
 }
 
 void ResetFloorPaletteAnimation()
@@ -2559,7 +2564,7 @@ extern "C" void W2U_TerrainTexture_AdvanceAnimation()
 
 #if defined(W2U_TERRAIN_FLOOR_FADES)
     if (sSkyRepeatBound && sSkyTransS) {
-        sDriftSky += W2U_SKY_DRIFT;
+        sDriftSky += W2U_SKY_DRIFT * DriftScale(sAppliedTerrain);
         *sSkyTransS = (sDriftSky >> 4) & (FX32_ONE - 1);   // fx32, one texture width = FX32_ONE
     }
 #endif
@@ -2571,13 +2576,13 @@ extern "C" void W2U_TerrainTexture_AdvanceAnimation()
     G3DAnim* animations[] = { sFloorAnimation };
     G3DActor proxy = { sFieldModel, animations, 1u, 0u };
 #if defined(W2U_TERRAIN_FLOOR_FADES)
-    const bool sideways = sAppliedTerrain != TERRAIN_ELECTRIC;   // Electric keeps its fast scroll
+    const bool sideways = true;                  // every terrain drifts with its sky
     if (sideways != sFloorScrollHorizontal) {
         SetFloorScrollHorizontal(sideways);
         ResetFloorAnimation();
     }
     if (sideways) {
-        sDriftFloor += W2U_FLOOR_DRIFT;
+        sDriftFloor += W2U_FLOOR_DRIFT * DriftScale(sAppliedTerrain);
         SetFloorScrollOffset((sDriftFloor >> 4) & (FX32_ONE - 1));
         return;
     }
