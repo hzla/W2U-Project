@@ -26569,3 +26569,24 @@ Symbols:
   - Name: TypeEffectivenessClass
     Segment: 0x1D
     Address: 0x21BD329
+  - Name: Battle_IsRedirectBlocked
+    Segment: 0x1D
+    Address: 0x21ABE11
+  - Name: BattleField_GetWeather
+    Segment: 0x1D
+    Address: 0x21D59F1
+  - Name: BattleHandler_UseHeldItem
+    Segment: 0x1D
+    Address: 0x21AD969
+  - Name: BattleHandler_RecoverHP
+    Segment: 0x1D
+    Address: 0x21AC8AD
+  - Name: BattleHandler_Damage
+    Segment: 0x1D
+    Address: 0x21AC9D9
+  - Name: BattleHandler_StatChange
+    Segment: 0x1D
+    Address: 0x21ACDD1
+  - Name: BattleHandler_ForceUseItem
+    Segment: 0x1D
+    Address: 0x21AD9BD

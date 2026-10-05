@@ -243,6 +243,48 @@ ported. Primary ability count 114 -> 121.
 | ORICHALCUM_PULSE | sun on entry; Strength x0.748 plain / holder |
 | MIMICRY | Electric-type in Electric Terrain: the same Earthquake is neutral, then super effective |
 
+### Wave C: abilities that need engine hooks
+
+Thirteen abilities. Dragonize is W2U's own -ate conversion (`GetNormalMoveConversionType`: Dragon; module
+`abilities/type`). The other twelve are in module `abilities/mb_hooked` (registry id 28, White 2 only):
+
+| Ability | Module side (handlers) | Resident side |
+|---|---|---|
+| Gorilla Tactics | Attack x1.5; adds the Choice lock (condition 0x1B) after its first move; cures it when the ability goes | W2U's `IsUnselectableMove`: a holder locked without a usable Choice item gets Encore's "X can use only Y!" |
+| Propeller Tail, Stalwart | (empty table) | Lightning Rod / Storm Drain (ov167 0x21C0D82) and Follow Me / Rage Powder (0x21C64C4) ask `Battle_IsRedirectBlocked`: wrapped; W2U's Spotlight handler checks the abilities |
+| Unseen Fist, Piercing Drill | `EVENT_CHECK_PROTECT_BREAK`: contact moves answer 2 (go through, the protection stays); Piercing Drill's hit through protection x0.25 | `W2U_CheckProtectBreak` now also passes the move (`VAR_MOVE_ID`) |
+| Quick Draw, Mycelium Might | event 0x0F (special priority, Quick Claw's): first / last in the bracket | the pending move, noted at the two `ServerEvent_GetMovePriority` calls of the action-order sorts (0x21A0266, 0x219FBF8) |
+| Poison Puppeteer | event 0x68: a Pokemon it poisons is also confused | - |
+| Mega Sol | its move start / end | `ServerEvent_GetWeather` replaced whole (as vanilla: Air Lock / Cloud Nine event, then the field weather), sun during the holder's move |
+| Ripen, Cud Chew, Opportunist | popup; the second bite at the end of the next turn; recording foes' raises and copying them | the handler-effect dispatcher's calls (UseHeldItem 0x21AC59E, RecoverHP 0x21AC5AA, Damage 0x21AC5C0, StatChange 0x21AC604, ForceUseItem 0x21AC6D6): Berry effects doubled, Berries eaten noted, copies run with a flag |
+
+- Resident code: `src/pokeweb_gameplay/megab2w2/mb_resident.cpp` (White2Upgrade.dll; API `mb_resident.h`, imported by
+  the module as `W2U_MB_*`; state cleared in `W2U_BattleState_OnBattleExit`). Every hooked call site was checked in
+  W2U's built overlay 167: the same BL and target as vanilla White 2, and none is hooked by W2U. ESDB: seven names
+  added (`Battle_IsRedirectBlocked`, `BattleField_GetWeather`, `BattleHandler_UseHeldItem` / `RecoverHP` / `Damage`
+  / `StatChange` / `ForceUseItem`).
+- Black 2 is unchanged: the module and the resident file are White 2 only; the `IsUnselectableMove` branch is
+  `#if !defined(W2U_TARGET_B2)`; the Spotlight check, Dragonize and the protect-break move argument are
+  address-free and shared.
+- Message: Quick Draw, bank 18 1442-1444. Primary ability count 121 -> 134.
+- Fixed on the way (also present in MegaB2W2): Opportunist counted its own copy after pushing it, but the effect can
+  run at once, so a foe's Opportunist copied the copy back (both sides +4). The copy is counted before the push.
+
+#### Wave C results (headless, 2026-10-05)
+
+20 scenarios (`w2u-local/harness/wave_c.yml`), all pass, among them: Gorilla Tactics x1.494 and the menu refusing
+another move ("Machamp can use only Strength!"); Unseen Fist through Protect, Hyper Voice still blocked; Piercing
+Drill x0.253 against Unseen Fist in the same turn; Quick Draw (roll pinned) moving the slower Shuckle first twice,
+never with Splash; Propeller Tail past Lightningrod and Stalwart past Follow Me, each with a control where the
+redirection happens; Ripen x1.324 (Liechi +2 "sharply raised" vs +1); Opportunist +2 and not copied back between two
+holders; Cud Chew eating its Sitrus Berry again at the end of turn 2; Mycelium Might Toxic last and through
+Immunity; Poison Puppeteer confusing; Mega Sol SolarBeam on turn 1 and Flamethrower x1.487; Dragonize Tackle hitting
+Gengar. Waves A and B were re-run on the same build (the resident hooks run in every battle).
+
+Runner changes: the transcript also decodes set messages loaded from 0x21D5523 (item-and-stat messages); the
+party-screen check no longer depends on the lead's HP bar colour; `last_turn_refused: true` for a last move the
+menu is expected to refuse; doubles targets: f1 is the foe's second Pokemon, f2 its first.
+
 ### Abilities above 255
 
 W2U stored abilities in one byte (species data and each Pokemon), so no ability above 255 could be used; Gen 9

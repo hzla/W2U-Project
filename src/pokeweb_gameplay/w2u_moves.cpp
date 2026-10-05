@@ -198,6 +198,9 @@ extern "C" void HandlerBrickBreakCheck(
 
 extern "C" void Condition_CheckUnaffectedByType(ServerFlow* serverFlow, BattleMon* defendingMon);
 extern "C" b32 Move_IsUsable(BattleMon* battleMon, MOVE_ID moveID);
+#if !defined(W2U_TARGET_B2)
+extern "C" b32 CanMonUseHeldItem(BtlClientWk* client, BattleMon* battleMon);
+#endif
 extern "C" b32 BattleField_CheckImprison(PokeCon* pokeCon, BattleMon* battleMon, MOVE_ID moveID);
 extern "C" MOVE_ID BattleMon_GetPreviousMove(BattleMon* battleMon);
 extern "C" MOVE_ID BattleMon_GetPreviousMoveID(BattleMon* battleMon);
@@ -4918,6 +4921,17 @@ void ClearSpotlightState()
     }
 }
 
+// Propeller Tail / Stalwart: the user's moves are not redirected (the native
+// Follow Me / Lightning Rod checks are wrapped in megab2w2/mb_resident.cpp).
+bool IgnoresRedirection(BattleMon* attackingMon)
+{
+    if (!attackingMon) {
+        return false;
+    }
+    const u32 ability = BattleMon_GetValue(attackingMon, VALUE_EFFECTIVE_ABILITY);
+    return ability == ABIL_PROPELLER_TAIL || ability == ABIL_STALWART;
+}
+
 bool IsSpotlightTargetActive(ServerFlow* serverFlow)
 {
     BattleMon* targetMon = GetBattleMon(serverFlow, sMoveState.spotlightTargetSlot);
@@ -4965,6 +4979,7 @@ extern "C" void HandlerFieldSpotlightRedirect(
     const MOVE_ID moveID = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
     if (!IsValidSlot(attackingSlot) ||
         MainModule_IsAllyMonID(attackingSlot, sMoveState.spotlightTargetSlot) ||
+        IgnoresRedirection(GetBattleMon(serverFlow, attackingSlot)) ||
         moveID == MOVE_SKY_DROP ||
         BattleMon_CheckIfMoveCondition(
             GetBattleMon(serverFlow, sMoveState.spotlightTargetSlot), CONDITION_SKYDROP) ||
@@ -5321,7 +5336,7 @@ static void HandlerPosDamageShieldTypeImmunity(
     }
     BattleMon* protectedMon = GetBattleMon(serverFlow, work[1]);
     if (protectedMon && BattleMon_GetTurnFlag(protectedMon, TURNFLAG_PROTECT) &&
-        W2U_CheckProtectBreak(serverFlow, attackingSlot, work[1], PML_MoveGetCategory(moveID)) == 0) {
+        W2U_CheckProtectBreak(serverFlow, attackingSlot, work[1], PML_MoveGetCategory(moveID), moveID) == 0) {
         // Native BW2 discards type-immune targets before its protection pass.
         // Keep this *blocked* target until that pass emits PROTECT_SUCCESS;
         // no damaging calculation can use the temporary immunity override.
@@ -6455,14 +6470,16 @@ extern "C" void ServerEvent_ProtectBroken(
 
 #if !defined(W2U_BATTLE_CHILD)
 extern "C" u32 W2U_CheckProtectBreak(
-    ServerFlow* serverFlow, u32 attackingSlot, u32 defendingSlot, u32 category)
+    ServerFlow* serverFlow, u32 attackingSlot, u32 defendingSlot, u32 category, MOVE_ID moveID)
 {
     // Native BW2 supplies only ATTACKING_MON. Damage-only shields also need
-    // the current target and damage/status category in this scoped event.
+    // the current target and damage/status category in this scoped event;
+    // Unseen Fist / Piercing Drill need the move (contact).
     BattleEventVar_Push();
     BattleEventVar_SetConstValue(VAR_ATTACKING_MON, attackingSlot);
     BattleEventVar_SetConstValue(VAR_DEFENDING_MON, defendingSlot);
     BattleEventVar_SetConstValue(VAR_MOVE_CATEGORY, category);
+    BattleEventVar_SetConstValue(VAR_MOVE_ID, moveID);
     BattleEventVar_SetValue(VAR_GENERAL_USE_FLAG, 0);
     BattleEvent_CallHandlers(serverFlow, EVENT_CHECK_PROTECT_BREAK);
     u32 result = BattleEventVar_GetValue(VAR_GENERAL_USE_FLAG);
@@ -6511,7 +6528,7 @@ extern "C" void THUMB_BRANCH_SAFESTACK_flowsub_CheckNoEffect_Protect(
             BattleMon_GetTurnFlag(targetMon, TURNFLAG_PROTECT) &&
             getMoveFlag(*moveID, MOVE_FLAG_INDEX_BLOCKED_BY_PROTECT);
         u32 breakProtect = W2U_CheckProtectBreak(serverFlow, BattleMon_GetID(attackingMon),
-            BattleMon_GetID(targetMon), PML_MoveGetCategory(*moveID));
+            BattleMon_GetID(targetMon), PML_MoveGetCategory(*moveID), *moveID);
         switch (breakProtect) {
         case 0:
             if (targetIsProtected) {
@@ -6877,6 +6894,28 @@ extern "C" b32 THUMB_BRANCH_SAFESTACK_IsUnselectableMove(
     if (moveID == MOVE_STRUGGLE) {
         return 0;
     }
+
+#if !defined(W2U_TARGET_B2)
+    // Gorilla Tactics (White 2: battle module abilities/mb_hooked) locks its
+    // holder through the Choice lock condition without a Choice item: word it
+    // as Encore does, whatever it holds.
+    if (BattleMon_GetValue(battleMon, VALUE_EFFECTIVE_ABILITY) == ABIL_GORILLA_TACTICS &&
+        BattleMon_CheckIfMoveCondition(battleMon, CONDITION_CHOICELOCK)) {
+        ITEM heldItem = BattleMon_GetHeldItem(battleMon);
+        // Choice Band 220, Choice Scarf 287, Choice Specs 297: a usable one keeps the item's wording.
+        bool choiceItem = (heldItem == 220 || heldItem == 287 || heldItem == 297) &&
+            CanMonUseHeldItem(client, battleMon);
+        MOVE_ID lockedMove = Condition_GetParam(BattleMon_GetMoveCondition(battleMon, CONDITION_CHOICELOCK));
+        if (!choiceItem && lockedMove != moveID && Move_IsUsable(battleMon, lockedMove)) {
+            if (strparam) {
+                Btlv_StringParam_Setup(strparam, 1, 100);
+                Btlv_StringParam_AddArg(strparam, BattleMon_GetID(battleMon));
+                Btlv_StringParam_AddArg(strparam, lockedMove);
+            }
+            return 1;
+        }
+    }
+#endif
 
     if (BattleMon_GetHeldItem(battleMon) &&
         BattleMon_CheckIfMoveCondition(battleMon, CONDITION_CHOICELOCK)) {
