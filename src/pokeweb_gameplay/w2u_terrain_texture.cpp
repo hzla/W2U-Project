@@ -8,6 +8,8 @@
 #include "swan/gfl/fs/gfl_archive.h"
 #include "swan/gfl/g3d/gfl_g3d_system.h"
 #include "swan/math/vector.h"
+#include "swan/nds/cp15.h"
+#include "swan/nds/gx.h"
 
 extern "C" void* BTLV_EFFECT_GetMcssWork();
 extern "C" void BTLV_MCSS_GetPokeDefaultPos(void* mcssWork, VecFx32* position, int slot);
@@ -32,6 +34,13 @@ extern "C" void GFL_PTC_SetEmitterRadius(void* emitter, fx32 radius);
 extern "C" fx32 GFL_PTC_GetEmitterLength(void* emitter);
 extern "C" void GFL_PTC_SetEmitterLength(void* emitter, fx32 length);
 
+#if !defined(W2U_TARGET_B2)
+// Floor fades (White 2): the terrain floor fades in and out instead of switching at once. Black 2 keeps the
+// immediate swap until its battle-viewer addresses are verified.
+#define W2U_TERRAIN_FLOOR_FADES 1
+extern "C" int GFL_PTC_GetEmitterNum(void* particleSystem);   // live emitters (gx.h / cp15.h: the uploads)
+#endif
+
 namespace {
 
 constexpr u32 W2U_BATTGRA_ARC_ID = 11u;
@@ -44,10 +53,6 @@ constexpr u32 W2U_ELECTRIC_AMBIENT_ANCHOR_COUNT = 6u;
 constexpr u32 W2U_BATTLER_AMBIENT_ANCHOR_COUNT = 2u;
 constexpr u32 W2U_GRASSY_AMBIENT_STEP_COUNT = 4u;
 constexpr u32 W2U_GRASSY_AMBIENT_RESOURCES_PER_SIDE = 1u;
-constexpr u32 W2U_ELECTRIC_AMBIENT_STEP_FRAMES = 32u;
-constexpr u32 W2U_GRASSY_AMBIENT_STEP_FRAMES = 100u;
-constexpr u32 W2U_MISTY_AMBIENT_STEP_FRAMES = 200u;
-constexpr u32 W2U_PSYCHIC_AMBIENT_STEP_FRAMES = 60u;
 constexpr u32 W2U_PARTICLE_LIBRARY_HEAP_SIZE = 0x4800u;
 // Starting a terrain through a Surge ability happens while the switch-in and
 // terrain move animations still need this heap.  Leave room for those native
@@ -65,7 +70,6 @@ constexpr u32 W2U_FIELD_HEAP_ID_OFFSET = 0x6Cu;
 constexpr u32 W2U_NO_DEFERRED_MESSAGE = 0xFFFFFFFFu;
 constexpr u32 W2U_PALETTE_FADE_MAX_EVY = 16u;
 constexpr u32 W2U_PALETTE_BACKUP_COLORS = 1024u;
-constexpr fx16 W2U_FLOOR_ANIMATION_STEP = static_cast<fx16>(FX32_ONE / 2);
 constexpr u32 W2U_NSBTA_MAGIC = 0x30415442u;
 constexpr u32 W2U_NITRO_NAME_LENGTH = 16u;
 constexpr u16 W2U_NO_FLOOR_ANIMATION_MEMBER = 0xFFFFu;
@@ -90,6 +94,56 @@ enum ElectricTransitionPhase {
     ELECTRIC_TRANSITION_WAIT_FADE_START,
     ELECTRIC_TRANSITION_WAIT_FADE_END,
 };
+
+// Each terrain's pace: the floor's UV animation (NSBTA frames per 60 fps frame), the gap between ambient particle
+// emits, and the floor fade's two halves (old floor -> blend colour, blend colour -> new floor; frames). Electric
+// is quick and busy; Grassy and Misty are slow and calm; Psychic's floor speed and emit gaps keep changing
+// (PsychicFloorStep, W2U_PSYCHIC_AMBIENT_GAPS) and its fade wobbles.
+struct TerrainPace {
+    fx32 floorStep;
+    u16 ambientInterval;
+    u8 fadeOutFrames;
+    u8 fadeInFrames;
+};
+const TerrainPace W2U_TERRAIN_PACE[W2U_TERRAIN_TEXTURE_COUNT] = {
+    { FX32_ONE * 5 / 4, 20u, 10u, 14u },     // Electric
+    { FX32_ONE * 5 / 16, 130u, 26u, 40u },   // Grassy
+    { FX32_ONE / 4, 240u, 30u, 46u },        // Misty
+    { FX32_ONE * 9 / 16, 60u, 20u, 30u },    // Psychic (floorStep: mean; ambientInterval unused)
+};
+constexpr u32 W2U_NATIVE_FLOOR_FADE_OUT_FRAMES = 20u;
+const u8 W2U_PSYCHIC_AMBIENT_GAPS[] = { 34, 82, 47, 96, 28, 63, 110, 41 };
+constexpr fx32 W2U_PSYCHIC_FLOOR_STEP_MIN = FX32_ONE / 24;
+
+// sin(angle) in fx32, angle in 1/65536 turns (quarter-wave table, linear between 16 steps).
+fx32 SinTurn(u32 angle)
+{
+    static const u16 kQuarter[17] = {
+        0, 402, 799, 1189, 1567, 1931, 2276, 2598, 2896, 3166, 3406, 3612, 3784, 3920, 4017, 4076, 4096,
+    };
+    angle &= 0xFFFFu;
+    const u32 quadrant = angle >> 14;
+    u32 a = angle & 0x3FFFu;
+    if (quadrant & 1u) {
+        a = 0x4000u - a;
+    }
+    const u32 index = a >> 10;
+    const u32 frac = a & 0x3FFu;
+    const s32 lo = kQuarter[index];
+    const s32 hi = kQuarter[index < 16u ? index + 1u : 16u];
+    const s32 value = lo + (((hi - lo) * static_cast<s32>(frac)) >> 10);
+    return (quadrant & 2u) ? -value : value;
+}
+
+// Psychic's floor: two out-of-step waves around the mean, so it surges, crawls and surges again.
+fx32 PsychicFloorStep(u32 frame)
+{
+    const fx32 mean = W2U_TERRAIN_PACE[3].floorStep;
+    const fx32 step = mean +
+        static_cast<fx32>((static_cast<s64>(FX32_ONE * 7 / 16) * SinTurn(frame * 580u)) >> 12) +    // ~113 frames
+        static_cast<fx32>((static_cast<s64>(FX32_ONE * 5 / 16) * SinTurn(frame * 1771u)) >> 12);    // ~37 frames
+    return step < W2U_PSYCHIC_FLOOR_STEP_MIN ? W2U_PSYCHIC_FLOOR_STEP_MIN : step;
+}
 
 // This is BTLV_FIELD_WORK::epfw at offset 0x58. The animation VM populates it
 // through BTLV_FIELD_SetPaletteFade and the native field main loop advances
@@ -160,6 +214,13 @@ void* sTerrainAmbientParticleSystem = 0;
 u32 sTerrainAmbientParticleTerrain = TERRAIN_NULL;
 bool sTerrainAmbientTexturePending = false;
 bool sTerrainAmbientTextureReady = false;
+// The floor is fading out: no new ambient emits; the particle system is released once its emitters have died out
+// (at most W2U_AMBIENT_DRAIN_MAX_FRAMES later).
+bool sTerrainAmbientStopping = false;
+u32 sTerrainAmbientDrainFrames = 0u;
+constexpr u32 W2U_AMBIENT_DRAIN_MAX_FRAMES = 360u;
+u32 sPsychicFloorFrame = 0u;
+u32 sPsychicGapIndex = 0u;
 
 void ResetTerrainAmbientTimer()
 {
@@ -202,6 +263,8 @@ void ReleaseTerrainAmbientParticles()
     sTerrainAmbientParticleTerrain = TERRAIN_NULL;
     sTerrainAmbientTexturePending = false;
     sTerrainAmbientTextureReady = false;
+    sTerrainAmbientStopping = false;
+    sTerrainAmbientDrainFrames = 0u;
     ResetTerrainAmbientTimer();
 }
 
@@ -426,16 +489,14 @@ void EmitPsychicAmbientEnergy(u32 anchor)
 
 u32 TerrainAmbientStepInterval(u32 terrain)
 {
-    if (terrain == TERRAIN_ELECTRIC) {
-        return W2U_ELECTRIC_AMBIENT_STEP_FRAMES;
+    if (terrain == TERRAIN_PSYCHIC) {
+        const u32 gaps = sizeof(W2U_PSYCHIC_AMBIENT_GAPS) / sizeof(W2U_PSYCHIC_AMBIENT_GAPS[0]);
+        sPsychicGapIndex = (sPsychicGapIndex + 1u) % gaps;
+        return W2U_PSYCHIC_AMBIENT_GAPS[sPsychicGapIndex];
     }
-    if (terrain == TERRAIN_GRASSY) {
-        return W2U_GRASSY_AMBIENT_STEP_FRAMES;
-    }
-    if (terrain == TERRAIN_MISTY) {
-        return W2U_MISTY_AMBIENT_STEP_FRAMES;
-    }
-    return W2U_PSYCHIC_AMBIENT_STEP_FRAMES;
+    const s32 index = terrain >= TERRAIN_ELECTRIC && terrain <= TERRAIN_PSYCHIC
+        ? static_cast<s32>(terrain - TERRAIN_ELECTRIC) : -1;
+    return index >= 0 ? W2U_TERRAIN_PACE[index].ambientInterval : 60u;
 }
 
 void AdvanceTerrainAmbient()
@@ -450,14 +511,26 @@ void AdvanceTerrainAmbient()
     if (!appliedTerrainHasAmbient) {
         // Preserve a system prepared just before its terrain's next VBlank
         // upload. Once terrain expires, release the
-        // private heap from this normal (non-VBlank) update path.
+        // private heap from this normal (non-VBlank) update path, after the
+        // particles already in flight have finished (no cut-off).
         if (sTerrainAmbientParticleSystem &&
             !AmbientSpaMemberForTerrain(sRequestedTerrain)) {
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+            if (sTerrainAmbientTextureReady &&
+                GFL_PTC_GetEmitterNum(sTerrainAmbientParticleSystem) > 0 &&
+                ++sTerrainAmbientDrainFrames < W2U_AMBIENT_DRAIN_MAX_FRAMES) {
+                return;
+            }
+#endif
             ReleaseTerrainAmbientParticles();
         } else {
             ResetTerrainAmbientTimer();
         }
         return;
+    }
+
+    if (sTerrainAmbientStopping) {
+        return;                                  // fading out: let the live particles finish
     }
 
     if (sTerrainAmbientParticleTerrain != sAppliedTerrain ||
@@ -818,9 +891,16 @@ bool EnsureFloorAnimation()
     return SetupFloorAnimation(sFloorAnimationMember);
 }
 
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+void ReleaseFloorFade();
+#endif
+
 void ClearFieldViewState()
 {
     SetFieldPaletteFadeResource(sFieldResource);
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+    ReleaseFloorFade();
+#endif
     ReleaseTerrainAmbientParticles();
     ReleaseFloorAnimation();
     ReleasePreparedTerrainResource();
@@ -916,11 +996,334 @@ bool UploadTextureAtFade(
     return uploaded;
 }
 
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+// ---- Floor fades ---------------------------------------------------------------------------------------------
+// A terrain clone changes only the primary floor's image and the palette bound to it (build_terrain_texture_mvp.py),
+// and the image indices differ, so the two floors cannot be cross-faded through one palette. Instead the floor's
+// own palette range fades to the incoming floor's average colour, the image is swapped while every floor colour
+// is that one colour, and the incoming palette fades in from it. Only the floor's palette range is uploaded (the
+// rest of the background is untouched). Starting a terrain, this waits until the terrain move's animation has
+// finished: those animations fade the whole field palette themselves (Misty, Electric) and the two would fight.
+// Electric keeps its masked swap under its animation's black field fade (its fade-in) and fades out like the rest.
+enum FloorFadePhase {
+    FLOOR_FADE_IDLE = 0,
+    FLOOR_FADE_OUT,
+    FLOOR_FADE_IN,
+};
+constexpr u32 W2U_ADDR_BTLV_EFFECT_CHECK_EXECUTE = 0x021DF829u;   // ov168: nonzero while an effect script runs
+constexpr u32 W2U_EFFECT_START_TIMEOUT_FRAMES = 20u;              // no animation started: fade at once
+constexpr u32 W2U_FLOOR_UPLOAD_LAST_LINE = 0xD0u;                 // palette uploads end well before the 3D render
+
+u32 sFloorFadePhase = FLOOR_FADE_IDLE;
+u32 sFloorFadeFrame = 0u;
+u32 sFloorFadeOutFrames = 0u;
+u32 sFloorFadeInFrames = 0u;
+u32 sFloorFadeSerial = 0u;
+u32 sFloorFadeTerrain = TERRAIN_NULL;      // the terrain fading in (TERRAIN_NULL: the native floor)
+u32 sFloorFadeWobble = 0u;                 // Psychic: the fade wobbles
+u16 sFloorFadeColor = 0u;
+G3DResource* sFloorFadeResource = 0;       // the incoming terrain clone (owned during the fade)
+NNSG3DResTex* sFloorFadeTex = 0;
+G3DResource* sFloorFadeFrom = 0;           // the palette faded out
+u32 sFloorPaletteFirst = 0u;
+u32 sFloorPaletteCount = 0u;               // 0: not known yet
+bool sEffectSeenBusy = false;
+u32 sEffectWaitFrames = 0u;
+
+bool EffectBusy()
+{
+    typedef b32 (*CheckExecuteFn)();
+    return ((CheckExecuteFn)W2U_ADDR_BTLV_EFFECT_CHECK_EXECUTE)() != 0;
+}
+
+void ResetEffectWatch()
+{
+    sEffectSeenBusy = false;
+    sEffectWaitFrames = 0u;
+}
+
+// The terrain move's animation has run and ended (or none started within the timeout).
+bool TerrainAnimationFinished()
+{
+    const bool busy = EffectBusy();
+    if (!sEffectSeenBusy) {
+        if (busy) {
+            sEffectSeenBusy = true;
+            return false;
+        }
+        return ++sEffectWaitFrames > W2U_EFFECT_START_TIMEOUT_FRAMES;
+    }
+    return !busy;
+}
+
+const TerrainPace* PaceFor(u32 terrain)
+{
+    const s32 index = TerrainTextureIndex(terrain);
+    return index >= 0 ? &W2U_TERRAIN_PACE[index] : 0;
+}
+
+// The floor's palette range: the entries the terrain clones change (one contiguous run on every field), widened to
+// whole words for the palette transfer.
+bool FindFloorPaletteRange(G3DResource* terrainResource)
+{
+    if (sFloorPaletteCount) {
+        return true;
+    }
+    const u16* native = sFieldResource
+        ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(sFieldResource)) : 0;
+    const u16* terrain = terrainResource
+        ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(terrainResource)) : 0;
+    if (!native || !terrain || !sFieldTex) {
+        return false;
+    }
+    const u32 colorCount = (static_cast<u32>(sFieldTex->PaletteHeader.ImageSize) << 3) / sizeof(u16);
+    if (colorCount > W2U_PALETTE_BACKUP_COLORS) {
+        return false;
+    }
+    u32 first = colorCount, last = 0u;
+    for (u32 index = 0; index < colorCount; ++index) {
+        if (native[index] != terrain[index]) {
+            if (first == colorCount) {
+                first = index;
+            }
+            last = index;
+        }
+    }
+    if (first == colorCount) {
+        return false;
+    }
+    first &= ~1u;
+    last |= 1u;
+    if (last >= colorCount) {
+        last = colorCount - 1u;
+    }
+    sFloorPaletteFirst = first;
+    sFloorPaletteCount = last - first + 1u;
+    return true;
+}
+
+u16 AverageFloorColor(G3DResource* resource)
+{
+    const u16* palette = resource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(resource)) : 0;
+    if (!palette || !sFloorPaletteCount) {
+        return 0u;
+    }
+    u32 red = 0u, green = 0u, blue = 0u;
+    for (u32 index = 0; index < sFloorPaletteCount; ++index) {
+        const u16 color = palette[sFloorPaletteFirst + index];
+        red += color & 0x1Fu;
+        green += (color >> 5) & 0x1Fu;
+        blue += (color >> 10) & 0x1Fu;
+    }
+    // u64 division: PMC links no __aeabi_uidiv (a u32 / u32 by a variable would call an unresolved helper)
+    const u64 n = sFloorPaletteCount;
+    return static_cast<u16>(static_cast<u32>(red / n) | (static_cast<u32>(green / n) << 5) |
+                            (static_cast<u32>(blue / n) << 10));
+}
+
+// The floor range of `resource`'s palette, faded to `color` by evy / 16, straight to palette VRAM.
+bool UploadFloorPalette(G3DResource* resource, u32 evy)
+{
+    const u16* palette = resource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(resource)) : 0;
+    if (!palette || !sFieldTex || !sFloorPaletteCount) {
+        return false;
+    }
+    if (evy > W2U_PALETTE_FADE_MAX_EVY) {
+        evy = W2U_PALETTE_FADE_MAX_EVY;
+    }
+    for (u32 index = 0; index < sFloorPaletteCount; ++index) {
+        sPaletteBackup[index] = FadeColor(palette[sFloorPaletteFirst + index], sFloorFadeColor, evy);
+    }
+    const u32 bytes = sFloorPaletteCount * sizeof(u16);
+    cp15_flushDC(sPaletteBackup, bytes);
+    const u32 base = (sFieldTex->PaletteHeader.RTVRAMAddr & 0xFFFFu) << 3;   // NNS palette key -> address
+    gfxBeginPaletteUpload();
+    gfxUploadPalette(sPaletteBackup, base + sFloorPaletteFirst * sizeof(u16), bytes);
+    gfxEndPaletteUpload();
+    return true;
+}
+
+// Image and palette of `resource`, with the floor range already at evy / 16 towards the blend colour.
+bool UploadTextureFloorFaded(G3DResource* resource, u32 evy)
+{
+    u16* palette = resource ? static_cast<u16*>(GFL_G3DResGetTexPaletteData(resource)) : 0;
+    if (!palette || !sFloorPaletteCount) {
+        return UploadTexture(resource);
+    }
+    for (u32 index = 0; index < sFloorPaletteCount; ++index) {
+        sPaletteBackup[index] = palette[sFloorPaletteFirst + index];
+        palette[sFloorPaletteFirst + index] = FadeColor(sPaletteBackup[index], sFloorFadeColor, evy);
+    }
+    const bool uploaded = UploadTexture(resource);
+    for (u32 index = 0; index < sFloorPaletteCount; ++index) {
+        palette[sFloorPaletteFirst + index] = sPaletteBackup[index];
+    }
+    return uploaded;
+}
+
+// Smoothstep from 0 to 16 over `frames`; Psychic adds a slow wobble (still 0 at the start and 16 at the end).
+u32 FadeEvy(u32 frame, u32 frames)
+{
+    if (!frames || frame >= frames) {
+        return W2U_PALETTE_FADE_MAX_EVY;
+    }
+    const s32 n = static_cast<s32>(frames), f = static_cast<s32>(frame);
+    s32 evy = static_cast<s32>((static_cast<s64>(16) * f * f * (3 * n - 2 * f)) / (static_cast<s64>(n) * n * n));
+    if (sFloorFadeWobble) {
+        const u32 angle = static_cast<u32>(static_cast<u64>(f) * 65536u * 3u / static_cast<u64>(n));
+        evy += static_cast<s32>((3 * SinTurn(angle)) >> 12);
+    }
+    return evy < 0 ? 0u : evy > 16 ? 16u : static_cast<u32>(evy);
+}
+
+void EndFloorFade()
+{
+    sFloorFadePhase = FLOOR_FADE_IDLE;
+    sFloorFadeFrom = 0;
+    sAppliedSerial = sFloorFadeSerial;
+    sElectricTransitionSerial = 0u;
+    sElectricTransitionPhase = ELECTRIC_TRANSITION_IDLE;
+    sElectricAnimationStarted = false;
+    sPrepareFailedSerial = 0u;
+}
+
+void ReleaseFloorFade()
+{
+    if (sFloorFadeResource) {
+        ReleaseTerrainResource(sFloorFadeResource, sFloorFadeTex);
+    }
+    sFloorFadeResource = 0;
+    sFloorFadeTex = 0;
+    sFloorFadeFrom = 0;
+    sFloorFadePhase = FLOOR_FADE_IDLE;
+    sFloorPaletteCount = 0u;
+    ResetEffectWatch();
+}
+
+// Start fading the visible floor to `resource` (a prepared terrain clone, taken over) or, with null, back to the
+// native floor. False: no fade possible (the caller swaps at once).
+bool StartFloorFade(G3DResource* resource, NNSG3DResTex* texture, u32 terrain, u32 serial)
+{
+    if (!FindFloorPaletteRange(resource ? resource : sActiveTerrainResource)) {
+        return false;
+    }
+    const TerrainPace* from = PaceFor(sAppliedTerrain);
+    const TerrainPace* to = PaceFor(terrain);
+    sFloorFadeResource = resource;
+    sFloorFadeTex = texture;
+    sFloorFadeTerrain = terrain;
+    sFloorFadeSerial = serial;
+    sFloorFadeFrom = GetVisiblePaletteResource();
+    sFloorFadeColor = AverageFloorColor(resource ? resource : sFieldResource);
+    sFloorFadeOutFrames = from ? from->fadeOutFrames : W2U_NATIVE_FLOOR_FADE_OUT_FRAMES;
+    sFloorFadeInFrames = to ? to->fadeInFrames : (from ? from->fadeInFrames : W2U_NATIVE_FLOOR_FADE_OUT_FRAMES);
+    sFloorFadeWobble = sAppliedTerrain == TERRAIN_PSYCHIC ? 1u : 0u;
+    sFloorFadeFrame = 0u;
+    sFloorFadePhase = FLOOR_FADE_OUT;
+    if (sAppliedTerrain != TERRAIN_NULL) {
+        sTerrainAmbientStopping = true;          // the old terrain's particles finish, no new ones
+    }
+    return true;
+}
+
+// Midpoint: every floor colour is the blend colour (`evy` 16); swap the image underneath.
+void SwapFloorUnderFade(u32 evy)
+{
+    if (sFloorFadeResource) {
+        SetFieldPaletteFadeResource(sFloorFadeResource);
+        if (!UploadTextureFloorFaded(sFloorFadeResource, evy)) {
+            SetFieldPaletteFadeResource(GetVisiblePaletteResource());
+            ReleaseTerrainResource(sFloorFadeResource, sFloorFadeTex);
+            return;
+        }
+        G3DResource* previousResource = sActiveTerrainResource;
+        NNSG3DResTex* previousTex = sActiveTerrainTex;
+        sActiveTerrainResource = sFloorFadeResource;
+        sActiveTerrainTex = sFloorFadeTex;
+        sFloorFadeResource = 0;
+        sFloorFadeTex = 0;
+        sAppliedTerrain = sFloorFadeTerrain;
+        sTerrainAmbientStopping = false;
+        ResetTerrainAmbientTimer();
+        SetFieldPaletteFadeResource(sActiveTerrainResource);
+        ReleaseTerrainResource(previousResource, previousTex);
+        ResetFloorAnimation();
+    } else {
+        SetFieldPaletteFadeResource(sFieldResource);
+        if (UploadTextureFloorFaded(sFieldResource, evy)) {
+            ResetFloorAnimation();
+            ReleaseActiveTerrainResource();
+        } else {
+            SetFieldPaletteFadeResource(GetVisiblePaletteResource());
+        }
+    }
+    sFloorFadeWobble = sAppliedTerrain == TERRAIN_PSYCHIC ? 1u : 0u;
+}
+
+// One VBlank of the fade (from ApplyPending, after the native VBlank work).
+void AdvanceFloorFade()
+{
+    FieldPaletteFadeWork* vm = GetFieldPaletteFadeWork();
+    const bool vmFading = vm && vm->active;
+    const u32 vcount = *reinterpret_cast<volatile u16*>(0x04000006);
+    if (!vmFading && (vcount < 0xC0u || vcount > W2U_FLOOR_UPLOAD_LAST_LINE)) {
+        return;                                  // too late in this VBlank: next one
+    }
+    // An animation fading the whole field takes over: finish at once and leave the palette to it.
+    const bool hurry = vmFading || sRequestSerial != sFloorFadeSerial;
+    if (sFloorFadePhase == FLOOR_FADE_OUT) {
+        if (!hurry && sFloorFadeFrame < sFloorFadeOutFrames) {
+            ++sFloorFadeFrame;
+            UploadFloorPalette(sFloorFadeFrom, FadeEvy(sFloorFadeFrame, sFloorFadeOutFrames));
+            if (sFloorFadeFrame < sFloorFadeOutFrames) {
+                return;
+            }
+        }
+        SwapFloorUnderFade(hurry ? 0u : W2U_PALETTE_FADE_MAX_EVY);
+        sFloorFadePhase = FLOOR_FADE_IN;
+        sFloorFadeFrame = 0u;
+        if (!hurry) {
+            return;
+        }
+    }
+    if (hurry) {
+        if (!vmFading) {
+            UploadFloorPalette(GetVisiblePaletteResource(), 0u);
+        }
+        EndFloorFade();
+        return;
+    }
+    ++sFloorFadeFrame;
+    const u32 frames = sFloorFadeInFrames;
+    UploadFloorPalette(GetVisiblePaletteResource(),
+        sFloorFadeFrame >= frames ? 0u : W2U_PALETTE_FADE_MAX_EVY - FadeEvy(sFloorFadeFrame, frames));
+    if (sFloorFadeFrame >= frames) {
+        EndFloorFade();
+    }
+}
+#endif
+
+fx32 FloorAnimationStep(u32 terrain)
+{
+    if (terrain == TERRAIN_PSYCHIC) {
+        return PsychicFloorStep(sPsychicFloorFrame++);
+    }
+    const TerrainPace* pace = 0;
+    const s32 index = TerrainTextureIndex(terrain);
+    if (index >= 0) {
+        pace = &W2U_TERRAIN_PACE[index];
+    }
+    return pace ? pace->floorStep : FX32_ONE / 2;
+}
+
 } // namespace
 
 extern "C" void W2U_TerrainTexture_Request(u32 terrain)
 {
     ResetTerrainAmbientTimer();
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+    ResetEffectWatch();
+#endif
     sDeferredResetMsgID = W2U_NO_DEFERRED_MESSAGE;
     sDeferredResetSerial = 0u;
     sRequestedTerrain = terrain;
@@ -986,6 +1389,9 @@ extern "C" void W2U_TerrainTexture_OnMoveAnimationStart(u32 moveID)
     }
 
     sPrepareFailedSerial = 0u;
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+    ResetEffectWatch();                          // the floor fades in once this animation has ended
+#endif
     if (terrain == TERRAIN_ELECTRIC && sAppliedTerrain != TERRAIN_ELECTRIC) {
         sElectricAnimationStarted = true;
         sElectricTransitionSerial = sRequestSerial;
@@ -1031,6 +1437,12 @@ extern "C" void W2U_TerrainTexture_FieldInit(
 
 extern "C" void W2U_TerrainTexture_ApplyPending()
 {
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+    if (sFloorFadePhase != FLOOR_FADE_IDLE) {
+        AdvanceFloorFade();                      // the fade owns the floor until it ends
+        return;
+    }
+#endif
     const u32 requestedSerial = sRequestSerial;
     if (requestedSerial == sAppliedSerial) {
         return;
@@ -1048,6 +1460,11 @@ extern "C" void W2U_TerrainTexture_ApplyPending()
     const u32 requestedTerrain = sRequestedTerrain;
     if (requestedTerrain == TERRAIN_NULL) {
         ReleasePreparedTerrainResource();
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+        if (sAppliedTerrain != TERRAIN_NULL && StartFloorFade(0, 0, TERRAIN_NULL, requestedSerial)) {
+            return;
+        }
+#endif
         if (sAppliedTerrain != TERRAIN_NULL) {
             SetFieldPaletteFadeResource(sFieldResource);
             if (UploadTexture(sFieldResource)) {
@@ -1087,6 +1504,15 @@ extern "C" void W2U_TerrainTexture_ApplyPending()
             }
 
             fadeWork = GetFieldPaletteFadeWork();
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+            // The masking black fade was missed (its animation ran while another floor fade owned the floor, or
+            // never started): fade the floor in like the other terrains instead of waiting for it forever.
+            if (sElectricTransitionPhase != ELECTRIC_TRANSITION_WAIT_FADE_END &&
+                sElectricAnimationStarted && TerrainAnimationFinished()) {
+                sElectricTransitionPhase = ELECTRIC_TRANSITION_IDLE;
+                readyToUpload = true;
+            } else
+#endif
             if (sElectricTransitionPhase == ELECTRIC_TRANSITION_WAIT_ANIMATION) {
                 return;
             }
@@ -1114,6 +1540,20 @@ extern "C" void W2U_TerrainTexture_ApplyPending()
         if (!readyToUpload) {
             return;
         }
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+        if (!maskedElectricUpload) {
+            if (requestedTerrain != TERRAIN_ELECTRIC && !TerrainAnimationFinished()) {
+                return;                          // fade in after the terrain move's animation
+            }
+            if (StartFloorFade(sPreparedTerrainResource, sPreparedTerrainTex, requestedTerrain, requestedSerial)) {
+                sPreparedTerrainResource = 0;    // owned by the fade now
+                sPreparedTerrainTex = 0;
+                sPreparedTerrain = TERRAIN_NULL;
+                sPreparedSerial = 0u;
+                return;
+            }
+        }
+#endif
 
         SetFieldPaletteFadeResource(sPreparedTerrainResource);
         const bool uploaded = maskedElectricUpload
@@ -1162,7 +1602,7 @@ extern "C" void W2U_TerrainTexture_AdvanceAnimation()
 
     G3DAnim* animations[] = { sFloorAnimation };
     G3DActor proxy = { sFieldModel, animations, 1u, 0u };
-    GFL_G3DActorStepAnmFrameLoop(&proxy, 0u, W2U_FLOOR_ANIMATION_STEP);
+    GFL_G3DActorStepAnmFrameLoop(&proxy, 0u, FloorAnimationStep(sAppliedTerrain));
 }
 
 extern "C" void W2U_TerrainTexture_AdvanceAmbient()
