@@ -22,4 +22,4 @@ Target = "TARGET_ALL"
 "Status Change Stages" = [1, 1, 0]
 "Status Change Chances" = [100, 100, 0]
 Padding = 21331
-Flags = "FLAG_HITS_NON_ADJACENT_OPPONENTS | 16384"
+Flags = "FLAG_HITS_NON_ADJACENT_OPPONENTS"
