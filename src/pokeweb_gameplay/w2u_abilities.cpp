@@ -4188,6 +4188,23 @@ bool IsW2UIgnorableAbility(ABILITY ability)
     case ABIL_FLUFFY:
     case ABIL_QUEENLY_MAGESTY:
     case ABIL_WATER_BUBBLE:
+    // Generation VIII / IX (ported from MegaB2W2; Showdown's `breakable` flag)
+    case ABIL_MIRROR_ARMOR:
+    case ABIL_PUNK_ROCK:
+    case ABIL_ICE_SCALES:
+    case ABIL_PASTEL_VEIL:
+    case ABIL_THERMAL_EXCHANGE:
+    case ABIL_PURIFYING_SALT:
+    case ABIL_WELL_BAKED_BODY:
+    case ABIL_WIND_RIDER:
+    case ABIL_GUARD_DOG:
+    case ABIL_GOOD_AS_GOLD:
+    case ABIL_ARMOR_TAIL:
+    case ABIL_EARTH_EATER:
+    case ABIL_MINDS_EYE:
+    case ABIL_TERA_SHELL:
+    // MegaB2W2 custom
+    case ABIL_AURA_GUARD:
         return true;
     default:
         return false;
