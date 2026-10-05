@@ -314,6 +314,18 @@ Notes:
 - Black 2 keeps the PWAN runtimes (Black 2 is deferred on this branch); their sources and the PWAN tools are unchanged.
 - Pokeweb's sprite workflow is unchanged: it still writes PWAN assets, which the White 2 build converts.
 
+### Fix: one-frame texture blackouts when several sprites change frame together (2026-10-05)
+
+Seen on the showcase recording (doubles: Kyogre, Mega Gardevoir, Rillaboom, Mega Charizard Y): every 0.5 s one frame
+lost every texture of the 3D layer (both sprites gone, the battle background in flat colours). While w2anim's VBlank
+task uploads, texture VRAM is mapped to the CPU; the 3D engine starts drawing the next frame at about scanline 214. A
+TEX4 frame goes up one row per `gfxUploadTexture` call, about 9 scanlines per 96 rows. Measured with a probe: one or two
+sprites ended by line 201 / 210, three 96-row sprites changing frame in the same VBlank ended at line 218, which is
+when the blank frames appeared (their loops lined up every 30 frames). `VBlankUpload` now estimates each upload's
+scanlines and leaves one that would not end by line 211 for the next VBlank (that sprite's frame shows 1/60 s later).
+Showcase re-recorded: no blank frames (32 before). wave_mega 5/5; wave_sprites singles still match PWAN's frames
+(median 0-4 differing pixels); SPR_DOUBLE still fails only on its known turn input.
+
 ## Fix: PMC heap out of memory (2026-10-05)
 
 Symptom: a battle froze after both sides chose (top screen "What will X do?", bottom screen the idle Poke Ball), e.g.
