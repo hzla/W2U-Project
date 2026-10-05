@@ -446,7 +446,15 @@ as the section above (floor and sky clones, haze, glow, floor palette animation,
   battle members rebuilt.
 - Haze / glow per terrain (tables indexed by terrain): Electric 0x4BBF at 6/16, glow 0x116C; Psychic 0x7A9D at 7/16,
   glow 0x34CC.
-- Drift: Psychic slides sideways like Grassy / Misty; Electric keeps the template's fast vertical scroll (asked for).
+- Drift: every terrain slides its floor and sky sideways together; Electric six times faster (about 18 px a second;
+  the user asked for horizontal scrolling there too, replacing the template's vertical scroll).
+- Fix (user report): Electric's sky flashed a different colour every few seconds. The floor palette animation's
+  level (Electric's surges up to 8/16, the swells up to 3/16) was also applied to the sky entries, towards the sky's
+  fade blend colour; the sky now follows only the terrain fades.
+- Sky colours (user report: Electric's and Psychic's skies were a different colour from their floor): every stop is
+  now the floor's mean colour, darkened towards the top and only a quarter mixed with the terrain's accent (gold,
+  magenta), as Grassy / Misty's skies are; in game the sky now runs into the floor (Electric sky top 178,151,113 over
+  a 197,171,125 floor; Psychic 162,94,199 over 180,107,219).
 - Psychic raster wave: Sun / Moon's rippling field. Every second main update, one of the floor / sky textures (they
   alternate) is redrawn from the clone's image in RAM with each column of texels moved along the texture by two
   travelling sines (3:1, opposite directions, whole waves so it still tiles; the floor 2 waves across, the sky 3),
