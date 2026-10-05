@@ -101,8 +101,8 @@ struct TerrainPace {
 };
 const TerrainPace W2U_TERRAIN_PACE[W2U_TERRAIN_TEXTURE_COUNT] = {
     { FX32_ONE * 5 / 4, 20u, 10u, 14u },     // Electric
-    { FX32_ONE * 5 / 16, 44u, 26u, 40u },    // Grassy (a 96-frame mote emitter every 44 frames)
-    { FX32_ONE / 4, 56u, 30u, 46u },         // Misty (a 110-frame fog emitter every 56 frames)
+    { FX32_ONE * 5 / 16, 44u, 26u, 40u },    // Grassy (a 96-frame mote emitter every 44 frames; floor: W2U_FLOOR_DRIFT)
+    { FX32_ONE / 4, 56u, 30u, 46u },         // Misty (a 110-frame fog emitter every 56 frames; floor: W2U_FLOOR_DRIFT)
     { FX32_ONE * 9 / 16, 60u, 20u, 30u },    // Psychic (floorStep: mean; ambientInterval unused)
 };
 constexpr u32 W2U_NATIVE_FLOOR_FADE_OUT_FRAMES = 20u;
@@ -198,6 +198,9 @@ G3DAnim* sFloorAnimation = 0;
 bool sSupportedField = false;
 bool sFloorAnimationBound = false;
 bool sFloorAnimationSetupAttempted = false;
+u32* sFloorTrackWords = 0;                     // the loaded floor animation's words (0: not the template)
+u32 sFloorTrackOriginal[4];                    // its translate S, translate T as loaded
+bool sFloorScrollHorizontal = false;
 u32 sAppliedTerrain = TERRAIN_NULL;
 u32 sPreparedTerrain = TERRAIN_NULL;
 u16 sFloorAnimationMember = W2U_NO_FLOOR_ANIMATION_MEMBER;
@@ -844,7 +847,66 @@ void ReleaseFloorAnimation()
 
     sFloorAnimation = 0;
     sFloorAnimationResource = 0;
+#if !defined(W2U_TARGET_B2)
+    sFloorTrackWords = 0;
+    sFloorScrollHorizontal = false;
+#endif
 }
+
+#if !defined(W2U_TARGET_B2)
+// Grassy / Misty drift their floor sideways with their sky (UpdateSkyRepeat): both translate tracks of the loaded
+// floor animation are made constant and translate S's value is written every frame (the animation reads the resource
+// every frame); the others keep the template's vertical scroll. Template member 119: {info, value} words of
+// translate S at 0x78, translate T at 0x80 (tracks: scale S 0x60, scale T 0x68, rotation 0x70, translate S, T).
+constexpr u32 W2U_SRT_TRANS_S_WORD = 0x78u / 4u, W2U_SRT_TRANS_T_WORD = 0x80u / 4u;
+constexpr u32 W2U_SRT_CONST_TRACK = 0x30000000u;
+
+void RememberFloorTracks()
+{
+    NNSG3DResData* data = sFloorAnimationResource ? GFL_G3DResGetResData(sFloorAnimationResource) : 0;
+    sFloorTrackWords = 0;
+    sFloorScrollHorizontal = false;
+    if (!data || data->Header.FileSize < (W2U_SRT_TRANS_T_WORD + 2u) * 4u) {
+        return;
+    }
+    u32* words = reinterpret_cast<u32*>(data);
+    if ((words[W2U_SRT_TRANS_S_WORD] & 0xF0000000u) != W2U_SRT_CONST_TRACK ||
+        (words[W2U_SRT_TRANS_S_WORD] & 0xFFFFu) != (words[W2U_SRT_TRANS_T_WORD] & 0xFFFFu)) {
+        return;
+    }
+    for (u32 k = 0; k < 4u; ++k) {
+        sFloorTrackOriginal[k] = words[W2U_SRT_TRANS_S_WORD + k];
+    }
+    sFloorTrackWords = words;
+}
+
+void SetFloorScrollHorizontal(bool horizontal)
+{
+    sFloorScrollHorizontal = horizontal;
+    if (!sFloorTrackWords) {
+        return;
+    }
+    u32* track = sFloorTrackWords + W2U_SRT_TRANS_S_WORD;
+    if (horizontal) {
+        track[0] = sFloorTrackOriginal[0];       // translate S: constant, value written by the drift
+        track[1] = 0u;
+        track[2] = W2U_SRT_CONST_TRACK | (sFloorTrackOriginal[2] & 0x0FFFFFFFu);
+        track[3] = 0u;
+    } else {
+        for (u32 k = 0; k < 4u; ++k) {
+            track[k] = sFloorTrackOriginal[k];
+        }
+    }
+    cp15_flushDC(track, 16u);
+}
+
+void SetFloorScrollOffset(u32 offset)          // translate S, fx32 texture widths (wrapped)
+{
+    if (sFloorTrackWords && sFloorScrollHorizontal) {
+        sFloorTrackWords[W2U_SRT_TRANS_S_WORD + 1u] = offset;
+    }
+}
+#endif
 
 bool SetupFloorAnimation(u16 animationMember)
 {
@@ -874,6 +936,9 @@ bool SetupFloorAnimation(u16 animationMember)
         return false;
     }
 
+#if !defined(W2U_TARGET_B2)
+    RememberFloorTracks();
+#endif
     ResetFloorAnimation();
     return true;
 }
@@ -1293,6 +1358,7 @@ constexpr u32 W2U_FIELD_MATERIALS_MAX = 8u;
 constexpr u32 W2U_SCENE_GLOW_SHARE = 10u;      // the other materials get 10/16 of the floor's glow
 FieldMaterial sFieldMaterials[W2U_FIELD_MATERIALS_MAX];
 u32 sFieldMaterialCount = 0u;
+char sSkyMaterialName[W2U_NITRO_NAME_LENGTH] = {};   // the backdrop material (*sky*), empty: none
 bool sFieldMaterialsSearched = false;
 u16 sGlowColor = 0u;
 u32 sGlowLevel = 0u;                           // 0..16 of the glow on screen now
@@ -1365,6 +1431,15 @@ void FindFieldMaterials()
                 break;
             }
         }
+        const u8* name = names + index * W2U_NITRO_NAME_LENGTH;
+        for (u32 c = 0; !sSkyMaterialName[0] && c + 3u <= W2U_NITRO_NAME_LENGTH - 1u && name[c]; ++c) {
+            if (name[c] == 's' && name[c + 1] == 'k' && name[c + 2] == 'y') {
+                for (u32 k = 0; k + 1u < W2U_NITRO_NAME_LENGTH; ++k) {
+                    sSkyMaterialName[k] = static_cast<char>(name[k]);
+                }
+                break;
+            }
+        }
         FieldMaterial& material = sFieldMaterials[sFieldMaterialCount++];
         material.specEmi = reinterpret_cast<u32*>(matData + 8);
         material.original = *material.specEmi;
@@ -1402,7 +1477,120 @@ void RestoreFieldGlow()
     }
     sFieldMaterialCount = 0u;
     sFieldMaterialsSearched = false;
+    sSkyMaterialName[0] = 0;
     sGlowLevel = 0u;
+}
+
+// Sky and floor drift (Grassy / Misty): texture translation per 60 fps frame in 1/65536 texture widths (wrapped at
+// one width). Measured on screen just above / below the horizon, a floor drift 8x the sky's moves the two together
+// (both the same way); 4 / 32 is about 3 screen pixels a second: very slow and subtle.
+constexpr u32 W2U_SKY_DRIFT = 4u;
+constexpr u32 W2U_FLOOR_DRIFT = 32u;
+u32 sDriftSky = 0u;                            // 16.16 texture widths
+u32 sDriftFloor = 0u;
+
+// Sky repeat: the backdrop stretches its 128x64 texture about 4.5x wider than tall on screen, and textures are not
+// filtered, so a Grassy / Misty sky looked blocky. While such a sky is shown, a copy of the floor's SRT animation
+// template (one constant track) is bound to the sky material with scale S 4: the texture repeats four times across
+// the backdrop and a texel is about 1.6 x 1.4 screen pixels. Loaded and bound from the main battle update
+// (UpdateSkyRepeat); the fade only asks for it at its midpoint, while the sky is one flat colour.
+constexpr fx32 W2U_SKY_REPEAT_S = FX32_ONE * 4;
+// template member 119 (SRT0, one material): the track words of scale S and translate T (each {info, value}; tracks
+// scale S 0x60, scale T 0x68, rotation 0x70, translate S 0x78, translate T 0x80)
+constexpr u32 W2U_SRT_SCALE_S_INFO = 0x60u, W2U_SRT_TRANS_S_INFO = 0x78u, W2U_SRT_TRANS_T_INFO = 0x80u;
+constexpr u32 W2U_SRT_CONST = 0x30000000u;     // constant track (value in the data word)
+G3DResource* sSkyRepeatResource = 0;
+u32* sSkyTransS = 0;
+G3DAnim* sSkyRepeatAnimation = 0;
+bool sSkyRepeatBound = false;
+volatile bool sSkyRepeatWanted = false;
+
+void ReleaseSkyRepeat()
+{
+    if (sFieldModel && sSkyRepeatAnimation && sSkyRepeatBound) {
+        G3DAnim* animations[] = { sSkyRepeatAnimation };
+        G3DActor proxy = { sFieldModel, animations, 1u, 0u };
+        GFL_G3DActorUnbindAnm(&proxy, 0u);
+    }
+    sSkyRepeatBound = false;
+    if (sSkyRepeatAnimation) {
+        GFL_G3DAnmFree(sSkyRepeatAnimation);
+    }
+    if (sSkyRepeatResource) {
+        GFL_G3DResFree(sSkyRepeatResource);
+    }
+    sSkyRepeatAnimation = 0;
+    sSkyRepeatResource = 0;
+    sSkyTransS = 0;
+}
+
+// The template retargeted to the sky material, scale S constant 4, translate T constant 0 (no scroll).
+bool PatchSkyRepeat(G3DResource* resource)
+{
+    NNSG3DResData* data = resource ? GFL_G3DResGetResData(resource) : 0;
+    if (!data || data->Header.FileSize < W2U_SRT_TRANS_T_INFO + 8u ||
+        !RetargetFloorAnimationResource(resource, sSkyMaterialName)) {
+        return false;
+    }
+    u32* words = reinterpret_cast<u32*>(data);
+    u32* scaleS = words + W2U_SRT_SCALE_S_INFO / 4u;
+    u32* transS = words + W2U_SRT_TRANS_S_INFO / 4u;
+    u32* transT = words + W2U_SRT_TRANS_T_INFO / 4u;
+    if ((scaleS[0] & 0xF0000000u) != W2U_SRT_CONST || scaleS[1] != static_cast<u32>(FX32_ONE) ||
+        (transS[0] & 0xF0000000u) != W2U_SRT_CONST || (scaleS[0] & 0xFFFFu) != (transT[0] & 0xFFFFu)) {
+        return false;                            // not the expected template
+    }
+    scaleS[1] = static_cast<u32>(W2U_SKY_REPEAT_S);
+    transT[0] = W2U_SRT_CONST | (transT[0] & 0x0FFFFFFFu);
+    transT[1] = 0u;
+    transS[1] = 0u;
+    sSkyTransS = transS + 1;                     // translate S's value word (a constant track): the drift
+    cp15_flushDC(data, data->Header.FileSize);
+    return true;
+}
+
+void UpdateSkyRepeat()
+{
+    const bool wanted = sSkyRepeatWanted;
+    if (wanted == sSkyRepeatBound) {
+        return;
+    }
+    if (!wanted) {
+        ReleaseSkyRepeat();
+        return;
+    }
+    if (!sFieldModel || sFloorAnimationMember == W2U_NO_FLOOR_ANIMATION_MEMBER) {
+        return;
+    }
+    if (!sFieldMaterialsSearched) {
+        FindFieldMaterials();
+    }
+    if (!sSkyMaterialName[0]) {
+        sSkyRepeatWanted = false;
+        return;
+    }
+    sSkyRepeatResource = GFL_G3DSysReadArcSysResource(W2U_BATTGRA_ARC_ID, sFloorAnimationMember);
+    if (!PatchSkyRepeat(sSkyRepeatResource)) {
+        ReleaseSkyRepeat();
+        sSkyRepeatWanted = false;
+        return;
+    }
+    sSkyRepeatAnimation = GFL_G3DAnmCreate(sFieldModel, sSkyRepeatResource, 0u);
+    if (!sSkyRepeatAnimation) {
+        ReleaseSkyRepeat();
+        sSkyRepeatWanted = false;
+        return;
+    }
+    G3DAnim* animations[] = { sSkyRepeatAnimation };
+    G3DActor proxy = { sFieldModel, animations, 1u, 0u };
+    sSkyRepeatBound = GFL_G3DActorBindAnm(&proxy, 0u);
+    if (!sSkyRepeatBound) {
+        ReleaseSkyRepeat();
+        sSkyRepeatWanted = false;
+        return;
+    }
+    fx32 frame = 0;
+    GFL_G3DActorSetAnmFrame(&proxy, 0u, &frame);
 }
 
 // The terrain clone's own palette (RAM) takes the haze outside the floor range.
@@ -1484,6 +1672,7 @@ void EndFloorFade()
     sHazeColor = sHazeTo.color;
     sHazeEvy = sHazeTo.evy;
     sSkyOwned = SkyDiffers(sActiveTerrainResource);
+    sSkyRepeatWanted = sSkyOwned;
     BakeHaze();
     SetFieldGlow(sGlowTo.color, sGlowTo.evy);
     sFloorFadePhase = FLOOR_FADE_IDLE;
@@ -1509,6 +1698,8 @@ void ReleaseFloorFade()
     sSkyFirst = 0u;
     sSkyCount = 0u;
     sSkyOwned = false;
+    sSkyRepeatWanted = false;
+    ReleaseSkyRepeat();
     RestoreFieldGlow();
     sFloorAnimDirty = false;
     ResetFloorPaletteAnimation();
@@ -1584,6 +1775,7 @@ void SwapFloorUnderFade(u32 evy)
         }
     }
     sFloorFadeWobble = sAppliedTerrain == TERRAIN_PSYCHIC ? 1u : 0u;
+    sSkyRepeatWanted = SkyDiffers(sActiveTerrainResource);
 }
 
 // One VBlank of the fade (from ApplyPending, after the native VBlank work).
@@ -2003,12 +2195,31 @@ extern "C" void W2U_TerrainTexture_AdvanceAnimation()
     AdvanceFloorPaletteAnimation();
 #endif
 
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+    if (sSkyRepeatBound && sSkyTransS) {
+        sDriftSky += W2U_SKY_DRIFT;
+        *sSkyTransS = (sDriftSky >> 4) & (FX32_ONE - 1);   // fx32, one texture width = FX32_ONE
+    }
+#endif
+
     if (sAppliedTerrain == TERRAIN_NULL || !EnsureFloorAnimation()) {
         return;
     }
 
     G3DAnim* animations[] = { sFloorAnimation };
     G3DActor proxy = { sFieldModel, animations, 1u, 0u };
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+    const bool sideways = sAppliedTerrain == TERRAIN_GRASSY || sAppliedTerrain == TERRAIN_MISTY;
+    if (sideways != sFloorScrollHorizontal) {
+        SetFloorScrollHorizontal(sideways);
+        ResetFloorAnimation();
+    }
+    if (sideways) {
+        sDriftFloor += W2U_FLOOR_DRIFT;
+        SetFloorScrollOffset((sDriftFloor >> 4) & (FX32_ONE - 1));
+        return;
+    }
+#endif
     GFL_G3DActorStepAnmFrameLoop(&proxy, 0u, FloorAnimationStep(sAppliedTerrain));
 }
 
@@ -2018,6 +2229,9 @@ extern "C" void W2U_TerrainTexture_AdvanceAmbient()
     // camera free-roams. This standalone system consequently neither waits on
     // the move VM nor starts the HUD/background changes made by that VM.
     AdvanceTerrainAmbient();
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+    UpdateSkyRepeat();
+#endif
 }
 
 extern "C" void W2U_TerrainTexture_FieldExit()

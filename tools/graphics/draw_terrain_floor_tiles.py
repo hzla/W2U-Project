@@ -26,9 +26,10 @@ SKY_W, SKY_H = 512, 256
 # 256, the bottom row on the horizon). The scenery is drawn into that window; above it is one flat colour.
 SKY_WINDOW = 0.5
 # The backdrop stretches its texture about 4.5x wider than tall on screen (same test: 64 image px across = 103 DS px,
-# 32 image px down = 11.5 DS px). The scenery is drawn at true proportions on a 4.5x wider canvas and squeezed into
-# the 512-wide image, so the battle's stretch restores it. Horizontal detail is at best one texel (18 canvas px).
-SKY_STRETCH = 4.5
+# 32 image px down = 11.5 DS px). The runtime repeats a Grassy / Misty sky 4x across the backdrop (texture scale S 4,
+# w2u_terrain_texture.cpp UpdateSkyRepeat), leaving a 1.125x stretch: the scenery is drawn at true proportions on a
+# 1.125x wider canvas and squeezed into the 512-wide image. It is one quarter of the backdrop and wraps.
+SKY_STRETCH = 4.5 / 4
 SKY_DW = int(SKY_W * SKY_STRETCH)
 
 
@@ -95,29 +96,28 @@ def grassy_sky(rng: np.random.Generator) -> np.ndarray:
     image = vertical(np.clip(v, 0, 1), [(0.0, (84, 162, 98)), (0.5, (128, 206, 120)), (0.85, (180, 240, 152)),
                                         (1.0, (206, 250, 174))])
     # light shafts: soft diagonal bands, whole periods across the canvas so the sky still wraps
-    shafts = 0.5 + 0.5 * np.sin(2 * np.pi * (xx + yy * 0.8) * 9 / SKY_DW)
+    shafts = 0.5 + 0.5 * np.sin(2 * np.pi * (xx + yy * 0.8) * 2 / SKY_DW)
     shafts = shafts ** 5 * (0.55 + 0.45 * spectral_noise(rng, 60, 30, (SKY_H, SKY_DW)))
     image += mix((0, 0, 0), (46, 50, 30), shafts * np.clip(1.1 - v, 0, 1))
-    # grass: clumps of three to five broad blades (a blade is at least two texels wide), darker bodies with light
-    # edges, rooted in the horizon glow
+    # grass: clumps of three to five blades, darker bodies with light edges, rooted in the horizon glow
     blades = np.zeros((SKY_H, SKY_DW))
     edge = np.zeros((SKY_H, SKY_DW))
     columns = np.arange(SKY_DW, dtype=float)
     span = SKY_H * (1 - SKY_WINDOW)
-    for _ in range(46):
+    for _ in range(12):
         cx0 = rng.uniform(0, SKY_DW)
         for _blade in range(int(rng.integers(3, 6))):
             x0 = cx0 + rng.uniform(-40, 40)
             height = rng.uniform(0.35, 0.9) * span
             lean = rng.uniform(-0.6, 0.6)
-            width = rng.uniform(18, 26)
+            width = rng.uniform(9, 16)
             for y in range(int(SKY_H - height), SKY_H):
                 f = min(1.0, (SKY_H - y) / height)        # 0 at the root .. 1 at the tip
                 cx = x0 + lean * (SKY_H - y) * f
                 w = width * (1 - f) ** 0.7 + 3
                 d = np.abs(((columns - cx + SKY_DW / 2) % SKY_DW) - SKY_DW / 2)
                 blades[y] = np.maximum(blades[y], np.clip(1 - d / w, 0, 1) * (1 - f * 0.6))
-                edge[y] = np.maximum(edge[y], np.clip(1 - np.abs(d - w * 0.7) / 6.0, 0, 1) * (1 - f * 0.5))
+                edge[y] = np.maximum(edge[y], np.clip(1 - np.abs(d - w * 0.7) / 3.0, 0, 1) * (1 - f * 0.5))
     fade = np.clip((1.0 - v) / 0.12, 0, 1)                # the roots melt into the horizon glow
     image -= mix((0, 0, 0), (70, 52, 58), blades * fade)
     image += mix((0, 0, 0), (40, 34, 18), edge * fade * 0.8)
@@ -142,11 +142,11 @@ def misty_sky(rng: np.random.Generator) -> np.ndarray:
         image = image * (1 - cloud[..., None]) + white * cloud[..., None]
     glints = np.zeros((SKY_H, SKY_DW))
     top = int(SKY_H * SKY_WINDOW)
-    for _ in range(60):
+    for _ in range(16):
         y, x = int(rng.uniform(top, top + (SKY_H - top) * 0.45)), int(rng.uniform(0, SKY_DW))
-        for dy in range(-4, 5):
-            for dx in range(-14, 15):
-                val = max(0.0, 1 - (abs(dx) / 14 + abs(dy) / 4))
+        for dy in range(-5, 6):
+            for dx in range(-5, 6):
+                val = max(0.0, 1 - (abs(dx) + abs(dy)) / 5)
                 yy_, xx_ = (y + dy) % SKY_H, (x + dx) % SKY_DW
                 glints[yy_, xx_] = max(glints[yy_, xx_], val)
     image += mix((0, 0, 0), (50, 44, 34), glints)
