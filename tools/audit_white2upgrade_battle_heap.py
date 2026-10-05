@@ -71,6 +71,8 @@ def main() -> int:
     parser.add_argument("--baseline", type=Path, required=True)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--enforce", action="store_true")
+    parser.add_argument("--enforce-headroom", action="store_true",
+                        help="fail only when every module loaded leaves less than the 12 KiB floor (the ROM's guard)")
     args = parser.parse_args()
 
     registry = json.loads(args.registry.read_text())
@@ -154,6 +156,10 @@ def main() -> int:
         failures.append("all-group scenario leaves less than 12 KiB headroom")
     if args.enforce and failures:
         raise RuntimeError("; ".join(failures))
+    if args.enforce_headroom and HEAP_BYTES - all_groups < REQUIRED_HEADROOM:
+        raise RuntimeError(
+            f"every module loaded leaves {HEAP_BYTES - all_groups} bytes of the PMC heap free, "
+            f"under the {REQUIRED_HEADROOM}-byte floor")
     if failures:
         print("[!] acceptance warnings: " + "; ".join(failures))
     else:
