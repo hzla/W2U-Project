@@ -71,6 +71,8 @@ constexpr u32 W2U_FIELD_HEAP_ID_OFFSET = 0x6Cu;
 constexpr u32 W2U_NO_DEFERRED_MESSAGE = 0xFFFFFFFFu;
 constexpr u32 W2U_PALETTE_FADE_MAX_EVY = 16u;
 constexpr u32 W2U_PALETTE_BACKUP_COLORS = 1024u;
+constexpr u32 W2U_PALETTE_BACKUP_BYTES = W2U_PALETTE_BACKUP_COLORS * 2u;
+constexpr u32 W2U_PALETTE_BACKUP_HEADROOM = 0x1000u;
 constexpr u32 W2U_NSBTA_MAGIC = 0x30415442u;
 constexpr u32 W2U_NITRO_NAME_LENGTH = 16u;
 constexpr u16 W2U_NO_FLOOR_ANIMATION_MEMBER = 0xFFFFu;
@@ -91,8 +93,9 @@ enum ElectricTransitionPhase {
 
 // Each terrain's pace: the floor's UV animation (NSBTA frames per 60 fps frame), the gap between ambient particle
 // emits, and the floor fade's two halves (old floor -> blend colour, blend colour -> new floor; frames). Electric
-// is quick and busy; Grassy and Misty are slow and calm; Psychic's floor speed and emit gaps keep changing
-// (PsychicFloorStep, W2U_PSYCHIC_AMBIENT_GAPS) and its fade wobbles.
+// is quick and busy (its floor keeps the template's fast scroll); Grassy, Misty and Psychic drift their floor sideways
+// with their sky; Psychic's emit gaps keep changing (W2U_PSYCHIC_AMBIENT_GAPS), its fade wobbles and its floor and sky
+// ripple (the raster wave below).
 struct TerrainPace {
     fx32 floorStep;
     u16 ambientInterval;
@@ -103,11 +106,10 @@ const TerrainPace W2U_TERRAIN_PACE[W2U_TERRAIN_TEXTURE_COUNT] = {
     { FX32_ONE * 5 / 4, 20u, 10u, 14u },     // Electric
     { FX32_ONE * 5 / 16, 44u, 26u, 40u },    // Grassy (a 96-frame mote emitter every 44 frames; floor: W2U_FLOOR_DRIFT)
     { FX32_ONE / 4, 56u, 30u, 46u },         // Misty (a 110-frame fog emitter every 56 frames; floor: W2U_FLOOR_DRIFT)
-    { FX32_ONE * 9 / 16, 60u, 20u, 30u },    // Psychic (floorStep: mean; ambientInterval unused)
+    { FX32_ONE * 9 / 16, 60u, 20u, 30u },    // Psychic (floorStep unused: drift; ambientInterval unused)
 };
 constexpr u32 W2U_NATIVE_FLOOR_FADE_OUT_FRAMES = 20u;
 const u8 W2U_PSYCHIC_AMBIENT_GAPS[] = { 34, 82, 47, 96, 28, 63, 110, 41 };
-constexpr fx32 W2U_PSYCHIC_FLOOR_STEP_MIN = FX32_ONE / 24;
 
 // sin(angle) in fx32, angle in 1/65536 turns (quarter-wave table, linear between 16 steps).
 fx32 SinTurn(u32 angle)
@@ -127,16 +129,6 @@ fx32 SinTurn(u32 angle)
     const s32 hi = kQuarter[index < 16u ? index + 1u : 16u];
     const s32 value = lo + (((hi - lo) * static_cast<s32>(frac)) >> 10);
     return (quadrant & 2u) ? -value : value;
-}
-
-// Psychic's floor: two out-of-step waves around the mean, so it surges, crawls and surges again.
-fx32 PsychicFloorStep(u32 frame)
-{
-    const fx32 mean = W2U_TERRAIN_PACE[3].floorStep;
-    const fx32 step = mean +
-        static_cast<fx32>((static_cast<s64>(FX32_ONE * 7 / 16) * SinTurn(frame * 580u)) >> 12) +    // ~113 frames
-        static_cast<fx32>((static_cast<s64>(FX32_ONE * 5 / 16) * SinTurn(frame * 1771u)) >> 12);    // ~37 frames
-    return step < W2U_PSYCHIC_FLOOR_STEP_MIN ? W2U_PSYCHIC_FLOOR_STEP_MIN : step;
 }
 
 // This is BTLV_FIELD_WORK::epfw at offset 0x58. The animation VM populates it
@@ -208,7 +200,9 @@ u32 sPreparedTerrain = TERRAIN_NULL;
 u16 sFloorAnimationMember = W2U_NO_FLOOR_ANIMATION_MEMBER;
 const char* sFloorAnimationMaterial = 0;
 const TerrainTextureMapping* sCurrentMapping = 0;
-u16 sPaletteBackup[W2U_PALETTE_BACKUP_COLORS];
+// Palette staging / backup for the fades, haze and floor palette animation: on the battle's game heap (allocated with
+// the first terrain resource, freed at field exit), not in the core's BSS on the PMC heap. Null: those effects are off.
+u16* sPaletteBackup = 0;
 u32 sTerrainAmbientFrame = 0u;
 u32 sTerrainAmbientStep = 0u;
 void* sTerrainAmbientParticleHeap = 0;
@@ -221,7 +215,6 @@ bool sTerrainAmbientTextureReady = false;
 bool sTerrainAmbientStopping = false;
 u32 sTerrainAmbientDrainFrames = 0u;
 constexpr u32 W2U_AMBIENT_DRAIN_MAX_FRAMES = 360u;
-u32 sPsychicFloorFrame = 0u;
 u32 sPsychicGapIndex = 0u;
 
 void ResetTerrainAmbientTimer()
@@ -310,6 +303,34 @@ u32 AmbientSpaMemberForTerrain(u32 terrain)
         return W2U_PSYCHIC_AMBIENT_SPA_MEMBER;
     }
     return 0u;
+}
+
+// main update only (heap queries); a failure leaves it null and the palette effects off
+void EnsurePaletteBackup()
+{
+    if (sPaletteBackup) {
+        return;
+    }
+    HeapID heapID = GetFieldLowHeapID();
+#if !defined(W2U_TARGET_B2)
+    if (!heapID) {
+        heapID = GetBattleSpriteLowHeapID();
+    }
+#endif
+    if (!heapID ||
+        GFL_HeapGetHighestAllocatableSize(heapID) < W2U_PALETTE_BACKUP_BYTES + W2U_PALETTE_BACKUP_HEADROOM) {
+        return;
+    }
+    sPaletteBackup = static_cast<u16*>(GFL_HeapAllocateCore(heapID, W2U_PALETTE_BACKUP_BYTES));
+}
+
+void ReleasePaletteBackup()
+{
+    u16* const backup = sPaletteBackup;
+    sPaletteBackup = 0;                          // before the free: the VBlank uploads check it
+    if (backup) {
+        GFL_HeapFreeCore(backup);
+    }
 }
 
 bool PrepareTerrainAmbientParticles(u32 terrain)
@@ -482,6 +503,58 @@ void EmitFieldAmbient(u32 step, fx32 xOffset)
     GFL_PTC_CreateEmitter(sTerrainAmbientParticleSystem, 0, &position);
 }
 
+// Electric: small, short-lived bolts of lightning in the sky (SPA 787 resource 1: in over 3 frames, then a slow
+// 34-frame fade), striking the distant ground: each comes down from above the top of the screen and its foot lands
+// on the horizon, just in front of the backdrop (world z -16.5: further back is clipped). One size (a random scale
+// would lift the foot off the ground). Sporadic, as in Sun / Moon: one every 80-239 frames at a random spot, and now
+// and then (1 in 4) a second one close by 6-13 frames later. The battle camera, measured at z -16.5: screen x is
+// about 177 - 12.2 x (mirrored; x -6 .. 8 spans screen x ~80-250), and the foot moves ~20 px per unit of y; y 4.375
+// puts it on the horizon (screen y 30).
+constexpr fx32 W2U_BOLT_Z = -FX32_ONE * 33 / 2;
+constexpr fx32 W2U_BOLT_X_MIN = -FX32_ONE * 6;
+constexpr u32 W2U_BOLT_X_STEPS = 224u;             // 1/16 steps: 14 units
+constexpr fx32 W2U_BOLT_Y = FX32_ONE * 35 / 8;
+constexpr u32 W2U_BOLT_GAP_MIN = 80u, W2U_BOLT_GAP_RANGE = 160u;
+constexpr u32 W2U_BOLT_PAIR_GAP_MIN = 6u, W2U_BOLT_PAIR_GAP_RANGE = 8u;
+u32 sBoltWait = 40u;
+u32 sBoltRandom = 0x9E3779B9u;
+fx32 sBoltPairX = 0;
+bool sBoltPairPending = false;
+
+u32 BoltRandom(u32 range)                          // 0 .. range - 1 (no division)
+{
+    sBoltRandom = sBoltRandom * 1103515245u + 12345u;
+    return static_cast<u32>((static_cast<u64>(sBoltRandom >> 16) * range) >> 16);
+}
+
+void AdvanceElectricBolts()
+{
+    if (sBoltWait) {
+        --sBoltWait;
+        return;
+    }
+    if (!sTerrainAmbientParticleSystem) {
+        return;
+    }
+    VecFx32 position;
+    if (sBoltPairPending) {                        // the follow-up: within 1.5 units of the first
+        position.x = sBoltPairX + (static_cast<fx32>(BoltRandom(48u)) << 8) - FX32_ONE * 3 / 2;
+    } else {
+        position.x = W2U_BOLT_X_MIN + (static_cast<fx32>(BoltRandom(W2U_BOLT_X_STEPS)) << 8);
+    }
+    position.y = W2U_BOLT_Y;
+    position.z = W2U_BOLT_Z;
+    GFL_PTC_CreateEmitter(sTerrainAmbientParticleSystem, 1, &position);
+    if (!sBoltPairPending && BoltRandom(4u) == 0u) {
+        sBoltPairPending = true;
+        sBoltPairX = position.x;
+        sBoltWait = W2U_BOLT_PAIR_GAP_MIN + BoltRandom(W2U_BOLT_PAIR_GAP_RANGE);
+        return;
+    }
+    sBoltPairPending = false;
+    sBoltWait = W2U_BOLT_GAP_MIN + BoltRandom(W2U_BOLT_GAP_RANGE);
+}
+
 void EmitPsychicAmbientEnergy(u32 anchor)
 {
     if (!sTerrainAmbientParticleSystem ||
@@ -556,6 +629,9 @@ void AdvanceTerrainAmbient()
         return;
     }
 
+    if (sAppliedTerrain == TERRAIN_ELECTRIC) {
+        AdvanceElectricBolts();
+    }
     if (sTerrainAmbientFrame != 0u) {
         sTerrainAmbientFrame -= 1u;
         return;
@@ -729,6 +805,7 @@ bool PrepareTerrainResource(u32 terrain, u32 serial)
     }
 
     ReleasePreparedTerrainResource();
+    EnsurePaletteBackup();
     G3DResource* resource = GFL_G3DSysReadArcSysResource(
         W2U_BATTGRA_ARC_ID,
         sCurrentMapping->terrainTextureBaseMember + terrainIndex);
@@ -999,6 +1076,7 @@ void ClearFieldViewState()
     sPrepareFailedSerial = 0u;
     sAppliedSerial = sRequestSerial;
     ResetTerrainAmbientTimer();
+    ReleasePaletteBackup();                      // last: the releases above may still restore palettes through it
 }
 
 bool UploadTexture(G3DResource* resource)
@@ -1043,7 +1121,7 @@ bool UploadTextureAtFade(
     }
 
     const u32 paletteBytes = static_cast<u32>(texture->PaletteHeader.ImageSize) << 3;
-    if ((paletteBytes & 1u) || paletteBytes > sizeof(sPaletteBackup)) {
+    if (!sPaletteBackup || (paletteBytes & 1u) || paletteBytes > W2U_PALETTE_BACKUP_BYTES) {
         return false;
     }
 
@@ -1253,11 +1331,31 @@ struct FloorTwinkle {
     u8 active;
 };
 constexpr u32 W2U_FLOOR_TWINKLES = 8u;
-constexpr u16 W2U_TWINKLE_COLOR = 0x7FDF;      // (31, 30, 31): white with a breath of pink
-constexpr u16 W2U_GRASSY_GLOW_COLOR = 0x4BFA;  // (26, 31, 18): sunlit yellow-green
-constexpr u32 W2U_GRASSY_GLOW_MAX_EVY = 3u;
-constexpr u32 W2U_GRASSY_GLOW_PERIOD_STEP = 65536u / 200u;   // one swell every 200 frames
-// A twinkle's brightness per frame of its life (evy towards W2U_TWINKLE_COLOR): quick rise, slow fall. A table:
+// The floor between move animations, per terrain: a slow swell of the whole floor towards a colour (evy 0 .. max over
+// the period), short flashes of it (Electric's surges, every 50-140 frames), and twinkles (single floor colours
+// flashing towards a colour, a new one every gap .. gap + range - 1 frames). Grassy swells, Misty twinkles, Electric
+// surges and sparkles, Psychic swells and shimmers.
+struct FloorAnimStyle {
+    u16 swellColor;
+    u8 swellMax;                                 // 0: none
+    u8 flash;                                    // Electric's surges (towards swellColor)
+    u16 swellStep;                               // 1/65536 turns per frame
+    u16 twinkleColor;
+    u8 twinkleGap;                               // 0: none
+    u8 twinkleRange;
+};
+const FloorAnimStyle W2U_FLOOR_ANIM[W2U_TERRAIN_TEXTURE_COUNT] = {
+    { 0x63FFu, 0u, 1u, 0u, 0x67FFu, 3u, 8u },          // Electric: (31, 31, 24) surges, (31, 31, 25) sparkles
+    { 0x4BFAu, 3u, 0u, 65536u / 200u, 0u, 0u, 0u },    // Grassy: (26, 31, 18) one swell every 200 frames
+    { 0u, 0u, 0u, 0u, 0x7FDFu, 2u, 5u },               // Misty: (31, 30, 31) white with a breath of pink
+    { 0x7F1Fu, 3u, 0u, 65536u / 150u, 0x7EFFu, 4u, 7u },   // Psychic: (31, 24, 31) swell, (31, 23, 31) shimmer
+};
+// A surge's level per frame (evy towards the swell colour): a jolt, then a quick decay.
+const u8 W2U_SURGE_LEVELS[] = { 4, 8, 6, 7, 5, 3, 2, 1 };
+u16 sTwinkleColor = 0u;
+u32 sSurgeAge = 0xFFu;
+u32 sSurgeWait = 0u;
+// A twinkle's brightness per frame of its life (evy towards the twinkle colour): quick rise, slow fall. A table:
 // -Os turns even a constant divisor into a helper call PMC cannot link.
 const u8 W2U_TWINKLE_LEVELS[] = { 2, 4, 7, 9, 11, 11, 10, 10, 9, 8, 8, 7, 6, 6, 5, 4, 4, 3, 2, 2, 1, 1 };
 FloorTwinkle sTwinkles[W2U_FLOOR_TWINKLES];
@@ -1281,15 +1379,16 @@ struct TerrainHaze {
     u16 color;
     u8 evy;
 };
+const TerrainHaze W2U_TERRAIN_HAZE[W2U_TERRAIN_TEXTURE_COUNT] = {
+    { 0x4BBFu, 6u },                             // Electric (31, 29, 18): warm, bright gold
+    { 0x47D6u, 7u },                             // Grassy (22, 30, 17): light, fresh green
+    { 0x773Fu, 7u },                             // Misty (31, 25, 29): soft pink
+    { 0x7A9Du, 7u },                             // Psychic (29, 20, 30): lilac-pink
+};
 TerrainHaze HazeFor(u32 terrain)
 {
-    if (terrain == TERRAIN_GRASSY) {
-        return { 0x47D6u, 7u };                  // (22, 30, 17): light, fresh green
-    }
-    if (terrain == TERRAIN_MISTY) {
-        return { 0x773Fu, 7u };                  // (31, 25, 29): soft pink
-    }
-    return { 0u, 0u };
+    const s32 index = TerrainTextureIndex(terrain);
+    return index >= 0 ? W2U_TERRAIN_HAZE[index] : TerrainHaze{ 0u, 0u };
 }
 u16 sHazeColor = 0u;
 u32 sHazeEvy = 0u;                             // the haze on screen now
@@ -1313,7 +1412,8 @@ bool UploadFloorPaletteTo(G3DResource* resource, u32 evy, u16 color, bool twinkl
     const u16* palette = resource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(resource)) : 0;
     const u16* native = sFieldResource ? static_cast<const u16*>(GFL_G3DResGetTexPaletteData(sFieldResource)) : 0;
     const u32 colorCount = FieldPaletteColorCount();
-    if (!palette || !native || !sFloorPaletteCount || !colorCount || colorCount > W2U_PALETTE_BACKUP_COLORS) {
+    if (!sPaletteBackup || !palette || !native || !sFloorPaletteCount || !colorCount ||
+        colorCount > W2U_PALETTE_BACKUP_COLORS) {
         return false;
     }
     if (evy > W2U_PALETTE_FADE_MAX_EVY) {
@@ -1334,7 +1434,7 @@ bool UploadFloorPaletteTo(G3DResource* resource, u32 evy, u16 color, bool twinkl
             continue;
         }
         const u32 index = sFloorPaletteFirst + twinkle.index;
-        sPaletteBackup[index] = FadeColor(palette[index], W2U_TWINKLE_COLOR, W2U_TWINKLE_LEVELS[twinkle.age]);
+        sPaletteBackup[index] = FadeColor(palette[index], sTwinkleColor, W2U_TWINKLE_LEVELS[twinkle.age]);
     }
     const u32 bytes = colorCount * sizeof(u16);
     cp15_flushDC(sPaletteBackup, bytes);
@@ -1352,9 +1452,10 @@ bool UploadFloorPaletteTo(G3DResource* resource, u32 evy, u16 color, bool twinkl
 // other materials a share of it (the scene brightens with the haze). Written into the field model's material data
 // in RAM, which the renderer reads every frame; restored when the terrain fades out and at field exit.
 struct FieldMaterial {
-    u32* specEmi;                              // NNSG3dResMatData +8: specular (0-14), emission (16-30)
-    u32 original;
+    u32* specEmi;                              // NNSG3dResMatData +8: specular (0-14), emission (16-30); +0x14
+    u32 original;                              // (specEmi[3]): texImageParam, bound (VRAM offset / 8, size, format)
     bool floor;
+    bool sky;
 };
 constexpr u32 W2U_FIELD_MATERIALS_MAX = 8u;
 constexpr u32 W2U_SCENE_GLOW_SHARE = 10u;      // the other materials get 10/16 of the floor's glow
@@ -1367,15 +1468,16 @@ u32 sGlowLevel = 0u;                           // 0..16 of the glow on screen no
 TerrainHaze sGlowFrom = { 0u, 0u };
 TerrainHaze sGlowTo = { 0u, 0u };
 
-TerrainHaze GlowFor(u32 terrain)               // (emission colour, unused)
+const u16 W2U_TERRAIN_GLOW[W2U_TERRAIN_TEXTURE_COUNT] = {
+    0x116Cu,                                   // Electric (12, 11, 4): warm yellow
+    0x19AAu,                                   // Grassy (10, 13, 6): soft mint-green
+    0x2D0Cu,                                   // Misty (12, 8, 11): pink
+    0x34CCu,                                   // Psychic (12, 6, 13): violet-pink
+};
+TerrainHaze GlowFor(u32 terrain)               // (emission colour, level / 16)
 {
-    if (terrain == TERRAIN_GRASSY) {
-        return { 0x19AAu, 16u };               // (10, 13, 6): soft mint-green
-    }
-    if (terrain == TERRAIN_MISTY) {
-        return { 0x2D0Cu, 16u };               // (12, 8, 11): pink
-    }
-    return { 0u, 0u };
+    const s32 index = TerrainTextureIndex(terrain);
+    return index >= 0 ? TerrainHaze{ W2U_TERRAIN_GLOW[index], 16u } : TerrainHaze{ 0u, 0u };
 }
 
 u16 ReadU16(const u8* p) { return static_cast<u16>(p[0] | (p[1] << 8)); }
@@ -1434,11 +1536,13 @@ void FindFieldMaterials()
             }
         }
         const u8* name = names + index * W2U_NITRO_NAME_LENGTH;
+        bool sky = false;
         for (u32 c = 0; !sSkyMaterialName[0] && c + 3u <= W2U_NITRO_NAME_LENGTH - 1u && name[c]; ++c) {
             if (name[c] == 's' && name[c + 1] == 'k' && name[c + 2] == 'y') {
                 for (u32 k = 0; k + 1u < W2U_NITRO_NAME_LENGTH; ++k) {
                     sSkyMaterialName[k] = static_cast<char>(name[k]);
                 }
+                sky = true;
                 break;
             }
         }
@@ -1446,6 +1550,7 @@ void FindFieldMaterials()
         material.specEmi = reinterpret_cast<u32*>(matData + 8);
         material.original = *material.specEmi;
         material.floor = floor;
+        material.sky = sky;
     }
 }
 
@@ -1595,6 +1700,215 @@ void UpdateSkyRepeat()
     GFL_G3DActorSetAnmFrame(&proxy, 0u, &frame);
 }
 
+// Psychic: a raster wave (Sun / Moon's rippling field). Each column of the floor texture, and of the sky's while
+// Psychic owns it, is moved along the texture by a travelling sine (two waves, out of step), drawn from the clone's
+// own image in RAM
+// into a staging buffer from a game heap (not PMC's) in the main battle update and uploaded in the next VBlank; floor
+// and sky take turns (each at 30 fps). The amplitude rises from 0 as the terrain comes in. Formats: 16 colours (4
+// bpp) and the 8 bpp ones (256 colours, A3I5, A5I3). Nothing happens without the heap room or for other formats.
+struct WaveTexture {
+    const u8* source;                          // the clone's image (unshifted)
+    u32 vram;                                  // its texture VRAM address
+    u16 rowBytes;
+    u16 rows;
+    u8 log2Width;
+    u8 log2Rows;
+    u8 nibbles;                                // 4 bpp
+};
+constexpr u32 W2U_WAVE_HEADROOM = 0x1000u;
+constexpr u32 W2U_WAVE_RAMP_LOG2 = 6u;         // 64 computed frames until the full amplitude
+constexpr u32 W2U_WAVE_UPLOAD_LAST_LINE = 0xC6u;
+WaveTexture sWave[2];                          // floor, sky
+G3DResource* sWaveResource = 0;                // the clone sWave[].source points into
+u8* sWaveBuffer = 0;
+u32 sWaveBufferBytes = 0u;
+u32 sWaveFrame = 0u;
+u32 sWaveRamp = 0u;
+u32 sWaveTurn = 0u;
+u32 sWavePendingVram = 0u;
+u32 sWavePendingBytes = 0u;
+volatile bool sWavePending = false;
+
+void ReleaseWave()
+{
+    sWavePending = false;
+    if (sWaveBuffer) {
+        GFL_HeapFreeCore(sWaveBuffer);
+    }
+    sWaveBuffer = 0;
+    sWaveBufferBytes = 0u;
+    sWaveResource = 0;
+    sWave[0].source = sWave[1].source = 0;
+}
+
+bool ResolveWaveTexture(const FieldMaterial* material, NNSG3DResTex* tex, WaveTexture* out)
+{
+    out->source = 0;
+    if (!material || !tex) {
+        return false;
+    }
+    const u32 param = material->specEmi[3];
+    const u32 format = (param >> 26) & 7u;
+    const u32 log2Width = 3u + ((param >> 20) & 7u);
+    const u32 log2Rows = 3u + ((param >> 23) & 7u);
+    const u32 rows = 1u << log2Rows;
+    const bool nibbles = format == 3u;
+    // A3I5 (1), 16 colours (3), 256 colours (4), A5I3 (6); a mask, not comparisons (-Os made those a jump table,
+    // whose helper the game lacks)
+    if (!((0x5Au >> format) & 1u)) {
+        return false;
+    }
+    const u32 rowBytes = nibbles ? (1u << log2Width) >> 1 : 1u << log2Width;
+    const u32 vram = (param & 0xFFFFu) << 3;
+    const u32 base = (tex->TexHeader.RTVRAMAddr & 0xFFFFu) << 3;
+    const u32 imageBytes = static_cast<u32>(tex->TexHeader.ImageSize) << 3;
+    if (vram < base || vram - base + rowBytes * rows > imageBytes) {
+        return false;
+    }
+    out->source = reinterpret_cast<const u8*>(tex) + tex->TexHeader.ImageOffset + (vram - base);
+    out->vram = vram;
+    out->rowBytes = static_cast<u16>(rowBytes);
+    out->rows = static_cast<u16>(rows);
+    out->log2Width = static_cast<u8>(log2Width);
+    out->log2Rows = static_cast<u8>(log2Rows);
+    out->nibbles = nibbles;
+    return true;
+}
+
+// The clone's floor (and sky) textures and a staging buffer for the larger; false: no wave.
+bool SetupWave()
+{
+    ReleaseWave();
+    NNSG3DResTex* tex = sActiveTerrainResource ? GFL_G3DResGetTexData(sActiveTerrainResource) : 0;
+    if (!sFieldMaterialsSearched) {
+        FindFieldMaterials();
+    }
+    for (u32 index = 0; index < sFieldMaterialCount; ++index) {
+        const FieldMaterial& material = sFieldMaterials[index];
+        if (material.floor && !sWave[0].source) {
+            ResolveWaveTexture(&material, tex, &sWave[0]);
+        } else if (material.sky && sSkyOwned && !sWave[1].source) {
+            ResolveWaveTexture(&material, tex, &sWave[1]);
+        }
+    }
+    u32 bytes = 0u;
+    for (u32 t = 0; t < 2u; ++t) {
+        const u32 size = sWave[t].source ? static_cast<u32>(sWave[t].rowBytes) * sWave[t].rows : 0u;
+        bytes = size > bytes ? size : bytes;
+    }
+    HeapID heapID = GetFieldLowHeapID();
+#if !defined(W2U_TARGET_B2)
+    if (!heapID) {
+        heapID = GetBattleSpriteLowHeapID();
+    }
+#endif
+    if (!bytes || !heapID || GFL_HeapGetHighestAllocatableSize(heapID) < bytes + W2U_WAVE_HEADROOM) {
+        return false;
+    }
+    sWaveBuffer = static_cast<u8*>(GFL_HeapAllocateCore(heapID, bytes));
+    if (!sWaveBuffer) {
+        return false;
+    }
+    sWaveBufferBytes = bytes;
+    sWaveResource = sActiveTerrainResource;
+    sWaveRamp = 0u;
+    return true;
+}
+
+// One texture into the staging buffer, each column of texels moved up / down the texture by the wave: the floor's
+// and the sky's horizontal streaks and cloud ridges then undulate, as in Sun / Moon (a sideways row shift barely
+// shows on horizontal streaks). `amplitude`: texels in fx32 (at most 4); `waves`: whole waves across the texture
+// (so it still tiles); two waves, 3:1, travelling opposite ways.
+constexpr u32 W2U_WAVE_MAX_WIDTH = 128u;
+void DrawWave(const WaveTexture& wave, s32 amplitude, u32 waves)
+{
+    const u32 width = 1u << wave.log2Width;
+    if (width > W2U_WAVE_MAX_WIDTH) {
+        return;
+    }
+    const u32 rowMask = wave.rows - 1u;
+    const u32 columnStep = waves << (16u - wave.log2Width);
+    u8 shift[W2U_WAVE_MAX_WIDTH];
+    for (u32 x = 0; x < width; ++x) {
+        const u32 angle = x * columnStep;
+        // amplitude <= 16384 and the mix <= 16384: the product fits in 32 bits; >> 26 = / 4 (weights) / fx32^2
+        const s32 mix = SinTurn(angle + sWaveFrame * 360u) * 3 + SinTurn(angle * 2u - sWaveFrame * 230u);
+        shift[x] = static_cast<u8>(static_cast<u32>((amplitude * mix + (1 << 25)) >> 26) & rowMask);
+    }
+    for (u32 row = 0; row < wave.rows; ++row) {
+        u8* dst = sWaveBuffer + row * wave.rowBytes;
+        if (!wave.nibbles) {
+            for (u32 x = 0; x < width; ++x) {
+                dst[x] = wave.source[((row + shift[x]) & rowMask) * wave.rowBytes + x];
+            }
+            continue;
+        }
+        for (u32 x = 0; x < width; x += 2u) {
+            const u8 lo = wave.source[((row + shift[x]) & rowMask) * wave.rowBytes + (x >> 1)] & 15u;
+            const u8 hi = wave.source[((row + shift[x + 1u]) & rowMask) * wave.rowBytes + (x >> 1)] >> 4;
+            dst[x >> 1] = static_cast<u8>(lo | (hi << 4));
+        }
+    }
+}
+
+// Main battle update: the next turn's rows, ready for the VBlank upload.
+void AdvancePsychicWave()
+{
+    if (sAppliedTerrain != TERRAIN_PSYCHIC || !sActiveTerrainResource) {
+        if (sWaveBuffer || sWaveResource) {
+            ReleaseWave();
+        }
+        return;
+    }
+    if (sWaveResource != sActiveTerrainResource) {
+        if (!SetupWave()) {
+            sWaveResource = sActiveTerrainResource;  // (no room / format: no wave for this terrain)
+            return;
+        }
+    }
+    if (!sWaveBuffer || sWavePending) {
+        return;
+    }
+    sWaveTurn ^= 1u;
+    const WaveTexture& wave = sWave[sWaveTurn].source ? sWave[sWaveTurn] : sWave[sWaveTurn ^ 1u];
+    if (!wave.source) {
+        return;
+    }
+    ++sWaveFrame;
+    if (sWaveRamp < (1u << W2U_WAVE_RAMP_LOG2)) {
+        ++sWaveRamp;
+    }
+    // 3 texels at most; the floor two waves across its texture, the sky three (it repeats 4x across the backdrop)
+    const bool floor = &wave == &sWave[0];
+    const s32 amplitude = static_cast<s32>((3u * sWaveRamp * FX32_ONE) >> W2U_WAVE_RAMP_LOG2);
+    DrawWave(wave, amplitude, floor ? 2u : 3u);
+    const u32 bytes = static_cast<u32>(wave.rowBytes) * wave.rows;
+    cp15_flushDC(sWaveBuffer, bytes);
+    sWavePendingVram = wave.vram;
+    sWavePendingBytes = bytes;
+    sWavePending = true;
+}
+
+// VBlank: the staged rows go up, unless the floor changed under them (a fade swap this VBlank).
+void UploadPsychicWave()
+{
+    if (!sWavePending) {
+        return;
+    }
+    if (sAppliedTerrain != TERRAIN_PSYCHIC || sActiveTerrainResource != sWaveResource || !sWaveBuffer) {
+        sWavePending = false;
+        return;
+    }
+    const u32 vcount = *reinterpret_cast<volatile u16*>(0x04000006);
+    if (vcount < 0xC0u || vcount > W2U_WAVE_UPLOAD_LAST_LINE) {
+        return;                                  // next VBlank
+    }
+    gfxBeginTextureUpload();
+    gfxUploadTexture(sWaveBuffer, sWavePendingVram, sWavePendingBytes);
+    gfxEndTextureUpload();
+    sWavePending = false;
+}
+
 // The terrain clone's own palette (RAM) takes the haze outside the floor range.
 void BakeHaze()
 {
@@ -1631,7 +1945,7 @@ void ResetFloorPaletteAnimation()
 bool UploadTextureFloorFaded(G3DResource* resource, u32 evy)
 {
     u16* palette = resource ? static_cast<u16*>(GFL_G3DResGetTexPaletteData(resource)) : 0;
-    if (!palette || !sFloorPaletteCount) {
+    if (!palette || !sFloorPaletteCount || !sPaletteBackup) {
         return UploadTexture(resource);
     }
     for (u32 index = 0; index < sFloorPaletteCount; ++index) {
@@ -1834,11 +2148,11 @@ void AdvanceFloorFade()
     }
 }
 
-// One VBlank of the Grassy / Misty floor animation (W2U_TerrainTexture_AdvanceAnimation).
+// One VBlank of the floor animation between move animations (W2U_TerrainTexture_AdvanceAnimation).
 void AdvanceFloorPaletteAnimation()
 {
-    const u32 terrain = sAppliedTerrain;
-    const bool animated = (terrain == TERRAIN_GRASSY || terrain == TERRAIN_MISTY) &&
+    const s32 styleIndex = TerrainTextureIndex(sAppliedTerrain);
+    const bool animated = styleIndex >= 0 &&
         sFloorFadePhase == FLOOR_FADE_IDLE && sActiveTerrainResource && sFloorPaletteCount;
     FieldPaletteFadeWork* vm = GetFieldPaletteFadeWork();
     const bool vmFading = vm && vm->active;
@@ -1856,19 +2170,35 @@ void AdvanceFloorPaletteAnimation()
         return;
     }
     ++sFloorAnimFrame;
-    if (terrain == TERRAIN_GRASSY) {
-        // 0 .. W2U_GRASSY_GLOW_MAX_EVY .. 0: (1 - cos) / 2 over the period, rounded
-        const fx32 wave = FX32_ONE - SinTurn(sFloorAnimFrame * W2U_GRASSY_GLOW_PERIOD_STEP + 0x4000u);
-        const u32 evy = static_cast<u32>((wave * static_cast<fx32>(W2U_GRASSY_GLOW_MAX_EVY) + FX32_ONE) >> 13);
+    const FloorAnimStyle& style = W2U_FLOOR_ANIM[styleIndex];
+    sTwinkleColor = style.twinkleColor;
+    u32 evy = 0u;
+    if (style.swellMax) {
+        // 0 .. max .. 0: (1 - cos) / 2 over the period, rounded
+        const fx32 wave = FX32_ONE - SinTurn(sFloorAnimFrame * style.swellStep + 0x4000u);
+        evy = static_cast<u32>((wave * static_cast<fx32>(style.swellMax) + FX32_ONE) >> 13);
+    }
+    if (style.flash) {
+        if (sSurgeAge < sizeof(W2U_SURGE_LEVELS)) {
+            evy = W2U_SURGE_LEVELS[sSurgeAge++];
+        } else if (sSurgeWait) {
+            --sSurgeWait;
+        } else {
+            sSurgeAge = 0u;
+            sSurgeWait = 50u + FloorAnimRandom(91u);
+        }
+    }
+    if (!style.twinkleGap) {
         if (evy != sFloorAnimEvy) {
             sFloorAnimEvy = evy;
-            UploadFloorPaletteTo(sActiveTerrainResource, evy, W2U_GRASSY_GLOW_COLOR, false);
+            UploadFloorPaletteTo(sActiveTerrainResource, evy, style.swellColor, false);
             sFloorAnimDirty = true;
         }
         return;
     }
-    // Misty: start a twinkle every 2-6 frames, age the live ones, upload while any is lit
-    bool any = false;
+    // twinkles: start one every gap .. gap + range - 1 frames, age the live ones, upload while any is lit
+    bool any = evy != 0u || evy != sFloorAnimEvy;
+    sFloorAnimEvy = evy;
     for (u32 t = 0; t < W2U_FLOOR_TWINKLES; ++t) {
         FloorTwinkle& twinkle = sTwinkles[t];
         if (twinkle.active && ++twinkle.age >= sizeof(W2U_TWINKLE_LEVELS)) {
@@ -1888,10 +2218,10 @@ void AdvanceFloorPaletteAnimation()
                 break;
             }
         }
-        sFloorAnimSpawn = 2u + FloorAnimRandom(5u);
+        sFloorAnimSpawn = style.twinkleGap + FloorAnimRandom(style.twinkleRange);
     }
     if (any || sFloorAnimDirty) {
-        UploadFloorPaletteTo(sActiveTerrainResource, 0u, 0u, true);
+        UploadFloorPaletteTo(sActiveTerrainResource, evy, style.swellColor, true);
         sFloorAnimDirty = any;
     }
 }
@@ -1899,9 +2229,6 @@ void AdvanceFloorPaletteAnimation()
 
 fx32 FloorAnimationStep(u32 terrain)
 {
-    if (terrain == TERRAIN_PSYCHIC) {
-        return PsychicFloorStep(sPsychicFloorFrame++);
-    }
     const TerrainPace* pace = 0;
     const s32 index = TerrainTextureIndex(terrain);
     if (index >= 0) {
@@ -2227,6 +2554,7 @@ extern "C" void W2U_TerrainTexture_AdvanceAnimation()
     FinishTerrainAmbientParticleSetup();
 #if defined(W2U_TERRAIN_FLOOR_FADES)
     AdvanceFloorPaletteAnimation();
+    UploadPsychicWave();
 #endif
 
 #if defined(W2U_TERRAIN_FLOOR_FADES)
@@ -2243,7 +2571,7 @@ extern "C" void W2U_TerrainTexture_AdvanceAnimation()
     G3DAnim* animations[] = { sFloorAnimation };
     G3DActor proxy = { sFieldModel, animations, 1u, 0u };
 #if defined(W2U_TERRAIN_FLOOR_FADES)
-    const bool sideways = sAppliedTerrain == TERRAIN_GRASSY || sAppliedTerrain == TERRAIN_MISTY;
+    const bool sideways = sAppliedTerrain != TERRAIN_ELECTRIC;   // Electric keeps its fast scroll
     if (sideways != sFloorScrollHorizontal) {
         SetFloorScrollHorizontal(sideways);
         ResetFloorAnimation();
@@ -2265,12 +2593,16 @@ extern "C" void W2U_TerrainTexture_AdvanceAmbient()
     AdvanceTerrainAmbient();
 #if defined(W2U_TERRAIN_FLOOR_FADES)
     UpdateSkyRepeat();
+    AdvancePsychicWave();
 #endif
 }
 
 extern "C" void W2U_TerrainTexture_FieldExit()
 {
     W2U_BattleState_OnBattleExit();
+#if defined(W2U_TERRAIN_FLOOR_FADES)
+    ReleaseWave();
+#endif
     sRequestedTerrain = TERRAIN_NULL;
     sDeferredResetMsgID = W2U_NO_DEFERRED_MESSAGE;
     sDeferredResetSerial = 0u;
