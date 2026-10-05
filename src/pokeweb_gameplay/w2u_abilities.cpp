@@ -1411,9 +1411,31 @@ bool RemoveAuraFamilyOwner(u32 pokemonSlot, ABILITY ability)
     return false;
 }
 
+// Moves whose type is decided elsewhere keep it (Showdown's noModifyType, plus
+// Struggle and Hidden Power, Normal in this generation's data): an -ate
+// ability does not convert them, e.g. Weather Ball with no weather stays Normal.
+static bool KeepsOwnType(u32 moveID)
+{
+    switch (moveID) {
+    case MOVE_STRUGGLE:
+    case MOVE_HIDDEN_POWER:
+    case MOVE_WEATHER_BALL:
+    case MOVE_NATURAL_GIFT:
+    case MOVE_JUDGMENT:
+    case MOVE_TECHNO_BLAST:
+    case MOVE_MULTIATTACK:
+    case MOVE_REVELATION_DANCE:
+    case MOVE_TERRAIN_PULSE:
+        return true;
+    default:
+        return false;
+    }
+}
+
 void RewriteNormalMoveType(u32 pokemonSlot, u32 newType)
 {
     if (pokemonSlot == (u32)BattleEventVar_GetValue(VAR_MON_ID) &&
+        !KeepsOwnType((u32)BattleEventVar_GetValue(VAR_MOVE_ID)) &&
         BattleEventVar_GetValue(VAR_MOVE_TYPE) == TYPE_NORMAL) {
         BattleEventVar_RewriteValue(VAR_MOVE_TYPE, newType);
     }
@@ -3014,7 +3036,9 @@ extern "C" void HandlerMerciless(BattleEventItem* item, ServerFlow* serverFlow, 
 
     BattleMon* defendingMon = GetAbilityBattleMon(serverFlow, (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON));
     if (defendingMon && BattleMon_GetStatus(defendingMon) == CONDITION_POISON) {
-        BattleEventVar_RewriteValue(VAR_CRIT_STAGE, 4);
+        // Always a critical hit (Showdown). Stage 4 is only 1/2 with this
+        // generation's table: BTL_CALC_CheckCritical reads this sentinel.
+        BattleEventVar_RewriteValue(VAR_CRIT_STAGE, W2U_CRIT_STAGE_ALWAYS);
     }
 }
 
@@ -3957,69 +3981,6 @@ BattleEventHandlerTableEntry SymbiosisHandlers[] = {
 };
 
 
-extern "C" int THUMB_BRANCH_BattleHandler_ConsumeItem(
-    ServerFlow* serverFlow,
-    HandlerParam_ConsumeItem* params)
-{
-    u32 pokemonSlot = (params->header.flags >> 8) & 0x1F;
-    BattleMon* battleMon = PokeCon_GetBattleMon(serverFlow->pokeCon, pokemonSlot);
-
-    if (!params->dontUse) {
-        ServerDisplay_UseHeldItem(serverFlow, battleMon);
-        BattleHandler_SetString(serverFlow, &params->exStr);
-    }
-
-    ServerControl_ChangeHeldItem(serverFlow, battleMon, ITEM_NULL, 1 + params->dontUse);
-
-    return 1;
-}
-
-extern "C" void THUMB_BRANCH_ServerControl_ChangeHeldItem(
-    ServerFlow* serverFlow,
-    BattleMon* battleMon,
-    ITEM itemID,
-    b32 consumeItem)
-{
-    u32 pokemonSlot = BattleMon_GetID(battleMon);
-    ITEM usedItem = BattleMon_GetHeldItem(battleMon);
-
-    u32 HEID = HEManager_PushState(&serverFlow->HEManager);
-    ServerEvent_ItemSetDecide(serverFlow, battleMon, itemID);
-    HEManager_PopState(&serverFlow->HEManager, HEID);
-
-    if (itemID == ITEM_NULL) {
-        ServerDisplay_SetConditionFlag(serverFlow, battleMon, CONDITIONFLAG_NULL);
-    }
-
-    ItemEvent_RemoveItem(battleMon);
-    ServerDisplay_AddCommon(serverFlow->serverCommandQueue, SCID_SetItem, pokemonSlot, itemID);
-    BattleMon_SetItem(battleMon, itemID);
-    if (itemID != ITEM_NULL) {
-        ItemEvent_AddItem(battleMon);
-    }
-
-    HEID = HEManager_PushState(&serverFlow->HEManager);
-    ServerEvent_ItemRewriteDone(serverFlow, battleMon);
-    HEManager_PopState(&serverFlow->HEManager, HEID);
-
-    if (consumeItem) {
-        if (consumeItem != 2 && PML_ItemIsBerry(usedItem)) {
-            W2U_MoveState_SetConsumedBerryFlag(pokemonSlot);
-        }
-
-        BattleMon_ConsumeItem(battleMon, usedItem);
-        ServerDisplay_AddCommon(serverFlow->serverCommandQueue, SCID_ConsumeItem, pokemonSlot, usedItem);
-        ServerDisplay_SetTurnFlag(serverFlow, battleMon, TURNFLAG_ITEMCONSUMED);
-
-        HEID = HEManager_PushState(&serverFlow->HEManager);
-        BattleEventVar_Push();
-        SetupNewEventMonAndItem(pokemonSlot, usedItem);
-        BattleEvent_CallHandlers(serverFlow, EVENT_CONSUME_ITEM);
-        BattleEventVar_Pop();
-        HEManager_PopState(&serverFlow->HEManager, HEID);
-    }
-}
-
 extern "C" void HandlerProtean(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
     (void)item;
@@ -4165,6 +4126,75 @@ BattleEventHandlerTableEntry AuraFamilyHandlers[] = {
     {EVENT_ABILITY_NULLIFIED, HandlerAuraFamilyRemove},
     {EVENT_NOTIFY_FAINTED, HandlerAuraFamilyRemoveFainted},
 };
+#endif
+
+#if !defined(W2U_BATTLE_CHILD)
+// Resident hooks: these were inside the module-only block above, so the White 2
+// dynamic core never installed them (child modules drop unreferenced hooks at
+// link time) and EVENT_CONSUME_ITEM never fired there: Cheek Pouch and
+// Symbiosis did nothing for a used-up item. Black 2's static build is unchanged.
+extern "C" int THUMB_BRANCH_BattleHandler_ConsumeItem(
+    ServerFlow* serverFlow,
+    HandlerParam_ConsumeItem* params)
+{
+    u32 pokemonSlot = (params->header.flags >> 8) & 0x1F;
+    BattleMon* battleMon = PokeCon_GetBattleMon(serverFlow->pokeCon, pokemonSlot);
+
+    if (!params->dontUse) {
+        ServerDisplay_UseHeldItem(serverFlow, battleMon);
+        BattleHandler_SetString(serverFlow, &params->exStr);
+    }
+
+    ServerControl_ChangeHeldItem(serverFlow, battleMon, ITEM_NULL, 1 + params->dontUse);
+
+    return 1;
+}
+
+extern "C" void THUMB_BRANCH_ServerControl_ChangeHeldItem(
+    ServerFlow* serverFlow,
+    BattleMon* battleMon,
+    ITEM itemID,
+    b32 consumeItem)
+{
+    u32 pokemonSlot = BattleMon_GetID(battleMon);
+    ITEM usedItem = BattleMon_GetHeldItem(battleMon);
+
+    u32 HEID = HEManager_PushState(&serverFlow->HEManager);
+    ServerEvent_ItemSetDecide(serverFlow, battleMon, itemID);
+    HEManager_PopState(&serverFlow->HEManager, HEID);
+
+    if (itemID == ITEM_NULL) {
+        ServerDisplay_SetConditionFlag(serverFlow, battleMon, CONDITIONFLAG_NULL);
+    }
+
+    ItemEvent_RemoveItem(battleMon);
+    ServerDisplay_AddCommon(serverFlow->serverCommandQueue, SCID_SetItem, pokemonSlot, itemID);
+    BattleMon_SetItem(battleMon, itemID);
+    if (itemID != ITEM_NULL) {
+        ItemEvent_AddItem(battleMon);
+    }
+
+    HEID = HEManager_PushState(&serverFlow->HEManager);
+    ServerEvent_ItemRewriteDone(serverFlow, battleMon);
+    HEManager_PopState(&serverFlow->HEManager, HEID);
+
+    if (consumeItem) {
+        if (consumeItem != 2 && PML_ItemIsBerry(usedItem)) {
+            W2U_MoveState_SetConsumedBerryFlag(pokemonSlot);
+        }
+
+        BattleMon_ConsumeItem(battleMon, usedItem);
+        ServerDisplay_AddCommon(serverFlow->serverCommandQueue, SCID_ConsumeItem, pokemonSlot, usedItem);
+        ServerDisplay_SetTurnFlag(serverFlow, battleMon, TURNFLAG_ITEMCONSUMED);
+
+        HEID = HEManager_PushState(&serverFlow->HEManager);
+        BattleEventVar_Push();
+        SetupNewEventMonAndItem(pokemonSlot, usedItem);
+        BattleEvent_CallHandlers(serverFlow, EVENT_CONSUME_ITEM);
+        BattleEventVar_Pop();
+        HEManager_PopState(&serverFlow->HEManager, HEID);
+    }
+}
 #endif
 
 
@@ -4314,6 +4344,7 @@ W2UAbilityEventAddTable sAbilityEventAddTable[] = {
 W2UVanillaAbilityAliasEventAddTable sVanillaAbilityAliasEventAddTable[] = {
     W2U_VANILLA_ABILITY_ALIAS(ABIL_FULL_METAL_BODY, 29), // Clear Body
     W2U_VANILLA_ABILITY_ALIAS(ABIL_SHADOW_SHIELD, 136), // Multiscale
+    W2U_VANILLA_ABILITY_ALIAS(ABIL_CHILLING_NEIGH, 153), // Moxie (Attack +1 after a KO; phase 6)
 };
 
 #undef W2U_VANILLA_ABILITY_ALIAS

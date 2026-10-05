@@ -4381,6 +4381,11 @@ extern "C" b32 THUMB_BRANCH_BTL_CALC_CheckCritical(u8 rank)
     if (W2U_MoveState_IsLaserFocused(attackingSlot)) {
         return 1;
     }
+    // Merciless: the native caller clamps the stage it passes to 4, so a
+    // guaranteed hit is read from the event variable it came from.
+    if (BattleEventVar_GetValue(VAR_CRIT_STAGE) >= W2U_CRIT_STAGE_ALWAYS) {
+        return 1;
+    }
 
     static const u8 criticalRankTable[] = { 16, 8, 4, 3, 2 };
     if (rank >= W2U_ARRAY_COUNT(criticalRankTable)) {

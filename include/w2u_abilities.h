@@ -225,6 +225,10 @@ enum BattleEventVar : u32 {
     VAR_MIRROR_ARMOR_FLAG = VAR_MAGIC_COAT_FLAG,
 };
 
+// VAR_CRIT_STAGE value for a guaranteed critical hit (Merciless): BTL_CALC_CheckCritical (w2u_moves.cpp) checks it.
+#define W2U_CRIT_STAGE_ALWAYS 0x40
+
+
 enum MoveFailCause : u32 {
     MOVE_FAIL_NULL = 0x0,
     MOVE_FAIL_MOVELOCK = 0x11,

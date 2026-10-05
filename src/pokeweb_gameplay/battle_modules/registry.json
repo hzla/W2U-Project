@@ -491,6 +491,7 @@
         ["ability", "ABIL_ORICHALCUM_PULSE", "MB_PulseHandlers"],
         ["ability", "ABIL_HADRON_ENGINE", "MB_PulseHandlers"],
         ["ability", "ABIL_MIMICRY", "MB_MimicryHandlers"],
+        ["ability", "ABIL_GRASS_PELT", "MB_GrassPeltHandlers"],
         ["ability", "ABIL_SAND_SPIT", "MB_SandSpitHandlers"],
         ["ability", "ABIL_SEED_SOWER", "MB_SandSpitHandlers"]
       ]

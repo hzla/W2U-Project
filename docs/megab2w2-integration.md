@@ -232,8 +232,8 @@ run takes 9.5 min (17.7 before these speed-ups).
 
 Seven abilities in one module, `abilities/mb_terrain` (registry id 27, White 2 only): Protosynthesis, Quark Drive
 (`Protosynthesis.cpp`), Orichalcum Pulse, Hadron Engine, Mimicry (`TerrainAbilities.cpp`), Sand Spit, Seed Sower
-(`SandSpit.cpp`). W2U already has the Surges, Grass Pelt and Surge Surfer, so MegaB2W2's versions of those were not
-ported. Primary ability count 114 -> 121.
+(`SandSpit.cpp`). W2U already has the Surges and Surge Surfer, so MegaB2W2's versions of those were not ported.
+(Grass Pelt was thought to be W2U's too; it had no effect there and was added in phase 6.) Primary ability count 114 -> 121.
 
 - Terrain is W2U's: `megab2w2/terrain.h` maps MegaB2W2's `terrain::` calls onto `W2U_MoveState_GetTerrain` and
   `W2U_MoveState_SetTerrainFromAbility` (the Surges' path: popup, the terrain move's animation, the start message,
@@ -305,6 +305,39 @@ Gengar. Waves A and B were re-run on the same build (the resident hooks run in e
 Runner changes: the transcript also decodes set messages loaded from 0x21D5523 (item-and-stat messages); the
 party-screen check no longer depends on the lead's HP bar colour; `last_turn_refused: true` for a last move the
 menu is expected to refuse; doubles targets: f1 is the foe's second Pokemon, f2 its first.
+
+## Phase 6: abilities both projects implement (2026-10-05)
+
+MegaB2W2's Showdown-checked scenarios for the 58 abilities W2U already implemented (51 through its registry, 7 in its
+resident code), run against W2U's own implementations: `w2u-local/harness/convert_scenarios.py` converts them
+(keys to IDs, MegaB2W2 debug-log checks dropped, doubles targets mapped; spec `wave_shared.yml`, hand-adjusted where
+only the wording differs), plus W2U-specific cases (`wave_shared_extra.yml`).
+
+Fixed in W2U:
+
+| Issue | Fix |
+|---|---|
+| Cheek Pouch and Symbiosis never triggered on White 2 when an item was used up (a Berry eaten, a Gem used) | `BattleHandler_ConsumeItem` / `ServerControl_ChangeHeldItem` replacements (they raise `EVENT_CONSUME_ITEM`) were inside the `!W2U_DYNAMIC_BATTLE_CORE` handler block: the dynamic core skipped them and the child modules drop unreferenced hooks, so they were never installed. Moved out of the block (`!W2U_BATTLE_CHILD`); Black 2's static build is unchanged. No other hook is in such a block (scanned) |
+| Merciless was a 50% crit (stage 4 in this generation's table) | `W2U_CRIT_STAGE_ALWAYS`: Merciless sets it, W2U's `BTL_CALC_CheckCritical` returns a crit for it (the native caller clamps the stage it passes, not the variable) |
+| -ate abilities converted Weather Ball (no weather), Judgment, Natural Gift, Techno Blast, Hidden Power, Struggle, Multi-Attack, Revelation Dance, Terrain Pulse | `RewriteNormalMoveType` leaves them (Showdown's `noModifyType`); Weather Ball can't touch Gengar again |
+| Grass Pelt had no effect (only in the Mold Breaker list) | Ported (Defense x1.5 on Grassy Terrain), module `abilities/mb_terrain`; measured x0.679 |
+| Damp (above, field checks) | Mind Blown / Misty Explosion stopped too |
+| Chilling Neigh had no effect (the one MegaB2W2-only ability left after waves A-C) | Aliased to Moxie (Attack +1 after a KO), as MegaB2W2 did |
+
+Same behaviour, different wording (W2U's texts kept): Aroma / Sweet / Flower Veil ("X was protected by ... Veil!"),
+Dark Aura, Receiver ("copied"), Symbiosis ("X's Symbiosis! Y obtained one Z"), Disguise (only "disguise was busted",
+no "served it as a decoy"), Comatose (no entry message; Thunder Wave "But it failed!" rather than "doesn't affect").
+
+For hzla to decide (left as W2U has them):
+- Stakeout does not count the battle's first Pokemon on turn 1 (W2U tracks them on purpose); Showdown doubles damage
+  against a lead on turn 1. Against a Pokemon sent in after a faint both agree (x2, tested).
+- Disguise works only for Mimikyu (as Showdown); MegaB2W2 let any holder use it.
+- W2U keeps this generation's critical-hit rates (1/16 base, x2 damage).
+
+Checked: 61 converted scenarios + 3 extras (Cheek Pouch, Symbiosis mid-battle, Chilling Neigh) pass, and waves A, B,
+C and the field checks were re-run on the same build (all pass); not checked: Disguise's 1/8 chip
+damage (no HP read), Aroma Veil protecting an ally (the foe AI picked its own partner as the Taunt target), Cheek
+Pouch's own MegaB2W2 scenario and Protean on switching (only debug-log checks).
 
 ### Abilities above 255
 
