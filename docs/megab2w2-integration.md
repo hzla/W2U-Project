@@ -446,8 +446,11 @@ as the section above (floor and sky clones, haze, glow, floor palette animation,
   battle members rebuilt.
 - Haze / glow per terrain (tables indexed by terrain): Electric 0x4BBF at 6/16, glow 0x116C; Psychic 0x7A9D at 7/16,
   glow 0x34CC.
-- Drift: every terrain slides its floor and sky sideways together; Electric six times faster (about 18 px a second;
-  the user asked for horizontal scrolling there too, replacing the template's vertical scroll).
+- Drift: every terrain slides its floor and sky sideways together; Electric twenty times faster (60 px a second,
+  measured; the user asked for horizontal scrolling there too, replacing the template's vertical scroll, then for at
+  least 3x the first 18 px/s).
+- Electric's floor surges (a jolt towards pale yellow every 50-140 frames) are off: they read as glitch flashes. The
+  sparkles stay.
 - Fix (user report): Electric's sky flashed a different colour every few seconds. The floor palette animation's
   level (Electric's surges up to 8/16, the swells up to 3/16) was also applied to the sky entries, towards the sky's
   fade blend colour; the sky now follows only the terrain fades.
