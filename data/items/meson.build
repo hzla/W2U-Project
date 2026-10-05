@@ -649,6 +649,7 @@ foreach item_index : range(items.length())
     input: meson.current_source_dir() / items[item_index],
     output: 'item_' + item_index.to_string(),
     command: [mkdata_py, 'generic', '@INPUT@', meson.project_build_root() / '@OUTPUT@', 'format', 'items'],
+    depend_files: mkdata_deps,
   )
 endforeach
 

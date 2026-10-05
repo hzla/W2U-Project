@@ -3889,6 +3889,7 @@ foreach personal_file : personal_sources
     input: meson.current_source_dir() / personal_file,
     output: 'personal_' + personal_output,
     command: [mkdata_py, 'generic', '@INPUT@', meson.project_build_root() / '@OUTPUT@', 'format', 'personal'],
+    depend_files: mkdata_deps,
   )
   personal_index += 1
 endforeach
@@ -3910,6 +3911,7 @@ foreach learnset : learnset_sources
     input: meson.current_source_dir() / learnset,
     output: 'learnset_' + learnset_output,
     command: [mkdata_py, 'generic', '@INPUT@', meson.project_build_root() / '@OUTPUT@', 'format', 'learnsets'],
+    depend_files: mkdata_deps,
   )
   learnset_index += 1
 endforeach
@@ -3948,6 +3950,7 @@ foreach evolution : evolution_sources
     input: meson.current_source_dir() / evolution,
     output: 'evolution_' + evolution_output,
     command: [mkdata_py, 'generic', '@INPUT@', meson.project_build_root() / '@OUTPUT@', 'format', 'evolutions'],
+    depend_files: mkdata_deps,
   )
   evolution_index += 1
 endforeach

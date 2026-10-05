@@ -146,6 +146,7 @@ foreach encounter : encounters
     input: meson.current_source_dir() / encounter,
     output: encounter_name,
     command: [mkdata_py, 'encounter', '@INPUT@', meson.project_build_root() / '@OUTPUT@'],
+    depend_files: mkdata_deps,
   )
 endforeach
 
