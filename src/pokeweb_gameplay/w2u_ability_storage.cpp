@@ -2,8 +2,10 @@
 //
 // Battle code keeps abilities as u16; the stored copies are one byte: species data (personal +0x18 / +0x19 / +0x1A)
 // and each Pokemon's data (PF_Ability, box data +0x15). IDs 0-255 stay exactly as before. Above 255:
-//   species data   the ability byte holds the low 8 bits, EV Yield (personal +0x0A) bit 13 + slot holds bit 8
-//                  (EV Yield uses bits 0-12); written by tools/mkdata (format personal); IDs up to 511
+//   species data   the ability byte holds the low 8 bits; bits 14-15 of the matching wild item word (personal
+//                  +0x0C / +0x0E / +0x10; item IDs use bits 0-13) hold bits 8-9. Pokeweb's packing
+//                  (personalAbilityPacking.ts), so Pokeweb shows and edits these abilities; written by
+//                  tools/mkdata (format personal); IDs up to 1023
 //   Pokemon data   PF_Ability holds the low 8 bits, byte 0x42 (block B +0x1A; vanilla uses only bit 0 hidden
 //                  ability and bit 1 N's Pokemon) bits 6-7 hold bits 8-9; IDs up to 1023. Saves made before this
 //                  have bits 6-7 clear, which reads as the plain byte.
@@ -30,6 +32,7 @@ const u32 PF_ABILITY = 0x0A;
 const u32 PERSONAL_ABILITY1 = 0x1A;
 const u32 PERSONAL_ABILITY2 = 0x1B;
 const u32 PERSONAL_ABILITY_HIDDEN = 0x1C;
+const u32 WILD_ITEM_MASK = 0x3FFF;
 const u32 PKM_BLOCK_B = 1;
 const u32 PKM_ABILITY_HIGH = 0x1A;     // byte 0x42 of the Pokemon data
 const u32 PKM_ABILITY_HIGH_SHIFT = 6;  // bits 6-7
@@ -40,7 +43,7 @@ inline u32 U32(const u8* p, u32 o) { return *(const u32*)(p + o); }
 
 u32 PersonalAbility(const u8* p, u32 slot)
 {
-    return U8(p, 0x18 + slot) | (((U16(p, 0x0A) >> (13 + slot)) & 1u) << 8);
+    return U8(p, 0x18 + slot) | (((U16(p, 0x0C + 2 * slot) >> 14) & 3u) << 8);
 }
 
 u8* AbilityHigh(void* pkm)
@@ -72,9 +75,9 @@ extern "C" __attribute__((optimize("no-jump-tables"))) u32 THUMB_BRANCH_PML_Pers
     case 0x0A: case 0x0B: case 0x0C: case 0x0D: case 0x0E: case 0x0F:
         return (U16(p, 0x0A) >> (2 * (param - 0x0A))) & 3;               // EV yields, 2 bits each
     case 0x10: return (U16(p, 0x0A) >> 12) & 1;
-    case 0x11: return U16(p, 0x0C);                                      // wild items
-    case 0x12: return U16(p, 0x0E);
-    case 0x13: return U16(p, 0x10);
+    case 0x11: return U16(p, 0x0C) & WILD_ITEM_MASK;                     // wild items (bits 14-15: abilities)
+    case 0x12: return U16(p, 0x0E) & WILD_ITEM_MASK;
+    case 0x13: return U16(p, 0x10) & WILD_ITEM_MASK;
     case PERSONAL_ABILITY1: return PersonalAbility(p, 0);
     case PERSONAL_ABILITY2: return PersonalAbility(p, 1);
     case PERSONAL_ABILITY_HIDDEN: return PersonalAbility(p, 2);

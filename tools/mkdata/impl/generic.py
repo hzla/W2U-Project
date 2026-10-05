@@ -127,19 +127,20 @@ class GenericSerializer(Serializer):
                 for index, item in enumerate(IN_DATA_FLAT)
             ]
             if Arguments.ex_parameters["format"] == 'personal':
-                # Abilities above 255: the ability byte keeps the low 8 bits and EV Yield bit 13 + slot holds bit 8
-                # (EV Yield uses bits 0-12). Decoded by THUMB_BRANCH_PML_PersonalGetParam (w2u_ability_storage.cpp).
+                # Abilities above 255: the ability byte keeps the low 8 bits and bits 14-15 of the matching wild
+                # item word hold bits 8-9 (item IDs use bits 0-13): Pokeweb's packing (personalAbilityPacking.ts).
+                # Decoded by THUMB_BRANCH_PML_PersonalGetParam (w2u_ability_storage.cpp).
                 personal_fields = list(structure.keys())   # flat layout: one value per field up to the tutors
-                ev_yield = personal_fields.index('EV Yield')
+                items = ('Wild Item (50%)', 'Wild Item (5%)', 'Wild Item (1%)')
                 for slot, name in enumerate(('Primary Ability', 'Secondary Ability', 'Hidden Ability')):
-                    index = personal_fields.index(name)
+                    index, item = personal_fields.index(name), personal_fields.index(items[slot])
                     value = OUT_DATA_BUFFER[index]
-                    if value > 511:
-                        print(f'{Arguments.input}: {name} {value} is above 511, the personal data limit.')
+                    if value > 1023 or OUT_DATA_BUFFER[item] > 0x3FFF:
+                        print(f'{Arguments.input}: {name} {value} / {items[slot]} {OUT_DATA_BUFFER[item]} exceed the '
+                              'personal data limits (1023 / 0x3FFF).')
                         return 1
-                    if value > 255:
-                        OUT_DATA_BUFFER[index] = value & 0xFF
-                        OUT_DATA_BUFFER[ev_yield] |= 1 << (13 + slot)
+                    OUT_DATA_BUFFER[index] = value & 0xFF
+                    OUT_DATA_BUFFER[item] |= (value >> 8) << 14
             while len(format_string) != len(OUT_DATA_BUFFER):
                 format_string = format_string[:-1]
 

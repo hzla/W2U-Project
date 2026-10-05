@@ -828,6 +828,7 @@ foreach trainer : trainers
     input: meson.current_source_dir() / trainer,
     output: 'trdata_' + tr_name,
     command: [mkdata_py, 'trainer', '@INPUT@', meson.project_build_root() / '@OUTPUT@', 'output_type', 'trdata'],
+    depend_files: mkdata_deps,
   )
 
   trpoke_files += custom_target(
@@ -835,6 +836,7 @@ foreach trainer : trainers
     input: meson.current_source_dir() / trainer,
     output: 'trpoke_' + tr_name,
     command: [mkdata_py, 'trainer', '@INPUT@', meson.project_build_root() / '@OUTPUT@', 'output_type', 'trpoke'],
+    depend_files: mkdata_deps,
   )
 endforeach
 

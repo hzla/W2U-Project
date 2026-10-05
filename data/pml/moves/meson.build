@@ -931,6 +931,7 @@ foreach move : moves
     input: meson.current_source_dir() / move,
     output: move_name,
     command: [mkdata_py, 'generic', '@INPUT@', meson.project_build_root() / '@OUTPUT@', 'format', 'moves'],
+    depend_files: mkdata_deps,
   )
 endforeach
 
