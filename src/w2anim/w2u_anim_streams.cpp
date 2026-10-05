@@ -113,8 +113,22 @@ StreamsHeader g_header;
 SeqEntry* Seq(Stream& s) { return (SeqEntry*)s.meta; }
 FrameEntry* Frames(Stream& s) { return (FrameEntry*)(s.meta + s.seqCount * sizeof(SeqEntry)); }
 
+// The streams file stays open (each frame change used to look its path up again). Only the main update reads it,
+// never VBlank. A failed read reopens the file once and retries.
+FSFile g_file;
+bool g_fileOpen = false;
+
 bool Read(u32 offset, void* dst, u32 size) {
-    return w2u::ReadDataFromFileAt(STREAMS_PATH, offset, size, (u8*)dst);
+    for (int attempt = 0; attempt < 2; ++attempt) {
+        if (!g_fileOpen) {
+            g_fileOpen = w2u::OpenFile(&g_file, STREAMS_PATH);
+            if (!g_fileOpen) return false;
+        }
+        if (w2u::ReadOpenFileAt(&g_file, offset, size, (u8*)dst)) return true;
+        w2u::CloseFile(&g_file);
+        g_fileOpen = false;
+    }
+    return false;
 }
 
 bool HaveFile() {
