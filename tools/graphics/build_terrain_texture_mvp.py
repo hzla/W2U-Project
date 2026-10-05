@@ -3,7 +3,7 @@
 
 Each output is a one-block NSBTX containing an exact-layout clone of a vanilla
 battle background's TEX0 block. Only the selected primary floor texture and its
-bound palette are changed, and for Grassy / Misty Terrain also the backdrop
+bound palette are changed, and (every terrain since 2026-10-06) also the backdrop
 (the batt_sky* material of the outdoor backgrounds) and its palette. Keeping
 every offset and allocation size intact lets the runtime borrow the live field
 model's VRAM keys safely. The mapping include records each background's sky
@@ -30,7 +30,8 @@ TERRAINS = (
     ("psychic", "psychic-tileable.png"),
 )
 # Terrains that also replace the backdrop, and their sky images (tools/graphics/draw_terrain_floor_tiles.py)
-SKY_SOURCES = {"grassy": "grassy-sky.png", "misty": "misty-sky.png"}
+SKY_SOURCES = {"electric": "electric-sky.png", "grassy": "grassy-sky.png", "misty": "misty-sky.png",
+               "psychic": "psychic-sky.png"}
 FORMAT_NAMES = {
     1: "A3I5",
     2: "4-color",

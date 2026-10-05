@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Draw the Grassy and Misty Terrain floor tiles and skies (assets/move_backgrounds/terrains/*-tileable.png, *-sky.png).
+"""Draw the terrain floor tiles and skies (assets/move_backgrounds/terrains/*-tileable.png, *-sky.png).
 
 Sun / Moon style: soft, luminous, low contrast (Grassy: a pale glowing green ground with gentle light patches and a
-fine sheen of grass; Misty: a sea of soft pink-white cloud). Drawn here from seamless (wrapping) value noise, so the
+fine sheen of grass; Misty: a sea of soft pink-white cloud; Electric: a bright cream-yellow ground with long soft light
+streaks and faint current lines under a warm gold haze; Psychic: a light lilac-pink ground in wavy horizontal streaks
+under layered, wavy magenta cloud ridges - the runtime ripples both rows sideways, w2u_terrain_texture.cpp). Drawn here from seamless (wrapping) value noise, so the
 tiles repeat without seams across the floor; tools/graphics/build_terrain_texture_mvp.py then fits them to every
 battle background's floor texture (32-128 px, 16 / 256 colours). The skies replace the backdrop (the batt_sky*
 material of the outdoor backgrounds, 128x64): top of the image = top of the sky, bottom row = the horizon, which
-matches the floor's colour so the two meet without a seam; they wrap horizontally. Electric and Psychic keep their
-tiles and the native sky.
+matches the floor's colour so the two meet without a seam; they wrap horizontally.
 
 usage: python tools/graphics/draw_terrain_floor_tiles.py   (then build_terrain_texture_mvp.py)
 """
@@ -71,6 +72,83 @@ def misty(rng: np.random.Generator) -> np.ndarray:
     rim = np.clip(1 - np.abs(puff - 0.55) / 0.25, 0, 1)
     image += mix((0, 0, 0), (6, 8, 4), rim)
     return image
+
+
+def wrap_distance(d: np.ndarray, period: float) -> np.ndarray:
+    return np.abs(((d + period / 2) % period) - period / 2)
+
+
+def electric(rng: np.random.Generator) -> np.ndarray:
+    # a bright cream-yellow ground: long soft horizontal light streaks over broad warm glow patches, and a few faint
+    # wavy current lines (each a whole number of waves across the tile, so it still wraps)
+    broad = spectral_noise(rng, 150, 40)
+    streaks = spectral_noise(rng, 260, 5)
+    light = np.clip(broad * 0.55 + streaks * 0.45, 0, 1)
+    image = mix((244, 206, 96), (255, 247, 200), light)
+    yy, xx = np.mgrid[0:SIZE, 0:SIZE].astype(float)
+    lines = np.zeros((SIZE, SIZE))
+    for _ in range(7):
+        y0, k, amp, ph = rng.uniform(0, SIZE), int(rng.integers(1, 4)), rng.uniform(4, 12), rng.uniform(0, 2 * np.pi)
+        centre = y0 + amp * np.sin(2 * np.pi * k * xx / SIZE + ph)
+        d = wrap_distance(yy - centre, SIZE)
+        lines = np.maximum(lines, np.exp(-(d / 1.3) ** 2) * (0.55 + 0.45 * spectral_noise(rng, 90, 90)))
+    image += mix((0, 0, 0), (10, 14, 44), lines)
+    return image
+
+
+def psychic(rng: np.random.Generator) -> np.ndarray:
+    # a light lilac-pink ground in soft, wavy horizontal streaks (the runtime ripples the rows sideways too)
+    yy, xx = np.mgrid[0:SIZE, 0:SIZE].astype(float)
+    warp = 10 * np.sin(2 * np.pi * 2 * xx / SIZE) + 30 * (spectral_noise(rng, 160, 60) - 0.5)
+    bands = 0.5 + 0.5 * np.sin(2 * np.pi * 9 * (yy + warp) / SIZE)
+    soft = spectral_noise(rng, 120, 26)
+    light = np.clip(soft * 0.55 + bands ** 2 * 0.45, 0, 1)
+    image = mix((214, 132, 226), (250, 214, 252), light)
+    streaks = spectral_noise(rng, 220, 4)
+    image += mix((-8, -10, -6), (10, 10, 8), streaks)
+    return image
+
+
+def electric_sky(rng: np.random.Generator, horizon: tuple[int, int, int]) -> np.ndarray:
+    # a warm gold haze: deeper gold up high, pale cream at the horizon, soft horizontal glow bands (the lightning is a
+    # particle effect of its own, not part of this texture)
+    yy, xx = np.mgrid[0:SKY_H, 0:SKY_DW].astype(float)
+    v = window(yy / (SKY_H - 1))
+    image = vertical(np.clip(v, 0, 1), [(0.0, (232, 168, 58)), (0.45, (246, 202, 92)), (0.8, (253, 232, 150)),
+                                        (1.0, horizon)])
+    bands = spectral_noise(rng, 340, 8, (SKY_H, SKY_DW))
+    glow = np.clip((bands - 0.45) / 0.35, 0, 1) * np.clip(v + 0.2, 0, 1)
+    image += mix((0, 0, 0), (12, 20, 44), glow)
+    haze = spectral_noise(rng, 120, 40, (SKY_H, SKY_DW))
+    image += mix((-10, -12, -6), (6, 8, 10), haze)
+    return image
+
+
+def psychic_sky(rng: np.random.Generator, horizon: tuple[int, int, int]) -> np.ndarray:
+    # magenta above, lilac at the horizon, and four layered ridges of wavy cloud (lit tops, darker undersides), the
+    # nearer ones lower and paler, as in Sun / Moon
+    yy, xx = np.mgrid[0:SKY_H, 0:SKY_DW].astype(float)
+    v = window(yy / (SKY_H - 1))
+    image = vertical(np.clip(v, 0, 1), [(0.0, (160, 66, 184)), (0.4, (206, 104, 212)), (0.82, (236, 168, 236)),
+                                        (1.0, horizon)])
+    span = SKY_H * (1 - SKY_WINDOW)
+    for centre, amp, k, shade in ((0.18, 7.0, 3, 0.55), (0.42, 8.0, 4, 0.7), (0.64, 6.0, 5, 0.85), (0.84, 5.0, 6, 1.0)):
+        ridge = (SKY_H - span * (1 - centre)) + amp * np.sin(2 * np.pi * k * xx / SKY_DW + rng.uniform(0, 6.3)) \
+            + amp * 0.6 * np.sin(2 * np.pi * (2 * k + 1) * xx / SKY_DW + rng.uniform(0, 6.3)) \
+            + 22 * (spectral_noise(rng, 70, 50, (SKY_H, SKY_DW)) - 0.5)
+        mask = np.clip((yy - ridge) / 4.0, 0, 1)               # inside the cloud bank (a soft edge at its crest)
+        depth = np.clip((yy - ridge) / 40.0, 0, 1)             # lit near the crest, deeper colour further down
+        top = np.array((250, 182, 246)) * (1 - shade * 0.15)
+        body = np.array((214, 96, 214)) * shade + np.array((240, 168, 240)) * (1 - shade)
+        cloud = mix(top, body, depth)
+        image = image * (1 - mask[..., None] * 0.85) + cloud * mask[..., None] * 0.85
+        crest = np.exp(-((yy - ridge) / 3.0) ** 2) * (yy > SKY_H * SKY_WINDOW)
+        image += mix((0, 0, 0), (16, 20, 14), crest)
+    ripple = spectral_noise(rng, 200, 3, (SKY_H, SKY_DW))       # fine horizontal shimmer in the clouds
+    image += mix((-5, -5, -5), (5, 5, 5), ripple)
+    # the horizon row melts into the floor colour
+    melt = np.clip((v - 0.9) / 0.1, 0, 1)[..., None]
+    return image * (1 - melt) + np.array(horizon, float)[None, None, :] * melt
 
 
 def vertical(t: np.ndarray, stops: list[tuple[float, tuple[int, int, int]]]) -> np.ndarray:
@@ -155,6 +233,7 @@ def misty_sky(rng: np.random.Generator) -> np.ndarray:
 
 def main() -> int:
     rng = np.random.default_rng(20261005)
+    floors = {}
     for name, draw in (("grassy", grassy), ("misty", misty)):
         image = np.clip(draw(rng), 0, 255).astype(np.uint8)
         Image.fromarray(image, "RGB").save(OUT / f"{name}-tileable.png")
@@ -164,6 +243,16 @@ def main() -> int:
         squeezed = Image.fromarray(image, "RGB").resize((SKY_W, SKY_H), Image.Resampling.LANCZOS)
         squeezed.save(OUT / f"{name}-sky.png")
         print(f"{name}-sky.png {SKY_W}x{SKY_H}")
+    # Electric / Psychic (their own seed: Grassy / Misty above stay byte-identical); each sky's horizon is its floor's
+    # mean colour
+    rng = np.random.default_rng(20261006)
+    for name, draw, draw_sky in (("electric", electric, electric_sky), ("psychic", psychic, psychic_sky)):
+        floor = np.clip(draw(rng), 0, 255).astype(np.uint8)
+        Image.fromarray(floor, "RGB").save(OUT / f"{name}-tileable.png")
+        horizon = tuple(int(c) for c in floor.reshape(-1, 3).mean(axis=0))
+        sky = np.clip(draw_sky(rng, horizon), 0, 255).astype(np.uint8)
+        Image.fromarray(sky, "RGB").resize((SKY_W, SKY_H), Image.Resampling.LANCZOS).save(OUT / f"{name}-sky.png")
+        print(f"{name}-tileable.png {SIZE}x{SIZE}, {name}-sky.png {SKY_W}x{SKY_H} (horizon {horizon})")
     return 0
 
 
