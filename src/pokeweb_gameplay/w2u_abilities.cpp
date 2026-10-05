@@ -1334,6 +1334,8 @@ u32 GetNormalMoveConversionType(ABILITY ability)
         return TYPE_ICE;
     case ABIL_GALVANIZE:
         return TYPE_ELECTRIC;
+    case ABIL_DRAGONIZE:
+        return TYPE_DRAGON;
     default:
         return TYPE_NULL;
     }
@@ -4282,6 +4284,7 @@ W2UAbilityEventAddTable sAbilityEventAddTable[] = {
     W2U_ABILITY_EVENT(ABIL_LIQUID_VOICE, LiquidVoiceHandlers),
     W2U_ABILITY_EVENT(ABIL_TRIAGE, TriageHandlers),
     W2U_ABILITY_EVENT(ABIL_GALVANIZE, NormalMoveConversionHandlers),
+    W2U_ABILITY_EVENT(ABIL_DRAGONIZE, NormalMoveConversionHandlers),
     W2U_ABILITY_EVENT(ABIL_SURGE_SURFER, SurgeSurferHandlers),
     W2U_ABILITY_EVENT(ABIL_ELECTRIC_SURGE, TerrainSurgeHandlers),
     W2U_ABILITY_EVENT(ABIL_PSYCHIC_SURGE, TerrainSurgeHandlers),

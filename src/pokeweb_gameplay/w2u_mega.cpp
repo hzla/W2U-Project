@@ -10,6 +10,9 @@
 #include "personal_data.h"
 #include "w2u_platform.h"
 #include "w2u_strong_weather.h"
+#if !defined(W2U_TARGET_B2)
+#include "megab2w2/mb_resident.h"
+#endif
 #include "w2u_native_item_protection.h"
 
 #define W2U_ENABLE_MEGA_EVOLUTION 1
@@ -1176,6 +1179,7 @@ extern "C" void W2U_BattleState_OnBattleExit()
     W2U_MoveState_ResetBattleState();
 #if !defined(W2U_TARGET_B2)
     W2U_StrongWeather_Reset();
+    W2U_MB_ResetBattleState();
 #endif
 }
 

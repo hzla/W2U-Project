@@ -50,6 +50,7 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PIXILATE), (u16)W2U_ARRAY_COUNT(NormalMoveConversionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, NormalMoveConversionHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_AERILATE), (u16)W2U_ARRAY_COUNT(NormalMoveConversionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, NormalMoveConversionHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GALVANIZE), (u16)W2U_ARRAY_COUNT(NormalMoveConversionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, NormalMoveConversionHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_DRAGONIZE), (u16)W2U_ARRAY_COUNT(NormalMoveConversionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, NormalMoveConversionHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_LIQUID_VOICE), (u16)W2U_ARRAY_COUNT(LiquidVoiceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, LiquidVoiceHandlers},
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
@@ -281,6 +282,27 @@ static const W2UBattleModuleApi sBattleModuleApi = {
     (u16)W2U_ARRAY_COUNT(sBattleModuleEntries),
     sBattleModuleEntries,
 };
+#elif W2U_BATTLE_MODULE_ID == 28
+static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GORILLA_TACTICS), (u16)W2U_ARRAY_COUNT(MB_GorillaTacticsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GorillaTacticsHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROPELLER_TAIL), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_STALWART), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_UNSEEN_FIST), (u16)W2U_ARRAY_COUNT(MB_UnseenFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_UnseenFistHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PIERCING_DRILL), (u16)W2U_ARRAY_COUNT(MB_UnseenFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_UnseenFistHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUICK_DRAW), (u16)W2U_ARRAY_COUNT(MB_QuickDrawHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_QuickDrawHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MYCELIUM_MIGHT), (u16)W2U_ARRAY_COUNT(MB_MyceliumMightHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MyceliumMightHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_POISON_PUPPETEER), (u16)W2U_ARRAY_COUNT(MB_PoisonPuppeteerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PoisonPuppeteerHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MEGA_SOL), (u16)W2U_ARRAY_COUNT(MB_MegaSolHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MegaSolHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_RIPEN), (u16)W2U_ARRAY_COUNT(MB_RipenHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RipenHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_OPPORTUNIST), (u16)W2U_ARRAY_COUNT(MB_OpportunistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_OpportunistHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_CUD_CHEW), (u16)W2U_ARRAY_COUNT(MB_CudChewHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CudChewHandlers},
+};
+static const W2UBattleModuleApi sBattleModuleApi = {
+    W2U_BATTLE_MODULE_MAGIC,
+    W2U_BATTLE_MODULE_ABI_VERSION,
+    (u16)W2U_ARRAY_COUNT(sBattleModuleEntries),
+    sBattleModuleEntries,
+};
 #else
 #error Unsupported abilities battle module ID
 #endif
@@ -343,6 +365,7 @@ static const W2UBattleHandlerExport sBattleModule_abilities_typeEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PIXILATE), (u16)W2U_ARRAY_COUNT(NormalMoveConversionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, NormalMoveConversionHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_AERILATE), (u16)W2U_ARRAY_COUNT(NormalMoveConversionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, NormalMoveConversionHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GALVANIZE), (u16)W2U_ARRAY_COUNT(NormalMoveConversionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, NormalMoveConversionHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_DRAGONIZE), (u16)W2U_ARRAY_COUNT(NormalMoveConversionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, NormalMoveConversionHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_LIQUID_VOICE), (u16)W2U_ARRAY_COUNT(LiquidVoiceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, LiquidVoiceHandlers},
 };
 static const W2UBattleModuleApi sBattleModule_abilities_typeApi = {
@@ -627,6 +650,32 @@ static const W2UBattleModuleApi sBattleModule_abilities_mb_terrainApi = {
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_TERRAIN()
 {
     return &sBattleModule_abilities_mb_terrainApi;
+}
+#endif
+#if !defined(W2U_TARGET_B2)
+static const W2UBattleHandlerExport sBattleModule_abilities_mb_hookedEntries[] = {
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GORILLA_TACTICS), (u16)W2U_ARRAY_COUNT(MB_GorillaTacticsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GorillaTacticsHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROPELLER_TAIL), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_STALWART), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_UNSEEN_FIST), (u16)W2U_ARRAY_COUNT(MB_UnseenFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_UnseenFistHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PIERCING_DRILL), (u16)W2U_ARRAY_COUNT(MB_UnseenFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_UnseenFistHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUICK_DRAW), (u16)W2U_ARRAY_COUNT(MB_QuickDrawHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_QuickDrawHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MYCELIUM_MIGHT), (u16)W2U_ARRAY_COUNT(MB_MyceliumMightHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MyceliumMightHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_POISON_PUPPETEER), (u16)W2U_ARRAY_COUNT(MB_PoisonPuppeteerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PoisonPuppeteerHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MEGA_SOL), (u16)W2U_ARRAY_COUNT(MB_MegaSolHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MegaSolHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_RIPEN), (u16)W2U_ARRAY_COUNT(MB_RipenHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RipenHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_OPPORTUNIST), (u16)W2U_ARRAY_COUNT(MB_OpportunistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_OpportunistHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_CUD_CHEW), (u16)W2U_ARRAY_COUNT(MB_CudChewHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CudChewHandlers},
+};
+static const W2UBattleModuleApi sBattleModule_abilities_mb_hookedApi = {
+    W2U_BATTLE_MODULE_MAGIC,
+    W2U_BATTLE_MODULE_ABI_VERSION,
+    (u16)W2U_ARRAY_COUNT(sBattleModule_abilities_mb_hookedEntries),
+    sBattleModule_abilities_mb_hookedEntries,
+};
+extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_HOOKED()
+{
+    return &sBattleModule_abilities_mb_hookedApi;
 }
 #endif
 #endif

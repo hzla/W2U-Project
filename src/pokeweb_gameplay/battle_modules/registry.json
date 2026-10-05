@@ -57,6 +57,7 @@
         ["ability", "ABIL_PIXILATE", "NormalMoveConversionHandlers"],
         ["ability", "ABIL_AERILATE", "NormalMoveConversionHandlers"],
         ["ability", "ABIL_GALVANIZE", "NormalMoveConversionHandlers"],
+        ["ability", "ABIL_DRAGONIZE", "NormalMoveConversionHandlers"],
         ["ability", "ABIL_LIQUID_VOICE", "LiquidVoiceHandlers"]
       ]
     },
@@ -491,6 +492,27 @@
         ["ability", "ABIL_MIMICRY", "MB_MimicryHandlers"],
         ["ability", "ABIL_SAND_SPIT", "MB_SandSpitHandlers"],
         ["ability", "ABIL_SEED_SOWER", "MB_SandSpitHandlers"]
+      ]
+    },
+    {
+      "id": 28,
+      "name": "abilities/mb_hooked",
+      "source": "abilities",
+      "white2_only": true,
+      "extra_sources": ["megab2w2/abilities/GorillaTactics.cpp", "megab2w2/abilities/PropellerTail.cpp", "megab2w2/abilities/UnseenFist.cpp", "megab2w2/abilities/QuickDraw.cpp", "megab2w2/abilities/MoveAbilities.cpp", "megab2w2/abilities/EffectAbilities.cpp"],
+      "entries": [
+        ["ability", "ABIL_GORILLA_TACTICS", "MB_GorillaTacticsHandlers"],
+        ["ability", "ABIL_PROPELLER_TAIL", "MB_PropellerTailHandlers"],
+        ["ability", "ABIL_STALWART", "MB_PropellerTailHandlers"],
+        ["ability", "ABIL_UNSEEN_FIST", "MB_UnseenFistHandlers"],
+        ["ability", "ABIL_PIERCING_DRILL", "MB_UnseenFistHandlers"],
+        ["ability", "ABIL_QUICK_DRAW", "MB_QuickDrawHandlers"],
+        ["ability", "ABIL_MYCELIUM_MIGHT", "MB_MyceliumMightHandlers"],
+        ["ability", "ABIL_POISON_PUPPETEER", "MB_PoisonPuppeteerHandlers"],
+        ["ability", "ABIL_MEGA_SOL", "MB_MegaSolHandlers"],
+        ["ability", "ABIL_RIPEN", "MB_RipenHandlers"],
+        ["ability", "ABIL_OPPORTUNIST", "MB_OpportunistHandlers"],
+        ["ability", "ABIL_CUD_CHEW", "MB_CudChewHandlers"]
       ]
     }
   ]

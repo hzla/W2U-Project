@@ -8455,3 +8455,21 @@ text = [
   "The foe's [VAR PKNICK(0)] used the Electric Terrain\\n",
   "to energize its futuristic engine!$",
 ]
+
+[msg.section_0.entries.1442]
+text = [
+  "[VAR PKNICK(0)] can act faster than\\n",
+  "normal, thanks to its Quick Draw!$",
+]
+
+[msg.section_0.entries.1443]
+text = [
+  "The wild [VAR PKNICK(0)] can act faster than\\n",
+  "normal, thanks to its Quick Draw!$",
+]
+
+[msg.section_0.entries.1444]
+text = [
+  "The foe's [VAR PKNICK(0)] can act faster than\\n",
+  "normal, thanks to its Quick Draw!$",
+]

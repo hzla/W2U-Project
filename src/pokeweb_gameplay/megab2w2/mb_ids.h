@@ -208,6 +208,7 @@ namespace moves { inline bool HasFlag(u16 move, MoveFlagExt flag) { return flag 
 #define BTLMSG_SET_ORICHALCUM_BASK 1433   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
 #define BTLMSG_SET_HADRON_START 1436   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
 #define BTLMSG_SET_HADRON_USE 1439   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
+#define BTLMSG_SET_QUICK_DRAW 1442   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
 #define BTLMSG_STD_DISGUISE_DECOY 213   // W2U text bank 19
 #define BTLMSG_STD_PERISH_BODY 214   // W2U text bank 19
 #define BTL_STRTYPE_STD 1
