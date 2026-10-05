@@ -22,4 +22,4 @@ Target = "TARGET_FIELD_SIDE_ENEMY"
 "Status Change Stages" = [0, 0, 0]
 "Status Change Chances" = [0, 0, 0]
 Padding = 21331
-Flags = "FLAG_REFLECTED_BY_MAGIC_COAT | 16384"
+Flags = "FLAG_REFLECTED_BY_MAGIC_COAT"
