@@ -44,6 +44,7 @@ extern BattleEventHandlerTableEntry MB_ToxicChainHandlers[1];
 extern BattleEventHandlerTableEntry MB_VeilHandlers[7];
 extern BattleEventHandlerTableEntry MB_WellBakedBodyHandlers[1];
 extern BattleEventHandlerTableEntry MB_WindRiderHandlers[5];
+extern BattleEventHandlerTableEntry MB_DampHandlers[5];
 // wave C (abilities/mb_hooked)
 extern BattleEventHandlerTableEntry MB_GorillaTacticsHandlers[4];
 extern BattleEventHandlerTableEntry MB_PropellerTailHandlers[1];

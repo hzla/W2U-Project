@@ -422,7 +422,7 @@
       "name": "abilities/mb_defense",
       "source": "abilities",
       "white2_only": true,
-      "extra_sources": ["megab2w2/abilities/BeastBoost.cpp", "megab2w2/abilities/EarthEater.cpp", "megab2w2/abilities/Fluffy.cpp", "megab2w2/abilities/GoodAsGold.cpp", "megab2w2/abilities/GuardDog.cpp", "megab2w2/abilities/MirrorArmor.cpp", "megab2w2/abilities/PurifyingSalt.cpp", "megab2w2/abilities/QueenlyMajesty.cpp", "megab2w2/abilities/Shields.cpp", "megab2w2/abilities/Veil.cpp", "megab2w2/abilities/WellBakedBody.cpp", "megab2w2/abilities/WindRider.cpp"],
+      "extra_sources": ["megab2w2/abilities/BeastBoost.cpp", "megab2w2/abilities/EarthEater.cpp", "megab2w2/abilities/Fluffy.cpp", "megab2w2/abilities/GoodAsGold.cpp", "megab2w2/abilities/GuardDog.cpp", "megab2w2/abilities/MirrorArmor.cpp", "megab2w2/abilities/PurifyingSalt.cpp", "megab2w2/abilities/QueenlyMajesty.cpp", "megab2w2/abilities/Shields.cpp", "megab2w2/abilities/Veil.cpp", "megab2w2/abilities/WellBakedBody.cpp", "megab2w2/abilities/WindRider.cpp", "megab2w2/abilities/Damp.cpp"],
       "entries": [
         ["ability", "ABIL_EELEVATE", "MB_EelevateHandlers"],
         ["ability", "ABIL_EARTH_EATER", "MB_EarthEaterHandlers"],
@@ -431,6 +431,7 @@
         ["ability", "ABIL_GOOD_AS_GOLD", "MB_GoodAsGoldHandlers"],
         ["ability", "ABIL_GUARD_DOG", "MB_GuardDogHandlers"],
         ["ability", "ABIL_INTIMIDATE", "MB_IntimidateTrackedHandlers"],
+        ["ability", "ABIL_DAMP", "MB_DampHandlers"],
         ["ability", "ABIL_MIRROR_ARMOR", "MB_MirrorArmorHandlers"],
         ["ability", "ABIL_PURIFYING_SALT", "MB_PurifyingSaltHandlers"],
         ["ability", "ABIL_ARMOR_TAIL", "MB_QueenlyMajestyHandlers"],
