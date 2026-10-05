@@ -153,6 +153,12 @@ Battle with heavy rain + Electric Terrain: both command screens show both indica
 | Move flags synced with Showdown (wind, slicing, bite, pulse, bullet, dance, powder): 53 moves gain flags, 41 lose wrong ones | `FLAG_POWDER` is bit 14, which vanilla data uses for "not in Sky Battles": 39 moves (Earthquake, Surf, Body Slam, Seismic Toss, Substitute, Spikes ...) counted as powder moves, so Overcoat and Safety Goggles blocked them. Old moves lacked the newer flags (Gust / Hurricane not wind, Slash / Leaf Blade not slicing, Fire / Ice / Thunder Fang not biting, Aura Sphere not pulse, Shadow Ball / Sludge Bomb not ball moves), so W2U's Strong Jaw / Mega Launcher / Bulletproof and the ported Sharpness / Wind Rider / Wind Power missed them. Bullet Punch was a ball move and Bug Bite a biting move (neither is in Showdown) |
 | `IsW2UIgnorableAbility` lists the breakable Gen 8 / 9 abilities (Showdown `breakable`) and Aura Guard | Mold Breaker / Teravolt / Turboblaze could not get past any ported ability (Good as Gold blocked a Mold Breaker Thunder Wave) |
 
+## Open W2U issues (not fixed on this branch)
+
+| Issue | Found | Details |
+|---|---|---|
+| Raichu forms 1 / 2 (Mega Raichu X / Y) and Slowbro form 1 (Mega Slowbro) have no battle set | 2026-10-05, Phase 4 | The Gen 8 / 9 import (`assets/pokeweb_pwan/gen8_gen9_essentials_import_report.json`, `relocatedExistingForms`) moved these forms to sprite forms 373 / 374 / 393, i.e. pokegra blocks 1097 / 1098 / 1117, and moved their PWAN assets to the same indices, but the battle members were never staged there: the built a/0/0/4 has no files 21940-21959, 21960-21979, 22340-22359. Their old sets are still at blocks 1038 / 1039 / 737 (the "staticAsset" of `mega_preview_low_ids_report.json`). The game therefore loads missing files for these forms, with PWAN as with w2anim, and the w2anim build skips their streams (`build_w2anim_streams.py` lists them). Fix: stage the three sets at the new blocks (copy or `restage_pwan_carrier_sets.py`), then the converter picks them up |
+
 ## Fix: Gen 1 sprites (Mega preview leftovers)
 
 Reported by hzla: mostly Gen 1 sprites are broken. Cause: `tools/pwan/apply_mega_preview_low_ids.py`, a temporary
@@ -215,6 +221,55 @@ Mega flow in `w2u_mega.cpp`; W2U's Mega animation is kept as it is, apart from i
   Harness: `M1*` turns (START on the move screen), `trace:` / `probe_mcss:` debugging keys.
 - The heap stall seen while finishing this phase was the PMC heap (section above), not Phase 5's hooks; the hooks
   disabled while bisecting it are enabled again.
+
+## Phase 4: w2anim runtime replaces PWAN (2026-10-05)
+
+D2 changed (agreed with hzla): White 2 animates its sprites with w2anim's streaming runtime instead of the four PWAN
+runtimes. Reason: heap. In battle the PWAN DLLs held 46.5 KB of PMC's heap (battle 25,176 bytes, trainer 21,312; both
+mostly static frame / texture scratch), and the trainer runtime animated nothing (its config member 3203 is not in
+`pwan.narc`, which ends at member 3012).
+
+Runtime (`src/w2anim/w2u_anim_streams.cpp`, resident in White2Upgrade.dll): MegaB2W2's AnimSprites, generalised.
+- Any MCSS system: a stream starts at MCSS's three `LoadMCSSGraphicsData` calls (ARM9), ticks at every caller of
+  `MCSS_Main` (ov168 battle, ov194, ov207 summary, ov265, ov284, ov294, ov298, ov307: every BL to 0x2019B14 in White 2's
+  ARM9 and decompressed overlays) and ends at `MCSS_DelSprite` (also reached from `MCSS_Exit`). So battle, summary,
+  evolution, egg hatch and the other MCSS screens are covered by the same eleven hooks (PWAN had 35, per screen), and
+  form changes, Transform and Substitute need no special case: each reloads MCSS graphics.
+- Index read from the ROM at sprite load (binary search, nothing kept in RAM); all buffers on the sprite's own game
+  heap (at most 8,084 bytes per stream); nothing in PMC's heap but the code.
+- TEX4 mode (new): the sprite keeps its native 4 bpp texture, cells and palette slot; each frame replaces the 96 rows
+  x 48 bytes its carrier cells show. A3I5 mode (MegaB2W2's 128x128) stays for w2anim-authored sprites.
+- Durations in ms or in 1/60 s ticks (PWAN's); MCSS's own speed and pause flags apply.
+
+Data (`tools/w2anim/build_w2anim_streams.py`, build target `build_w2anim_streams`): the PWAN assets are converted at
+build time into `w2anim/streams.bin` (PWAN's 166.5 MB NARC -> 31.4 MB: LZ10 per unique frame). Each config row's
+stream goes to the sheet the game itself loads (W2U's `GetPokemonDataIDBase`, ported): PWAN drew form 0 on that block
+too; for forms it switched MCSS to block asset * 20, which differs only for Zygarde forms 2 / 3 (identical blocks) and
+Minior's meteor colours (same cells). Most carrier sets still hold an older static sprite and palette (PWAN overwrote
+both at once), so 1,005 of the 1,111 streams carry their PWAN palette (normal) and a shiny one mapped through the
+set's normal -> shiny NCLR pair.
+
+Effect on the PMC heap (build audit, which now counts each module's BSS): resident set 110.5 KB, 94.3 KB free in a
+battle with no module loaded; with every battle module loaded at once 26.0 KB stay free (before: 9.3 KB over a 164 KiB
+heap). The runtime adds 4.2 KB to the core. ROM: 500 MB -> 362 MB.
+
+Checked (headless, `w2u-local/harness/wave_sprites.yml` + `sprite_compare.py`): battle sprites captured every second
+frame for 3.2 s on a PWAN build and on this build, Gen 6 (Greninja / Xerneas), Gen 7 (Litten / Primarina: native block
+!= asset), Gen 9 (Ceruledge / Armarouge: no asset block), doubles (four Gen 8 sprites) and a vanilla control: each
+w2anim frame matches a PWAN frame (median 0-11 differing pixels in the sprite boxes, below the backgrounds' own
+frame-to-frame changes); the phase of the loops differs. Battle start (every frame from boot): the sprites appear with
+their streamed art and colours on their first frame. Mid-battle switch with animations on (every frame): MCSS's recall
+fade to white and the send-out's white silhouette, scale-up and colour fade-in all run on the streamed sprite. Not
+checked headlessly (W2U ROMs do not boot to the field in melonDS-headless): summary, evolution, egg hatch and the other
+MCSS screens.
+Regression on this build: wave_mega 5/5, A 71/71, B 10/10, C 20/20, field 18/18, shared 61/61 (EMERGENCY_EXIT made
+deterministic first: it only passed while the damage roll left the holder above half HP), shared extra 3/3.
+
+Notes:
+- Not converted: Raichu forms 1 / 2 and Slowbro form 1, whose pokegra blocks 1097 / 1098 / 1117 are missing from the
+  built archive (see "Open W2U issues").
+- Black 2 keeps the PWAN runtimes (Black 2 is deferred on this branch); their sources and the PWAN tools are unchanged.
+- Pokeweb's sprite workflow is unchanged: it still writes PWAN assets, which the White 2 build converts.
 
 ## Fix: PMC heap out of memory (2026-10-05)
 
