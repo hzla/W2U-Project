@@ -47,3 +47,10 @@ extern "C" const BattleEventHandlerTableEntry* EventAddIntimidateTracked(u32* pa
 // W2U battle module tables (registry: src/pokeweb_gameplay/battle_modules/registry.json)
 BattleEventHandlerTableEntry MB_GuardDogHandlers[2] = {GUARD_DOG_HANDLERS[0], GUARD_DOG_HANDLERS[1]};
 static_assert(sizeof(GUARD_DOG_HANDLERS) / sizeof(GUARD_DOG_HANDLERS[0]) == 2, "MB_GuardDogHandlers");
+// Intimidate (ability 22) in the same module: vanilla's handler, with its user recorded while it runs (Guard Dog
+// needs to know the stat drop comes from Intimidate). Same events as vanilla Intimidate (0x55, 0x8A); battles
+// without this module keep vanilla Intimidate.
+BattleEventHandlerTableEntry MB_IntimidateTrackedHandlers[2] = {INTIMIDATE_TRACKED_HANDLERS[0],
+                                                                INTIMIDATE_TRACKED_HANDLERS[1]};
+static_assert(sizeof(INTIMIDATE_TRACKED_HANDLERS) / sizeof(INTIMIDATE_TRACKED_HANDLERS[0]) == 2,
+              "MB_IntimidateTrackedHandlers");

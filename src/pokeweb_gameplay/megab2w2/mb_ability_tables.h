@@ -13,6 +13,7 @@ extern BattleEventHandlerTableEntry MB_SupersweetSyrupHandlers[2];
 extern BattleEventHandlerTableEntry MB_FluffyHandlers[1];
 extern BattleEventHandlerTableEntry MB_GoodAsGoldHandlers[1];
 extern BattleEventHandlerTableEntry MB_GuardDogHandlers[2];
+extern BattleEventHandlerTableEntry MB_IntimidateTrackedHandlers[2];
 extern BattleEventHandlerTableEntry MB_CottonDownHandlers[1];
 extern BattleEventHandlerTableEntry MB_PerishBodyHandlers[1];
 extern BattleEventHandlerTableEntry MB_ToxicDebrisHandlers[1];

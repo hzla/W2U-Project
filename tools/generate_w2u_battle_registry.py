@@ -19,7 +19,7 @@ KIND_ENUM = {
 }
 
 EXPECTED_PRIMARY_COUNTS = {
-    "ability": 113,
+    "ability": 114,    # + Intimidate, tracked for Guard Dog (abilities/mb_defense)
     "move": 101,
     "item": 13,
 }

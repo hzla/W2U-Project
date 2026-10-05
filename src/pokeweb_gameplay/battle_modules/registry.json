@@ -429,6 +429,7 @@
         ["ability", "ABIL_AURA_GUARD", "MB_FluffyHandlers"],
         ["ability", "ABIL_GOOD_AS_GOLD", "MB_GoodAsGoldHandlers"],
         ["ability", "ABIL_GUARD_DOG", "MB_GuardDogHandlers"],
+        ["ability", "ABIL_INTIMIDATE", "MB_IntimidateTrackedHandlers"],
         ["ability", "ABIL_MIRROR_ARMOR", "MB_MirrorArmorHandlers"],
         ["ability", "ABIL_PURIFYING_SALT", "MB_PurifyingSaltHandlers"],
         ["ability", "ABIL_ARMOR_TAIL", "MB_QueenlyMajestyHandlers"],
