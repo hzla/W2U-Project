@@ -379,10 +379,19 @@ colour); Electric and Psychic are unchanged. This supersedes the Grassy / Misty 
 - Backdrop: the 43 outdoor backgrounds with a `batt_sky*` material get a Grassy / Misty sky in those clones
   (`build_terrain_texture_mvp.py` now also replaces that texture and palette and writes each background's sky
   palette range into the mapping include: 4 bytes per background). Measured with a banded test sky: the camera shows
-  the lower half of the texture (the bottom row on the horizon) and stretches it about 4.5x wider than tall, so the
-  scenery is drawn at true proportions on a 4.5x wider canvas and squeezed in: grass clumps under light shafts,
-  rising out of a horizon glow in the floor's colour; cloud banks with lilac undersides and sparkles. The other 49
-  backgrounds (towns, parks, factories, interiors) keep their backdrop under the haze and glow.
+  the lower half of the texture (the bottom row on the horizon) and stretches it about 4.5x wider than tall; with
+  unfiltered texturing a texel was a 6.5 x 1.4 px block. While such a sky is shown, a copy of the floor's SRT
+  animation template (member 119: tracks scale S 0x60, scale T 0x68, rotation 0x70, translate S 0x78, translate T
+  0x80) is bound to the sky material with scale S 4 (the material itself has no texture matrix), so the texture
+  repeats four times across the backdrop (texels about 1.6 x 1.4 px); the art is drawn at true proportions on a
+  1.125x wider canvas: grass clumps under light shafts, rising out of a horizon glow in the floor's colour; cloud
+  banks with lilac undersides and sparkles. Loaded and bound from the main battle update, switched at the fade's
+  midpoint (the sky is one flat colour then). The other 49 backgrounds (towns, parks, factories, interiors) keep
+  their backdrop under the haze and glow.
+- Drift: Grassy / Misty slide sky and floor sideways together instead of the floor's vertical scroll: both translate
+  tracks constant, translate S's value written every frame (the animation reads the resource every frame). Measured
+  just above / below the horizon, a floor drift 8x the sky's (in texture widths) moves the two together; the speed
+  is about 3 screen pixels a second. Electric / Psychic keep the template's vertical scroll.
 - Glow: the battle lights the field model (light 0; diffuse 25/31, ambient 31/31, no emission), dim and blue in the
   evening, so no texture alone could look luminous (in-game floor about 0.6x the texture). The floor material's
   emission takes the terrain's colour (the share 10/16 on the field's other materials), written into the model's
@@ -402,7 +411,8 @@ colour); Electric and Psychic are unchanged. This supersedes the Grassy / Misty 
   free-space preflight. Battles from the field are unchanged.
 - Verified (recordings, `w2u-local/harness/previews.yml`): all five previews; wave_field 18/18
   (PRIMAL_RAIN_AIR_LOCK made deterministic: Kyogre level 70, no crits), wave_b 10/10. Heap audit: core 115,496 bytes
-  resident (+4.4 KB), 84.0 KB free with no module, 15.7 KB with every module loaded (floor 12 KB).
+  resident (+5.0 KB with the sky repeat and drift: 116,984), 82.5 KB free with no module, 14.2 KB with every module
+  loaded (floor 12 KB).
 
 ## Fix: PMC heap out of memory (2026-10-05)
 
