@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit White 2 resident and on-demand RPM use against the 164 KiB PMC heap."""
+"""Audit White 2 resident and on-demand RPM use against the 200 KiB PMC heap (tools/patch_pmc_sysheap.py)."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from pathlib import Path
 from pwan.report_paths import portable_report
 
 
-HEAP_BYTES = 164 * 1024
+HEAP_BYTES = 200 * 1024
 REQUIRED_HEADROOM = 12 * 1024
 ALLOCATOR_BYTES_PER_MODULE = 16
 # The fixed record array and telemetry live in White2Upgrade.dll's BSS and are
@@ -54,13 +54,16 @@ def module_record(path: Path) -> dict:
         "file_bytes": path.stat().st_size,
         "expanded_bytes": expanded,
         "fixed_bytes": fixed,
+        # PMC keeps a module at its fixed size plus its BSS (expanded - file size): measured in a battle's heap
+        # (core 96,688 + 4,352; PWAN battle 7,776 + 17,408 = the 25,176-byte block). The scenarios use this.
+        "resident_bytes": fixed + (expanded - path.stat().st_size),
     }
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--core", type=Path, required=True)
-    parser.add_argument("--pwan-battle", type=Path, required=True)
+    parser.add_argument("--pwan-battle", type=Path, help="only when a PWAN battle runtime is staged (not since Phase 4)")
     parser.add_argument("--battle-log", type=Path, required=True)
     parser.add_argument("--battle-counters", type=Path, required=True)
     parser.add_argument("--module", type=Path, action="append", default=[])
@@ -72,8 +75,8 @@ def main() -> int:
 
     registry = json.loads(args.registry.read_text())
     baseline = json.loads(args.baseline.read_text())
-    if baseline.get("heap_bytes") != HEAP_BYTES:
-        raise RuntimeError("baseline does not describe the patched 164 KiB heap")
+    if baseline.get("heap_bytes") not in (164 * 1024, HEAP_BYTES):
+        raise RuntimeError("baseline does not describe a patched PMC heap")
     monolithic_core_baseline = int(baseline["core_fixed_bytes"])
     monolithic_resident_baseline = int(baseline["resident_fixed_bytes"])
     expected_count = len(registry["modules"])
@@ -83,21 +86,21 @@ def main() -> int:
         )
 
     core = module_record(args.core)
-    pwan = module_record(args.pwan_battle)
+    pwan = module_record(args.pwan_battle) if args.pwan_battle else {"path": None, "file_bytes": 0, "expanded_bytes": 0, "fixed_bytes": 0, "resident_bytes": 0}
     battle_log = module_record(args.battle_log)
     battle_counters = module_record(args.battle_counters)
     children = [module_record(path) for path in args.module]
     resident_fixed = (
-        core["fixed_bytes"]
-        + pwan["fixed_bytes"]
-        + battle_log["fixed_bytes"]
-        + battle_counters["fixed_bytes"]
+        core["resident_bytes"]
+        + pwan["resident_bytes"]
+        + battle_log["resident_bytes"]
+        + battle_counters["resident_bytes"]
     )
     resident_overhead = 4 * ALLOCATOR_BYTES_PER_MODULE + LOADER_FIXED_BYTES
     no_custom = resident_fixed + resident_overhead
-    typical_child = max((child["fixed_bytes"] for child in children), default=0)
+    typical_child = max((child["resident_bytes"] for child in children), default=0)
     typical = no_custom + typical_child + ALLOCATOR_BYTES_PER_MODULE
-    all_children_fixed = sum(child["fixed_bytes"] for child in children)
+    all_children_fixed = sum(child["resident_bytes"] for child in children)
     all_groups = (
         no_custom
         + all_children_fixed

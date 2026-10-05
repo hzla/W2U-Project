@@ -11,12 +11,12 @@ what it actually did below.
 | # | Topic | Provisional choice |
 |---|---|---|
 | D1 | Item IDs | W2U's IDs stay. Ported items use W2U's existing constants; only items W2U lacks (Booster Energy) get new IDs from W2U's free ranges |
-| D2 | Animated sprites | PWAN stays the runtime. The MegaB2W2 `w2anim` tool gains a PWAN writer; the PWAN runtime itself is unchanged in this branch |
+| D2 | Animated sprites | **Changed 2026-10-05 (agreed with hzla):** w2anim's streaming runtime replaces the PWAN runtimes; PWAN assets are converted. The PWAN DLLs held 46.5 KB of the PMC heap in battle (see "Fix: PMC heap out of memory"). Original choice: PWAN stays, w2anim gains a PWAN writer |
 | D3 | Weather / terrain indicators | One indicator system on the command screen, based on MegaB2W2's panels (animated, terrain stacked under weather, primal-weather panels), drawn with W2U's own-unit CLACT approach |
 | D4 | Terrain visuals | W2U's floor textures and ambient particles stay. MegaB2W2's highlight glow is not ported |
 | D5 | Abilities implemented by both | W2U's code stays unless a test shows a Showdown (Gen 9 / National Dex) difference; then the W2U handler is fixed |
 | D6 | Action order | W2U's action-order loop stays; MegaB2W2 order rules move into it |
-| D7 | Memory | 164 KiB PMC heap unchanged; ported mechanics go into on-demand module groups, not the resident core |
+| D7 | Memory | **Changed 2026-10-05:** PMC heap 200 KiB (MegaB2W2's value, measured room below); ported mechanics still go into on-demand module groups where they can |
 | D8 | Testing | Pokeweb-Serverless's battle harness (`runtime/battle-harness`, direct boot into a trainer battle) run in headless melonDS (PlatinumMaster/melonDS-headless, `headless` branch); MegaB2W2's scenario suite is not ported |
 | D9 | Mega | W2U's Mega implementation stays; only MegaB2W2 extras are added |
 | D10 | Species ability storage | Pokeweb's packing (`personalAbilityPacking.ts`): ability byte = low 8 bits, bits 14-15 of the matching wild-item word = bits 8-9; max ID 1023. Pokeweb shows and edits the same values |
@@ -32,10 +32,10 @@ Licence and asset terms for contributed code and art are still open. Assets with
 | 1 | Baseline build on this branch + battle-harness smoke test | done |
 | 2a | Primal weathers (Primordial Sea, Desolate Land, Delta Stream) | done (White 2) |
 | 2b | Merged weather / terrain indicator | done (White 2) |
-| 3 | Abilities by group (Gen 8 / 9 and custom), terrain extras, Booster Energy | in progress (wave A tested + storage done) |
-| 4 | `w2anim` PWAN writer (tool-side; lives in the w2anim repository) | planned |
-| 5 | Mega extras (held-START toggle, Mega sound cues, HP-gauge Mega icon) | planned |
-| 6 | Fixes for differences found in shared abilities | planned |
+| 3 | Abilities by group (Gen 8 / 9 and custom), terrain extras, Booster Energy | done (waves A-C, field checks) |
+| 4 | w2anim runtime replaces PWAN (D2 changed); assets converted | in progress |
+| 5 | Mega extras (held-START toggle, Mega cry, HP-gauge Mega icon, Mega glyph) | done (White 2) |
+| 6 | Fixes for differences found in shared abilities | done |
 | 7 | Documentation | planned |
 
 ## Build notes
@@ -175,6 +175,90 @@ trainer battle per 6 species; the foes use Memento so each faints in turn, the p
 colours, Goodra (706) included. Not covered: 722-724, which Pokeweb's battle harness refuses to build (it treats
 personal records 722-724 as Deoxys' form records); the harness, not W2U, is the limit there. Tools (local,
 `w2u-local/harness`): `sprite_survey.py` (battles), `survey_grid.py` (24 species per sheet, vanilla | W2U).
+
+## Phase 5: Mega extras (2026-10-05)
+
+White 2 resident code `src/pokeweb_gameplay/megab2w2/mb_mega_extras.cpp` (API in `mb_resident.h`), called from W2U's
+Mega flow in `w2u_mega.cpp`; W2U's Mega animation is kept as it is, apart from its symbol.
+
+- START toggle: edge detection on the held keys (`GCTX_HIDGetHeldKeys`) instead of the one-update pressed trigger,
+  which the move-select wait (polled about every other frame) could miss - MegaB2W2's doubles fix. A START held
+  when the move screen opens does not toggle. (`w2u_mega.cpp`, both games.)
+- The Mega's cry with a reverb tail (MegaB2W2's MegaSound): W2U's animation plays no cry. PokeVoice loads it 32
+  frames after W2U's sprite refresh, a Freeverb-style reverb (bit-exact with MegaB2W2's `cry_reverb.py`) writes it
+  into a buffer 1.9 s longer, processed a chunk per frame, and it plays 62 frames after the refresh (or at the
+  animation's end). MegaB2W2's four remixed sound effects were made for its own animation and are not used, as in
+  MegaB2W2 with W2U's animation. Checked: `PokeVoice_Load(448, 1, ...)` then `StartPlayback` with the 33,848-byte
+  reverb buffer (scenario MEGA_PLAYER_SINGLE traces both).
+- The Mega icon on the HP gauges (MegaB2W2's MegaGaugeIcon, DBK's `icon_mega.png`, Lucidious89): 11x11 in a 16x16
+  OBJ, a prefix to the name on every gauge, for a Pokemon in a Mega form that is not transformed, hidden while its
+  animation plays. Hooks: the gauge system's create / delete call sites (ov168 0x21DF096 / 0x21DF202),
+  `BtlvCore_SetupGauge` (re-implemented 1:1 to remember the BattleMon), the game's OAM and OBJ-palette transfers
+  (ARM9 0x20756DC / 0x207561A: the icon goes into unused OAM entries, OBJ palette 12, tiles at VRAM 0x7F80).
+- The Mega glyph: W2U's animation showed its symbol as SPA 769 at a fixed spot; it is replaced by MegaB2W2's glyph
+  (DBK `Mega/icon.png`, 13x25 + outline in a 16x32 OBJ, 4 dithered fade stages) above the Mega's own sprite. The
+  script `5_00000622.bin` lost only its `LoadSPA 769` / `DoSPAAnimation2 769` (the other 49 commands are byte-
+  identical; `docs/moveanimation-spanotes.md` updated). The glyph starts 59 frames after W2U's sprite refresh
+  (where SPA 769 appeared), fades in, stays 1 s, fades out (earlier once the HP gauges are back); W2U's Mega wait
+  holds until it is gone. Placement: the sprite's MCSS ground point projected every frame (camera x projection, as
+  MCSS_Draw; it follows the screen shake), the scale cached while the player picks a move and corrected by the
+  depth ratio (W2U's Mega sequence and its PWAN sprites leave the sprite's own scale fields unusable then), and the
+  Mega's PWAN head: top row and the centre of its topmost 16 rows (`mb_mega_glyph_heights.inc`, generated by
+  `tools/pwan/gen_mega_glyph_heights.py`; the MCSS ground point is canvas row 88, measured). Bottom 10 px above the
+  sprite's top. The 14 Megas without a PWAN asset (native sprites) use a default top row.
+- Fixed on the way: Mega Lucario (asset 1053) and Mega Garchomp (1051) were drawn garbled - their native battle
+  members were a static sprite's set (own cell layout, smaller NCGRs) instead of the PWAN carrier set every other
+  PWAN asset has. `tools/pwan/restage_pwan_carrier_sets.py` rebuilds such sets (carrier template, the PWAN's first
+  frame in the NCGRs, palettes) without pokeweb-source; `--check` lists any left (none now).
+- Tests (`w2u-local/harness/wave_mega.yml`): the player's Mega by START in singles and doubles (once a battle), none
+  without START, the foe's AI Mega in singles and doubles; glyph / icon / cry checked on recordings and traces.
+  Harness: `M1*` turns (START on the move screen), `trace:` / `probe_mcss:` debugging keys.
+- The heap stall seen while finishing this phase was the PMC heap (section above), not Phase 5's hooks; the hooks
+  disabled while bisecting it are enabled again.
+
+## Fix: PMC heap out of memory (2026-10-05)
+
+Symptom: a battle froze after both sides chose (top screen "What will X do?", bottom screen the idle Poke Ball), e.g.
+a player with Damp or Good as Gold (module `abilities/mb_defense`) against a foe with Mind Blown (`moves/flow`).
+Cause, found with the harness's new `stuck_pc` / `stuck_heap` keys: ARM9 spun in overlay 344 at 0x21FD840, the end of
+ExtLib's `HeapArea::Alloc`. When no free block is large enough it copies an error string and loops forever instead of
+returning null, so the module loader's `!allocation` fallback never ran. The heap at that point (164 KiB):
+
+| Block | Bytes |
+|---|---:|
+| `White2Upgrade.dll` (core) | 101,032 |
+| `PokewebPwanBattleW2.dll` | 25,176 |
+| `PokewebPwanTrainerW2.dll` | 21,312 |
+| battle log + counters | 5,216 |
+| `abilities/mb_defense` | 5,144 |
+| harness DLL, PMC's own blocks | 6,176 |
+| free | 3,704 (`moves/flow` needs 5,616) |
+
+Phase 5 (about 5 KB of resident code and art) tipped it; before it about 3 KB were left, so any battle loading three
+larger modules was already at risk, on the harness and in the real game alike (the harness DLL is 1.3 KB). The build's
+heap audit did not catch it: it is not part of the `White2Upgrade.nds` target, is enforced only with `strip_rpms`, and
+counts PWAN at its fixed size (7.8 KB) while its BSS scratch keeps it at 25 KB.
+
+Fixes:
+- **200 KiB heap** (`tools/patch_pmc_sysheap.py`, MegaB2W2's value and patch site). PMC takes its heap from the top of
+  ARM9 arena region 0 (it ends at 0x023E0000); the game takes its own heaps from that region once at boot and never
+  again (MegaB2W2's research: every caller of the arena functions is boot code). Measured in a W2U battle: region 0
+  free from 0x023AC104 to the heap's start, 44,796 bytes below a 164 KiB heap; at 200 KiB the heap starts at
+  0x023AE000 and 7,932 bytes stay free (W2U's boot uses 0x4E0 bytes more arena than vanilla). The audit uses 200 KiB.
+  DSi mode places PMC's heap elsewhere (`g_DSiModeLegacyRAMStart`); not checked yet.
+- **Loader guard** (`w2u_battle_module_loader.cpp`): before allocating a module the loader walks `HeapArea`'s free
+  list (found from a probe allocation's block header, so it works wherever PMC put the heap) and refuses a module that
+  cannot fit: that mechanic is missing for the battle instead of the game freezing. Telemetry counts refusals
+  (`heapRefusalCount`, `lastRefusedBytes`, `lastLargestFreeBytes`). Checked on a copy of the ROM with the cap set back
+  to 164 KiB: the same battle plays on (Mind Blown hits without its recoil handler).
+- **PWAN replaced by w2anim's runtime** (D2 changed; Phase 4): frees the PWAN DLLs' 46.5 KB in battle.
+
+Backup plan, on hold until the heap is short again (user, 2026-10-05): move the bulk of the Mega extras out of the
+resident core into an on-demand module loaded when a Mega Evolution starts (cry reverb, glyph projection and art, the
+glyph place table: about 4 KB; the hooks and the 160-byte gauge icon stay resident). It needs a module kind that
+exports functions rather than handler tables (the registry and loader only know handler exports today). Other options
+if that is not enough, in order: art and tables into ROM files read on demand (MegaB2W2's habit); a larger cap is
+limited by the 7.9 KB of arena left.
 
 ## Phase 3: abilities
 

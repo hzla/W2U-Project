@@ -123,7 +123,10 @@ extern "C" u32 THUMB_BRANCH_ServerEvent_GetWeather(ServerFlow* sf) {
 }
 
 // ---- the API (mb_resident.h) ------------------------------------------------------------------------------------
+extern "C" void W2U_MB_MegaExtrasReset();   // mb_mega_extras.cpp
+
 extern "C" void W2U_MB_ResetBattleState() {
+    W2U_MB_MegaExtrasReset();
     sRipenUser = sCudChewing = sMegaSolAttacker = NONE;
     sOppCopying = false;
     for (u32 i = 0; i < MAX_ID; ++i) {

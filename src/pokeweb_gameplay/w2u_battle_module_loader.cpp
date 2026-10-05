@@ -67,6 +67,28 @@ struct W2UBattleModuleRecord {
     u8 moduleId;
 };
 
+// PMC's system heap is ExtLib's exl::heap::HeapArea. Its Alloc does not return null when no free block fits: it
+// copies an error string and spins (overlay 344 0x21FD840), so a module that does not fit froze the battle before the
+// `!allocation` check below could run. The loader therefore checks the free list itself before allocating.
+// Layout (ExtLib exl_HeapArea.h): {vtable, heapBase, totalSize, freeBlocks, ...}; every block starts with a 16-byte
+// header {size, next, alignPadding, allocator}, so the allocator of any allocation is the word just before it.
+struct W2UPmcHeapBlock {
+    u32 size;
+    W2UPmcHeapBlock* next;
+    u32 alignPadding;
+    void* allocator;
+};
+
+struct W2UPmcHeapArea {
+    void* vtable;
+    u8* heapBase;
+    u32 totalSize;
+    W2UPmcHeapBlock* freeBlocks;
+};
+
+constexpr u32 W2U_PMC_HEAP_MAX_FREE_BLOCKS = 512u;
+W2UPmcHeapArea* sPmcHeap = 0;
+
 W2UBattleModuleRecord sModuleRecords[W2U_MAX_MODULE_RECORDS];
 W2UBattleModuleTelemetry sTelemetry;
 W2UPmcRuntimeApi sPmcRuntime;
@@ -295,6 +317,53 @@ bool EnsurePmcRuntime()
     ClearBytes(&sPmcRuntime, sizeof(sPmcRuntime));
     sPmcRuntimeState = 2u;
     return false;
+}
+
+bool IsMainRamPointer(const void* pointer)
+{
+    const u32 address = reinterpret_cast<u32>(pointer);
+    return address >= 0x02000000u && address < 0x02400000u && (address & 3u) == 0u;
+}
+
+// Find the HeapArea that module memory comes from: allocate a small probe and read its block header's allocator.
+// The same in NDS and DSi mode (PMC places its heap differently there).
+void EnsurePmcHeap()
+{
+    if (sPmcHeap) {
+        return;
+    }
+    u8* probe = static_cast<u8*>(sPmcRuntime.allocModuleMemory(8u));
+    if (!probe) {
+        return;
+    }
+    W2UPmcHeapArea* heap = static_cast<W2UPmcHeapArea*>(
+        reinterpret_cast<W2UPmcHeapBlock*>(probe)[-1].allocator);
+    if (IsMainRamPointer(heap) && IsMainRamPointer(heap->heapBase) &&
+        probe >= heap->heapBase && probe < heap->heapBase + heap->totalSize) {
+        sPmcHeap = heap;
+    }
+    sPmcRuntime.freeModuleMemory(probe);
+}
+
+// Largest free block in PMC's heap, or 0xFFFFFFFF when the heap could not be found (then nothing is refused).
+u32 LargestFreePmcBlock()
+{
+    EnsurePmcHeap();
+    if (!sPmcHeap) {
+        return 0xFFFFFFFFu;
+    }
+    u32 largest = 0;
+    const W2UPmcHeapBlock* block = sPmcHeap->freeBlocks;
+    for (u32 count = 0; block && count < W2U_PMC_HEAP_MAX_FREE_BLOCKS; ++count) {
+        if (!IsMainRamPointer(block)) {
+            break;
+        }
+        if (block->size > largest) {
+            largest = block->size;
+        }
+        block = block->next;
+    }
+    return largest;
 }
 
 bool IsRangeInside(const void* base, u32 size, const void* pointer, u32 rangeSize)
@@ -555,6 +624,17 @@ bool LoadModule(u8 moduleId, W2UBattleMechanicKind expectedKind, u16 expectedId)
             MarkFailure(moduleId);
             return false;
         }
+    }
+
+    // Refuse a module that cannot fit (HeapArea::Alloc rounds the size up to 8): the mechanic is then missing for
+    // this battle instead of the game freezing inside the allocator.
+    const u32 largestFree = LargestFreePmcBlock();
+    if (largestFree < ((expandedSize + 7u) & ~7u)) {
+        ++sTelemetry.heapRefusalCount;
+        sTelemetry.lastRefusedBytes = expandedSize;
+        sTelemetry.lastLargestFreeBytes = largestFree;
+        MarkFailure(moduleId);
+        return false;
     }
 
     u8* allocation = static_cast<u8*>(sPmcRuntime.allocModuleMemory(expandedSize));

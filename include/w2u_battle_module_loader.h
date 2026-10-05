@@ -13,6 +13,9 @@ struct W2UBattleModuleTelemetry {
     u32 failureCount;
     u32 failedModuleMask;
     u32 lastFailureModuleId;
+    u32 heapRefusalCount;      // loads refused because no PMC heap block was large enough
+    u32 lastRefusedBytes;      // the size that last refusal needed
+    u32 lastLargestFreeBytes;  // the largest free PMC heap block at that refusal
 };
 
 extern "C" const W2UBattleHandlerExport* W2U_BattleModules_Resolve(

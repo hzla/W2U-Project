@@ -10,6 +10,7 @@ pokeweb_gameplay = files(
     'w2u_terrain_indicator.cpp',
     'w2u_terrain_texture.cpp',
     'megab2w2/mb_resident.cpp',
+    'megab2w2/mb_mega_extras.cpp',
     'w2u_mega_hooks.s',
     'w2u_move_animation_hooks.s',
     'w2u_transform_hooks.s',
