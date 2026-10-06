@@ -1,10 +1,10 @@
 [SPECIES_1264]
 "Base HP" = 100
-"Base Attack" = 70
-"Base Defense" = 72
+"Base Attack" = 160
+"Base Defense" = 97
 "Base Speed" = 100
-"Base Special Attack" = 53
-"Base Special Defense" = 62
+"Base Special Attack" = 106
+"Base Special Defense" = 87
 "Primary Type" = "TYPE_WATER"
 "Secondary Type" = "TYPE_WATER"
 "Capture Rate" = 45
@@ -19,9 +19,9 @@
 "Experience Group" = 5
 "Egg Group 1" = 5
 "Egg Group 2" = 12
-"Primary Ability" = 65
-"Secondary Ability" = 65
-"Hidden Ability" = 34
+"Primary Ability" = 278
+"Secondary Ability" = 278
+"Hidden Ability" = 278
 "Escape Rate" = 0
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0

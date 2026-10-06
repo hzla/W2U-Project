@@ -2903,6 +2903,9 @@ bool IsCoreEnforcerUnsuppressibleAbility(u32 ability)
     case ABIL_POWER_CONSTRUCT:
     case ABIL_AS_ONE_ICE_RIDER:
     case ABIL_AS_ONE_SHADOW_RIDER:
+    case ABIL_GULP_MISSILE:
+    case ABIL_ICE_FACE:
+    case ABIL_ZERO_TO_HERO:
         return true;
     default:
         return false;

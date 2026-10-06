@@ -33,6 +33,7 @@ Licence and asset terms for contributed code and art are still open. Assets with
 | 2a | Primal weathers (Primordial Sea, Desolate Land, Delta Stream) | done (White 2) |
 | 2b | Merged weather / terrain indicator | done (White 2) |
 | 3 | Abilities by group (Gen 8 / 9 and custom), terrain extras, Booster Energy | done (waves A-C, field checks) |
+| 3b | Form abilities: Ice Face, Gulp Missile, Hunger Switch, Zero to Hero, Commander | done (White 2) |
 | 4 | w2anim runtime replaces PWAN (D2 changed); assets converted | in progress |
 | 5 | Mega extras (held-START toggle, Mega cry, HP-gauge Mega icon, Mega glyph) | done (White 2) |
 | 6 | Fixes for differences found in shared abilities | done |
@@ -756,3 +757,79 @@ offered upstream) raises it to `PERSONAL_ABILITY_MAX_ID` (1023) and writes / rea
 W2U now reads. Headless battle (player Snorlax Sword of Ruin 285 vs foe Snorlax Beads of Ruin 287): both pop-ups,
 "The foe's Snorlax weakened the Sp. Def of all surrounding Pokemon!" (set 1382, foe variant) and "Snorlax weakened
 the Defense of all surrounding Pokemon!" (set 1376, player variant).
+
+### Form abilities: Ice Face, Gulp Missile, Hunger Switch, Zero to Hero, Commander (2026-10-06)
+
+MegaB2W2's registry lists these five without logic, so they were written for W2U from Showdown's rules
+(`data/abilities.ts`, `conditions.ts`, `sim/battle-actions.ts`): module `abilities/mb_forms` (registry id 29, White 2
+only), `src/pokeweb_gameplay/megab2w2/abilities/FormAbilities.cpp`.
+
+| Ability | How |
+|---|---|
+| Ice Face (Eiscue) | Ice Face form takes the first physical hit for no damage (Disguise's two events) and breaks into Noice Face, which survives switching. Restored on entry, or when hail starts (W2U's snow). Breakable |
+| Gulp Missile (Cramorant) | Surf hitting, or Dive's charge turn, catches prey: Arrokuda above half HP, Pikachu at half or less. The next hit taken spits it: the attacker loses 1/4 of its max HP, then Defense -1 or paralysis. No Gulping / Gorging form records or sprites exist: the state lives in the module, the catch is shown with the ability popup |
+| Hunger Switch (Morpeko) | Full Belly <-> Hangry every turn end, no popup; back to Full Belly on switching out. Aura Wheel already follows the form |
+| Zero to Hero (Palafin) | Switching out in Zero Form leaves as Hero Form (`w2u_mega.cpp` `BattleMon_ClearForSwitchOut`: form, types, stats; kept for the battle); the next entry announces it once ("X underwent a heroic transformation!", bank 18 1445-1447) |
+| Commander (Tatsugiri) | Doubles, with an ally Dondozo: "X was swallowed by Y and became its commander!" (bank 18 1448-1450), Dondozo +2 Attack / Defense / Sp. Atk / Sp. Def / Speed. Tatsugiri gets the Shadow Force hide flag (condition flag 6: every move misses it, "avoided the attack!") and its sprite is hidden (display command 0x31, the charge-move hide); whatever it is told to do is cancelled silently. Neither can switch (Mean Look's condition 0x16: the party screen refuses, "Dondozo can't be switched out!"; Tatsugiri's is linked to Dondozo, Dondozo's is permanent as Showdown's `commanded` never ends) or be forced out (Suction Cups' event: Roar fails). When Dondozo faints, Tatsugiri comes back out, free to act and switch |
+
+Engine details found by disassembling overlay 167 (W2U's headers did not name them; noted in `FormAbilities.cpp`):
+
+- The move flow clears a Pokemon's hide flags after any action it started hidden (a charge move's release,
+  0x21A1DB0 -> 0x21A3944), the cancelled action included: Commander sets the flag again when Tatsugiri's action
+  ends and at each turn end.
+- Switching is checked by the client (0x21B4BFC): the other side's Shadow Tag / Arena Trap / Magnet Pull, then the
+  Mean Look, Bind and Ingrain conditions. Event 0x0C (Shadow Tag's) only covers fleeing; Commander answers it too.
+- Condition data: type in bits 0-2 (1 permanent, 2 turns, 3 linked to a Pokemon), the value in bits 3-8.
+- `EFFECT_SET_CONDITION_FLAG` / `RESET` (0x17 / 0x18): flag +4, pokeID +8; `EFFECT_CANCEL_SEMI_INVULN` (0x36):
+  pokeID +4, flag +8, clears the flag and shows the sprite again.
+
+Resident side: Ice Face and Zero to Hero keep their form on switching (`W2U_AbilityPreservesFormOnSwitchOut`); the
+five are in the Receiver / Power of Alchemy fail list, Ice Face in the Mold Breaker list, Ice Face / Gulp Missile /
+Zero to Hero in Core Enforcer's unsuppressible list (Showdown's `noreceiver`, `breakable`, `cantsuppress`). Primary
+ability count 136 -> 141. Heap: the module is 3.3 KB resident; with every module group loaded 44,488 bytes stay
+free (floor 12,288).
+
+Form data fixed (hzla's `5351a2970` "add gen 8/9 alt form assets" copied the base form's record):
+
+| Record | Form | Was | Now (Showdown) |
+|---|---|---|---|
+| 1248 | Eiscue Noice Face | Ice Face's stats | Def 70, Spe 130, SpD 50 |
+| 1250 | Morpeko Hangry Mode | Overgrow / Chlorophyll | Hunger Switch |
+| 1253 | Urshifu Rapid Strike | Fighting / Dark, Overgrow / Chlorophyll | Fighting / Water, Unseen Fist |
+| 1264 | Palafin Hero | Zero Form's stats, Overgrow / Chlorophyll | Atk 160, Def 97, SpA 106, SpD 87, Zero to Hero |
+| 1181-1183 | Tatsugiri forms | Overgrow | Commander |
+
+The placeholder abilities mattered: a form change copies the form record's ability (`ApplyFormBattleData`), so a
+Palafin turned Hero became an Overgrow Palafin and never announced itself.
+
+Still wrong in the same commit, not fixed here (forms these abilities don't use; for hzla): Zacian / Zamazenta
+Crowned (stats, Steel type), Calyrex Ice / Shadow Rider (stats, types, As One), Indeedee-F, Basculegion-F,
+Oinkologne-F, Enamorus Therian and Gimmighoul Roaming (stats), Ogerpon's masks (Grass only; Water / Fire / Rock
+missing).
+
+Differences from Showdown (Gen 5 limits):
+- The command menu still asks for the commanding Tatsugiri's move (Showdown skips its choice); it does nothing.
+- No Guard / Lock-On can hit a commanding Tatsugiri (the hide flag's own bypass); Showdown never lets anything hit it.
+- Ice Face is restored in hail (W2U has no snow).
+
+Ball Fetch is not implemented: Showdown gives it no battle effect (in the games it fetches the first failed Poke
+Ball in a wild battle).
+
+#### Results (headless, 2026-10-06)
+
+12 scenarios (`w2u-local/harness/wave_forms.yml`), all pass:
+- Ice Face: Crunch for 0, then 30; Dark Pulse through it; Hail restores it (0 again).
+- Gulp Missile: "Defense fell" (Gulping) / paralysis (Gorging, 50 HP).
+- Hunger Switch: Aura Wheel neutral / super effective / neutral on Gengar.
+- Zero to Hero: the message once over two returns; Aqua Jet 55 -> 111 (x2.02).
+- Commander:
+  - the message and five +2 boosts; Tatsugiri's Water Gun cancelled and no damage to it in three turns (both
+    foes' Tackles "avoided");
+  - Roar "But it failed!" with a third party member;
+  - the party screen refuses both switches;
+  - Dondozo fainting brings Tatsugiri back to use Water Gun.
+
+Not covered by a scenario: Ice Face restored on entry in hail, Hunger Switch resetting on switching out, Tatsugiri
+switching out once freed (the harness can't answer the replacement prompt after Dondozo faints), Gulp Missile through
+Dive.
+

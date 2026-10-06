@@ -6,7 +6,7 @@
 "Base Special Attack" = 63
 "Base Special Defense" = 60
 "Primary Type" = "TYPE_FIGHTING"
-"Secondary Type" = "TYPE_DARK"
+"Secondary Type" = "TYPE_WATER"
 "Capture Rate" = 3
 "Evolution Stage" = 3
 "EV Yield" = 12
@@ -19,9 +19,9 @@
 "Experience Group" = 5
 "Egg Group 1" = 15
 "Egg Group 2" = 15
-"Primary Ability" = 65
-"Secondary Ability" = 65
-"Hidden Ability" = 34
+"Primary Ability" = 260
+"Secondary Ability" = 260
+"Hidden Ability" = 260
 "Escape Rate" = 0
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0

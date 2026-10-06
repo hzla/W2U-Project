@@ -305,6 +305,20 @@ static const W2UBattleModuleApi sBattleModuleApi = {
     (u16)W2U_ARRAY_COUNT(sBattleModuleEntries),
     sBattleModuleEntries,
 };
+#elif W2U_BATTLE_MODULE_ID == 29
+static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_FACE), (u16)W2U_ARRAY_COUNT(MB_IceFaceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IceFaceHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GULP_MISSILE), (u16)W2U_ARRAY_COUNT(MB_GulpMissileHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GulpMissileHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HUNGER_SWITCH), (u16)W2U_ARRAY_COUNT(MB_HungerSwitchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_HungerSwitchHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ZERO_TO_HERO), (u16)W2U_ARRAY_COUNT(MB_ZeroToHeroHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ZeroToHeroHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COMMANDER), (u16)W2U_ARRAY_COUNT(MB_CommanderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CommanderHandlers},
+};
+static const W2UBattleModuleApi sBattleModuleApi = {
+    W2U_BATTLE_MODULE_MAGIC,
+    W2U_BATTLE_MODULE_ABI_VERSION,
+    (u16)W2U_ARRAY_COUNT(sBattleModuleEntries),
+    sBattleModuleEntries,
+};
 #else
 #error Unsupported abilities battle module ID
 #endif
@@ -680,6 +694,25 @@ static const W2UBattleModuleApi sBattleModule_abilities_mb_hookedApi = {
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_HOOKED()
 {
     return &sBattleModule_abilities_mb_hookedApi;
+}
+#endif
+#if !defined(W2U_TARGET_B2)
+static const W2UBattleHandlerExport sBattleModule_abilities_mb_formsEntries[] = {
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_FACE), (u16)W2U_ARRAY_COUNT(MB_IceFaceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IceFaceHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GULP_MISSILE), (u16)W2U_ARRAY_COUNT(MB_GulpMissileHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GulpMissileHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HUNGER_SWITCH), (u16)W2U_ARRAY_COUNT(MB_HungerSwitchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_HungerSwitchHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ZERO_TO_HERO), (u16)W2U_ARRAY_COUNT(MB_ZeroToHeroHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ZeroToHeroHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COMMANDER), (u16)W2U_ARRAY_COUNT(MB_CommanderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CommanderHandlers},
+};
+static const W2UBattleModuleApi sBattleModule_abilities_mb_formsApi = {
+    W2U_BATTLE_MODULE_MAGIC,
+    W2U_BATTLE_MODULE_ABI_VERSION,
+    (u16)W2U_ARRAY_COUNT(sBattleModule_abilities_mb_formsEntries),
+    sBattleModule_abilities_mb_formsEntries,
+};
+extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_FORMS()
+{
+    return &sBattleModule_abilities_mb_formsApi;
 }
 #endif
 #endif

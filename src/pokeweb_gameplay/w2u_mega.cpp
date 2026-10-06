@@ -2663,7 +2663,21 @@ extern "C" void THUMB_BRANCH_BattleMon_UpdateData(BattleMon* battleMon, bool res
 
 static bool W2U_AbilityPreservesFormOnSwitchOut(ABILITY ability)
 {
-    return ability == ABIL_DISGUISE || ability == ABIL_BATTLE_BOND;
+    return ability == ABIL_DISGUISE || ability == ABIL_BATTLE_BOND || ability == ABIL_ICE_FACE ||
+           ability == ABIL_ZERO_TO_HERO;
+}
+
+// Zero to Hero (Showdown): Palafin switching out in Zero Form (0) leaves as Hero Form (1) for the rest of the battle.
+// The entry message is the ability's (battle module abilities/mb_forms).
+static void W2U_ZeroToHeroSwitchOut(BattleMon* battleMon)
+{
+    constexpr u16 SPECIES_PALAFIN = 964;
+    if (battleMon->currentAbility != ABIL_ZERO_TO_HERO || battleMon->species != SPECIES_PALAFIN ||
+        battleMon->form != 0 || battleMon->currentHP == 0) {
+        return;
+    }
+    BattleMon_ChangeForm(battleMon, 1);
+    ApplyFormBattleData(battleMon);
 }
 
 extern "C" void THUMB_BRANCH_BattleMon_ClearForSwitchOut(BattleMon* battleMon)
@@ -2688,6 +2702,7 @@ extern "C" void THUMB_BRANCH_BattleMon_ClearForSwitchOut(BattleMon* battleMon)
         return;
     }
 
+    W2U_ZeroToHeroSwitchOut(battleMon);
     if (!W2U_AbilityPreservesFormOnSwitchOut(battleMon->currentAbility)) {
         battleMon->form = battleMon->flags & 0x1F;
         battleMon->currentAbility = battleMon->ability;

@@ -516,6 +516,20 @@
         ["ability", "ABIL_OPPORTUNIST", "MB_OpportunistHandlers"],
         ["ability", "ABIL_CUD_CHEW", "MB_CudChewHandlers"]
       ]
+    },
+    {
+      "id": 29,
+      "name": "abilities/mb_forms",
+      "source": "abilities",
+      "white2_only": true,
+      "extra_sources": ["megab2w2/abilities/FormAbilities.cpp"],
+      "entries": [
+        ["ability", "ABIL_ICE_FACE", "MB_IceFaceHandlers"],
+        ["ability", "ABIL_GULP_MISSILE", "MB_GulpMissileHandlers"],
+        ["ability", "ABIL_HUNGER_SWITCH", "MB_HungerSwitchHandlers"],
+        ["ability", "ABIL_ZERO_TO_HERO", "MB_ZeroToHeroHandlers"],
+        ["ability", "ABIL_COMMANDER", "MB_CommanderHandlers"]
+      ]
     }
   ]
 }

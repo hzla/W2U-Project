@@ -1,10 +1,10 @@
 [SPECIES_1248]
 "Base HP" = 75
 "Base Attack" = 80
-"Base Defense" = 110
-"Base Speed" = 50
+"Base Defense" = 70
+"Base Speed" = 130
 "Base Special Attack" = 65
-"Base Special Defense" = 90
+"Base Special Defense" = 50
 "Primary Type" = "TYPE_ICE"
 "Secondary Type" = "TYPE_ICE"
 "Capture Rate" = 60
