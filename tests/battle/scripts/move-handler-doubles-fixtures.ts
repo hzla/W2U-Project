@@ -330,7 +330,7 @@ export function doublesVariants(name: string): DoublesVariant[] {
         expectedUserConditionsBefore:[condition],expectedUserConditionsAfter:[]}],{}, {speciesId:386,level:100,moves:[move]});
   } else if (name === "snipe-shot") {
     const shot = {expectedTargets:["defender"] as BattleRole[],expectedBasePower:80,expectedCriticalRanks:{attacker:1}};
-    add("follow-me",[{id:"ignores-follow-me",...shot},{id:"water-gun-control-is-redirected",moveSlot:1,expectedExecutedMove:55,expectedTargets:["defenderAlly"],expectedBasePower:40,expectedCriticalRanks:{attacker:0}}],{moves:[745,55,150]}, {}, {defenderAllyMove:266});
+    add("follow-me",[{id:"ignores-follow-me",...shot},{id:"water-gun-control-is-redirected",moveSlot:1,selectedMoveId:55,expectedExecutedMove:55,expectedTargets:["defenderAlly"],expectedBasePower:40,expectedCriticalRanks:{attacker:0}}],{moves:[745,55,150]}, {}, {defenderAllyMove:266});
     add("storm-drain",[{id:"ignores-remote-storm-drain",...shot}],{moves:[745,55]}, {}, {defenderAllySpecies:423,defenderAllyAbilityId:114});
     add("selected-absorption",[{id:"selected-water-absorb-still-works",expectedTargets:[],expectedStages:{defender:[6,6,6,6,6,6,6]}}],{}, {}, {defenderSpecies:134,abilityId:11});
   } else if (name === "dragon-cheer") {
@@ -341,13 +341,13 @@ export function doublesVariants(name: string): DoublesVariant[] {
     add("substitute",[{id:"ally-substitute-does-not-block",expectedFocus:{attacker:false,ally:true},expectedNativeSuccess:true}],{}, {level:100,moves:[164]});
     add("hiding",[{id:"semi-invulnerable-ally-rejected",expectedFocus:{attacker:false,ally:false},expectedNativeSuccess:false}],{}, {level:100,moves:[19]});
     add("repeat",[{id:"repeat-does-not-stack",setupSlots:[0],expectedFocus:{attacker:false,ally:true},expectedCriticalRanks:{ally:2},expectedNativeSuccess:false}],{level:100},{moves:[33]});
-    add("type-change",[{id:"bonus-fixed-after-soak",setupSlots:[0],moveSlot:1,expectedExecutedMove:487,targetRole:"ally",expectedTypes:{ally:[10,10]},expectedCriticalRanks:{ally:2},expectedFocus:{attacker:false,ally:true}}],{level:100,moves:[913,487,150]},{moves:[33]});
+    add("type-change",[{id:"bonus-fixed-after-soak",setupSlots:[0],moveSlot:1,selectedMoveId:487,expectedExecutedMove:487,targetRole:"ally",expectedTypes:{ally:[10,10]},expectedCriticalRanks:{ally:2},expectedFocus:{attacker:false,ally:true}}],{level:100,moves:[913,487,150]},{moves:[33]});
     const setup = [{slot:0,case:{id:"apply",allyMoveSlot:1,accuracyRoll:0,secondaryRoll:99}}];
     const copied = {expectedFocus:{attacker:true,ally:true},expectedCriticalRanks:{ally:1},expectedStages:{attacker:[6,6,6,6,6,6,6],ally:[6,6,6,6,6,6,6]}};
-    add("psych-up",[{id:"psych-up-copies-one-stage",setupCommands:setup,moveSlot:1,expectedExecutedMove:244,targetRole:"ally",...copied,
+    add("psych-up",[{id:"psych-up-copies-one-stage",setupCommands:setup,moveSlot:1,selectedMoveId:244,expectedExecutedMove:244,targetRole:"ally",...copied,
       followup:{slot:2,moveId:33,power:40,category:1,type:0,case:{id:"copied-critical-rank",completeTurn:true,expectedExecutedMove:33,accuracyRoll:0,secondaryRoll:99,expectedCriticalRanks:{attacker:1,ally:1},expectedFocus:{attacker:true,ally:true}}}}],
       {level:100,moves:[913,244,33,150]},{speciesId:137,moves:[33,150]});
-    add("transform",[{id:"transform-copies-one-stage",setupCommands:setup,moveSlot:1,expectedExecutedMove:144,targetRole:"ally",...copied,expectedTransform:true,
+    add("transform",[{id:"transform-copies-one-stage",setupCommands:setup,moveSlot:1,selectedMoveId:144,expectedExecutedMove:144,targetRole:"ally",...copied,expectedTransform:true,
       followup:{slot:0,moveId:33,power:40,category:1,type:0,case:{id:"transformed-critical-rank",completeTurn:true,expectedExecutedMove:33,expectedTransform:true,accuracyRoll:0,secondaryRoll:99,expectedCriticalRanks:{attacker:1,ally:1},expectedFocus:{attacker:true,ally:true}}}}],
       {level:100,moves:[913,144,150]},{speciesId:137,moves:[33,150]});
   } else if (name === "matcha-gotcha") {

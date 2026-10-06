@@ -23,11 +23,13 @@ import { decompressCode } from "@pokeweb/nds/codeCompression";
 const args = new Map<string, string>();
 for (let i = 2; i < process.argv.length; i += 2) {
   const key = process.argv[i], value = process.argv[i + 1];
-  if (!["--move", "--rom", "--save", "--core", "--out", "--multi-runtime"].includes(key) || !value || args.has(key)) throw new Error("Expected --move NAME --rom INPUT --save INPUT --out NEW_DIRECTORY [--core DLL] [--multi-runtime DIRECTORY]");
+  if (!["--move", "--rom", "--save", "--core", "--out", "--multi-runtime", "--animations"].includes(key) || !value || args.has(key)) throw new Error("Expected --move NAME --rom INPUT --save INPUT --out NEW_DIRECTORY [--core DLL] [--multi-runtime DIRECTORY]");
   args.set(key, value);
 }
 for (const key of ["--move", "--rom", "--save", "--out"]) if (!args.has(key)) throw new Error(`Missing ${key}`);
 const moveName = args.get("--move")!;
+if (args.has("--animations") && !["on", "off"].includes(args.get("--animations")!)) throw new Error("Animations must be on or off");
+const battleAnimationsEnabled = args.get("--animations") === "on";
 const definitions: Record<string, { id: number; type: number; power: number; category: number; accuracy: number; target?: number }> = {
   "gen67-audit": { id: 573, type: 14, power: 70, category: 2, accuracy: 100 },
   "gen67-abilities": { id: 150, type: 0, power: 0, category: 0, accuracy: 101, target: 7 },
@@ -679,7 +681,7 @@ const saveDefinitions: { file: string; player: HarnessPokemon; benchPlayer?: Har
   { file: "battle.sav", player }, { file: "battle-strongjaw.sav", player: { ...player, abilityId: 173 } },
 ] : [{ file: "battle.sav", player }];
 for (const { file, player: savedPlayer, benchPlayer, benchPlayers, allyPlayer, battleType } of saveDefinitions) {
-  const save = patchTestBattleSaveMoveAnimations(patchHarnessSave(rawSaveBytesFromDesmumeDsv(inputSave), project, { trainerId: 1, battleType, player: { team: [savedPlayer, ...(allyPlayer ? [allyPlayer] : []), ...(benchPlayer ? [benchPlayer] : []),...(benchPlayers ?? [])] } }), saveConfig, false);
+  const save = patchTestBattleSaveMoveAnimations(patchHarnessSave(rawSaveBytesFromDesmumeDsv(inputSave), project, { trainerId: 1, battleType, player: { team: [savedPlayer, ...(allyPlayer ? [allyPlayer] : []), ...(benchPlayer ? [benchPlayer] : []),...(benchPlayers ?? [])] } }), saveConfig, battleAnimationsEnabled);
   await writeFile(resolve(directory, file), save, { flag: "wx" });
 }
 export type MoveCase = DoublesCase & MultiCase & { id: string; audit?: Gen67Expected; mechanicAudit?: MechanicExpected; currentHp?: number; defenseStage?: number; blocked?: boolean;
@@ -954,7 +956,7 @@ const variants: Variant[] = gen67Audit ? focusedGen67 : revivalBlessing ? [
     { id: "ohko-bypasses-accuracy", userStats: [100,115,60,90,130], incomingFixed: true, incomingAccuracyRoll: 99, expectedUserHp: 1 },
   ] },
   { name: "npc", trainerId: 6, abilityId: 50, trainerMove: 862, playerAbilityId: 50, save: "battle-npc.sav", cases: [
-    { id: "npc-nonzero-slot-owns-window", moveSlot: 1, npcGlaive: true, userStats: [100,115,60,90,20], expectedPowers: [50], damageRatios: [8192] },
+    { id: "npc-nonzero-slot-owns-window", moveSlot: 1, selectedMoveId: 33, npcGlaive: true, userStats: [100,115,60,90,20], expectedPowers: [50], damageRatios: [8192] },
   ] },
   { name: "truant", trainerId: 7, abilityId: 50, trainerMove: 33, playerAbilityId: 54, save: "battle-truant.sav", cases: [
     { id: "loafing-action-expires-window", userStats: [100,115,60,90,130], incomingRatios: [8192,4096,4096], residualTurns: 2, residualCases: [{expectedExecutedMove:862,expectedPpSpent:0},{}] },
@@ -974,7 +976,7 @@ const variants: Variant[] = gen67Audit ? focusedGen67 : revivalBlessing ? [
     { id: "instruct-can-repeat", userStats: [100,115,60,90,130], expectedPowers: [definition.power,definition.power], ppSpent: 2 },
   ] },
   { name: "sleep-talk", trainerId: 4, abilityId: 50, trainerMove: 150, playerAbilityId: 50, save: "battle-sleep.sav", cases: [
-    { id: "sleep-talk-can-repeat", userCurrentHp: 140, setupSlot: 2, moveSlot: 1, residualTurns: 1, residualSlots: [1], expectedPowers: [definition.power] },
+    { id: "sleep-talk-can-repeat", userCurrentHp: 140, setupSlot: 2, moveSlot: 1, selectedMoveId: 214, residualTurns: 1, residualSlots: [1], expectedPowers: [definition.power] },
   ] },
   ...["choice","single"].map(repeatSequence => ({ name: repeatSequence, trainerId: 5, abilityId: 50, trainerMove: 150, playerAbilityId: 50, save: `battle-${repeatSequence}.sav`, cases: [
     { id: `${repeatSequence}-alternates-struggle`, repeatSequence, userStats: [60,115,60,90,20], residualTurns: 2, residualSlots: [0,0], residualCases: [{expectedExecutedMove:165,expectedPpSpent:0},{}], ...(repeatSequence === "choice" && definition.category === 1 ? {expectedAttackValue:90} : {}) },
@@ -1314,7 +1316,9 @@ const variants: Variant[] = gen67Audit ? focusedGen67 : revivalBlessing ? [
     { id: "target-faints-no-pp-drain", currentHp: 1, allowFaint: true, expectedPpDrain: 0, expectedLastMove: 150 },
   ] },
   { name: "no-history", trainerId: 2, abilityId: 50, trainerMove: 150, defenderSpecies: 143, playerAbilityId: 99, save: "battle.sav", cases: [
-    { id: "unacted-no-move-history", expectedPpDrain: 0, expectedLastMove: 0 },
+    // The slow target may have paid PP but not completed its action in the
+    // frame that finishes Eerie Spell. Observe its real full-turn completion.
+    { id: "unacted-no-move-history", completeTurn: true, expectedPpDrain: 0, expectedLastMove: 0 },
   ] },
   { name: "substitute", trainerId: 3, abilityId: 50, trainerMove: 164, defenderSpecies: 291, playerAbilityId: 99, save: "battle.sav", cases: [
     { id: "sound-bypasses-doll-and-drains-substitute-pp", bypassSubstitute: true, expectedPpDrain: 3, expectedLastMove: 164 },
@@ -1408,6 +1412,7 @@ const variants: Variant[] = gen67Audit ? focusedGen67 : revivalBlessing ? [
   ] },
   { name: "both-side-spikes", trainerId: 3, abilityId: 50, trainerMove: 191, playerAbilityId: 99, save: "battle.sav", cases: [
     { id: "spikes-on-both-sides-cleared", setupSlot: 1, initialHazards: [[1,0,0],[1,0,0]], expectedUserStages: [7,6,6,6,7,6,6], nativeSuccess: true },
+    { id: "hazards-only-benefit-at-capped-stats", setupSlot: 1, initialHazards: [[1,0,0],[1,0,0]], userStages: [12,6,6,6,12,6,6], expectedUserStages: [12,6,6,6,12,6,6], nativeSuccess: true },
   ] },
   { name: "other-hazards", trainerId: 3, abilityId: 50, trainerMove: 191, playerAbilityId: 99, save: "battle-other-hazards.sav", cases: [
     { id: "toxic-spikes-rock-and-spikes-cleared", setupSlots: [1,2], initialHazards: [[2,0,0],[0,1,1]], expectedUserStages: [7,6,6,6,7,6,6], nativeSuccess: true },
@@ -1947,14 +1952,16 @@ const variants: Variant[] = gen67Audit ? focusedGen67 : revivalBlessing ? [
     { id: "execution-hp-after-substitute", powerRule: "target-hp", substitute: true },
   ] },
 ] : gravApple ? [
-  { name: "normal", trainerId: 1, abilityId: 50, trainerMove: 150, playerAbilityId: 99, save: "battle.sav", cases: [
+  // Gravity forbids Splash, which otherwise forces the NPC to Struggle and
+  // adds recoil to the HP-loss oracle. Focus Energy leaves our damage intact.
+  { name: "normal", trainerId: 1, abilityId: 50, trainerMove: 116, playerAbilityId: 99, save: "battle.sav", cases: [
     { id: "no-gravity", expectedPowers: [80], expectedDefenseStage: 5 },
     { id: "gravity-boost", setupSlot: 1, expectedPowers: [120], expectedDefenseStage: 5 },
   ] },
-  { name: "clear-body", trainerId: 2, abilityId: 29, trainerMove: 150, playerAbilityId: 99, save: "battle.sav", cases: [
+  { name: "clear-body", trainerId: 2, abilityId: 29, trainerMove: 116, playerAbilityId: 99, save: "battle.sav", cases: [
     { id: "clear-body-gravity", setupSlot: 1, expectedPowers: [120], expectedDefenseStage: 6 },
   ] },
-  { name: "sheer-force", trainerId: 1, abilityId: 50, trainerMove: 150, playerAbilityId: 125, save: "battle-sheerforce.sav", cases: [
+  { name: "sheer-force", trainerId: 1, abilityId: 50, trainerMove: 116, playerAbilityId: 125, save: "battle-sheerforce.sav", cases: [
     { id: "sheer-force-no-gravity", expectedPowers: [80], effectivePowers: [104], expectedDefenseStage: 6 },
     { id: "sheer-force-gravity", setupSlot: 1, expectedPowers: [120], effectivePowers: [156], expectedDefenseStage: 6 },
   ] },
@@ -2270,16 +2277,18 @@ const variants: Variant[] = gen67Audit ? focusedGen67 : revivalBlessing ? [
     { id: "both-airborne-electric-terrain", setupSlot: 1, expectedPowers: [120], expectedAirborne: true },
   ] },
 ] : grassyGlide ? [
-  { name: "grounded", trainerId: 1, abilityId: 50, trainerMove: 150, playerAbilityId: 99, save: "battle.sav", defenderSpecies: 291, cases: [
+  // Keep the shared NPC selectable under Gravity; Focus Energy cannot alter
+  // the player's damage and avoids unintended Struggle recoil.
+  { name: "grounded", trainerId: 1, abilityId: 50, trainerMove: 116, playerAbilityId: 99, save: "battle.sav", defenderSpecies: 291, cases: [
     { id: "no-terrain-slower", expectedPowers: [55], expectedActed: [true], typeRatio: 1024, damageRatios: [4096] },
     { id: "grassy-terrain-acts-first", setupSlot: 1, expectedPowers: [55], effectivePowers: [71], expectedActed: [false], typeRatio: 1024, damageRatios: [4096] },
     { id: "terrain-removed-priority-zero", setupSlots: [1, 2], expectedPowers: [55], expectedActed: [true], typeRatio: 1024, damageRatios: [4096] },
     { id: "psychic-terrain-priority-zero", setupSlot: 3, expectedPowers: [55], expectedActed: [true], typeRatio: 1024, damageRatios: [4096] },
   ] },
-  { name: "airborne", trainerId: 1, abilityId: 50, trainerMove: 150, playerAbilityId: 99, save: "battle-airborne.sav", defenderSpecies: 291, cases: [
+  { name: "airborne", trainerId: 1, abilityId: 50, trainerMove: 116, playerAbilityId: 99, save: "battle-airborne.sav", defenderSpecies: 291, cases: [
     { id: "air-balloon-no-priority", setupSlot: 1, expectedPowers: [55], expectedActed: [true], typeRatio: 1024, damageRatios: [4096], expectedUserItem: 541 },
   ] },
-  { name: "gravity", trainerId: 1, abilityId: 50, trainerMove: 150, playerAbilityId: 99, save: "battle-gravity.sav", defenderSpecies: 291, cases: [
+  { name: "gravity", trainerId: 1, abilityId: 50, trainerMove: 116, playerAbilityId: 99, save: "battle-gravity.sav", defenderSpecies: 291, cases: [
     { id: "gravity-grounds-air-balloon", setupSlots: [1, 2], expectedPowers: [55], effectivePowers: [71], expectedActed: [false], typeRatio: 1024, damageRatios: [4096], expectedUserItem: 541 },
   ] },
   { name: "queenly-majesty", trainerId: 2, abilityId: 214, abilitySlot: 2, trainerMove: 150, playerAbilityId: 99, save: "battle.sav", defenderSpecies: 291, cases: [
@@ -2607,7 +2616,7 @@ const variantsWithPatches = variants.map(variant => {
 const saves = [];
 for (const { file } of saveDefinitions) saves.push({ file, sha256: hash(new Uint8Array(await readFile(resolve(directory, file)))) });
 await writeFile(resolve(directory, "suite.json"), JSON.stringify({
-  format: "pokeweb-focused-move-1", move: moveName, moveId, battleType: multiSuite ? "Multi" : coaching || doublesSuite ? "Doubles" : "Singles", battleAnimationsEnabled: false,
+  format: "pokeweb-focused-move-1", move: moveName, moveId, battleType: multiSuite ? "Multi" : coaching || doublesSuite ? "Doubles" : "Singles", battleAnimationsEnabled,
   multiRuntimeSha256:multiRuntimeHash,
   inputRomSha256, inputSaveSha256: hash(inputSave), coreSha256: coreHash,
   fixtureExecutionMode:multiSuite ? "DS-only" : undefined,
@@ -2615,4 +2624,4 @@ await writeFile(resolve(directory, "suite.json"), JSON.stringify({
   harnessSha256: receipt.dllSha256, harnessCpuChecks: receipt.verification.cpuChecks,
   rom: { file: "battle.nds", sha256: hash(rom) }, saves, probes, variants: variantsWithPatches,
 }, null, 2) + "\n", { flag: "wx" });
-console.log(`Prepared ${moveName}: one shared ROM, native trainer variants, animation-disabled saves`);
+console.log(`Prepared ${moveName}: one shared ROM, native trainer variants, animations ${battleAnimationsEnabled ? "on" : "off"}`);

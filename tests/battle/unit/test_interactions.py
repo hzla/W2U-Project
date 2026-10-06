@@ -64,6 +64,19 @@ class InteractionOracleTests(unittest.TestCase):
             with self.assertRaisesRegex(AssertionError, "512 KiB"):
                 runner.validate_fixture_save(path)
 
+    def test_animation_smoke_requires_battle_scene_on_in_both_halves(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "fixture.sav"
+            save = bytearray(0x80000)
+            path.write_bytes(save)
+            runner.validate_fixture_save(path, animations_enabled=True)
+            for half in (0, 0x26000):
+                bad = bytearray(save)
+                bad[half + 0x19400] |= 0x80
+                path.write_bytes(bad)
+                with self.assertRaisesRegex(AssertionError, "Battle Scene Off"):
+                    runner.validate_fixture_save(path, animations_enabled=True)
+
     def test_four_damage_multipliers(self):
         for ratio in (2048, 4096, 8192):
             with self.subTest(ratio=ratio):

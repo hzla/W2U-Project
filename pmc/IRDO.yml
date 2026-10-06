@@ -25684,6 +25684,9 @@ Symbols:
   - Name: GFL_PTC_CreateEx
     Segment: 0x0
     Address: 0x204F9AD
+  - Name: BTLV_EFFECT_CMD_LoadSPA
+    Segment: 0x1E
+    Address: 0x21E1B5D
   - Name: GFL_PTC_Delete
     Segment: 0x0
     Address: 0x204FAB1

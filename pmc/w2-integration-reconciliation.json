@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "base_revision": "4369e8a4738ea435a350eff4e9c527d523bd8c31",
+  "main_revision": "eb6c002384f2fcc4df7bfef6d3cdad5626364a73",
+  "common_revision": "9489aebf42a870fa6a60816c273b0aa22fe5c1fe",
+  "integration_branch": "w2u-integration",
+  "status": "semantic_review_complete_awaiting_history_commit",
+  "native_regression_summary": "pmc/w2-integration-native-results.json",
+  "strategy": "Focused semantic ports onto the incoming base, followed by a reviewed history-only reconciliation merge. Do not replace the resolved integration tree with an automatic content merge.",
+  "incoming_retained": [
+    "Resident w2anim renderer and W2AS v1 / MANI v2 carrier conventions; no White 2 PWAN runtime.",
+    "200 KiB PMC reservation, 32 module records, ABI version 1 and existing module IDs/paths.",
+    "Incoming ability IDs, messages, declarative registry and preview cleanup.",
+    "Additional incoming abilities and shared mechanics, including strong-weather IDs 5/6/7.",
+    "Mimikyu-only Disguise with one 1/8-max-HP bust payment.",
+    "Exactly one Grass Pelt registration, owned by mb_terrain."
+  ],
+  "main_semantically_ported": [
+    "44 missing White 2 move registrations plus overlapping move implementations and metadata.",
+    "Resident state, action ordering, called-move context, move history, targeting, extra actions, revival and switching helpers.",
+    "Parental Bond quarter final second-hit damage with full fixed-damage exceptions; shared hit-history bookkeeping.",
+    "Ability fixes, move flags, native/ability/final parameter phases and selection/execution restrictions.",
+    "Snow logical/display ID 8, Chilly Reception and cold-weather consumers reconciled with strong-weather precedence/suppression.",
+    "Repository-owned regression tooling, bounded loader/RAM checks, import validation and teardown safeguards."
+  ],
+  "intentional_exclusions": [
+    "main's PWAN battle, trainer, summary, evolution, egg-hatch and nonbattle renderer source changes are not linked into White 2.",
+    "Black 2 stays on frozen incoming gameplay/assembly sources and target-filtered static registration. Its behavioral/hash baseline is not refreshed and no Black 2 ROM is published.",
+    "Uncommitted work from either original checkout is not imported, overwritten or represented as part of the pinned revisions."
+  ],
+  "validation_discovered_corrections": [
+    "Native SPA metadata overflow: increase both the game-heap particle allocation and advertised capacity from 18432 to 24576 bytes; restore the incoming Pyro Ball assets.",
+    "Fix native event contexts for source-dependent trapping, Happy Hour and Haze reuse; retain Aurora Veil's weather check.",
+    "Gen 7 Water Shuriken category, Flying Press/Minimize, Flower Shield grounding, Shore Up rounding, Revelation Dance final type, existing sleep under Electric Terrain and Laser Focus lifetime.",
+    "Coaching, Tidy Up and Take Heart effective stat caps, while preserving independent cleanup/status-cure benefits.",
+    "Correct fixture move slots, Gravity-forbidden Splash controls and native work/PP observations without relaxing damage, status, action-order or failure outcomes."
+  ],
+  "evidence_policy": "Record exact ROM hashes, complete versus partial suites, failed attempts and explicit retries. Headless animation completion is not visual correctness. Private diagnostic all-group registration is not a legal-party test. Hardware/DSi and unexercised normal trainer/nonbattle renderer paths remain separate verification limits.",
+  "release_report": "pmc/w2-integration-progress.json"
+}

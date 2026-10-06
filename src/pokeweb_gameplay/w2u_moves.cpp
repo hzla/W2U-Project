@@ -197,10 +197,8 @@ extern "C" void HandlerBypassSubstitute(BattleEventItem* item, ServerFlow* serve
 extern "C" void HandlerPosTurnCheckDone(BattleEventItem* item, ServerFlow* serverFlow, u32 targetPos, u32* work);
 extern "C" void HandlerPosProtectBroken(BattleEventItem* item, ServerFlow* serverFlow, u32 targetPos, u32* work);
 extern "C" BattleEventHandlerTableEntry* EventAddShadowForce(u32* handlerAmount);
-extern "C" BattleEventHandlerTableEntry* EventAddSpiderWeb(u32* handlerAmount);
 extern "C" BattleEventHandlerTableEntry* EventAddReflect(u32* handlerAmount);
 extern "C" BattleEventHandlerTableEntry* EventAddLightScreen(u32* handlerAmount);
-extern "C" BattleEventHandlerTableEntry* EventAddHaze(u32* handlerAmount);
 extern "C" BattleEventHandlerTableEntry* EventAddFalseSwipe(u32* handlerAmount);
 extern "C" BattleEventHandlerTableEntry* EventAddBind(u32* handlerAmount);
 extern "C" BattleEventHandlerTableEntry* EventAddSuperFang(u32* handlerAmount);
@@ -1124,17 +1122,6 @@ bool IsTerrainActive(TERRAIN terrain)
     return sTerrainActive && sTerrainType == terrain;
 }
 
-void TerrainCureSleep(ServerFlow* serverFlow, u32 pokemonSlot)
-{
-    BattleMon* battleMon = GetBattleMon(serverFlow, pokemonSlot);
-    if (IsTerrainActive(TERRAIN_ELECTRIC) &&
-        battleMon &&
-        BattleMon_CheckIfMoveCondition(battleMon, CONDITION_SLEEP) &&
-        IsGrounded(serverFlow, battleMon)) {
-        CureMoveCondition(serverFlow, pokemonSlot, CONDITION_SLEEP);
-    }
-}
-
 BattleEventPriority PosEffect_GetPriority(u32* handlerAmount)
 {
     u16 eventPriority = (u16)((*handlerAmount & 0xFFFF0000) >> 16);
@@ -1770,9 +1757,9 @@ extern "C" void W2U_CopyCriticalBoost(BattleMon* user, BattleMon* target)
 
 extern "C" bool W2U_MoveState_IsLaserFocused(u32 pokemonSlot)
 {
-    // A value of two is the turn Laser Focus was used. The guarantee becomes
-    // active after that turn-end tick changes it to one.
-    return IsValidSlot(pokemonSlot) && sMoveState.laserFocusTurns[pokemonSlot] == 1;
+    // Extra actions on the activation turn also receive the guarantee. The
+    // two turn-end ticks expire it at the end of the following turn.
+    return IsValidSlot(pokemonSlot) && sMoveState.laserFocusTurns[pokemonSlot] != 0;
 }
 
 extern "C" bool W2U_MoveState_HasLaserFocus()
@@ -2624,28 +2611,41 @@ static void HandlerTidyUp(
     BattleEventItem* item, ServerFlow* flow, u32 pokemonSlot, u32* work)
 {
     (void)item; (void)work;
-    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+    if (!flow || flow->simulationCounter ||
+        pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
         BattleEventVar_GetValue(VAR_TARGET_COUNT) == 0) return;
-    bool removedSubstitute = false;
+    BattleMon* user = GetBattleMon(flow, pokemonSlot);
+    if (!user || BattleMon_IsFainted(user)) return;
+    bool cleaned = false;
     for (u32 slot = 0; slot < W2U_ARRAY_COUNT(flow->pokeCon->activeBattleMon); ++slot) {
         BattleMon* mon = GetBattleMon(flow, slot);
         if (mon && !BattleMon_IsFainted(mon) &&
             Handler_PokeIDToPokePos(flow, slot) < W2U_NULL_BATTLE_POS &&
             BattleMon_IsSubstituteActive(mon)) {
             BattleMon_RemoveSubstitute(mon);
-            removedSubstitute = true;
+            cleaned = true;
         }
     }
     const SIDE_EFFECT hazards[] = {
         SIDEEFF_SPIKES, SIDEEFF_TOXIC_SPIKES, SIDEEFF_STEALTH_ROCK, SIDEEFF_STICKY_WEB
     };
     for (u32 side = 0; side < W2U_SIDE_COUNT; ++side) {
-        RemoveSideEffects(flow, pokemonSlot, side, hazards, W2U_ARRAY_COUNT(hazards));
-        if (RemoveStickyWebSide(flow, pokemonSlot, side, true)) removedSubstitute = true;
+        bool active = false;
+        for (u32 index = 0; index < W2U_ARRAY_COUNT(hazards); ++index)
+            if (SideEffectEvent_IsActive(side, hazards[index])) active = true;
+        if (active) {
+            RemoveSideEffects(flow, pokemonSlot, side, hazards, W2U_ARRAY_COUNT(hazards));
+            cleaned = true;
+        }
+        if (RemoveStickyWebSide(flow, pokemonSlot, side, true)) cleaned = true;
     }
-    ApplyStatChange(flow, pokemonSlot, pokemonSlot, STATSTAGE_ATTACK, 1, true);
-    ApplyStatChange(flow, pokemonSlot, pokemonSlot, STATSTAGE_SPEED, 1, true);
-    if (removedSubstitute) BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, pokemonSlot);
+    const s8 direction = BattleMon_GetValue(user, VALUE_EFFECTIVE_ABILITY) == 126u ? -1 : 1;
+    if (BattleMon_IsStatChangeValid(user, STATSTAGE_ATTACK, direction) ||
+        BattleMon_IsStatChangeValid(user, STATSTAGE_SPEED, direction)) {
+        ApplyStatChange(flow, pokemonSlot, pokemonSlot, STATSTAGE_ATTACK, 1, true);
+        ApplyStatChange(flow, pokemonSlot, pokemonSlot, STATSTAGE_SPEED, 1, true);
+    }
+    if (cleaned) BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, pokemonSlot);
 }
 
 static BattleEventHandlerTableEntry TidyUpHandlers[] = {
@@ -2692,6 +2692,25 @@ static BattleEventHandlerTableEntry DamagingHazardHandlers[] = {
 };
 
 
+static bool QueueSourceTrap(ServerFlow* flow, u32 source, u32 target)
+{
+    BattleMon* mon = GetBattleMon(flow, target);
+    if (!mon || BattleMon_IsFainted(mon) || HasTypeWithExtra(mon, TYPE_GHOST)) return false;
+    if (BattleMon_CheckIfMoveCondition(mon, CONDITION_ESCAPE_PREVENTION)) return false;
+    HandlerParam_AddCondition* effect = (HandlerParam_AddCondition*)
+        BattleHandler_PushWork(flow, EFFECT_ADD_CONDITION, source);
+    if (!effect) return false;
+    effect->condition = CONDITION_ESCAPE_PREVENTION;
+    // Native Spider Web: poke-dependent kind 3, source in bits 3-8.
+    effect->condData = 3u | (source << 3);
+    effect->pokeID = (u8)target;
+    effect->almost = 0;
+    BattleHandler_StrSetup(&effect->exStr, 2, 872);
+    BattleHandler_AddArg(&effect->exStr, target);
+    BattleHandler_PopWork(flow, effect);
+    return true;
+}
+
 extern "C" void HandlerAnchorShot(
     BattleEventItem* item,
     ServerFlow* serverFlow,
@@ -2710,48 +2729,22 @@ extern "C" void HandlerAnchorShot(
         return;
     }
 
-    u32 targetSlot = (u32)BattleEventVar_GetValue(VAR_TARGET_MON_ID);
-    BattleMon* targetMon = GetBattleMon(serverFlow, targetSlot);
-    if (!targetMon || BattleMon_IsFainted(targetMon)) {
-        return;
-    }
-
-    // Anchor Shot and Spirit Shackle are damaging counterparts to Spider Web.
-    // Reuse the native handler so the condition stores its source battler and
-    // is automatically released when that source leaves the field.
-    u32 handlerCount = 0;
-    BattleEventHandlerTableEntry* handlers = EventAddSpiderWeb(&handlerCount);
-    for (u32 idx = 0; handlers && idx < handlerCount; ++idx) {
-        if (handlers[idx].eventType == EVENT_UNCATEGORIZED_MOVE && handlers[idx].handler) {
-            handlers[idx].handler(item, serverFlow, pokemonSlot, work);
-            return;
-        }
+    (void)item;
+    (void)work;
+    // The direct-hit notification owns the real recipient list. The later
+    // side-effect phase does not retain Spider Web's single-target context.
+    // Use the shared native condition encoding, preserving source departure
+    // cleanup and all native switch-item / forced-switch bypasses.
+    const u32 targetCount = (u32)BattleEventVar_GetValue(VAR_TARGET_COUNT);
+    for (u32 idx = 0; idx < targetCount; ++idx) {
+        const u32 target = (u32)BattleEventVar_GetValue((BattleEventVar)(VAR_TARGET_MON_ID + idx));
+        if (target != pokemonSlot) QueueSourceTrap(serverFlow, pokemonSlot, target);
     }
 }
 
 BattleEventHandlerTableEntry AnchorShotHandlers[] = {
-    { EVENT_MOVE_DAMAGE_SIDE_AFTER, HandlerAnchorShot },
+    { EVENT_DAMAGE_PROCESSING_END_HIT_REAL, HandlerAnchorShot },
 };
-
-static bool QueueSourceTrap(ServerFlow* flow, u32 source, u32 target)
-{
-    BattleMon* mon = GetBattleMon(flow, target);
-    if (!mon || BattleMon_IsFainted(mon) || HasTypeWithExtra(mon, TYPE_GHOST)) return false;
-    if (BattleMon_CheckIfMoveCondition(mon, CONDITION_ESCAPE_PREVENTION)) return false;
-    HandlerParam_AddCondition* effect = (HandlerParam_AddCondition*)
-        BattleHandler_PushWork(flow, EFFECT_ADD_CONDITION, source);
-    if (!effect) return false;
-    effect->condition = CONDITION_ESCAPE_PREVENTION;
-    // Clean US W2/B2 native Spider Web: poke-dependent kind 3, source in
-    // bits 3–8. The engine clears dependents on source departure/fainting.
-    effect->condData = 3u | (source << 3);
-    effect->pokeID = (u8)target;
-    effect->almost = 0;
-    BattleHandler_StrSetup(&effect->exStr, 2, 872);
-    BattleHandler_AddArg(&effect->exStr, target);
-    BattleHandler_PopWork(flow, effect);
-    return true;
-}
 
 static void HandlerNoRetreat(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
 {
@@ -2982,8 +2975,13 @@ extern "C" void HandlerFlyingPress(BattleEventItem* item, ServerFlow* serverFlow
     }
 }
 
+static void HandlerMinimizeDamage(BattleEventItem*, ServerFlow*, u32, u32*);
+static void HandlerMinimizeAccuracy(BattleEventItem*, ServerFlow*, u32, u32*);
+
 BattleEventHandlerTableEntry FlyingPressHandlers[] = {
     { EVENT_CHECK_TYPE_EFFECTIVENESS, HandlerFlyingPress },
+    { EVENT_MOVE_DAMAGE_PROCESSING_2, HandlerMinimizeDamage },
+    { EVENT_SKIP_TARGET_ACCURACY_CHECK, HandlerMinimizeAccuracy },
 };
 
 
@@ -3103,7 +3101,8 @@ extern "C" void HandlerRototiller(BattleEventItem* item, ServerFlow* serverFlow,
 
     u32 defendingSlot = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
     BattleMon* defendingMon = GetBattleMon(serverFlow, defendingSlot);
-    if (!defendingMon || !HasTypeWithExtra(defendingMon, TYPE_GRASS) || !IsGrounded(serverFlow, defendingMon)) {
+    const bool needsGrounding = BattleEventVar_GetValue(VAR_MOVE_ID) != MOVE_FLOWER_SHIELD;
+    if (!defendingMon || !HasTypeWithExtra(defendingMon, TYPE_GRASS) || (needsGrounding && !IsGrounded(serverFlow, defendingMon))) {
         BattleEventVar_RewriteValue(VAR_NO_EFFECT_FLAG, 1);
     }
 }
@@ -3139,6 +3138,9 @@ static void HandlerCoachingApply(BattleEventItem*, ServerFlow* flow, u32 slot, u
         if (BattleMon_GetConditionFlag(target, flag)) return;
     }
     if (BattleMon_CheckIfMoveCondition(target, CONDITION_SKYDROP)) return;
+    const s8 direction = BattleMon_GetValue(target, VALUE_EFFECTIVE_ABILITY) == 126u ? -1 : 1; // Native Contrary.
+    if (!BattleMon_IsStatChangeValid(target, STATSTAGE_ATTACK, direction) &&
+        !BattleMon_IsStatChangeValid(target, STATSTAGE_DEFENSE, direction)) return;
     // Native direct target-stat effects reject Substitute a second time even
     // when bit 13 allowed the target. Attribute the cooperative boosts to the
     // recipient, like self-boost work: bypass that check without removing the
@@ -3377,7 +3379,8 @@ extern "C" void HandlerAuroraVeil(
     }
 
     u32 side = GetSideFromMonID(pokemonSlot);
-    if (side >= W2U_SIDE_COUNT || sAuroraVeilActive(side)) {
+    if (ServerEvent_GetWeather(serverFlow) != WEATHER_HAIL ||
+        side >= W2U_SIDE_COUNT || sAuroraVeilActive(side)) {
         BattleEventVar_RewriteValue(VAR_MOVE_FAIL_FLAG, 1);
         return;
     }
@@ -3496,7 +3499,8 @@ static void HandlerTakeHeart(
 {
     (void)item;
     (void)work;
-    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
+    if (!serverFlow || serverFlow->simulationCounter ||
+        pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) ||
         BattleEventVar_GetValue(VAR_TARGET_COUNT) == 0) {
         return;
     }
@@ -3505,12 +3509,15 @@ static void HandlerTakeHeart(
         return;
     }
 
-    // Native work combines successful results, so a capped/blocked boost must
-    // not skip the other boost or the cure. It also supplies Simple/Contrary,
-    // stage limits and the ordinary failure when nothing can change. Snatch
-    // registers this move on the actual executing user before this event.
-    ApplyStatChange(serverFlow, pokemonSlot, pokemonSlot, STATSTAGE_SPECIAL_ATTACK, 1, true);
-    ApplyStatChange(serverFlow, pokemonSlot, pokemonSlot, STATSTAGE_SPECIAL_DEFENSE, 1, true);
+    // Native work owns Simple/Contrary and the individual messages. Do not
+    // enqueue a wholly ineffective pair, which otherwise reports success.
+    // Snatch registers this move on the actual executing user before this event.
+    const s8 direction = BattleMon_GetValue(user, VALUE_EFFECTIVE_ABILITY) == 126u ? -1 : 1;
+    if (BattleMon_IsStatChangeValid(user, STATSTAGE_SPECIAL_ATTACK, direction) ||
+        BattleMon_IsStatChangeValid(user, STATSTAGE_SPECIAL_DEFENSE, direction)) {
+        ApplyStatChange(serverFlow, pokemonSlot, pokemonSlot, STATSTAGE_SPECIAL_ATTACK, 1, true);
+        ApplyStatChange(serverFlow, pokemonSlot, pokemonSlot, STATSTAGE_SPECIAL_DEFENSE, 1, true);
+    }
     const CONDITION status = BattleMon_GetStatus(user);
     if (IsPurifiableStatus(status)) {
         CureMoveCondition(serverFlow, pokemonSlot, status);
@@ -3981,10 +3988,9 @@ extern "C" void HandlerRevelationDanceType(
     u32 moveType = W2U_ResolveRevelationDanceType(
         GetBattleMon(serverFlow, pokemonSlot));
 
-    // Move events run after ability and position events. Apply these two
-    // allowed conversions here so Revelation Dance overrides Normalize and
-    // the -ate abilities without accidentally overriding Electrify or a
-    // Normal-type Ion Deluge conversion.
+    // This final parameter phase runs after native type-changing abilities.
+    // Retain the permitted Electrify / Normal-type Ion Deluge conversions
+    // while overriding Normalize and the -ate abilities.
     if (W2U_MoveState_IsElectrified(pokemonSlot) ||
         (moveType == TYPE_NORMAL && W2U_MoveState_IsIonDelugeActive())) {
         moveType = TYPE_ELECTRIC;
@@ -3994,7 +4000,7 @@ extern "C" void HandlerRevelationDanceType(
 }
 
 BattleEventHandlerTableEntry RevelationDanceHandlers[] = {
-    { EVENT_MOVE_PARAM, HandlerRevelationDanceType },
+    { EVENT_W2U_MOVE_PARAM_FINAL, HandlerRevelationDanceType },
 };
 
 
@@ -4870,14 +4876,14 @@ static BattleEventHandlerTableEntry PopulationBombHandlers[] = {
     { EVENT_MOVE_HIT_COUNT, HandlerPopulationBombHitCount },
 };
 
-static void HandlerSupercellSlamMinimizeDamage(
+static void HandlerMinimizeDamage(
     BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
 {
     InvokeNativeMoveEvent(MOVE_STOMP,
         EVENT_MOVE_DAMAGE_PROCESSING_2, item, flow, slot, work);
 }
 
-static void HandlerSupercellSlamMinimizeAccuracy(
+static void HandlerMinimizeAccuracy(
     BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
 {
     (void)item;
@@ -4895,10 +4901,10 @@ static void HandlerSupercellSlamMinimizeAccuracy(
 
 static BattleEventHandlerTableEntry SupercellSlamHandlers[] = {
     { EVENT_MOVE_EXECUTE_NOEFFECT, HandlerSupercellSlamCrash },
-    { EVENT_MOVE_DAMAGE_PROCESSING_2, HandlerSupercellSlamMinimizeDamage },
+    { EVENT_MOVE_DAMAGE_PROCESSING_2, HandlerMinimizeDamage },
     // Unlike the attacker-only weather shortcut (0x32), 0x1C exposes both
     // battlers. Target-dependent Minimize checks must use this scope.
-    { EVENT_SKIP_TARGET_ACCURACY_CHECK, HandlerSupercellSlamMinimizeAccuracy },
+    { EVENT_SKIP_TARGET_ACCURACY_CHECK, HandlerMinimizeAccuracy },
 };
 
 static void HandlerDireClaw(
@@ -5440,9 +5446,10 @@ extern "C" void HandlerShoreUpRatio(
     (void)item;
     (void)pokemonSlot;
     (void)work;
-    if (BattleEventVar_GetValue(VAR_MOVE_ID) == MOVE_SHORE_UP &&
-        ServerEvent_GetWeather(serverFlow) == WEATHER_SANDSTORM) {
-        BattleEventVar_RewriteValue(VAR_RATIO, W2U_RECOVER_RATIO_TWO_THIRDS);
+    if (BattleEventVar_GetValue(VAR_MOVE_ID) == MOVE_SHORE_UP) {
+        BattleEventVar_RewriteValue(VAR_RATIO,
+            ServerEvent_GetWeather(serverFlow) == WEATHER_SANDSTORM
+                ? W2U_RECOVER_RATIO_TWO_THIRDS : W2U_RATIO_HALF);
     }
 }
 
@@ -6178,9 +6185,11 @@ extern "C" u32 THUMB_BRANCH_ServerEvent_CalcMoveHealAmount(
     BattleEventVar_Pop();
 
     const u32 maxHP = BattleMon_GetValue(currentMon, VALUE_MAX_HP);
-    const u32 finalHeal = ratio
-        ? fixed_round(maxHP, ratio)
-        : MultiplyValueByRatio(maxHP, healParam);
+    // Shore Up floors its exact fraction, unlike the native recovery helper's
+    // nearest-integer rounding. Avoid a Q12 approximation of 2/3 here too.
+    const u32 finalHeal = moveID == MOVE_SHORE_UP
+        ? (ratio == W2U_RECOVER_RATIO_TWO_THIRDS ? (u32)((u64)maxHP * 2u / 3u) : maxHP / 2u)
+        : (ratio ? fixed_round(maxHP, ratio) : MultiplyValueByRatio(maxHP, healParam));
 
     if (finalHeal == 0) {
         return 1;
@@ -7408,7 +7417,7 @@ extern "C" void HandlerHappyHour(BattleEventItem* item, ServerFlow* serverFlow, 
 }
 
 BattleEventHandlerTableEntry HappyHourHandlers[] = {
-    { EVENT_CALL_FIELD_EFFECT, HandlerHappyHour },
+    { EVENT_UNCATEGORIZED_MOVE_NO_TARGET, HandlerHappyHour },
 };
 
 
@@ -7805,10 +7814,11 @@ static void HandlerFreezyFrost(
     // battler. Calling the native handler preserves Haze's target expansion
     // and standard stat-reset message without replacing the damaging move's
     // normal execution path.
+    W2UNativeMoveGetter getter = W2U_FindNativeMoveGetter(MOVE_HAZE);
     u32 handlerCount = 0;
-    BattleEventHandlerTableEntry* handlers = EventAddHaze(&handlerCount);
+    BattleEventHandlerTableEntry* handlers = getter ? getter(&handlerCount) : 0;
     for (u32 idx = 0; handlers && idx < handlerCount; ++idx) {
-        if (handlers[idx].eventType == EVENT_UNCATEGORIZED_MOVE && handlers[idx].handler) {
+        if (handlers[idx].eventType == EVENT_CALL_FIELD_EFFECT && handlers[idx].handler) {
             handlers[idx].handler(item, serverFlow, pokemonSlot, work);
             return;
         }
@@ -8063,35 +8073,6 @@ extern "C" void HandlerTerrainStatusFailMessage(BattleEventItem* item, ServerFlo
     PushMessageArg(serverFlow, BATTLE_MAX_SLOTS, 2u, msgID, (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON));
 }
 
-extern "C" void HandlerElectricTerrainCheckSleep(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)work;
-    if (IsTerrainActive(TERRAIN_ELECTRIC) &&
-        pokemonSlot == (u32)BattleEventVar_GetValue(VAR_MON_ID) &&
-        IsGrounded(serverFlow, GetBattleMon(serverFlow, pokemonSlot))) {
-        BattleEventVar_RewriteValue(VAR_MOVE_FAIL_FLAG, 1);
-    }
-}
-
-extern "C" void HandlerElectricTerrainSwitchIn(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)pokemonSlot;
-    (void)work;
-    TerrainCureSleep(serverFlow, (u32)BattleEventVar_GetValue(VAR_MON_ID));
-}
-
-extern "C" void HandlerElectricTerrainNewMon(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)pokemonSlot;
-    (void)work;
-    if (!IsNotNewEvent()) {
-        TerrainCureSleep(serverFlow, (u32)BattleEventVar_GetValue(NEW_VAR_MON_ID));
-    }
-}
-
 extern "C" void HandlerGrassyTerrainHeal(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
     (void)item;
@@ -8216,13 +8197,6 @@ extern "C" void HandlerTerrainTurnCheckDone(BattleEventItem* item, ServerFlow* s
 BattleEventHandlerTableEntry FieldTerrainHandlers[] = {
     { EVENT_ADD_CONDITION_CHECK_FAIL, HandlerTerrainPreventStatus },
     { EVENT_ADD_CONDITION_FAIL, HandlerTerrainStatusFailMessage },
-    { EVENT_CHECK_SLEEP, HandlerElectricTerrainCheckSleep },
-    { EVENT_AFTER_TERRAIN_CHANGE, HandlerElectricTerrainNewMon },
-    { EVENT_SWITCH_IN, HandlerElectricTerrainSwitchIn },
-    { EVENT_ACTION_PROCESSING_END, HandlerElectricTerrainSwitchIn },
-    { EVENT_ITEM_REWRITE_DONE, HandlerElectricTerrainSwitchIn },
-    { EVENT_AFTER_ABILITY_CHANGE, HandlerElectricTerrainSwitchIn },
-    { EVENT_GROUNDED_BY_GRAVITY, HandlerElectricTerrainNewMon },
     { EVENT_TURN_CHECK_BEGIN, HandlerGrassyTerrainHeal },
     { EVENT_RECOVER_HP, HandlerFloralHealingRatio },
     { EVENT_MOVE_BASE_POWER, HandlerGrassyTerrainQuakeMoves },

@@ -1,0 +1,797 @@
+{
+  "schema_version": 1,
+  "status": "release_candidate_with_explicit_verification_limits",
+  "target": "US White 2 revision 0, DS mode",
+  "artifact_name": "White2Upgrade-w2-integration-20261006-rc1.nds",
+  "delivered_to_workspace_parent": true,
+  "stripped": {
+    "heap_bytes": 204800,
+    "required_headroom_bytes": 12288,
+    "allocator_bytes_per_module": 16,
+    "allocator_alignment": 8,
+    "loader_fixed_bytes": 0,
+    "loader_state_included_in_core": true,
+    "pmc_root_object_bytes": 32,
+    "pmc_work_area_bytes": 4160,
+    "pmc_bookkeeping_and_fragmentation_reserve_bytes": 512,
+    "bootstrap_patches": [
+      {
+        "path": "src/battle_log/BattleLogSaveGuardW2.dll",
+        "file_bytes": 432,
+        "expanded_bytes": 448,
+        "fixed_bytes": 412,
+        "bss_bytes": 16,
+        "resident_bytes": 428,
+        "allocated_payload_bytes": 432,
+        "expanded_payload_bytes": 448
+      },
+      {
+        "path": "vfs/data/patches/MainMenuSkip(1).dll",
+        "file_bytes": 320,
+        "expanded_bytes": 320,
+        "fixed_bytes": 300,
+        "bss_bytes": 0,
+        "resident_bytes": 300,
+        "allocated_payload_bytes": 304,
+        "expanded_payload_bytes": 320
+      },
+      {
+        "path": "vfs/data/patches/DoubleBattleFixW2.dll",
+        "file_bytes": 1520,
+        "expanded_bytes": 1520,
+        "fixed_bytes": 1252,
+        "bss_bytes": 0,
+        "resident_bytes": 1252,
+        "allocated_payload_bytes": 1256,
+        "expanded_payload_bytes": 1520
+      }
+    ],
+    "native_arena_limit_note": "The bundled constructor declares 64 bytes beyond the reserved arena; those bytes are never included in the 200-KiB budget.",
+    "baseline": "pmc/white2upgrade_battle_heap_baseline.json",
+    "monolithic_core_baseline_bytes": 63700,
+    "monolithic_resident_baseline_bytes": 103300,
+    "core": {
+      "path": "src/w2u_main.dll",
+      "file_bytes": 106992,
+      "expanded_bytes": 111008,
+      "fixed_bytes": 91992,
+      "bss_bytes": 4016,
+      "resident_bytes": 96008,
+      "allocated_payload_bytes": 96008,
+      "expanded_payload_bytes": 111008
+    },
+    "pwan_battle": {
+      "path": null,
+      "file_bytes": 0,
+      "expanded_bytes": 0,
+      "fixed_bytes": 0,
+      "resident_bytes": 0
+    },
+    "battle_log": {
+      "path": "src/w2u_battle_log.dll",
+      "file_bytes": 2384,
+      "expanded_bytes": 2480,
+      "fixed_bytes": 2284,
+      "bss_bytes": 96,
+      "resident_bytes": 2380,
+      "allocated_payload_bytes": 2384,
+      "expanded_payload_bytes": 2480
+    },
+    "battle_counters": {
+      "path": "src/w2u_pk5_battle_counters.dll",
+      "file_bytes": 1648,
+      "expanded_bytes": 1728,
+      "fixed_bytes": 1564,
+      "bss_bytes": 80,
+      "resident_bytes": 1644,
+      "allocated_payload_bytes": 1648,
+      "expanded_payload_bytes": 1728
+    },
+    "children": [
+      {
+        "path": "src/w2u_battle_abilities_veils.dll",
+        "file_bytes": 1888,
+        "expanded_bytes": 1888,
+        "fixed_bytes": 1444,
+        "bss_bytes": 0,
+        "resident_bytes": 1444,
+        "allocated_payload_bytes": 1448,
+        "expanded_payload_bytes": 1888
+      },
+      {
+        "path": "src/w2u_battle_abilities_auras.dll",
+        "file_bytes": 1280,
+        "expanded_bytes": 1280,
+        "fixed_bytes": 1052,
+        "bss_bytes": 0,
+        "resident_bytes": 1052,
+        "allocated_payload_bytes": 1056,
+        "expanded_payload_bytes": 1280
+      },
+      {
+        "path": "src/w2u_battle_abilities_item_ops.dll",
+        "file_bytes": 1792,
+        "expanded_bytes": 1792,
+        "fixed_bytes": 1316,
+        "bss_bytes": 0,
+        "resident_bytes": 1316,
+        "allocated_payload_bytes": 1320,
+        "expanded_payload_bytes": 1792
+      },
+      {
+        "path": "src/w2u_battle_abilities_type.dll",
+        "file_bytes": 1392,
+        "expanded_bytes": 1392,
+        "fixed_bytes": 1100,
+        "bss_bytes": 0,
+        "resident_bytes": 1100,
+        "allocated_payload_bytes": 1104,
+        "expanded_payload_bytes": 1392
+      },
+      {
+        "path": "src/w2u_battle_abilities_power.dll",
+        "file_bytes": 1616,
+        "expanded_bytes": 1616,
+        "fixed_bytes": 1244,
+        "bss_bytes": 0,
+        "resident_bytes": 1244,
+        "allocated_payload_bytes": 1248,
+        "expanded_payload_bytes": 1616
+      },
+      {
+        "path": "src/w2u_battle_abilities_defense.dll",
+        "file_bytes": 2272,
+        "expanded_bytes": 2272,
+        "fixed_bytes": 1660,
+        "bss_bytes": 0,
+        "resident_bytes": 1660,
+        "allocated_payload_bytes": 1664,
+        "expanded_payload_bytes": 2272
+      },
+      {
+        "path": "src/w2u_battle_abilities_reactive.dll",
+        "file_bytes": 2352,
+        "expanded_bytes": 2352,
+        "fixed_bytes": 1804,
+        "bss_bytes": 0,
+        "resident_bytes": 1804,
+        "allocated_payload_bytes": 1808,
+        "expanded_payload_bytes": 2352
+      },
+      {
+        "path": "src/w2u_battle_abilities_priority_speed.dll",
+        "file_bytes": 1392,
+        "expanded_bytes": 1392,
+        "fixed_bytes": 1100,
+        "bss_bytes": 0,
+        "resident_bytes": 1100,
+        "allocated_payload_bytes": 1104,
+        "expanded_payload_bytes": 1392
+      },
+      {
+        "path": "src/w2u_battle_abilities_terrain.dll",
+        "file_bytes": 592,
+        "expanded_bytes": 592,
+        "fixed_bytes": 492,
+        "bss_bytes": 0,
+        "resident_bytes": 492,
+        "allocated_payload_bytes": 496,
+        "expanded_payload_bytes": 592
+      },
+      {
+        "path": "src/w2u_battle_abilities_forms.dll",
+        "file_bytes": 2752,
+        "expanded_bytes": 2752,
+        "fixed_bytes": 2044,
+        "bss_bytes": 0,
+        "resident_bytes": 2044,
+        "allocated_payload_bytes": 2048,
+        "expanded_payload_bytes": 2752
+      },
+      {
+        "path": "src/w2u_battle_abilities_battle_flow.dll",
+        "file_bytes": 3888,
+        "expanded_bytes": 3888,
+        "fixed_bytes": 3140,
+        "bss_bytes": 0,
+        "resident_bytes": 3140,
+        "allocated_payload_bytes": 3144,
+        "expanded_payload_bytes": 3888
+      },
+      {
+        "path": "src/w2u_battle_items_gen6.dll",
+        "file_bytes": 3152,
+        "expanded_bytes": 3152,
+        "fixed_bytes": 2492,
+        "bss_bytes": 0,
+        "resident_bytes": 2492,
+        "allocated_payload_bytes": 2496,
+        "expanded_payload_bytes": 3152
+      },
+      {
+        "path": "src/w2u_battle_moves_hazards.dll",
+        "file_bytes": 3312,
+        "expanded_bytes": 3312,
+        "fixed_bytes": 2676,
+        "bss_bytes": 0,
+        "resident_bytes": 2676,
+        "allocated_payload_bytes": 2680,
+        "expanded_payload_bytes": 3312
+      },
+      {
+        "path": "src/w2u_battle_moves_guards.dll",
+        "file_bytes": 4368,
+        "expanded_bytes": 4368,
+        "fixed_bytes": 3332,
+        "bss_bytes": 0,
+        "resident_bytes": 3332,
+        "allocated_payload_bytes": 3336,
+        "expanded_payload_bytes": 4368
+      },
+      {
+        "path": "src/w2u_battle_moves_terrain.dll",
+        "file_bytes": 6688,
+        "expanded_bytes": 6688,
+        "fixed_bytes": 5292,
+        "bss_bytes": 0,
+        "resident_bytes": 5292,
+        "allocated_payload_bytes": 5296,
+        "expanded_payload_bytes": 6688
+      },
+      {
+        "path": "src/w2u_battle_moves_type.dll",
+        "file_bytes": 5952,
+        "expanded_bytes": 5952,
+        "fixed_bytes": 4540,
+        "bss_bytes": 0,
+        "resident_bytes": 4540,
+        "allocated_payload_bytes": 4544,
+        "expanded_payload_bytes": 5952
+      },
+      {
+        "path": "src/w2u_battle_moves_volatile.dll",
+        "file_bytes": 3840,
+        "expanded_bytes": 3840,
+        "fixed_bytes": 3020,
+        "bss_bytes": 0,
+        "resident_bytes": 3020,
+        "allocated_payload_bytes": 3024,
+        "expanded_payload_bytes": 3840
+      },
+      {
+        "path": "src/w2u_battle_moves_stats.dll",
+        "file_bytes": 6848,
+        "expanded_bytes": 6848,
+        "fixed_bytes": 5164,
+        "bss_bytes": 0,
+        "resident_bytes": 5164,
+        "allocated_payload_bytes": 5168,
+        "expanded_payload_bytes": 6848
+      },
+      {
+        "path": "src/w2u_battle_moves_flow.dll",
+        "file_bytes": 12224,
+        "expanded_bytes": 12224,
+        "fixed_bytes": 9164,
+        "bss_bytes": 0,
+        "resident_bytes": 9164,
+        "allocated_payload_bytes": 9168,
+        "expanded_payload_bytes": 12224
+      },
+      {
+        "path": "src/w2u_battle_moves_trapping.dll",
+        "file_bytes": 2080,
+        "expanded_bytes": 2080,
+        "fixed_bytes": 1676,
+        "bss_bytes": 0,
+        "resident_bytes": 1676,
+        "allocated_payload_bytes": 1680,
+        "expanded_payload_bytes": 2080
+      },
+      {
+        "path": "src/w2u_battle_moves_screens.dll",
+        "file_bytes": 2464,
+        "expanded_bytes": 2464,
+        "fixed_bytes": 1972,
+        "bss_bytes": 0,
+        "resident_bytes": 1972,
+        "allocated_payload_bytes": 1976,
+        "expanded_payload_bytes": 2464
+      },
+      {
+        "path": "src/w2u_battle_moves_ability.dll",
+        "file_bytes": 2048,
+        "expanded_bytes": 2048,
+        "fixed_bytes": 1588,
+        "bss_bytes": 0,
+        "resident_bytes": 1588,
+        "allocated_payload_bytes": 1592,
+        "expanded_payload_bytes": 2048
+      },
+      {
+        "path": "src/w2u_battle_abilities_strong_weather.dll",
+        "file_bytes": 1744,
+        "expanded_bytes": 1744,
+        "fixed_bytes": 1364,
+        "bss_bytes": 0,
+        "resident_bytes": 1364,
+        "allocated_payload_bytes": 1368,
+        "expanded_payload_bytes": 1744
+      },
+      {
+        "path": "src/w2u_battle_abilities_mb_power.dll",
+        "file_bytes": 5584,
+        "expanded_bytes": 5664,
+        "fixed_bytes": 4092,
+        "bss_bytes": 80,
+        "resident_bytes": 4172,
+        "allocated_payload_bytes": 4176,
+        "expanded_payload_bytes": 5664
+      },
+      {
+        "path": "src/w2u_battle_abilities_mb_defense.dll",
+        "file_bytes": 6944,
+        "expanded_bytes": 6992,
+        "fixed_bytes": 5132,
+        "bss_bytes": 48,
+        "resident_bytes": 5180,
+        "allocated_payload_bytes": 5184,
+        "expanded_payload_bytes": 6992
+      },
+      {
+        "path": "src/w2u_battle_abilities_mb_reactive.dll",
+        "file_bytes": 4128,
+        "expanded_bytes": 4208,
+        "fixed_bytes": 3036,
+        "bss_bytes": 80,
+        "resident_bytes": 3116,
+        "allocated_payload_bytes": 3120,
+        "expanded_payload_bytes": 4208
+      },
+      {
+        "path": "src/w2u_battle_abilities_mb_entry.dll",
+        "file_bytes": 3456,
+        "expanded_bytes": 3488,
+        "fixed_bytes": 2516,
+        "bss_bytes": 32,
+        "resident_bytes": 2548,
+        "allocated_payload_bytes": 2552,
+        "expanded_payload_bytes": 3488
+      },
+      {
+        "path": "src/w2u_battle_abilities_mb_terrain.dll",
+        "file_bytes": 3744,
+        "expanded_bytes": 3840,
+        "fixed_bytes": 2788,
+        "bss_bytes": 96,
+        "resident_bytes": 2884,
+        "allocated_payload_bytes": 2888,
+        "expanded_payload_bytes": 3840
+      },
+      {
+        "path": "src/w2u_battle_abilities_mb_hooked.dll",
+        "file_bytes": 4256,
+        "expanded_bytes": 4576,
+        "fixed_bytes": 3164,
+        "bss_bytes": 320,
+        "resident_bytes": 3484,
+        "allocated_payload_bytes": 3488,
+        "expanded_payload_bytes": 4576
+      },
+      {
+        "path": "src/w2u_battle_abilities_mb_forms.dll",
+        "file_bytes": 4256,
+        "expanded_bytes": 4352,
+        "fixed_bytes": 3268,
+        "bss_bytes": 96,
+        "resident_bytes": 3364,
+        "allocated_payload_bytes": 3368,
+        "expanded_payload_bytes": 4352
+      }
+    ],
+    "scenarios": {
+      "no_custom": {
+        "used_bytes": 106832,
+        "free_bytes": 97968,
+        "resident_saving_vs_monolith": -3532
+      },
+      "typical_largest_single_group": {
+        "used_bytes": 116016,
+        "free_bytes": 88784,
+        "resident_saving_vs_monolith": -12716
+      },
+      "all_groups_conservative": {
+        "used_bytes": 190856,
+        "free_bytes": 13944,
+        "child_fixed_bytes": 83544
+      },
+      "all_groups_transient_load": {
+        "used_bytes": 193912,
+        "free_bytes": 10888,
+        "last_loaded_module": "src/w2u_battle_moves_flow.dll",
+        "note": "Conservative expanded-module allocation before StartModule shrinks it; game heaps are separate."
+      }
+    }
+  },
+  "rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+  "core_rpm_sha256": "f62adf3f15fd44f55d41dc86f2e7abd10c7c2a3722876f66b14bc7e5805a036b",
+  "unstripped_diagnostic": {
+    "rom_sha256": "97db81ef188abe97533fea759bb64be28ba17e14d958e0a82b1042802c8374b6",
+    "core": {
+      "path": "src/w2u_main.dll",
+      "file_bytes": 147472,
+      "expanded_bytes": 151488,
+      "fixed_bytes": 130536,
+      "bss_bytes": 4016,
+      "resident_bytes": 134552,
+      "allocated_payload_bytes": 134552,
+      "expanded_payload_bytes": 151488
+    },
+    "scenarios": {
+      "no_custom": {
+        "used_bytes": 146528,
+        "free_bytes": 58272,
+        "resident_saving_vs_monolith": -43228
+      },
+      "typical_largest_single_group": {
+        "used_bytes": 155712,
+        "free_bytes": 49088,
+        "resident_saving_vs_monolith": -52412
+      },
+      "all_groups_conservative": {
+        "used_bytes": 230552,
+        "free_bytes": -25752,
+        "child_fixed_bytes": 83544
+      },
+      "all_groups_transient_load": {
+        "used_bytes": 233608,
+        "free_bytes": -28808,
+        "last_loaded_module": "src/w2u_battle_moves_flow.dll",
+        "note": "Conservative expanded-module allocation before StartModule shrinks it; game heaps are separate."
+      }
+    },
+    "release_eligible": false,
+    "note": "Children are always stripped. The unstripped resident core does not fit all groups; diagnostic only, not delivered."
+  },
+  "game_heap_stream_payload_audit": {
+    "entry_count": 1147,
+    "unique_manifests": 1117,
+    "max_per_sprite": {
+      "arc": 4,
+      "sheet": 14722,
+      "manifest_offset": 1290684,
+      "sequence_count": 186,
+      "unique_frame_count": 88,
+      "metadata_bytes": 1448,
+      "compressed_buffer_bytes": 2028,
+      "staging_bytes": 4608,
+      "payload_bytes": 8084
+    },
+    "four_sprite_payload_upper_bound": 32336,
+    "eight_slot_payload_upper_bound": 64672,
+    "pmc_heap_bytes": 0,
+    "allocations_per_sprite": 3,
+    "note": "Payload bounds only: game allocator headers and the shared VBlank task are not measured here. Native lifecycle measurements are separate."
+  },
+  "particle_repair": {
+    "work_arena_bytes": 24576,
+    "native_base_bytes": 17420,
+    "extra_game_heap_bytes_per_context": 6144,
+    "pmc_heap_bytes": 0,
+    "asset_count": 253,
+    "maximum": {
+      "asset": "6_00000985.bin",
+      "resources": 70,
+      "textures": 8,
+      "behaviors": 5,
+      "work_bytes": 19860,
+      "headroom_bytes": 4716
+    }
+  },
+  "native_all_groups": {
+    "report": "work/animation-completion/20261006-155527-8f451f/result.json",
+    "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+    "synthetic_not_legal_party": true,
+    "private_wrapper_extra_fixed_bytes": 160,
+    "before": {
+      "coreFixedBytes": 95996,
+      "loadedModuleCount": 30,
+      "currentChildBytes": 83704,
+      "peakChildBytes": 83704,
+      "loadCount": 30,
+      "unloadCount": 0,
+      "failureCount": 0,
+      "failedModuleMask": 0,
+      "lastFailureModuleId": 255,
+      "heapRefusalCount": 0,
+      "lastRefusedBytes": 0,
+      "lastLargestFreeBytes": 0
+    },
+    "after": {
+      "coreFixedBytes": 95996,
+      "loadedModuleCount": 30,
+      "currentChildBytes": 83704,
+      "peakChildBytes": 83704,
+      "loadCount": 30,
+      "unloadCount": 0,
+      "failureCount": 0,
+      "failedModuleMask": 0,
+      "lastFailureModuleId": 255,
+      "heapRefusalCount": 0,
+      "lastRefusedBytes": 0,
+      "lastLargestFreeBytes": 0
+    },
+    "heap_at_menu": {
+      "reservedHeapBytes": 204800,
+      "nativeDeclaredBytes": 204832,
+      "rootObjectBytes": 32,
+      "freePayloadBytes": 14160,
+      "largestFreePayloadBytes": 14144,
+      "freeBlockCount": 2,
+      "excludedOutOfArenaBytes": 64
+    },
+    "minimum_free_during_this_load_order": 13176,
+    "battle_exit": [
+      {
+        "frame": 2605,
+        "telemetry": {
+          "coreFixedBytes": 95996,
+          "loadedModuleCount": 0,
+          "currentChildBytes": 0,
+          "peakChildBytes": 83704,
+          "loadCount": 30,
+          "unloadCount": 30,
+          "failureCount": 0,
+          "failedModuleMask": 0,
+          "lastFailureModuleId": 255,
+          "heapRefusalCount": 0,
+          "lastRefusedBytes": 0,
+          "lastLargestFreeBytes": 0
+        }
+      }
+    ],
+    "teardown_sprite_payload_bytes": 0,
+    "game_heap": {
+      "currentPayloadBytes": 11896,
+      "peakPayloadBytes": 11896,
+      "allocationCount": 6,
+      "freeCount": 0,
+      "allocatorOverheadIncluded": false
+    }
+  },
+  "gen67_complete_suites": [
+    {
+      "report": "work/move-handlers/gen67-abilities-20261006-131028-0b0083/result.json",
+      "cases": 143,
+      "input_rom_sha256": "3edcc914696a6ddfe278dbe43a5de69b64da8a6aa5f224fa1576a4e35201bd00",
+      "full_turn_validated": true
+    },
+    {
+      "report": "work/move-handlers/gen67-items-20261006-131029-73b8c9/result.json",
+      "cases": 33,
+      "input_rom_sha256": "3edcc914696a6ddfe278dbe43a5de69b64da8a6aa5f224fa1576a4e35201bd00",
+      "full_turn_validated": true
+    },
+    {
+      "report": "work/move-handlers/gen67-audit-20261006-141109-49cbda/result.json",
+      "cases": 117,
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "full_turn_validated": true
+    }
+  ],
+  "loader_negative_native": [
+    {
+      "mode": "corrupt-tables",
+      "report": "work/animation-completion/20261006-153225-c43cdb/result.json",
+      "input_rom_sha256": "b0fbc642070b189850cca0915544b265a19e9776e0fb9887ed451d4e35254ed7",
+      "telemetry": {
+        "coreFixedBytes": 95996,
+        "loadedModuleCount": 0,
+        "currentChildBytes": 0,
+        "peakChildBytes": 0,
+        "loadCount": 0,
+        "unloadCount": 0,
+        "failureCount": 1,
+        "failedModuleMask": 16384,
+        "lastFailureModuleId": 14,
+        "heapRefusalCount": 0,
+        "lastRefusedBytes": 0,
+        "lastLargestFreeBytes": 0
+      },
+      "teardown_child_and_stream_counters_zero": true
+    },
+    {
+      "mode": "wrong-abi",
+      "report": "work/animation-completion/20261006-153226-3e87fd/result.json",
+      "input_rom_sha256": "b0fbc642070b189850cca0915544b265a19e9776e0fb9887ed451d4e35254ed7",
+      "telemetry": {
+        "coreFixedBytes": 95996,
+        "loadedModuleCount": 0,
+        "currentChildBytes": 0,
+        "peakChildBytes": 0,
+        "loadCount": 0,
+        "unloadCount": 0,
+        "failureCount": 1,
+        "failedModuleMask": 16384,
+        "lastFailureModuleId": 14,
+        "heapRefusalCount": 0,
+        "lastRefusedBytes": 0,
+        "lastLargestFreeBytes": 0
+      },
+      "teardown_child_and_stream_counters_zero": true
+    },
+    {
+      "mode": "truncated",
+      "report": "work/animation-completion/20261006-154931-937fef/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "telemetry": {
+        "coreFixedBytes": 95996,
+        "loadedModuleCount": 0,
+        "currentChildBytes": 0,
+        "peakChildBytes": 0,
+        "loadCount": 0,
+        "unloadCount": 0,
+        "failureCount": 1,
+        "failedModuleMask": 16384,
+        "lastFailureModuleId": 14,
+        "heapRefusalCount": 0,
+        "lastRefusedBytes": 0,
+        "lastLargestFreeBytes": 0
+      },
+      "teardown_child_and_stream_counters_zero": true
+    },
+    {
+      "mode": "heap-refusal",
+      "report": "work/animation-completion/20261006-161830-8eea80/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "telemetry": {
+        "coreFixedBytes": 95996,
+        "loadedModuleCount": 0,
+        "currentChildBytes": 0,
+        "peakChildBytes": 0,
+        "loadCount": 0,
+        "unloadCount": 0,
+        "failureCount": 1,
+        "failedModuleMask": 16384,
+        "lastFailureModuleId": 14,
+        "heapRefusalCount": 1,
+        "lastRefusedBytes": 131072,
+        "lastLargestFreeBytes": 98480
+      },
+      "teardown_child_and_stream_counters_zero": true
+    },
+    {
+      "mode": "missing",
+      "report": "work/animation-completion/20261006-163736-b6ed00/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "telemetry": {
+        "coreFixedBytes": 95996,
+        "loadedModuleCount": 0,
+        "currentChildBytes": 0,
+        "peakChildBytes": 0,
+        "loadCount": 0,
+        "unloadCount": 0,
+        "failureCount": 1,
+        "failedModuleMask": 16384,
+        "lastFailureModuleId": 14,
+        "heapRefusalCount": 0,
+        "lastRefusedBytes": 0,
+        "lastLargestFreeBytes": 0
+      },
+      "teardown_child_and_stream_counters_zero": true
+    },
+    {
+      "mode": "corrupt-api",
+      "report": "work/animation-completion/20261006-163737-7fd4d5/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "telemetry": {
+        "coreFixedBytes": 95996,
+        "loadedModuleCount": 0,
+        "currentChildBytes": 0,
+        "peakChildBytes": 0,
+        "loadCount": 0,
+        "unloadCount": 0,
+        "failureCount": 1,
+        "failedModuleMask": 16384,
+        "lastFailureModuleId": 14,
+        "heapRefusalCount": 0,
+        "lastRefusedBytes": 0,
+        "lastLargestFreeBytes": 0
+      },
+      "teardown_child_and_stream_counters_zero": true
+    }
+  ],
+  "historical_budget_correction": "Stages 1–6 did not include the 32-byte root object, primary work-area allocations and bootstrap patches. Their historical free-byte numbers are not acceptance budgets. This corrected stripped audit is authoritative; the constructor's 64-byte overstatement is excluded.",
+  "legacy_monolith_comparison": "The 164-KiB/63.7-KiB core baseline predates this larger integration. Its 8-KiB/4-KiB savings goals are not met and are not claimed; the agreed integration budget is 12 KiB post-fix headroom in 200 KiB.",
+  "host_validation": {
+    "upgrade_tool_tests": 127,
+    "upgrade_tool_skipped": 1,
+    "battle_harness_unit_tests": 180,
+    "strict_typescript": true,
+    "stripped_and_unstripped_builds": true,
+    "rpm_linkage_and_registry": true,
+    "source_privacy": true
+  },
+  "native_moves": {
+    "gen89_reconciled_report": "pmc/w2-integration-native-results.json",
+    "suite_count": 87,
+    "accepted_case_count": 1246,
+    "failed_attempts_retained": 11,
+    "note": "The primary run and complete corrected retries record different input ROMs. Not every case was rerun on the final binary."
+  },
+  "animation_completion": {
+    "scripts_covered": 158,
+    "scope": "Non-Max Gen 8/9 scripts with unchanged script/particle bytes, inert metadata except two prerequisite-bearing native cases. Completion is not a visual/gameplay oracle.",
+    "sweep_report": "work/animation-completion/20261006-153045-03f43a/result.json",
+    "sweep_passed": 156,
+    "native_prerequisite_report": "work/animation-completion/20261006-154930-dc64c6/result.json",
+    "native_prerequisite_passed": 2,
+    "production_repair_reports": [
+      "work/animation-completion/20261006-163116-afff6f/result.json",
+      "work/animation-completion/20261006-163405-8b503a/result.json"
+    ],
+    "production_repaired_ids": [
+      778,
+      780,
+      805,
+      833,
+      844
+    ],
+    "production_teardown_verified": true,
+    "retained_failed_attempt": {
+      "report": "work/animation-completion/20261006-163116-afff6f/result.json",
+      "move": 833,
+      "reason": "The old 2400-frame test bound ended before this unchanged script completed. The final-ROM retry passed at 3012 frames with a finite 4800-frame bound."
+    }
+  },
+  "authoring_native": {
+    "report": "work/animation-completion/20261006-161444-6386ad/worker-1/result.json",
+    "new_native_pokemon_stream": true,
+    "trainer_native_exercised": false,
+    "teardown_child_and_stream_counters_zero": true
+  },
+  "animation_enabled_behavior_reports": [
+    "work/move-handlers/snipe-shot-20261006-155617-3ea9e3/result.json",
+    "work/move-handlers/take-heart-20261006-155618-694201/result.json"
+  ],
+  "pokeweb": {
+    "base_revision": "d5e2dc0f47a7fe829204527a09572f4d48ef88c1",
+    "commits": [
+      "1bb7062",
+      "78b08f5"
+    ],
+    "test_files": 163,
+    "passed_tests": 1708,
+    "total_tests": 1711,
+    "skipped": 3,
+    "typecheck": true,
+    "production_build": true,
+    "privacy_scan": true,
+    "round_trip": {
+      "entries": 1147,
+      "untouched_entries": 1146,
+      "untouched_rom_streams_byte_identical": true,
+      "independently_decoded_edited_frames": 12,
+      "new_pokemon_and_trainer_exports": true,
+      "backend": "w2anim",
+      "pwan_runtime_staged": false
+    },
+    "scope": "Existing w2anim ROM import/edit/export; unsupported edited streams fail explicitly while untouched streams remain lossless. Not a fresh clean-ROM w2anim installer."
+  },
+  "black2": {
+    "scope": "Compile/static isolation only; frozen incoming gameplay/assembly checks pass. Shared data is prepared for White 2, not a certified Black 2 release.",
+    "hooks": 174,
+    "imports": 231,
+    "anchors": 48,
+    "published_artifacts": false,
+    "behavioral_or_hash_baselines_refreshed": false
+  },
+  "remaining_verification": [
+    "Normal trainer intro rendering and the full nonbattle renderer lifecycle: the quick-battle trigger bypasses trainer intros. Trainer authoring has host round-trip coverage, not native intro certification.",
+    "Dedicated native repeated-battle/address-changing reload and record-capacity exhaustion cases. Reverse-order, idempotent, re-entrant cleanup is compiled-host tested; native one-battle exits return counters to zero.",
+    "A legal-party all-group route and full sprite form/Substitute/shiny/female visual comparisons. The all-30 native wrapper is a private synthetic fixture.",
+    "Full native focused coverage of the additional incoming ability/Mega policies; the incoming local scenario/check-ROM harness is absent from this checkout. Existing Gen 6/7 forms and selected ability/terrain/strong-weather cases are recorded separately.",
+    "Game-heap allocator headers/shared VBlank-task overhead are separate from the stream payload bound; no complete game-heap worst-case budget is claimed.",
+    "Hardware and DSi compatibility remain unverified. No old user emulator state or save migration was used as evidence."
+  ]
+}

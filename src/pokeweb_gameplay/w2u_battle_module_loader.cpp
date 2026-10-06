@@ -7,6 +7,7 @@
 #include "util/filesystem.h"
 #include "w2u_field_effects.h"
 #include "w2u_pmc_runtime.h"
+extern "C" void W2U_AnimStreams_OnModuleUnload();
 
 namespace {
 
@@ -459,6 +460,66 @@ const W2UBattleHandlerExport* FindApiEntry(
     return 0;
 }
 
+// PMC trusts its symbol and relocation offsets. Reject malformed child tables
+// before LoadModule/StartModule can traverse them or patch a code address.
+bool ValidateRpmTables(const u8* data, u32 fileSize, u32 execOffset, u32 infoOffset)
+{
+    u32 symbols = 0;
+    if (!AddFileOffset(execOffset, ReadU32(data, infoOffset + 4u), fileSize, &symbols) ||
+        symbols > fileSize || fileSize - symbols < 24u ||
+        ReadU32(data, symbols) != W2U_RPM_SYMBOL_MAGIC) return false;
+    const u32 count = ReadU32(data, symbols + 20u);
+    const u32 firstExport = ReadU16(data, symbols + 8u);
+    const u32 exports = ReadU16(data, symbols + 10u);
+    const u32 firstImport = ReadU16(data, symbols + 12u);
+    const u32 imports = ReadU16(data, symbols + 14u);
+    u32 hashes = 0;
+    if (!count || count > W2U_RPM_MAXIMUM_SYMBOLS || count * 12u > fileSize - symbols - 24u ||
+        exports != 1u || firstExport >= count ||
+        (imports && (firstImport >= count || imports > count - firstImport)) ||
+        !AddFileOffset(execOffset, ReadU32(data, symbols + 16u), fileSize, &hashes) ||
+        fileSize - hashes < exports * 4u ||
+        ReadU32(data, infoOffset + 24u) != 0xFFFFFFFFu ||
+        ReadU32(data, infoOffset + 28u) != 0xFFFFFFFFu) return false;
+
+    const u32 codeOffset = ReadU32(data, infoOffset + 16u);
+    const u32 codeSize = ReadU32(data, infoOffset + 20u);
+    if (codeOffset < W2U_RPM_PROLOG_SIZE || codeOffset > execOffset ||
+        codeSize > execOffset - codeOffset) return false;
+    for (u32 index = 0; index < count; ++index) {
+        const u32 symbol = symbols + 24u + index * 12u;
+        if (data[symbol + 8u] > 4u || (data[symbol + 9u] & ~7u)) return false;
+    }
+
+    u32 reloc = 0;
+    if (!AddFileOffset(execOffset, ReadU32(data, infoOffset + 8u), fileSize, &reloc) ||
+        fileSize - reloc < 24u || ReadU32(data, reloc) != W2U_RPM_RELOC_MAGIC ||
+        ReadU32(data, reloc + 4u) != 0u) return false;
+    // Battle children have no external patch targets: only in-image pointers
+    // and calls to imports. Their external/module lists must remain empty.
+    for (u32 list = 0; list < 4u; ++list) {
+        u32 offset = 0;
+        if (!AddFileOffset(execOffset, ReadU32(data, reloc + 8u + list * 4u), fileSize, &offset) ||
+            fileSize - offset < 4u) return false;
+        const u32 entries = ReadU32(data, offset);
+        if (list >= 2u) {
+            if (entries) return false;
+            continue;
+        }
+        if (entries > (fileSize - offset - 4u) / 8u) return false;
+        for (u32 index = 0; index < entries; ++index) {
+            const u32 row = offset + 4u + index * 8u;
+            const u32 address = ReadU32(data, row);
+            const u8 type = data[row + 5u];
+            if (data[row + 4u] != 0xFFu || ReadU16(data, row + 6u) >= count ||
+                (type != 0u && type != 1u && type != 2u && type != 7u) ||
+                codeSize < 4u || address > codeSize - 4u ||
+                (address & (type == 1u ? 1u : 3u))) return false;
+        }
+    }
+    return true;
+}
+
 bool ParseRpmHeader(
     const u8* data,
     u32 fileSize,
@@ -474,13 +535,16 @@ bool ParseRpmHeader(
     const u32 execOffset = ReadU32(data, 8);
     if (expanded < fileSize || expanded > W2U_RPM_MAXIMUM_EXPANDED_SIZE ||
         execOffset > fileSize - 20u ||
-        ReadU32(data, execOffset) != W2U_RPM_EXEC_MAGIC) {
+        ReadU32(data, execOffset) != W2U_RPM_EXEC_MAGIC ||
+        ReadU32(data, execOffset + 4u) != W2U_RPM_MINIMUM_REVISION ||
+        ReadU32(data, execOffset + 16u) != fileSize - execOffset ||
+        ReadU32(data, execOffset + 12u) > expanded - fileSize) {
         return false;
     }
 
     const u32 infoRelative = ReadU32(data, execOffset + 8u);
     if (infoRelative > fileSize - execOffset ||
-        infoRelative + 36u > fileSize - execOffset) {
+        fileSize - execOffset - infoRelative < 36u) {
         return false;
     }
     const u32 infoOffset = execOffset + infoRelative;
@@ -492,7 +556,7 @@ bool ParseRpmHeader(
     const u32 relocRelative = ReadU32(data, infoOffset + 8u);
     if (relocRelative) {
         if (relocRelative > fileSize - execOffset ||
-            relocRelative + 24u > fileSize - execOffset) {
+            fileSize - execOffset - relocRelative < 24u) {
             return false;
         }
         const u32 relocOffset = execOffset + relocRelative;
@@ -501,12 +565,15 @@ bool ParseRpmHeader(
         }
         const u32 internalRelative = ReadU32(data, relocOffset + 8u);
         if (internalRelative) {
+            if (internalRelative > fileSize - execOffset) return false;
             fixed = execOffset + internalRelative;
             if (fixed < W2U_RPM_MINIMUM_SIZE || fixed > expanded) {
                 return false;
             }
         }
     }
+
+    if (!ValidateRpmTables(data, fileSize, execOffset, infoOffset)) return false;
 
     *expandedSize = expanded;
     *fixedSize = fixed;
@@ -801,6 +868,7 @@ extern "C" __attribute__((visibility("default"))) int DllMain(
     (void)manager;
     if (reason == 1) {
         W2U_BattleState_OnBattleExit();
+        W2U_AnimStreams_OnModuleUnload();
         sRegistrationEnabled = false;
         ClearBytes(&sPmcRuntime, sizeof(sPmcRuntime));
         sPmcRuntimeState = 0;

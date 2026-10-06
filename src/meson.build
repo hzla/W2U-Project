@@ -45,6 +45,7 @@ sources = [
     pokeweb_gameplay,
     files('../include/util/filesystem.cpp'),
     files('w2anim/w2u_anim_streams.cpp'),   # animated sprites (replaces the PWAN runtimes, Phase 4)
+    files('w2anim/w2u_particle_work.cpp'),
     files('battle_setup_patch.s'),
     files('battle_log/w2u_battle_log_save_patch.s'),
 ]
@@ -648,6 +649,8 @@ w2u_battle_heap_audit_command = [
   '--core', '@INPUT0@',
   '--battle-log', '@INPUT1@',
   '--battle-counters', '@INPUT2@',
+  '--save-guard', '@INPUT' + (w2u_battle_module_definitions.length() + 3).to_string() + '@',
+  '--menu-skip', main_menu_skip_patch,
   '--registry', w2u_battle_registry,
   '--baseline', meson.project_source_root() / 'pmc' / 'white2upgrade_battle_heap_baseline.json',
   '--output', '@OUTPUT@',
@@ -658,10 +661,12 @@ foreach module_index : range(w2u_battle_module_definitions.length())
     '@INPUT' + (module_index + 3).to_string() + '@',
   ]
 endforeach
-# The ROM depends on the audit: a build whose modules could not all fit the PMC heap fails instead of freezing a battle.
-# Only the 12 KiB headroom is fatal; the savings-vs-monolith checks (`--enforce`, formerly on with strip_rpms) are
-# warnings, since the integration core is larger than the monolithic baseline they compare against.
-w2u_battle_heap_audit_command += ['--enforce-headroom']
+# Production acceptance uses stripped RPMs. Unstripped builds retain the
+# audit as a diagnostic (and the runtime allocation guard); they are not
+# release candidates and their all-group scenario need not fit the heap.
+if get_option('strip_rpms')
+  w2u_battle_heap_audit_command += ['--enforce-headroom']
+endif
 
 w2u_battle_heap_audit = custom_target(
   'white2upgrade-battle-heap-audit',
@@ -670,10 +675,13 @@ w2u_battle_heap_audit = custom_target(
     w2u_nonresident_dlls[3],
     w2u_nonresident_dlls[4],
     w2u_battle_module_dlls,
+    battle_log_save_guard_w2,
   ],
   output: 'white2upgrade-battle-heap-audit.json',
   depend_files: [
     meson.project_source_root() / 'tools' / 'audit_white2upgrade_battle_heap.py',
+    meson.project_source_root() / 'tools' / 'stage_double_battle_fix.py',
+    main_menu_skip_patch,
     w2u_battle_registry,
     meson.project_source_root() / 'pmc' / 'white2upgrade_battle_heap_baseline.json',
   ],

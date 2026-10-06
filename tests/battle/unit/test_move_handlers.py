@@ -567,7 +567,7 @@ class TakeHeartTests(unittest.TestCase):
             after[executing]["statStages"][2:4] = [7, 7]
         after[executing]["conditions"] = [0] * 6
         result = {"finished": True, "before": before, "after": after, "damageCalls": [],
-                  "takeHeartEvents": [{"used": True, "success": success, "after": deepcopy(after),
+                  "takeHeartEvents": [{"used": success, "success": success, "after": deepcopy(after),
                                        "executingSlot": before[executing]["slot"]}]}
         case = {"id": "test", "expectedUserStages": after["attacker"]["statStages"],
                 "expectedDefenderStages": after["defender"]["statStages"], "takeHeartSuccess": success,

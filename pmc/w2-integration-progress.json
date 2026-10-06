@@ -2,6 +2,10 @@
   "schema_version": 1,
   "upgrade_base": "4369e8a4738ea435a350eff4e9c527d523bd8c31",
   "main_source": "eb6c002384f2fcc4df7bfef6d3cdad5626364a73",
+  "implementation_status": "seven_stages_implemented_release_candidate",
+  "acceptance_status": "remaining_verification_recorded_not_fully_accepted",
+  "release_report": "pmc/w2-integration-release-audit.json",
+  "historical_heap_correction": "Stage 1-6 headroom numbers omit the PMC root/work/bootstrap allocations. Use the corrected stage 7 audit, not those historical captures, for acceptance.",
   "stages": {
     "1": {
       "status": "committed",
@@ -10,6 +14,7 @@
     },
     "2": {
       "status": "validated",
+      "commit": "74f6e61cd",
       "new_white2_moves": 44,
       "registry": {
         "groups": 30,
@@ -55,6 +60,7 @@
     },
     "3": {
       "status": "validated",
+      "commit": "d8f7b120c",
       "policy": "Main owns overlapping move handlers; one resident hook owner per address, no duplicate Expanding Force or Misty Explosion boost.",
       "stripped_build": true,
       "rpm_linkage": true,
@@ -78,6 +84,7 @@
     },
     "4": {
       "status": "validated",
+      "commit": "254c35fd4",
       "policy": {
         "parental_bond": "Quarter final damage on the second ordinary hit; fixed damage remains full.",
         "disguise": "Mimikyu-only; one 1/8-max-HP bust cost plus shared hit-history bookkeeping.",
@@ -107,6 +114,7 @@
     },
     "5": {
       "status": "validated",
+      "commit": "3b229a02e",
       "policy": "Strong weather retains IDs 5/6/7 and precedence; Snow has logical/display ID 8 with native Hail transport. Ordinary permanent weather can be replaced; simulated switch-ins cannot mutate shared strong-weather state.",
       "rom_sha256": "6d46861609918c41e9dc551a7fccf0a03f6113066c36670b92f451c5c2190b11",
       "stripped_core_sha256": "a7215cf91c3d868704896dd0a36f57102ba07d268ae1ff829cee9fedb703f908",
@@ -132,6 +140,7 @@
     },
     "6": {
       "status": "validated",
+      "commit": "e9c892467",
       "registry": { "groups": 30, "abilities": 141, "moves": 145, "items": 13, "field": 5, "side": 2, "position": 5 },
       "checks": ["Target compiler rejects duplicate numeric kind/ID keys and invalid ABI counts/priorities.", "All 30 stripped child exports, import providers, hook owners and generated manifests checked.", "Staging rejects symlink escapes and verifies the exact registered DLL set and bytes.", "Live child-byte telemetry includes BSS; heap free-list corruption fails closed."],
       "rom_sha256": "3edcc914696a6ddfe278dbe43a5de69b64da8a6aa5f224fa1576a4e35201bd00",
@@ -146,9 +155,39 @@
       "typecheck": true,
       "black2_static_compile": true,
       "limits": ["Full native ability/item suites started on this ROM; final results and renderer/lifecycle acceptance belong to stage 7.", "PMC budget excludes separate game-heap sprite buffers; their audit is still pending."]
+    },
+    "7": {
+      "status": "implemented_release_candidate",
+      "commit_subject": "integration: complete w2anim authoring and release validation",
+      "rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "stripped_core_sha256": "f62adf3f15fd44f55d41dc86f2e7abd10c7c2a3722876f66b14bc7e5805a036b",
+      "all_groups_free_bytes": 13944,
+      "transient_expanded_load_free_bytes": 10888,
+      "native_gen89_suites": 87,
+      "native_gen89_accepted_cases": 1246,
+      "native_gen67_move_ability_item_cases": 293,
+      "native_animation_scripts": 158,
+      "native_negative_loader_modes": 6,
+      "host_tests": { "run": 127, "skipped": 1, "failed": 0 },
+      "battle_unit_tests": 180,
+      "stripped_and_unstripped_builds": true,
+      "rpm_linkage": true,
+      "typecheck": true,
+      "black2_static_compile": true,
+      "source_privacy": true,
+      "pokeweb_commits": ["1bb7062", "78b08f5"],
+      "pokeweb_tests": { "files": 163, "run": 1711, "passed": 1708, "skipped": 3 },
+      "native_results": "pmc/w2-integration-native-results.json",
+      "release_audit": "pmc/w2-integration-release-audit.json",
+      "limits": [
+        "Evidence explicitly spans multiple ROM revisions, with complete final-ROM retries for corrected suites.",
+        "Native all-30 registration is synthetic, not a legal-party test; dedicated address-changing/repeated-battle and record-capacity tests remain pending.",
+        "Normal trainer intro, the complete nonbattle lifecycle, full visual palette/form comparisons and additional incoming Mega/ability scenarios remain separately unverified.",
+        "Game-heap payload bounds exclude allocator headers/shared-task overhead; hardware and DSi acceptance is not claimed.",
+        "Black 2 is compile/static-isolation only, with no published artifacts or refreshed behavioral/hash baseline."
+      ]
     }
   },
-  "pending_stages": [
-    7
-  ]
+  "pending_implementation_stages": [],
+  "pending_acceptance": "See remaining_verification in the release audit."
 }

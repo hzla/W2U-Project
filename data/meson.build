@@ -9,7 +9,7 @@ double_battle_fix = custom_target(
   'stage_double_battle_fix_w2',
   input: [
     meson.project_source_root() / '..' / 'IRDO_Extracted' / 'overlay' / 'overlay_0036.bin',
-    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'y9.bin',
+    meson.project_source_root() / 'vfs' / 'y9.bin',
   ],
   output: 'stage_double_battle_fix_w2.stamp',
   command: [
@@ -98,6 +98,16 @@ w2anim_streams = custom_target(
 )
 
 vfs_files += w2anim_streams
+
+vfs_files += custom_target(
+  'audit_w2anim_game_heap',
+  input: w2anim_streams,
+  output: 'w2anim-game-heap-audit.json',
+  command: ['python3', meson.project_source_root() / 'tools' / 'audit_w2anim_game_heap.py',
+    '--streams', meson.project_source_root() / 'vfs' / 'data' / 'w2anim' / 'streams.bin',
+    '--output', '@OUTPUT@'],
+  depend_files: meson.project_source_root() / 'tools' / 'audit_w2anim_game_heap.py',
+)
 
 # System Text (/a/0/0/2)
 system_text_arc = 'a' / '0' / '0' / '2'

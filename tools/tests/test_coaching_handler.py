@@ -15,15 +15,19 @@ class CoachingHandlerTests(unittest.TestCase):
         apply = re.search(r'static void HandlerCoachingApply\(.*?^\}', text, re.S | re.M).group()
         source = r'''
 typedef unsigned u32;
+typedef signed char s8;
 struct BattleEventItem {}; struct ServerFlow {}; struct BattleMon {} mon;
 enum { VAR_ATTACKING_MON=3, VAR_DEFENDING_MON=4, VAR_TARGET_COUNT=5,
-       VAR_TARGET_MON_ID=6, VAR_NO_EFFECT_FLAG=64, STATSTAGE_ATTACK=0, STATSTAGE_DEFENSE=1 };
+       VAR_TARGET_MON_ID=6, VAR_NO_EFFECT_FLAG=64, STATSTAGE_ATTACK=0, STATSTAGE_DEFENSE=1,
+       VALUE_EFFECTIVE_ABILITY=100 };
 enum { CONDITIONFLAG_FLY=3, CONDITIONFLAG_SHADOW_FORCE=6, CONDITION_SKYDROP=33 };
 unsigned hidden=0; bool carried=false;
 bool BattleMon_GetConditionFlag(BattleMon*,unsigned flag) { return hidden&(1u<<flag); }
 bool BattleMon_CheckIfMoveCondition(BattleMon*,unsigned flag) { return flag==33 && carried; }
 unsigned vars[128], calls; bool exists=true, fainted=false;
 bool BattleMon_IsFainted(BattleMon*) { return fainted; }
+unsigned BattleMon_GetValue(BattleMon*,unsigned) { return 50; }
+bool BattleMon_IsStatChangeValid(BattleMon*,unsigned,int) { return true; }
 struct Call { unsigned owner,target,stat,volume,animation; } queued[2];
 void ApplyStatChange(ServerFlow*,unsigned owner,unsigned target,unsigned stat,int volume,bool animation) {
  if(calls<2) queued[calls]={owner,target,stat,(unsigned)volume,(unsigned)animation}; ++calls;
