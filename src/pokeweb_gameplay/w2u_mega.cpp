@@ -58,6 +58,7 @@
 #if W2U_ENABLE_MEGA_EVOLUTION
 
 extern "C" u8 W2U_CanMegaEvolve(BattleMon* battleMon);
+extern "C" u32 MonIDToClientID(u32 pokemonSlot);   // ov167 0x219C5B4
 extern "C" void W2U_BattleAction_SetMegaEvolution(BattleActionParam* actionParam, u8 form);
 extern "C" void W2U_BattleAction_ResetMegaEvolution(BattleActionParam* actionParam);
 extern "C" u8 W2U_BattleAction_CheckMegaEvolution(const BattleActionParam* actionParam);
@@ -545,7 +546,7 @@ void RecordMegaVisualBattleMon(const BattleMon* battleMon)
     W2U_MegaVisualState.form = battleMon->form;
 }
 
-bool IsMoveTriggeredMegaFormRecord(SPECIES species, u8 form)
+bool IsMoveConditionMegaFormRecord(SPECIES species, u8 form)
 {
     return species == SPECIES_RAYQUAZA &&
         form == W2U_RAYQUAZA_DRAGON_ASCENT_MEGA_FORM;
@@ -557,7 +558,7 @@ u16 GetMegaFormRecordAbility(SPECIES species, u8 form, u16 fallback)
         return fallback;
     }
 
-    if (IsMoveTriggeredMegaFormRecord(species, form)) {
+    if (IsMoveConditionMegaFormRecord(species, form)) {
         const u16 ability =
             (u16)PML_PersonalGetParamSingle(species, form, Personal_Abil1);
         return ability != 0 ? ability : fallback;
@@ -1022,7 +1023,7 @@ bool IsMegaFormRecord(SPECIES species, u8 form)
         return false;
     }
 
-    if (IsMoveTriggeredMegaFormRecord(species, form)) {
+    if (IsMoveConditionMegaFormRecord(species, form)) {
         return true;
     }
 
@@ -1047,8 +1048,9 @@ u8 MegaSideForSlot(u8 battleSlot);
 
 u8 MegaTrainerClientForSlot(u8 pokemonSlot)
 {
-    // TRNAME battle strings consume a battler slot, not the 0/1 side index.
-    return pokemonSlot;
+    // TRNAME takes the battle client (MegaB2W2's PokeIDToClientID). The battler slot only matched it for the
+    // player's first Pokemon (slot 0 = client 0): the foe's "fervent wish" (slot 12) stopped the battle.
+    return (u8)MonIDToClientID(pokemonSlot);
 }
 
 const MegaEvolutionEntry* FindMegaEntry(SPECIES species, ITEM item)
@@ -1062,6 +1064,22 @@ const MegaEvolutionEntry* FindMegaEntry(SPECIES species, ITEM item)
     return nullptr;
 }
 
+// Showdown's requiredMove: Rayquaza can Mega Evolve when it knows Dragon Ascent (its own move set, not one
+// copied by Mimic / Sketch-style surface moves). The move only makes the Mega available; the trainer still chooses
+// it (START on the move screen, or the AI) with any move, like a held Mega Stone.
+bool KnowsMegaRequiredMove(const BattleMon* battleMon)
+{
+    if (!battleMon || battleMon->species != SPECIES_RAYQUAZA) {
+        return false;
+    }
+    for (u32 idx = 0; idx < battleMon->moveCount && idx < W2U_ARRAY_COUNT(battleMon->moves); ++idx) {
+        if (battleMon->moves[idx].truth.moveID == MOVE_DRAGON_ASCENT) {
+            return true;
+        }
+    }
+    return false;
+}
+
 u8 GetMegaFormForBattleMon(const BattleMon* battleMon)
 {
     if (!battleMon) {
@@ -1069,7 +1087,10 @@ u8 GetMegaFormForBattleMon(const BattleMon* battleMon)
     }
 
     const MegaEvolutionEntry* mega = FindMegaEntry(battleMon->species, battleMon->heldItem);
-    return mega ? mega->form : W2U_MEGA_NO_FORM;
+    if (mega) {
+        return mega->form;
+    }
+    return KnowsMegaRequiredMove(battleMon) ? W2U_RAYQUAZA_DRAGON_ASCENT_MEGA_FORM : W2U_MEGA_NO_FORM;
 }
 
 bool IsMegaSourceFormEligible(const BattleMon* battleMon)
@@ -1101,18 +1122,6 @@ u8 GetKnownMegaFormForBattleMon(const BattleMon* battleMon)
     return W2U_MEGA_NO_FORM;
 }
 
-u8 GetMoveTriggeredMegaFormForAction(BattleActionParam* actionParam, const BattleMon* battleMon)
-{
-    if (!actionParam ||
-        !battleMon ||
-        BattleAction_GetAction(actionParam) != 1 ||
-        battleMon->species != SPECIES_RAYQUAZA ||
-        actionParam->baFight.moveID != MOVE_DRAGON_ASCENT) {
-        return W2U_MEGA_NO_FORM;
-    }
-
-    return W2U_RAYQUAZA_DRAGON_ASCENT_MEGA_FORM;
-}
 
 bool ShouldSuppressMegaEligibilityForClientUi(const BattleMon* battleMon)
 {
@@ -1556,19 +1565,10 @@ bool CommitAutoMegaAction(BattleActionParam* actionParam, BattleMon* battleMon)
 
     u8 form = W2U_MEGA_NO_FORM;
     u32 skipReason = MEGA_SKIP_NONE;
-    form = GetMoveTriggeredMegaFormForAction(actionParam, battleMon);
-    if (form == W2U_MEGA_NO_FORM) {
-        if (side == 0) {
-            return false;
-        }
-        if (!CanAutoMegaCore(battleMon, &form, &skipReason)) {
-            return false;
-        }
-    } else if (
-        BattleMon_IsFainted(battleMon) ||
-        BattleMon_TransformCheck(battleMon) ||
-        battleMon->form != 0 ||
-        !IsMegaSideAvailable(battleMon->battleSlot)) {
+    if (side == 0) {
+        return false;                     // the player's side Mega Evolves only when chosen (START)
+    }
+    if (!CanAutoMegaCore(battleMon, &form, &skipReason)) {
         return false;
     }
 
@@ -2063,8 +2063,7 @@ bool ProcessMegaActionWork(ServerFlow* serverFlow, ActionOrderWork* actionWork)
         BattleMon_IsFainted(battleMon) ||
         BattleMon_TransformCheck(battleMon) ||
         !IsMegaSourceFormEligible(battleMon) ||
-        (GetMegaFormForBattleMon(battleMon) != megaForm &&
-         GetMoveTriggeredMegaFormForAction(actionParam, battleMon) != megaForm) ||
+        GetMegaFormForBattleMon(battleMon) != megaForm ||
         (gMegaState.usedSideMask & MegaSideMaskForSlot(battleMon->battleSlot)) != 0) {
         if (battleMon) {
             ReleaseCommittedMegaSide(MegaSideForSlot(battleMon->battleSlot));
@@ -2085,7 +2084,7 @@ bool ProcessMegaActionWork(ServerFlow* serverFlow, ActionOrderWork* actionWork)
     gMegaState.committedSlotBySide[side] = W2U_MEGA_NO_SLOT;
     W2U_MegaVisualState.usedSideMask = gMegaState.usedSideMask;
 
-    if (GetMoveTriggeredMegaFormForAction(actionParam, battleMon) == W2U_MEGA_NO_FORM) {
+    if (!IsMoveConditionMegaFormRecord(battleMon->species, megaForm)) {
         HandlerParam_Message* syncMessage =
             (HandlerParam_Message*)BattleHandler_PushWork(serverFlow, EFFECT_MESSAGE, pokemonSlot);
         BattleHandler_StrSetup(&syncMessage->str, 2u, BATTLE_MEGA_SYNC_MSGID);
@@ -2093,6 +2092,14 @@ bool ProcessMegaActionWork(ServerFlow* serverFlow, ActionOrderWork* actionWork)
         BattleHandler_AddArg(&syncMessage->str, BattleMon_GetHeldItem(battleMon));
         BattleHandler_AddArg(&syncMessage->str, MegaTrainerClientForSlot(pokemonSlot));
         BattleHandler_PopWork(serverFlow, syncMessage);
+    } else {
+        // Mega Rayquaza holds no Mega Stone: "<trainer>'s fervent wish has reached <Rayquaza>!" (as in the games)
+        HandlerParam_Message* wishMessage =
+            (HandlerParam_Message*)BattleHandler_PushWork(serverFlow, EFFECT_MESSAGE, pokemonSlot);
+        BattleHandler_StrSetup(&wishMessage->str, 2u, BATTLE_MEGA_FERVENT_WISH_MSGID);
+        BattleHandler_AddArg(&wishMessage->str, pokemonSlot);
+        BattleHandler_AddArg(&wishMessage->str, MegaTrainerClientForSlot(pokemonSlot));
+        BattleHandler_PopWork(serverFlow, wishMessage);
     }
 
     HandlerParam_Message* evolveMessage =
