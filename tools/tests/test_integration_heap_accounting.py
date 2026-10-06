@@ -15,8 +15,13 @@ class HeapAccounting(unittest.TestCase):
         self.assertEqual(audit.PMC_ROOT_OBJECT_BYTES, 32)
         self.assertEqual(audit.PMC_WORK_AREA_BYTES, (32 + 16) + (4096 + 16))
         self.assertGreaterEqual(audit.PMC_BOOKKEEPING_AND_FRAGMENTATION_RESERVE, 16)
-        menu = audit.module_record(ROOT / "vfs/data/patches/MainMenuSkip(1).dll")
+        menu = audit.module_record(ROOT / "assets/testing/MainMenuSkipW2.dll")
         self.assertEqual(menu["allocated_payload_bytes"] + 16, 320)
+
+    def test_production_does_not_stage_or_budget_testing_menu_skip(self):
+        self.assertFalse((ROOT / "vfs/data/patches/MainMenuSkip(1).dll").exists())
+        for path in (ROOT / "meson.build", ROOT / "src/meson.build"):
+            self.assertNotIn("main_menu_skip_patch", path.read_text())
 
     def test_native_inspector_excludes_constructor_overstatement_and_cycles(self):
         tree = ast.parse((ROOT / "tests/battle/scripts/test-animation-completion.py").read_text())

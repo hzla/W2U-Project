@@ -85,7 +85,8 @@ def main() -> int:
     parser.add_argument("--battle-log", type=Path, required=True)
     parser.add_argument("--battle-counters", type=Path, required=True)
     parser.add_argument("--save-guard", type=Path, required=True)
-    parser.add_argument("--menu-skip", type=Path, required=True)
+    parser.add_argument("--menu-skip", type=Path,
+                        help="only for private fixtures which stage the testing main-menu skip")
     parser.add_argument("--module", type=Path, action="append", default=[])
     parser.add_argument("--registry", type=Path, required=True)
     parser.add_argument("--baseline", type=Path, required=True)
@@ -112,8 +113,10 @@ def main() -> int:
     battle_log = module_record(args.battle_log)
     battle_counters = module_record(args.battle_counters)
     from stage_double_battle_fix import PATCH_BASE64, PATCH_NAME
-    bootstrap = [module_record(args.save_guard), module_record(args.menu_skip),
+    bootstrap = [module_record(args.save_guard),
                  module_data_record(base64.b64decode(PATCH_BASE64), "vfs/data/patches/" + PATCH_NAME)]
+    if args.menu_skip:
+        bootstrap.append(module_record(args.menu_skip))
     children = [module_record(path) for path in args.module]
     residents = [core, battle_log, battle_counters, *bootstrap]
     if args.pwan_battle:

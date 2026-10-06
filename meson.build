@@ -27,8 +27,8 @@ asm_args = [
 # Tools
 subdir('tools')
 
-# Custom code patches.  
-main_menu_skip_patch = meson.project_source_root() / 'vfs' / 'data' / 'patches' / 'MainMenuSkip(1).dll'
+# Custom code patches. Main-menu skip belongs to private battle fixtures, not
+# production ROMs: it unconditionally continues even when no valid save exists.
 subdir('src')
 
 # Assets
@@ -86,6 +86,7 @@ black2upgrade_release_artifacts = custom_target(
 item_icon_patch_py = find_program(meson.project_source_root() / 'tools' / 'item_icons' / 'build_item_icon_patch.py', native: true)
 patch_pmc_sysheap_py = find_program(meson.project_source_root() / 'tools' / 'patch_pmc_sysheap.py', native: true)
 patch_arm9_footer_py = meson.project_source_root() / 'tools' / 'patch_arm9_footer.py'
+normal_boot_checker_py = meson.project_source_root() / 'tools' / 'test_normal_boot.py'
 
 item_icon_asset_list = run_command(
   'sh',
@@ -164,15 +165,14 @@ rom = custom_target('White2Upgrade.nds',
     w2u_main_patch,
     w2u_battle_module_stage,
     pwan_runtime_patch,
-    main_menu_skip_patch,
     pmc_arm9,
     pmc_overlay,
     pmc_symbols
   ],
-  depend_files: [patch_arm9_footer_py, rom_layout_finalizer_py],
+  depend_files: [patch_arm9_footer_py, rom_layout_finalizer_py, normal_boot_checker_py],
   depends: [w2u_battle_heap_audit],             # the PMC heap guard (src/meson.build)
   command: ['sh', '-eu', '-c',
-    '"${JAVA:-java}" "-Xmx$6" -cp "$1" ctrmap.cli.ROMBuilder --input "$2" --output "$3"; python3 "$4" --rom "$3" --arm9 "$5"; python3 "$7" --rom "$3"',
+    '"${JAVA:-java}" "-Xmx$6" -cp "$1" ctrmap.cli.ROMBuilder --input "$2" --output "$3"; python3 "$4" --rom "$3" --arm9 "$5"; python3 "$7" --rom "$3"; python3 "$8" --rom "$3" --check-only',
     'rombuilder',
     ctrmap_jar,
     meson.project_source_root() / 'White2Upgrade.cmproj',
@@ -181,5 +181,6 @@ rom = custom_target('White2Upgrade.nds',
     meson.project_source_root() / 'vfs' / 'arm9.bin',
     get_option('rombuilder_java_heap'),
     rom_layout_finalizer_py,
+    normal_boot_checker_py,
   ],
 )

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "status": "rc2_startup_corrected_other_release_gates_remain_open",
+  "target": "US White 2 revision 0, DS mode",
+  "artifact_name": "White2Upgrade-w2-integration-20261006-rc2.nds",
+  "rom_sha256": "3074da8263810c5576acbf0e64eb24aba4dbb5edd9caf3f822757f81b751c1ba",
+  "core_rpm_sha256": "f62adf3f15fd44f55d41dc86f2e7abd10c7c2a3722876f66b14bc7e5805a036b",
+  "superseded_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+  "superseded_audit": "pmc/w2-integration-release-audit.json",
+  "corrections": [
+    "Clear stale compressedStaticEnd in the already-expanded production ARM9. The previous footer repair restored retail's 0x020776CC, causing native bootstrap to decode instructions as BLZ data.",
+    "Move the unconditional main-menu skip DLL from production VFS to assets/testing. Normal title/menu/new-game/Continue behavior is retained.",
+    "Fail production builds if raw exported startup metadata is stale or a main-menu skip is staged. Add byte-identical native cold-boot regression tooling without Pokeweb materialization."
+  ],
+  "diagnosis": {
+    "original_raw_rom_native_data_abort_reproduced": true,
+    "native_abort_return_pc": "0x02004E44",
+    "metadata_only_private_control_asserted": true,
+    "metadata_only_assert_caller": "0x0204AC55",
+    "assertion_context": "Unconditional Continue reaches the map-event archive with invalid saved map/event data; the supplied DeSmuME capture retains an out-of-range 0xFFFF member.",
+    "fixture_masking": "Pokeweb fixture export clears stale ARM9 compression metadata and authors a valid test save, so its quick-battle passes did not certify the raw standalone release boot."
+  },
+  "native_cold_boot": {
+    "emulator": "headless melonDS",
+    "runner": "tools/test_normal_boot.py",
+    "rom_modified_for_test": false,
+    "caller_save_modified": false,
+    "savestate_used": false,
+    "memory_written_for_test": false,
+    "cases": [
+      {
+        "case": "no-save startup",
+        "report": "work/boot-diagnosis/gate-no-save/result.json",
+        "passed": true,
+        "frames": 1800,
+        "normal_menu_calls": 4,
+        "first_normal_menu_frame": 233,
+        "screenshot_observation": "New-game introduction with Professor Juniper and Minccino."
+      },
+      {
+        "case": "private copy of existing save",
+        "report": "work/boot-diagnosis/gate-user-save/result.json",
+        "passed": true,
+        "frames": 1800,
+        "normal_menu_calls": 4,
+        "first_normal_menu_frame": 211,
+        "field_continue_calls": 5,
+        "first_continue_frame": 1091,
+        "screenshot_observation": "Saved overworld loaded without the prior assertion."
+      }
+    ],
+    "original_release_negative_gate": {
+      "report": "work/boot-diagnosis/gate-original-rejection/result.json",
+      "expected_rejection": true,
+      "reason": "Expanded release ARM9 retains invalid/stale compression metadata"
+    }
+  },
+  "host_validation": {
+    "tool_tests_total": 136,
+    "tool_tests_passed": 135,
+    "tool_tests_skipped": 1,
+    "skip": "Existing clean-US Court Change literal contract lacks its required binary inputs.",
+    "stripped_build": true,
+    "raw_release_startup_gate": true,
+    "rpm_linkage_and_registry": true,
+    "black2_compile_static_isolation": true,
+    "source_privacy": true
+  },
+  "pmc_budget": {
+    "heap_bytes": 204800,
+    "core_resident_bytes": 96008,
+    "production_child_resident_bytes": 83544,
+    "testing_menu_skip_removed_bytes_including_allocator": 320,
+    "no_custom": {"used_bytes": 106512, "free_bytes": 98288},
+    "largest_single_group": {"used_bytes": 115696, "free_bytes": 89104},
+    "all_groups_post_fix": {"used_bytes": 190536, "free_bytes": 14264},
+    "conservative_expanded_last_load": {"used_bytes": 193592, "free_bytes": 11208}
+  },
+  "limits": [
+    "New-ROM normal cold boots were run in headless melonDS, not the DeSmuME GUI. The supplied DeSmuME state was inspected read-only.",
+    "The earlier mechanic and animation evidence remains attached to its original ROM hashes; these two cold boots do not count as a full mechanic rerun on RC2.",
+    "All other outstanding renderer, loader, incoming ability/Mega, game-heap, hardware/DSi and deferred Black 2 gates in the stage-7 report remain open.",
+    "The 12-KiB PMC post-fix target passes; conservative transient last-load free space remains below 12 KiB."
+  ]
+}
