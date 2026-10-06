@@ -102,7 +102,7 @@ void ChangeWeatherAfter(ServerFlow* serverFlow, u32 weather)
 struct StrongWeatherState {
     u32 kind;                                  // the active strong weather
     u32 holders[W2U_STRONG_WEATHER_KIND_COUNT]; // bit per battle slot: holders of that kind's ability
-    u32 shownView;                             // view side: the strong weather on screen (0 = none)
+    u32 shownView;                             // custom view identity: strong weather or Snow (0 = retail)
 };
 StrongWeatherState sState;
 
@@ -127,6 +127,7 @@ extern "C" void W2U_StrongWeather_Reset()
 
 extern "C" u32 W2U_StrongWeather_FirstHolder(u32 kind)
 {
+    if (kind == W2U_STRONG_WEATHER_NONE || kind >= W2U_STRONG_WEATHER_KIND_COUNT) return 0;
     for (u32 slot = 0; slot < 32; ++slot) {   // no __builtin_ctz: it needs a libgcc helper the game lacks
         if (sState.holders[kind] & (1u << slot)) {
             return slot;
@@ -148,7 +149,8 @@ extern "C" bool W2U_StrongWeather_Negated(void* serverFlow)
 extern "C" void W2U_StrongWeather_Start(void* flow, u32 pokemonSlot, u32 kind)
 {
     ServerFlow* serverFlow = (ServerFlow*)flow;
-    if (kind == W2U_STRONG_WEATHER_NONE || kind >= W2U_STRONG_WEATHER_KIND_COUNT) {
+    if (!serverFlow || serverFlow->simulationCounter || pokemonSlot >= BATTLE_MAX_SLOTS ||
+        kind == W2U_STRONG_WEATHER_NONE || kind >= W2U_STRONG_WEATHER_KIND_COUNT) {
         return;
     }
     sState.holders[kind] |= 1u << pokemonSlot;
@@ -173,6 +175,7 @@ extern "C" void W2U_StrongWeather_Start(void* flow, u32 pokemonSlot, u32 kind)
 extern "C" void W2U_StrongWeather_End(void* flow, u32 pokemonSlot)
 {
     ServerFlow* serverFlow = (ServerFlow*)flow;
+    if (!serverFlow || serverFlow->simulationCounter || pokemonSlot >= BATTLE_MAX_SLOTS) return;
     for (u32 kind = 1; kind < W2U_STRONG_WEATHER_KIND_COUNT; ++kind) {
         if (!(sState.holders[kind] & (1u << pokemonSlot))) {
             continue;
@@ -299,7 +302,7 @@ extern "C" b32 THUMB_BRANCH_167_0x21B78AC(void* client, int* sequence, const u32
         } else {
             W2U_STRONG_WEATHER_CALL(ClientSetFn, W2U_ADDR_STRONG_WEATHER_CLIENT_SET)(
                 ClientField(client), retail, args[1] & 0xFFFF);
-            sState.shownView = 0;
+            sState.shownView = snow ? W2U_WEATHER_SNOW : 0;
         }
         if (W2U_STRONG_WEATHER_CALL(SkipEffectsFn, W2U_ADDR_STRONG_WEATHER_SKIP_EFFECTS)(client)) {
             return 1;
@@ -341,7 +344,7 @@ extern "C" b32 THUMB_BRANCH_167_0x21B792C(void* client, int* sequence, const u32
         ++*sequence;
     } else if (*sequence == 1 &&
                W2U_STRONG_WEATHER_CALL(WaitMessageFn, W2U_ADDR_STRONG_WEATHER_WAIT_MESSAGE)(ClientView(client))) {
-        if (strong) {
+        if (strong || snow) {
             sState.shownView = 0;
         }
         W2U_STRONG_WEATHER_CALL(ClientClearFn, W2U_ADDR_STRONG_WEATHER_CLIENT_CLEAR)(ClientField(client));

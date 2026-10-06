@@ -409,7 +409,7 @@ def verify_snowscape(case, result, variant):
     check(result.get("fullTurnValidated"),"Weather action did not finish its turn")
     check(not result["damageCalls"],"Weather/status move unexpectedly dealt attack damage")
     before,after = result["before"],result["after"]
-    wanted_weather = 3 if case.get("expectedWeatherTurns",1) else 0
+    wanted_weather = case.get("expectedNativeWeather", 3 if case.get("expectedWeatherTurns",1) else 0)
     if "expectedWeatherTurns" in case:
         check(result["nativeWeather"] == {"weather":wanted_weather,"turns":case["expectedWeatherTurns"]},"Wrong native weather duration")
     logical = case.get("expectedLogicalWeather",8)
@@ -419,6 +419,8 @@ def verify_snowscape(case, result, variant):
         if starts:
             check(len(starts)==1 and starts[0]["weather"]==logical and starts[0]["turns"]==(8 if variant["name"]=="icyrock" else 5),"Wrong logical weather start/duration")
             check((221 if logical==8 else 87) in result["weatherMessages"],"Missing distinct weather announcement")
+    if "expectedWeatherBlockMessage" in case:
+        check(case["expectedWeatherBlockMessage"] in result["weatherMessages"], "Missing strong-weather refusal message")
     for role in before:
         healing = case.get("expectedUserHealing",0) if role=="attacker" else 0
         chip = max(1,before[role]["maxHp"]//16) if logical==3 and 14 not in before[role]["types"] else 0
