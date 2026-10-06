@@ -1,3 +1,4 @@
+#include "util/main_ram.h"
 #include "species_ids.h"
 #include "nds/fs.h"
 #include "pwan_types.h"
@@ -61,8 +62,6 @@
 #define W2U_MCSS_FADE_PLTT_DATA_OFFSET 0xd8u
 #define W2U_MCSS_PLTT_DATA_SIZE_OFFSET 0xdcu
 #define W2U_MCSS_PALETTE_PROXY_VRAM_OFFSET 0xc8u
-#define W2U_MAIN_RAM_START 0x02000000u
-#define W2U_MAIN_RAM_END 0x02400000u
 
 namespace w2u {
 namespace battle_anim {
@@ -384,7 +383,7 @@ static b32 LoadAsset(ActorId actor, BattleAssetId assetId)
 static b32 IsLikelyMainRamPointer(const void *ptr)
 {
     const u32 value = (u32)ptr;
-    return value >= W2U_MAIN_RAM_START && value < W2U_MAIN_RAM_END;
+    return w2u::IsMainRamAddress(value);
 }
 
 static void *GetMcssPointerByIndex(void *bmw, s32 mcssIndex)

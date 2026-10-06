@@ -6059,7 +6059,9 @@ extern "C" b32 THUMB_BRANCH_BTL_CALC_CheckCritical(u8 rank)
     // roll. Battle Armor, Shell Armor, and Lucky Chant therefore still veto
     // the critical hit through the native failure flag before we are called.
     const u32 attackingSlot = (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON);
-    if (W2U_MoveState_IsLaserFocused(attackingSlot)) {
+    // Native code clamps the argument to rank four, but retains the event's
+    // forced-critical request. Ability/side prevention runs before this roll.
+    if (BattleEventVar_GetValue(VAR_CRIT_STAGE) == 5 || W2U_MoveState_IsLaserFocused(attackingSlot)) {
         return 1;
     }
 

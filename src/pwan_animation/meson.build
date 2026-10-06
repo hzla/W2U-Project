@@ -88,4 +88,6 @@ pwan_runtime_depend_files = files(
   '../../include/stdint.h',
   '../../include/swan/swantypes.h',
   '../../include/swan/nds/fs.h',
+  '../../include/swan/nds/hw.h',
+  '../../include/util/main_ram.h',
 )

@@ -50,6 +50,7 @@ def rpm_sizes(path: Path) -> tuple[int, int]:
         raise RuntimeError(f"{path}: invalid RPM size/exec offset")
     if data[exec_offset : exec_offset + 4] != b"DLXH":
         raise RuntimeError(f"{path}: invalid executable header")
+    bss_size = u32(data, exec_offset + 12)
     info_offset = exec_offset + u32(data, exec_offset + 8)
     if info_offset + 36 > len(data) or data[info_offset : info_offset + 4] != b"INFO":
         raise RuntimeError(f"{path}: invalid INFO section")
@@ -61,7 +62,9 @@ def rpm_sizes(path: Path) -> tuple[int, int]:
             raise RuntimeError(f"{path}: invalid relocation section")
         internal_relative = u32(data, reloc_offset + 8)
         if internal_relative:
-            fixed = exec_offset + internal_relative
+            # StartModule moves BSS behind the retained image before shrinking.
+            # The relocation cutoff alone excludes all zero-initialized state.
+            fixed = exec_offset + internal_relative + bss_size
     if fixed <= 0 or fixed > expanded:
         raise RuntimeError(f"{path}: invalid fixed size {fixed}")
     return expanded, fixed

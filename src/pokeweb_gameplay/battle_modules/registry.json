@@ -81,6 +81,7 @@
       "source": "abilities",
       "entries": [
         ["ability", "ABIL_FUR_COAT", "FurCoatHandlers"],
+        ["ability", "ABIL_GRASS_PELT", "GrassPeltHandlers"],
         ["ability", "ABIL_BULLETPROOF", "BulletProofHandlers"],
         ["ability", "ABIL_OVERCOAT", "OvercoatUpdatedHandlers"],
         ["ability", "ABIL_WATER_BUBBLE", "WaterBubbleHandlers"],

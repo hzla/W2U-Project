@@ -8,7 +8,7 @@
 
 #define W2U_ABILITY_POWER_RATIO_1_2X 4915
 #define W2U_ABILITY_POWER_RATIO_1_3_DECIMAL 5325
-#define W2U_ABILITY_POWER_RATIO_1_3X 5461
+#define W2U_ABILITY_POWER_RATIO_1_3X 5325
 #define W2U_ABILITY_POWER_RATIO_1_5X 6144
 #define W2U_ABILITY_POWER_RATIO_2X 8192
 #define W2U_ABILITY_POWER_RATIO_3_4X 3072
@@ -2290,10 +2290,14 @@ extern "C" void HandlerNormalMoveConversionTypeChange(
     u32* work)
 {
     (void)serverFlow;
-    (void)work;
+    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_MON_ID) || !work) return;
+    // The native event's private work follows this ability's lifetime. Record
+    // actual conversion, not just the final type (e.g. an ordinary Ice Beam).
+    work[0] = 0;
     u32 convertedType = GetNormalMoveConversionType(GetEventItemAbility(item));
-    if (convertedType != TYPE_NULL) {
-        RewriteNormalMoveType(pokemonSlot, convertedType);
+    if (convertedType != TYPE_NULL && BattleEventVar_GetValue(VAR_MOVE_TYPE) == TYPE_NORMAL &&
+        BattleEventVar_RewriteValue(VAR_MOVE_TYPE, convertedType)) {
+        work[0] = (u32)BattleEventVar_GetValue(VAR_MOVE_ID) + 1u;
     }
 }
 
@@ -2527,7 +2531,7 @@ extern "C" void HandlerShieldsDown(
 
     // Forms 0-6 retain Minior's red-through-violet color identity while its
     // shell is up. Forms 7-13 are the matching exposed cores.
-    bool belowHalf = (u32)currentMon->currentHP * 2u < (u32)currentMon->maxHP;
+    bool belowHalf = (u32)currentMon->currentHP * 2u <= (u32)currentMon->maxHP;
     u32 newForm = currentForm;
     if (belowHalf && currentForm < W2U_MINIOR_METEOR_FORM_COUNT) {
         newForm = currentForm + W2U_MINIOR_CORE_FORM_START;
@@ -2553,6 +2557,29 @@ extern "C" void HandlerShieldsDown(
     BattleHandler_PopWork(serverFlow, changeForm);
 }
 
+static void HandlerShieldsDownPreventStatus(
+    BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    (void)work;
+    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON)) return;
+    BattleMon* mon = GetAbilityBattleMon(serverFlow, pokemonSlot);
+    if (!mon || mon->species != SPECIES_774 || BattleMon_TransformCheck(mon) ||
+        BattleMon_GetValue(mon, VALUE_FORM) >= W2U_MINIOR_METEOR_FORM_COUNT) return;
+    switch ((CONDITION)BattleEventVar_GetValue(VAR_CONDITION_ID)) {
+    case CONDITION_PARALYSIS:
+    case CONDITION_SLEEP:
+    case CONDITION_FREEZE:
+    case CONDITION_BURN:
+    case CONDITION_POISON:
+    case CONDITION_YAWN:
+        BattleEventVar_RewriteValue(VAR_MOVE_FAIL_FLAG, W2U_FORCE_FAIL_MESSAGE);
+        break;
+    default:
+        break;
+    }
+}
+
 BattleEventHandlerTableEntry ShieldsDownHandlers[] = {
     // Waiting until the action ends prevents a multi-hit move from exposing
     // the core between hits. The simple-damage event covers poison, weather,
@@ -2562,6 +2589,7 @@ BattleEventHandlerTableEntry ShieldsDownHandlers[] = {
     {EVENT_TURN_CHECK_END, HandlerShieldsDown},
     {EVENT_SWITCH_IN, HandlerShieldsDown},
     {EVENT_AFTER_ABILITY_CHANGE, HandlerShieldsDown},
+    {EVENT_ADD_CONDITION_CHECK_FAIL, HandlerShieldsDownPreventStatus},
 };
 
 
@@ -2717,21 +2745,14 @@ static void HandlerDisguiseBreak(BattleEventItem* item, ServerFlow* serverFlow, 
     changeForm->exStr = emptyString;
     BattleHandler_PopWork(serverFlow, changeForm);
 
-    // Keep the announcement as a separate work item so it is displayed after
-    // the instant client-side form refresh and before Disguise's HP cost.
+    // Generation VII: the absorbed hit breaks the disguise without HP loss.
+    // Display the announcement after the instant client-side form refresh.
     HandlerParam_Message* message =
         (HandlerParam_Message*)BattleHandler_PushWork(serverFlow, EFFECT_MESSAGE, pokemonSlot);
     BattleHandler_StrSetup(&message->str, 2u, BATTLE_DISGUISE_MSGID);
     BattleHandler_AddArg(&message->str, pokemonSlot);
     BattleHandler_PopWork(serverFlow, message);
 
-    // Generation VIII onward: busting Disguise also costs 1/8 of Mimikyu's
-    // maximum HP. DivideMaxHPZeroCheck keeps the damage at a minimum of 1.
-    HandlerParam_Damage* damage =
-        (HandlerParam_Damage*)BattleHandler_PushWork(serverFlow, EFFECT_DAMAGE, pokemonSlot);
-    damage->pokeID = (u8)pokemonSlot;
-    damage->damage = (u16)DivideMaxHPZeroCheck(currentMon, 8u);
-    BattleHandler_PopWork(serverFlow, damage);
 }
 
 BattleEventHandlerTableEntry DisguiseHandlers[] = {
@@ -2797,7 +2818,7 @@ BattleEventHandlerTableEntry BattleBondHandlers[] = {
 extern "C" void HandlerNormalMoveConversionPower(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
     (void)serverFlow;
-    (void)work;
+    if (!work || work[0] != (u32)BattleEventVar_GetValue(VAR_MOVE_ID) + 1u) return;
     u32 convertedType = GetNormalMoveConversionType(GetEventItemAbility(item));
     if (convertedType != TYPE_NULL) {
         BoostConvertedMove(pokemonSlot, convertedType);
@@ -2872,12 +2893,12 @@ extern "C" void HandlerStakeout(
         serverFlow,
         (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON));
     if (W2U_SwitchedInThisTurn(serverFlow, defendingMon)) {
-        BattleEventVar_MulValue(VAR_MOVE_POWER_RATIO, W2U_ABILITY_POWER_RATIO_2X);
+        BattleEventVar_MulValue(VAR_RATIO, W2U_ABILITY_POWER_RATIO_2X);
     }
 }
 
 BattleEventHandlerTableEntry StakeoutHandlers[] = {
-    {EVENT_MOVE_POWER, HandlerStakeout},
+    {EVENT_ATTACKER_POWER, HandlerStakeout},
 };
 
 
@@ -3032,7 +3053,9 @@ extern "C" void HandlerMerciless(BattleEventItem* item, ServerFlow* serverFlow, 
 
     BattleMon* defendingMon = GetAbilityBattleMon(serverFlow, (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON));
     if (defendingMon && BattleMon_GetStatus(defendingMon) == CONDITION_POISON) {
-        BattleEventVar_RewriteValue(VAR_CRIT_STAGE, 4);
+        // Rank four is only a 50% roll in BW2. Five is the resident roll
+        // service's forced-critical sentinel; native prevention still wins.
+        BattleEventVar_RewriteValue(VAR_CRIT_STAGE, 5);
     }
 }
 
@@ -3729,17 +3752,25 @@ extern "C" void HandlerParentalBondPower(BattleEventItem* item, ServerFlow* serv
     }
 
     ++sParentalBondPowerHit;
-    if (sParentalBondPowerHit == 2) {
-        sParentalBondPowerHit = 0;
-        // Base power is rewrite-once. A move such as Fickle Beam may already
-        // own that rewrite; this later event is the multiplicative-power stage.
-        // Keep the project's half-power rule and compose with move power.
-        BattleEventVar_MulValue(VAR_MOVE_POWER_RATIO, W2U_ABILITY_RATIO_HALF);
+}
+
+static void HandlerParentalBondDamage(
+    BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    (void)serverFlow;
+    (void)work;
+    if (sParentalBondActive && sParentalBondPowerHit == 2 &&
+        pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) {
+        // Gen VII reduces the second hit's final damage, not its base power.
+        // Fixed-damage moves skip the power/damage calculation events.
+        BattleEventVar_MulValue(VAR_RATIO, 1024u);
     }
 }
 
 BattleEventHandlerTableEntry ParentalBondHandlers[] = {
     {EVENT_MOVE_POWER, HandlerParentalBondPower},
+    {EVENT_MOVE_DAMAGE_PROCESSING_2, HandlerParentalBondDamage},
 };
 
 
@@ -3775,6 +3806,23 @@ extern "C" void HandlerFurCoat(BattleEventItem* item, ServerFlow* serverFlow, u3
 
 BattleEventHandlerTableEntry FurCoatHandlers[] = {
     {EVENT_ATTACKER_POWER, HandlerFurCoat},
+};
+
+static void HandlerGrassPelt(
+    BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    (void)serverFlow;
+    (void)work;
+    if (pokemonSlot == (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON) &&
+        BattleEventVar_GetValue(VAR_MOVE_CATEGORY) == SPLIT_PHYSICAL &&
+        W2U_MoveState_GetTerrain() == TERRAIN_GRASSY) {
+        BattleEventVar_MulValue(VAR_RATIO, 6144u);
+    }
+}
+
+BattleEventHandlerTableEntry GrassPeltHandlers[] = {
+    {EVENT_DEFENDER_GUARD, HandlerGrassPelt},
 };
 
 
@@ -4260,6 +4308,7 @@ W2UAbilityEventAddTable sAbilityEventAddTable[] = {
     W2U_ABILITY_EVENT(ABIL_AURA_BREAK, AuraFamilyHandlers),
     W2U_ABILITY_EVENT(ABIL_CHEEK_POUCH, CheekPouchHandlers),
     W2U_ABILITY_EVENT(ABIL_FUR_COAT, FurCoatHandlers),
+    W2U_ABILITY_EVENT(ABIL_GRASS_PELT, GrassPeltHandlers),
     W2U_ABILITY_EVENT(ABIL_BULLETPROOF, BulletProofHandlers),
     W2U_ABILITY_EVENT(ABIL_OVERCOAT, OvercoatUpdatedHandlers),
     W2U_ABILITY_EVENT(ABIL_COMPETITIVE, CompetitiveHandlers),
