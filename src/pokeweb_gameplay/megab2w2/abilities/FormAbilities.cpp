@@ -17,8 +17,9 @@
 //                            Y and became its commander!"): Tatsugiri is hidden (the Shadow Force flag: no move hits it,
 //                            its sprite vanishes), its own actions are cancelled silently, and neither Pokemon can
 //                            switch out (Mean Look's condition) or be forced out; Dondozo gets +2 Attack, Defense, Sp. Atk, Sp. Def and Speed.
-//                            Ends when Dondozo faints (Tatsugiri reappears). The Gen 5 command menu still asks for
-//                            Tatsugiri's move (Showdown skips its choice); whatever is picked does nothing.
+//                            Ends when Dondozo faints (Tatsugiri reappears). As in Showdown the command menu skips
+//                            Tatsugiri (the recharge flag, set again each turn; mb_resident.cpp drops the recharge
+//                            action's message for it) and No Guard / Lock-On don't reach it (mb_resident.cpp).
 #include "w2u_abilities.h"
 #include "w2u_battle.h"
 #include "Moves.h"
@@ -57,6 +58,9 @@ constexpr u32 FA_EFFECT_SET_CONDITION_FLAG = 0x17;
 constexpr u32 FA_EFFECT_RESET_CONDITION_FLAG = 0x18;  // same layout (ov167 0x21AD324)
 constexpr u32 FA_EFFECT_CANCEL_SEMI_INVULN = 0x36;
 constexpr u32 FA_CONDITIONFLAG_SHADOWFORCE = 0x6;   // hidden: no move hits (Shadow Force's charge turn)
+// the recharge flag (Hyper Beam): the client skips the command menu (ov167 0x21B46B8) and the server clears the flag
+// once the actions are in (0x219F73C), so it is set again at every turn end
+constexpr u32 FA_CONDITIONFLAG_NOACTION = 0xC;
 // the charge-move hide command: (pokeID, 1) hides the sprite, (pokeID, 0) shows it (ov167 0x21A8FB8 sends 0)
 constexpr u32 FA_SCID_CHARGE_HIDE = 0x31;
 constexpr u32 FA_EVENT_PREVENT_RUN = 0x0C;          // Shadow Tag's event: may VAR_MON_ID flee? (fleeing only)
@@ -263,6 +267,12 @@ void CommanderHide(ServerFlow* sf, u32 pokeID)
     PushConditionFlag(sf, pokeID, pokeID, FA_CONDITIONFLAG_SHADOWFORCE, true);
 }
 
+// no command menu for Tatsugiri in the coming turn
+void CommanderSkipMenu(ServerFlow* sf, u32 pokeID)
+{
+    PushConditionFlag(sf, pokeID, pokeID, FA_CONDITIONFLAG_NOACTION, true);
+}
+
 void PushTrap(ServerFlow* sf, u32 pokeID, u32 target, ConditionData data)
 {
     HandlerParam_AddCondition* add =
@@ -291,6 +301,7 @@ void CommanderTry(ServerFlow* sf, u32 pokeID)
     BattleHandler_AddArg(&message->str, ally);
     BattleHandler_PopWork(sf, message);
     CommanderHide(sf, pokeID);
+    CommanderSkipMenu(sf, pokeID);
     ServerDisplay_AddCommon(sf->serverCommandQueue, (ServerCommandID)FA_SCID_CHARGE_HIDE, pokeID, 1);
     Popup(sf, pokeID, false);
     PushTrap(sf, pokeID, pokeID, FA_LinkedTo(ally));
@@ -310,6 +321,7 @@ void CommanderEnd(ServerFlow* sf, u32 pokeID)
     if (ally < FA_MAX_POKE) sCommandedBy[ally] = 0;
     BattleMon* mon = Mon(sf, pokeID);
     if (!mon || BattleMon_IsFainted(mon)) return;
+    PushConditionFlag(sf, pokeID, pokeID, FA_CONDITIONFLAG_NOACTION, false);
     if (BattleMon_CheckIfMoveCondition(mon, FA_CONDITION_BLOCK)) {   // free again (not left to the link's cleanup)
         HandlerParam_CureCondition* cure =
             (HandlerParam_CureCondition*)BattleHandler_PushWork(sf, EFFECT_CURE_STATUS, pokeID);
@@ -355,7 +367,7 @@ bool CommanderPair(u32 pokeID, u32 mon)
 
 void HandlerCommanderSkipAction(BattleEventItem*, ServerFlow*, u32 pokeID, u32*)
 {
-    // Tatsugiri is inside Dondozo: whatever was chosen for it does nothing, silently
+    // Tatsugiri is inside Dondozo: an action it still gets (a foe AI's choice) does nothing, silently
     if (pokeID >= FA_MAX_POKE || !sCommanding[pokeID] || pokeID != (u32)BattleEventVar_GetValue(VAR_MON_ID)) return;
     BattleEventVar_RewriteValue(VAR_FAIL_CAUSE, MOVE_FAIL_NO_REACTION);
     BattleEventVar_RewriteValue(VAR_MOVE_FAIL_FLAG, 1);
@@ -371,7 +383,9 @@ void HandlerCommanderActionEnd(BattleEventItem*, ServerFlow* sf, u32 pokeID, u32
 
 void HandlerCommanderTurnEnd(BattleEventItem*, ServerFlow* sf, u32 pokeID, u32*)
 {
-    if (pokeID < FA_MAX_POKE && sCommanding[pokeID]) CommanderHide(sf, pokeID);
+    if (pokeID >= FA_MAX_POKE || !sCommanding[pokeID]) return;
+    CommanderHide(sf, pokeID);
+    CommanderSkipMenu(sf, pokeID);
 }
 
 void HandlerCommanderTrap(BattleEventItem*, ServerFlow*, u32 pokeID, u32*)

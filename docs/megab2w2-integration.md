@@ -153,6 +153,8 @@ Battle with heavy rain + Electric Terrain: both command screens show both indica
 | mkdata targets depend on the serializer scripts (`mkdata_deps` in `tools/mkdata/meson.build`; encounters, items, pml, pml/moves, trainers) | editing an mkdata script never rebuilt the data (`data/text` not checked yet) |
 | Move flags synced with Showdown (wind, slicing, bite, pulse, bullet, dance, powder): 53 moves gain flags, 41 lose wrong ones | `FLAG_POWDER` is bit 14, which vanilla data uses for "not in Sky Battles": 39 moves (Earthquake, Surf, Body Slam, Seismic Toss, Substitute, Spikes ...) counted as powder moves, so Overcoat and Safety Goggles blocked them. Old moves lacked the newer flags (Gust / Hurricane not wind, Slash / Leaf Blade not slicing, Fire / Ice / Thunder Fang not biting, Aura Sphere not pulse, Shadow Ball / Sludge Bomb not ball moves), so W2U's Strong Jaw / Mega Launcher / Bulletproof and the ported Sharpness / Wind Rider / Wind Power missed them. Bullet Punch was a ball move and Bug Bite a biting move (neither is in Showdown) |
 | `IsW2UIgnorableAbility` lists the breakable Gen 8 / 9 abilities (Showdown `breakable`) and Aura Guard | Mold Breaker / Teravolt / Turboblaze could not get past any ported ability (Good as Gold blocked a Mold Breaker Thunder Wave) |
+| `tools/verify_rpm_imports.py` in every White 2 DLL rule (w2u_main, the battle modules, the non-resident modules, MenuEvolutionW2, the PWAN W2 runtimes, PokewebPwanLegacyRetiredW2): each `nm -u` import must be in `pmc/IRDO.yml` or, for a module loaded beside the core, be a global `w2u_main.elf` defines (the core RPM exports a hash for every one; the loader matches them). The build fails with the list of unresolved names | RPMTool packages a call to a function the ESDB lacks without a word and leaves it a branch to itself: `BattleMon_GetSpecies` (declared in `megab2w2/battle.h`, not in the ESDB) hung every doubles battle with Commander (2026-10-06). Only the division helpers were checked, and only in w2u_main and the PWAN runtimes. `battle.h` still declares `BattleMon_GetSpecies`, `Move_SearchIndex` and `GetPlayerClientID` without an ESDB entry (unused) |
+| `ability::BestStatWithStages` divides in u64 | the guard's first find: Protosynthesis / Quark Drive (module `abilities_mb_terrain`) divided by a variable, a call to `__aeabi_uidiv`, which the ESDB lacks: activating with a lowered stat would have hung the battle |
 
 ## Open W2U issues (not fixed on this branch)
 
@@ -770,7 +772,7 @@ only), `src/pokeweb_gameplay/megab2w2/abilities/FormAbilities.cpp`.
 | Gulp Missile (Cramorant) | Surf hitting, or Dive's charge turn, catches prey: Arrokuda above half HP, Pikachu at half or less. The next hit taken spits it: the attacker loses 1/4 of its max HP, then Defense -1 or paralysis. No Gulping / Gorging form records or sprites exist: the state lives in the module, the catch is shown with the ability popup |
 | Hunger Switch (Morpeko) | Full Belly <-> Hangry every turn end, no popup; back to Full Belly on switching out. Aura Wheel already follows the form |
 | Zero to Hero (Palafin) | Switching out in Zero Form leaves as Hero Form (`w2u_mega.cpp` `BattleMon_ClearForSwitchOut`: form, types, stats; kept for the battle); the next entry announces it once ("X underwent a heroic transformation!", bank 18 1445-1447) |
-| Commander (Tatsugiri) | Doubles, with an ally Dondozo: "X was swallowed by Y and became its commander!" (bank 18 1448-1450), Dondozo +2 Attack / Defense / Sp. Atk / Sp. Def / Speed. Tatsugiri gets the Shadow Force hide flag (condition flag 6: every move misses it, "avoided the attack!") and its sprite is hidden (display command 0x31, the charge-move hide); whatever it is told to do is cancelled silently. Neither can switch (Mean Look's condition 0x16: the party screen refuses, "Dondozo can't be switched out!"; Tatsugiri's is linked to Dondozo, Dondozo's is permanent as Showdown's `commanded` never ends) or be forced out (Suction Cups' event: Roar fails). When Dondozo faints, Tatsugiri comes back out, free to act and switch |
+| Commander (Tatsugiri) | Doubles, with an ally Dondozo: "X was swallowed by Y and became its commander!" (bank 18 1448-1450), Dondozo +2 Attack / Defense / Sp. Atk / Sp. Def / Speed. Tatsugiri gets the Shadow Force hide flag (condition flag 6: every move misses it, "avoided the attack!") and its sprite is hidden (display command 0x31, the charge-move hide); whatever it is told to do is cancelled silently. Neither can switch (Mean Look's condition 0x16: the party screen refuses, "Dondozo can't be switched out!"; Tatsugiri's is linked to Dondozo, Dondozo's is permanent as Showdown's `commanded` never ends) or be forced out (Suction Cups' event: Roar fails). As in Showdown the command menu skips Tatsugiri and nothing reaches it, No Guard and Lock-On included (below). When Dondozo faints, Tatsugiri comes back out, free to act and switch |
 
 Engine details found by disassembling overlay 167 (W2U's headers did not name them; noted in `FormAbilities.cpp`):
 
@@ -782,6 +784,15 @@ Engine details found by disassembling overlay 167 (W2U's headers did not name th
 - Condition data: type in bits 0-2 (1 permanent, 2 turns, 3 linked to a Pokemon), the value in bits 3-8.
 - `EFFECT_SET_CONDITION_FLAG` / `RESET` (0x17 / 0x18): flag +4, pokeID +8; `EFFECT_CANCEL_SEMI_INVULN` (0x36):
   pokeID +4, flag +8, clears the flag and shows the sprite again.
+- The command menu: the client skips a Pokemon (0x21B46B8) that has fainted, has the recharge flag (12; action kind
+  7) or is locked into a move. The server clears the recharge flag once the actions are in (0x219F73C), and its kind
+  7 action prints "X must recharge!" (message 0x350, 0x21A9014). Commander sets the flag when it starts and at every
+  turn end; `mb_resident.cpp` drops the kind 7 call (ActionOrder_Proc's BL at 0x21A094E) for a commanding Tatsugiri,
+  so the turn goes on without a word (Showdown: Tatsugiri makes no choice).
+- No Guard, Lock-On and Mind Reader: `ServerControl_IsGuaranteedHit` (0x21A2E0C) answers 1 for them and the hide check
+  is skipped. `mb_resident.cpp` wraps the two calls before a hide check (0x21A3340, 0x21A6F7C): 0 for a commanding
+  Tatsugiri (Shadow Force's flag 6 set, Commander working), so the move misses as Showdown's `commanding` ignores them.
+  ESDB: `ServerControl_RechargeAction` (0x21A9015) added.
 
 Resident side: Ice Face and Zero to Hero keep their form on switching (`W2U_AbilityPreservesFormOnSwitchOut`); the
 five are in the Receiver / Power of Alchemy fail list, Ice Face in the Mold Breaker list, Ice Face / Gulp Missile /
@@ -807,17 +818,15 @@ Crowned (stats, Steel type), Calyrex Ice / Shadow Rider (stats, types, As One), 
 Oinkologne-F, Enamorus Therian and Gimmighoul Roaming (stats), Ogerpon's masks (Grass only; Water / Fire / Rock
 missing).
 
-Differences from Showdown (Gen 5 limits):
-- The command menu still asks for the commanding Tatsugiri's move (Showdown skips its choice); it does nothing.
-- No Guard / Lock-On can hit a commanding Tatsugiri (the hide flag's own bypass); Showdown never lets anything hit it.
-- Ice Face is restored in hail (W2U has no snow).
+Differences from Showdown: Ice Face is restored in hail (W2U has no snow). Helping Hand on a commanding Tatsugiri
+misses (Showdown lets it through; it changes nothing there).
 
 Ball Fetch is not implemented: Showdown gives it no battle effect (in the games it fetches the first failed Poke
 Ball in a wild battle).
 
 #### Results (headless, 2026-10-06)
 
-12 scenarios (`w2u-local/harness/wave_forms.yml`), all pass:
+14 scenarios (`w2u-local/harness/wave_forms.yml`), all pass:
 - Ice Face: Crunch for 0, then 30; Dark Pulse through it; Hail restores it (0 again).
 - Gulp Missile: "Defense fell" (Gulping) / paralysis (Gorging, 50 HP).
 - Hunger Switch: Aura Wheel neutral / super effective / neutral on Gengar.
@@ -826,8 +835,12 @@ Ball in a wild battle).
   - the message and five +2 boosts; Tatsugiri's Water Gun cancelled and no damage to it in three turns (both
     foes' Tackles "avoided");
   - Roar "But it failed!" with a third party member;
-  - the party screen refuses both switches;
+  - the party screen refuses Dondozo's switch (Tatsugiri gets no menu);
   - Dondozo fainting brings Tatsugiri back to use Water Gun.
+  - one command menu per turn (Dondozo's), no "must recharge";
+  - Dondozo with No Guard Tackling its commanding Tatsugiri: "avoided the attack!" twice.
+- Controls for the two hooks: Hyper Beam still prints "must recharge!", and No Guard still hits a Pokemon in the air
+  (Fly).
 
 Not covered by a scenario: Ice Face restored on entry in hail, Hunger Switch resetting on switching out, Tatsugiri
 switching out once freed (the harness can't answer the replacement prompt after Dondozo faints), Gulp Missile through
