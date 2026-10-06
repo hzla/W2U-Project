@@ -8,6 +8,8 @@ subdir('battle_log')
 
 cxx = meson.get_compiler('cpp')
 rpm_strip_flag = get_option('strip_rpms') ? '--strip' : 'no-strip'
+# Every import of a White 2 DLL must be in the ESDB (or exported by w2u_main for a module loaded beside it).
+rpm_import_verifier = meson.project_source_root() / 'tools' / 'verify_rpm_imports.py'
 checked_rpm_packager = meson.project_source_root() / 'tools' / 'package_rpm_checked.py'
 checked_rpm_depend_files = [
   checked_rpm_packager,
@@ -98,6 +100,7 @@ w2u_main_dll = custom_target(
   depend_files: [
     meson.project_source_root() / 'pmc' / 'IRDO.yml',
     meson.project_source_root() / 'tools' / 'rpm_verify_stripped.py',
+    rpm_import_verifier,
   ] + checked_rpm_depend_files,
   command: ['sh', '-eu', '-c', '''
     ctrmap="$1"
@@ -107,6 +110,7 @@ w2u_main_dll = custom_target(
     strip_verifier="$5"
     strip_flag="$6"
     checked_packager="$7"
+    import_verifier="$8"
 
     # The ESDB maps __aeabi_uidivmod / __aeabi_idivmod but not the plain division helpers: a call to one stays a
     # branch to itself after relocation (an endless loop at run time). -Os emits them even for constant divisors.
@@ -114,6 +118,7 @@ w2u_main_dll = custom_target(
       echo "[!] w2u_main imports a division helper PMC cannot resolve (use u64 division or a multiply)." >&2
       exit 1
     fi
+    python3 "$import_verifier" "$input" --esdb "$esdb"
 
     set -- python3 "$checked_packager" --jar "$ctrmap" --output "$output" -- -i "$input" --fourcc DLXF --esdb "$esdb" --generate-relocations
     if [ "$strip_flag" = '--strip' ]; then
@@ -133,6 +138,7 @@ w2u_main_dll = custom_target(
     meson.project_source_root() / 'tools' / 'rpm_verify_stripped.py',
     rpm_strip_flag,
     checked_rpm_packager,
+    rpm_import_verifier,
   ],
 )
 
@@ -226,6 +232,7 @@ foreach battle_module : w2u_battle_module_definitions
       meson.project_source_root() / 'tools' / 'rpm_verify_stripped.py',
       meson.project_source_root() / 'tools' / 'restrict_w2u_battle_exports.py',
       meson.project_source_root() / 'tools' / 'verify_w2u_battle_module.py',
+      rpm_import_verifier,
     ] + checked_rpm_depend_files,
     command: ['sh', '-eu', '-c', '''
       ctrmap="$1"
@@ -237,6 +244,7 @@ foreach battle_module : w2u_battle_module_definitions
       export_restrictor="$7"
       module_verifier="$8"
       checked_packager="$9"
+      import_verifier="${10}"
       imports="${output%.dll}.core-imports.txt"
       exports="${output%.dll}.core-exports.txt"
 
@@ -258,6 +266,7 @@ foreach battle_module : w2u_battle_module_definitions
           exit 1
         fi
       done < "$imports"
+      python3 "$import_verifier" "$input" --esdb "$esdb" --core "$core"
 
       python3 "$checked_packager" --jar "$ctrmap" --output "$output" -- -i "$input" --fourcc DLXF --esdb "$esdb" --generate-relocations --strip
       python3 "$export_restrictor" "$output"
@@ -273,6 +282,7 @@ foreach battle_module : w2u_battle_module_definitions
       meson.project_source_root() / 'tools' / 'restrict_w2u_battle_exports.py',
       meson.project_source_root() / 'tools' / 'verify_w2u_battle_module.py',
       checked_rpm_packager,
+      rpm_import_verifier,
     ],
   )
   w2u_battle_module_elfs += [module_elf]
@@ -359,6 +369,7 @@ foreach w2u_module : w2u_nonresident_modules
       meson.project_source_root() / 'pmc' / 'IRDO.yml',
       meson.project_source_root() / 'tools' / 'rpm_verify_nonresident.py',
       meson.project_source_root() / 'tools' / 'rpm_verify_stripped.py',
+      rpm_import_verifier,
     ],
     command: ['sh', '-eu', '-c', '''
       ctrmap="$1"
@@ -370,6 +381,7 @@ foreach w2u_module : w2u_nonresident_modules
       expected_overlays="$7"
       strip_verifier="$8"
       strip_flag="$9"
+      import_verifier="${10}"
       imports="${output%.dll}.w2u-imports.txt"
       exports="${output%.dll}.core-exports.txt"
 
@@ -381,6 +393,7 @@ foreach w2u_module : w2u_nonresident_modules
           exit 1
         fi
       done < "$imports"
+      python3 "$import_verifier" "$input" --esdb "$esdb" --core "$core"
 
       set -- "${JAVA:-java}" -cp "$ctrmap" rpm.cli.RPMTool -i "$input" --fourcc DLXF -o "$output" --esdb "$esdb" --generate-relocations
       if [ "$strip_flag" = '--strip' ]; then
@@ -402,6 +415,7 @@ foreach w2u_module : w2u_nonresident_modules
       w2u_expected_overlays,
       meson.project_source_root() / 'tools' / 'rpm_verify_stripped.py',
       rpm_strip_flag,
+      rpm_import_verifier,
     ],
   )
 
@@ -427,6 +441,7 @@ menu_evolution_w2_dll = custom_target(
     meson.project_source_root() / 'pmc' / 'menu_evolution_w2_meta.yml',
     meson.project_source_root() / 'tools' / 'rpm_verify_nonresident.py',
     meson.project_source_root() / 'tools' / 'rpm_verify_stripped.py',
+    rpm_import_verifier,
   ],
   command: ['sh', '-eu', '-c', '''
     ctrmap="$1"
@@ -436,7 +451,9 @@ menu_evolution_w2_dll = custom_target(
     nonresident_verifier="$5"
     strip_verifier="$6"
     meta="$7"
+    import_verifier="$8"
 
+    python3 "$import_verifier" "$input" --esdb "$esdb"
     "${JAVA:-java}" -cp "$ctrmap" rpm.cli.RPMTool -i "$input" --fourcc DLXF -o "$output" --esdb "$esdb" --generate-relocations --meta "$meta" --strip
     python3 "$nonresident_verifier" "$output" --expect '12,165,166'
     python3 "$strip_verifier" "$output"
@@ -449,6 +466,7 @@ menu_evolution_w2_dll = custom_target(
     meson.project_source_root() / 'tools' / 'rpm_verify_nonresident.py',
     meson.project_source_root() / 'tools' / 'rpm_verify_stripped.py',
     meson.project_source_root() / 'pmc' / 'menu_evolution_w2_meta.yml',
+    rpm_import_verifier,
   ],
 )
 
@@ -548,6 +566,7 @@ foreach pwan_module : pwan_runtime_modules
       meson.project_source_root() / 'pmc' / 'IRDO.yml',
       meson.project_source_root() / 'tools' / 'rpm_verify_nonresident.py',
       meson.project_source_root() / 'tools' / 'rpm_verify_stripped.py',
+      rpm_import_verifier,
     ],
     command: ['sh', '-eu', '-c', '''
       ctrmap="$1"
@@ -558,6 +577,7 @@ foreach pwan_module : pwan_runtime_modules
       expected_overlays="$6"
       strip_verifier="$7"
       strip_flag="$8"
+      import_verifier="$9"
       undefined="${output%.dll}.undefined.txt"
 
       arm-none-eabi-nm -u "$input" > "$undefined"
@@ -565,6 +585,7 @@ foreach pwan_module : pwan_runtime_modules
         echo "[!] PWAN runtime emitted unsigned division helper imports." >&2
         exit 1
       fi
+      python3 "$import_verifier" "$input" --esdb "$esdb"
 
       set -- "${JAVA:-java}" -cp "$ctrmap" rpm.cli.RPMTool -i "$input" --fourcc DLXF -o "$output" --esdb "$esdb" --generate-relocations
       if [ "$strip_flag" = '--strip' ]; then
@@ -586,6 +607,7 @@ foreach pwan_module : pwan_runtime_modules
       pwan_expected_overlays,
       meson.project_source_root() / 'tools' / 'rpm_verify_stripped.py',
       rpm_strip_flag,
+      rpm_import_verifier,
     ],
   )
 
@@ -1059,6 +1081,7 @@ pwan_legacy_retired_dll = custom_target(
   depend_files: [
     meson.project_source_root() / 'pmc' / 'IRDO.yml',
     meson.project_source_root() / 'tools' / 'rpm_verify_stripped.py',
+    rpm_import_verifier,
   ],
   command: ['sh', '-eu', '-c', '''
     ctrmap="$1"
@@ -1067,7 +1090,9 @@ pwan_legacy_retired_dll = custom_target(
     esdb="$4"
     strip_verifier="$5"
     strip_flag="$6"
+    import_verifier="$7"
 
+    python3 "$import_verifier" "$input" --esdb "$esdb"
     set -- "${JAVA:-java}" -cp "$ctrmap" rpm.cli.RPMTool -i "$input" --fourcc DLXF -o "$output" --esdb "$esdb" --generate-relocations
     if [ "$strip_flag" = '--strip' ]; then
       set -- "$@" --strip
@@ -1085,6 +1110,7 @@ pwan_legacy_retired_dll = custom_target(
     meson.project_source_root() / 'pmc' / 'IRDO.yml',
     meson.project_source_root() / 'tools' / 'rpm_verify_stripped.py',
     rpm_strip_flag,
+    rpm_import_verifier,
   ],
 )
 
