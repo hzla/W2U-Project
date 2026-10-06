@@ -15,7 +15,7 @@
 
 #define W2U_ABILITY_POWER_RATIO_1_2X 4915
 #define W2U_ABILITY_POWER_RATIO_1_3_DECIMAL 5325
-#define W2U_ABILITY_POWER_RATIO_1_3X 5461
+#define W2U_ABILITY_POWER_RATIO_1_3X 5325
 #define W2U_ABILITY_POWER_RATIO_1_5X 6144
 #define W2U_ABILITY_POWER_RATIO_2X 8192
 #define W2U_ABILITY_POWER_RATIO_3_4X 3072
@@ -1800,6 +1800,7 @@ bool MoveIgnoresParentalBond(MOVE_ID moveID)
     case MOVE_FLING:
     case MOVE_SELFDESTRUCT:
     case MOVE_EXPLOSION:
+    case MOVE_MISTY_EXPLOSION:
     case MOVE_FINAL_GAMBIT:
     case MOVE_UPROAR:
     case MOVE_ROLLOUT:
@@ -2325,10 +2326,16 @@ extern "C" void HandlerNormalMoveConversionTypeChange(
     u32* work)
 {
     (void)serverFlow;
-    (void)work;
+    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_MON_ID) || !work) return;
+    // Keep actual conversion in ability-private work, rather than inferring
+    // it from the final type of a naturally typed move on a later action.
+    work[0] = 0;
     u32 convertedType = GetNormalMoveConversionType(GetEventItemAbility(item));
-    if (convertedType != TYPE_NULL) {
-        RewriteNormalMoveType(pokemonSlot, convertedType);
+    if (convertedType != TYPE_NULL &&
+        !KeepsOwnType((u32)BattleEventVar_GetValue(VAR_MOVE_ID)) &&
+        BattleEventVar_GetValue(VAR_MOVE_TYPE) == TYPE_NORMAL &&
+        BattleEventVar_RewriteValue(VAR_MOVE_TYPE, convertedType)) {
+        work[0] = (u32)BattleEventVar_GetValue(VAR_MOVE_ID) + 1u;
     }
 }
 
@@ -2562,7 +2569,7 @@ extern "C" void HandlerShieldsDown(
 
     // Forms 0-6 retain Minior's red-through-violet color identity while its
     // shell is up. Forms 7-13 are the matching exposed cores.
-    bool belowHalf = (u32)currentMon->currentHP * 2u < (u32)currentMon->maxHP;
+    bool belowHalf = (u32)currentMon->currentHP * 2u <= (u32)currentMon->maxHP;
     u32 newForm = currentForm;
     if (belowHalf && currentForm < W2U_MINIOR_METEOR_FORM_COUNT) {
         newForm = currentForm + W2U_MINIOR_CORE_FORM_START;
@@ -2588,6 +2595,29 @@ extern "C" void HandlerShieldsDown(
     BattleHandler_PopWork(serverFlow, changeForm);
 }
 
+static void HandlerShieldsDownPreventStatus(
+    BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    (void)work;
+    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON)) return;
+    BattleMon* mon = GetAbilityBattleMon(serverFlow, pokemonSlot);
+    if (!mon || mon->species != SPECIES_774 || BattleMon_TransformCheck(mon) ||
+        BattleMon_GetValue(mon, VALUE_FORM) >= W2U_MINIOR_METEOR_FORM_COUNT) return;
+    switch ((CONDITION)BattleEventVar_GetValue(VAR_CONDITION_ID)) {
+    case CONDITION_PARALYSIS:
+    case CONDITION_SLEEP:
+    case CONDITION_FREEZE:
+    case CONDITION_BURN:
+    case CONDITION_POISON:
+    case CONDITION_YAWN:
+        BattleEventVar_RewriteValue(VAR_MOVE_FAIL_FLAG, W2U_FORCE_FAIL_MESSAGE);
+        break;
+    default:
+        break;
+    }
+}
+
 BattleEventHandlerTableEntry ShieldsDownHandlers[] = {
     // Waiting until the action ends prevents a multi-hit move from exposing
     // the core between hits. The simple-damage event covers poison, weather,
@@ -2597,6 +2627,7 @@ BattleEventHandlerTableEntry ShieldsDownHandlers[] = {
     {EVENT_TURN_CHECK_END, HandlerShieldsDown},
     {EVENT_SWITCH_IN, HandlerShieldsDown},
     {EVENT_AFTER_ABILITY_CHANGE, HandlerShieldsDown},
+    {EVENT_ADD_CONDITION_CHECK_FAIL, HandlerShieldsDownPreventStatus},
 };
 
 
@@ -2738,6 +2769,7 @@ static void HandlerDisguiseBreak(BattleEventItem* item, ServerFlow* serverFlow, 
     (void)work;
     BattleMon* currentMon = DisguiseIntactTarget(serverFlow, pokemonSlot);
     if (!currentMon) return;
+    W2U_MoveState_RecordDisguiseHit(serverFlow, pokemonSlot);
     // Native damage determination runs for real execution after the first
     // calculated strike, including zero damage, but not AI simulation.
 
@@ -2831,7 +2863,7 @@ BattleEventHandlerTableEntry BattleBondHandlers[] = {
 extern "C" void HandlerNormalMoveConversionPower(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
     (void)serverFlow;
-    (void)work;
+    if (!work || work[0] != (u32)BattleEventVar_GetValue(VAR_MOVE_ID) + 1u) return;
     u32 convertedType = GetNormalMoveConversionType(GetEventItemAbility(item));
     if (convertedType != TYPE_NULL) {
         BoostConvertedMove(pokemonSlot, convertedType);
@@ -2906,12 +2938,12 @@ extern "C" void HandlerStakeout(
         serverFlow,
         (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON));
     if (W2U_SwitchedInThisTurn(serverFlow, defendingMon)) {
-        BattleEventVar_MulValue(VAR_MOVE_POWER_RATIO, W2U_ABILITY_POWER_RATIO_2X);
+        BattleEventVar_MulValue(VAR_RATIO, W2U_ABILITY_POWER_RATIO_2X);
     }
 }
 
 BattleEventHandlerTableEntry StakeoutHandlers[] = {
-    {EVENT_MOVE_POWER, HandlerStakeout},
+    {EVENT_ATTACKER_POWER, HandlerStakeout},
 };
 
 
@@ -3765,17 +3797,25 @@ extern "C" void HandlerParentalBondPower(BattleEventItem* item, ServerFlow* serv
     }
 
     ++sParentalBondPowerHit;
-    if (sParentalBondPowerHit == 2) {
-        sParentalBondPowerHit = 0;
-        // Base power is rewrite-once. A move such as Fickle Beam may already
-        // own that rewrite; this later event is the multiplicative-power stage.
-        // Keep the project's half-power rule and compose with move power.
-        BattleEventVar_MulValue(VAR_MOVE_POWER_RATIO, W2U_ABILITY_RATIO_HALF);
+}
+
+static void HandlerParentalBondDamage(
+    BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
+{
+    (void)item;
+    (void)serverFlow;
+    (void)work;
+    if (sParentalBondActive && sParentalBondPowerHit == 2 &&
+        pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) {
+        // Reduce final ordinary damage, not power. Native fixed-damage moves
+        // bypass these power/damage events and retain their own semantics.
+        BattleEventVar_MulValue(VAR_RATIO, 1024u);
     }
 }
 
 BattleEventHandlerTableEntry ParentalBondHandlers[] = {
     {EVENT_MOVE_POWER, HandlerParentalBondPower},
+    {EVENT_MOVE_DAMAGE_PROCESSING_2, HandlerParentalBondDamage},
 };
 
 

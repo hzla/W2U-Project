@@ -471,7 +471,7 @@ def worker(args):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--suite", choices=["fluffy"], default="fluffy")
-    parser.add_argument("--rom", type=Path, default=ROOT.parent / "White2Upgrade.nds")
+    parser.add_argument("--rom", type=Path, default=ROOT / "build/White2Upgrade.nds")
     parser.add_argument("--save", type=Path, default=paths.DEFAULT_SAVE)
     parser.add_argument("--fixtures", type=Path, help="Reuse fixtures previously produced by this runner")
     parser.add_argument("--keep-fixtures", action="store_true", help="Keep the newly exported fixture ROM for later --fixtures reuse; saves and supplied fixtures are always preserved")

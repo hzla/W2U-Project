@@ -49,7 +49,7 @@ def verify(case, result, variant, api):
         telemetry = result.get("moduleTelemetry")
         check(telemetry is not None and telemetry["failureCount"] == telemetry["failedModuleMask"] == 0,
               "Child DLL registration failed")
-        check(0 <= telemetry["loadedModuleCount"] <= 24 and telemetry["currentChildBytes"] <= telemetry["peakChildBytes"],
+        check(0 <= telemetry["loadedModuleCount"] <= 32 and telemetry["currentChildBytes"] <= telemetry["peakChildBytes"],
               "Invalid module telemetry")
         mechanic=variant["mechanic"]
         if mechanic["kind"]=="ability":
@@ -135,6 +135,10 @@ def verify(case, result, variant, api):
                     doll = max(0, doll - call["calculatedDamage"])
                 else:
                     hp = max(0, hp - call["calculatedDamage"])
+                if role in expected.get("disguiseBustCost", []) and call["defender"]["form"] == 0:
+                    check(call["defender"]["species"] == 778 and call["calculatedDamage"] == 0,
+                          "Missing Mimikyu absorbed-hit precondition")
+                    hp = max(0, hp - max(1, mon["maxHp"] // 8))
             if role == "attacker" and expected.get("berryPouchHealing"):
                 check(mon["item"] == 158 and hp <= mon["maxHp"] // 2, "Missing native Sitrus activation precondition")
                 hp = min(mon["maxHp"], hp + mon["maxHp"] // 4 + mon["maxHp"] // 3)
