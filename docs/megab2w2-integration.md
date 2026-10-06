@@ -3,6 +3,117 @@
 Branch `megab2w2-integration`. Work in progress: bringing selected MegaB2W2 features into White2Upgrade.
 **Not for `main`**: nothing here is merged until the maintainer decides. MegaB2W2 stays a separate project.
 
+The first three sections are the overview for review: what the branch adds and where, how to build and test it,
+and the decisions left to the maintainer. Everything after "Phases" is the working record, in the order the work
+was done, with the measurements and the reasons.
+
+## Overview
+
+Everything below is White 2. Black 2 builds and links, but gets none of the new mechanics (no-op handler tables,
+`#if !defined(W2U_TARGET_B2)`); porting them is deferred.
+
+### What the branch adds
+
+| Feature | Code | Data / generators | Record section |
+|---|---|---|---|
+| Primal weathers: Primordial Sea, Desolate Land, Delta Stream | `w2u_strong_weather.cpp`, `include/w2u_strong_weather.h`; module `abilities/strong_weather` | `tools/graphics/build_strong_weather_effects.py` (SPAs 1031-1033, effect scripts 960-964); messages bank 19 201-212 | Phase 2a, Field checks |
+| Command-screen weather / terrain indicators (animated, terrain stacked under weather) | `w2u_terrain_indicator.cpp` (+ `_hooks.s`) | `tools/graphics/build_command_indicators.py` (battgra 420-423, 941) | Phase 2b |
+| Abilities from MegaB2W2 or written from Showdown: 51 in wave A, 7 in wave B, 13 in wave C, 5 form abilities, Grass Pelt, Chilling Neigh (Gen 8 / 9 and MegaB2W2 customs) | MegaB2W2's logic files as they are, `src/pokeweb_gameplay/megab2w2/abilities/`, behind its engine headers (`battle.h`, `ability_api.h` ...); resident hooks `megab2w2/mb_resident.cpp`; modules `abilities/mb_power`, `mb_defense`, `mb_reactive`, `mb_entry`, `mb_terrain`, `mb_hooked`, `mb_forms` (registry ids 23-29, `battle_modules/registry.json`) | messages bank 18 1352-1450, bank 19 213-214; `mb_ids.h` | Phase 3 (waves A-C), Phase 6, Form abilities |
+| Abilities above 255 (up to 1023), in species data and in each Pokemon | `w2u_ability_storage.cpp`, `w2u_ability_storage_ui.cpp` | `tools/mkdata` packs them (D10: Pokeweb's packing); Gen 8 / 9 species given their real abilities | Abilities above 255 |
+| Booster Energy (item 426) | with Protosynthesis / Quark Drive (`mb_terrain`) | `data/items/booster_energy.toml`, icon in `assets/item_icons` | Wave B |
+| Expanding Force, Misty Explosion; Damp with Showdown's move list | W2U's `HandlerTerrainPower`; `megab2w2/abilities/Damp.cpp` | move data | Field checks |
+| Move flags synced with Showdown (wind, slicing, bite, pulse, bullet, dance, powder) | - | `data/pml/moves` (53 moves gain flags, 41 lose wrong ones) | W2U fixes |
+| w2anim streaming sprite runtime replaces the PWAN runtimes (every MCSS screen: battle, summary, evolution, egg hatch, Hall of Fame, trade, PC); trainer animation support | `src/w2anim/w2u_anim_streams.cpp` (resident) | `tools/w2anim/build_w2anim_streams.py` converts the PWAN assets at build time (`w2anim/streams.bin`); `tools/pwan/restage_pwan_carrier_sets.py` | Phase 4, 4b |
+| Mega extras: held-START toggle, the Mega's cry with reverb, HP-gauge Mega icon, Mega glyph above the sprite | `megab2w2/mb_mega_extras.cpp`, called from `w2u_mega.cpp` | `mb_mega_*_tiles.inc`, `tools/pwan/gen_mega_glyph_heights.py`; Mega script `5_00000622.bin` lost its SPA 769 | Phase 5 |
+| Mega Rayquaza chosen with START when it knows Dragon Ascent (was triggered by the move) | `w2u_mega.cpp` | messages bank 18 1451-1453 | Mega Rayquaza |
+| Sun / Moon style terrains: floors, skies (4x repeat, drift), haze, glow, palette animation, ambient particles, Psychic's raster wave, Electric's sky lightning; heavy-rain look; Surges start terrain without a move animation | `w2u_terrain_texture.cpp`, `w2u_terrain_texture_mappings.inc`; `w2u_moves.cpp` (Surges) | `tools/graphics/draw_terrain_floor_tiles.py`, `build_terrain_texture_mvp.py`, `build_terrain_ambient_effects.py` (all art drawn by these scripts) | Polish sections |
+| PMC heap 200 KiB, module loader out-of-memory guard, ROM build fails below 12 KiB free with every module loaded, `strip_rpms` default on | `tools/patch_pmc_sysheap.py`, `w2u_battle_module_loader.cpp`, `tools/audit_white2upgrade_battle_heap.py`, `meson.build` / `meson_options.txt` | - | Fix: PMC heap out of memory, Heap saving steps |
+| Build guards: every White 2 DLL import must resolve; jump tables rejected | `tools/verify_rpm_imports.py`, `tools/package_rpm_checked.py` | - | W2U fixes |
+
+Heap with all of it (build audit, stripped, 2026-10-06): core 84,672 bytes resident; 115,992 bytes of the 200 KiB
+heap free in a battle with no module loaded, 44,200 with every battle module loaded at once (floor 12,288, enforced
+by the build).
+
+### Fixes to W2U itself
+
+Found while porting; each is in W2U's own code or data. Details in "W2U fixes found during integration", Phase 6 and
+the sections named.
+
+- Terrain moves hung in battles started without the field (missing heap ID): `GetFieldLowHeapID()`.
+- Many abilities and the Mega form change showed no ability popup (`HANDLER_ABILITY_POPUP_FLAG`).
+- Move flags: 39 moves counted as powder moves (Overcoat / Safety Goggles blocked Earthquake, Surf ...); old moves
+  lacked the newer flags.
+- Mold Breaker could not get past the ported abilities (`IsW2UIgnorableAbility`).
+- Cheek Pouch and Symbiosis never triggered on White 2 (hooks inside a block the dynamic core skips).
+- Merciless was a 50% crit; -ate abilities converted Weather Ball, Judgment, Hidden Power and others; Grass Pelt and
+  Chilling Neigh had no effect; Damp ignored Mind Blown / Misty Explosion.
+- Gen 1 sprites broken by the Mega preview's leftover data; Mega Lucario / Garchomp garbled; Mega Raichu X / Y and
+  Mega Slowbro battle members missing.
+- Wrong Gen 8 / 9 alternate-form records (stats, types, abilities copied from the base form).
+- Mega Rayquaza's message stopped the battle for a foe (TRNAME given a battler slot instead of a client).
+- Build: stale DLLs after a header edit, mkdata scripts not rebuilding data, Windows hosts unable to configure,
+  RPMTool packaging an unresolved call as a branch to itself.
+
+Still open in W2U (not fixed here): a retail-layout save crashes at the first game clear ("Open W2U issues").
+
+### Build
+
+Unchanged from W2U (`meson setup` + `ninja -C build White2Upgrade.nds`), plus:
+- `strip_rpms` now defaults to true. An existing build directory keeps its configured value:
+  `meson configure build -Dstrip_rpms=true`.
+- The ROM target depends on the heap audit (`src/white2upgrade-battle-heap-audit.json`) and fails when every module
+  loaded would leave less than 12 KiB of the PMC heap.
+- Every White 2 DLL rule runs `tools/verify_rpm_imports.py`: a call to a function the ESDB lacks fails the build.
+- Windows hosts: see "Build notes".
+- Two build directories must not build at the same time: both stage into the same in-tree `vfs/`.
+
+### Testing
+
+Battle tests run headless and are local tooling, not part of this repository (D8); they stay local for now
+(2026-10-06). Whether to bring them in later is for the maintainer to decide.
+
+- **Scenario runner**: `w2u-local/harness/wave.py`. Per scenario it asks Pokeweb-Serverless's battle harness
+  (`runtime/battle-harness`) for a ROM that boots straight into the battle, writes the player's team into a save,
+  plays the turns by touch input in headless melonDS (PlatinumMaster/melonDS-headless, `headless` branch) and
+  checks the battle from the emulator alone (message transcript, damage values read from registers, screenshots);
+  the ROM is not instrumented. Scenarios use MegaB2W2's format (`expect`, `forbid`, `count`, `damage_ratio`,
+  `fixed_roll`, `no_crits` ...). Usage and every key are documented at the top of `wave.py`.
+  ```
+  cd w2u-local/harness; source ../env.sh
+  python wave.py NAME [NAME ...] | ALL --spec=wave_a.yml [--rom=<absolute path>] [--record] [--runs=DIR --leave=K]
+  ```
+- **Specs** (latest results): `wave_a` 71 (wave A abilities and move flags), `wave_b` 10 (terrain abilities, Booster
+  Energy), `wave_c` 20 (hooked abilities), `wave_field` 18 (strong weathers, negation, terrain moves), `wave_shared`
+  61 + `wave_shared_extra` 3 (abilities both projects had), `wave_forms` 15, `wave_mega` 10, `wave_sprites` 8 (w2anim
+  frames against PWAN's, with `sprite_compare.py`); `previews.yml` and `showcase*.yml` record videos; `wave_dbg.yml`
+  holds debugging scenarios. Each spec passed at its last run (counts and dates in the record); SPR_DOUBLE's turn
+  input is a known harness failure.
+- **Check ROM** (`w2u-local/checks`, README there): a copy of the ROM plus a small launcher DLL and a test save that
+  boots into the overworld; holding L + R opens egg hatch (A), Hall of Fame (START), an in-game trade (SELECT) or the
+  PC (B; box preview and summary). `checks.yml` runs them headlessly; `savecheck.py` validates saves.
+- **Pokeweb-Serverless** is used as it is, apart from one local patch to offer upstream: its battle harness capped
+  ability IDs at 255 (see "Abilities above 255").
+
+## Decisions for hzla
+
+Collected from the record below; nothing here is merged until these are settled.
+
+| # | Decision | Where |
+|---|---|---|
+| 1 | The provisional decisions D1-D10 (D2 and D7 already changed with your agreement) | Provisional decisions |
+| 2 | `strip_rpms` default on; the heap audit's savings-vs-monolith checks (formerly `--enforce` with strip) now only warn, because the core is larger than the old monolithic baseline; only the 12 KiB headroom fails the build | Heap saving steps |
+| 3 | Stakeout does not count the first Pokemon on turn 1 (W2U on purpose; Showdown doubles it) | Phase 6 |
+| 4 | Disguise works only for Mimikyu (as Showdown; MegaB2W2 let any holder use it) | Phase 6 |
+| 5 | Critical hits keep this generation's rates (1/16 base, x2 damage) | Phase 6 |
+| 6 | The Gen 8 / 9 alternate-form records from `5351a2970` were corrected from Showdown; still data only: Zacian / Zamazenta need their item-driven form change and Ogerpon its masks to reach those forms in battle | Form abilities |
+| 7 | Mega Raichu X / Y have sprites but no Raichunite X / Y item or Mega table entry | Fix: Mega Raichu X / Y |
+| 8 | Gen 1-5 base sprites come from the base ROM (members below 13000 are preserved): they cannot be animated from sources, and the w2anim export refuses them | Phase 4 notes |
+| 9 | Retail-layout saves crash at the first game clear (Pokedex block size); migrate on load, or require a new game | Open W2U issues |
+| 10 | Whether to bring the test tooling (scenario runner, specs, check ROM) into the repository later; local for now | Testing |
+| 11 | Licence and asset terms for contributed code and art (PokeRogue art is private use only and is not on this branch); Booster Energy's icon is from Showdown's item sheet (credit if kept) | Provisional decisions, Wave B |
+| 12 | Open work: the Black 2 port of all of the above; Neutralizing Gas (the last unported ability) | - |
+| 13 | Pokeweb-Serverless: the harness patch for ability IDs above 255, to take upstream | Abilities above 255 |
+
 ## Provisional decisions
 
 These follow the integration plan's recommendations and still need the maintainer's review. Each phase records
@@ -34,10 +145,10 @@ Licence and asset terms for contributed code and art are still open. Assets with
 | 2b | Merged weather / terrain indicator | done (White 2) |
 | 3 | Abilities by group (Gen 8 / 9 and custom), terrain extras, Booster Energy | done (waves A-C, field checks) |
 | 3b | Form abilities: Ice Face, Gulp Missile, Hunger Switch, Zero to Hero, Commander | done (White 2) |
-| 4 | w2anim runtime replaces PWAN (D2 changed); assets converted | in progress |
+| 4 | w2anim runtime replaces PWAN (D2 changed); assets converted; w2anim exports into a W2U checkout | done (White 2; every MCSS screen checked) |
 | 5 | Mega extras (held-START toggle, Mega cry, HP-gauge Mega icon, Mega glyph) | done (White 2) |
 | 6 | Fixes for differences found in shared abilities | done |
-| 7 | Documentation | planned |
+| 7 | Documentation: overview, decisions for hzla, test tooling | done |
 
 ## Build notes
 
@@ -325,8 +436,9 @@ frame per sprite, on the sprite's game heap); nothing new in PMC's heap but code
 Harness (local, `w2u-local/harness/wave.py`): `post` (frames after the last turn, A presses, keys), `capture`,
 `capture_intro`, `capture_turns`, `heap_at_menu`, `peek`, `stuck_pc` / `stuck_heap`, a `P<n>[@x,y]` party action,
 `--runs=DIR` / `--leave=K` (a second run alongside a regression). After a win the harness loads the overworld, but the
-bundled save's field menu has no POKeMON entry, so the field summary is not reachable that way; summary, egg hatch,
-Hall of Fame and ov194 / ov294 / ov298 still want an in-game look.
+bundled save's field menu has no POKeMON entry, so the field summary is not reachable that way. Those screens were
+checked with the check ROM (`w2u-local/checks`, 2026-10-05, stripped build): Hall of Fame (all six party sprites),
+egg hatch, in-game trade, the PC box preview and the summary (the sprite animates: 17 distinct poses).
 
 Notes:
 - Raichu forms 1 / 2 and Slowbro form 1 (blocks 1097 / 1098 / 1117) were missing from the built archive at first;
