@@ -650,7 +650,6 @@ w2u_battle_heap_audit_command = [
   '--battle-log', '@INPUT1@',
   '--battle-counters', '@INPUT2@',
   '--save-guard', '@INPUT' + (w2u_battle_module_definitions.length() + 3).to_string() + '@',
-  '--menu-skip', main_menu_skip_patch,
   '--registry', w2u_battle_registry,
   '--baseline', meson.project_source_root() / 'pmc' / 'white2upgrade_battle_heap_baseline.json',
   '--output', '@OUTPUT@',
@@ -681,7 +680,6 @@ w2u_battle_heap_audit = custom_target(
   depend_files: [
     meson.project_source_root() / 'tools' / 'audit_white2upgrade_battle_heap.py',
     meson.project_source_root() / 'tools' / 'stage_double_battle_fix.py',
-    main_menu_skip_patch,
     w2u_battle_registry,
     meson.project_source_root() / 'pmc' / 'white2upgrade_battle_heap_baseline.json',
   ],
