@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import struct
 from pathlib import Path
@@ -17,12 +18,21 @@ ALLOCATOR_ALIGNMENT = 8
 # The fixed record array and telemetry live in White2Upgrade.dll's BSS and are
 # already included in the core RPM's post-fix size.
 LOADER_FIXED_BYTES = 0
+# Verified bundled PMC layout. The work area's object and buffer are two
+# allocations from the primary arena; its small internal allocations consume
+# that buffer, not another primary-heap allowance.
+PMC_ROOT_OBJECT_BYTES = 32
+PMC_WORK_AREA_BYTES = 32 + 16 + 4096 + 16
+PMC_BOOKKEEPING_AND_FRAGMENTATION_RESERVE = 512
 def u32(data: bytes, offset: int) -> int:
     return struct.unpack_from("<I", data, offset)[0]
 
 
 def rpm_sizes(path: Path) -> tuple[int, int]:
-    data = path.read_bytes()
+    return rpm_data_sizes(path.read_bytes(), str(path))
+
+
+def rpm_data_sizes(data: bytes, path: str) -> tuple[int, int]:
     if len(data) < 24 or data[:4] != b"DLXF":
         raise RuntimeError(f"{path}: invalid RPM header")
     expanded = u32(data, 4)
@@ -49,15 +59,19 @@ def rpm_sizes(path: Path) -> tuple[int, int]:
 
 
 def module_record(path: Path) -> dict:
-    expanded, fixed = rpm_sizes(path)
-    resident = fixed + expanded - path.stat().st_size
+    return module_data_record(path.read_bytes(), str(path))
+
+
+def module_data_record(data: bytes, path: str) -> dict:
+    expanded, fixed = rpm_data_sizes(data, path)
+    resident = fixed + expanded - len(data)
     return {
         "path": str(path),
-        "file_bytes": path.stat().st_size,
+        "file_bytes": len(data),
         "expanded_bytes": expanded,
         "fixed_bytes": fixed,
         # INTERNAL_RELOCATIONS removes relocation metadata, not the BSS tail.
-        "bss_bytes": expanded - path.stat().st_size,
+        "bss_bytes": expanded - len(data),
         "resident_bytes": resident,
         "allocated_payload_bytes": (resident + ALLOCATOR_ALIGNMENT - 1) & -ALLOCATOR_ALIGNMENT,
         "expanded_payload_bytes": (expanded + ALLOCATOR_ALIGNMENT - 1) & -ALLOCATOR_ALIGNMENT,
@@ -70,6 +84,8 @@ def main() -> int:
     parser.add_argument("--pwan-battle", type=Path, help="only when a PWAN battle runtime is staged (not since Phase 4)")
     parser.add_argument("--battle-log", type=Path, required=True)
     parser.add_argument("--battle-counters", type=Path, required=True)
+    parser.add_argument("--save-guard", type=Path, required=True)
+    parser.add_argument("--menu-skip", type=Path, required=True)
     parser.add_argument("--module", type=Path, action="append", default=[])
     parser.add_argument("--registry", type=Path, required=True)
     parser.add_argument("--baseline", type=Path, required=True)
@@ -95,9 +111,16 @@ def main() -> int:
     pwan = module_record(args.pwan_battle) if args.pwan_battle else {"path": None, "file_bytes": 0, "expanded_bytes": 0, "fixed_bytes": 0, "resident_bytes": 0}
     battle_log = module_record(args.battle_log)
     battle_counters = module_record(args.battle_counters)
+    from stage_double_battle_fix import PATCH_BASE64, PATCH_NAME
+    bootstrap = [module_record(args.save_guard), module_record(args.menu_skip),
+                 module_data_record(base64.b64decode(PATCH_BASE64), "vfs/data/patches/" + PATCH_NAME)]
     children = [module_record(path) for path in args.module]
-    resident_fixed = sum(record.get("allocated_payload_bytes", 0) for record in (core, pwan, battle_log, battle_counters))
-    resident_overhead = 4 * ALLOCATOR_BYTES_PER_MODULE + LOADER_FIXED_BYTES
+    residents = [core, battle_log, battle_counters, *bootstrap]
+    if args.pwan_battle:
+        residents.append(pwan)
+    resident_fixed = sum(record["allocated_payload_bytes"] for record in residents)
+    resident_overhead = (len(residents) * ALLOCATOR_BYTES_PER_MODULE + LOADER_FIXED_BYTES +
+                         PMC_ROOT_OBJECT_BYTES + PMC_WORK_AREA_BYTES + PMC_BOOKKEEPING_AND_FRAGMENTATION_RESERVE)
     no_custom = resident_fixed + resident_overhead
     typical_child = max((child["allocated_payload_bytes"] for child in children), default=0)
     typical = no_custom + typical_child + ALLOCATOR_BYTES_PER_MODULE
@@ -118,6 +141,11 @@ def main() -> int:
         "allocator_alignment": ALLOCATOR_ALIGNMENT,
         "loader_fixed_bytes": LOADER_FIXED_BYTES,
         "loader_state_included_in_core": True,
+        "pmc_root_object_bytes": PMC_ROOT_OBJECT_BYTES,
+        "pmc_work_area_bytes": PMC_WORK_AREA_BYTES,
+        "pmc_bookkeeping_and_fragmentation_reserve_bytes": PMC_BOOKKEEPING_AND_FRAGMENTATION_RESERVE,
+        "bootstrap_patches": bootstrap,
+        "native_arena_limit_note": "The bundled constructor declares 64 bytes beyond the reserved arena; those bytes are never included in the 200-KiB budget.",
         "baseline": str(args.baseline),
         "monolithic_core_baseline_bytes": monolithic_core_baseline,
         "monolithic_resident_baseline_bytes": monolithic_resident_baseline,

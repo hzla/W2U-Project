@@ -69,12 +69,12 @@ def digest(path):
     return hasher.hexdigest()
 
 
-def validate_fixture_save(path):
+def validate_fixture_save(path, animations_enabled=False):
     save = path.read_bytes()
     check(len(save) == 0x80000, "Interaction fixture must be a raw 512 KiB BW2 save")
     for half in (0, 0x26000):
-        check(save[half + 0x19400] & 0x80,
-              "Fixture has Battle Scene On; regenerate without --fixtures to disable battle animations")
+        check(bool(save[half + 0x19400] & 0x80) == (not animations_enabled),
+              "Fixture has Battle Scene On unexpectedly" if not animations_enabled else "Fixture has Battle Scene Off unexpectedly")
 
 
 def create_output_directory(path):

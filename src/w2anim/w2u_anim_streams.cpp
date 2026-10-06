@@ -117,13 +117,16 @@ FrameEntry* Frames(Stream& s) { return (FrameEntry*)(s.meta + s.seqCount * sizeo
 // never VBlank. A failed read reopens the file once and retries.
 FSFile g_file;
 bool g_fileOpen = false;
+u32 g_fileSize = 0;
 
 bool Read(u32 offset, void* dst, u32 size) {
     for (int attempt = 0; attempt < 2; ++attempt) {
         if (!g_fileOpen) {
+            if (!w2u::GetFileSize(STREAMS_PATH, &g_fileSize)) return false;
             g_fileOpen = w2u::OpenFile(&g_file, STREAMS_PATH);
             if (!g_fileOpen) return false;
         }
+        if (offset > g_fileSize || size > g_fileSize - offset) return false;
         if (w2u::ReadOpenFileAt(&g_file, offset, size, (u8*)dst)) return true;
         w2u::CloseFile(&g_file);
         g_fileOpen = false;
@@ -134,7 +137,10 @@ bool Read(u32 offset, void* dst, u32 size) {
 bool HaveFile() {
     if (g_fileState == 0) {
         g_fileState = Read(0, &g_header, sizeof(g_header)) && g_header.magic == STREAMS_MAGIC &&
-                      g_header.version == 1 ? 1 : -1;
+                      g_header.version == 1 && !g_header.reserved &&
+                      g_header.entriesOffset >= sizeof(g_header) && !(g_header.entriesOffset & 3) &&
+                      g_header.entriesOffset <= g_fileSize &&
+                      g_header.entryCount <= (g_fileSize - g_header.entriesOffset) / sizeof(IndexEntry) ? 1 : -1;
     }
     return g_fileState > 0;
 }
@@ -217,10 +223,51 @@ void VBlankUpload(void*, void*) {
     if (begun) gfxEndPaletteUpload();
 }
 
+// Validate the compressed stream without allocating another frame. The native
+// decompressor trusts lengths/backreferences and cannot safely handle corrupt
+// assets. Bounds checking here also protects first-frame priming.
+bool ValidLz(const u8* bytes, u32 size, u32 expected) {
+    if (!bytes || size < 4 || (bytes[0] != 0x10 && bytes[0] != 0x11)) return false;
+    u32 input = 4, output = 0;
+    u32 length = bytes[1] | ((u32)bytes[2] << 8) | ((u32)bytes[3] << 16);
+    if (!length && bytes[0] == 0x11) {
+        if (size < 8) return false;
+        length = bytes[4] | ((u32)bytes[5] << 8) | ((u32)bytes[6] << 16) | ((u32)bytes[7] << 24);
+        input = 8;
+    }
+    if (!expected || expected > SLOT_TEX_BYTES || length != expected) return false;
+    while (output < expected) {
+        if (input >= size) return false;
+        const u8 flags = bytes[input++];
+        for (u32 bit = 0; bit < 8 && output < expected; ++bit) {
+            if (!(flags & (0x80 >> bit))) {
+                if (input >= size) return false;
+                ++input; ++output; continue;
+            }
+            if (size - input < 2) return false;
+            const u32 a = bytes[input++], b = bytes[input++];
+            u32 count, distance;
+            if (bytes[0] == 0x10) { count = (a >> 4) + 3; distance = ((a & 15) << 8 | b) + 1; }
+            else if (!(a >> 4)) {
+                if (input >= size) return false;
+                const u32 c = bytes[input++];
+                count = ((a & 15) << 4 | b >> 4) + 0x11; distance = ((b & 15) << 8 | c) + 1;
+            } else if ((a >> 4) == 1) {
+                if (size - input < 2) return false;
+                const u32 c = bytes[input++], d = bytes[input++];
+                count = ((a & 15) << 12 | b << 4 | c >> 4) + 0x111; distance = ((c & 15) << 8 | d) + 1;
+            } else { count = (a >> 4) + 1; distance = ((a & 15) << 8 | b) + 1; }
+            if (distance > output || count > expected - output) return false;
+            output += count;
+        }
+    }
+    return true;
+}
+
 // Decompress unique frame `u` into staging and hand it to the next VBlank.
 void Prepare(Stream& s, u16 u) {
     FrameEntry fe = Frames(s)[u];
-    if (!Read(s.mani + fe.offset, s.lz, fe.size)) { s.shown = u; return; }   // keep the last frame
+    if (!Read(s.mani + fe.offset, s.lz, fe.size) || !ValidLz(s.lz, fe.size, s.boxH * s.rowBytes)) { s.shown = u; return; }   // keep the last frame
     sys_uncomp_lz1x(s.lz, s.staging);
     cp15_flushDC(s.staging, s.boxH * s.rowBytes);
     s.shown = u;
@@ -251,7 +298,7 @@ bool Prime(Stream& s) {
     if (!raw || *(u32*)(chr + 0x10) < (u32)(s.boxH - 1) * NATIVE_ROW_BYTES + s.rowBytes) return false;
     const u16 u = Seq(s)[0].unique;
     FrameEntry fe = Frames(s)[u];
-    if (!Read(s.mani + fe.offset, s.lz, fe.size)) return false;
+    if (!Read(s.mani + fe.offset, s.lz, fe.size) || !ValidLz(s.lz, fe.size, s.boxH * s.rowBytes)) return false;
     sys_uncomp_lz1x(s.lz, s.staging);
     for (u32 y = 0; y < s.boxH; ++y) {
         u8* dst = raw + y * NATIVE_ROW_BYTES;
@@ -278,12 +325,18 @@ void Register(void* sys, int slot, const IndexEntry& entry, bool shiny) {
     for (auto& o : g_streams) if (!o.active) { s = &o; break; }
     if (!s) return;
     ManiHeader h;
-    if (!Read(entry.maniOffset, &h, sizeof(h)) || h.magic != MANI_MAGIC || !h.seqCount || !h.uniqueCount ||
-        h.boxH > 128 || h.boxW > ((h.flags & MANI_TEX4) ? 256 : 128))
+    if (!Read(entry.maniOffset, &h, sizeof(h)) || h.magic != MANI_MAGIC || h.version != 2 || (h.flags & ~7) || !h.seqCount || !h.uniqueCount ||
+        !h.boxH || !h.boxW || h.boxH > 128 || h.boxW > ((h.flags & MANI_TEX4) ? 256 : 128) ||
+        ((h.flags & MANI_TEX4) && (h.boxW & 1)))
         return;
     u8* spr = SysSprite(sys, slot);
     const u16 heap = SprHeap(spr);
     const u32 seqBytes = h.seqCount * sizeof(SeqEntry), metaSize = seqBytes + h.uniqueCount * sizeof(FrameEntry);
+    const u32 remaining = g_fileSize - entry.maniOffset;
+    if (h.seqOffset < sizeof(h) || h.framesOffset < sizeof(h) ||
+        h.seqOffset > remaining || seqBytes > remaining - h.seqOffset ||
+        h.framesOffset > remaining || metaSize - seqBytes > remaining - h.framesOffset ||
+        ((h.flags & MANI_OWN_PALETTES) && (h.paletteOffset > remaining || 64 > remaining - h.paletteOffset))) return;
     s->flags = h.flags;
     s->boxW = h.boxW; s->boxH = h.boxH; s->seqCount = h.seqCount; s->uniqueCount = h.uniqueCount;
     s->rowBytes = (h.flags & MANI_TEX4) ? (u16)(h.boxW / 2) : (u16)A3I5_ROW_BYTES;
@@ -294,11 +347,19 @@ void Register(void* sys, int slot, const IndexEntry& entry, bool shiny) {
         GFL_HeapFree(s->meta); s->meta = nullptr; return;
     }
     if (h.flags & MANI_OWN_PALETTES) {
-        Read(entry.maniOffset + h.paletteOffset + (shiny ? sizeof(s->palette) : 0), s->palette, sizeof(s->palette));
+        if (!Read(entry.maniOffset + h.paletteOffset + (shiny ? sizeof(s->palette) : 0), s->palette, sizeof(s->palette))) {
+            GFL_HeapFree(s->meta); s->meta = nullptr; return;
+        }
     }
     u32 maxBlob = 0;
     FrameEntry* frames = (FrameEntry*)(s->meta + seqBytes);
-    for (u32 i = 0; i < h.uniqueCount; ++i) if (frames[i].size > maxBlob) maxBlob = frames[i].size;
+    bool valid = true;
+    for (u32 i = 0; i < h.seqCount; ++i) valid &= Seq(*s)[i].unique < h.uniqueCount && Seq(*s)[i].duration != 0;
+    for (u32 i = 0; i < h.uniqueCount; ++i) {
+        valid &= frames[i].size >= 4 && frames[i].size <= 20 * 1024 && frames[i].offset <= remaining && frames[i].size <= remaining - frames[i].offset;
+        if (frames[i].size > maxBlob) maxBlob = frames[i].size;
+    }
+    if (!valid) { GFL_HeapFree(s->meta); s->meta = nullptr; return; }
     s->lz = (u8*)GFL_HeapAllocate(heap, (maxBlob + 3) & ~3u, 0, "w2anim", __LINE__);
     s->staging = (u8*)GFL_HeapAllocate(heap, h.boxH * s->rowBytes, 0, "w2anim", __LINE__);
     if (!s->lz || !s->staging) {
@@ -442,6 +503,12 @@ void LoadAndRegister(void* sys, int slot, u32* params) {
 }
 
 } // namespace
+
+extern "C" void W2U_AnimStreams_OnModuleUnload() {
+    for (auto& stream : g_streams) Free(stream);
+    if (g_fileOpen) w2u::CloseFile(&g_file);
+    g_fileOpen = false; g_fileState = 0; g_fileSize = 0; g_evoAdds = 0;
+}
 
 // --- hooks --------------------------------------------------------------------------------------------------
 // The three calls of LoadMCSSGraphicsData(sys, slot, params) (ARM9 0x2019C32, 0x201AA84, 0x201AFBE).

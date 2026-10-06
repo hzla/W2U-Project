@@ -1,0 +1,801 @@
+{
+  "format": "w2-integration-native-suite-summary-1",
+  "passed": true,
+  "required_suite_count": 87,
+  "missing_suites": [],
+  "failed_suites": [],
+  "accepted_case_count": 1246,
+  "accepted_rom_sha256s": [
+    "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+    "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be"
+  ],
+  "suites": [
+    {
+      "suite": "decorate",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/decorate/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "expanding-force",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/expanding-force/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 3,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "snipe-shot",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-155950-cb8abb/snipe-shot/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "case_count": 4,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "jungle-healing",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/jungle-healing/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 8,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "life-dew",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/life-dew/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 10,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "lunar-blessing",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/lunar-blessing/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 8,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "dragon-cheer",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/dragon-cheer/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 10,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "make-it-rain",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/make-it-rain/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 5,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "matcha-gotcha",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/matcha-gotcha/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "mortal-spin",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/mortal-spin/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 7,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "doodle",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/doodle/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 10,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "rage-fist",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-155950-cb8abb/rage-fist/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "case_count": 12,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "last-respects",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/last-respects/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 5,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "teatime",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/teatime/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 16,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "court-change",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/court-change/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 16,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "shell-side-arm-doubles",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/shell-side-arm-doubles/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 2,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "dragon-darts",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/dragon-darts/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 27,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "coaching",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-155950-cb8abb/coaching/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "case_count": 13,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "blood-moon",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-155950-cb8abb/blood-moon/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "case_count": 9,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "gigaton-hammer",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-155950-cb8abb/gigaton-hammer/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "case_count": 9,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "glaive-rush",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-155950-cb8abb/glaive-rush/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "case_count": 9,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "stuff-cheeks",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/stuff-cheeks/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 15,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "corrosive-gas",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/corrosive-gas/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 13,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "no-retreat",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/no-retreat/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 7,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "jaw-lock",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/jaw-lock/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 8,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "octolock",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/octolock/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 10,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "salt-cure",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/salt-cure/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 10,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "syrup-bomb",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/syrup-bomb/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 11,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "snap-trap",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/snap-trap/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 8,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "thunder-cage",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/thunder-cage/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 8,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "raging-bull",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/raging-bull/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 15,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "tar-shot",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/tar-shot/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 15,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "misty-explosion",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/misty-explosion/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 11,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "torque-policy",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/torque-policy/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 40,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "upper-hand",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/upper-hand/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 10,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "meteor-beam",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/meteor-beam/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 10,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "electro-shot",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/electro-shot/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 11,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "eerie-spell",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-155950-cb8abb/eerie-spell/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "case_count": 10,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "encore-policy",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/encore-policy/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 2,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "lash-out",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/lash-out/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 11,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "burning-jealousy",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/burning-jealousy/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 12,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "alluring-voice",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/alluring-voice/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 12,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "tidy-up",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-155950-cb8abb/tidy-up/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "case_count": 15,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "body-press",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/body-press/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 12,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "ice-spinner",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/ice-spinner/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 15,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "ruination",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/ruination/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "barb-barrage",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/barb-barrage/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "dire-claw",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/dire-claw/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 116,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "take-heart",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-155950-cb8abb/take-heart/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "case_count": 24,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "clangorous-soul",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/clangorous-soul/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 21,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "fillet-away",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/fillet-away/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 21,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "aura-wheel",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/aura-wheel/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 15,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "magic-powder",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/magic-powder/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 23,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "obstruct",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/obstruct/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 15,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "silk-trap",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/silk-trap/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 15,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "burning-bulwark",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/burning-bulwark/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 15,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "hydro-steam",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/hydro-steam/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "terrain-pulse",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/terrain-pulse/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 36,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "supercell-slam",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/supercell-slam/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 3,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "bolt-beak",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/bolt-beak/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 5,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "fishious-rend",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/fishious-rend/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 6,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "hard-press",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/hard-press/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 7,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "grav-apple",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-155950-cb8abb/grav-apple/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "case_count": 5,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "psyblade",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/psyblade/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 4,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "rising-voltage",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/rising-voltage/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 14,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "scale-shot",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/scale-shot/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 17,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "triple-axel",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/triple-axel/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 24,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "steel-beam",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/steel-beam/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 15,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "chloroblast",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/chloroblast/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 15,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "steel-roller",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/steel-roller/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 14,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "ceaseless-edge",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/ceaseless-edge/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 14,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "stone-axe",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/stone-axe/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 12,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "collision-course",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/collision-course/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 5,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "electro-drift",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/electro-drift/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 6,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "fickle-beam",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/fickle-beam/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 104,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "poltergeist",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/poltergeist/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 15,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "grassy-glide",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-161446-3ad2e4/grassy-glide/result.json",
+      "input_rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
+      "case_count": 9,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "bleakwind-storm",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/bleakwind-storm/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "sandsear-storm",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/sandsear-storm/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "wildbolt-storm",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/wildbolt-storm/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "population-bomb",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/population-bomb/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 16,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "shell-side-arm",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/shell-side-arm/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 20,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "snowscape",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/snowscape/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 23,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "chilly-reception",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/chilly-reception/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "shed-tail",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/shed-tail/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 19,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "revival-blessing",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/revival-blessing/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "rage-fist-multi",
+      "passed": true,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/rage-fist-multi/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": true
+    }
+  ],
+  "failed_or_incomplete_attempts": [
+    {
+      "suite": "snipe-shot",
+      "passed": false,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/snipe-shot/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 4,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "rage-fist",
+      "passed": false,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/rage-fist/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 0,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "coaching",
+      "passed": false,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/coaching/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 13,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "blood-moon",
+      "passed": false,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/blood-moon/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "gigaton-hammer",
+      "passed": false,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/gigaton-hammer/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "glaive-rush",
+      "passed": false,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/glaive-rush/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": true
+    },
+    {
+      "suite": "eerie-spell",
+      "passed": false,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/eerie-spell/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 10,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "tidy-up",
+      "passed": false,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/tidy-up/result.json",
+      "input_rom_sha256": null,
+      "case_count": 0,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "take-heart",
+      "passed": false,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/take-heart/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 24,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "grav-apple",
+      "passed": false,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/grav-apple/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 5,
+      "full_turn_validated": false
+    },
+    {
+      "suite": "grassy-glide",
+      "passed": false,
+      "report": "work/integration-regressions/20261006-142138-d1cd5d/grassy-glide/result.json",
+      "input_rom_sha256": "1699af25588e4ac196484376ddeeabd49cf7502700a9ab0f31b3ac5de50d6268",
+      "case_count": 9,
+      "full_turn_validated": false
+    }
+  ],
+  "note": "Multi-revision evidence is explicit; this summary does not claim that every suite was rerun on the final ROM or certify all move interactions."
+}

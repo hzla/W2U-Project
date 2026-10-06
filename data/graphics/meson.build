@@ -48,6 +48,18 @@ foreach stage_spec : binary_archive_stages
     endif
   endforeach
 
+  if stage_name == 'stage_move_spas'
+    particle_work_audit = custom_target(
+      'audit_battle_particle_work',
+      input: stage_assets,
+      output: 'battle-particle-work-audit.json',
+      command: ['python3', meson.project_source_root() / 'tools' / 'audit_battle_particle_work.py',
+        '--source', meson.current_source_dir() / stage_source_dir, '--output', '@OUTPUT@'],
+      depend_files: meson.project_source_root() / 'tools' / 'audit_battle_particle_work.py',
+    )
+    vfs_files += particle_work_audit
+  endif
+
   vfs_files += custom_target(
     stage_name,
     input: stage_assets,

@@ -1111,8 +1111,9 @@ def verify_take_heart(case, result, variant):
         check(active_status(after[side]) == ([] if cured else expected), "Take Heart cured the wrong battler or missed its cure")
     events = result["takeHeartEvents"]
     check(len(events) == 1, "Take Heart did not execute exactly once")
-    check(events[0]["used"], "Take Heart did not execute native effect work")
+    check(all(key in events[0] for key in ("used", "success", "executingSlot", "after")), "Incomplete Take Heart effect checkpoint")
     check(events[0]["success"] == case["takeHeartSuccess"], "Wrong native combined Take Heart success/failure result")
+    check(events[0]["used"] == case["takeHeartSuccess"], "Wrong Take Heart native effect-work presence")
     executing = "defender" if case.get("snatched") else "attacker"
     check(events[0]["executingSlot"] == before[executing]["slot"], "Take Heart executed for the wrong owner")
     check(events[0]["after"][executing]["statStages"] == after[executing]["statStages"], "Take Heart effect checkpoint disagrees with completed action")
@@ -1135,7 +1136,7 @@ def verify_tidy_up(case, result, variant):
     check(after["attacker"]["statStages"] == case["expectedUserStages"], "Wrong Tidy Up user boosts")
     check(after["defender"]["statStages"] == before["defender"]["statStages"], "Tidy Up changed the opponent's stages")
     events = result["takeHeartEvents"]
-    check(len(events) == 1 and events[0]["used"] and events[0]["success"] == case["nativeSuccess"], "Wrong native Tidy Up work/result")
+    check(len(events) == 1 and events[0]["used"] == case["nativeSuccess"] and events[0]["success"] == case["nativeSuccess"], "Wrong native Tidy Up work/result")
     check(events[0]["executingSlot"] == before["attacker"]["slot"], "Tidy Up was incorrectly stolen")
     for side, key in (("attacker", "userSubstitute"), ("defender", "defenderSubstitute")):
         if case.get(key):
@@ -1461,8 +1462,10 @@ def verify_eerie_spell(case, result, variant):
     check(work == ([{"target": target["slot"], "slot": slot, "amount": case["expectedPpDrain"]}]
                    if case["expectedPpDrain"] else []), "Wrong or missing native PP-reduction work")
     later_move = None
-    if not target["turnFlags"] & 2 and after["turnFlags"] & 2:
+    if not target["turnFlags"] & 2 and (after["turnFlags"] & 2 or result.get("fullTurnValidated")):
         # A frame can also complete the slow opponent's subsequent action.
+        # A full-turn wait clears turn flags at the next menu. Its retained
+        # executed-move history still proves the subsequent native action.
         # Account only for an observed native use, never hypothetical PP loss.
         later_move = after["previousMoveId"]
         check(later_move == variant["trainerMove"], "Unexpected subsequent opponent action")
@@ -2859,6 +2862,7 @@ def main(argv=None):
     parser.add_argument("--move", choices=move_suites, default="ruination")
     parser.add_argument("--rom", type=Path, default=ROOT / "build/White2Upgrade.nds")
     parser.add_argument("--core", type=Path, help="Fresh stripped core DLL to install in the private fixture ROM")
+    parser.add_argument("--animations-on", action="store_true", help="Keep native animations enabled for lifecycle smoke tests; behavioral oracles are unchanged")
     parser.add_argument("--save", type=Path, default=shared.paths.DEFAULT_SAVE)
     parser.add_argument("--out", type=Path)
     parser.add_argument("--fixtures", type=Path, help="Reuse a complete caller-owned fixture; never deletes its ROM")
@@ -2897,6 +2901,8 @@ def main(argv=None):
                    if not args.fixtures else [])
         if args.core:
             command += ["--core", str(args.core.resolve())]
+        if args.animations_on:
+            command += ["--animations", "on"]
         if not args.fixtures:
             if args.move=="rage-fist-multi":
                 runtime=output/"runtime"
@@ -2911,7 +2917,8 @@ def main(argv=None):
         check(shared.digest(directory / "battle.nds") == manifest["rom"]["sha256"], "Fixture ROM hash mismatch")
         for save in manifest["saves"]:
             check(shared.digest(directory / save["file"]) == save["sha256"], "Fixture save hash mismatch")
-            shared.validate_fixture_save(directory / save["file"])
+            check(manifest.get("battleAnimationsEnabled", False) == args.animations_on, "Fixture animation mode differs from the requested mode")
+            shared.validate_fixture_save(directory / save["file"], args.animations_on)
         report.update(inputRomSha256=manifest["inputRomSha256"], coreSha256=manifest.get("coreSha256"))
         artifacts.mkdir()
         for variant in variants:
