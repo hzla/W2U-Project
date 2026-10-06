@@ -35,7 +35,8 @@ enum { VAR_MON_ID=2, VAR_ATTACKING_MON=3, VAR_MOVE_ID=18, VAR_MOVE_TYPE=22,
        MOVE_TERRAIN_PULSE=805, TYPE_NORMAL=0, TYPE_ELECTRIC=12,
        TYPE_GRASS=11, TYPE_FAIRY=17, TYPE_PSYCHIC=13, TYPE_NULL=18,
        TERRAIN_ELECTRIC=1, TERRAIN_GRASSY=2, TERRAIN_MISTY=3, TERRAIN_PSYCHIC=4,
-       EVENT_MOVE_PARAM=40, EVENT_W2U_MOVE_PARAM_FINAL=257, MVDATA_TARGET=20 };
+       EVENT_MOVE_PARAM=40, EVENT_W2U_MOVE_PARAM_FINAL=257,
+       EVENT_W2U_MOVE_PARAM_BASE=259, MVDATA_TARGET=20 };
 static u32 vars[64], terrain, abilityType, owner, calls, depth;
 static bool floating, electrified, ion, loaded;
 static BattleMon mon;
@@ -58,8 +59,10 @@ void BattleEventVar_Push() { ++depth; }
 void BattleEventVar_Pop() { --depth; }
 static void HandlerTerrainPulseType(BattleEventItem*,ServerFlow*,u32,u32*);
 void BattleEvent_CallHandlers(ServerFlow* flow, u32 event) {
-  if (event==EVENT_MOVE_PARAM) {
-    if (calls++) __builtin_trap();
+  if (event==EVENT_W2U_MOVE_PARAM_BASE) {
+    if (calls++ || depth!=1) __builtin_trap();
+  } else if (event==EVENT_MOVE_PARAM) {
+    if (calls++!=1) __builtin_trap();
     if (electrified || ion) vars[VAR_MOVE_TYPE]=TYPE_ELECTRIC;
     // Native Normalize always rewrites; -ates only convert Normal. This
     // deliberately runs after the ordinary move/position callbacks.
@@ -67,7 +70,7 @@ void BattleEvent_CallHandlers(ServerFlow* flow, u32 event) {
     else if (abilityType!=TYPE_NULL && vars[VAR_MOVE_TYPE]==TYPE_NORMAL)
       vars[VAR_MOVE_TYPE]=abilityType;
   } else if (event==EVENT_W2U_MOVE_PARAM_FINAL) {
-    if (calls++!=1 || depth!=1) __builtin_trap();
+    if (calls++!=2 || depth!=1) __builtin_trap();
     if (loaded) HandlerTerrainPulseType(nullptr,flow,owner,nullptr);
   } else __builtin_trap();
 }
@@ -97,7 +100,7 @@ int main() {
   }
   if (param.moveType!=expected || param.damageType!=expected) return 1;
   if (param.moveID!=move || param.originalMoveID!=move || param.userType!=0x0d0d
-      || param.category!=2 || param.targetType || param.flags || depth || calls!=2) return 2;
+      || param.category!=2 || param.targetType || param.flags || depth || calls!=3) return 2;
   vars[VAR_MOVE_ID]=move; vars[VAR_ATTACKING_MON]=0; vars[VAR_MOVE_POWER]=50;
   HandlerTerrainPulsePower(nullptr,&flow,slot,nullptr);
   if (vars[VAR_MOVE_POWER]!=(move==805 && !slot && !airborne && terrain ? 100u : 50u)) return 3;

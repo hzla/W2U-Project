@@ -1,3 +1,6 @@
+#if defined(W2U_TARGET_B2)
+#include "b2_baseline/w2u_mega.cpp.inc"
+#else
 #include "w2u_battle.h"
 #include "w2u_battle_lifecycle.h"
 #if defined(W2U_DYNAMIC_BATTLE_CORE)
@@ -2599,9 +2602,7 @@ extern "C" void THUMB_BRANCH_LINK_ServerFlow_SetupBeforeFirstTurn_0x6E(
         W2U_MoveState_ResetBattleState();
 #if !defined(W2U_TARGET_B2)
         W2U_StrongWeather_Reset();
-#endif
-#if !defined(W2U_TARGET_B2)
-    W2U_StrongWeather_Reset();
+        W2U_MB_ResetBattleState();
 #endif
         RepairLeakedMegaForms(serverFlow ? serverFlow->pokeCon : nullptr);
         RepairLeakedBaseMegaAbilities(serverFlow ? serverFlow->pokeCon : nullptr);
@@ -2697,6 +2698,7 @@ extern "C" void THUMB_BRANCH_BattleMon_ClearForSwitchOut(BattleMon* battleMon)
     ClearCounter(battleMon);
     BattleMon_ClearComboMoveData(battleMon);
     BattleMon_IllusionBreak(battleMon);
+    W2U_MoveState_PrepareShedTailExit(battleMon);
     if (!BattleMon_GetConditionFlag(battleMon, CONDITIONFLAG_BATONPASS)) {
         BattleMon_RemoveSubstitute(battleMon);
         ClearMoveStatusWork(battleMon, false);
@@ -2733,3 +2735,5 @@ extern "C" bool THUMB_BRANCH_HandlerCommon_IsUnremovableItem(SPECIES species, IT
 }
 
 #endif
+
+#endif // White 2 integration; Black 2 remains at 4369e8a47.

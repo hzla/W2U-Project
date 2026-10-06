@@ -1220,3 +1220,28 @@ text = [
   "Both Pokémon will faint\\n",
   "in three turns!$",
 ]
+
+
+[msg.section_0.entries.215]
+text = ["$"]
+
+[msg.section_0.entries.216]
+text = ["$"]
+
+[msg.section_0.entries.217]
+text = ["$"]
+
+[msg.section_0.entries.218]
+text = ["$"]
+
+[msg.section_0.entries.219]
+text = ["$"]
+
+[msg.section_0.entries.220]
+text = ["$"]
+
+[msg.section_0.entries.221]
+text = ["It started to snow!$"]
+
+[msg.section_0.entries.222]
+text = ["The snow stopped.$"]

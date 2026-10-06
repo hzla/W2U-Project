@@ -7,6 +7,7 @@
 #include "w2u_abilities.h"
 #include "w2u_battle.h"
 #include "w2u_strong_weather.h"
+#include "w2u_weather.h"
 
 #define W2U_STRONG_WEATHER_CALL(type, address) ((type)(address))
 
@@ -198,17 +199,14 @@ extern "C" void W2U_StrongWeather_End(void* flow, u32 pokemonSlot)
 // weather setter (moves, Drizzle, Sand Stream ...) asks this first.
 extern "C" b32 THUMB_BRANCH_167_0x21A767C(ServerFlow* serverFlow, u32 weather, u32 turns)
 {
-    if (weather > 4) {
+    if (weather > 4 && weather != W2U_WEATHER_SNOW) {
         return 0;
     }
     if (sState.kind != W2U_STRONG_WEATHER_NONE && weather != 0) {
         PushStdMessage(serverFlow, W2U_StrongWeather_FirstHolder(sState.kind), kKinds[sState.kind].msgBlock);
         return 0;
     }
-    if (weather == FieldWeather() && (turns != TURNS_PERMANENT || FieldWeatherTurns() == TURNS_PERMANENT)) {
-        return 0;
-    }
-    return 1;
+    return W2U_Weather_CanChange(serverFlow, (WEATHER)weather, turns);
 }
 
 // Turn end: the turn-check sequence calls ServerControl_TurnCheckWeather at ov167 0x21A7FBA. A strong weather's
@@ -285,6 +283,9 @@ extern "C" b32 THUMB_BRANCH_167_0x21B78AC(void* client, int* sequence, const u32
 {
     u32 weather = args[0] & 0xFF;
     const StrongView* strong = FindStrongView(weather);
+    const bool snow = weather == W2U_WEATHER_SNOW;
+    const u32 retail = snow ? WEATHER_HAIL : weather;
+    if (!strong && retail >= RETAIL_WEATHERS) return 1;
     switch (*sequence) {
     case 0:
         if (strong) {
@@ -297,7 +298,7 @@ extern "C" b32 THUMB_BRANCH_167_0x21B78AC(void* client, int* sequence, const u32
             sState.shownView = strong->view;
         } else {
             W2U_STRONG_WEATHER_CALL(ClientSetFn, W2U_ADDR_STRONG_WEATHER_CLIENT_SET)(
-                ClientField(client), weather, args[1] & 0xFFFF);
+                ClientField(client), retail, args[1] & 0xFFFF);
             sState.shownView = 0;
         }
         if (W2U_STRONG_WEATHER_CALL(SkipEffectsFn, W2U_ADDR_STRONG_WEATHER_SKIP_EFFECTS)(client)) {
@@ -305,9 +306,9 @@ extern "C" b32 THUMB_BRANCH_167_0x21B78AC(void* client, int* sequence, const u32
         }
         if (strong) {
             W2U_STRONG_WEATHER_CALL(EffectStartFn, W2U_ADDR_STRONG_WEATHER_EFFECT_START)(strong->effect);
-        } else if (weather < RETAIL_WEATHERS) {
+        } else if (retail < RETAIL_WEATHERS) {
             W2U_STRONG_WEATHER_CALL(EffectStartFn, W2U_ADDR_STRONG_WEATHER_EFFECT_START)(
-                RetailViewTable()[weather].effect);
+                RetailViewTable()[retail].effect);
         }
         break;
     case 1:
@@ -315,7 +316,7 @@ extern "C" b32 THUMB_BRANCH_167_0x21B78AC(void* client, int* sequence, const u32
             return 0;
         }
         W2U_STRONG_WEATHER_CALL(StdMessageFn, W2U_ADDR_STRONG_WEATHER_STD_MESSAGE)(
-            ClientView(client), strong ? strong->msgStart : RetailViewTable()[weather].stdMsg, 0);
+            ClientView(client), strong ? strong->msgStart : snow ? W2U_SNOW_START_MESSAGE : RetailViewTable()[retail].stdMsg, 0);
         break;
     case 2:
         return W2U_STRONG_WEATHER_CALL(WaitMessageFn, W2U_ADDR_STRONG_WEATHER_WAIT_MESSAGE)(ClientView(client)) ? 1 : 0;
@@ -330,12 +331,13 @@ extern "C" b32 THUMB_BRANCH_167_0x21B792C(void* client, int* sequence, const u32
 {
     u32 weather = args[0] & 0xFF;
     const StrongView* strong = FindStrongView(weather);
+    const bool snow = weather == W2U_WEATHER_SNOW;
     if (*sequence == 0) {
-        if (!strong && (weather == 0 || weather >= RETAIL_WEATHERS)) {
+        if (!strong && !snow && (weather == 0 || weather >= RETAIL_WEATHERS)) {
             return 1;
         }
         W2U_STRONG_WEATHER_CALL(StdMessageFn, W2U_ADDR_STRONG_WEATHER_STD_MESSAGE)(
-            ClientView(client), strong ? strong->msgEnd : kWeatherEndMsg[weather], 0);
+            ClientView(client), strong ? strong->msgEnd : snow ? W2U_SNOW_END_MESSAGE : kWeatherEndMsg[weather], 0);
         ++*sequence;
     } else if (*sequence == 1 &&
                W2U_STRONG_WEATHER_CALL(WaitMessageFn, W2U_ADDR_STRONG_WEATHER_WAIT_MESSAGE)(ClientView(client))) {

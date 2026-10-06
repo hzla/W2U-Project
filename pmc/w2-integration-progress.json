@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "upgrade_base": "4369e8a4738ea435a350eff4e9c527d523bd8c31",
+  "main_source": "eb6c002384f2fcc4df7bfef6d3cdad5626364a73",
+  "stages": {
+    "1": {
+      "status": "committed",
+      "commit": "62ee879a9",
+      "baseline": "pmc/w2-integration-baseline.json"
+    },
+    "2": {
+      "status": "validated",
+      "new_white2_moves": 44,
+      "registry": {
+        "groups": 30,
+        "abilities": 141,
+        "moves": 145,
+        "items": 13,
+        "field": 5,
+        "side": 2,
+        "position": 5
+      },
+      "rom_sha256": "37e3a38e5f8c25ab5544f4c12c9e624b7d4b53efa4a674b5c1797785f16b4edf",
+      "stripped_core_sha256": "9ea2da53349e7fae0a2fd7b5bad3bc7efc34278bb680ab6d0844eda452ed23df",
+      "all_groups_free_bytes": 23400,
+      "host_tests": {
+        "run": 91,
+        "skipped": 1,
+        "failed": 0
+      },
+      "battle_unit_tests": 175,
+      "typecheck": true,
+      "rpm_linkage": true,
+      "black2_static_compile": true,
+      "black2_compatibility": {
+        "hooks": 174,
+        "imports": 231,
+        "anchors": 48
+      },
+      "native_tests": {
+        "suite": "body-press",
+        "passed_cases": [
+          "raw-defense-not-attack",
+          "defense-plus-two"
+        ],
+        "complete_suite": false,
+        "full_turn_validated": false,
+        "evidence": "work/move-handlers/body-press-20261006-122208-8ef764/result.json"
+      },
+      "limits": [
+        "Full move and ability suites are pending.",
+        "Black 2 behavioral/hash baselines remain unchanged; no Black 2 ROM delivered.",
+        "No hardware or DSi compatibility claim."
+      ]
+    }
+  },
+  "pending_stages": [
+    3,
+    4,
+    5,
+    6,
+    7
+  ]
+}

@@ -29,7 +29,7 @@ class SnowscapeOracleTests(unittest.TestCase):
         return {"id":"snow","completeTurn":True,"weatherSuccess":True,"expectedWeatherTurns":4}, {
             "finished":True,"fullTurnValidated":True,"before":before,"after":after,"damageCalls":[],
             "nativeWeather":{"weather":3,"turns":4},
-            "weatherCommands":[{"command":63,"weather":5,"turns":5}],"weatherMessages":[221]}, {
+            "weatherCommands":[{"command":63,"weather":8,"turns":5}],"weatherMessages":[221]}, {
             "moveId":883,"name":"normal"}
 
     def test_distinct_weather_duration_and_no_chip(self):
@@ -50,7 +50,7 @@ class SnowscapeOracleTests(unittest.TestCase):
         case.update(weatherSuccess=False,expectedWeatherTurns=3)
         result.update(nativeWeather={"weather":3,"turns":3},weatherCommands=[],weatherMessages=[])
         self.assertTrue(runner.verify_snowscape(case,result,variant)["passed"])
-        result["weatherCommands"]=[{"command":63,"weather":5,"turns":5}]
+        result["weatherCommands"]=[{"command":63,"weather":8,"turns":5}]
         with self.assertRaises(AssertionError):runner.verify_snowscape(case,result,variant)
 
 
@@ -61,7 +61,7 @@ class ChillyReceptionOracleTests(SnowscapeOracleTests):
         variant.update(moveId=881,incomingAttackerSpecies=149)
         result["before"]["attacker"].update(moveId=881,slot=0)
         result["after"]["attacker"].update(moveId=881,previousMoveId=881)
-        result.update(queuedMessages=[{"message":1358,"slot":0}],
+        result.update(queuedMessages=[{"message":1460,"slot":0}],
             partySelections=[{"mode":1,"finished":True}],
             incomingAttacker={"species":149,"slot":1,"hp":166,"maxHp":166})
         return case,result,variant

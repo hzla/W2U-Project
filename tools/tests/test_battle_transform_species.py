@@ -5,21 +5,23 @@ import subprocess
 import tempfile
 import unittest
 
-from unicorn import Uc, UC_ARCH_ARM, UC_MODE_THUMB
-from unicorn.arm_const import UC_ARM_REG_R0, UC_ARM_REG_R1, UC_ARM_REG_R4, UC_ARM_REG_R7, UC_ARM_REG_LR
+from unicorn import Uc, UC_ARCH_ARM, UC_MODE_THUMB, UC_HOOK_CODE
+from unicorn.arm_const import UC_ARM_REG_R0, UC_ARM_REG_R1, UC_ARM_REG_R3, UC_ARM_REG_R4, UC_ARM_REG_R7, UC_ARM_REG_LR, UC_ARM_REG_SP, UC_ARM_REG_PC
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
 class TransformSpeciesHook(unittest.TestCase):
-    def test_success_tail_preserves_flag_and_copies_species_only(self):
+    def test_success_tail_preserves_species_and_calls_narrow_critical_service(self):
         with tempfile.TemporaryDirectory(prefix="w2u-transform-cpu-") as directory:
-            obj, binary = Path(directory) / "hook.o", Path(directory) / "hook.bin"
-            subprocess.run(["arm-none-eabi-as", "-march=armv5t", "-mthumb", "-o", str(obj),
-                            str(ROOT / "src/pokeweb_gameplay/w2u_transform_hooks.s")], check=True)
-            subprocess.run(["arm-none-eabi-objcopy", "-O", "binary", "-j", ".text", str(obj), str(binary)], check=True)
+            obj, elf, binary = (Path(directory) / name for name in ("hook.o","hook.elf","hook.bin"))
+            assembly = (ROOT / "src/pokeweb_gameplay/w2u_transform_hooks.s").read_text()
+            assembly += "\n.global W2U_CopyTransformMoveState\n.thumb_func\nW2U_CopyTransformMoveState:\n bx lr\n"
+            subprocess.run(["arm-none-eabi-as", "-march=armv5t", "-mthumb", "-o", str(obj),"-"],input=assembly,text=True,check=True)
+            subprocess.run(["arm-none-eabi-ld", "-Ttext=0x02000000", "-e", "W2U_CopyTransformMoveState", "-o",str(elf),str(obj)],check=True)
+            subprocess.run(["arm-none-eabi-objcopy", "-O", "binary", "-j", ".text", str(elf), str(binary)], check=True)
             code = binary.read_bytes()
-            self.assertEqual(len(code), 12)
+            self.assertEqual(len(code), 24)
             for species, flags in ((877, 0x80), (151, 0x82), (493, 0)):
                 with self.subTest(species=species, flags=flags):
                     emu = Uc(UC_ARCH_ARM, UC_MODE_THUMB)
@@ -31,16 +33,26 @@ class TransformSpeciesHook(unittest.TestCase):
                     emu.mem_write(user, bytes(before))
                     emu.mem_write(target + 12, struct.pack("<H", species))
                     for register, value in ((UC_ARM_REG_R0, 0x20), (UC_ARM_REG_R1, flags),
-                        (UC_ARM_REG_R4, user), (UC_ARM_REG_R7, target), (UC_ARM_REG_LR, ret | 1)):
+                        (UC_ARM_REG_R3, 123), (UC_ARM_REG_R4, user), (UC_ARM_REG_R7, target),
+                        (UC_ARM_REG_SP, 0x02003f00), (UC_ARM_REG_LR, ret | 1)):
                         emu.reg_write(register, value)
-                    emu.emu_start(0x02000001, ret, count=8)
+                    calls = []
+                    def service(uc,address,size,data):
+                        if address == 0x02000016:
+                            calls.append((uc.reg_read(UC_ARM_REG_R0),uc.reg_read(UC_ARM_REG_R1)))
+                            uc.reg_write(UC_ARM_REG_R3,456) # Caller-saved clobber.
+                    emu.hook_add(UC_HOOK_CODE,service)
+                    emu.emu_start(0x02000001, ret, count=20)
                     expected = bytearray(before)
                     expected[27] |= 0x20
                     struct.pack_into("<H", expected, 0xec, species)
                     self.assertEqual(bytes(emu.mem_read(user, len(expected))), bytes(expected))
                     self.assertEqual(emu.reg_read(UC_ARM_REG_R4), user)
                     self.assertEqual(emu.reg_read(UC_ARM_REG_R7), target)
-                    self.assertEqual(emu.reg_read(UC_ARM_REG_LR), ret | 1)
+                    self.assertEqual(calls,[(user,target)])
+                    self.assertEqual(emu.reg_read(UC_ARM_REG_R3),123)
+                    self.assertEqual(emu.reg_read(UC_ARM_REG_SP),0x02003f00)
+                    self.assertEqual(emu.reg_read(UC_ARM_REG_PC),ret)
 
     def test_b2_translation_uses_reviewed_success_site(self):
         with tempfile.TemporaryDirectory(prefix="w2u-transform-b2-") as directory:

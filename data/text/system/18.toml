@@ -8527,3 +8527,36 @@ text = [
   "[VAR TRNAME(1)]'s fervent wish has\n",
   "reached [VAR PKNICK(0)]!$",
 ]
+
+[msg.section_0.entries.1454]
+text = [
+  "[VAR PKNICK(0)] is gathering energy!$",
+]
+
+[msg.section_0.entries.1455]
+text = [
+  "The wild [VAR PKNICK(0)] is gathering energy!$",
+]
+
+[msg.section_0.entries.1456]
+text = [
+  "The foe's [VAR PKNICK(0)] is gathering energy!$",
+]
+
+[msg.section_0.entries.1457]
+text = ["[VAR PKNICK(0)] became weaker to Fire!$"]
+
+[msg.section_0.entries.1458]
+text = ["The wild [VAR PKNICK(0)] became weaker to Fire!$"]
+
+[msg.section_0.entries.1459]
+text = ["The foe's [VAR PKNICK(0)] became weaker to Fire!$"]
+
+[msg.section_0.entries.1460]
+text = ["[VAR PKNICK(0)] is preparing to tell\na chillingly bad joke!$"]
+
+[msg.section_0.entries.1461]
+text = ["The wild [VAR PKNICK(0)] is preparing to tell\na chillingly bad joke!$"]
+
+[msg.section_0.entries.1462]
+text = ["The foe's [VAR PKNICK(0)] is preparing to tell\na chillingly bad joke!$"]
