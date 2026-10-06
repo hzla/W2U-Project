@@ -168,9 +168,15 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #elif W2U_BATTLE_MODULE_ID == 22
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DELTA_STREAM), (u16)W2U_ARRAY_COUNT(DeltaStreamHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DeltaStreamHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PRIMORDIAL_SEA), (u16)W2U_ARRAY_COUNT(PrimordialSeaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PrimordialSeaHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DESOLATE_LAND), (u16)W2U_ARRAY_COUNT(DesolateLandHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DesolateLandHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -180,25 +186,63 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #elif W2U_BATTLE_MODULE_ID == 23
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_TRANSISTOR), (u16)W2U_ARRAY_COUNT(MB_BoostHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BoostHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DRAGONS_MAW), (u16)W2U_ARRAY_COUNT(MB_BoostHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BoostHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ROCKY_PAYLOAD), (u16)W2U_ARRAY_COUNT(MB_BoostHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BoostHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SHARPNESS), (u16)W2U_ARRAY_COUNT(MB_BoostHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BoostHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_FIRE_MANE), (u16)W2U_ARRAY_COUNT(MB_BoostHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BoostHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WIND_POWER), (u16)W2U_ARRAY_COUNT(MB_ChargeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ChargeHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ELECTROMORPHOSIS), (u16)W2U_ARRAY_COUNT(MB_ChargeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ChargeHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MINDS_EYE), (u16)W2U_ARRAY_COUNT(MB_MindsEyeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MindsEyeHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_NEUROFORCE), (u16)W2U_ARRAY_COUNT(MB_NeuroforceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeuroforceHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_POWER_SPOT), (u16)W2U_ARRAY_COUNT(MB_PowerSpotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PowerSpotHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_STEELY_SPIRIT), (u16)W2U_ARRAY_COUNT(MB_PowerSpotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PowerSpotHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_LIBERO), (u16)W2U_ARRAY_COUNT(MB_ProteanHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProteanHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PUNK_ROCK), (u16)W2U_ARRAY_COUNT(MB_PunkRockHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PunkRockHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_VESSEL_OF_RUIN), (u16)W2U_ARRAY_COUNT(MB_RuinHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RuinHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SWORD_OF_RUIN), (u16)W2U_ARRAY_COUNT(MB_RuinHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RuinHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_TABLETS_OF_RUIN), (u16)W2U_ARRAY_COUNT(MB_RuinHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RuinHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_BEADS_OF_RUIN), (u16)W2U_ARRAY_COUNT(MB_RuinHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RuinHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SUPREME_OVERLORD), (u16)W2U_ARRAY_COUNT(MB_SupremeOverlordHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SupremeOverlordHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_CHAIN), (u16)W2U_ARRAY_COUNT(MB_ToxicChainHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ToxicChainHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -208,21 +252,51 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #elif W2U_BATTLE_MODULE_ID == 24
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_EELEVATE), (u16)W2U_ARRAY_COUNT(MB_EelevateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EelevateHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_EARTH_EATER), (u16)W2U_ARRAY_COUNT(MB_EarthEaterHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EarthEaterHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_SCALES), (u16)W2U_ARRAY_COUNT(MB_FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_FluffyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_AURA_GUARD), (u16)W2U_ARRAY_COUNT(MB_FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_FluffyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GOOD_AS_GOLD), (u16)W2U_ARRAY_COUNT(MB_GoodAsGoldHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GoodAsGoldHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GUARD_DOG), (u16)W2U_ARRAY_COUNT(MB_GuardDogHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GuardDogHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_INTIMIDATE), (u16)W2U_ARRAY_COUNT(MB_IntimidateTrackedHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IntimidateTrackedHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DAMP), (u16)W2U_ARRAY_COUNT(MB_DampHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_DampHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIRROR_ARMOR), (u16)W2U_ARRAY_COUNT(MB_MirrorArmorHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MirrorArmorHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PURIFYING_SALT), (u16)W2U_ARRAY_COUNT(MB_PurifyingSaltHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PurifyingSaltHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ARMOR_TAIL), (u16)W2U_ARRAY_COUNT(MB_QueenlyMajestyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_QueenlyMajestyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_TERA_SHELL), (u16)W2U_ARRAY_COUNT(MB_TeraShellHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_TeraShellHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PASTEL_VEIL), (u16)W2U_ARRAY_COUNT(MB_VeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_VeilHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WELL_BAKED_BODY), (u16)W2U_ARRAY_COUNT(MB_WellBakedBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_WellBakedBodyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WIND_RIDER), (u16)W2U_ARRAY_COUNT(MB_WindRiderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_WindRiderHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -232,15 +306,33 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #elif W2U_BATTLE_MODULE_ID == 25
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ANGER_SHELL), (u16)W2U_ARRAY_COUNT(MB_BerserkHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BerserkHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_COTTON_DOWN), (u16)W2U_ARRAY_COUNT(MB_CottonDownHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CottonDownHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PERISH_BODY), (u16)W2U_ARRAY_COUNT(MB_PerishBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PerishBodyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_DEBRIS), (u16)W2U_ARRAY_COUNT(MB_ToxicDebrisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ToxicDebrisHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WANDERING_SPIRIT), (u16)W2U_ARRAY_COUNT(MB_LingeringAromaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_LingeringAromaHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_LINGERING_AROMA), (u16)W2U_ARRAY_COUNT(MB_LingeringAromaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_LingeringAromaHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SPICY_SPRAY), (u16)W2U_ARRAY_COUNT(MB_SpicySprayHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SpicySprayHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_STEAM_ENGINE), (u16)W2U_ARRAY_COUNT(MB_StaminaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_StaminaHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_THERMAL_EXCHANGE), (u16)W2U_ARRAY_COUNT(MB_ThermalExchangeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ThermalExchangeHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -250,16 +342,36 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #elif W2U_BATTLE_MODULE_ID == 26
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_CURIOUS_MEDICINE), (u16)W2U_ARRAY_COUNT(MB_CuriousMedicineHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CuriousMedicineHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_COSTAR), (u16)W2U_ARRAY_COUNT(MB_CostarHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CostarHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SUPERSWEET_SYRUP), (u16)W2U_ARRAY_COUNT(MB_SupersweetSyrupHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SupersweetSyrupHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_HOSPITALITY), (u16)W2U_ARRAY_COUNT(MB_HospitalityHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_HospitalityHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_INTREPID_SWORD), (u16)W2U_ARRAY_COUNT(MB_IntrepidSwordHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IntrepidSwordHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DAUNTLESS_SHIELD), (u16)W2U_ARRAY_COUNT(MB_IntrepidSwordHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IntrepidSwordHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GRIM_NEIGH), (u16)W2U_ARRAY_COUNT(MB_NeighHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeighHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_AS_ONE_GLASTRIER), (u16)W2U_ARRAY_COUNT(MB_NeighHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeighHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_AS_ONE_SPECTRIER), (u16)W2U_ARRAY_COUNT(MB_NeighHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeighHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SCREEN_CLEANER), (u16)W2U_ARRAY_COUNT(MB_ScreenCleanerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ScreenCleanerHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -269,14 +381,30 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #elif W2U_BATTLE_MODULE_ID == 27
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROTOSYNTHESIS), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUARK_DRIVE), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ORICHALCUM_PULSE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_HADRON_ENGINE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIMICRY), (u16)W2U_ARRAY_COUNT(MB_MimicryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MimicryHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GRASS_PELT), (u16)W2U_ARRAY_COUNT(MB_GrassPeltHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GrassPeltHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SAND_SPIT), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SEED_SOWER), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -286,18 +414,42 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #elif W2U_BATTLE_MODULE_ID == 28
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GORILLA_TACTICS), (u16)W2U_ARRAY_COUNT(MB_GorillaTacticsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GorillaTacticsHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROPELLER_TAIL), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_STALWART), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_UNSEEN_FIST), (u16)W2U_ARRAY_COUNT(MB_UnseenFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_UnseenFistHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PIERCING_DRILL), (u16)W2U_ARRAY_COUNT(MB_UnseenFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_UnseenFistHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUICK_DRAW), (u16)W2U_ARRAY_COUNT(MB_QuickDrawHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_QuickDrawHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MYCELIUM_MIGHT), (u16)W2U_ARRAY_COUNT(MB_MyceliumMightHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MyceliumMightHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_POISON_PUPPETEER), (u16)W2U_ARRAY_COUNT(MB_PoisonPuppeteerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PoisonPuppeteerHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MEGA_SOL), (u16)W2U_ARRAY_COUNT(MB_MegaSolHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MegaSolHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_RIPEN), (u16)W2U_ARRAY_COUNT(MB_RipenHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RipenHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_OPPORTUNIST), (u16)W2U_ARRAY_COUNT(MB_OpportunistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_OpportunistHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_CUD_CHEW), (u16)W2U_ARRAY_COUNT(MB_CudChewHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CudChewHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -307,11 +459,21 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #elif W2U_BATTLE_MODULE_ID == 29
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_FACE), (u16)W2U_ARRAY_COUNT(MB_IceFaceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IceFaceHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GULP_MISSILE), (u16)W2U_ARRAY_COUNT(MB_GulpMissileHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GulpMissileHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_HUNGER_SWITCH), (u16)W2U_ARRAY_COUNT(MB_HungerSwitchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_HungerSwitchHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ZERO_TO_HERO), (u16)W2U_ARRAY_COUNT(MB_ZeroToHeroHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ZeroToHeroHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_COMMANDER), (u16)W2U_ARRAY_COUNT(MB_CommanderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CommanderHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -524,9 +686,15 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 }
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_strong_weatherEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DELTA_STREAM), (u16)W2U_ARRAY_COUNT(DeltaStreamHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DeltaStreamHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PRIMORDIAL_SEA), (u16)W2U_ARRAY_COUNT(PrimordialSeaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PrimordialSeaHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DESOLATE_LAND), (u16)W2U_ARRAY_COUNT(DesolateLandHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DesolateLandHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_strong_weatherApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -541,25 +709,63 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 #endif
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_mb_powerEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_TRANSISTOR), (u16)W2U_ARRAY_COUNT(MB_BoostHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BoostHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DRAGONS_MAW), (u16)W2U_ARRAY_COUNT(MB_BoostHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BoostHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ROCKY_PAYLOAD), (u16)W2U_ARRAY_COUNT(MB_BoostHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BoostHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SHARPNESS), (u16)W2U_ARRAY_COUNT(MB_BoostHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BoostHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_FIRE_MANE), (u16)W2U_ARRAY_COUNT(MB_BoostHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BoostHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WIND_POWER), (u16)W2U_ARRAY_COUNT(MB_ChargeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ChargeHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ELECTROMORPHOSIS), (u16)W2U_ARRAY_COUNT(MB_ChargeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ChargeHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MINDS_EYE), (u16)W2U_ARRAY_COUNT(MB_MindsEyeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MindsEyeHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_NEUROFORCE), (u16)W2U_ARRAY_COUNT(MB_NeuroforceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeuroforceHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_POWER_SPOT), (u16)W2U_ARRAY_COUNT(MB_PowerSpotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PowerSpotHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_STEELY_SPIRIT), (u16)W2U_ARRAY_COUNT(MB_PowerSpotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PowerSpotHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_LIBERO), (u16)W2U_ARRAY_COUNT(MB_ProteanHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProteanHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PUNK_ROCK), (u16)W2U_ARRAY_COUNT(MB_PunkRockHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PunkRockHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_VESSEL_OF_RUIN), (u16)W2U_ARRAY_COUNT(MB_RuinHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RuinHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SWORD_OF_RUIN), (u16)W2U_ARRAY_COUNT(MB_RuinHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RuinHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_TABLETS_OF_RUIN), (u16)W2U_ARRAY_COUNT(MB_RuinHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RuinHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_BEADS_OF_RUIN), (u16)W2U_ARRAY_COUNT(MB_RuinHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RuinHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SUPREME_OVERLORD), (u16)W2U_ARRAY_COUNT(MB_SupremeOverlordHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SupremeOverlordHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_CHAIN), (u16)W2U_ARRAY_COUNT(MB_ToxicChainHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ToxicChainHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_powerApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -574,21 +780,51 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 #endif
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_mb_defenseEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_EELEVATE), (u16)W2U_ARRAY_COUNT(MB_EelevateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EelevateHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_EARTH_EATER), (u16)W2U_ARRAY_COUNT(MB_EarthEaterHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EarthEaterHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_SCALES), (u16)W2U_ARRAY_COUNT(MB_FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_FluffyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_AURA_GUARD), (u16)W2U_ARRAY_COUNT(MB_FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_FluffyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GOOD_AS_GOLD), (u16)W2U_ARRAY_COUNT(MB_GoodAsGoldHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GoodAsGoldHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GUARD_DOG), (u16)W2U_ARRAY_COUNT(MB_GuardDogHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GuardDogHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_INTIMIDATE), (u16)W2U_ARRAY_COUNT(MB_IntimidateTrackedHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IntimidateTrackedHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DAMP), (u16)W2U_ARRAY_COUNT(MB_DampHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_DampHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIRROR_ARMOR), (u16)W2U_ARRAY_COUNT(MB_MirrorArmorHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MirrorArmorHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PURIFYING_SALT), (u16)W2U_ARRAY_COUNT(MB_PurifyingSaltHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PurifyingSaltHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ARMOR_TAIL), (u16)W2U_ARRAY_COUNT(MB_QueenlyMajestyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_QueenlyMajestyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_TERA_SHELL), (u16)W2U_ARRAY_COUNT(MB_TeraShellHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_TeraShellHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PASTEL_VEIL), (u16)W2U_ARRAY_COUNT(MB_VeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_VeilHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WELL_BAKED_BODY), (u16)W2U_ARRAY_COUNT(MB_WellBakedBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_WellBakedBodyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WIND_RIDER), (u16)W2U_ARRAY_COUNT(MB_WindRiderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_WindRiderHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_defenseApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -603,15 +839,33 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 #endif
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_mb_reactiveEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ANGER_SHELL), (u16)W2U_ARRAY_COUNT(MB_BerserkHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_BerserkHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_COTTON_DOWN), (u16)W2U_ARRAY_COUNT(MB_CottonDownHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CottonDownHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PERISH_BODY), (u16)W2U_ARRAY_COUNT(MB_PerishBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PerishBodyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_DEBRIS), (u16)W2U_ARRAY_COUNT(MB_ToxicDebrisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ToxicDebrisHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WANDERING_SPIRIT), (u16)W2U_ARRAY_COUNT(MB_LingeringAromaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_LingeringAromaHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_LINGERING_AROMA), (u16)W2U_ARRAY_COUNT(MB_LingeringAromaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_LingeringAromaHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SPICY_SPRAY), (u16)W2U_ARRAY_COUNT(MB_SpicySprayHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SpicySprayHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_STEAM_ENGINE), (u16)W2U_ARRAY_COUNT(MB_StaminaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_StaminaHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_THERMAL_EXCHANGE), (u16)W2U_ARRAY_COUNT(MB_ThermalExchangeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ThermalExchangeHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_reactiveApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -626,16 +880,36 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 #endif
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_mb_entryEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_CURIOUS_MEDICINE), (u16)W2U_ARRAY_COUNT(MB_CuriousMedicineHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CuriousMedicineHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_COSTAR), (u16)W2U_ARRAY_COUNT(MB_CostarHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CostarHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SUPERSWEET_SYRUP), (u16)W2U_ARRAY_COUNT(MB_SupersweetSyrupHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SupersweetSyrupHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_HOSPITALITY), (u16)W2U_ARRAY_COUNT(MB_HospitalityHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_HospitalityHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_INTREPID_SWORD), (u16)W2U_ARRAY_COUNT(MB_IntrepidSwordHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IntrepidSwordHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DAUNTLESS_SHIELD), (u16)W2U_ARRAY_COUNT(MB_IntrepidSwordHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IntrepidSwordHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GRIM_NEIGH), (u16)W2U_ARRAY_COUNT(MB_NeighHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeighHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_AS_ONE_GLASTRIER), (u16)W2U_ARRAY_COUNT(MB_NeighHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeighHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_AS_ONE_SPECTRIER), (u16)W2U_ARRAY_COUNT(MB_NeighHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeighHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SCREEN_CLEANER), (u16)W2U_ARRAY_COUNT(MB_ScreenCleanerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ScreenCleanerHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_entryApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -650,14 +924,30 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 #endif
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_mb_terrainEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROTOSYNTHESIS), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUARK_DRIVE), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ORICHALCUM_PULSE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_HADRON_ENGINE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIMICRY), (u16)W2U_ARRAY_COUNT(MB_MimicryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MimicryHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GRASS_PELT), (u16)W2U_ARRAY_COUNT(MB_GrassPeltHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GrassPeltHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SAND_SPIT), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SEED_SOWER), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_terrainApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -672,18 +962,42 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 #endif
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_mb_hookedEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GORILLA_TACTICS), (u16)W2U_ARRAY_COUNT(MB_GorillaTacticsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GorillaTacticsHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROPELLER_TAIL), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_STALWART), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_UNSEEN_FIST), (u16)W2U_ARRAY_COUNT(MB_UnseenFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_UnseenFistHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PIERCING_DRILL), (u16)W2U_ARRAY_COUNT(MB_UnseenFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_UnseenFistHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUICK_DRAW), (u16)W2U_ARRAY_COUNT(MB_QuickDrawHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_QuickDrawHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MYCELIUM_MIGHT), (u16)W2U_ARRAY_COUNT(MB_MyceliumMightHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MyceliumMightHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_POISON_PUPPETEER), (u16)W2U_ARRAY_COUNT(MB_PoisonPuppeteerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PoisonPuppeteerHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MEGA_SOL), (u16)W2U_ARRAY_COUNT(MB_MegaSolHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MegaSolHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_RIPEN), (u16)W2U_ARRAY_COUNT(MB_RipenHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RipenHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_OPPORTUNIST), (u16)W2U_ARRAY_COUNT(MB_OpportunistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_OpportunistHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_CUD_CHEW), (u16)W2U_ARRAY_COUNT(MB_CudChewHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CudChewHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_hookedApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -698,11 +1012,21 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 #endif
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_mb_formsEntries[] = {
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_FACE), (u16)W2U_ARRAY_COUNT(MB_IceFaceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IceFaceHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GULP_MISSILE), (u16)W2U_ARRAY_COUNT(MB_GulpMissileHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GulpMissileHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_HUNGER_SWITCH), (u16)W2U_ARRAY_COUNT(MB_HungerSwitchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_HungerSwitchHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ZERO_TO_HERO), (u16)W2U_ARRAY_COUNT(MB_ZeroToHeroHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ZeroToHeroHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_COMMANDER), (u16)W2U_ARRAY_COUNT(MB_CommanderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CommanderHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_formsApi = {
     W2U_BATTLE_MODULE_MAGIC,

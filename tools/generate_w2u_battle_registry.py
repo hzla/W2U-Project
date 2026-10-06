@@ -55,6 +55,8 @@ def entry_key(kind: str, mechanic_id: str) -> str:
 def entry_config(registry: dict, module: dict, kind: str, mechanic_id: str) -> dict:
     config = dict(registry["entry_defaults"])
     config.update(module.get("entry_overrides", {}).get(entry_key(kind, mechanic_id), {}))
+    # Entry restrictions are additive: a W2-only group cannot expose B2 entries.
+    config["white2_only"] = module.get("white2_only", False) or config.get("white2_only", False)
     return config
 
 
@@ -104,6 +106,13 @@ def load_registry(path: Path) -> dict:
         overrides = module.get("entry_overrides", {})
         if not isinstance(overrides, dict):
             raise RuntimeError(f"{name}: entry_overrides must be an object")
+        if "white2_only" in module and not isinstance(module["white2_only"], bool):
+            raise RuntimeError(f"{name}: white2_only must be boolean")
+        for override in overrides.values():
+            if not isinstance(override, dict):
+                raise RuntimeError(f"{name}: entry override must be an object")
+            if "white2_only" in override and not isinstance(override["white2_only"], bool):
+                raise RuntimeError(f"{name}: entry white2_only must be boolean")
         module_keys: set[str] = set()
         for entry in entries:
             if not isinstance(entry, list) or len(entry) != 3:
@@ -206,9 +215,14 @@ def render_cpp(registry: dict) -> str:
     for module in modules:
         module_enum = name_to_enum[module["name"]]
         for kind, mechanic_id, _table in module["entries"]:
+            entry_only = module.get("entry_overrides", {}).get(entry_key(kind, mechanic_id), {}).get("white2_only", False)
+            if entry_only:
+                lines.append("#if !defined(W2U_TARGET_B2)")
             lines.append(
                 f"    W2U_ROUTE({KIND_ENUM[kind]}, {mechanic_id}, {module_enum}),"
             )
+            if entry_only:
+                lines.append("#endif")
     lines.extend(["};", "", "#undef W2U_ROUTE", ""])
     lines.extend(
         [
@@ -323,6 +337,8 @@ def render_api_definition(
     lines = [f"static const W2UBattleHandlerExport {entries_symbol}[] = {{"]
     for kind, mechanic_id, table in module["entries"]:
         config = entry_config(registry, module, kind, mechanic_id)
+        if config["white2_only"]:
+            lines.append("#if !defined(W2U_TARGET_B2)")
         count = config["handler_count"]
         count_expr = (
             f"(u16)W2U_ARRAY_COUNT({table})"
@@ -341,6 +357,8 @@ def render_api_definition(
             + f"{priority_expr}, {table}"
             + "},"
         )
+        if config["white2_only"]:
+            lines.append("#endif")
     lines.extend(
         [
             "};",
