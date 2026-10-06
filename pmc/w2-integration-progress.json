@@ -52,10 +52,32 @@
         "Black 2 behavioral/hash baselines remain unchanged; no Black 2 ROM delivered.",
         "No hardware or DSi compatibility claim."
       ]
+    },
+    "3": {
+      "status": "validated",
+      "policy": "Main owns overlapping move handlers; one resident hook owner per address, no duplicate Expanding Force or Misty Explosion boost.",
+      "stripped_build": true,
+      "rpm_linkage": true,
+      "all_groups_free_bytes": 23400,
+      "host_tests": { "run": 93, "skipped": 1, "failed": 0 },
+      "battle_unit_tests": 175,
+      "black2_static_compile": true,
+      "native_tests": [
+        { "suite": "expanding-force", "passed_cases": 3, "complete_suite": true, "full_turn_validated": true,
+          "evidence": "work/move-handlers/expanding-force-20261006-122552-e15a9b/result.json" },
+        { "suite": "misty-explosion", "passed_cases": 6, "complete_suite": false,
+          "evidence": "work/move-handlers/misty-explosion-20261006-122553-316099/result.json" },
+        { "suite": "terrain-pulse", "passed_cases": 35, "complete_suite": false,
+          "evidence": "work/move-handlers/terrain-pulse-20261006-122931-abe38a/result.json",
+          "note": "One fixture used Gravity-forbidden Splash, causing Struggle recoil. Fixed the fixture, not the damage oracle." },
+        { "suite": "terrain-pulse", "passed_cases": 2, "complete_suite": false,
+          "evidence": "work/move-handlers/terrain-pulse-20261006-123838-e15d89/result.json",
+          "note": "Both Levitate cases pass with a separate Growl-only opponent, including Gravity grounding." }
+      ],
+      "limits": ["Full ability, weather, renderer and release suites remain pending."]
     }
   },
   "pending_stages": [
-    3,
     4,
     5,
     6,
