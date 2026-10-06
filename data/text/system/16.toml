@@ -16554,3 +16554,9 @@ text = [
   "The foe's [VAR PKNICK(0)] used\\n",
   "Malignant Chain!$",
 ]
+
+[msg.section_0.entries.2760]
+text = [
+  "No one will be able to run away\\n",
+  "during the next turn!$",
+]

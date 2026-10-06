@@ -25,7 +25,11 @@ def verify(case, result, variant, api):
         check(result.get("selectionRejected"), "Move selection was not rejected")
         check(before["attacker"]["moves"] == after["attacker"]["moves"], "Rejected selection consumed PP")
     else:
-        completed(result, case.get("selectedMoveId", variant["moveId"]), case.get("ppSpent", 1),
+        completion_result = result
+        if case.get("sourceExit"):
+            check(after["attacker"]["slot"] != before["attacker"]["slot"], "Trapping source never left the field")
+            completion_result = {**result, "after":{**after,"attacker":result["completion"]}}
+        completed(completion_result, case.get("selectedMoveId", variant["moveId"]), case.get("ppSpent", 1),
                   case.get("expectedExecutedMove", variant["moveId"]))
     calls = result["damageCalls"]
     if expected.get("extraUserMove"):
@@ -59,6 +63,9 @@ def verify(case, result, variant, api):
             defense = stage_stat(target["stats"][di], d_stage)
             effective = expected.get("effectivePowers", expected["powers"])[index]
             damage = ((2 * user["level"] // 5 + 2) * effective * attack // defense) // 50 + 2
+            if expected.get("spread"):
+                check(call["targetDamageRatio"] == 3072, "Missing native doubles spread reduction")
+                damage = (damage * 3072 + 2047) // 4096
             if critical:
                 damage *= 2  # This repo retains the native BW2 critical multiplier.
             damage = damage * 85 // 100
@@ -101,9 +108,15 @@ def verify(case, result, variant, api):
     for role, wanted in expected.get("statuses", {}).items():
         actual = api["active_status"](after[role])
         check(actual == ([wanted] if wanted else []), f"Wrong {role} status: {actual} != {wanted}")
+    for role, wanted in expected.get("items", {}).items():
+        check(after[role]["item"] == wanted, f"Wrong {role} held item")
     for role, fields in expected.get("conditions", {}).items():
         for field, wanted in fields.items():
             check(bool(after[role][field] & 7) == wanted, f"Wrong {role} {field}: {after[role][field]} != {wanted}")
+    for role, masks in expected.get("conditionFlags", {}).items():
+        flags=after[role]["conditionFlags"]
+        check(flags & masks.get("set",0) == masks.get("set",0), "Missing native condition flag")
+        check(not flags & masks.get("clear",0), "Native semi-invulnerability was not cancelled")
     if "trapSource" in expected:
         target = after["defender"]["trapCondition"]
         check(target & 7 == 3 and (target >> 3) & 63 == before["attacker"]["slot"], "Wrong trapping source battler")
@@ -141,12 +154,17 @@ def verify(case, result, variant, api):
         check(result["accuracyRolls"] and all(r["threshold"] == expected["accuracyThreshold"] for r in result["accuracyRolls"]), "Wrong native accuracy threshold")
     if expected.get("accuracyThreshold") == 0:
         check(not result["accuracyRolls"], "Guaranteed hit still rolled accuracy")
-    if "screens" in expected:
-        for side, wanted in enumerate(expected["screens"]):
+    for key, result_key in (("screens", "afterSideEffects"), ("beforeScreens", "beforeSideEffects"), ("actionScreens", "actionSideEffects")):
+        for side, wanted in enumerate(expected.get(key, [])):
             for effect in ("0", "1"):
-                check(result["afterSideEffects"][side][effect]["layers"] == wanted.get(effect, 0), "Wrong Reflect/Light Screen state")
-    if "customSides" in expected:
-        check(result["afterCustomSides"] == expected["customSides"], f"Wrong custom side state: {result['afterCustomSides']}")
+                check(result[result_key][side][effect]["layers"] == wanted.get(effect, 0), "Wrong Reflect/Light Screen state")
+    if "switchBlocked" in expected:
+        checks = result.get("switchChecks", [])
+        check(checks, "Missing native switch-prohibition observation")
+        check((checks[-1]["result"] != 4) == expected["switchBlocked"], "Wrong native Fairy Lock switch prohibition")
+    for key, result_key in (("customSides", "afterCustomSides"), ("beforeCustomSides", "beforeCustomSides"), ("actionCustomSides", "actionCustomSides")):
+        if key in expected:
+            check(result[result_key] == expected[key], f"Wrong custom side state: {result[result_key]}")
     if "moneyDouble" in expected:
         check(result["moneyDouble"] == expected["moneyDouble"], "Happy Hour did not set the prize-money flag")
     if "terrain" in expected:

@@ -67,6 +67,7 @@ def state(emu, pointer):
             "bindCondition": emu.memory.read_long(pointer + 28 + 4 * 8),
             "leechSeedCondition": emu.memory.read_long(pointer + 28 + 4 * 18),
             "trapCondition": emu.memory.read_long(pointer + 28 + 4 * 22),
+            "knockedDownCondition": emu.memory.read_long(pointer + 28 + 4 * 31),
             "consumedItem": emu.memory.read_short(pointer + 20),
             "chargeCondition": emu.memory.read_long(pointer + 28 + 4 * 26),
             "itemBlockedCondition": emu.memory.read_long(pointer + 28 + 4 * 19),
@@ -1628,6 +1629,7 @@ class Observer:
         self.baton_copies = []
         self.baton_pending = {}
         self.floating_pending = {}
+        self.switch_checks, self.switch_pending = [], {}
         self.start = self.emu.frame_count
 
     def install(self, probes):
@@ -1933,7 +1935,7 @@ class Observer:
         core = self.emu.memory.register_arm9.r0
         function = self.emu.memory.read_long(core + 20) & ~1
         if function in (0x021cf02c,0x021cf150,0x021cef90):
-            self.ui_state = {"phase":function,"slot":self.emu.memory.read_long(core + 0xc0)}
+            self.ui_state = {"phase":function,"slot":self.emu.memory.read_long(core + 0xc0),"frame":self.emu.frame_count}
 
     def selection(self, cpu, address):
         r = self.emu.memory.register_arm9
@@ -2138,6 +2140,23 @@ class Observer:
                     self.party_ui["finished"] = True
                     self.party_ui = None
             self.returns[key] = self.emu.memory.register_exec(ret,returned)
+
+    def switch_prohibition(self, cpu, address):
+        if not self.case or not self.case.get("checkSwitch"): return
+        r = self.emu.memory.register_arm9
+        mon = state(self.emu, r.r1)
+        if mon["slot"] != 0: return
+        ret = r.lr & ~1
+        observation = {"slot":mon["slot"],"item":mon["item"],"types":mon["types"],"frame":self.emu.frame_count}
+        self.switch_pending.setdefault(ret, []).append(observation)
+        key = ("switch-prohibition",ret)
+        if key not in self.returns:
+            def returned(cpu,address):
+                if self.switch_pending.get(address):
+                    observation = self.switch_pending[address].pop()
+                    observation["result"] = self.emu.memory.register_arm9.r0
+                    self.switch_checks.append(observation)
+            self.returns[key] = self.emu.memory.register_exec(ret, returned)
 
     def floating(self, cpu, address):
         if self.active_damage is None:
@@ -2417,7 +2436,7 @@ def execute_move(emu, observer, maximum, slot=0):
     before = {side: state(emu, p) for side, p in observer.pointers.items()}
     party_before=observer.party_state() if observer.variant.get("moveId")==863 else None
     side_before = read_side_effects(emu, observer.variant["sideState"]) if "sideState" in observer.variant else None
-    custom_before = observer.custom_sides() if observer.variant.get("moveId") == 756 else None
+    custom_before = observer.custom_sides() if observer.variant.get("moveId") == 756 or observer.variant.get("audit") else None
     selected = before["attacker"]["moves"][slot]
     executed_id = observer.case.get("expectedExecutedMove", observer.variant["moveId"] if observer.variant.get("moveId") in (901,893) and selected["id"] == 214 else selected["id"])
     check(selected["id"] and selected["pp"], "Selected fixture move is missing or out of PP")
@@ -2433,7 +2452,7 @@ def execute_move(emu, observer, maximum, slot=0):
     for step in range(maximum):
         phase = observer.ui_state if doubles and observer.variant.get("moveId") != 811 else None
         pulse = step >= 24 and step % 24 < 3
-        emu.input.keypad_update(1 if (pulse and (not phase or phase["phase"] == 0x021cf02c) if doubles else 24 <= step < 27) else 0)
+        emu.input.keypad_update(1 if (pulse and (not phase or phase["phase"] == 0x021cf02c) if doubles else 24 <= step < 27 and not observer.case.get("checkSwitch")) else 0)
         if doubles and phase and pulse and phase["phase"] != 0x021cf02c:
             partner = phase["slot"] == 1 and observer.variant.get("battleType") != "Multi"
             choice = observer.case.get("allyMoveSlot",0) if partner else slot
@@ -2444,6 +2463,10 @@ def execute_move(emu, observer, maximum, slot=0):
                 target_role = observer.case.get("allyTargetRole","ally" if ally_move in (150,182,164,578,116,355) else "defender") if partner else observer.case.get("targetRole","attacker" if selected["id"] in (150,182,164,578,116,355,226,863) or (selected["id"] == observer.variant["moveId"] and observer.variant.get("targetType") in (6,7)) else "defender")
                 coordinates = {"defender":(192,50),"defenderAlly":(64,50),"attacker":(64,110),"ally":(192,110)}
                 emu.input.touch_set_pos(*coordinates[target_role])
+        elif not doubles and observer.case.get("checkSwitch") and 24 <= step < 27:
+            # A cancelled voluntary switch retains the POKEMON cursor.
+            # Touch Fight explicitly; do not reopen that party application.
+            emu.input.touch_set_pos(128,90)
         elif observer.party_ui is not None:
             # Use actual touchscreen choices in the native party application.
             # Never assign a replacement index in the server's work/commands.
@@ -2508,6 +2531,25 @@ def wait_next_command(emu, observer, maximum):
     raise AssertionError("Battle did not return to the next command menu")
 
 
+def observe_switch_menu(emu, observer, maximum):
+    """Open the native POKEMON menu, observe its prohibition check, then cancel."""
+    checked_at = None
+    for step in range(maximum):
+        emu.input.keypad_update(2 if checked_at is not None and step % 24 < 3 else 0)
+        if checked_at is None and step >= 60 and step % 24 < 3:
+            emu.input.touch_set_pos(192,175)
+        else:
+            emu.input.touch_release()
+        emu.cycle()
+        observer.raise_errors()
+        check_arm9(emu)
+        if observer.switch_checks and checked_at is None: checked_at=step
+        if (checked_at is not None and step-checked_at>=300 and observer.party_ui is None and
+                observer.party_selections and observer.party_selections[-1].get("finished")):
+            return list(observer.switch_checks)
+    raise AssertionError("Native switch menu did not query switch prohibition")
+
+
 def run_variant(args, spec):
     directory, artifacts = Path(spec["directory"]), Path(spec["artifacts"])
     variant, manifest = spec["variant"], spec["manifest"]
@@ -2532,6 +2574,11 @@ def run_variant(args, spec):
             observer.raise_errors()
             if observer.ready is not None:
                 break
+        emu.input.keypad_update(0)
+        if observer.ready is None or set(observer.pointers) != {entry[0] for entry in expected_battlers(variant).values()}:
+            emu.screenshot().save(artifacts / f"{variant['name']}-boot.png")
+            result["boot"]={"frame":emu.frame_count,"pc":hex(emu.memory.register_arm9.pc),"lr":hex(emu.memory.register_arm9.lr),
+                "ready":observer.ready,"battlers":list(observer.pointers)}
         check(observer.ready is not None and set(observer.pointers) == {entry[0] for entry in expected_battlers(variant).values()}, "Battle did not reach a registered command menu")
         baseline = {side: bytes(emu.memory.unsigned[p:p + 0x200]) for side, p in observer.pointers.items()}
         baseline_pointers = dict(observer.pointers)
@@ -2667,6 +2714,8 @@ def run_variant(args, spec):
                     record["magicRoomActive"] = bool(emu.memory.read_long(0x021dd928 + 0x148 + 7 * 4))
                 record["completion"] = record["after"]["attacker"]
                 record["actionAfter"] = record["after"]
+                if "afterSideEffects" in record: record["actionSideEffects"] = record["afterSideEffects"]
+                if "afterCustomSides" in record: record["actionCustomSides"] = record["afterCustomSides"]
                 if case.get("completeTurn") and not record.get("selectionRejected"):
                     wait_next_command(emu, observer, args.max_frames)
                     result["fullTurnValidated"] = record["fullTurnValidated"] = True
@@ -2676,6 +2725,8 @@ def run_variant(args, spec):
                     if variant.get("moveId") == 756:
                         record["afterCustomSides"] = observer.custom_sides()
                 record["statHistoryEvents"] = observer.stat_history_events
+                if case.get("checkSwitch"):
+                    record["switchChecks"] = observe_switch_menu(emu,observer,args.max_frames)
                 record["ppWork"] = observer.pp_work
                 record["turnEndEvents"] = observer.turn_end_events
                 record["bindingResiduals"] = observer.binding_residuals
@@ -2736,6 +2787,8 @@ def run_variant(args, spec):
                         terrainEndMessages=observer.terrain_end_messages, accuracyRolls=observer.accuracy_rolls,
                         takeHeartEvents=observer.take_heart_events, typeChangeEvents=observer.magic_powder_events,
                         switchInEvents=observer.switch_in_events, targetFinalizations=observer.target_finalizations)
+                    if followup["case"].get("checkSwitch"):
+                        record["followup"]["switchChecks"] = observe_switch_menu(emu,observer,args.max_frames)
                     record["followup"].update(shieldEvents=observer.shield_events, shieldBreakEvents=observer.shield_break_events,
                         shieldHitEvents=observer.shield_hit_events, incomingDamageCalls=observer.incoming_damage,
                         selectionChecks=observer.selection_checks)
@@ -2818,7 +2871,7 @@ def run_variant(args, spec):
                               switchInEvents=observer.switch_in_events, shieldEvents=observer.shield_events,
                               shieldBreakEvents=observer.shield_break_events, shieldHitEvents=observer.shield_hit_events,
                               incomingDamageCalls=observer.incoming_damage,
-                              selectionChecks=observer.selection_checks).items():
+                              selectionChecks=observer.selection_checks,switchChecks=list(observer.switch_checks),switchUi=observer.ui_state).items():
                     record.setdefault(key, value)
                 if observer.incoming_attacker is not None:
                     record["incomingAttacker"] = state(emu, observer.incoming_attacker)
@@ -2859,6 +2912,7 @@ def main(argv=None):
     move_suites[:0] = list(DOUBLES_SUITES)
     move_suites.extend(("population-bomb","shell-side-arm","snowscape","chilly-reception","shed-tail","revival-blessing"))
     move_suites.extend(("gen67-audit", "gen67-abilities", "gen67-items", "rage-fist-multi"))
+    move_suites.extend(("thousand-arrows", "thousand-waves", "hyperspace-hole", "hyperspace-fury", "fairy-lock", "gear-up", "psychic-fangs", "order-up"))
     parser.add_argument("--move", choices=move_suites, default="ruination")
     parser.add_argument("--rom", type=Path, default=ROOT / "build/White2Upgrade.nds")
     parser.add_argument("--core", type=Path, help="Fresh stripped core DLL to install in the private fixture ROM")

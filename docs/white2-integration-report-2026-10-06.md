@@ -6,17 +6,62 @@ Report date: 2026-10-06. Branch: `w2u-integration` in Upgrade and Pokeweb.
 
 The seven implementation stages and reviewed history reconciliation are complete. The delivered build is a **release candidate, not a fully accepted release**. Builds, registry/linkage checks, host tests, substantial headless battle coverage, animation-completion checks, and selected renderer/loader lifecycle tests pass within the scopes below. Normal trainer intros, complete visual lifecycle coverage, native repeated/address-changing reloads, and several other acceptance gates remain unverified.
 
-The stage-7 evidence below retains its original input revisions; RC2 startup checks are recorded separately. Test counts describe tested cases, not a claim that every interaction of every registered mechanic is covered.
+The stage-7 evidence below retains its original input revisions; RC2 startup checks and the subsequent RC3 move completion are recorded separately. Test counts describe tested cases, not a claim that every interaction of every registered mechanic is covered.
 
 The supported acceptance target is US White 2 revision 0 in DS mode. Black 2 received compile/static-isolation checks only. Hardware and DSi compatibility are not certified.
 
 ## Startup correction and RC2
 
-Use `White2Upgrade-w2-integration-20261006-rc2.nds` instead of RC1. Startup-fix commit `f47301dd6` addresses two release-packaging defects: stale compression metadata made the native bootstrap decompress an already-expanded ARM9, and an unconditional testing main-menu skip forced Continue without valid saved map data. RC2 clears that metadata and excludes main-menu skip from production; the DLL remains available under `assets/testing/` for fixtures.
+RC2 superseded RC1 for startup; use RC3 below for the latest move handlers. Startup-fix commit `f47301dd6` addresses two release-packaging defects: stale compression metadata made the native bootstrap decompress an already-expanded ARM9, and an unconditional testing main-menu skip forced Continue without valid saved map data. RC2 clears that metadata and excludes main-menu skip from production; the DLL remains available under `assets/testing/` for fixtures.
 
 The byte-identical exported RC2 ROM passed two 1,800-frame headless melonDS cold boots: no-save startup reached the new-game introduction, and a private copy of an existing save reached the overworld through normal Continue. No Pokeweb materialization, memory edits, or old savestates were used. The build now rejects stale metadata or a staged main-menu skip. Host tools pass 135 tests with one existing skip, out of 136 total. The [startup audit](../pmc/w2-integration-startup-audit.json) records the results and remaining limits; the new ROM was not GUI-tested in DeSmuME here.
 
 RC2 SHA-256 is `3074da8263810c5576acbf0e64eb24aba4dbb5edd9caf3f822757f81b751c1ba`. Its stripped core hash is unchanged. Removing the testing DLL saves 320 PMC bytes including its allocator overhead: all-group post-fix free space is now 14,264 bytes, with a conservative transient minimum of 11,208 bytes. The earlier stage-7 coverage and memory tables below retain their original revision provenance; they are not a full mechanic rerun on RC2. Other acceptance gaps remain open.
+
+## Follow-up: remaining move handlers and RC3
+
+RC3 completes Thousand Arrows, Thousand Waves, Hyperspace Hole, Hyperspace Fury,
+Fairy Lock, Gear Up, Psychic Fangs, and Order Up. They reuse five existing
+on-demand groups; hooks, Fairy Lock lifetime, and Commander form storage remain
+resident. All eight registrations are White-2-only. The current registry has
+30 groups, 141 abilities, **153 moves**, 13 items, and 12 subordinate entries:
+319 entries total. Multi-Attack and Ivy Cudgel remain deferred for their items.
+
+All **70 root effect cases plus four follow-up actions** pass on RC3, with full
+turn completion in each suite. An additional 15 Raging Bull cases and six
+selected Gen 6/7 move regressions pass on the same ROM. The shared screen-break
+callback now runs native screen removal and Aurora Veil removal together,
+because the retail event dispatcher only invokes the first matching callback.
+The new [coverage ledger](../tests/battle/remaining-move-coverage-2026-10-06.json)
+records exact input hashes, cases, reports, negative controls, and limits.
+
+Psychic Fangs' previous imported animation referenced nonexistent resources in
+a SPA shared with Geomancy. RC3 uses Volt White 2 QoL's Egg Bomb replacement
+(script member 121), imported into member 706. Its only SPA, 326, was verified
+byte-identical in donor and release; no SPA replacement was needed. Geomancy
+and Laser Focus's particles remain unchanged. All nine Fangs cases pass with
+animations enabled. The other seven moves have earlier one-case animation
+smoke results on the identical core and unchanged assets; these are completion
+checks, not visual/audio certification.
+
+Current fast checks pass: 146 repository host tests plus one existing skip,
+185 battle unit tests, strict TypeScript, source privacy, stripped build,
+registry/RPM linkage and packaging, and Black 2 compile/static compatibility.
+An unmodified 1,800-frame RC3 cold boot reaches the normal four-entry menu,
+without a save, old savestate, memory edits, or the production menu-skip patch.
+This is not a new DeSmuME, hardware, or DSi certification.
+
+The versioned parent-directory artifact is
+`White2Upgrade-w2-integration-20261006-rc3.nds`, with SHA-256
+`017cc0e0fbecd23b79dc095134806ec7b0e08749d74fed465677f65798be4940`.
+The stripped core hash is
+`cadcc3fa9ea266283efd61c3b60401661343766e746a1feea12354d7a714bbbc`.
+Earlier ROMs and user saves are retained.
+
+RC3's current heap audit budgets 192,488 bytes with all groups post-fix,
+leaving **12,312 bytes**—only 24 bytes above the 12 KiB floor. Conservative
+expanded loading leaves 9,256 bytes. This transient limit and the acceptance
+gaps below remain open; RC3 is still a release candidate.
 
 ## Sources, commits, and delivered build
 
@@ -55,7 +100,7 @@ We retained the incoming resident **w2anim renderer**, **200 KiB PMC reservation
 
 We ported main's 44 missing White 2 move registrations and used main's implementations for overlapping moves. Required action ordering, called-move context, move history, targeting, extra-action execution, switching, revival, and reset services remain resident; grouped mechanic handlers remain on-demand. Groups load during mechanic registration, not only when a move is used, and remain loaded until battle cleanup.
 
-The final [declarative registry](../src/pokeweb_gameplay/battle_modules/registry.json) contains **30 groups, 141 abilities, 145 moves, and 13 items**, plus five field, two side, and five position entries: 311 entries total. These are registration counts, not a claim of universal Gen 6–9 support. Per-entry `white2_only` filtering keeps White 2 additions out of Black 2's static tables.
+The stage-7 [declarative registry](../src/pokeweb_gameplay/battle_modules/registry.json) contained **30 groups, 141 abilities, 145 moves, and 13 items**, plus five field, two side, and five position entries: 311 entries total. RC3's updated counts are above. These are registration counts, not a claim of universal Gen 6–9 support. Per-entry `white2_only` filtering keeps White 2 additions out of Black 2's static tables.
 
 The loader has stronger RPM/API bounds, pointer, relocation, and RAM-range checks; caches both success and failure for a battle; and refuses allocations that cannot fit. Shared cleanup disables registration, clears cached pointers, unloads in reverse order, and resets shared state. Normal exit, abnormal new-battle setup, and resident unload use that lifecycle. No per-event unload was introduced.
 

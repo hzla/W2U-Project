@@ -8,7 +8,7 @@ import { NARC } from "@pokeweb/nds/narc";
 import { exportModifiedRom } from "@pokeweb/pokeweb/exportRom";
 import { loadProjectFromRomBytes } from "@pokeweb/pokeweb/loader";
 import { configureHarnessRuntime, patchHarnessExpandedPartyGuard, patchHarnessSave, patchHarnessTrainer, validateHarnessRom } from "@pokeweb/pokeweb/battleHarness";
-import { prepareBw2TestBattleCodeInjection, stageCodeInjectionDll } from "@pokeweb/pokeweb/pmcModel";
+import { prepareBw2TestBattleCodeInjection, stageCodeInjectionDll, stageBundledMainMenuSkipDll } from "@pokeweb/pokeweb/pmcModel";
 import { detectBw2Upgrade } from "@pokeweb/pokeweb/black2UpgradeModel";
 import { getTestBattleConfig, patchTestBattleSaveMoveAnimations, rawSaveBytesFromDesmumeDsv } from "@pokeweb/pokeweb/testBattle";
 import type { HarnessPokemon } from "@pokeweb/pokeweb/battleHarness";
@@ -16,6 +16,7 @@ import { doublesDefinitions, doublesVariants, type DoublesCase } from "./move-ha
 import { parseRpm } from "@pokeweb/pokeweb/rpm";
 import { decodeRecord, markDirty } from "@pokeweb/pokeweb/projectStore";
 import { gen67Variants, type Gen67Expected } from "./move-handler-gen67-fixtures";
+import { remainingDefinitions, remainingVariants } from "./move-handler-remaining-fixtures";
 import { gen67MechanicVariants, type MechanicExpected } from "./gen67-mechanic-fixtures";
 import { multiVariants, type MultiCase } from "./move-handler-multi-fixtures";
 import { decompressCode } from "@pokeweb/nds/codeCompression";
@@ -31,6 +32,7 @@ const moveName = args.get("--move")!;
 if (args.has("--animations") && !["on", "off"].includes(args.get("--animations")!)) throw new Error("Animations must be on or off");
 const battleAnimationsEnabled = args.get("--animations") === "on";
 const definitions: Record<string, { id: number; type: number; power: number; category: number; accuracy: number; target?: number }> = {
+  ...remainingDefinitions,
   "gen67-audit": { id: 573, type: 14, power: 70, category: 2, accuracy: 100 },
   "gen67-abilities": { id: 150, type: 0, power: 0, category: 0, accuracy: 101, target: 7 },
   "gen67-items": { id: 150, type: 0, power: 0, category: 0, accuracy: 101, target: 7 },
@@ -112,8 +114,9 @@ const multiSuite = moveName === "rage-fist-multi";
 const doublesSuite = multiSuite || Object.hasOwn(doublesDefinitions, moveName);
 const focusedDoubles = multiSuite ? multiVariants() : doublesVariants(moveName);
 const mechanicAudit = moveName === "gen67-abilities" || moveName === "gen67-items";
-const gen67Audit = moveName === "gen67-audit" || mechanicAudit;
-const focusedGen67 = mechanicAudit ? gen67MechanicVariants(moveName === "gen67-abilities" ? "ability" : "item") : gen67Audit ? gen67Variants() : [];
+const remainingAudit = Object.hasOwn(remainingDefinitions, moveName);
+const gen67Audit = moveName === "gen67-audit" || mechanicAudit || remainingAudit;
+const focusedGen67 = remainingAudit ? remainingVariants(moveName) : mechanicAudit ? gen67MechanicVariants(moveName === "gen67-abilities" ? "ability" : "item") : gen67Audit ? gen67Variants() : [];
 if (!definition) throw new Error("Unsupported focused move suite");
 const moveId = definition.id, ruination = moveName === "ruination", barb = moveName === "barb-barrage";
 const direClaw = moveName === "dire-claw";
@@ -200,6 +203,7 @@ const probes = [
   { name: "damage", address: 0x021a5958, signature: "f0b587b01c1c051c20880191171c0e9e" },
   { name: "random", address: 0x021bd100, signature: "38b50c4d041c2869" },
 ];
+if (moveName === "fairy-lock") probes.push({name:"switch_prohibition",address:0x021b4b1c,signature:"f8b5071c0e1c151c1c1c"});
 if (gen67Audit || moveName === "last-respects") probes.push(
   {name:"move_registration",address:0x021c5b44,signature:"f0b585b00d1c"},
   ...(moveName === "last-respects" ? [{name:"faint_record",address:0x021a8b78,signature:"7847c04600c09fe5"}] : []),
@@ -685,6 +689,7 @@ for (const { file, player: savedPlayer, benchPlayer, benchPlayers, allyPlayer, b
   await writeFile(resolve(directory, file), save, { flag: "wx" });
 }
 export type MoveCase = DoublesCase & MultiCase & { id: string; audit?: Gen67Expected; mechanicAudit?: MechanicExpected; currentHp?: number; defenseStage?: number; blocked?: boolean;
+  checkSwitch?: boolean;
   allyStages?: number[]; expectedAllyStages?: number[]; expectedAllyMove?: number; allySubstitute?: boolean; allyFly?: boolean;
   forceMiss?: boolean; substitute?: boolean; setupSlot?: number; setupAccuracyRoll?: number; expectedStatus?: number;
   expectedPowers?: number[]; effectivePowers?: number[]; expectedActed?: boolean[];
@@ -2553,6 +2558,9 @@ const receipt = JSON.parse(await readFile(pokewebFile("src/assets/testbattle/Bat
 if (hash(template) !== receipt.dllSha256) throw new Error("Bundled harness receipt mismatch");
 for (const [name, expected] of Object.entries(receipt.sources)) if (hash(new Uint8Array(await readFile(pokewebFile(`runtime/battle-harness/${name}`)))) !== expected) throw new Error(`Stale harness source receipt: ${name}`);
 await prepareBw2TestBattleCodeInjection(project);
+// The synthetic test save bypasses New Game through a private fixture-only
+// menu patch. Never stage this patch in the production release build.
+await stageBundledMainMenuSkipDll(project);
 const configured = configureHarnessRuntime(template, 1, coaching || doublesSuite ? 1 : 0);
 stageCodeInjectionDll(project, "BattleHarnessW2.dll", configured);
 let multiRuntimeHash: string | undefined;

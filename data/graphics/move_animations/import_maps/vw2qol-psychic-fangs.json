@@ -1,0 +1,20 @@
+{
+  "source": "Volt White 2 QoL",
+  "archive": "/a/0/6/5",
+  "replacementMap": {"Egg Bomb": "Psychic Fangs"},
+  "verification": {
+    "sourceMember": 121,
+    "targetMember": 706,
+    "scriptBytes": 460,
+    "scriptSha256": "465025b00e6bf17283270ce76db8617b328eff47b1d8299ad6d1d6ba9a81f67d",
+    "particles": [{
+      "id": 326,
+      "bytes": 4804,
+      "sha256": "bc005af4e0a51eddbeca52b8880c4557108f2674fec5107bb35e91d1ebd43ae5",
+      "resources": 5,
+      "textures": 1,
+      "scriptReferenceOffsets": [90, 96, 142, 188, 234, 280],
+      "policy": "Identical to the production ROM member; do not stage an override."
+    }]
+  }
+}

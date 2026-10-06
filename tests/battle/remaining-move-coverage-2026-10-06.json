@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-06",
+  "scope": "White 2 remaining non-item-dependent move handlers",
+  "baseRevision": "de55c5965",
+  "pokewebFixtureDependencyRevision": "78b08f51eb64e919509eea0053e41ab5cff5e022",
+  "inputRomSha256": "017cc0e0fbecd23b79dc095134806ec7b0e08749d74fed465677f65798be4940",
+  "deliveredRom": "White2Upgrade-w2-integration-20261006-rc3.nds",
+  "strippedCoreSha256": "cadcc3fa9ea266283efd61c3b60401661343766e746a1feea12354d7a714bbbc",
+  "nativeEffectSuitesPassed": true,
+  "rootCases": 70,
+  "additionalFollowupActions": 4,
+  "effectReports": [
+    {"suite": "thousand-arrows", "cases": 10, "report": "work/move-handlers/thousand-arrows-20261006-184557-103683/result.json"},
+    {"suite": "thousand-waves", "cases": 8, "report": "work/move-handlers/thousand-waves-20261006-184557-90b264/result.json"},
+    {"suite": "hyperspace-hole", "cases": 10, "report": "work/move-handlers/hyperspace-hole-20261006-184557-b92c06/result.json"},
+    {"suite": "hyperspace-fury", "cases": 12, "report": "work/move-handlers/hyperspace-fury-20261006-184556-6781da/result.json"},
+    {"suite": "fairy-lock", "cases": 4, "report": "work/move-handlers/fairy-lock-20261006-184556-4aad1c/result.json"},
+    {"suite": "gear-up", "cases": 7, "report": "work/move-handlers/gear-up-20261006-184557-44d45c/result.json"},
+    {"suite": "psychic-fangs", "cases": 9, "animationsEnabled": true, "report": "work/move-handlers/psychic-fangs-20261006-184526-508ee0/result.json"},
+    {"suite": "order-up", "cases": 10, "report": "work/move-handlers/order-up-20261006-184557-86ad00/result.json"}
+  ],
+  "regressionReports": [
+    {"suite": "raging-bull", "cases": 15, "fullTurnValidated": false, "report": "work/move-handlers/raging-bull-20261006-184932-1c2e6d/result.json"},
+    {"suite": "gen67-audit", "cases": 6, "fullTurnValidated": true, "variants": ["freeze-dry-water", "freeze-dry-dual", "flying-press", "magnetic-flux-plus", "burn-up-fire", "anchor-shot"], "report": "work/move-handlers/gen67-audit-20261006-184933-26b1f1/result.json"}
+  ],
+  "animationSmoke": {
+    "passed": 8,
+    "failed": 0,
+    "reports": [
+      "work/move-handlers/thousand-arrows-20261006-183229-29e541/result.json",
+      "work/move-handlers/thousand-waves-20261006-183229-4c8bfa/result.json",
+      "work/move-handlers/hyperspace-hole-20261006-183229-0abdf6/result.json",
+      "work/move-handlers/hyperspace-fury-20261006-183229-d3ef81/result.json",
+      "work/move-handlers/fairy-lock-20261006-183229-e4a806/result.json",
+      "work/move-handlers/gear-up-20261006-183229-2ee0ef/result.json",
+      "work/move-handlers/order-up-20261006-183229-ee9e06/result.json",
+      "work/move-handlers/psychic-fangs-20261006-184526-508ee0/result.json"
+    ],
+    "reportInputRomHashes": [
+      "b5f05a59c638ad51931e37d87ccc78645b4b60d702416e8da243953b247eae38",
+      "017cc0e0fbecd23b79dc095134806ec7b0e08749d74fed465677f65798be4940"
+    ],
+    "previousPsychicFangsFailure": {
+      "report": "work/move-handlers/psychic-fangs-20261006-183229-54bfa6/result.json",
+      "failure": "ARM9 data abort in native particle processing after damage",
+      "scriptSha256": "ea05b72cf3ec8dd519c198cfff8807e3d0f7f6e9601ea47f3cd30146ec370b0d",
+      "spa748Sha256": "04ec419c2ff10ba525a08976e2fa408ee10087c0a49aafaeada5b3f9ddbf383a",
+      "diagnosis": "The imported script requests SPA 748 resources 2 through 5; the staged SPA has only two resources. Geomancy shares this SPA, so overwriting it is not a safe repair.",
+      "status": "Resolved by importing the Egg Bomb replacement from Volt White 2 QoL; the original failure is retained as historical evidence."
+    },
+    "psychicFangsRepair": {
+      "source": "Volt White 2 QoL, a/0/6/5 member 121 (Egg Bomb)",
+      "targetMember": 706,
+      "scriptSha256": "465025b00e6bf17283270ce76db8617b328eff47b1d8299ad6d1d6ba9a81f67d",
+      "spa": 326,
+      "spaSha256": "bc005af4e0a51eddbeca52b8880c4557108f2674fec5107bb35e91d1ebd43ae5",
+      "particlePolicy": "Donor and release SPA 326 are byte-identical; no particle override or remap is needed. Shared Geomancy and Laser Focus SPAs are unchanged.",
+      "animationsEnabledCasesPassed": 9,
+      "fullTurnValidated": true,
+      "inputRomSha256": "017cc0e0fbecd23b79dc095134806ec7b0e08749d74fed465677f65798be4940",
+      "report": "work/move-handlers/psychic-fangs-20261006-184526-508ee0/result.json"
+    },
+    "scopeNote": "Seven one-case smoke runs used the pre-asset-repair ROM. Their core and move assets are unchanged in RC3; the repaired Psychic Fangs suite has nine animation-enabled cases on RC3. Completion checks are not visual or audio acceptance."
+  },
+  "negativeControls": [
+    {"suite": "order-up", "variant": "curly", "baseline": "White2Upgrade-w2-integration-20261006-rc2.nds", "rejection": "Missing Attack boost", "report": "work/move-handlers/order-up-20261006-182605-95de9c/result.json"},
+    {"suite": "psychic-fangs", "variant": "reflect", "baseline": "White2Upgrade-w2-integration-20261006-rc2.nds", "rejection": "2048 damage modifier instead of 4096", "report": "work/move-handlers/psychic-fangs-20261006-183036-d1b50e/result.json"}
+  ],
+  "priorBuildRegressionReports": [
+    {"suite": "raging-bull", "cases": 15, "report": "work/move-handlers/raging-bull-20261006-182412-68fb78/result.json", "inputRomSha256": "a23e7672164f776530606516830fb401fc56f2e42728c7d2c6cdbc028dfd1bee"},
+    {"suite": "gen67-audit", "cases": 6, "report": "work/move-handlers/gen67-audit-20261006-182413-1dea52/result.json", "inputRomSha256": "a23e7672164f776530606516830fb401fc56f2e42728c7d2c6cdbc028dfd1bee"},
+    {"suite": "tar-shot", "cases": 15, "report": "work/move-handlers/tar-shot-20261006-181244-058ee9/result.json", "inputRomSha256": "3ae7119e25e429825bf94266606f9fae4b54aa7404eaca30fe2197c4ce506535"}
+  ],
+  "fastChecks": {
+    "battleUnitTests": {"passed": 185, "failed": 0},
+    "repositoryHostTests": {"passed": 146, "skipped": 1, "failed": 0},
+    "strictTypescript": "passed with the integration Pokeweb checkout",
+    "strippedBuild": "passed",
+    "rpmRegistryExportsImportsAndStaging": "passed",
+    "sourcePrivacy": "passed",
+    "black2StaticCompatibility": {"passed": true, "hooks": 174, "imports": 231, "rawAnchors": 48, "behavioralBaselineRefreshed": false}
+  },
+  "registry": {"groups": 30, "abilities": 141, "moves": 153, "items": 13, "fields": 5, "sides": 2, "positions": 5},
+  "pmcHeapAudit": {
+    "heapBytes": 204800,
+    "coreFixedBytes": 92576,
+    "coreBssBytes": 4032,
+    "childFixedBytes": 84896,
+    "allGroupsFreeBytes": 12312,
+    "requiredFixedHeadroomBytes": 12288,
+    "worstExpandedLoadFreeBytes": 9256,
+    "warning": "Fixed all-group margin passes by only 24 bytes. The conservative transient load margin is below 12 KiB; game heaps are separate."
+  },
+  "normalColdBoot": {"passed": true, "frames": 1800, "normalMenuEntries": 4, "mainMenuSkip": false, "romModified": false, "savestateUsed": false, "ramWrittenForTest": false, "inputRomSha256": "017cc0e0fbecd23b79dc095134806ec7b0e08749d74fed465677f65798be4940", "report": "work/remaining-normal-boot-rc3-donor-20261006/result.json"},
+  "deferred": ["Multi-Attack", "Ivy Cudgel"],
+  "limits": ["Supported US White 2 revision 0 in DS mode", "No browser emulator used", "Black 2 compile/static checks only", "No hardware, DSi, wild-escape, network or multi-trainer certification", "Local detailed reports are generated evidence under ignored work/, not distributed fixtures"]
+}

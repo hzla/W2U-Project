@@ -31,7 +31,7 @@ class IntegrationIsolation(unittest.TestCase):
         keys = {(entry[0], entry[1]) for module in original["modules"] for entry in module["entries"]}
         added = [(module, entry) for module in data["modules"] for entry in module["entries"]
                  if (entry[0], entry[1]) not in keys]
-        self.assertEqual(sum(entry[0] == "move" for _, entry in added), 44)
+        self.assertEqual(sum(entry[0] == "move" for _, entry in added), 52)
         for module, entry in added:
             self.assertTrue(module.get("white2_only") or
                             module.get("entry_overrides", {}).get(":".join(entry[:2]), {}).get("white2_only"))
