@@ -333,6 +333,13 @@ Notes:
   staged since (section "Fix: Mega Raichu X / Y and Mega Slowbro battle sets").
 - Black 2 keeps the PWAN runtimes (Black 2 is deferred on this branch); their sources and the PWAN tools are unchanged.
 - Pokeweb's sprite workflow is unchanged: it still writes PWAN assets, which the White 2 build converts.
+- w2anim (the standalone sprite tool, MegaB2W2 `tools/w2anim`) exports into a W2U checkout in this same format
+  (2026-10-06, `python -m w2anim w2u project.yml --w2u W2U-Project`, or Export > White2Upgrade Checkout): the
+  PWAN files, the `config.bin` row, and the carrier block's palettes (18 normal, 19 the exact shiny: front and back
+  share one 15-colour palette) and first frames in the layer that owns the block (`pokegra_battle_extra` from the
+  extra range, the staged `data/graphics/pokegra` folder for blocks 650-899; Gen 1-5 base forms come from the base
+  ROM and are refused). Art over 96x96 is scaled to fit and grounded on row 95, as Pokeweb / `ground_pwan_assets.py`
+  do. Checked: a PokeRogue Mega Rayquaza exported, built and seen in battle (local test only; not committed).
 
 ### Fix: one-frame texture blackouts when several sprites change frame together (2026-10-05)
 
@@ -813,10 +820,23 @@ Form data fixed (hzla's `5351a2970` "add gen 8/9 alt form assets" copied the bas
 The placeholder abilities mattered: a form change copies the form record's ability (`ApplyFormBattleData`), so a
 Palafin turned Hero became an Overgrow Palafin and never announced itself.
 
-Still wrong in the same commit, not fixed here (forms these abilities don't use; for hzla): Zacian / Zamazenta
-Crowned (stats, Steel type), Calyrex Ice / Shadow Rider (stats, types, As One), Indeedee-F, Basculegion-F,
-Oinkologne-F, Enamorus Therian and Gimmighoul Roaming (stats), Ogerpon's masks (Grass only; Water / Fire / Rock
-missing).
+The rest of that commit's wrong records were corrected afterwards from Showdown's `data/pokedex.ts` (2026-10-06;
+form order checked on each form's sprite):
+
+| Record | Form | Fixed |
+|---|---|---|
+| 1251 / 1252 | Zacian Crowned Sword / Zamazenta Crowned Shield | stats; Fairy / Steel, Fighting / Steel |
+| 1255 / 1256 | Calyrex Ice Rider / Shadow Rider | stats; Psychic / Ice, Psychic / Ghost; As One (Glastrier / Spectrier) |
+| 1249 | Indeedee-F | stats; Own Tempo / Synchronize / Psychic Surge |
+| 1257 | Basculegion-F | stats |
+| 1259 | Oinkologne-F | stats; Aroma Veil / Gluttony / Thick Fat |
+| 1258 | Enamorus Therian | stats; Overcoat |
+| 1266 | Gimmighoul Roaming | stats; Run Away |
+| 1267-1269 | Ogerpon Wellspring / Hearthflame / Cornerstone Mask | Grass / Water, Grass / Fire, Grass / Rock; Water Absorb / Mold Breaker / Sturdy |
+
+Data only: Zacian / Zamazenta still need their item-driven form change, and Ogerpon's masks the held mask, to be
+reached in battle. Checked: the built personal records decode to these values; Cornerstone Ogerpon takes Ember
+neutrally (`wave_forms.yml` FORM_DATA_OGERPON).
 
 Differences from Showdown: Ice Face is restored in hail (W2U has no snow). Helping Hand on a commanding Tatsugiri
 misses (Showdown lets it through; it changes nothing there).
@@ -845,4 +865,23 @@ Ball in a wild battle).
 Not covered by a scenario: Ice Face restored on entry in hail, Hunger Switch resetting on switching out, Tatsugiri
 switching out once freed (the harness can't answer the replacement prompt after Dondozo faints), Gulp Missile through
 Dive.
+
+## Fix: Mega Rayquaza is chosen, not triggered by Dragon Ascent (2026-10-06)
+
+W2U Mega Evolved Rayquaza whenever it used Dragon Ascent, and only then: the move was the trigger, START did
+nothing for it, and its other moves never Mega Evolved it. In Showdown (Gen 6 / 7 too; `requiredMove`) and in
+MegaB2W2, knowing Dragon Ascent only makes the Mega available: the trainer chooses it (START on the move screen; the
+AI for a foe) with any move, and it holds any item. `w2u_mega.cpp`:
+- `GetMegaFormForBattleMon` gives Rayquaza its Mega form when its own move set (`truth`, not Mimic's surface moves)
+  has Dragon Ascent, as a Mega Stone does for the others; selection, the foe's automatic Mega and the server check all
+  go through it. The move-triggered path (`GetMoveTriggeredMegaFormForAction`) is gone.
+- Announcement: "<trainer>'s fervent wish has reached <Rayquaza>!" (bank 18 1451-1453, borrowed from MegaB2W2) in
+  place of the Mega Stone message.
+- `MegaTrainerClientForSlot` now returns the battle client (`MonIDToClientID`, as MegaB2W2's `PokeIDToClientID`):
+  TRNAME takes a client, and the battler slot only matched it for the player's first Pokemon; the foe's message
+  (slot 12) stopped the battle. (The stone message has no trainer name, so it never showed.)
+
+Checked (`wave_mega.yml`): START + ExtremeSpeed Mega Evolves it ("AAA's fervent wish...", then Delta Stream); Dragon
+Ascent without START does not; without Dragon Ascent START does nothing; a foe Rayquaza with Dragon Ascent Mega
+Evolves on its own ("Elena's fervent wish..."). The other Mega scenarios still pass (10 / 10).
 

@@ -1,12 +1,12 @@
 [SPECIES_1256]
 "Base HP" = 100
-"Base Attack" = 80
+"Base Attack" = 85
 "Base Defense" = 80
-"Base Speed" = 80
-"Base Special Attack" = 80
-"Base Special Defense" = 80
+"Base Speed" = 150
+"Base Special Attack" = 165
+"Base Special Defense" = 100
 "Primary Type" = "TYPE_PSYCHIC"
-"Secondary Type" = "TYPE_GRASS"
+"Secondary Type" = "TYPE_GHOST"
 "Capture Rate" = 3
 "Evolution Stage" = 3
 "EV Yield" = 3
@@ -19,9 +19,9 @@
 "Experience Group" = 5
 "Egg Group 1" = 15
 "Egg Group 2" = 15
-"Primary Ability" = 127
-"Secondary Ability" = 127
-"Hidden Ability" = 127
+"Primary Ability" = 267
+"Secondary Ability" = 267
+"Hidden Ability" = 267
 "Escape Rate" = 0
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0

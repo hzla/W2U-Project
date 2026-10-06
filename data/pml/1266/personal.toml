@@ -1,10 +1,10 @@
 [SPECIES_1266]
 "Base HP" = 45
 "Base Attack" = 30
-"Base Defense" = 70
-"Base Speed" = 10
+"Base Defense" = 25
+"Base Speed" = 80
 "Base Special Attack" = 75
-"Base Special Defense" = 70
+"Base Special Defense" = 45
 "Primary Type" = "TYPE_GHOST"
 "Secondary Type" = "TYPE_GHOST"
 "Capture Rate" = 45
@@ -19,9 +19,9 @@
 "Experience Group" = 5
 "Egg Group 1" = 15
 "Egg Group 2" = 15
-"Primary Ability" = 155
-"Secondary Ability" = 155
-"Hidden Ability" = 155
+"Primary Ability" = 50
+"Secondary Ability" = 50
+"Hidden Ability" = 50
 "Escape Rate" = 0
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0

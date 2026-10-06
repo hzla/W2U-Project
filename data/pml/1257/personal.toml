@@ -1,9 +1,9 @@
 [SPECIES_1257]
 "Base HP" = 120
-"Base Attack" = 112
+"Base Attack" = 92
 "Base Defense" = 65
 "Base Speed" = 78
-"Base Special Attack" = 80
+"Base Special Attack" = 100
 "Base Special Defense" = 75
 "Primary Type" = "TYPE_WATER"
 "Secondary Type" = "TYPE_GHOST"

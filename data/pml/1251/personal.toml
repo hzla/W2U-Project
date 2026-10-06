@@ -1,12 +1,12 @@
 [SPECIES_1251]
 "Base HP" = 92
-"Base Attack" = 120
+"Base Attack" = 150
 "Base Defense" = 115
-"Base Speed" = 138
+"Base Speed" = 148
 "Base Special Attack" = 80
 "Base Special Defense" = 115
 "Primary Type" = "TYPE_FAIRY"
-"Secondary Type" = "TYPE_FAIRY"
+"Secondary Type" = "TYPE_STEEL"
 "Capture Rate" = 10
 "Evolution Stage" = 3
 "EV Yield" = 192
