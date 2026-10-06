@@ -14,14 +14,14 @@ tests. "Wired" below is not a claim of new emulator or full regression coverage.
 | Move | Implementation | Focused tests | Status |
 | --- | --- | --- | --- |
 | Last Respects (854) | Existing `moves/flow` reads a resident per-trainer faint-event counter; native committed-faint hook and party-membership ownership; cap 5,050 | 5 doubles cases: fresh battle, elapsed turns, allied self-KO, opposing self-KO and one faint on each side; exact power/HP/PP; compiled caps, simulation, lifetime, ownership and clean-US W2/B2 guards | Implemented for non-multi battles; multi-trainer battles explicitly fail |
-| Revival Blessing (863) | Existing `moves/flow` starts a resident adapter transaction; native fainted-party chooser and authoritative revival work, with no item consumption or user switch | 9 cases: either fainted choice, living-choice retry, cancel, odd/even half HP, no fainted member, Heal Block, native AI revival and a doubles revive/faint sequence proving 150-power Last Respects; compiled native layouts, transaction bounds, ownership, reset and Sketch restrictions | Implemented, focused-tested; actual revived-Mega, multi/network and replay coverage pending |
+| Revival Blessing (863) | Existing `moves/flow` starts a resident adapter transaction; native fainted-party chooser and authoritative revival work, with no item consumption or user switch | 9 singles/doubles cases: either fainted choice, living-choice retry, cancel, odd/even half HP, no fainted member, Heal Block, native AI revival and a doubles revive/faint sequence proving 150-power Last Respects; additionally local owned-party revival in the Rage Fist multi suite; compiled native layouts, transaction bounds, ownership, reset and Sketch restrictions | Implemented, focused-tested; actual revived-Mega, broader multi/network and replay coverage pending |
 | Dragon Darts (751) | Existing `moves/flow` expands unredirected doubles targets, then uses native one-pass eligibility filtering; resident hit-count/spread adapters preserve per-foe Pressure and called-Prankster origin | 27 doubles cases: two full-power hits, ally selection, either/both type-immune/protected/airborne foes, either accuracy miss, selected/other/immune Follow Me centers, Pressure, Wonder Guard/Mold Breaker, Parental Bond, Wide Guard, Substitute, direct and Rest/Sleep Talk-called Prankster; exact HP/doll/PP, target counts and accuracy-roll counts plus 6 compiled/native ABI checks | Implemented, focused doubles-tested; Ice Face, Ally Switch, triples and multi-battle coverage pending |
 | Shed Tail (880) | Existing `moves/flow` pays half-ceil HP, creates the native quarter-HP Substitute, then uses native replacement selection; resident switch-out filter transfers only the doll to both server and client | 19 singles cases: odd/even boundaries, low HP, existing doll, no bench, Sitrus ordering, trapping, hazards, actual incoming damage to the doll, excluded stages/Focus Energy/Gastro Acid/Aqua Ring/Power Trick, and an ordinary Baton Pass control; compiled preflight, simulation, two-copy lifetime and clean-US W2/B2 checks | Implemented, focused-tested; multi-battle ownership and revived-Mega coverage pending |
 | Chilly Reception (881) | Existing `moves/terrain` snow transaction followed by native replacement selection; resident once-per-turn preparation message only for direct selection | 9 singles cases: ordinary/native choice, existing snow, Rain replacement, Icy Rock, Mean Look bypass, entry hazards, Sleep Talk without early cue, no bench and both effects unavailable; compiled callback and resident turn-boundary guards | Implemented, focused-tested |
 | Snowscape (883) | Existing `moves/terrain` queue plus resident logical snow; native cold-weather transport preserves distinct Hail, duration and delayed display ownership | 19 singles cases: no chip, Ice physical Defense only, 5/8-turn expiry, repeat failure, Hail/Rain replacement, restored hail chip, Ice Body, Snow Cloak accuracy boundary, Slush Rush, Cloud Nine/Air Lock, Veil, Weather Ball and Synthesis; compiled lifecycle/transport and clean-US W2/B2 call checks | Implemented, focused-tested; native hail graphics reused, no new assets |
 | Shell Side Arm (801) | Final-target damage forecast in existing `moves/type`; per-action category/contact cache and separate retaliation history; no shared move-data mutation | 20 singles and 2 doubles cases: raw/staged stats, rounding ties, Wonder Room, poison, excluded item/ability modifiers, Helmet/Rough Skin/Fluffy, Counter/Mirror Coat and Follow Me's final target; compiled forecast, simulation and native ABI checks | Implemented, focused-tested; broader AI/multi-battle coverage pending |
 | Court Change (756) | Transactional native side-factor re-registration in existing `moves/screens`; preserves duration/layers, swaps custom Web/Veil ownership, excludes current-turn guards | 16 doubles cases: empty sides, Reflect/Light Screen and Light Clay durations, hazard layers, Mist/Safeguard/Tailwind/Lucky Chant, Web/Veil ownership, actual damage and screen non-stacking; compiled asymmetric duration/pledge/guard checks | Implemented, focused doubles-tested; future entry/expiry and multi-battle coverage pending |
-| Rage Fist (889) | Battle-long resident per-party direct-hit counter; existing `moves/flow` power callback; narrow Disguise/Transform services | 12 doubles cases: 0/1/2/5/6/7 hits, Double Kick, Skill Link Bullet Seed, Substitute, Disguise, native Transform and Mimic registration; compiled caps/simulation/self-hit/lifetime guards | Implemented, focused doubles-tested; native switch/revival coverage pending |
+| Rage Fist (889) | Battle-long resident per-party direct-hit counter; existing `moves/flow` power callback; narrow Disguise/Transform services | 12 existing doubles cases plus 9 native multi cases: 0/1/2/6/7 hits/cap, AI partner isolation, fresh replacement history, switch-back persistence, and faint/revival/switch-back persistence; reversed revival → fresh-battle rollback check; compiled caps/simulation/self-hit/lifetime guards | Implemented, focused doubles and local multi-tested; networking and other multi configurations unverified |
 | Teatime (752) | Snapshot eligible native-filtered recipients, then synchronous native consumption/temporary berry work in `moves/flow` | 16 doubles cases: four mixed berries, full HP/no status, no holders, Unnerve, Magic Room, Embargo, Substitute/hiding, Cheek Pouch, Symbiosis, Ion Deluge/Electrify, three absorbers, retained absorber berry and Ground holder; compiled bounds/duplicate/transaction guards | Implemented, focused doubles-tested |
 | Doodle (867) | Atomic active-ally ability transaction in existing `moves/ability`; native ability work preserves party truth and re-registers changed abilities | 10 doubles cases: two/one/no changes, protected user/partner/target, Receiver asymmetry, custom Fur Coat registration, repeat no-op; compiled restriction/capacity checks and old-ROM negative control | Implemented, focused doubles-tested |
 | Decorate (777) | Native target boosts in `moves/stats`; hiding filter and narrow Crafty Shield correction | 9 doubles cases: boosts/caps, Simple, Contrary, Protect, Substitute, Fly, Crafty Shield, Magic Bounce | Implemented, focused doubles-tested |
@@ -174,7 +174,10 @@ Incomplete specification/data (2):
 
 Related systems not implemented by this batch: Hunger Switch (Aura Wheel),
 Utility Umbrella (Hydro Steam), Loaded Dice (Triple Axel), Dynamax and Tera.
-Existing BW2 protection success odds and Parental Bond's half-power rule remain.
+Existing BW2 protection success odds remain. The later Gen 6/7 ability audit
+replaces Parental Bond's old half-power rule with Gen 7 quarter final damage
+and removes Disguise's modern HP cost; see the
+[ability/item audit](gen6-gen7-ability-item-audit.md).
 No animation, learnset, new item or global generation-rules migration is claimed.
 
 ## Verification and build
@@ -247,8 +250,9 @@ player commands, and restore one battle-start snapshot per case. The new input
 driver selects move slots and explicit ally/foe targets through signature-pinned
 native UI phases. HP/stages and selected major statuses are bounded pre-input
 fixtures; protection, hiding, traps, hazards and Heal Block use real move setup.
-No battle commands or calculated effects are overwritten. Triples and
-multi-battle ownership are not emulator-tested.
+No battle commands or calculated effects are overwritten. Triples remain
+unverified; the separate Rage Fist suite below covers local multi ownership,
+not the other mechanics in this doubles batch.
 
 The tests exposed and fixed native direct-stat Substitute rejection and
 MUST_HIT status reachability during Fly. Boosts use native work (including
@@ -274,3 +278,21 @@ critical odds unchanged; Costar/Opportunist/Mirror Herb depend on separate
 systems. Full prize payout, Baton Pass, switching/teardown stress, drain-induced
 KO and Mortal Spin contact-KO remain outside this native doubles case set;
 compiled guards are not substitutes for those emulator regressions.
+
+## Rage Fist native multi validation (2026-10-05)
+
+`rage-fist-multi` passed all 9 cases on the current main ROM, plus 2 reversed
+cases proving that a faint/revival timeline cannot leak hit history into the
+restored fresh battle. Setup requires four separate native trainer parties,
+mode 3 and active IDs `0/6/12/18`; NPCs take real AI turns. Power is checked
+against observed direct hits, with independent damage, committed HP, PP and
+next-command assertions. The existing production handler needed no changes.
+
+The test-only native setup adapter passed 6 compiled ARM946 argument/relocation
+checks; 177 battle host tests, 89 repository tool tests and strict fixture
+TypeScript checks passed. Fixture ROM deletion and memory-snapshot release were
+verified; saves and ignored reports remain. Original inputs and Pokeweb were
+unchanged. These fixtures run in DS mode, not DSi/network/replay or B2.
+Last Respects remains non-multi-only.
+
+Usage and future-suite guidance: [battle test reference](../tests/battle/README.md#native-multi-trainer-harness-rage-fist).

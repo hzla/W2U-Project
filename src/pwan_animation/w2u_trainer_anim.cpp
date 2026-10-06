@@ -1,3 +1,4 @@
+#include "util/main_ram.h"
 #include "nds/fs.h"
 #include "pwan_types.h"
 #include "w2u_pwan_archive.h"
@@ -24,8 +25,6 @@
 #define MCSS_FLAGS_LOADED (1u << 13)
 #define MCSS_FLAGS_PALETTE_UPDATE (1u << 12)
 #define MCSS_INDEX_OFFSET 0x148u
-#define MAIN_RAM_START 0x02000000u
-#define MAIN_RAM_END 0x02400000u
 
 namespace w2u {
 namespace trainer_anim {
@@ -100,7 +99,7 @@ static volatile u16 *const Vcount = (volatile u16 *)0x04000006;
 static b32 MainRam(const void *ptr)
 {
     const u32 value = (u32)ptr;
-    return value >= MAIN_RAM_START && value < MAIN_RAM_END;
+    return w2u::IsMainRamAddress(value);
 }
 
 static b32 ResourcesReady(const void *mcss)

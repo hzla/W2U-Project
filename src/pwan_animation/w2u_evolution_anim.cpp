@@ -1,3 +1,4 @@
+#include "util/main_ram.h"
 #include "species_ids.h"
 #include "nds/fs.h"
 #include "pwan_types.h"
@@ -48,8 +49,6 @@ extern "C" void *memset(void *dst, int value, unsigned int size)
 #define W2U_VRAMCNT_MST_MAIN_OBJ 0x02u
 #define W2U_VRAM_LCDC_ENABLE 0x80u
 #define W2U_MCSS_FLAGS_OFFSET 0x140u
-#define W2U_MAIN_RAM_START 0x02000000u
-#define W2U_MAIN_RAM_END 0x02400000u
 #define W2U_EVO_WORK_INDEPENDENT_MGR_OFFSET 0x58u
 #define W2U_INDEP_MGR_POKE0_OFFSET 0x08u
 #define W2U_INDEP_MGR_POKE1_OFFSET 0x0cu
@@ -253,7 +252,7 @@ static Graphic3DEndDrawFn const EvoGraphicEndDraw_Fn =
 static b32 IsLikelyMainRamPointer(const void *ptr)
 {
     const u32 value = (u32)ptr;
-    return value >= W2U_MAIN_RAM_START && value < W2U_MAIN_RAM_END;
+    return w2u::IsMainRamAddress(value);
 }
 
 static b32 ReadRange(AssetId assetId, u32 offset, void *buffer, u32 size)

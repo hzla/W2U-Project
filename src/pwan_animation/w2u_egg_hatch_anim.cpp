@@ -1,3 +1,4 @@
+#include "util/main_ram.h"
 #include "species_ids.h"
 #include "nds/fs.h"
 #include "pwan_types.h"
@@ -23,8 +24,6 @@
 #define W2U_EGG_BASE_Y 56u
 #define W2U_MCSS_FLAGS_OFFSET 0x140u
 #define W2U_MCSS_FLAGS_VANISH_SHIFT 11u
-#define W2U_MAIN_RAM_START 0x02000000u
-#define W2U_MAIN_RAM_END 0x02400000u
 
 namespace w2u {
 namespace egg_hatch_anim {
@@ -184,7 +183,7 @@ static EggFrameTailFn const Egg_FrameTail_Fn = (EggFrameTailFn)0x021DE939u;
 static b32 IsLikelyMainRamPointer(const void *ptr)
 {
     const u32 value = (u32)ptr;
-    return value >= W2U_MAIN_RAM_START && value < W2U_MAIN_RAM_END;
+    return w2u::IsMainRamAddress(value);
 }
 
 static u32 GetMcssFlags(void *mcss)

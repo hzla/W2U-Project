@@ -1,0 +1,24 @@
+{
+  "format": "w2u-gen67-mechanic-coverage-1",
+  "policy": "First-pass scenarios, not exhaustive description or doubles coverage. Gen 7 conversion/Gale Wings/Protean/Parental Bond/Disguise rules; native BW2 critical damage. Coverage lists authored native scenarios, not a guarantee that all interaction clauses pass.",
+  "coveredAbilityIds": [165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,226,227,228,229,230,231,232],
+  "scheduledAbilityIds": [],
+  "pendingAbilities": [
+    {"id":189,"name":"Primordial Sea","reason":"Explicitly blocked: strong-weather system is out of scope"},
+    {"id":190,"name":"Desolate Land","reason":"Explicitly blocked: strong-weather system is out of scope"},
+    {"id":191,"name":"Delta Stream","reason":"Explicitly blocked: strong-weather system is out of scope"},
+    {"id":225,"name":"RKS System","reason":"Explicitly blocked: Silvally/Memory typing system and item-ID allocation are out of scope"}
+  ],
+  "coveredItems": [
+    {"id":115,"name":"Terrain Extender"}, {"id":121,"name":"Assault Vest"},
+    {"id":122,"name":"Luminous Moss"}, {"id":123,"name":"Maranga Berry"},
+    {"id":114,"name":"Protective Pads"}, {"id":126,"name":"Roseli Berry"},
+    {"id":127,"name":"Safety Goggles"}, {"id":128,"name":"Snowball"},
+    {"id":129,"name":"Weakness Policy"}, {"id":485,"name":"Electric Seed"},
+    {"id":486,"name":"Grassy Seed"}, {"id":487,"name":"Psychic Seed"},
+    {"id":488,"name":"Misty Seed"}
+  ],
+  "excludedItems": [{"id":125,"name":"Fairy Feather","reason":"Introduced in Gen 9"}],
+  "uncoveredInteractions": ["Doubles ally protection and shared auras", "Mold Breaker and ability-copy restrictions", "Baton Pass, switching, reload and teardown", "Multistrike, Substitute and item-removal exceptions", "General/Mega form transitions", "Gen 6/7 items not implemented by this repository"],
+  "sources": ["https://bulbapedia.bulbagarden.net/wiki/Category:Abilities_introduced_in_Generation_VI", "https://bulbapedia.bulbagarden.net/wiki/Category:Abilities_introduced_in_Generation_VII"]
+}

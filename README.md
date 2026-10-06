@@ -28,6 +28,30 @@ and Black 2 behavioral regression coverage is not implied.
 Battle logging repurposes Wi-Fi/Pal Pad save blocks. Back up saves and read the
 [save-format and compatibility notes](docs/battle-log-save-format.md) before use.
 
+## Automated Battle Tests
+
+Move/ability/item scenarios, native headless runners, independent assertions, and
+their host tests live in [`tests/battle/`](tests/battle/README.md).
+Run from this repository root:
+
+```sh
+python3 tools/test_battle.py unit
+python3 tools/test_battle.py typecheck
+python3 tools/test_battle.py ability --suite fluffy --rom build-stripped/White2Upgrade.nds
+python3 tools/test_battle.py ability --suite gen67 --rom ./game.nds --continue-on-failure
+python3 tools/test_battle.py item --suite gen67 --rom ./game.nds --continue-on-failure
+python3 tools/test_battle.py move --move gen67-audit --rom build-stripped/White2Upgrade.nds
+python3 tools/test_battle.py move --move rage-fist-multi --rom build-stripped/White2Upgrade.nds
+```
+
+Native runs require headless melonDS and a Pokeweb checkout with its Node
+dependencies; see the test reference for portable dependency configuration.
+New evidence goes into ignored `work/`; generated fixture ROMs and snapshots
+are cleaned up, while fixture saves are retained by default.
+See the [Gen 6/7 ability/item audit](docs/gen6-gen7-ability-item-audit.md) for
+handler fixes, the selected Gen 7 policies, explicit blockers and verification
+limits.
+
 ## Runtime Architecture
 
 | Component | White 2 | Black 2 |
@@ -184,10 +208,10 @@ ninja -C build-stripped src/stage_w2u_battle_modules.stamp \
 
 Packaging checks cover registry consistency, child exports/imports, stripped
 RPMs, hook ownership, staged modules, and heap budgeting. Host tests are not
-emulator gameplay tests. Focused headless move-interaction tests use the separate
-Pokeweb Serverless harness; recorded per-move coverage and limitations are in
-the progress ledger. Do not refresh compatibility baselines just to hide a
-failing check.
+emulator gameplay tests. Focused headless move/ability tests live in
+`tests/battle/`; Pokeweb provides the production ROM/save editing dependency.
+Recorded per-move coverage and limitations are in the progress ledger. Do not
+refresh compatibility baselines just to hide a failing check.
 
 For new mechanics, prefer an existing cohesive module group, compose native
 effects where appropriate, and keep hooks/shared state resident. Update the

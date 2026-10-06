@@ -1,3 +1,4 @@
+#include "util/main_ram.h"
 #include "species_ids.h"
 #include "nds/fs.h"
 #include "pwan_types.h"
@@ -44,8 +45,6 @@
 #define W2U_REG_VCOUNT ((volatile u16 *)0x04000006)
 #define W2U_MCSS_VCOUNT_LOW 192u
 #define W2U_MCSS_VCOUNT_HIGH 200u
-#define W2U_MAIN_RAM_START 0x02000000u
-#define W2U_MAIN_RAM_END 0x02400000u
 
 namespace w2u {
 namespace nonbattle_mcss {
@@ -198,7 +197,7 @@ static McssDelFn const MCSS_Del_Fn = (McssDelFn)0x0201AAADu;
 static b32 IsLikelyMainRamPointer(const void *ptr)
 {
     const u32 value = (u32)ptr;
-    return value >= W2U_MAIN_RAM_START && value < W2U_MAIN_RAM_END;
+    return w2u::IsMainRamAddress(value);
 }
 
 static b32 ReadRange(AssetId assetId, u32 offset, void *buffer, u32 size)

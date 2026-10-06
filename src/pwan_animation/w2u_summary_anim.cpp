@@ -1,3 +1,4 @@
+#include "util/main_ram.h"
 #include "species_ids.h"
 #include "nds/fs.h"
 #include "pwan_types.h"
@@ -24,8 +25,6 @@
 #define W2U_SUMMARY_SETTLE_FRAMES 2u
 #define W2U_SUMMARY_BASE_Y 40
 #define W2U_SUMMARY_BASELINE_BOTTOM 82
-#define W2U_MAIN_RAM_START 0x02000000u
-#define W2U_MAIN_RAM_END 0x02400000u
 #define W2U_MCSS_POS_OFFSET 0xe0u
 #define W2U_MCSS_OFFSCREEN_POS 0x00800000u
 
@@ -348,7 +347,7 @@ static SummaryAssetId GetAssetForSpeciesSide(SummaryPokemonIdentity identity, b3
 static b32 IsAlignedMainRamPtr(const void *ptr)
 {
     const u32 p = (u32)ptr;
-    return p >= W2U_MAIN_RAM_START && p < W2U_MAIN_RAM_END && (p & 3u) == 0;
+    return w2u::IsMainRamAddress(p) && (p & 3u) == 0;
 }
 
 static b32 SameRawObservedSignature(SummaryWorkView *work,

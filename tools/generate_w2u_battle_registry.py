@@ -19,7 +19,7 @@ KIND_ENUM = {
 }
 
 EXPECTED_PRIMARY_COUNTS = {
-    "ability": 59,
+    "ability": 60,
     "move": 145,
     "item": 13,
 }

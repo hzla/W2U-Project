@@ -497743,3 +497743,7 @@ Symbols:
   - Name: LAB_overlay_d_257__021adc4c
     Segment: 0x1C
     Address: 0x21ADC4D
+
+  - Name: hw_isDSi
+    Segment: 0x0
+    Address: 0x207ac8d

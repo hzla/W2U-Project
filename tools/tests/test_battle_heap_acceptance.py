@@ -2,6 +2,8 @@
 import importlib.util
 from pathlib import Path
 import sys
+import struct
+import tempfile
 import unittest
 
 TOOLS = Path(__file__).resolve().parents[1]
@@ -27,6 +29,19 @@ class BattleHeapAcceptance(unittest.TestCase):
         # A lean core does not excuse other residents exceeding the budget.
         self.assertTrue(audit.acceptance_failures(103300, 103300, 103300, 100000))
         self.assertEqual([], audit.acceptance_failures(103300, 65000, 70000, 111000))
+
+    def test_post_fix_size_retains_bss(self):
+        data=bytearray(160)
+        def word(offset,value):struct.pack_into("<I",data,offset,value)
+        data[:4]=b"DLXF";word(4,224);word(8,24)
+        data[24:28]=b"DLXH";word(32,20);word(36,64)
+        data[44:48]=b"INFO";word(52,80)
+        data[104:108]=b"REL0";word(112,120)
+        with tempfile.TemporaryDirectory(prefix="w2u-rpm-bss-") as directory:
+            path=Path(directory)/"fixture.dll";path.write_bytes(data)
+            self.assertEqual((224,208),audit.rpm_sizes(path))
+            word(36,100);path.write_bytes(data)
+            with self.assertRaises(RuntimeError):audit.rpm_sizes(path)
 
 
 if __name__ == "__main__":

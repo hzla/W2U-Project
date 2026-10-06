@@ -78,6 +78,7 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 #elif W2U_BATTLE_MODULE_ID == 5
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_FUR_COAT), (u16)W2U_ARRAY_COUNT(FurCoatHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FurCoatHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GRASS_PELT), (u16)W2U_ARRAY_COUNT(GrassPeltHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, GrassPeltHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_BULLETPROOF), (u16)W2U_ARRAY_COUNT(BulletProofHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BulletProofHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_OVERCOAT), (u16)W2U_ARRAY_COUNT(OvercoatUpdatedHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, OvercoatUpdatedHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WATER_BUBBLE), (u16)W2U_ARRAY_COUNT(WaterBubbleHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WaterBubbleHandlers},
@@ -261,6 +262,7 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 }
 static const W2UBattleHandlerExport sBattleModule_abilities_defenseEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_FUR_COAT), (u16)W2U_ARRAY_COUNT(FurCoatHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FurCoatHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GRASS_PELT), (u16)W2U_ARRAY_COUNT(GrassPeltHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, GrassPeltHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_BULLETPROOF), (u16)W2U_ARRAY_COUNT(BulletProofHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BulletProofHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_OVERCOAT), (u16)W2U_ARRAY_COUNT(OvercoatUpdatedHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, OvercoatUpdatedHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WATER_BUBBLE), (u16)W2U_ARRAY_COUNT(WaterBubbleHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WaterBubbleHandlers},

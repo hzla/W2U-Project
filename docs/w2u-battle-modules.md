@@ -1,8 +1,8 @@
 # White 2 on-demand battle modules
 
 White 2 keeps battle hooks, Mega Evolution, terrain graphics, shared state,
-aliases, and the registration dispatchers in `White2Upgrade.dll`. The 59
-managed ability entries (including updated Overcoat), 101 managed move entries,
+aliases, and the registration dispatchers in `White2Upgrade.dll`. The 60
+managed ability entries (including updated Overcoat), 145 managed move entries,
 13 custom item entries and their subordinate field/side/position entries are
 grouped into 22 RPMs under
 `vfs/data/lib/w2u_battle/`.
@@ -60,6 +60,14 @@ final-damage adapter forwards the native cached normal/fixed result through
 event `0x48`, then reads it back. Both W2 and B2 builds include the verified
 stack-preserving call-site wrapper; no child handler is imported by the core.
 
+The Gen 6/7 ability audit selects Gen 7 Parental Bond (quarter final damage
+on its second ordinary hit) and Disguise (no HP cost when busted). Parental
+Bond's existing resident hit state is reused; its child counts ordinary power
+calculations and applies the reduction in the final damage-modifier event.
+Fixed-damage and native multistrike exceptions have separate native tests.
+Grass Pelt uses the existing defense group and narrow resident terrain getter.
+See [ability/item audit](gen6-gen7-ability-item-audit.md) for coverage and gaps.
+
 Steel Beam shares Mind Blown's attempt-marking table in `moves/flow`.
 Chloroblast marks only native real-execution damage determination, so a hit
 absorbed by Substitute or Disguise still qualifies without using an AI preview.
@@ -110,6 +118,16 @@ ninja -C build-stripped src/black2upgrade-compatibility.json
 The runtime telemetry returned by `W2U_BattleModules_GetTelemetry()` records
 the resident fixed size, current/peak child bytes, current module count,
 cumulative load/unload/failure counts, and the battle-local failure mask.
+
+The heap audit includes retained BSS, not just the internal-relocation cutoff.
+The Gen 6/7 ability audit's stripped build reports a 68,700-byte core and
+153,352 bytes for the conservative all-22-groups battle set, including PWAN,
+Battle Log, Battle Counters and assumed allocator headers. This leaves 14,584
+bytes in the patched 164 KiB heap, above the 12 KiB reserve. The unchanged
+pre-refactor baseline's 8 KiB no-custom and 4 KiB largest-single-group savings
+gates do **not** pass. See the [ability/item audit](gen6-gen7-ability-item-audit.md)
+for evidence and limitations; a build passing the headroom check is not a
+claim that every heap acceptance gate passes.
 
 For the next move-handler batch, see the [Generation 8 and 9 implementation
 reference](gen8-gen9-move-handler-reference.md). It inventories non-Max moves,

@@ -10,4 +10,6 @@ tools/nitrogfx/.deps/
 .vscode
 tools/migration/verify_pokeweb_migration.py
 .DS_Store
+# Native battle fixtures, retained fixture saves, screenshots and reports.
+/work/
 /vfs/

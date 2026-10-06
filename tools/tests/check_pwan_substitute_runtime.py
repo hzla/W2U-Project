@@ -20,7 +20,7 @@ from unicorn.arm_const import (
 )
 
 
-def check(elf: Path, black2: bool) -> None:
+def check(elf: Path, black2: bool, dsi: bool = False) -> None:
     with tempfile.TemporaryDirectory(prefix="pwan-substitute-") as temp:
         linked = Path(temp) / "runtime.elf"
         subprocess.run([
@@ -28,6 +28,7 @@ def check(elf: Path, black2: bool) -> None:
             "-Ttext=0x02300000", "-Tdata=0x02318000", "-Tbss=0x02320000",
             "--section-start=.rodata=0x02310000", "-e", "W2U_BattleAnim_Update",
             "--defsym=memset=0x023E0001",
+            "--defsym=hw_isDSi=0x023E0020",
             "-o", str(linked), str(elf),
         ], check=True)
         data = linked.read_bytes()
@@ -36,7 +37,10 @@ def check(elf: Path, black2: bool) -> None:
                    if len(fields := line.split()) == 3}
 
     cpu = Uc(UC_ARCH_ARM, UC_MODE_THUMB)
-    cpu.mem_map(0x02000000, 0x400000)
+    cpu.mem_map(0x02000000, 0x1000000)
+    # Stub mode for this actor fixture; the packaged guard suite separately
+    # executes the real cold/cached retail getter in both games.
+    cpu.mem_write(0x023E0020, struct.pack("<II", 0xe3a00000 | int(dsi), 0xe12fff1e))
     section_offset = struct.unpack_from("<I", data, 0x20)[0]
     section_size, section_count = struct.unpack_from("<HH", data, 0x2E)
     for i in range(section_count):
@@ -54,8 +58,9 @@ def check(elf: Path, black2: bool) -> None:
     def read16(address):
         return struct.unpack("<H", cpu.mem_read(address, 2))[0]
 
-    bew, bmw, mcss = 0x02200000, 0x02201000, 0x02202000
-    palette, faded = 0x02203000, 0x02203100
+    arena = 0x02800000 if dsi else 0x02200000
+    bew, bmw, mcss = arena, arena + 0x1000, arena + 0x2000
+    palette, faded = arena + 0x3000, arena + 0x3100
     # Position zero deliberately maps to MCSS index two, as in the report.
     entry = bmw + 8 + 2 * 0x5C
     write32(0x021F4240 if black2 else 0x021F4280, bew)
@@ -157,12 +162,13 @@ def check(elf: Path, black2: bool) -> None:
     write32(entry + 0x40, 0)
     call('W2U_BattleAnim_Update')
     assert_pokemon_refresh()
-    print(f'{elf.name}: doll suspension, pending-upload cancellation, temporary reveal, and restoration passed')
+    print(f'{elf.name} ({"DSi extra RAM" if dsi else "DS RAM"}): doll suspension, pending-upload cancellation, temporary reveal, and restoration passed')
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('elf', type=Path)
     parser.add_argument('--black2', action='store_true')
+    parser.add_argument('--dsi', action='store_true', help='Put all native battle objects and palettes in extra RAM')
     args = parser.parse_args()
-    check(args.elf, args.black2)
+    check(args.elf, args.black2, args.dsi)
