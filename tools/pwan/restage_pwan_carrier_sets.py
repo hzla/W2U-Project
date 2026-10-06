@@ -11,7 +11,9 @@ does), the front PWAN palette into the normal NCLR (18) and a shiny NCLR (19) ma
 (each PWAN colour -> the nearest old normal colour -> that slot's shiny colour). Unlike stage_form_battle_assets.py it
 needs no pokeweb-source checkout (no source GIFs). The results go to data/graphics/pokegra_battle_extra.
 
-usage: python tools/pwan/restage_pwan_carrier_sets.py ASSET [ASSET ...] [--check]
+usage: python tools/pwan/restage_pwan_carrier_sets.py ASSET[=OLD] [ASSET[=OLD] ...] [--check]
+  ASSET=OLD: the asset has no native set of its own yet (a form relocated to a new block, its members missing from
+    a/0/0/4): seed it from the carrier template and take the shiny mapping from OLD's static set (its old block).
   --check: only list the PWAN assets of config.bin whose set is not a carrier set (offset 4 / 5 sizes).
 Run after a build (it reads the built vfs/data/a/0/0/4 for the template and the old members).
 """
@@ -75,9 +77,10 @@ def is_carrier(base: int) -> bool:
     return a.exists() and b.exists() and (a.stat().st_size, b.stat().st_size) in CARRIER_CELL_SIZES
 
 
-def restage(asset: int) -> None:
+def restage(asset: int, palette_asset: int | None = None) -> None:
     base = asset * FILES_PER_SET
-    old_normal, old_shiny = nclr_colors(member(base + 18)), nclr_colors(member(base + 19))
+    old = (palette_asset if palette_asset is not None else asset) * FILES_PER_SET
+    old_normal, old_shiny = nclr_colors(member(old + 18)), nclr_colors(member(old + 19))
     for offset in range(FILES_PER_SET):
         shutil.copy2(member(CARRIER_SEED_BASE + offset), member(base + offset))
     front = PWAN_DIR / f"{asset}_front.pwan"
@@ -112,7 +115,8 @@ def main() -> int:
         print("PWAN assets without a carrier set:", bad)
         return 1 if bad else 0
     for arg in sys.argv[1:]:
-        restage(int(arg))
+        asset, _, old = arg.partition("=")
+        restage(int(asset), int(old) if old else None)
     return 0
 
 

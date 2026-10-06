@@ -157,8 +157,24 @@ Battle with heavy rain + Electric Terrain: both command screens show both indica
 
 | Issue | Found | Details |
 |---|---|---|
-| Raichu forms 1 / 2 (Mega Raichu X / Y) and Slowbro form 1 (Mega Slowbro) have no battle set | 2026-10-05, Phase 4 | The Gen 8 / 9 import (`assets/pokeweb_pwan/gen8_gen9_essentials_import_report.json`, `relocatedExistingForms`) moved these forms to sprite forms 373 / 374 / 393, i.e. pokegra blocks 1097 / 1098 / 1117, and moved their PWAN assets to the same indices, but the battle members were never staged there: the built a/0/0/4 has no files 21940-21959, 21960-21979, 22340-22359. Their old sets are still at blocks 1038 / 1039 / 737 (the "staticAsset" of `mega_preview_low_ids_report.json`). The game therefore loads missing files for these forms, with PWAN as with w2anim, and the w2anim build skips their streams (`build_w2anim_streams.py` lists them). Fix: stage the three sets at the new blocks (copy or `restage_pwan_carrier_sets.py`), then the converter picks them up |
 | A retail White 2 save continued in W2U crashes at the first game clear | 2026-10-05, in-game check tooling | W2U's Pokédex expansion sizes the Pokédex save block (54, 0x21400) at 0x4D4 bytes (`sizeof(PokedexSave)`); retail at 0x4DC. A retail-layout save loads and plays, but game clear's full save check calls it corrupted ("Saved game data is corrupted"), rewrites the save from its recovery path and aborts there (`GFL_HeapCreateChild` of heap 0x15 from heap 1 fails, `GFL_HeapHandleAllocResult` → `sys_exit`): the Hall of Fame record and the Key System unlock are not saved. Saves W2U made from a new game are not affected: Hall of Fame, Key System unlock, save and credits all complete (headless, both a W2U-made save and a retail-layout save re-footered at 0x4D4). Unchanged here (W2U presumably expects a new game); a migration of the block's footer on load would fix it if retail saves should carry over |
+
+## Fix: Mega Raichu X / Y and Mega Slowbro battle sets (2026-10-06)
+
+The Gen 8 / 9 import moved Raichu forms 1 / 2 (Mega Raichu X / Y) and Slowbro form 1 (Mega Slowbro) to pokegra
+blocks 1097 / 1098 / 1117 and their PWAN assets with them, but never staged the battle members there: the game loaded
+missing files for these forms and the w2anim build skipped their streams. `restage_pwan_carrier_sets.py` gained
+`ASSET=OLD` (seed a missing set from the carrier template, the shiny mapping from the old static set):
+`1097=1038 1098=1039 1117=737` (the old blocks, `mega_preview_low_ids_report.json`). 60 members in
+`data/graphics/pokegra_battle_extra`; the streams index now has front and back for all three.
+
+Verified headless: Mega Raichu X and Y as animated back (doubles) and front (singles) sprites, set as forms directly
+(`wave_sprites.yml` SPR_MEGA_FORMS / SPR_MEGA_RAICHU_X_FRONT / _Y_FRONT; `wave.py` passes a `form` key); Mega Slowbro
+through a real Mega Evolution with START (`wave_mega.yml` MEGA_SLOWBRO: the animation, the new back sprite, the
+glyph). wave_mega 6/6, wave_sprites 8/8.
+
+Note for review: W2U has the Mega Raichu X / Y sprites but no Raichunite X / Y item or Mega table entry, so they are
+not reachable in normal play.
 
 ## Fix: Gen 1 sprites (Mega preview leftovers)
 
@@ -310,8 +326,8 @@ bundled save's field menu has no POKeMON entry, so the field summary is not reac
 Hall of Fame and ov194 / ov294 / ov298 still want an in-game look.
 
 Notes:
-- Not converted: Raichu forms 1 / 2 and Slowbro form 1, whose pokegra blocks 1097 / 1098 / 1117 are missing from the
-  built archive (see "Open W2U issues").
+- Raichu forms 1 / 2 and Slowbro form 1 (blocks 1097 / 1098 / 1117) were missing from the built archive at first;
+  staged since (section "Fix: Mega Raichu X / Y and Mega Slowbro battle sets").
 - Black 2 keeps the PWAN runtimes (Black 2 is deferred on this branch); their sources and the PWAN tools are unchanged.
 - Pokeweb's sprite workflow is unchanged: it still writes PWAN assets, which the White 2 build converts.
 
