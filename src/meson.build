@@ -1152,9 +1152,9 @@ b2u_main_asm_inputs = [
   files('pokedex_expansion/Expansion_LimitAdjust.s'),
   files('type_expansion/Fairy_BattleLimitAdjust.s'),
   files('pokeweb_gameplay/w2u_mega_hooks.s'),
-  files('pokeweb_gameplay/w2u_move_animation_hooks.s'),
-  files('pokeweb_gameplay/w2u_transform_hooks.s'),
-  files('pokeweb_gameplay/w2u_damage_hooks.s'),
+  files('pokeweb_gameplay/b2_baseline/w2u_move_animation_hooks.s'),
+  files('pokeweb_gameplay/b2_baseline/w2u_transform_hooks.s'),
+  files('pokeweb_gameplay/b2_baseline/w2u_damage_hooks.s'),
   files('pokeweb_gameplay/w2u_terrain_indicator_hooks.s'),
   files('pokeweb_gameplay/w2u_terrain_texture_hooks.s'),
 ]

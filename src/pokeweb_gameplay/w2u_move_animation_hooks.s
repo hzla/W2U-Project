@@ -1,3 +1,17 @@
+.section .text.FULL_COPY_169_0x689BF10,"ax",%progbits
+.thumb
+.align 2
+.global FULL_COPY_169_0x689BF10
+.type FULL_COPY_169_0x689BF10, %function
+.thumb_func
+FULL_COPY_169_0x689BF10:
+    @ Bind-only native import veneer. Copy an absolute pointer: the resident
+    @ PMC heap is outside overlay 169's Thumb BL range.
+    ldr r3, [pc, #0]
+    bx r3
+    .word W2U_BindResidualQuotient
+.size FULL_COPY_169_0x689BF10, . - FULL_COPY_169_0x689BF10
+.text
 .thumb
 
 .equ W2U_BATTLE_ANIMATIONS_COUNT, 115

@@ -26629,3 +26629,96 @@ Symbols:
   - Name: MCSS_FreeSpriteResources
     Segment: 0x0
     Address: 0x201BAA9
+  - Name: BattleMon_GetCriticalStat
+    Segment: 0x1D
+    Address: 0x21BB319
+  - Name: BattleMon_GetCriticalRank
+    Segment: 0x1D
+    Address: 0x21BB755
+  - Name: BattleMon_SetConditionFlag
+    Segment: 0x1D
+    Address: 0x21BB825
+  - Name: BattleMon_ResetConditionFlag
+    Segment: 0x1D
+    Address: 0x21BB849
+  - Name: BattleMon_CreateSubstitute
+    Segment: 0x1D
+    Address: 0x21BC59D
+  - Name: FaintRecord_Add
+    Segment: 0x1D
+    Address: 0x21A8B79
+  - Name: BattleClient_GetSubProc
+    Segment: 0x1D
+    Address: 0x21B1D55
+  - Name: BattleAdapter_GetRecvData
+    Segment: 0x1D
+    Address: 0x21D4C4D
+  - Name: MainModule_BattlePosOwner
+    Segment: 0x1D
+    Address: 0x219C6D5
+  - Name: BattleView_StartPokeSelect
+    Segment: 0x1D
+    Address: 0x21CF361
+  - Name: BattleView_WaitPokeSelect
+    Segment: 0x1D
+    Address: 0x21CF409
+  - Name: BattleServer_RequestChangePokemon
+    Segment: 0x1D
+    Address: 0x219F399
+  - Name: ServerControl_OnlyPokeIn
+    Segment: 0x1D
+    Address: 0x219FCB5
+  - Name: ServerFlow_AddRevivedMonRecord
+    Segment: 0x1D
+    Address: 0x21AC061
+  - Name: ServerControl_CorrectTargetDead
+    Segment: 0x1D
+    Address: 0x21AEB51
+  - Name: ServerDisplay_ResetConditionFlag
+    Segment: 0x1D
+    Address: 0x21A9C69
+  - Name: ServerControl_ThawHitTargets
+    Segment: 0x1D
+    Address: 0x21A57C5
+  - Name: BattleMove_AssistIsForbidden
+    Segment: 0x1D
+    Address: 0x21CC541
+  - Name: BattleMove_SleepTalkIsForbidden
+    Segment: 0x1D
+    Address: 0x21CC611
+  - Name: BattleMove_MeFirstIsForbidden
+    Segment: 0x1D
+    Address: 0x21CC785
+  - Name: BattleMove_CopycatIsForbidden
+    Segment: 0x1D
+    Address: 0x21CC7FD
+  - Name: HandlerDampCheck
+    Segment: 0x1D
+    Address: 0x21C066D
+  - Name: SideEffectEvent_AddItem
+    Segment: 0x1F
+    Address: 0x6898C11
+  - Name: BattleField_GetWeatherTurn
+    Segment: 0x1D
+    Address: 0x21D5A01
+  - Name: BattleField_SetWeather
+    Segment: 0x1D
+    Address: 0x21D5A11
+  - Name: ServerControl_ChangeWeatherCheck
+    Segment: 0x1D
+    Address: 0x21A767D
+  - Name: ServerControl_ChangeWeatherCore
+    Segment: 0x1D
+    Address: 0x21A76A9
+  - Name: ServerControl_ChangeWeatherAfter
+    Segment: 0x1D
+    Address: 0x21A76D1
+  - Name: ClientWeatherStart
+    Segment: 0x1D
+    Address: 0x21B78AD
+  - Name: ClientWeatherEnd
+    Segment: 0x1D
+    Address: 0x21B792D
+  - Name: BattleView_StartMessageStd
+    Segment: 0x1D
+    Address: 0x21D0291

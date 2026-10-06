@@ -1113,6 +1113,12 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_CEASELESS_EDGE), (u16)W2U_ARRAY_COUNT(DamagingHazardHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DamagingHazardHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_STONE_AXE), (u16)W2U_ARRAY_COUNT(DamagingHazardHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DamagingHazardHandlers},
     {W2U_MECHANIC_SIDE, (u16)(SIDEEFF_STICKY_WEB), (u16)W2U_ARRAY_COUNT(SideStickyWebHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SideStickyWebHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_MORTAL_SPIN), (u16)W2U_ARRAY_COUNT(MortalSpinHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MortalSpinHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_TIDY_UP), (u16)W2U_ARRAY_COUNT(TidyUpHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TidyUpHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1154,6 +1160,27 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_TERRAIN_PULSE), (u16)W2U_ARRAY_COUNT(TerrainPulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TerrainPulseHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_STEEL_ROLLER), (u16)W2U_ARRAY_COUNT(SteelRollerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SteelRollerHandlers},
     {W2U_MECHANIC_FIELD, (u16)(FLDEFF_TERRAIN), (u16)W2U_ARRAY_COUNT(FieldTerrainHandlers), (u16)(EVENTPRI_FIELD_DEFAULT), FieldTerrainHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_EXPANDING_FORCE), (u16)W2U_ARRAY_COUNT(ExpandingForceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ExpandingForceHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SNOWSCAPE), (u16)W2U_ARRAY_COUNT(SnowscapeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SnowscapeHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_CHILLY_RECEPTION), (u16)W2U_ARRAY_COUNT(ChillyReceptionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ChillyReceptionHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_METEOR_BEAM), (u16)W2U_ARRAY_COUNT(MeteorBeamHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MeteorBeamHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_ELECTRO_SHOT), (u16)W2U_ARRAY_COUNT(ElectroShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ElectroShotHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_MISTY_EXPLOSION), (u16)W2U_ARRAY_COUNT(MistyExplosionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MistyExplosionHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_ICE_SPINNER), (u16)W2U_ARRAY_COUNT(IceSpinnerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, IceSpinnerHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1183,6 +1210,12 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_COLLISION_COURSE), (u16)W2U_ARRAY_COUNT(SuperEffectiveDamageHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SuperEffectiveDamageHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_ELECTRO_DRIFT), (u16)W2U_ARRAY_COUNT(SuperEffectiveDamageHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SuperEffectiveDamageHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_FICKLE_BEAM), (u16)W2U_ARRAY_COUNT(FickleBeamHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FickleBeamHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SHELL_SIDE_ARM), (u16)W2U_ARRAY_COUNT(ShellSideArmHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ShellSideArmHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_TAR_SHOT), (u16)W2U_ARRAY_COUNT(TarShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TarShotHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1202,6 +1235,18 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_THROAT_CHOP), (u16)W2U_ARRAY_COUNT(ThroatChopHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ThroatChopHandlers},
     {W2U_MECHANIC_POSITION, (u16)(POSEFF_ION_DELUGE), (u16)W2U_ARRAY_COUNT(PosIonDelugeHandlers), (u16)(EVENTPRI_ABILITY_STALL), PosIonDelugeHandlers},
     {W2U_MECHANIC_POSITION, (u16)(POSEFF_ELECTRIFY), (u16)W2U_ARRAY_COUNT(PosElectrifyHandlers), (u16)(EVENTPRI_POS_DEFAULT), PosElectrifyHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SALT_CURE), (u16)W2U_ARRAY_COUNT(PersistentSecondaryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PersistentSecondaryHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_GLAIVE_RUSH), (u16)W2U_ARRAY_COUNT(GlaiveRushHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, GlaiveRushHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SYRUP_BOMB), (u16)W2U_ARRAY_COUNT(PersistentSecondaryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PersistentSecondaryHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_FIELD, (u16)(14), (u16)W2U_ARRAY_COUNT(FieldPersistentResidualHandlers), (u16)(EVENTPRI_ABILITY_STALL), FieldPersistentResidualHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1226,6 +1271,21 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_STRENGTH_SAP), (u16)W2U_ARRAY_COUNT(StrengthSapHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, StrengthSapHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_VENOM_DRENCH), (u16)W2U_ARRAY_COUNT(VenomDrenchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, VenomDrenchHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_MAGNETIC_FLUX), (u16)W2U_ARRAY_COUNT(MagneticFluxHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MagneticFluxHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_DECORATE), (u16)W2U_ARRAY_COUNT(DecorateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DecorateHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_DRAGON_CHEER), (u16)W2U_ARRAY_COUNT(DragonCheerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DragonCheerHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_COACHING), (u16)W2U_ARRAY_COUNT(CoachingHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CoachingHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_BODY_PRESS), (u16)W2U_ARRAY_COUNT(BodyPressHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BodyPressHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_NO_RETREAT), (u16)W2U_ARRAY_COUNT(NoRetreatHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, NoRetreatHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1257,6 +1317,66 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_FISHIOUS_REND), (u16)W2U_ARRAY_COUNT(UnactedTargetPowerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, UnactedTargetPowerHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SPARKLY_SWIRL), (u16)W2U_ARRAY_COUNT(SparklySwirlHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SparklySwirlHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SPARKLING_ARIA), (u16)W2U_ARRAY_COUNT(SparklingAriaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SparklingAriaHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_JUNGLE_HEALING), (u16)W2U_ARRAY_COUNT(AllyHealingHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AllyHealingHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SNIPE_SHOT), (u16)W2U_ARRAY_COUNT(SnipeShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SnipeShotHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_LIFE_DEW), (u16)W2U_ARRAY_COUNT(AllyHealingHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AllyHealingHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_LUNAR_BLESSING), (u16)W2U_ARRAY_COUNT(AllyHealingHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AllyHealingHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_MAKE_IT_RAIN), (u16)W2U_ARRAY_COUNT(MakeItRainHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MakeItRainHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_MATCHA_GOTCHA), (u16)W2U_ARRAY_COUNT(MatchaGotchaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MatchaGotchaHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_RAGE_FIST), (u16)W2U_ARRAY_COUNT(RageFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, RageFistHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_LAST_RESPECTS), (u16)W2U_ARRAY_COUNT(LastRespectsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, LastRespectsHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_REVIVAL_BLESSING), (u16)W2U_ARRAY_COUNT(RevivalBlessingHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, RevivalBlessingHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_STUFF_CHEEKS), (u16)W2U_ARRAY_COUNT(StuffCheeksHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, StuffCheeksHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_TEATIME), (u16)W2U_ARRAY_COUNT(TeatimeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TeatimeHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SHED_TAIL), (u16)W2U_ARRAY_COUNT(ShedTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ShedTailHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_DRAGON_DARTS), (u16)W2U_ARRAY_COUNT(DragonDartsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DragonDartsHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_CORROSIVE_GAS), (u16)W2U_ARRAY_COUNT(CorrosiveGasHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CorrosiveGasHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_LASH_OUT), (u16)W2U_ARRAY_COUNT(LashOutHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, LashOutHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_BURNING_JEALOUSY), (u16)W2U_ARRAY_COUNT(BurningJealousyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BurningJealousyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_ALLURING_VOICE), (u16)W2U_ARRAY_COUNT(AlluringVoiceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AlluringVoiceHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_EERIE_SPELL), (u16)W2U_ARRAY_COUNT(EerieSpellHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, EerieSpellHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_UPPER_HAND), (u16)W2U_ARRAY_COUNT(UpperHandHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, UpperHandHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_POPULATION_BOMB), (u16)W2U_ARRAY_COUNT(PopulationBombHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PopulationBombHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1269,6 +1389,15 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_ANCHOR_SHOT), (u16)W2U_ARRAY_COUNT(AnchorShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AnchorShotHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SPIRIT_SHACKLE), (u16)W2U_ARRAY_COUNT(AnchorShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AnchorShotHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SAPPY_SEED), (u16)W2U_ARRAY_COUNT(SappySeedHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SappySeedHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_JAW_LOCK), (u16)W2U_ARRAY_COUNT(JawLockHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, JawLockHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_OCTOLOCK), (u16)W2U_ARRAY_COUNT(OctolockHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, OctolockHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_FIELD, (u16)(13), (u16)W2U_ARRAY_COUNT(FieldOctolockResidualHandlers), (u16)(EVENTPRI_ABILITY_STALL), FieldOctolockResidualHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1283,6 +1412,12 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_AURORA_VEIL), (u16)W2U_ARRAY_COUNT(AuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AuroraVeilHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_BRICK_BREAK), (u16)W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BrickBreakAuroraVeilHandlers},
     {W2U_MECHANIC_SIDE, (u16)(SIDEEFF_AURORA_VEIL), (u16)W2U_ARRAY_COUNT(SideAuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SideAuroraVeilHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_RAGING_BULL), (u16)W2U_ARRAY_COUNT(RagingBullHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, RagingBullHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_COURT_CHANGE), (u16)W2U_ARRAY_COUNT(CourtChangeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CourtChangeHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1297,6 +1432,9 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SUNSTEEL_STRIKE), (u16)W2U_ARRAY_COUNT(MoongeistBeamHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MoongeistBeamHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_PHOTON_GEYSER), (u16)W2U_ARRAY_COUNT(PhotonGeyserHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PhotonGeyserHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_WATER_SHURIKEN), (u16)W2U_ARRAY_COUNT(WaterShurikenHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WaterShurikenHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_DOODLE), (u16)W2U_ARRAY_COUNT(DoodleHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DoodleHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1320,6 +1458,12 @@ static const W2UBattleHandlerExport sBattleModule_moves_hazardsEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_CEASELESS_EDGE), (u16)W2U_ARRAY_COUNT(DamagingHazardHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DamagingHazardHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_STONE_AXE), (u16)W2U_ARRAY_COUNT(DamagingHazardHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DamagingHazardHandlers},
     {W2U_MECHANIC_SIDE, (u16)(SIDEEFF_STICKY_WEB), (u16)W2U_ARRAY_COUNT(SideStickyWebHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SideStickyWebHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_MORTAL_SPIN), (u16)W2U_ARRAY_COUNT(MortalSpinHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MortalSpinHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_TIDY_UP), (u16)W2U_ARRAY_COUNT(TidyUpHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TidyUpHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_moves_hazardsApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1367,6 +1511,27 @@ static const W2UBattleHandlerExport sBattleModule_moves_terrainEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_TERRAIN_PULSE), (u16)W2U_ARRAY_COUNT(TerrainPulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TerrainPulseHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_STEEL_ROLLER), (u16)W2U_ARRAY_COUNT(SteelRollerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SteelRollerHandlers},
     {W2U_MECHANIC_FIELD, (u16)(FLDEFF_TERRAIN), (u16)W2U_ARRAY_COUNT(FieldTerrainHandlers), (u16)(EVENTPRI_FIELD_DEFAULT), FieldTerrainHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_EXPANDING_FORCE), (u16)W2U_ARRAY_COUNT(ExpandingForceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ExpandingForceHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SNOWSCAPE), (u16)W2U_ARRAY_COUNT(SnowscapeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SnowscapeHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_CHILLY_RECEPTION), (u16)W2U_ARRAY_COUNT(ChillyReceptionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ChillyReceptionHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_METEOR_BEAM), (u16)W2U_ARRAY_COUNT(MeteorBeamHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MeteorBeamHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_ELECTRO_SHOT), (u16)W2U_ARRAY_COUNT(ElectroShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ElectroShotHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_MISTY_EXPLOSION), (u16)W2U_ARRAY_COUNT(MistyExplosionHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MistyExplosionHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_ICE_SPINNER), (u16)W2U_ARRAY_COUNT(IceSpinnerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, IceSpinnerHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_moves_terrainApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1399,6 +1564,12 @@ static const W2UBattleHandlerExport sBattleModule_moves_typeEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_COLLISION_COURSE), (u16)W2U_ARRAY_COUNT(SuperEffectiveDamageHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SuperEffectiveDamageHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_ELECTRO_DRIFT), (u16)W2U_ARRAY_COUNT(SuperEffectiveDamageHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SuperEffectiveDamageHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_FICKLE_BEAM), (u16)W2U_ARRAY_COUNT(FickleBeamHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FickleBeamHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SHELL_SIDE_ARM), (u16)W2U_ARRAY_COUNT(ShellSideArmHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ShellSideArmHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_TAR_SHOT), (u16)W2U_ARRAY_COUNT(TarShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TarShotHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_moves_typeApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1421,6 +1592,18 @@ static const W2UBattleHandlerExport sBattleModule_moves_volatileEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_THROAT_CHOP), (u16)W2U_ARRAY_COUNT(ThroatChopHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ThroatChopHandlers},
     {W2U_MECHANIC_POSITION, (u16)(POSEFF_ION_DELUGE), (u16)W2U_ARRAY_COUNT(PosIonDelugeHandlers), (u16)(EVENTPRI_ABILITY_STALL), PosIonDelugeHandlers},
     {W2U_MECHANIC_POSITION, (u16)(POSEFF_ELECTRIFY), (u16)W2U_ARRAY_COUNT(PosElectrifyHandlers), (u16)(EVENTPRI_POS_DEFAULT), PosElectrifyHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SALT_CURE), (u16)W2U_ARRAY_COUNT(PersistentSecondaryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PersistentSecondaryHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_GLAIVE_RUSH), (u16)W2U_ARRAY_COUNT(GlaiveRushHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, GlaiveRushHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SYRUP_BOMB), (u16)W2U_ARRAY_COUNT(PersistentSecondaryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PersistentSecondaryHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_FIELD, (u16)(14), (u16)W2U_ARRAY_COUNT(FieldPersistentResidualHandlers), (u16)(EVENTPRI_ABILITY_STALL), FieldPersistentResidualHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_moves_volatileApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1448,6 +1631,21 @@ static const W2UBattleHandlerExport sBattleModule_moves_statsEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_STRENGTH_SAP), (u16)W2U_ARRAY_COUNT(StrengthSapHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, StrengthSapHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_VENOM_DRENCH), (u16)W2U_ARRAY_COUNT(VenomDrenchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, VenomDrenchHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_MAGNETIC_FLUX), (u16)W2U_ARRAY_COUNT(MagneticFluxHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MagneticFluxHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_DECORATE), (u16)W2U_ARRAY_COUNT(DecorateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DecorateHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_DRAGON_CHEER), (u16)W2U_ARRAY_COUNT(DragonCheerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DragonCheerHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_COACHING), (u16)W2U_ARRAY_COUNT(CoachingHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CoachingHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_BODY_PRESS), (u16)W2U_ARRAY_COUNT(BodyPressHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BodyPressHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_NO_RETREAT), (u16)W2U_ARRAY_COUNT(NoRetreatHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, NoRetreatHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_moves_statsApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1482,6 +1680,66 @@ static const W2UBattleHandlerExport sBattleModule_moves_flowEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_FISHIOUS_REND), (u16)W2U_ARRAY_COUNT(UnactedTargetPowerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, UnactedTargetPowerHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SPARKLY_SWIRL), (u16)W2U_ARRAY_COUNT(SparklySwirlHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SparklySwirlHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SPARKLING_ARIA), (u16)W2U_ARRAY_COUNT(SparklingAriaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SparklingAriaHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_JUNGLE_HEALING), (u16)W2U_ARRAY_COUNT(AllyHealingHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AllyHealingHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SNIPE_SHOT), (u16)W2U_ARRAY_COUNT(SnipeShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SnipeShotHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_LIFE_DEW), (u16)W2U_ARRAY_COUNT(AllyHealingHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AllyHealingHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_LUNAR_BLESSING), (u16)W2U_ARRAY_COUNT(AllyHealingHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AllyHealingHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_MAKE_IT_RAIN), (u16)W2U_ARRAY_COUNT(MakeItRainHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MakeItRainHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_MATCHA_GOTCHA), (u16)W2U_ARRAY_COUNT(MatchaGotchaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MatchaGotchaHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_RAGE_FIST), (u16)W2U_ARRAY_COUNT(RageFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, RageFistHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_LAST_RESPECTS), (u16)W2U_ARRAY_COUNT(LastRespectsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, LastRespectsHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_REVIVAL_BLESSING), (u16)W2U_ARRAY_COUNT(RevivalBlessingHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, RevivalBlessingHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_STUFF_CHEEKS), (u16)W2U_ARRAY_COUNT(StuffCheeksHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, StuffCheeksHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_TEATIME), (u16)W2U_ARRAY_COUNT(TeatimeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TeatimeHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_SHED_TAIL), (u16)W2U_ARRAY_COUNT(ShedTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ShedTailHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_DRAGON_DARTS), (u16)W2U_ARRAY_COUNT(DragonDartsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DragonDartsHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_CORROSIVE_GAS), (u16)W2U_ARRAY_COUNT(CorrosiveGasHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CorrosiveGasHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_LASH_OUT), (u16)W2U_ARRAY_COUNT(LashOutHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, LashOutHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_BURNING_JEALOUSY), (u16)W2U_ARRAY_COUNT(BurningJealousyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BurningJealousyHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_ALLURING_VOICE), (u16)W2U_ARRAY_COUNT(AlluringVoiceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AlluringVoiceHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_EERIE_SPELL), (u16)W2U_ARRAY_COUNT(EerieSpellHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, EerieSpellHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_UPPER_HAND), (u16)W2U_ARRAY_COUNT(UpperHandHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, UpperHandHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_POPULATION_BOMB), (u16)W2U_ARRAY_COUNT(PopulationBombHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PopulationBombHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_moves_flowApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1497,6 +1755,15 @@ static const W2UBattleHandlerExport sBattleModule_moves_trappingEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_ANCHOR_SHOT), (u16)W2U_ARRAY_COUNT(AnchorShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AnchorShotHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SPIRIT_SHACKLE), (u16)W2U_ARRAY_COUNT(AnchorShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AnchorShotHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SAPPY_SEED), (u16)W2U_ARRAY_COUNT(SappySeedHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SappySeedHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_JAW_LOCK), (u16)W2U_ARRAY_COUNT(JawLockHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, JawLockHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_OCTOLOCK), (u16)W2U_ARRAY_COUNT(OctolockHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, OctolockHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_FIELD, (u16)(13), (u16)W2U_ARRAY_COUNT(FieldOctolockResidualHandlers), (u16)(EVENTPRI_ABILITY_STALL), FieldOctolockResidualHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_moves_trappingApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1514,6 +1781,12 @@ static const W2UBattleHandlerExport sBattleModule_moves_screensEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_AURORA_VEIL), (u16)W2U_ARRAY_COUNT(AuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AuroraVeilHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_BRICK_BREAK), (u16)W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BrickBreakAuroraVeilHandlers},
     {W2U_MECHANIC_SIDE, (u16)(SIDEEFF_AURORA_VEIL), (u16)W2U_ARRAY_COUNT(SideAuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SideAuroraVeilHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_RAGING_BULL), (u16)W2U_ARRAY_COUNT(RagingBullHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, RagingBullHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_COURT_CHANGE), (u16)W2U_ARRAY_COUNT(CourtChangeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CourtChangeHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_moves_screensApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1531,6 +1804,9 @@ static const W2UBattleHandlerExport sBattleModule_moves_abilityEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SUNSTEEL_STRIKE), (u16)W2U_ARRAY_COUNT(MoongeistBeamHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MoongeistBeamHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_PHOTON_GEYSER), (u16)W2U_ARRAY_COUNT(PhotonGeyserHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PhotonGeyserHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_WATER_SHURIKEN), (u16)W2U_ARRAY_COUNT(WaterShurikenHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WaterShurikenHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_DOODLE), (u16)W2U_ARRAY_COUNT(DoodleHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DoodleHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_moves_abilityApi = {
     W2U_BATTLE_MODULE_MAGIC,

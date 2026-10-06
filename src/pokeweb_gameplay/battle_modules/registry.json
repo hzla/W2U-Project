@@ -185,8 +185,18 @@
         ["move", "MOVE_STICKY_WEB", "StickyWebHandlers"],
         ["move", "MOVE_CEASELESS_EDGE", "DamagingHazardHandlers"],
         ["move", "MOVE_STONE_AXE", "DamagingHazardHandlers"],
-        ["side", "SIDEEFF_STICKY_WEB", "SideStickyWebHandlers"]
-      ]
+        ["side", "SIDEEFF_STICKY_WEB", "SideStickyWebHandlers"],
+        ["move", "MOVE_MORTAL_SPIN", "MortalSpinHandlers"],
+        ["move", "MOVE_TIDY_UP", "TidyUpHandlers"]
+      ],
+      "entry_overrides": {
+        "move:MOVE_MORTAL_SPIN": {
+          "white2_only": true
+        },
+        "move:MOVE_TIDY_UP": {
+          "white2_only": true
+        }
+      }
     },
     {
       "id": 13,
@@ -224,6 +234,27 @@
       "entry_overrides": {
         "field:FLDEFF_TERRAIN": {
           "priority": "EVENTPRI_FIELD_DEFAULT"
+        },
+        "move:MOVE_EXPANDING_FORCE": {
+          "white2_only": true
+        },
+        "move:MOVE_SNOWSCAPE": {
+          "white2_only": true
+        },
+        "move:MOVE_CHILLY_RECEPTION": {
+          "white2_only": true
+        },
+        "move:MOVE_METEOR_BEAM": {
+          "white2_only": true
+        },
+        "move:MOVE_ELECTRO_SHOT": {
+          "white2_only": true
+        },
+        "move:MOVE_MISTY_EXPLOSION": {
+          "white2_only": true
+        },
+        "move:MOVE_ICE_SPINNER": {
+          "white2_only": true
         }
       },
       "entries": [
@@ -238,7 +269,14 @@
         ["move", "MOVE_RISING_VOLTAGE", "RisingVoltageHandlers"],
         ["move", "MOVE_TERRAIN_PULSE", "TerrainPulseHandlers"],
         ["move", "MOVE_STEEL_ROLLER", "SteelRollerHandlers"],
-        ["field", "FLDEFF_TERRAIN", "FieldTerrainHandlers"]
+        ["field", "FLDEFF_TERRAIN", "FieldTerrainHandlers"],
+        ["move", "MOVE_EXPANDING_FORCE", "ExpandingForceHandlers"],
+        ["move", "MOVE_SNOWSCAPE", "SnowscapeHandlers"],
+        ["move", "MOVE_CHILLY_RECEPTION", "ChillyReceptionHandlers"],
+        ["move", "MOVE_METEOR_BEAM", "MeteorBeamHandlers"],
+        ["move", "MOVE_ELECTRO_SHOT", "ElectroShotHandlers"],
+        ["move", "MOVE_MISTY_EXPLOSION", "MistyExplosionHandlers"],
+        ["move", "MOVE_ICE_SPINNER", "IceSpinnerHandlers"]
       ]
     },
     {
@@ -265,8 +303,18 @@
         ["move", "MOVE_HYDRO_STEAM", "HydroSteamHandlers"],
         ["move", "MOVE_COLLISION_COURSE", "SuperEffectiveDamageHandlers"],
         ["move", "MOVE_ELECTRO_DRIFT", "SuperEffectiveDamageHandlers"],
-        ["move", "MOVE_FICKLE_BEAM", "FickleBeamHandlers"]
-      ]
+        ["move", "MOVE_FICKLE_BEAM", "FickleBeamHandlers"],
+        ["move", "MOVE_SHELL_SIDE_ARM", "ShellSideArmHandlers"],
+        ["move", "MOVE_TAR_SHOT", "TarShotHandlers"]
+      ],
+      "entry_overrides": {
+        "move:MOVE_SHELL_SIDE_ARM": {
+          "white2_only": true
+        },
+        "move:MOVE_TAR_SHOT": {
+          "white2_only": true
+        }
+      }
     },
     {
       "id": 16,
@@ -278,6 +326,19 @@
         },
         "position:POSEFF_ELECTRIFY": {
           "priority": "EVENTPRI_POS_DEFAULT"
+        },
+        "move:MOVE_SALT_CURE": {
+          "white2_only": true
+        },
+        "move:MOVE_GLAIVE_RUSH": {
+          "white2_only": true
+        },
+        "move:MOVE_SYRUP_BOMB": {
+          "white2_only": true
+        },
+        "field:14": {
+          "priority": "EVENTPRI_ABILITY_STALL",
+          "white2_only": true
         }
       },
       "entries": [
@@ -290,7 +351,11 @@
         ["move", "MOVE_PLASMA_FISTS", "PlasmaFistsHandlers"],
         ["move", "MOVE_THROAT_CHOP", "ThroatChopHandlers"],
         ["position", "POSEFF_ION_DELUGE", "PosIonDelugeHandlers"],
-        ["position", "POSEFF_ELECTRIFY", "PosElectrifyHandlers"]
+        ["position", "POSEFF_ELECTRIFY", "PosElectrifyHandlers"],
+        ["move", "MOVE_SALT_CURE", "PersistentSecondaryHandlers"],
+        ["move", "MOVE_GLAIVE_RUSH", "GlaiveRushHandlers"],
+        ["move", "MOVE_SYRUP_BOMB", "PersistentSecondaryHandlers"],
+        ["field", "14", "FieldPersistentResidualHandlers"]
       ]
     },
     {
@@ -312,8 +377,30 @@
         ["move", "MOVE_SPEED_SWAP", "SpeedSwapHandlers"],
         ["move", "MOVE_STRENGTH_SAP", "StrengthSapHandlers"],
         ["move", "MOVE_VENOM_DRENCH", "VenomDrenchHandlers"],
-        ["move", "MOVE_MAGNETIC_FLUX", "MagneticFluxHandlers"]
-      ]
+        ["move", "MOVE_MAGNETIC_FLUX", "MagneticFluxHandlers"],
+        ["move", "MOVE_DECORATE", "DecorateHandlers"],
+        ["move", "MOVE_DRAGON_CHEER", "DragonCheerHandlers"],
+        ["move", "MOVE_COACHING", "CoachingHandlers"],
+        ["move", "MOVE_BODY_PRESS", "BodyPressHandlers"],
+        ["move", "MOVE_NO_RETREAT", "NoRetreatHandlers"]
+      ],
+      "entry_overrides": {
+        "move:MOVE_DECORATE": {
+          "white2_only": true
+        },
+        "move:MOVE_DRAGON_CHEER": {
+          "white2_only": true
+        },
+        "move:MOVE_COACHING": {
+          "white2_only": true
+        },
+        "move:MOVE_BODY_PRESS": {
+          "white2_only": true
+        },
+        "move:MOVE_NO_RETREAT": {
+          "white2_only": true
+        }
+      }
     },
     {
       "id": 18,
@@ -341,8 +428,90 @@
         ["move", "MOVE_BOLT_BEAK", "UnactedTargetPowerHandlers"],
         ["move", "MOVE_FISHIOUS_REND", "UnactedTargetPowerHandlers"],
         ["move", "MOVE_SPARKLY_SWIRL", "SparklySwirlHandlers"],
-        ["move", "MOVE_SPARKLING_ARIA", "SparklingAriaHandlers"]
-      ]
+        ["move", "MOVE_SPARKLING_ARIA", "SparklingAriaHandlers"],
+        ["move", "MOVE_JUNGLE_HEALING", "AllyHealingHandlers"],
+        ["move", "MOVE_SNIPE_SHOT", "SnipeShotHandlers"],
+        ["move", "MOVE_LIFE_DEW", "AllyHealingHandlers"],
+        ["move", "MOVE_LUNAR_BLESSING", "AllyHealingHandlers"],
+        ["move", "MOVE_MAKE_IT_RAIN", "MakeItRainHandlers"],
+        ["move", "MOVE_MATCHA_GOTCHA", "MatchaGotchaHandlers"],
+        ["move", "MOVE_RAGE_FIST", "RageFistHandlers"],
+        ["move", "MOVE_LAST_RESPECTS", "LastRespectsHandlers"],
+        ["move", "MOVE_REVIVAL_BLESSING", "RevivalBlessingHandlers"],
+        ["move", "MOVE_STUFF_CHEEKS", "StuffCheeksHandlers"],
+        ["move", "MOVE_TEATIME", "TeatimeHandlers"],
+        ["move", "MOVE_SHED_TAIL", "ShedTailHandlers"],
+        ["move", "MOVE_DRAGON_DARTS", "DragonDartsHandlers"],
+        ["move", "MOVE_CORROSIVE_GAS", "CorrosiveGasHandlers"],
+        ["move", "MOVE_LASH_OUT", "LashOutHandlers"],
+        ["move", "MOVE_BURNING_JEALOUSY", "BurningJealousyHandlers"],
+        ["move", "MOVE_ALLURING_VOICE", "AlluringVoiceHandlers"],
+        ["move", "MOVE_EERIE_SPELL", "EerieSpellHandlers"],
+        ["move", "MOVE_UPPER_HAND", "UpperHandHandlers"],
+        ["move", "MOVE_POPULATION_BOMB", "PopulationBombHandlers"]
+      ],
+      "entry_overrides": {
+        "move:MOVE_JUNGLE_HEALING": {
+          "white2_only": true
+        },
+        "move:MOVE_SNIPE_SHOT": {
+          "white2_only": true
+        },
+        "move:MOVE_LIFE_DEW": {
+          "white2_only": true
+        },
+        "move:MOVE_LUNAR_BLESSING": {
+          "white2_only": true
+        },
+        "move:MOVE_MAKE_IT_RAIN": {
+          "white2_only": true
+        },
+        "move:MOVE_MATCHA_GOTCHA": {
+          "white2_only": true
+        },
+        "move:MOVE_RAGE_FIST": {
+          "white2_only": true
+        },
+        "move:MOVE_LAST_RESPECTS": {
+          "white2_only": true
+        },
+        "move:MOVE_REVIVAL_BLESSING": {
+          "white2_only": true
+        },
+        "move:MOVE_STUFF_CHEEKS": {
+          "white2_only": true
+        },
+        "move:MOVE_TEATIME": {
+          "white2_only": true
+        },
+        "move:MOVE_SHED_TAIL": {
+          "white2_only": true
+        },
+        "move:MOVE_DRAGON_DARTS": {
+          "white2_only": true
+        },
+        "move:MOVE_CORROSIVE_GAS": {
+          "white2_only": true
+        },
+        "move:MOVE_LASH_OUT": {
+          "white2_only": true
+        },
+        "move:MOVE_BURNING_JEALOUSY": {
+          "white2_only": true
+        },
+        "move:MOVE_ALLURING_VOICE": {
+          "white2_only": true
+        },
+        "move:MOVE_EERIE_SPELL": {
+          "white2_only": true
+        },
+        "move:MOVE_UPPER_HAND": {
+          "white2_only": true
+        },
+        "move:MOVE_POPULATION_BOMB": {
+          "white2_only": true
+        }
+      }
     },
     {
       "id": 19,
@@ -351,8 +520,23 @@
       "entries": [
         ["move", "MOVE_ANCHOR_SHOT", "AnchorShotHandlers"],
         ["move", "MOVE_SPIRIT_SHACKLE", "AnchorShotHandlers"],
-        ["move", "MOVE_SAPPY_SEED", "SappySeedHandlers"]
-      ]
+        ["move", "MOVE_SAPPY_SEED", "SappySeedHandlers"],
+        ["move", "MOVE_JAW_LOCK", "JawLockHandlers"],
+        ["move", "MOVE_OCTOLOCK", "OctolockHandlers"],
+        ["field", "13", "FieldOctolockResidualHandlers"]
+      ],
+      "entry_overrides": {
+        "move:MOVE_JAW_LOCK": {
+          "white2_only": true
+        },
+        "move:MOVE_OCTOLOCK": {
+          "white2_only": true
+        },
+        "field:13": {
+          "priority": "EVENTPRI_ABILITY_STALL",
+          "white2_only": true
+        }
+      }
     },
     {
       "id": 20,
@@ -363,8 +547,18 @@
         ["move", "MOVE_GLITZY_GLOW", "GlitzyGlowHandlers"],
         ["move", "MOVE_AURORA_VEIL", "AuroraVeilHandlers"],
         ["move", "MOVE_BRICK_BREAK", "BrickBreakAuroraVeilHandlers"],
-        ["side", "SIDEEFF_AURORA_VEIL", "SideAuroraVeilHandlers"]
-      ]
+        ["side", "SIDEEFF_AURORA_VEIL", "SideAuroraVeilHandlers"],
+        ["move", "MOVE_RAGING_BULL", "RagingBullHandlers"],
+        ["move", "MOVE_COURT_CHANGE", "CourtChangeHandlers"]
+      ],
+      "entry_overrides": {
+        "move:MOVE_RAGING_BULL": {
+          "white2_only": true
+        },
+        "move:MOVE_COURT_CHANGE": {
+          "white2_only": true
+        }
+      }
     },
     {
       "id": 21,
@@ -375,8 +569,14 @@
         ["move", "MOVE_MOONGEIST_BEAM", "MoongeistBeamHandlers"],
         ["move", "MOVE_SUNSTEEL_STRIKE", "MoongeistBeamHandlers"],
         ["move", "MOVE_PHOTON_GEYSER", "PhotonGeyserHandlers"],
-        ["move", "MOVE_WATER_SHURIKEN", "WaterShurikenHandlers"]
-      ]
+        ["move", "MOVE_WATER_SHURIKEN", "WaterShurikenHandlers"],
+        ["move", "MOVE_DOODLE", "DoodleHandlers"]
+      ],
+      "entry_overrides": {
+        "move:MOVE_DOODLE": {
+          "white2_only": true
+        }
+      }
     },
     {
       "id": 22,
@@ -394,7 +594,18 @@
       "name": "abilities/mb_power",
       "source": "abilities",
       "white2_only": true,
-      "extra_sources": ["megab2w2/abilities/Boost.cpp", "megab2w2/abilities/Charge.cpp", "megab2w2/abilities/MindsEye.cpp", "megab2w2/abilities/Neuroforce.cpp", "megab2w2/abilities/PowerSpot.cpp", "megab2w2/abilities/Protean.cpp", "megab2w2/abilities/PunkRock.cpp", "megab2w2/abilities/Ruin.cpp", "megab2w2/abilities/SupremeOverlord.cpp", "megab2w2/abilities/ToxicChain.cpp"],
+      "extra_sources": [
+        "megab2w2/abilities/Boost.cpp",
+        "megab2w2/abilities/Charge.cpp",
+        "megab2w2/abilities/MindsEye.cpp",
+        "megab2w2/abilities/Neuroforce.cpp",
+        "megab2w2/abilities/PowerSpot.cpp",
+        "megab2w2/abilities/Protean.cpp",
+        "megab2w2/abilities/PunkRock.cpp",
+        "megab2w2/abilities/Ruin.cpp",
+        "megab2w2/abilities/SupremeOverlord.cpp",
+        "megab2w2/abilities/ToxicChain.cpp"
+      ],
       "entries": [
         ["ability", "ABIL_TRANSISTOR", "MB_BoostHandlers"],
         ["ability", "ABIL_DRAGONS_MAW", "MB_BoostHandlers"],
@@ -422,7 +633,21 @@
       "name": "abilities/mb_defense",
       "source": "abilities",
       "white2_only": true,
-      "extra_sources": ["megab2w2/abilities/BeastBoost.cpp", "megab2w2/abilities/EarthEater.cpp", "megab2w2/abilities/Fluffy.cpp", "megab2w2/abilities/GoodAsGold.cpp", "megab2w2/abilities/GuardDog.cpp", "megab2w2/abilities/MirrorArmor.cpp", "megab2w2/abilities/PurifyingSalt.cpp", "megab2w2/abilities/QueenlyMajesty.cpp", "megab2w2/abilities/Shields.cpp", "megab2w2/abilities/Veil.cpp", "megab2w2/abilities/WellBakedBody.cpp", "megab2w2/abilities/WindRider.cpp", "megab2w2/abilities/Damp.cpp"],
+      "extra_sources": [
+        "megab2w2/abilities/BeastBoost.cpp",
+        "megab2w2/abilities/EarthEater.cpp",
+        "megab2w2/abilities/Fluffy.cpp",
+        "megab2w2/abilities/GoodAsGold.cpp",
+        "megab2w2/abilities/GuardDog.cpp",
+        "megab2w2/abilities/MirrorArmor.cpp",
+        "megab2w2/abilities/PurifyingSalt.cpp",
+        "megab2w2/abilities/QueenlyMajesty.cpp",
+        "megab2w2/abilities/Shields.cpp",
+        "megab2w2/abilities/Veil.cpp",
+        "megab2w2/abilities/WellBakedBody.cpp",
+        "megab2w2/abilities/WindRider.cpp",
+        "megab2w2/abilities/Damp.cpp"
+      ],
       "entries": [
         ["ability", "ABIL_EELEVATE", "MB_EelevateHandlers"],
         ["ability", "ABIL_EARTH_EATER", "MB_EarthEaterHandlers"],
@@ -446,7 +671,13 @@
       "name": "abilities/mb_reactive",
       "source": "abilities",
       "white2_only": true,
-      "extra_sources": ["megab2w2/abilities/Berserk.cpp", "megab2w2/abilities/HitReactions.cpp", "megab2w2/abilities/LingeringAroma.cpp", "megab2w2/abilities/SpicySpray.cpp", "megab2w2/abilities/Stamina.cpp"],
+      "extra_sources": [
+        "megab2w2/abilities/Berserk.cpp",
+        "megab2w2/abilities/HitReactions.cpp",
+        "megab2w2/abilities/LingeringAroma.cpp",
+        "megab2w2/abilities/SpicySpray.cpp",
+        "megab2w2/abilities/Stamina.cpp"
+      ],
       "entries": [
         ["ability", "ABIL_ANGER_SHELL", "MB_BerserkHandlers"],
         ["ability", "ABIL_COTTON_DOWN", "MB_CottonDownHandlers"],
@@ -464,7 +695,13 @@
       "name": "abilities/mb_entry",
       "source": "abilities",
       "white2_only": true,
-      "extra_sources": ["megab2w2/abilities/EntryEffects.cpp", "megab2w2/abilities/Hospitality.cpp", "megab2w2/abilities/IntrepidSword.cpp", "megab2w2/abilities/Neigh.cpp", "megab2w2/abilities/ScreenCleaner.cpp"],
+      "extra_sources": [
+        "megab2w2/abilities/EntryEffects.cpp",
+        "megab2w2/abilities/Hospitality.cpp",
+        "megab2w2/abilities/IntrepidSword.cpp",
+        "megab2w2/abilities/Neigh.cpp",
+        "megab2w2/abilities/ScreenCleaner.cpp"
+      ],
       "entries": [
         ["ability", "ABIL_CURIOUS_MEDICINE", "MB_CuriousMedicineHandlers"],
         ["ability", "ABIL_COSTAR", "MB_CostarHandlers"],
@@ -484,7 +721,11 @@
       "source": "abilities",
       "dependency": "moves/terrain",
       "white2_only": true,
-      "extra_sources": ["megab2w2/abilities/Protosynthesis.cpp", "megab2w2/abilities/TerrainAbilities.cpp", "megab2w2/abilities/SandSpit.cpp"],
+      "extra_sources": [
+        "megab2w2/abilities/Protosynthesis.cpp",
+        "megab2w2/abilities/TerrainAbilities.cpp",
+        "megab2w2/abilities/SandSpit.cpp"
+      ],
       "entries": [
         ["ability", "ABIL_PROTOSYNTHESIS", "MB_ProtosynthesisHandlers"],
         ["ability", "ABIL_QUARK_DRIVE", "MB_ProtosynthesisHandlers"],
@@ -501,7 +742,14 @@
       "name": "abilities/mb_hooked",
       "source": "abilities",
       "white2_only": true,
-      "extra_sources": ["megab2w2/abilities/GorillaTactics.cpp", "megab2w2/abilities/PropellerTail.cpp", "megab2w2/abilities/UnseenFist.cpp", "megab2w2/abilities/QuickDraw.cpp", "megab2w2/abilities/MoveAbilities.cpp", "megab2w2/abilities/EffectAbilities.cpp"],
+      "extra_sources": [
+        "megab2w2/abilities/GorillaTactics.cpp",
+        "megab2w2/abilities/PropellerTail.cpp",
+        "megab2w2/abilities/UnseenFist.cpp",
+        "megab2w2/abilities/QuickDraw.cpp",
+        "megab2w2/abilities/MoveAbilities.cpp",
+        "megab2w2/abilities/EffectAbilities.cpp"
+      ],
       "entries": [
         ["ability", "ABIL_GORILLA_TACTICS", "MB_GorillaTacticsHandlers"],
         ["ability", "ABIL_PROPELLER_TAIL", "MB_PropellerTailHandlers"],
@@ -522,7 +770,9 @@
       "name": "abilities/mb_forms",
       "source": "abilities",
       "white2_only": true,
-      "extra_sources": ["megab2w2/abilities/FormAbilities.cpp"],
+      "extra_sources": [
+        "megab2w2/abilities/FormAbilities.cpp"
+      ],
       "entries": [
         ["ability", "ABIL_ICE_FACE", "MB_IceFaceHandlers"],
         ["ability", "ABIL_GULP_MISSILE", "MB_GulpMissileHandlers"],

@@ -13,6 +13,9 @@ typedef u32 MOVE_ID;
 enum W2UAbilityId : u32 {
     ABIL_DAMP = 6,          // overridden in module abilities/mb_defense: Damp also stops Mind Blown / Misty Explosion
     ABIL_INTIMIDATE = 22,   // overridden in module abilities/mb_defense for Guard Dog (tracked Intimidate)
+    ABIL_LIQUID_OOZE = 64,
+    ABIL_SKILL_LINK = 92,
+    ABIL_PRANKSTER = 158,
     ABIL_NORMALIZE = 96,
     ABIL_MULTITYPE = 121,
     ABIL_OVERCOAT = 142,
@@ -85,6 +88,9 @@ enum W2UAbilityId : u32 {
     ABIL_FULL_METAL_BODY = 230,
     ABIL_SHADOW_SHIELD = 231,
     ABIL_PRISM_ARMOR = 232,
+    // Canonical IDs used for copy restrictions; not new ability implementations.
+    ABIL_GULP_MISSILE = 241,
+    ABIL_ICE_FACE = 248,
     ABIL_AS_ONE_ICE_RIDER = 266,
     ABIL_AS_ONE_SHADOW_RIDER = 267,
     // MegaB2W2 port (official IDs; custom Legends Z-A Mega abilities after the Gen 9 range)
@@ -96,14 +102,12 @@ enum W2UAbilityId : u32 {
     ABIL_COTTON_DOWN = 238,
     ABIL_PROPELLER_TAIL = 239,
     ABIL_MIRROR_ARMOR = 240,
-    ABIL_GULP_MISSILE = 241,
     ABIL_STALWART = 242,
     ABIL_STEAM_ENGINE = 243,
     ABIL_PUNK_ROCK = 244,
     ABIL_SAND_SPIT = 245,
     ABIL_ICE_SCALES = 246,
     ABIL_RIPEN = 247,
-    ABIL_ICE_FACE = 248,
     ABIL_POWER_SPOT = 249,
     ABIL_MIMICRY = 250,
     ABIL_SCREEN_CLEANER = 251,
@@ -204,6 +208,7 @@ enum BattleEventVar : u32 {
     VAR_MOVE_POWER = 0x30,
     VAR_MOVE_POWER_RATIO = 0x31,
     VAR_DAMAGE = 0x32,
+    VAR_ATTACK_STAT_SELECTOR = 0x33,
     VAR_RATIO = 0x35,
     VAR_TYPE_EFFECTIVENESS = 0x38,
     VAR_WEATHER = 0x39,
@@ -323,6 +328,10 @@ enum BattleEventType : u32 {
     // tags rather than indexing an event-sized array.
     EVENT_W2U_DAMAGE_WEATHER = 0x100,
     EVENT_W2U_MOVE_PARAM_FINAL = 0x101,
+    EVENT_W2U_ATTACK_STAT_SELECTOR = 0x102,
+    EVENT_W2U_MOVE_PARAM_BASE = 0x103,
+    EVENT_W2U_REDIRECTION_CHECK = 0x104,
+    EVENT_W2U_TARGET_PARAM_FINAL = 0x105,
     EVENT_SIMPLE_DAMAGE_REACTION = EVENT_CHECK_ITEM_REACTION,
     EVENT_PROTECT_BROKEN = EVENT_MOVE_EXECUTE_CHECK2,
     EVENT_PROTECT_SUCCESS = EVENT_BEFORE_ATTACKS,

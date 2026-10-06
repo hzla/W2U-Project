@@ -1234,3 +1234,9 @@ text = [
 text = [
   "SCENE 20$",
 ]
+
+[msg.section_0.entries.221]
+text = ["It started to snow!$"]
+
+[msg.section_0.entries.222]
+text = ["The snow stopped.$"]

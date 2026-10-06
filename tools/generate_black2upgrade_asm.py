@@ -33,7 +33,13 @@ def main() -> int:
         width = len(raw) - 2
         return f"0x{translated:0{width}X}"
 
-    result = ADDRESS_RE.sub(replace, source)
+    # Comment addresses are descriptive, not relocations or hook operands.
+    # Continue rejecting every unreviewed executable address.
+    result = "\n".join(
+        ADDRESS_RE.sub(replace, line.partition("@")[0]) +
+        ("@" + line.partition("@")[2] if "@" in line else "")
+        for line in source.split("\n")
+    )
     # The upstream W2 source historically labels the Hall of Fame type table
     # as overlay 255 even though 0x0219B908 is in overlay 265.  Keep W2 byte
     # output untouched, but use the verified IREO owner for the B2 companion.

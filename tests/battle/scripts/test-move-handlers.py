@@ -412,13 +412,13 @@ def verify_snowscape(case, result, variant):
     wanted_weather = 3 if case.get("expectedWeatherTurns",1) else 0
     if "expectedWeatherTurns" in case:
         check(result["nativeWeather"] == {"weather":wanted_weather,"turns":case["expectedWeatherTurns"]},"Wrong native weather duration")
-    logical = case.get("expectedLogicalWeather",5)
+    logical = case.get("expectedLogicalWeather",8)
     starts = [c for c in result["weatherCommands"] if c["command"] == 0x3f]
     if "weatherSuccess" in case:
         check(bool(starts) == case["weatherSuccess"],"Weather incorrectly succeeded/failed")
         if starts:
             check(len(starts)==1 and starts[0]["weather"]==logical and starts[0]["turns"]==(8 if variant["name"]=="icyrock" else 5),"Wrong logical weather start/duration")
-            check((221 if logical==5 else 87) in result["weatherMessages"],"Missing distinct weather announcement")
+            check((221 if logical==8 else 87) in result["weatherMessages"],"Missing distinct weather announcement")
     for role in before:
         healing = case.get("expectedUserHealing",0) if role=="attacker" else 0
         chip = max(1,before[role]["maxHp"]//16) if logical==3 and 14 not in before[role]["types"] else 0
@@ -429,7 +429,7 @@ def verify_snowscape(case, result, variant):
         later = result["laterTurns"]
         check([t["nativeWeather"]["turns"] for t in later]==case["expectedWeatherTimeline"],"Wrong weather expiry timeline")
         check(later[-1]["nativeWeather"]["weather"]==0 and 222 in later[-1]["weatherMessages"],"Snow did not expire with its own message")
-        check([c["weather"] for c in later[-1]["weatherCommands"] if c["command"]==0x40]==[5],"Logical snow was lost before delayed end rendering")
+        check([c["weather"] for c in later[-1]["weatherCommands"] if c["command"]==0x40]==[8],"Logical snow was lost before delayed end rendering")
         for turn in later:
             for role in turn["before"]:
                 check(turn["before"][role]["hp"]==turn["after"][role]["hp"],"Snow/expiry introduced chip")
@@ -449,7 +449,7 @@ def verify_snowscape(case, result, variant):
 
 def verify_chilly_reception(case,result,variant):
     summary=verify_snowscape(case,result,variant)
-    cues=[m for m in result["queuedMessages"] if m["message"]==1358]
+    cues=[m for m in result["queuedMessages"] if m["message"]==1460]
     check(len(cues)==case["expectedEarlyMessages"],"Wrong direct-selection joke announcement count")
     check(all(c["slot"]==result["before"]["attacker"]["slot"] for c in cues),"Joke announcement has wrong owner")
     selections=result["partySelections"]
@@ -2156,7 +2156,7 @@ class Observer:
     def message_setup(self, cpu, address):
         r = self.emu.memory.register_arm9
         self.message_pointers.pop(r.r0, None)
-        if self.case and self.active_move_id in (800,905) and r.r2 == 1352:
+        if self.case and self.active_move_id in (800,905) and r.r2 == 1454:
             self.charge_messages.append({"frame": self.emu.frame_count, "mode": r.r1})
         if self.case and r.r2 == 1301:
             self.terrain_end_messages.append({"frame": self.emu.frame_count, "mode": r.r1})

@@ -1,9 +1,13 @@
+#if defined(W2U_TARGET_B2)
+#include "b2_baseline/w2u_abilities.cpp.inc"
+#else
 #include "w2u_abilities.h"
 #include "w2u_battle_module_api.h"
 #include "w2u_battle_module_loader.h"
 #include "w2u_field_effects.h"
 #include "w2u_moves.h"
 #include "w2u_platform.h"
+#include "w2u_weather.h"
 #include "w2u_strong_weather.h"
 #if !defined(W2U_TARGET_B2)
 #include "megab2w2/mb_ability_tables.h"   // ported MegaB2W2 ability tables (White 2 only)
@@ -638,6 +642,22 @@ extern "C" MOVE_ID W2U_ExtraAction_GetPendingMove(
     return MOVE_NONE;
 }
 
+extern "C" bool W2U_ExtraAction_GetPendingMovePriority(
+    ServerFlow* flow, u32 pokemonSlot, MOVE_ID* moveID, int* priority)
+{
+    BattleMon* mon = W2U_GetActiveBattleMon(flow, pokemonSlot);
+    if (!mon || !moveID || !priority || BattleMon_GetTurnFlag(mon, TURNFLAG_ACTIONDONE)) return false;
+    for (u32 i = 0; i < W2U_GetActionOrderCount(flow); ++i) {
+        ActionOrderWork* action = &flow->actionOrderWork[i];
+        if (action->battleMon == mon && !action->done && BattleAction_GetAction(&action->action) == 1) {
+            *moveID = (MOVE_ID)action->action.baFight.moveID;
+            *priority = (int)((action->speed >> 16) & 0x3Fu) - W2U_ACTION_ORDER_PRIO_OFFSET;
+            return true;
+        }
+    }
+    return false;
+}
+
 extern "C" bool W2U_ExtraAction_HasMoveWithPP(
     ServerFlow* serverFlow,
     u32 pokemonSlot,
@@ -1124,6 +1144,7 @@ extern "C" int THUMB_BRANCH_ServerFlow_ActOrderProcMain(ServerFlow* serverFlow, 
             }
 
             if (action == 1) {
+                W2U_Weather_PrepareChillyReception(serverFlow, currentActionIdx);
                 // Beak Blast and Shell Trap arm at the same boundary where
                 // native ActionOrder_Proc is about to run Focus Punch's
                 // scproc_BeforeFirstFight pass. Keep client command enqueueing
@@ -1871,7 +1892,9 @@ extern "C" b32 W2U_MoveMakesContact(
     MOVE_ID moveID,
     u32 attackingSlot)
 {
-    if (!getMoveFlag(moveID, MOVE_FLAG_INDEX_CONTACT)) {
+    if (!(moveID == MOVE_SHELL_SIDE_ARM
+          ? W2U_MoveState_ShellSideArmCategory(attackingSlot) == SPLIT_PHYSICAL
+          : getMoveFlag(moveID, MOVE_FLAG_INDEX_CONTACT))) {
         return 0;
     }
 
@@ -2213,6 +2236,7 @@ extern "C" void THUMB_BRANCH_ServerEvent_GetMoveParam(
     BattleEventVar_SetValue(VAR_TARGET_TYPE, PML_MoveGetParam(moveID, MVDATA_TARGET));
     BattleEventVar_SetRewriteOnceValue(VAR_NO_TYPE_EFFECTIVENESS, 0);
 
+    BattleEvent_CallHandlers(serverFlow, EVENT_W2U_MOVE_PARAM_BASE);
     BattleEvent_CallHandlers(serverFlow, EVENT_MOVE_PARAM);
     // Native type-conversion abilities can run after ordinary move entries.
     // Give exceptional move types a final, module-owned parameter phase;
@@ -4425,3 +4449,5 @@ extern "C" BattleEventItem* THUMB_BRANCH_AbilityEvent_AddItem(BattleMon* battleM
 #define W2U_BATTLE_API_SOURCE_ABILITIES
 #include "w2u_battle_module_api_entries.inc"
 #undef W2U_BATTLE_API_SOURCE_ABILITIES
+
+#endif // White 2 integration; Black 2 remains at 4369e8a47.

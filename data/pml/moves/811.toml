@@ -1,6 +1,6 @@
 [MOVE_COACHING]
 Type = "TYPE_FIGHTING"
-Quality = "EFFECT_TARGET_STAT_CHANGING"
+Quality = "EFFECT_OTHERS"
 Category = "SPLIT_STATUS"
 Power = 0
 Accuracy = "MUST_HIT"
@@ -18,8 +18,8 @@ Hit = "0 | 0"
 Recoil = 0
 Heal = 0
 Target = "TARGET_FRIEND_SELECT"
-"Status Change Stats" = ["STAT_ATK", "STAT_DEF", 0]
-"Status Change Stages" = [1, 1, 0]
+"Status Change Stats" = [0, 0, 0]
+"Status Change Stages" = [0, 0, 0]
 "Status Change Chances" = [0, 0, 0]
 Padding = 21331
 Flags = "FLAG_HITS_THROUGH_SUBSTITUTE"
