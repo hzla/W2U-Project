@@ -8509,3 +8509,21 @@ text = [
   "The foe's [VAR PKNICK(0)] was swallowed by\n",
   "[VAR PKNICK(1)] and became its commander!$",
 ]
+
+[msg.section_0.entries.1451]
+text = [
+  "[VAR TRNAME(1)]'s fervent wish has\n",
+  "reached [VAR PKNICK(0)]!$",
+]
+
+[msg.section_0.entries.1452]
+text = [
+  "[VAR TRNAME(1)]'s fervent wish has\n",
+  "reached [VAR PKNICK(0)]!$",
+]
+
+[msg.section_0.entries.1453]
+text = [
+  "[VAR TRNAME(1)]'s fervent wish has\n",
+  "reached [VAR PKNICK(0)]!$",
+]

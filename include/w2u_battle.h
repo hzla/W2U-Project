@@ -72,6 +72,7 @@ typedef u32 BattleStyle;
 
 #define BATTLE_MEGA_SYNC_MSGID 1153
 #define BATTLE_MEGA_EVOLVE_MSGID 1156
+#define BATTLE_MEGA_FERVENT_WISH_MSGID 1451   // Mega Rayquaza (Dragon Ascent): TRNAME(1)'s fervent wish has reached PKNICK(0)
 #define BATTLE_AROMA_VEIL_MSGID 1165
 #define BATTLE_FLOWER_VEIL_MSGID 1168
 #define BATTLE_SWEET_VEIL_MSGID 1171
