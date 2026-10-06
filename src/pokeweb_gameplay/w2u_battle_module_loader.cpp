@@ -73,7 +73,7 @@ struct W2UBattleModuleRecord {
 // PMC's system heap is ExtLib's exl::heap::HeapArea. Its Alloc does not return null when no free block fits: it
 // copies an error string and spins (overlay 344 0x21FD840), so a module that does not fit froze the battle before the
 // `!allocation` check below could run. The loader therefore checks the free list itself before allocating.
-// Layout (ExtLib exl_HeapArea.h): {vtable, heapBase, totalSize, freeBlocks, ...}; every block starts with a 16-byte
+// Layout verified against the bundled PMC overlay: {vtable, heapBase, totalSize, freeBlocks, ...}; every block starts with a 16-byte
 // header {size, next, alignPadding, allocator}, so the allocator of any allocation is the word just before it.
 struct W2UPmcHeapBlock {
     u32 size;
@@ -324,7 +324,16 @@ bool EnsurePmcRuntime()
 bool IsMainRamPointer(const void* pointer)
 {
     const u32 address = reinterpret_cast<u32>(pointer);
-    return address >= 0x02000000u && address < 0x02400000u && (address & 3u) == 0u;
+    return w2u::IsMainRamAddress(address, sizeof(u32)) && (address & 3u) == 0u;
+}
+
+bool IsPmcHeapRange(const void* pointer, u32 size)
+{
+    if (!sPmcHeap || !size) return false;
+    const u32 base = reinterpret_cast<u32>(sPmcHeap->heapBase);
+    const u32 address = reinterpret_cast<u32>(pointer);
+    return size <= sPmcHeap->totalSize && address >= base &&
+        address - base <= sPmcHeap->totalSize - size;
 }
 
 // Find the HeapArea that module memory comes from: allocate a small probe and read its block header's allocator.
@@ -340,32 +349,41 @@ void EnsurePmcHeap()
     }
     W2UPmcHeapArea* heap = static_cast<W2UPmcHeapArea*>(
         reinterpret_cast<W2UPmcHeapBlock*>(probe)[-1].allocator);
-    if (IsMainRamPointer(heap) && IsMainRamPointer(heap->heapBase) &&
-        probe >= heap->heapBase && probe < heap->heapBase + heap->totalSize) {
+    if (IsMainRamPointer(heap) &&
+        w2u::IsMainRamAddress(reinterpret_cast<u32>(heap), sizeof(*heap)) &&
+        IsMainRamPointer(heap->heapBase) && heap->totalSize >= sizeof(W2UPmcHeapBlock) &&
+        w2u::IsMainRamAddress(reinterpret_cast<u32>(heap->heapBase), heap->totalSize)) {
         sPmcHeap = heap;
+        if (!IsPmcHeapRange(probe - sizeof(W2UPmcHeapBlock), sizeof(W2UPmcHeapBlock) + 8u)) {
+            sPmcHeap = 0;
+        }
     }
     sPmcRuntime.freeModuleMemory(probe);
 }
 
-// Largest free block in PMC's heap, or 0xFFFFFFFF when the heap could not be found (then nothing is refused).
+// Fail closed if the heap or its free list cannot be validated: never enter
+// PMC's non-returning allocation failure path on guessed capacity.
 u32 LargestFreePmcBlock()
 {
     EnsurePmcHeap();
     if (!sPmcHeap) {
-        return 0xFFFFFFFFu;
+        return 0u;
     }
     u32 largest = 0;
     const W2UPmcHeapBlock* block = sPmcHeap->freeBlocks;
-    for (u32 count = 0; block && count < W2U_PMC_HEAP_MAX_FREE_BLOCKS; ++count) {
-        if (!IsMainRamPointer(block)) {
-            break;
+    u32 count = 0;
+    for (; block && count < W2U_PMC_HEAP_MAX_FREE_BLOCKS; ++count) {
+        if (!IsMainRamPointer(block) || !IsPmcHeapRange(block, sizeof(*block)) ||
+            !block->size || (block->size & 7u) ||
+            !IsPmcHeapRange(block + 1, block->size)) {
+            return 0u;
         }
         if (block->size > largest) {
             largest = block->size;
         }
         block = block->next;
     }
-    return largest;
+    return block ? 0u : largest; // A cyclic/overlong list must not authorize an allocation.
 }
 
 bool IsRangeInside(const void* base, u32 size, const void* pointer, u32 rangeSize)
@@ -682,7 +700,9 @@ bool LoadModule(u8 moduleId, W2UBattleMechanicKind expectedKind, u16 expectedId)
     record->loadOrdinal = (u16)sTelemetry.loadedModuleCount;
     ++sTelemetry.loadedModuleCount;
     ++sTelemetry.loadCount;
-    sTelemetry.currentChildBytes += fixedSize;
+    // StartModule retains the image plus BSS relocated into its tail. Metadata
+    // pointer bounds intentionally still use image-only fixedBytes above.
+    sTelemetry.currentChildBytes += fixedSize + expandedSize - fileSize;
     if (sTelemetry.currentChildBytes > sTelemetry.peakChildBytes) {
         sTelemetry.peakChildBytes = sTelemetry.currentChildBytes;
     }
@@ -784,6 +804,7 @@ extern "C" __attribute__((visibility("default"))) int DllMain(
         sRegistrationEnabled = false;
         ClearBytes(&sPmcRuntime, sizeof(sPmcRuntime));
         sPmcRuntimeState = 0;
+        sPmcHeap = 0;
     } else if (module) {
         sRegistrationEnabled = true;
         // PMC invokes DllMain after applying INTERNAL_RELOCATIONS, so the
