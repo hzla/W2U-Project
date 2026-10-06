@@ -26572,6 +26572,9 @@ Symbols:
   - Name: Battle_IsRedirectBlocked
     Segment: 0x1D
     Address: 0x21ABE11
+  - Name: ServerControl_RechargeAction
+    Segment: 0x1D
+    Address: 0x21A9015
   - Name: BattleField_GetWeather
     Segment: 0x1D
     Address: 0x21D59F1

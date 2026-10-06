@@ -14,6 +14,9 @@ void BattleHandler_RecoverHP(ServerFlow* sf, void* param, u32 a2);              
 u32  BattleHandler_Damage(ServerFlow* sf, void* param);                                 // ov167 0x21AC9D8
 void BattleHandler_StatChange(ServerFlow* sf, void* param, u32 a2);                     // ov167 0x21ACDD0
 void BattleHandler_ForceUseItem(ServerFlow* sf, void* param);                           // ov167 0x21AD9BC
+b32  ServerControl_IsGuaranteedHit(ServerFlow* sf, BattleMon* attacker, BattleMon* target); // ov167 0x21A2E0C
+void ServerControl_RechargeAction(ServerFlow* sf, BattleMon* bm);                       // ov167 0x21A9014
+bool BattleMon_GetConditionFlag(BattleMon* bm, u32 flag);
 }
 
 namespace {
@@ -63,7 +66,32 @@ void UseItem(ServerFlow* sf, void* param, bool force) {
 }
 } // namespace
 
+// ---- Commander (battle module abilities/mb_forms) ----------------------------------------------------------------
+// The module hides a commanding Tatsugiri with Shadow Force's flag (6) and sets the recharge flag (12) each turn so
+// the command menu skips it. Showdown: nothing reaches a commanding Tatsugiri, No Guard and Lock-On included, and it
+// makes no choice at all.
+static constexpr u16 SPECIES_TATSUGIRI = 978;
+static constexpr u32 CONDITIONFLAG_SHADOWFORCE = 0x6;
+// BattleMon +0x0C: the species (W2U's BattleMon layout; there is no species getter in the ESDB)
+static u16 Species(BattleMon* bm) { return *(u16*)((u8*)bm + 0x0C); }
+static bool Commanding(BattleMon* bm) {
+    return bm && Species(bm) == SPECIES_TATSUGIRI && ability::HasActiveAbility(bm, ABIL_COMMANDER) &&
+           BattleMon_GetConditionFlag(bm, CONDITIONFLAG_SHADOWFORCE);
+}
+// No Guard / Lock-On / Mind Reader (ServerControl_IsGuaranteedHit) skip the hide check: not for it
+static b32 GuaranteedHit(ServerFlow* sf, BattleMon* attacker, BattleMon* target) {
+    return Commanding(target) ? 0 : ServerControl_IsGuaranteedHit(sf, attacker, target);
+}
+
 // ---- the call sites --------------------------------------------------------------------------------------------
+// The hide checks' guaranteed-hit tests (ov167 0x21A3340, 0x21A6F7C; each followed by the hide check 0x21AA4A0)
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21A3340(ServerFlow* sf, BattleMon* a, BattleMon* t) { return GuaranteedHit(sf, a, t); }
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21A6F7C(ServerFlow* sf, BattleMon* a, BattleMon* t) { return GuaranteedHit(sf, a, t); }
+// ActionOrder_Proc's recharge action (kind 7): "X must recharge!" (message 0x350), not for a commanding Tatsugiri
+extern "C" void THUMB_BRANCH_LINK_167_0x21A094E(ServerFlow* sf, BattleMon* bm) {
+    if (!Commanding(bm)) ServerControl_RechargeAction(sf, bm);
+}
+
 extern "C" b32 THUMB_BRANCH_LINK_167_0x21C0D82(ServerFlow* sf, u32 a, u32 r, u16 m) { return RedirectBlocked(sf, a, r, m); }
 extern "C" b32 THUMB_BRANCH_LINK_167_0x21C64C4(ServerFlow* sf, u32 a, u32 r, u16 m) { return RedirectBlocked(sf, a, r, m); }
 
