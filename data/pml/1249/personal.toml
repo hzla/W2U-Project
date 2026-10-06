@@ -1,10 +1,10 @@
 [SPECIES_1249]
-"Base HP" = 60
-"Base Attack" = 65
-"Base Defense" = 55
-"Base Speed" = 95
-"Base Special Attack" = 105
-"Base Special Defense" = 95
+"Base HP" = 70
+"Base Attack" = 55
+"Base Defense" = 65
+"Base Speed" = 85
+"Base Special Attack" = 95
+"Base Special Defense" = 105
 "Primary Type" = "TYPE_PSYCHIC"
 "Secondary Type" = "TYPE_NORMAL"
 "Capture Rate" = 30
@@ -19,7 +19,7 @@
 "Experience Group" = 4
 "Egg Group 1" = 6
 "Egg Group 2" = 6
-"Primary Ability" = 39
+"Primary Ability" = 20
 "Secondary Ability" = 28
 "Hidden Ability" = 227
 "Escape Rate" = 0

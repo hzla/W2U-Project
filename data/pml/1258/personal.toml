@@ -1,10 +1,10 @@
 [SPECIES_1258]
 "Base HP" = 74
 "Base Attack" = 115
-"Base Defense" = 70
-"Base Speed" = 106
+"Base Defense" = 110
+"Base Speed" = 46
 "Base Special Attack" = 135
-"Base Special Defense" = 80
+"Base Special Defense" = 100
 "Primary Type" = "TYPE_FAIRY"
 "Secondary Type" = "TYPE_FLYING"
 "Capture Rate" = 3
@@ -19,9 +19,9 @@
 "Experience Group" = 5
 "Egg Group 1" = 15
 "Egg Group 2" = 15
-"Primary Ability" = 56
-"Secondary Ability" = 56
-"Hidden Ability" = 126
+"Primary Ability" = 142
+"Secondary Ability" = 142
+"Hidden Ability" = 142
 "Escape Rate" = 0
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0

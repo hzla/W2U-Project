@@ -6,7 +6,7 @@
 "Base Special Attack" = 60
 "Base Special Defense" = 96
 "Primary Type" = "TYPE_GRASS"
-"Secondary Type" = "TYPE_GRASS"
+"Secondary Type" = "TYPE_ROCK"
 "Capture Rate" = 5
 "Evolution Stage" = 3
 "EV Yield" = 12
@@ -19,9 +19,9 @@
 "Experience Group" = 5
 "Egg Group 1" = 15
 "Egg Group 2" = 15
-"Primary Ability" = 128
-"Secondary Ability" = 128
-"Hidden Ability" = 128
+"Primary Ability" = 5
+"Secondary Ability" = 5
+"Hidden Ability" = 5
 "Escape Rate" = 0
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0
