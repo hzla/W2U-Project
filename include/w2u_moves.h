@@ -11,6 +11,10 @@ extern "C" bool W2U_MoveIsRestrictedNpcAttack(MOVE_ID moveID);
 extern "C" void W2U_MoveState_ResetBattleState();
 extern "C" void W2U_MoveState_BeginBattleTracking(u32 fallbackPokemonSlot);
 extern "C" bool W2U_MoveState_EnsureTransientEvent(u32 pokemonSlot);
+extern "C" bool W2U_MoveState_StartFairyLock(u32 pokemonSlot);
+// 0: not commanded; 1/2/3: Curly/Droopy/Stretchy Tatsugiri.
+extern "C" void W2U_MoveState_SetCommanderForm(u32 pokemonSlot, u32 form);
+extern "C" u32 W2U_MoveState_GetCommanderForm(u32 pokemonSlot);
 extern "C" bool W2U_MoveState_DidLastMoveFailForStomping(u32 pokemonSlot);
 // Applied changes only, after Contrary/Simple/prevention. Stage replacement
 // (Haze, Transform, Topsy-Turvy) does not set this turn's history.

@@ -21,6 +21,7 @@
 //                            Tatsugiri (the recharge flag, set again each turn; mb_resident.cpp drops the recharge
 //                            action's message for it) and No Guard / Lock-On don't reach it (mb_resident.cpp).
 #include "w2u_abilities.h"
+#include "w2u_moves.h"
 #include "w2u_battle.h"
 #include "Moves.h"
 #include "species_ids.h"
@@ -293,6 +294,7 @@ void CommanderTry(ServerFlow* sf, u32 pokeID)
     if (!allyMon || allyMon->species != FA_DONDOZO || BattleMon_IsFainted(allyMon) || sCommandedBy[ally]) return;
     sCommanding[pokeID] = (u8)(ally + 1);
     sCommandedBy[ally] = (u8)(pokeID + 1);
+    W2U_MoveState_SetCommanderForm(ally, mon->form + 1);
 
     Popup(sf, pokeID, true);
     HandlerParam_Message* message = (HandlerParam_Message*)BattleHandler_PushWork(sf, EFFECT_MESSAGE, pokeID);
@@ -319,6 +321,7 @@ void CommanderEnd(ServerFlow* sf, u32 pokeID)
     const u32 ally = sCommanding[pokeID] - 1u;
     sCommanding[pokeID] = 0;
     if (ally < FA_MAX_POKE) sCommandedBy[ally] = 0;
+    W2U_MoveState_SetCommanderForm(ally, 0);
     BattleMon* mon = Mon(sf, pokeID);
     if (!mon || BattleMon_IsFainted(mon)) return;
     PushConditionFlag(sf, pokeID, pokeID, FA_CONDITIONFLAG_NOACTION, false);
@@ -358,6 +361,7 @@ void HandlerCommanderSwitchOut(BattleEventItem*, ServerFlow*, u32 pokeID, u32*)
     const u32 ally = sCommanding[pokeID] - 1u;
     sCommanding[pokeID] = 0;
     if (ally < FA_MAX_POKE) sCommandedBy[ally] = 0;
+    W2U_MoveState_SetCommanderForm(ally, 0);
 }
 
 bool CommanderPair(u32 pokeID, u32 mon)

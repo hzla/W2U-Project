@@ -2417,6 +2417,12 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #elif W2U_BATTLE_MODULE_ID == 13
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_MAT_BLOCK), (u16)W2U_ARRAY_COUNT(MatBlockHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MatBlockHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_HYPERSPACE_HOLE), (u16)W2U_ARRAY_COUNT(HyperspaceHoleHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, HyperspaceHoleHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_HYPERSPACE_FURY), (u16)W2U_ARRAY_COUNT(HyperspaceFuryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, HyperspaceFuryHandlers},
+#endif
     {W2U_MECHANIC_MOVE, (u16)(MOVE_CRAFTY_SHIELD), (u16)W2U_ARRAY_COUNT(CraftyShieldHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CraftyShieldHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SPIKY_SHIELD), (u16)W2U_ARRAY_COUNT(ProtectLikeShieldHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ProtectLikeShieldHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_BANEFUL_BUNKER), (u16)W2U_ARRAY_COUNT(ProtectLikeShieldHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ProtectLikeShieldHandlers},
@@ -2437,6 +2443,16 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 static_assert((MOVE_MAT_BLOCK) >= 0 && (MOVE_MAT_BLOCK) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(MatBlockHandlers)) > 0 && (W2U_ARRAY_COUNT(MatBlockHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_HYPERSPACE_HOLE) >= 0 && (MOVE_HYPERSPACE_HOLE) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(HyperspaceHoleHandlers)) > 0 && (W2U_ARRAY_COUNT(HyperspaceHoleHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_HYPERSPACE_FURY) >= 0 && (MOVE_HYPERSPACE_FURY) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(HyperspaceFuryHandlers)) > 0 && (W2U_ARRAY_COUNT(HyperspaceFuryHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 static_assert((MOVE_CRAFTY_SHIELD) >= 0 && (MOVE_CRAFTY_SHIELD) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(CraftyShieldHandlers)) > 0 && (W2U_ARRAY_COUNT(CraftyShieldHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
@@ -2585,6 +2601,9 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_AURA_WHEEL), (u16)W2U_ARRAY_COUNT(AuraWheelHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AuraWheelHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_MAGIC_POWDER), (u16)W2U_ARRAY_COUNT(MagicPowderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MagicPowderHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_FLYING_PRESS), (u16)W2U_ARRAY_COUNT(FlyingPressHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FlyingPressHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_THOUSAND_ARROWS), (u16)W2U_ARRAY_COUNT(ThousandArrowsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ThousandArrowsHandlers},
+#endif
     {W2U_MECHANIC_MOVE, (u16)(MOVE_FREEZEDRY), (u16)W2U_ARRAY_COUNT(FreezeDryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FreezeDryHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_TRICKORTREAT), (u16)W2U_ARRAY_COUNT(TrickOrTreatHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TrickOrTreatHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_FORESTS_CURSE), (u16)W2U_ARRAY_COUNT(ForestsCurseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ForestsCurseHandlers},
@@ -2624,6 +2643,11 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 static_assert((MOVE_FLYING_PRESS) >= 0 && (MOVE_FLYING_PRESS) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(FlyingPressHandlers)) > 0 && (W2U_ARRAY_COUNT(FlyingPressHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_THOUSAND_ARROWS) >= 0 && (MOVE_THOUSAND_ARROWS) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(ThousandArrowsHandlers)) > 0 && (W2U_ARRAY_COUNT(ThousandArrowsHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 static_assert((MOVE_FREEZEDRY) >= 0 && (MOVE_FREEZEDRY) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(FreezeDryHandlers)) > 0 && (W2U_ARRAY_COUNT(FreezeDryHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
@@ -2784,6 +2808,12 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_VENOM_DRENCH), (u16)W2U_ARRAY_COUNT(VenomDrenchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, VenomDrenchHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_MAGNETIC_FLUX), (u16)W2U_ARRAY_COUNT(MagneticFluxHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MagneticFluxHandlers},
 #if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_GEAR_UP), (u16)W2U_ARRAY_COUNT(MagneticFluxHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MagneticFluxHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_ORDER_UP), (u16)W2U_ARRAY_COUNT(OrderUpHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, OrderUpHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_MOVE, (u16)(MOVE_DECORATE), (u16)W2U_ARRAY_COUNT(DecorateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DecorateHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -2850,6 +2880,16 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 static_assert((MOVE_MAGNETIC_FLUX) >= 0 && (MOVE_MAGNETIC_FLUX) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(MagneticFluxHandlers)) > 0 && (W2U_ARRAY_COUNT(MagneticFluxHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_GEAR_UP) >= 0 && (MOVE_GEAR_UP) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(MagneticFluxHandlers)) > 0 && (W2U_ARRAY_COUNT(MagneticFluxHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_ORDER_UP) >= 0 && (MOVE_ORDER_UP) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(OrderUpHandlers)) > 0 && (W2U_ARRAY_COUNT(OrderUpHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 #if !defined(W2U_TARGET_B2)
 static_assert((MOVE_DECORATE) >= 0 && (MOVE_DECORATE) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(DecorateHandlers)) > 0 && (W2U_ARRAY_COUNT(DecorateHandlers)) <= 64, "Invalid handler count");
@@ -3135,6 +3175,12 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #elif W2U_BATTLE_MODULE_ID == 19
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_ANCHOR_SHOT), (u16)W2U_ARRAY_COUNT(AnchorShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AnchorShotHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_THOUSAND_WAVES), (u16)W2U_ARRAY_COUNT(ThousandWavesHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ThousandWavesHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_FAIRY_LOCK), (u16)W2U_ARRAY_COUNT(FairyLockHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FairyLockHandlers},
+#endif
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SPIRIT_SHACKLE), (u16)W2U_ARRAY_COUNT(AnchorShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AnchorShotHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SAPPY_SEED), (u16)W2U_ARRAY_COUNT(SappySeedHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SappySeedHandlers},
 #if !defined(W2U_TARGET_B2)
@@ -3156,6 +3202,16 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 static_assert((MOVE_ANCHOR_SHOT) >= 0 && (MOVE_ANCHOR_SHOT) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(AnchorShotHandlers)) > 0 && (W2U_ARRAY_COUNT(AnchorShotHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_THOUSAND_WAVES) >= 0 && (MOVE_THOUSAND_WAVES) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(ThousandWavesHandlers)) > 0 && (W2U_ARRAY_COUNT(ThousandWavesHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_FAIRY_LOCK) >= 0 && (MOVE_FAIRY_LOCK) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(FairyLockHandlers)) > 0 && (W2U_ARRAY_COUNT(FairyLockHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 static_assert((MOVE_SPIRIT_SHACKLE) >= 0 && (MOVE_SPIRIT_SHACKLE) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(AnchorShotHandlers)) > 0 && (W2U_ARRAY_COUNT(AnchorShotHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
@@ -3183,6 +3239,9 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_GLITZY_GLOW), (u16)W2U_ARRAY_COUNT(GlitzyGlowHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, GlitzyGlowHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_AURORA_VEIL), (u16)W2U_ARRAY_COUNT(AuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AuroraVeilHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_BRICK_BREAK), (u16)W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BrickBreakAuroraVeilHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_PSYCHIC_FANGS), (u16)W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BrickBreakAuroraVeilHandlers},
+#endif
     {W2U_MECHANIC_SIDE, (u16)(SIDEEFF_AURORA_VEIL), (u16)W2U_ARRAY_COUNT(SideAuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SideAuroraVeilHandlers},
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_MOVE, (u16)(MOVE_RAGING_BULL), (u16)W2U_ARRAY_COUNT(RagingBullHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, RagingBullHandlers},
@@ -3209,6 +3268,11 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 static_assert((MOVE_BRICK_BREAK) >= 0 && (MOVE_BRICK_BREAK) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers)) > 0 && (W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_PSYCHIC_FANGS) >= 0 && (MOVE_PSYCHIC_FANGS) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers)) > 0 && (W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 static_assert((SIDEEFF_AURORA_VEIL) >= 0 && (SIDEEFF_AURORA_VEIL) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(SideAuroraVeilHandlers)) > 0 && (W2U_ARRAY_COUNT(SideAuroraVeilHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
@@ -3322,6 +3386,12 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 }
 static const W2UBattleHandlerExport sBattleModule_moves_guardsEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_MAT_BLOCK), (u16)W2U_ARRAY_COUNT(MatBlockHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MatBlockHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_HYPERSPACE_HOLE), (u16)W2U_ARRAY_COUNT(HyperspaceHoleHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, HyperspaceHoleHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_HYPERSPACE_FURY), (u16)W2U_ARRAY_COUNT(HyperspaceFuryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, HyperspaceFuryHandlers},
+#endif
     {W2U_MECHANIC_MOVE, (u16)(MOVE_CRAFTY_SHIELD), (u16)W2U_ARRAY_COUNT(CraftyShieldHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CraftyShieldHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SPIKY_SHIELD), (u16)W2U_ARRAY_COUNT(ProtectLikeShieldHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ProtectLikeShieldHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_BANEFUL_BUNKER), (u16)W2U_ARRAY_COUNT(ProtectLikeShieldHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ProtectLikeShieldHandlers},
@@ -3342,6 +3412,16 @@ static const W2UBattleModuleApi sBattleModule_moves_guardsApi = {
 static_assert((MOVE_MAT_BLOCK) >= 0 && (MOVE_MAT_BLOCK) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(MatBlockHandlers)) > 0 && (W2U_ARRAY_COUNT(MatBlockHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_HYPERSPACE_HOLE) >= 0 && (MOVE_HYPERSPACE_HOLE) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(HyperspaceHoleHandlers)) > 0 && (W2U_ARRAY_COUNT(HyperspaceHoleHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_HYPERSPACE_FURY) >= 0 && (MOVE_HYPERSPACE_FURY) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(HyperspaceFuryHandlers)) > 0 && (W2U_ARRAY_COUNT(HyperspaceFuryHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 static_assert((MOVE_CRAFTY_SHIELD) >= 0 && (MOVE_CRAFTY_SHIELD) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(CraftyShieldHandlers)) > 0 && (W2U_ARRAY_COUNT(CraftyShieldHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
@@ -3496,6 +3576,9 @@ static const W2UBattleHandlerExport sBattleModule_moves_typeEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_AURA_WHEEL), (u16)W2U_ARRAY_COUNT(AuraWheelHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AuraWheelHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_MAGIC_POWDER), (u16)W2U_ARRAY_COUNT(MagicPowderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MagicPowderHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_FLYING_PRESS), (u16)W2U_ARRAY_COUNT(FlyingPressHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FlyingPressHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_THOUSAND_ARROWS), (u16)W2U_ARRAY_COUNT(ThousandArrowsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ThousandArrowsHandlers},
+#endif
     {W2U_MECHANIC_MOVE, (u16)(MOVE_FREEZEDRY), (u16)W2U_ARRAY_COUNT(FreezeDryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FreezeDryHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_TRICKORTREAT), (u16)W2U_ARRAY_COUNT(TrickOrTreatHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TrickOrTreatHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_FORESTS_CURSE), (u16)W2U_ARRAY_COUNT(ForestsCurseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ForestsCurseHandlers},
@@ -3535,6 +3618,11 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 static_assert((MOVE_FLYING_PRESS) >= 0 && (MOVE_FLYING_PRESS) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(FlyingPressHandlers)) > 0 && (W2U_ARRAY_COUNT(FlyingPressHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_THOUSAND_ARROWS) >= 0 && (MOVE_THOUSAND_ARROWS) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(ThousandArrowsHandlers)) > 0 && (W2U_ARRAY_COUNT(ThousandArrowsHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 static_assert((MOVE_FREEZEDRY) >= 0 && (MOVE_FREEZEDRY) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(FreezeDryHandlers)) > 0 && (W2U_ARRAY_COUNT(FreezeDryHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
@@ -3701,6 +3789,12 @@ static const W2UBattleHandlerExport sBattleModule_moves_statsEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_VENOM_DRENCH), (u16)W2U_ARRAY_COUNT(VenomDrenchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, VenomDrenchHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_MAGNETIC_FLUX), (u16)W2U_ARRAY_COUNT(MagneticFluxHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MagneticFluxHandlers},
 #if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_GEAR_UP), (u16)W2U_ARRAY_COUNT(MagneticFluxHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MagneticFluxHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_ORDER_UP), (u16)W2U_ARRAY_COUNT(OrderUpHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, OrderUpHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_MOVE, (u16)(MOVE_DECORATE), (u16)W2U_ARRAY_COUNT(DecorateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DecorateHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -3767,6 +3861,16 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 static_assert((MOVE_MAGNETIC_FLUX) >= 0 && (MOVE_MAGNETIC_FLUX) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(MagneticFluxHandlers)) > 0 && (W2U_ARRAY_COUNT(MagneticFluxHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_GEAR_UP) >= 0 && (MOVE_GEAR_UP) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(MagneticFluxHandlers)) > 0 && (W2U_ARRAY_COUNT(MagneticFluxHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_ORDER_UP) >= 0 && (MOVE_ORDER_UP) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(OrderUpHandlers)) > 0 && (W2U_ARRAY_COUNT(OrderUpHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 #if !defined(W2U_TARGET_B2)
 static_assert((MOVE_DECORATE) >= 0 && (MOVE_DECORATE) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(DecorateHandlers)) > 0 && (W2U_ARRAY_COUNT(DecorateHandlers)) <= 64, "Invalid handler count");
@@ -4058,6 +4162,12 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 }
 static const W2UBattleHandlerExport sBattleModule_moves_trappingEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_ANCHOR_SHOT), (u16)W2U_ARRAY_COUNT(AnchorShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AnchorShotHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_THOUSAND_WAVES), (u16)W2U_ARRAY_COUNT(ThousandWavesHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ThousandWavesHandlers},
+#endif
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_FAIRY_LOCK), (u16)W2U_ARRAY_COUNT(FairyLockHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FairyLockHandlers},
+#endif
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SPIRIT_SHACKLE), (u16)W2U_ARRAY_COUNT(AnchorShotHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AnchorShotHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_SAPPY_SEED), (u16)W2U_ARRAY_COUNT(SappySeedHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SappySeedHandlers},
 #if !defined(W2U_TARGET_B2)
@@ -4079,6 +4189,16 @@ static const W2UBattleModuleApi sBattleModule_moves_trappingApi = {
 static_assert((MOVE_ANCHOR_SHOT) >= 0 && (MOVE_ANCHOR_SHOT) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(AnchorShotHandlers)) > 0 && (W2U_ARRAY_COUNT(AnchorShotHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_THOUSAND_WAVES) >= 0 && (MOVE_THOUSAND_WAVES) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(ThousandWavesHandlers)) > 0 && (W2U_ARRAY_COUNT(ThousandWavesHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_FAIRY_LOCK) >= 0 && (MOVE_FAIRY_LOCK) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(FairyLockHandlers)) > 0 && (W2U_ARRAY_COUNT(FairyLockHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 static_assert((MOVE_SPIRIT_SHACKLE) >= 0 && (MOVE_SPIRIT_SHACKLE) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(AnchorShotHandlers)) > 0 && (W2U_ARRAY_COUNT(AnchorShotHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
@@ -4109,6 +4229,9 @@ static const W2UBattleHandlerExport sBattleModule_moves_screensEntries[] = {
     {W2U_MECHANIC_MOVE, (u16)(MOVE_GLITZY_GLOW), (u16)W2U_ARRAY_COUNT(GlitzyGlowHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, GlitzyGlowHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_AURORA_VEIL), (u16)W2U_ARRAY_COUNT(AuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AuroraVeilHandlers},
     {W2U_MECHANIC_MOVE, (u16)(MOVE_BRICK_BREAK), (u16)W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BrickBreakAuroraVeilHandlers},
+#if !defined(W2U_TARGET_B2)
+    {W2U_MECHANIC_MOVE, (u16)(MOVE_PSYCHIC_FANGS), (u16)W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, BrickBreakAuroraVeilHandlers},
+#endif
     {W2U_MECHANIC_SIDE, (u16)(SIDEEFF_AURORA_VEIL), (u16)W2U_ARRAY_COUNT(SideAuroraVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SideAuroraVeilHandlers},
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_MOVE, (u16)(MOVE_RAGING_BULL), (u16)W2U_ARRAY_COUNT(RagingBullHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, RagingBullHandlers},
@@ -4135,6 +4258,11 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 static_assert((MOVE_BRICK_BREAK) >= 0 && (MOVE_BRICK_BREAK) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers)) > 0 && (W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
+static_assert((MOVE_PSYCHIC_FANGS) >= 0 && (MOVE_PSYCHIC_FANGS) <= 65535, "Mechanic ID exceeds ABI");
+static_assert((W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers)) > 0 && (W2U_ARRAY_COUNT(BrickBreakAuroraVeilHandlers)) <= 64, "Invalid handler count");
+static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 static_assert((SIDEEFF_AURORA_VEIL) >= 0 && (SIDEEFF_AURORA_VEIL) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(SideAuroraVeilHandlers)) > 0 && (W2U_ARRAY_COUNT(SideAuroraVeilHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");

@@ -888,6 +888,69 @@ Derive status, stat-stage and condition readers from the supported engine ABI be
 
 For recharge, test a real subsequent turn instead of passing as soon as the first attack deals damage. For protection, a timeout waiting for HP loss is not a pass: positively observe that the protected attack resolved, HP stayed unchanged, and the appropriate contact consequence occurred. For stolen boosts, verify their transfer before damage calculation rather than only after the turn.
 
+## Remaining non-item-dependent move suites
+
+The following White 2 suites use the real on-demand modules and independent
+damage/state oracles. Run each name with `python3 tools/test_battle.py move
+--move NAME --rom build-release/White2Upgrade.nds`. For this integration
+checkout, set `POKEWEB_ROOT=../Port-Pokeweb/Pokeweb-Serverless-w2-integration`
+for fixture generation and the strict TypeScript check. Always supply `--rom`:
+the runner's diagnostic `build/` default is not the stripped `build-release/`.
+
+| Suite | Root cases | Module | Focused coverage |
+| --- | ---: | --- | --- |
+| `thousand-arrows` | 10 | `moves/type` | First-hit Flying neutrality, later Ground affinity, Levitate, Air Balloon, Magnet Rise, Fly cancellation, Dig exclusion, Substitute, Protect, spread grounding, Sheer Force |
+| `thousand-waves` | 8 | `moves/trapping` | Source-linked trapping, source departure, Ghost exemption, Substitute/Protect, spread recipients, Shield Dust and Sheer Force |
+| `hyperspace-hole` | 10 | `moves/guards` | Protection breaking, subsequent allied attack, Detect, King's Shield, Spiky Shield, Baneful Bunker, Mat Block, Substitute, Dark immunity |
+| `hyperspace-fury` | 12 | `moves/guards` | The same protection/Substitute cases, Defense drop, Hoopa Unbound restriction, Confined/other-species failure, transformed Hoopa Unbound |
+| `fairy-lock` | 4 | `moves/trapping` | Native client switch prohibition, expiration after the following turn, no active refresh, Ghost and Shed Shell exemptions |
+| `gear-up` | 7 | `moves/stats` | Attack/Special Attack only, Plus/Minus, suppressed ability, caps, both allies, eligible ally with ineligible user, no opponent boosts |
+| `psychic-fangs` | 9 | `moves/screens` | Reflect/Light Screen separately and together, Aurora Veil, removal before damage, Substitute, Protect, miss and Dark immunity |
+| `order-up` | 10 | `moves/stats` | Native Commander entry for all three Tatsugiri forms, no uncommanded boost, caps, Substitute, miss/Protect/immunity, Sheer Force power plus retained boost |
+
+These are 70 root cases, with four additional native follow-up actions. Real
+setup moves establish protection, screens, trapping and airborne conditions;
+the harness does not write their successful outcomes. Fairy Lock observes the
+signature-pinned client switch checker reached through the POKEMON button,
+rather than inferring trapping from damage or calling the checker itself.
+
+Fixtures alone stage the bundled menu-skip helper to enter their synthetic
+test saves. The distributed integration ROM does not contain that helper;
+`tools/test_normal_boot.py` separately checks its unmodified cold boot. Effect
+runs have animations off by default and are not visual/animation acceptance.
+Native wild-battle escape, network/multi-trainer battles, hardware and DSi are
+not covered by these suites. Black 2 receives compile/static-isolation checks
+only; all eight registrations are White-2-only. Multi-Attack and Ivy Cudgel
+remain deferred pending their held items.
+
+The shared screen-breaking callback must have one entry per event: the native
+dispatcher invokes only the first matching callback in an event table. Host
+contracts compile the extracted implementations for this rule, Fairy Lock
+state/allocation, native callback scoping, Hoopa forms, aggregate affinity and
+Commander form bounds. Oracle unit tests reject missing screen/prohibition
+observations, uncleared Fly flags, incorrect spread rounding and wrong-owner
+PP accounting after a source exits.
+
+The [dated coverage ledger](remaining-move-coverage-2026-10-06.json) records
+the exact tested ROM and report paths, rather than treating an older result
+as evidence for a rebuild. All 70 effect cases and four follow-up actions passed
+on RC3, including all nine Psychic Fangs cases with animations enabled.
+Seven moves also
+passed animation-enabled smoke checks before the Psychic Fangs asset repair.
+The original Fangs script requested resources 2–5 in the two-resource SPA 748.
+Its replacement comes from Volt White 2 QoL's Egg Bomb member 121, with source
+hashes and dependency operands pinned in
+`data/graphics/move_animations/import_maps/vw2qol-psychic-fangs.json`. It uses
+only SPA 326, which was verified byte-identical in the donor and release ROM;
+the shared Geomancy and Laser Focus SPAs are unchanged. Reimport with
+`tools/import_move_animations_from_rom.py --donor-rom DONOR --mapping-json
+data/graphics/move_animations/import_maps/vw2qol-psychic-fangs.json
+--min-target-id 706 --max-target-id 706 --only-target-id 706 --strict`.
+Run the Fangs suite with `--animations-on` for native completion coverage;
+this is not visual/audio certification. Use `refresh-animation-ownership.ts`
+through the fixture runner's Vite configuration to refresh only the Upgrade
+inventories without changing the Pokeweb checkout.
+
 ## Probe and failure rules for agents
 
 - Run the real engine and its installed DLLs. Do not import child handler symbols or hardcode their relocated addresses. Observe stable native service calls and resulting live state.

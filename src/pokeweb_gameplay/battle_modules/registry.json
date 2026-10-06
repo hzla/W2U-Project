@@ -211,10 +211,18 @@
         },
         "position:POSEFF_DAMAGE_SHIELD": {
           "priority": "EVENTPRI_POS_DEFAULT"
+        },
+        "move:MOVE_HYPERSPACE_HOLE": {
+          "white2_only": true
+        },
+        "move:MOVE_HYPERSPACE_FURY": {
+          "white2_only": true
         }
       },
       "entries": [
         ["move", "MOVE_MAT_BLOCK", "MatBlockHandlers"],
+        ["move", "MOVE_HYPERSPACE_HOLE", "HyperspaceHoleHandlers"],
+        ["move", "MOVE_HYPERSPACE_FURY", "HyperspaceFuryHandlers"],
         ["move", "MOVE_CRAFTY_SHIELD", "CraftyShieldHandlers"],
         ["move", "MOVE_SPIKY_SHIELD", "ProtectLikeShieldHandlers"],
         ["move", "MOVE_BANEFUL_BUNKER", "ProtectLikeShieldHandlers"],
@@ -287,6 +295,7 @@
         ["move", "MOVE_AURA_WHEEL", "AuraWheelHandlers"],
         ["move", "MOVE_MAGIC_POWDER", "MagicPowderHandlers"],
         ["move", "MOVE_FLYING_PRESS", "FlyingPressHandlers"],
+        ["move", "MOVE_THOUSAND_ARROWS", "ThousandArrowsHandlers"],
         ["move", "MOVE_FREEZEDRY", "FreezeDryHandlers"],
         ["move", "MOVE_TRICKORTREAT", "TrickOrTreatHandlers"],
         ["move", "MOVE_FORESTS_CURSE", "ForestsCurseHandlers"],
@@ -312,6 +321,9 @@
           "white2_only": true
         },
         "move:MOVE_TAR_SHOT": {
+          "white2_only": true
+        },
+        "move:MOVE_THOUSAND_ARROWS": {
           "white2_only": true
         }
       }
@@ -378,6 +390,8 @@
         ["move", "MOVE_STRENGTH_SAP", "StrengthSapHandlers"],
         ["move", "MOVE_VENOM_DRENCH", "VenomDrenchHandlers"],
         ["move", "MOVE_MAGNETIC_FLUX", "MagneticFluxHandlers"],
+        ["move", "MOVE_GEAR_UP", "MagneticFluxHandlers"],
+        ["move", "MOVE_ORDER_UP", "OrderUpHandlers"],
         ["move", "MOVE_DECORATE", "DecorateHandlers"],
         ["move", "MOVE_DRAGON_CHEER", "DragonCheerHandlers"],
         ["move", "MOVE_COACHING", "CoachingHandlers"],
@@ -398,6 +412,12 @@
           "white2_only": true
         },
         "move:MOVE_NO_RETREAT": {
+          "white2_only": true
+        },
+        "move:MOVE_GEAR_UP": {
+          "white2_only": true
+        },
+        "move:MOVE_ORDER_UP": {
           "white2_only": true
         }
       }
@@ -519,6 +539,8 @@
       "source": "moves",
       "entries": [
         ["move", "MOVE_ANCHOR_SHOT", "AnchorShotHandlers"],
+        ["move", "MOVE_THOUSAND_WAVES", "ThousandWavesHandlers"],
+        ["move", "MOVE_FAIRY_LOCK", "FairyLockHandlers"],
         ["move", "MOVE_SPIRIT_SHACKLE", "AnchorShotHandlers"],
         ["move", "MOVE_SAPPY_SEED", "SappySeedHandlers"],
         ["move", "MOVE_JAW_LOCK", "JawLockHandlers"],
@@ -527,6 +549,12 @@
       ],
       "entry_overrides": {
         "move:MOVE_JAW_LOCK": {
+          "white2_only": true
+        },
+        "move:MOVE_THOUSAND_WAVES": {
+          "white2_only": true
+        },
+        "move:MOVE_FAIRY_LOCK": {
           "white2_only": true
         },
         "move:MOVE_OCTOLOCK": {
@@ -547,12 +575,16 @@
         ["move", "MOVE_GLITZY_GLOW", "GlitzyGlowHandlers"],
         ["move", "MOVE_AURORA_VEIL", "AuroraVeilHandlers"],
         ["move", "MOVE_BRICK_BREAK", "BrickBreakAuroraVeilHandlers"],
+        ["move", "MOVE_PSYCHIC_FANGS", "BrickBreakAuroraVeilHandlers"],
         ["side", "SIDEEFF_AURORA_VEIL", "SideAuroraVeilHandlers"],
         ["move", "MOVE_RAGING_BULL", "RagingBullHandlers"],
         ["move", "MOVE_COURT_CHANGE", "CourtChangeHandlers"]
       ],
       "entry_overrides": {
         "move:MOVE_RAGING_BULL": {
+          "white2_only": true
+        },
+        "move:MOVE_PSYCHIC_FANGS": {
           "white2_only": true
         },
         "move:MOVE_COURT_CHANGE": {

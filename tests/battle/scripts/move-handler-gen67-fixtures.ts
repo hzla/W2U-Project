@@ -14,10 +14,17 @@ export type Gen67Expected = {
   healing?: { role: BattleRole; ratio?: number; targetAttack?: boolean; rounding?: "down" | "unspecified"; atTurnEnd?: boolean };
   beforeStatuses?: Partial<Record<BattleRole, number>>;
   beforeItems?: Partial<Record<BattleRole, {held: number; consumed: number}>>;
+  items?: Partial<Record<BattleRole, number>>;
   beforeSubstitute?: Partial<Record<BattleRole, boolean>>;
   conditions?: Partial<Record<BattleRole, Record<string, boolean>>>;
+  conditionFlags?: Partial<Record<BattleRole, {set?: number; clear?: number}>>;
   incomingHits?: number; incomingType?: number; incomingCritical?: number;
   screens?: [Record<string, number>, Record<string, number>];
+  beforeScreens?: [Record<string, number>, Record<string, number>];
+  actionScreens?: [Record<string, number>, Record<string, number>];
+  beforeCustomSides?: [Record<string, number>, Record<string, number>];
+  actionCustomSides?: [Record<string, number>, Record<string, number>];
+  spread?: boolean; switchBlocked?: boolean;
   customSides?: [Record<string, number>, Record<string, number>];
   noDamage?: boolean; selectionRejected?: boolean;
   accuracyThreshold?: number; moneyDouble?: boolean;

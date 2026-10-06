@@ -135,6 +135,53 @@ class Gen67AuditTests(unittest.TestCase):
         with self.assertRaises(AssertionError):
             self.verify(case, result, variant)
 
+    def test_screen_break_uses_action_checkpoint_and_positive_precondition(self):
+        case,result,variant=self.fixture()
+        case["audit"].update(beforeScreens=[{}, {"0":1}], actionScreens=[{},{}])
+        empty=lambda:[{str(i):{"layers":0} for i in (0,1)} for _ in range(2)]
+        result["beforeSideEffects"]=empty();result["beforeSideEffects"][1]["0"]["layers"]=1
+        result["actionSideEffects"]=empty()
+        result["afterSideEffects"]=deepcopy(result["beforeSideEffects"])
+        self.assertTrue(self.verify(case,result,variant)["passed"])
+        for key,value in (("actionSideEffects",1),("beforeSideEffects",0)):
+            wrong=deepcopy(result);wrong[key][1]["0"]["layers"]=value
+            with self.assertRaises(AssertionError):self.verify(case,wrong,variant)
+
+    def test_fairy_lock_requires_native_switch_result(self):
+        case,result,variant=self.fixture();case["audit"]["switchBlocked"]=True
+        result["switchChecks"]=[{"slot":0,"result":3}]
+        self.assertTrue(self.verify(case,result,variant)["passed"])
+        for checks in ([],[{"slot":0,"result":4}]):
+            wrong={**result,"switchChecks":checks}
+            with self.assertRaises(AssertionError):self.verify(case,wrong,variant)
+        case["audit"]["switchBlocked"]=False;result["switchChecks"][0]["result"]=4
+        self.assertTrue(self.verify(case,result,variant)["passed"])
+
+    def test_fly_cancellation_is_not_inferred_from_damage(self):
+        case,result,variant=self.fixture();case["audit"]["conditionFlags"]={"defender":{"clear":8}}
+        result["after"]["defender"]["conditionFlags"]=0
+        self.assertTrue(self.verify(case,result,variant)["passed"])
+        result["after"]["defender"]["conditionFlags"]=8
+        with self.assertRaises(AssertionError):self.verify(case,result,variant)
+
+    def test_source_exit_checks_departing_action_not_replacement_pp(self):
+        case,result,variant=self.fixture();case["sourceExit"]=True
+        result["completion"]=deepcopy(result["after"]["attacker"])
+        result["after"]["attacker"].update(slot=1,moves=[{"id":150,"pp":40}],previousMoveId=0,turnFlags=0)
+        self.assertTrue(self.verify(case,result,variant)["passed"])
+        wrong=deepcopy(result);wrong["after"]["attacker"]["slot"]=0
+        with self.assertRaises(AssertionError):self.verify(case,wrong,variant)
+        wrong=deepcopy(result);wrong["completion"]["moves"][0]["pp"]=10
+        with self.assertRaises(AssertionError):self.verify(case,wrong,variant)
+
+    def test_spread_rounding_and_modifier_are_independent(self):
+        case,result,variant=self.fixture();case["audit"]["spread"]=True
+        result["damageCalls"][0].update(targetDamageRatio=3072,preModifierDamage=20,calculatedDamage=20)
+        result["after"]["defender"]["hp"]=215
+        self.assertTrue(self.verify(case,result,variant)["passed"])
+        result["damageCalls"][0]["targetDamageRatio"]=4096
+        with self.assertRaises(AssertionError):self.verify(case,result,variant)
+
     def test_portable_inventory_and_coverage(self):
         inventory = json.loads((ROOT / "gen67-move-inventory.json").read_text())
         moves = inventory["moves"] + inventory["residentMoves"]

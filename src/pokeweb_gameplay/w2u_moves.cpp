@@ -170,6 +170,8 @@ struct MoveState {
     u8 persistentTurns[3][BATTLE_MAX_SLOTS];
     BattleEventItem* auxItems[2];
     bool battleTrackingActive;
+    u8 fairyLockTurns;
+    u8 commanderForm[24];
     BattleEventItem* spotlightItem;
     PartyPkm* spotlightTargetParty;
     u8 spotlightTargetSlot;
@@ -1116,6 +1118,141 @@ bool HasTransientMoveState()
     }
     return false;
 }
+
+#if !defined(W2U_BATTLE_CHILD)
+extern "C" bool W2U_MoveState_StartFairyLock(u32 slot)
+{
+    if (sMoveState.fairyLockTurns || !W2U_MoveState_EnsureTransientEvent(slot)) return false;
+    sMoveState.fairyLockTurns = 2; // The current turn and the following turn.
+    return true;
+}
+
+extern "C" void W2U_MoveState_SetCommanderForm(u32 slot, u32 form)
+{
+    if (slot < 24) sMoveState.commanderForm[slot] = form <= 3 ? form : 0;
+}
+
+extern "C" u32 W2U_MoveState_GetCommanderForm(u32 slot)
+{
+    return slot < 24 ? sMoveState.commanderForm[slot] : 0;
+}
+
+// US W2 client common switch/run prohibition, after the usable Shed Shell
+// shortcut. Do not install a source-linked condition or overwrite another trap.
+extern "C" bool THUMB_BRANCH_LINK_167_0x21B4CD0(BattleMon* mon, CONDITION condition)
+{
+    return (sMoveState.fairyLockTurns && mon && !HasTypeWithExtra(mon, TYPE_GHOST)) ||
+        BattleMon_CheckIfMoveCondition(mon, condition);
+}
+
+static void HandlerFieldFairyLockRun(BattleEventItem*, ServerFlow* flow, u32, u32*)
+{
+    BattleMon* mon = GetBattleMon(flow, (u32)BattleEventVar_GetValue(VAR_MON_ID));
+    if (sMoveState.fairyLockTurns && mon && !HasTypeWithExtra(mon, TYPE_GHOST))
+        BattleEventVar_RewriteValue(VAR_MOVE_FAIL_FLAG, 1);
+}
+#endif
+
+static void HandlerFairyLock(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) || flow->simulationCounter) return;
+    if (!W2U_MoveState_StartFairyLock(slot)) {
+        BattleEventVar_RewriteValue(VAR_MOVE_FAIL_FLAG, 1);
+        return;
+    }
+    BattleHandler_PushRun(flow, EFFECT_FORCE_MOVE_SUCCESS, slot);
+    PushMessage(flow, slot, 2, 2760);
+}
+
+static BattleEventHandlerTableEntry FairyLockHandlers[] = {
+    { EVENT_UNCATEGORIZED_MOVE_NO_TARGET, HandlerFairyLock },
+};
+
+// Invoke reviewed vanilla callbacks without importing child implementations.
+static void RunNativeMoveHandler(MOVE_ID move, BattleEventType event,
+    BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
+{
+    W2UNativeMoveGetter getter = W2U_FindNativeMoveGetter(move);
+    if (!getter) return;
+    u32 count = 0;
+    BattleEventHandlerTableEntry* table = getter(&count);
+    count &= 0xFFFF;
+    for (u32 i = 0; i < count; ++i)
+        if (table[i].eventType == event) table[i].handler(item, flow, slot, work);
+}
+
+static void HandlerHyperspaceBreak(BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
+{
+    RunNativeMoveHandler(MOVE_FEINT, EVENT_CHECK_PROTECT_BREAK, item, flow, slot, work);
+}
+static void HandlerHyperspaceDamage(BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
+{
+    RunNativeMoveHandler(MOVE_FEINT, EVENT_DETERMINE_MOVE_DAMAGE, item, flow, slot, work);
+}
+static void HandlerHyperspaceDecide(BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
+{
+    RunNativeMoveHandler(MOVE_FEINT, (BattleEventType)0x23, item, flow, slot, work);
+}
+static void HandlerHyperspaceFuryCheck(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_MON_ID)) return;
+    BattleMon* mon = GetBattleMon(flow, slot);
+    // Transform can copy Hoopa Unbound's current species/form.
+    const u32 species = mon && (mon->flags & 0x20) ? mon->transformedSpecies : mon ? mon->species : 0;
+    if (species != SPECIES_HOOPA || mon->form != 1)
+        BattleEventVar_RewriteValue(VAR_FAIL_CAUSE, MOVE_FAIL_OTHER);
+}
+static BattleEventHandlerTableEntry HyperspaceHoleHandlers[] = {
+    { EVENT_CHECK_PROTECT_BREAK, HandlerHyperspaceBreak },
+    { EVENT_DETERMINE_MOVE_DAMAGE, HandlerHyperspaceDamage },
+    { (BattleEventType)0x23, HandlerHyperspaceDecide },
+};
+static BattleEventHandlerTableEntry HyperspaceFuryHandlers[] = {
+    { EVENT_MOVE_EXECUTE_CHECK2, HandlerHyperspaceFuryCheck },
+    { EVENT_CHECK_PROTECT_BREAK, HandlerHyperspaceBreak },
+    { EVENT_DETERMINE_MOVE_DAMAGE, HandlerHyperspaceDamage },
+    { (BattleEventType)0x23, HandlerHyperspaceDecide },
+};
+
+static void HandlerThousandArrowsGround(BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) || flow->simulationCounter) return;
+    const u32 count = (u32)BattleEventVar_GetValue(VAR_TARGET_COUNT);
+    if (count > 6) return;
+    // Smack Down reads only TARGET1. Give each real spread recipient its own
+    // scoped TARGET1; never ground a protected/missed/Substitute recipient.
+    for (u32 i = 0; i < count; ++i) {
+        const u32 target = (u32)BattleEventVar_GetValue((BattleEventVar)(VAR_TARGET_MON_ID + i));
+        BattleEventVar_Push();
+        BattleEventVar_SetConstValue(VAR_ATTACKING_MON, slot);
+        BattleEventVar_SetConstValue(VAR_TARGET_MON_ID, target);
+        RunNativeMoveHandler(MOVE_SMACK_DOWN, EVENT_DAMAGE_PROCESSING_END_HIT_REAL, item, flow, slot, work);
+        BattleEventVar_Pop();
+    }
+}
+static void HandlerThousandArrowsHide(BattleEventItem* item, ServerFlow* flow, u32 slot, u32* work)
+{
+    RunNativeMoveHandler(MOVE_SMACK_DOWN, (BattleEventType)0x99, item, flow, slot, work);
+}
+static BattleEventHandlerTableEntry ThousandArrowsHandlers[] = {
+    { EVENT_DAMAGE_PROCESSING_END_HIT_REAL, HandlerThousandArrowsGround },
+    { (BattleEventType)0x99, HandlerThousandArrowsHide },
+};
+
+void ApplyStatChange(ServerFlow*, u32, u32, StatStage, s8, bool);
+static void HandlerOrderUp(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) || flow->simulationCounter) return;
+    const u32 form = W2U_MoveState_GetCommanderForm(slot);
+    BattleMon* user = GetBattleMon(flow, slot);
+    // Order Up unusually keeps its boost with Sheer Force.
+    if (!form || !user || BattleMon_IsFainted(user)) return;
+    const StatStage stat = form == 2 ? STATSTAGE_DEFENSE : form == 3 ? STATSTAGE_SPEED : STATSTAGE_ATTACK;
+    ApplyStatChange(flow, slot, slot, stat, 1, true);
+}
+static BattleEventHandlerTableEntry OrderUpHandlers[] = {
+    { EVENT_MOVE_DAMAGE_SIDE_AFTER, HandlerOrderUp },
+};
 
 bool IsTerrainActive(TERRAIN terrain)
 {
@@ -2711,6 +2848,21 @@ static bool QueueSourceTrap(ServerFlow* flow, u32 source, u32 target)
     return true;
 }
 
+static void HandlerThousandWaves(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
+{
+    if (slot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON) || flow->simulationCounter) return;
+    BattleMon* user = GetBattleMon(flow, slot);
+    if (!user || BattleMon_IsFainted(user)) return;
+    const u32 count = (u32)BattleEventVar_GetValue(VAR_TARGET_COUNT);
+    if (count > 6) return;
+    // Trapping is a primary effect, unaffected by Shield Dust/Sheer Force.
+    for (u32 i = 0; i < count; ++i)
+        QueueSourceTrap(flow, slot, (u32)BattleEventVar_GetValue((BattleEventVar)(VAR_TARGET_MON_ID + i)));
+}
+static BattleEventHandlerTableEntry ThousandWavesHandlers[] = {
+    { EVENT_DAMAGE_PROCESSING_END_HIT_REAL, HandlerThousandWaves },
+};
+
 extern "C" void HandlerAnchorShot(
     BattleEventItem* item,
     ServerFlow* serverFlow,
@@ -3286,7 +3438,7 @@ extern "C" void HandlerSideAuroraVeilGuard(
     // The native Brick Break skip callback knows only Reflect/Light Screen.
     // These attacks also ignore Veil during calculation, before queued removal.
     const MOVE_ID move = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
-    if (move == MOVE_BRICK_BREAK || move == MOVE_RAGING_BULL) return;
+    if (move == MOVE_BRICK_BREAK || move == MOVE_RAGING_BULL || move == MOVE_PSYCHIC_FANGS) return;
 
     u32 attackingSlot = (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON);
     BattleMon* attackingMon = GetBattleMon(serverFlow, attackingSlot);
@@ -3421,8 +3573,9 @@ extern "C" void HandlerBrickBreakAuroraVeil(
     u32 pokemonSlot,
     u32* work)
 {
-    (void)item;
-    (void)work;
+    // The retail dispatcher calls only the first matching event in a table.
+    // Remove native screens and Aurora Veil through one damage-event callback.
+    HandlerBrickBreakCheck(item, serverFlow, pokemonSlot, work);
     if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) {
         return;
     }
@@ -3440,7 +3593,6 @@ extern "C" void HandlerBrickBreakAuroraVeil(
 BattleEventHandlerTableEntry BrickBreakAuroraVeilHandlers[] = {
     { EVENT_MOVE_DAMAGE_PROCESSING_1, HandlerBrickBreakStart },
     { EVENT_MOVE_DAMAGE_PROCESSING_END, HandlerBrickBreakEnd },
-    { EVENT_DETERMINE_MOVE_DAMAGE, HandlerBrickBreakCheck },
     { EVENT_DETERMINE_MOVE_DAMAGE, HandlerBrickBreakAuroraVeil },
 };
 
@@ -3466,7 +3618,6 @@ static BattleEventHandlerTableEntry RagingBullHandlers[] = {
     { EVENT_W2U_MOVE_PARAM_BASE, HandlerRagingBullType },
     { EVENT_MOVE_DAMAGE_PROCESSING_1, HandlerBrickBreakStart },
     { EVENT_MOVE_DAMAGE_PROCESSING_END, HandlerBrickBreakEnd },
-    { EVENT_DETERMINE_MOVE_DAMAGE, HandlerBrickBreakCheck },
     { EVENT_DETERMINE_MOVE_DAMAGE, HandlerBrickBreakAuroraVeil },
 };
 
@@ -6533,6 +6684,7 @@ static void ClearSwitchedOrFaintedTransientState()
 {
     const u32 currentSlot = (u32)BattleEventVar_GetValue(VAR_MON_ID);
 #if !defined(W2U_BATTLE_CHILD)
+    W2U_MoveState_SetCommanderForm(currentSlot, 0);
     sMoveState.statsRaisedThisTurnFlags &= ~SlotMask(currentSlot);
     sMoveState.statsLoweredThisTurnFlags &= ~SlotMask(currentSlot);
     sMoveState.tarShotFlags &= ~SlotMask(currentSlot);
@@ -6677,6 +6829,7 @@ extern "C" void HandlerFieldTransientMoveStateTurnCheckDone(
     (void)work;
 
     if (BattleEventVar_GetValue(VAR_MON_ID) == BATTLE_MAX_SLOTS) {
+        if (!serverFlow->simulationCounter && sMoveState.fairyLockTurns) --sMoveState.fairyLockTurns;
         W2U_Weather_EndTurn();
         for (u32 slot = 0; slot < BATTLE_MAX_SLOTS; ++slot) {
             BattleMon* battleMon = GetBattleMon(serverFlow, slot);
@@ -6743,6 +6896,7 @@ static void HandlerFieldGlaiveRushDamage(BattleEventItem*, ServerFlow*, u32, u32
 
 static BattleEventHandlerTableEntry FieldTransientMoveStateHandlers[] = {
 #if !defined(W2U_BATTLE_CHILD)
+    { (BattleEventType)0x0C, HandlerFieldFairyLockRun },
     { EVENT_DEFENDER_GUARD, W2U_Weather_Defense },
     { EVENT_AFTER_WEATHER_CHANGE, W2U_Weather_AfterChange },
     { (BattleEventType)1, HandlerFieldGlaiveRushActionStart },
@@ -7636,8 +7790,11 @@ extern "C" void HandlerMagneticFluxApply(BattleEventItem* item, ServerFlow* serv
         return;
     }
 
-    ApplyStatChangeToTargets(serverFlow, pokemonSlot, STATSTAGE_DEFENSE, 1, true, targetSlots, boostTargetCount);
-    ApplyStatChangeToTargets(serverFlow, pokemonSlot, STATSTAGE_SPECIAL_DEFENSE, 1, true, targetSlots, boostTargetCount);
+    const bool gearUp = BattleEventVar_GetValue(VAR_MOVE_ID) == MOVE_GEAR_UP;
+    ApplyStatChangeToTargets(serverFlow, pokemonSlot, gearUp ? STATSTAGE_ATTACK : STATSTAGE_DEFENSE,
+        1, true, targetSlots, boostTargetCount);
+    ApplyStatChangeToTargets(serverFlow, pokemonSlot, gearUp ? STATSTAGE_SPECIAL_ATTACK : STATSTAGE_SPECIAL_DEFENSE,
+        1, true, targetSlots, boostTargetCount);
 }
 
 BattleEventHandlerTableEntry MagneticFluxHandlers[] = {
@@ -8287,7 +8444,6 @@ const W2UMoveEventAddTable W2U_MOVE_EVENT_ADD_TABLE[] = {
 // damage type, PP, animation and move history retain the expanded move ID.
 const W2UVanillaMoveAlias W2U_VANILLA_MOVE_ALIASES[] = {
     { MOVE_PHANTOM_FORCE, MOVE_SHADOW_FORCE },
-    { MOVE_FAIRY_LOCK, MOVE_SPIDER_WEB },
     { MOVE_HOLD_BACK, MOVE_FALSE_SWIPE },
     { MOVE_INFESTATION, MOVE_BIND },
     { MOVE_SNAP_TRAP, MOVE_BIND },
@@ -8772,7 +8928,7 @@ extern "C" u32 THUMB_BRANCH_GetTypeEffectivenessMultiplier(u32 effectiveness1, u
     return RESULT_EFFECTIVE;
 }
 
-extern "C" u32 THUMB_BRANCH_LINK_ServerEvent_CheckMoveDamageEffectiveness_0x32(
+static u32 CheckFirstTypeEffectiveness(
     ServerFlow* serverFlow,
     BattleMon* attackingMon,
     BattleMon* defendingMon,
@@ -8804,6 +8960,39 @@ extern "C" u32 THUMB_BRANCH_LINK_ServerEvent_CheckMoveDamageEffectiveness_0x32(
         effectiveness = THUMB_BRANCH_GetTypeEffectivenessMultiplier(effectiveness, RESULT_SUPER_EFFECTIVE);
 
     return effectiveness;
+}
+
+// Native aggregate affinity, including its floating check and notification.
+// Arrows overrides aggregate Flying immunity, not just the Flying component:
+// otherwise Fire/Flying would incorrectly take 2x damage on the first hit.
+extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerEvent_CheckMoveDamageEffectiveness(
+    ServerFlow* flow, BattleMon* user, BattleMon* target, const MoveParam* move, b32 message)
+{
+    if (move->moveType == TYPE_NULL) return RESULT_EFFECTIVE;
+    const bool arrows = move->moveID == MOVE_THOUSAND_ARROWS && move->moveType == TYPE_GROUND;
+    if (arrows && HasTypeWithExtra(target, TYPE_FLYING) && ServerControl_CheckFloating(flow, target, 1))
+        return RESULT_EFFECTIVE;
+    const u16 types = BattleMon_GetPokeType(target);
+    const u8 first = types >> 8, second = types & 0xFF;
+    u32 result = CheckFirstTypeEffectiveness(flow, user, target, move->moveType, first);
+    if (first != second)
+        result = THUMB_BRANCH_GetTypeEffectivenessMultiplier(result,
+            THUMB_BRANCH_SAFESTACK_ServerEvent_CheckDamageEffectiveness(flow, user, target, move->moveType, second));
+    bool floating = false;
+    if (!arrows && move->moveType == TYPE_GROUND) {
+        if (result) {
+            floating = ServerControl_CheckFloating(flow, target, 0);
+            if (floating) result = RESULT_NOT_EFFECTIVE;
+        } else if (!ServerControl_CheckFloating(flow, target, 1)) {
+            result = RESULT_EFFECTIVE;
+        }
+    }
+    if (!result && message) {
+        // Pinned US W2 native announcement services; no child pointers.
+        typedef void (*Notify)(ServerFlow*, BattleMon*);
+        ((Notify)(floating ? 0x021AAB19u : 0x021A92A9u))(flow, target);
+    }
+    return result;
 }
 
 extern "C" u32 THUMB_BRANCH_TypeEffectivenessPowerMod(u32 damage, u32 effectiveness)
