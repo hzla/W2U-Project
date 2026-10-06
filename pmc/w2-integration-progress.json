@@ -158,6 +158,7 @@
     },
     "7": {
       "status": "implemented_release_candidate",
+      "commit": "c689810c6f9c7cbf3f2c611b73bd7afab3c18f95",
       "commit_subject": "integration: complete w2anim authoring and release validation",
       "rom_sha256": "24457ec7f10575963d9c29b01020de3f4d36a1d6076709f365c9646bd7eeb1be",
       "stripped_core_sha256": "f62adf3f15fd44f55d41dc86f2e7abd10c7c2a3722876f66b14bc7e5805a036b",

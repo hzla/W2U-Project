@@ -4,7 +4,9 @@
   "main_revision": "eb6c002384f2fcc4df7bfef6d3cdad5626364a73",
   "common_revision": "9489aebf42a870fa6a60816c273b0aa22fe5c1fe",
   "integration_branch": "w2u-integration",
-  "status": "semantic_review_complete_awaiting_history_commit",
+  "status": "reviewed_semantic_ports_and_history_reconciliation",
+  "resolved_release_commit": "c689810c6f9c7cbf3f2c611b73bd7afab3c18f95",
+  "history_merge_strategy": "ours after the seven reviewed semantic integration stages; only reconciliation/progress metadata changes in the merge commit",
   "native_regression_summary": "pmc/w2-integration-native-results.json",
   "strategy": "Focused semantic ports onto the incoming base, followed by a reviewed history-only reconciliation merge. Do not replace the resolved integration tree with an automatic content merge.",
   "incoming_retained": [
