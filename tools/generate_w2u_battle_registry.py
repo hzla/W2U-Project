@@ -134,13 +134,13 @@ def load_registry(path: Path) -> dict:
             handler_count = config.get("handler_count")
             priority = config.get("priority")
             if handler_count != "array" and (
-                not isinstance(handler_count, int) or handler_count <= 0
+                type(handler_count) is not int or not 1 <= handler_count <= 64
             ):
                 raise RuntimeError(f"{name}: invalid handler count for {key}")
-            if isinstance(priority, int):
+            if type(priority) is int:
                 if priority != 0xFFFF and not 0 <= priority <= 0xFF:
                     raise RuntimeError(f"{name}: invalid priority for {key}")
-            elif not isinstance(priority, str) or not priority.startswith("EVENTPRI_"):
+            elif not isinstance(priority, str) or not re.fullmatch(r"EVENTPRI_[A-Z0-9_]+", priority):
                 raise RuntimeError(f"{name}: invalid priority for {key}")
         unknown_overrides = sorted(set(overrides) - module_keys)
         if unknown_overrides:
@@ -224,6 +224,20 @@ def render_cpp(registry: dict) -> str:
             if entry_only:
                 lines.append("#endif")
     lines.extend(["};", "", "#undef W2U_ROUTE", ""])
+    # Let the target compiler resolve enum aliases. Comparing identifier strings
+    # alone cannot detect two different constants with the same numeric ID.
+    # An unused inline switch emits no runtime table or work, but duplicate case
+    # values are a hard compile error in both dynamic and static resolvers.
+    lines.extend(["static inline void W2U_CheckNumericMechanicIds(u32 key)", "{", "    switch (key) {"])
+    for module in modules:
+        for kind, mechanic_id, _table in module["entries"]:
+            entry_only = module.get("entry_overrides", {}).get(entry_key(kind, mechanic_id), {}).get("white2_only", False)
+            if entry_only:
+                lines.append("#if !defined(W2U_TARGET_B2)")
+            lines.append(f"    case ((u32){KIND_ENUM[kind]} << 16) | (u16)({mechanic_id}): break;")
+            if entry_only:
+                lines.append("#endif")
+    lines.extend(["    }", "}", ""])
     lines.extend(
         [
             "#if defined(W2U_BATTLE_STATIC_RESOLVER_BUILD)",
@@ -370,6 +384,17 @@ def render_api_definition(
             "};",
         ]
     )
+    for kind, mechanic_id, table in module["entries"]:
+        config = entry_config(registry, module, kind, mechanic_id)
+        if config["white2_only"]:
+            lines.append("#if !defined(W2U_TARGET_B2)")
+        count = f"W2U_ARRAY_COUNT({table})" if config["handler_count"] == "array" else str(config["handler_count"])
+        lines.append(f'static_assert(({mechanic_id}) >= 0 && ({mechanic_id}) <= 65535, "Mechanic ID exceeds ABI");')
+        lines.append(f'static_assert(({count}) > 0 && ({count}) <= 64, "Invalid handler count");')
+        priority = config["priority"]
+        lines.append(f'static_assert(({priority}) == 65535 || (({priority}) >= 0 && ({priority}) <= 255), "Invalid handler priority");')
+        if config["white2_only"]:
+            lines.append("#endif")
     if getter:
         lines.extend(
             [

@@ -13,6 +13,7 @@ from pwan.report_paths import portable_report
 HEAP_BYTES = 200 * 1024
 REQUIRED_HEADROOM = 12 * 1024
 ALLOCATOR_BYTES_PER_MODULE = 16
+ALLOCATOR_ALIGNMENT = 8
 # The fixed record array and telemetry live in White2Upgrade.dll's BSS and are
 # already included in the core RPM's post-fix size.
 LOADER_FIXED_BYTES = 0
@@ -49,14 +50,17 @@ def rpm_sizes(path: Path) -> tuple[int, int]:
 
 def module_record(path: Path) -> dict:
     expanded, fixed = rpm_sizes(path)
+    resident = fixed + expanded - path.stat().st_size
     return {
         "path": str(path),
         "file_bytes": path.stat().st_size,
         "expanded_bytes": expanded,
         "fixed_bytes": fixed,
-        # PMC keeps a module at its fixed size plus its BSS (expanded - file size): measured in a battle's heap
-        # (core 96,688 + 4,352; PWAN battle 7,776 + 17,408 = the 25,176-byte block). The scenarios use this.
-        "resident_bytes": fixed + (expanded - path.stat().st_size),
+        # INTERNAL_RELOCATIONS removes relocation metadata, not the BSS tail.
+        "bss_bytes": expanded - path.stat().st_size,
+        "resident_bytes": resident,
+        "allocated_payload_bytes": (resident + ALLOCATOR_ALIGNMENT - 1) & -ALLOCATOR_ALIGNMENT,
+        "expanded_payload_bytes": (expanded + ALLOCATOR_ALIGNMENT - 1) & -ALLOCATOR_ALIGNMENT,
     }
 
 
@@ -92,26 +96,26 @@ def main() -> int:
     battle_log = module_record(args.battle_log)
     battle_counters = module_record(args.battle_counters)
     children = [module_record(path) for path in args.module]
-    resident_fixed = (
-        core["resident_bytes"]
-        + pwan["resident_bytes"]
-        + battle_log["resident_bytes"]
-        + battle_counters["resident_bytes"]
-    )
+    resident_fixed = sum(record.get("allocated_payload_bytes", 0) for record in (core, pwan, battle_log, battle_counters))
     resident_overhead = 4 * ALLOCATOR_BYTES_PER_MODULE + LOADER_FIXED_BYTES
     no_custom = resident_fixed + resident_overhead
-    typical_child = max((child["resident_bytes"] for child in children), default=0)
+    typical_child = max((child["allocated_payload_bytes"] for child in children), default=0)
     typical = no_custom + typical_child + ALLOCATOR_BYTES_PER_MODULE
-    all_children_fixed = sum(child["resident_bytes"] for child in children)
+    all_children_fixed = sum(child["allocated_payload_bytes"] for child in children)
     all_groups = (
         no_custom
         + all_children_fixed
         + len(children) * ALLOCATOR_BYTES_PER_MODULE
     )
+    # Conservative ordering: load the module with the largest temporary
+    # relocation overhead last, with every other group already resident.
+    largest_transient = max(children, key=lambda child: child["expanded_payload_bytes"] - child["allocated_payload_bytes"])
+    transient_all = all_groups + largest_transient["expanded_payload_bytes"] - largest_transient["allocated_payload_bytes"]
     report = {
         "heap_bytes": HEAP_BYTES,
         "required_headroom_bytes": REQUIRED_HEADROOM,
         "allocator_bytes_per_module": ALLOCATOR_BYTES_PER_MODULE,
+        "allocator_alignment": ALLOCATOR_ALIGNMENT,
         "loader_fixed_bytes": LOADER_FIXED_BYTES,
         "loader_state_included_in_core": True,
         "baseline": str(args.baseline),
@@ -137,6 +141,12 @@ def main() -> int:
                 "used_bytes": all_groups,
                 "free_bytes": HEAP_BYTES - all_groups,
                 "child_fixed_bytes": all_children_fixed,
+            },
+            "all_groups_transient_load": {
+                "used_bytes": transient_all,
+                "free_bytes": HEAP_BYTES - transient_all,
+                "last_loaded_module": largest_transient["path"],
+                "note": "Conservative expanded-module allocation before StartModule shrinks it; game heaps are separate.",
             },
         },
     }

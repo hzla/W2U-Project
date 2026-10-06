@@ -129,10 +129,26 @@
           "input_rom_sha256": "3ac91a90ff8c5446e47e83542d476569e5e38c0cf103800848643825a4bb98af" }
       ],
       "limits": ["Full release move/ability/item, renderer, lifecycle and hardware acceptance remains pending."]
+    },
+    "6": {
+      "status": "validated",
+      "registry": { "groups": 30, "abilities": 141, "moves": 145, "items": 13, "field": 5, "side": 2, "position": 5 },
+      "checks": ["Target compiler rejects duplicate numeric kind/ID keys and invalid ABI counts/priorities.", "All 30 stripped child exports, import providers, hook owners and generated manifests checked.", "Staging rejects symlink escapes and verifies the exact registered DLL set and bytes.", "Live child-byte telemetry includes BSS; heap free-list corruption fails closed."],
+      "rom_sha256": "3edcc914696a6ddfe278dbe43a5de69b64da8a6aa5f224fa1576a4e35201bd00",
+      "stripped_core_sha256": "922fb7c9e3942624cc2ee154fc840c5ba7506fe952e8f8639dd9a1361ec2a141",
+      "stripped_build": true,
+      "rpm_linkage": true,
+      "all_groups_free_bytes": 22656,
+      "transient_expanded_load_free_bytes": 19600,
+      "allocator_alignment_bytes": 8,
+      "host_tests": { "run": 102, "skipped": 1, "failed": 0 },
+      "battle_unit_tests": 177,
+      "typecheck": true,
+      "black2_static_compile": true,
+      "limits": ["Full native ability/item suites started on this ROM; final results and renderer/lifecycle acceptance belong to stage 7.", "PMC budget excludes separate game-heap sprite buffers; their audit is still pending."]
     }
   },
   "pending_stages": [
-    6,
     7
   ]
 }

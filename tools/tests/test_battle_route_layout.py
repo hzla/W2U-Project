@@ -60,7 +60,7 @@ class BattleRouteLayout(unittest.TestCase):
         # Deliberately use IDs above 255, including the full u16 limit. The
         # private route kind/module are bytes; public mechanic IDs stay u16.
         values = {name: 65535 - index if name.isidentifier() else int(name) for index, name in enumerate(names)}
-        source = "typedef unsigned char u8; typedef unsigned short u16;\n"
+        source = "typedef unsigned char u8; typedef unsigned short u16; typedef unsigned u32;\n"
         source += "enum {" + ",".join(f"{name}={index}" for index, name in enumerate(generator.KIND_ENUM.values())) + "};\n"
         source += "enum {" + ",".join(f"{name}={value}" for name, value in values.items() if name.isidentifier()) + "};\n"
         source += generator.render_cpp(registry)

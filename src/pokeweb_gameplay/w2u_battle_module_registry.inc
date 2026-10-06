@@ -490,6 +490,415 @@ static const W2UBattleMechanicRoute sBattleMechanicRoutes[] = {
 
 #undef W2U_ROUTE
 
+static inline void W2U_CheckNumericMechanicIds(u32 key)
+{
+    switch (key) {
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_AROMA_VEIL): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_FLOWER_VEIL): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SWEET_VEIL): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_DARK_AURA): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_FAIRY_AURA): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_AURA_BREAK): break;
+    case ((u32)W2U_MECHANIC_FIELD << 16) | (u16)(FLDEFF_DARK_AURA): break;
+    case ((u32)W2U_MECHANIC_FIELD << 16) | (u16)(FLDEFF_FAIRY_AURA): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_CHEEK_POUCH): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_MAGICIAN): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SYMBIOSIS): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PROTEAN): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_REFRIGERATE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PIXILATE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_AERILATE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_GALVANIZE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_DRAGONIZE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_LIQUID_VOICE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PARENTAL_BOND): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_STRONG_JAW): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_MEGA_LAUNCHER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_TOUGH_CLAWS): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_MERCILESS): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_STAKEOUT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_STEELWORKER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_BATTERY): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_FUR_COAT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_BULLETPROOF): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_OVERCOAT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_WATER_BUBBLE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_FLUFFY): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PRISM_ARMOR): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_COMPETITIVE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_GOOEY): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_TANGLING_HAIR): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_STAMINA): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_WATER_COMPACTION): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_BERSERK): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SOUL_HEART): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_BEAST_BOOST): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_GALE_WINGS): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SLUSH_RUSH): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_TRIAGE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SURGE_SURFER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_QUEENLY_MAGESTY): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_DAZZLING): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_ELECTRIC_SURGE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PSYCHIC_SURGE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_MISTY_SURGE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_GRASSY_SURGE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_STANCE_CHANGE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SHIELDS_DOWN): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SCHOOLING): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_POWER_CONSTRUCT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_DISGUISE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_BATTLE_BOND): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_WIMP_OUT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_EMERGENCY_EXIT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_INNARDS_OUT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_DANCER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_RECEIVER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_POWER_OF_ALCHEMY): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_TERRAIN_EXTENDER): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_ASSAULT_VEST): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_LUMINOUS_MOSS): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_SNOWBALL): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_WEAKNESS_POLICY): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_MARANGA_BERRY): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_FAIRY_FEATHER): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_ROSELI_BERRY): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_SAFETY_GOGGLES): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_ELECTRIC_SEED): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_GRASSY_SEED): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_PSYCHIC_SEED): break;
+    case ((u32)W2U_MECHANIC_ITEM << 16) | (u16)(ITEM_MISTY_SEED): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_RAPID_SPIN): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_DEFOG): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_STICKY_WEB): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_CEASELESS_EDGE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_STONE_AXE): break;
+    case ((u32)W2U_MECHANIC_SIDE << 16) | (u16)(SIDEEFF_STICKY_WEB): break;
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_MORTAL_SPIN): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_TIDY_UP): break;
+#endif
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_MAT_BLOCK): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_CRAFTY_SHIELD): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SPIKY_SHIELD): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_BANEFUL_BUNKER): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_KINGS_SHIELD): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_OBSTRUCT): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SILK_TRAP): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_BURNING_BULWARK): break;
+    case ((u32)W2U_MECHANIC_POSITION << 16) | (u16)(POSEFF_DAMAGE_SHIELD): break;
+    case ((u32)W2U_MECHANIC_POSITION << 16) | (u16)(POSEFF_MAT_BLOCK): break;
+    case ((u32)W2U_MECHANIC_POSITION << 16) | (u16)(POSEFF_CRAFTY_SHIELD): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_ELECTRIC_TERRAIN): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_GRASSY_TERRAIN): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_FLORAL_HEALING): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SHORE_UP): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SOLAR_BLADE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_MISTY_TERRAIN): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_PSYCHIC_TERRAIN): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_PSYBLADE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_RISING_VOLTAGE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_TERRAIN_PULSE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_STEEL_ROLLER): break;
+    case ((u32)W2U_MECHANIC_FIELD << 16) | (u16)(FLDEFF_TERRAIN): break;
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_EXPANDING_FORCE): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SNOWSCAPE): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_CHILLY_RECEPTION): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_METEOR_BEAM): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_ELECTRO_SHOT): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_MISTY_EXPLOSION): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_ICE_SPINNER): break;
+#endif
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_AURA_WHEEL): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_MAGIC_POWDER): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_FLYING_PRESS): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_FREEZEDRY): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_TRICKORTREAT): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_FORESTS_CURSE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_BURN_UP): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_DOUBLE_SHOCK): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_REVELATION_DANCE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_BARB_BARRAGE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_DIRE_CLAW): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_HARD_PRESS): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_GRAV_APPLE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_BLEAKWIND_STORM): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SANDSEAR_STORM): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_WILDBOLT_STORM): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_HYDRO_STEAM): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_COLLISION_COURSE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_ELECTRO_DRIFT): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_FICKLE_BEAM): break;
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SHELL_SIDE_ARM): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_TAR_SHOT): break;
+#endif
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_BEAK_BLAST): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SHELL_TRAP): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_ION_DELUGE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_ELECTRIFY): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_POWDER): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_LASER_FOCUS): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_PLASMA_FISTS): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_THROAT_CHOP): break;
+    case ((u32)W2U_MECHANIC_POSITION << 16) | (u16)(POSEFF_ION_DELUGE): break;
+    case ((u32)W2U_MECHANIC_POSITION << 16) | (u16)(POSEFF_ELECTRIFY): break;
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SALT_CURE): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_GLAIVE_RUSH): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SYRUP_BOMB): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_FIELD << 16) | (u16)(14): break;
+#endif
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_ROTOTILLER): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_FLOWER_SHIELD): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_FELL_STINGER): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SCALE_SHOT): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_TAKE_HEART): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_CLANGOROUS_SOUL): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_FILLET_AWAY): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_TOPSYTURVY): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_DARKEST_LARIAT): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_FREEZY_FROST): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SPECTRAL_THIEF): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SPEED_SWAP): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_STRENGTH_SAP): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_VENOM_DRENCH): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_MAGNETIC_FLUX): break;
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_DECORATE): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_DRAGON_CHEER): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_COACHING): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_BODY_PRESS): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_NO_RETREAT): break;
+#endif
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_PARTING_SHOT): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_GEOMANCY): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_HAPPY_HOUR): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_FIRST_IMPRESSION): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_INSTRUCT): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_MIND_BLOWN): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_STEEL_BEAM): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_CHLOROBLAST): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_POLLEN_PUFF): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_PURIFY): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SPOTLIGHT): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_STOMPING_TANTRUM): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_TEMPER_FLARE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_TORCH_SONG): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_OVERDRIVE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_POLTERGEIST): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SUPERCELL_SLAM): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_TRIPLE_AXEL): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_BOLT_BEAK): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_FISHIOUS_REND): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SPARKLY_SWIRL): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SPARKLING_ARIA): break;
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_JUNGLE_HEALING): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SNIPE_SHOT): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_LIFE_DEW): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_LUNAR_BLESSING): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_MAKE_IT_RAIN): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_MATCHA_GOTCHA): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_RAGE_FIST): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_LAST_RESPECTS): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_REVIVAL_BLESSING): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_STUFF_CHEEKS): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_TEATIME): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SHED_TAIL): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_DRAGON_DARTS): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_CORROSIVE_GAS): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_LASH_OUT): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_BURNING_JEALOUSY): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_ALLURING_VOICE): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_EERIE_SPELL): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_UPPER_HAND): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_POPULATION_BOMB): break;
+#endif
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_ANCHOR_SHOT): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SPIRIT_SHACKLE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SAPPY_SEED): break;
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_JAW_LOCK): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_OCTOLOCK): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_FIELD << 16) | (u16)(13): break;
+#endif
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_BADDY_BAD): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_GLITZY_GLOW): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_AURORA_VEIL): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_BRICK_BREAK): break;
+    case ((u32)W2U_MECHANIC_SIDE << 16) | (u16)(SIDEEFF_AURORA_VEIL): break;
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_RAGING_BULL): break;
+#endif
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_COURT_CHANGE): break;
+#endif
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_CORE_ENFORCER): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_MOONGEIST_BEAM): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_SUNSTEEL_STRIKE): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_PHOTON_GEYSER): break;
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_WATER_SHURIKEN): break;
+#if !defined(W2U_TARGET_B2)
+    case ((u32)W2U_MECHANIC_MOVE << 16) | (u16)(MOVE_DOODLE): break;
+#endif
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_DELTA_STREAM): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PRIMORDIAL_SEA): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_DESOLATE_LAND): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_TRANSISTOR): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_DRAGONS_MAW): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_ROCKY_PAYLOAD): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SHARPNESS): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_FIRE_MANE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_WIND_POWER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_ELECTROMORPHOSIS): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_MINDS_EYE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_NEUROFORCE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_POWER_SPOT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_STEELY_SPIRIT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_LIBERO): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PUNK_ROCK): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_VESSEL_OF_RUIN): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SWORD_OF_RUIN): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_TABLETS_OF_RUIN): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_BEADS_OF_RUIN): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SUPREME_OVERLORD): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_TOXIC_CHAIN): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_EELEVATE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_EARTH_EATER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_ICE_SCALES): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_AURA_GUARD): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_GOOD_AS_GOLD): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_GUARD_DOG): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_INTIMIDATE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_DAMP): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_MIRROR_ARMOR): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PURIFYING_SALT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_ARMOR_TAIL): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_TERA_SHELL): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PASTEL_VEIL): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_WELL_BAKED_BODY): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_WIND_RIDER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_ANGER_SHELL): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_COTTON_DOWN): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PERISH_BODY): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_TOXIC_DEBRIS): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_WANDERING_SPIRIT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_LINGERING_AROMA): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SPICY_SPRAY): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_STEAM_ENGINE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_THERMAL_EXCHANGE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_CURIOUS_MEDICINE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_COSTAR): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SUPERSWEET_SYRUP): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_HOSPITALITY): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_INTREPID_SWORD): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_DAUNTLESS_SHIELD): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_GRIM_NEIGH): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_AS_ONE_GLASTRIER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_AS_ONE_SPECTRIER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SCREEN_CLEANER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PROTOSYNTHESIS): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_QUARK_DRIVE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_ORICHALCUM_PULSE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_HADRON_ENGINE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_MIMICRY): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_GRASS_PELT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SAND_SPIT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_SEED_SOWER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_GORILLA_TACTICS): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PROPELLER_TAIL): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_STALWART): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_UNSEEN_FIST): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_PIERCING_DRILL): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_QUICK_DRAW): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_MYCELIUM_MIGHT): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_POISON_PUPPETEER): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_MEGA_SOL): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_RIPEN): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_OPPORTUNIST): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_CUD_CHEW): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_ICE_FACE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_GULP_MISSILE): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_HUNGER_SWITCH): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_ZERO_TO_HERO): break;
+    case ((u32)W2U_MECHANIC_ABILITY << 16) | (u16)(ABIL_COMMANDER): break;
+    }
+}
+
 #if defined(W2U_BATTLE_STATIC_RESOLVER_BUILD)
 typedef const W2UBattleModuleApi* (*W2UBattleStaticApiGetter)();
 extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_VEILS();
