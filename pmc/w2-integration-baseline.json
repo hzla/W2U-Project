@@ -1,0 +1,1196 @@
+{
+  "base_revision": "4369e8a4738ea435a350eff4e9c527d523bd8c31",
+  "main_revision": "eb6c002384f2fcc4df7bfef6d3cdad5626364a73",
+  "pokeweb_base_revision": "d5e2dc0f47a7fe829204527a09572f4d48ef88c1",
+  "target": "US White 2 revision 0, DS mode",
+  "compiler": "arm-none-eabi-g++ 16.1.0",
+  "heap_bytes": 204800,
+  "required_headroom_bytes": 12288,
+  "module_count": 30,
+  "measurements": {
+    "stripped": {
+      "heap_bytes": 204800,
+      "required_headroom_bytes": 12288,
+      "allocator_bytes_per_module": 16,
+      "loader_fixed_bytes": 0,
+      "loader_state_included_in_core": true,
+      "baseline": "pmc/white2upgrade_battle_heap_baseline.json",
+      "monolithic_core_baseline_bytes": 63700,
+      "monolithic_resident_baseline_bytes": 103300,
+      "core": {
+        "path": "src/w2u_main.dll",
+        "file_bytes": 93616,
+        "expanded_bytes": 97232,
+        "fixed_bytes": 80848,
+        "resident_bytes": 84464
+      },
+      "pwan_battle": {
+        "path": null,
+        "file_bytes": 0,
+        "expanded_bytes": 0,
+        "fixed_bytes": 0,
+        "resident_bytes": 0
+      },
+      "battle_log": {
+        "path": "src/w2u_battle_log.dll",
+        "file_bytes": 2384,
+        "expanded_bytes": 2480,
+        "fixed_bytes": 2284,
+        "resident_bytes": 2380
+      },
+      "battle_counters": {
+        "path": "src/w2u_pk5_battle_counters.dll",
+        "file_bytes": 1648,
+        "expanded_bytes": 1728,
+        "fixed_bytes": 1564,
+        "resident_bytes": 1644
+      },
+      "children": [
+        {
+          "path": "src/w2u_battle_abilities_veils.dll",
+          "file_bytes": 1888,
+          "expanded_bytes": 1888,
+          "fixed_bytes": 1444,
+          "resident_bytes": 1444
+        },
+        {
+          "path": "src/w2u_battle_abilities_auras.dll",
+          "file_bytes": 1280,
+          "expanded_bytes": 1280,
+          "fixed_bytes": 1052,
+          "resident_bytes": 1052
+        },
+        {
+          "path": "src/w2u_battle_abilities_item_ops.dll",
+          "file_bytes": 1792,
+          "expanded_bytes": 1792,
+          "fixed_bytes": 1316,
+          "resident_bytes": 1316
+        },
+        {
+          "path": "src/w2u_battle_abilities_type.dll",
+          "file_bytes": 1328,
+          "expanded_bytes": 1328,
+          "fixed_bytes": 1052,
+          "resident_bytes": 1052
+        },
+        {
+          "path": "src/w2u_battle_abilities_power.dll",
+          "file_bytes": 1552,
+          "expanded_bytes": 1552,
+          "fixed_bytes": 1196,
+          "resident_bytes": 1196
+        },
+        {
+          "path": "src/w2u_battle_abilities_defense.dll",
+          "file_bytes": 2224,
+          "expanded_bytes": 2224,
+          "fixed_bytes": 1604,
+          "resident_bytes": 1604
+        },
+        {
+          "path": "src/w2u_battle_abilities_reactive.dll",
+          "file_bytes": 2320,
+          "expanded_bytes": 2320,
+          "fixed_bytes": 1764,
+          "resident_bytes": 1764
+        },
+        {
+          "path": "src/w2u_battle_abilities_priority_speed.dll",
+          "file_bytes": 1392,
+          "expanded_bytes": 1392,
+          "fixed_bytes": 1100,
+          "resident_bytes": 1100
+        },
+        {
+          "path": "src/w2u_battle_abilities_terrain.dll",
+          "file_bytes": 592,
+          "expanded_bytes": 592,
+          "fixed_bytes": 492,
+          "resident_bytes": 492
+        },
+        {
+          "path": "src/w2u_battle_abilities_forms.dll",
+          "file_bytes": 2560,
+          "expanded_bytes": 2560,
+          "fixed_bytes": 1892,
+          "resident_bytes": 1892
+        },
+        {
+          "path": "src/w2u_battle_abilities_battle_flow.dll",
+          "file_bytes": 3888,
+          "expanded_bytes": 3888,
+          "fixed_bytes": 3140,
+          "resident_bytes": 3140
+        },
+        {
+          "path": "src/w2u_battle_items_gen6.dll",
+          "file_bytes": 3152,
+          "expanded_bytes": 3152,
+          "fixed_bytes": 2492,
+          "resident_bytes": 2492
+        },
+        {
+          "path": "src/w2u_battle_moves_hazards.dll",
+          "file_bytes": 2608,
+          "expanded_bytes": 2608,
+          "fixed_bytes": 2116,
+          "resident_bytes": 2116
+        },
+        {
+          "path": "src/w2u_battle_moves_guards.dll",
+          "file_bytes": 4336,
+          "expanded_bytes": 4336,
+          "fixed_bytes": 3316,
+          "resident_bytes": 3316
+        },
+        {
+          "path": "src/w2u_battle_moves_terrain.dll",
+          "file_bytes": 5344,
+          "expanded_bytes": 5344,
+          "fixed_bytes": 4180,
+          "resident_bytes": 4180
+        },
+        {
+          "path": "src/w2u_battle_moves_type.dll",
+          "file_bytes": 4704,
+          "expanded_bytes": 4704,
+          "fixed_bytes": 3540,
+          "resident_bytes": 3540
+        },
+        {
+          "path": "src/w2u_battle_moves_volatile.dll",
+          "file_bytes": 2736,
+          "expanded_bytes": 2736,
+          "fixed_bytes": 2124,
+          "resident_bytes": 2124
+        },
+        {
+          "path": "src/w2u_battle_moves_stats.dll",
+          "file_bytes": 4976,
+          "expanded_bytes": 4976,
+          "fixed_bytes": 3756,
+          "resident_bytes": 3756
+        },
+        {
+          "path": "src/w2u_battle_moves_flow.dll",
+          "file_bytes": 5616,
+          "expanded_bytes": 5616,
+          "fixed_bytes": 4276,
+          "resident_bytes": 4276
+        },
+        {
+          "path": "src/w2u_battle_moves_trapping.dll",
+          "file_bytes": 816,
+          "expanded_bytes": 816,
+          "fixed_bytes": 660,
+          "resident_bytes": 660
+        },
+        {
+          "path": "src/w2u_battle_moves_screens.dll",
+          "file_bytes": 1952,
+          "expanded_bytes": 1952,
+          "fixed_bytes": 1596,
+          "resident_bytes": 1596
+        },
+        {
+          "path": "src/w2u_battle_moves_ability.dll",
+          "file_bytes": 1456,
+          "expanded_bytes": 1456,
+          "fixed_bytes": 1124,
+          "resident_bytes": 1124
+        },
+        {
+          "path": "src/w2u_battle_abilities_strong_weather.dll",
+          "file_bytes": 1744,
+          "expanded_bytes": 1744,
+          "fixed_bytes": 1364,
+          "resident_bytes": 1364
+        },
+        {
+          "path": "src/w2u_battle_abilities_mb_power.dll",
+          "file_bytes": 5520,
+          "expanded_bytes": 5600,
+          "fixed_bytes": 4036,
+          "resident_bytes": 4116
+        },
+        {
+          "path": "src/w2u_battle_abilities_mb_defense.dll",
+          "file_bytes": 6880,
+          "expanded_bytes": 6928,
+          "fixed_bytes": 5076,
+          "resident_bytes": 5124
+        },
+        {
+          "path": "src/w2u_battle_abilities_mb_reactive.dll",
+          "file_bytes": 4096,
+          "expanded_bytes": 4176,
+          "fixed_bytes": 2996,
+          "resident_bytes": 3076
+        },
+        {
+          "path": "src/w2u_battle_abilities_mb_entry.dll",
+          "file_bytes": 3456,
+          "expanded_bytes": 3488,
+          "fixed_bytes": 2516,
+          "resident_bytes": 2548
+        },
+        {
+          "path": "src/w2u_battle_abilities_mb_terrain.dll",
+          "file_bytes": 3744,
+          "expanded_bytes": 3840,
+          "fixed_bytes": 2788,
+          "resident_bytes": 2884
+        },
+        {
+          "path": "src/w2u_battle_abilities_mb_hooked.dll",
+          "file_bytes": 4208,
+          "expanded_bytes": 4528,
+          "fixed_bytes": 3124,
+          "resident_bytes": 3444
+        },
+        {
+          "path": "src/w2u_battle_abilities_mb_forms.dll",
+          "file_bytes": 4256,
+          "expanded_bytes": 4352,
+          "fixed_bytes": 3268,
+          "resident_bytes": 3364
+        }
+      ],
+      "scenarios": {
+        "no_custom": {
+          "used_bytes": 88552,
+          "free_bytes": 116248,
+          "resident_saving_vs_monolith": 14748
+        },
+        "typical_largest_single_group": {
+          "used_bytes": 93692,
+          "free_bytes": 111108,
+          "resident_saving_vs_monolith": 9608
+        },
+        "all_groups_conservative": {
+          "used_bytes": 160184,
+          "free_bytes": 44616,
+          "child_fixed_bytes": 71152
+        }
+      }
+    },
+    "unstripped": {
+      "heap_bytes": 204800,
+      "required_headroom_bytes": 12288,
+      "allocator_bytes_per_module": 16,
+      "loader_fixed_bytes": 0,
+      "loader_state_included_in_core": true,
+      "baseline": "pmc/white2upgrade_battle_heap_baseline.json",
+      "monolithic_core_baseline_bytes": 63700,
+      "monolithic_resident_baseline_bytes": 103300,
+      "core": {
+        "path": "build-unstripped/src/w2u_main.dll",
+        "file_bytes": 129680,
+        "expanded_bytes": 133296,
+        "fixed_bytes": 115328,
+        "resident_bytes": 118944
+      },
+      "pwan_battle": {
+        "path": null,
+        "file_bytes": 0,
+        "expanded_bytes": 0,
+        "fixed_bytes": 0,
+        "resident_bytes": 0
+      },
+      "battle_log": {
+        "path": "build-unstripped/src/w2u_battle_log.dll",
+        "file_bytes": 3104,
+        "expanded_bytes": 3200,
+        "fixed_bytes": 2972,
+        "resident_bytes": 3068
+      },
+      "battle_counters": {
+        "path": "build-unstripped/src/w2u_pk5_battle_counters.dll",
+        "file_bytes": 2128,
+        "expanded_bytes": 2208,
+        "fixed_bytes": 2028,
+        "resident_bytes": 2108
+      },
+      "children": [
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_veils.dll",
+          "file_bytes": 1888,
+          "expanded_bytes": 1888,
+          "fixed_bytes": 1444,
+          "resident_bytes": 1444
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_auras.dll",
+          "file_bytes": 1280,
+          "expanded_bytes": 1280,
+          "fixed_bytes": 1052,
+          "resident_bytes": 1052
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_item_ops.dll",
+          "file_bytes": 1792,
+          "expanded_bytes": 1792,
+          "fixed_bytes": 1316,
+          "resident_bytes": 1316
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_type.dll",
+          "file_bytes": 1328,
+          "expanded_bytes": 1328,
+          "fixed_bytes": 1052,
+          "resident_bytes": 1052
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_power.dll",
+          "file_bytes": 1552,
+          "expanded_bytes": 1552,
+          "fixed_bytes": 1196,
+          "resident_bytes": 1196
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_defense.dll",
+          "file_bytes": 2224,
+          "expanded_bytes": 2224,
+          "fixed_bytes": 1604,
+          "resident_bytes": 1604
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_reactive.dll",
+          "file_bytes": 2320,
+          "expanded_bytes": 2320,
+          "fixed_bytes": 1764,
+          "resident_bytes": 1764
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_priority_speed.dll",
+          "file_bytes": 1392,
+          "expanded_bytes": 1392,
+          "fixed_bytes": 1100,
+          "resident_bytes": 1100
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_terrain.dll",
+          "file_bytes": 592,
+          "expanded_bytes": 592,
+          "fixed_bytes": 492,
+          "resident_bytes": 492
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_forms.dll",
+          "file_bytes": 2560,
+          "expanded_bytes": 2560,
+          "fixed_bytes": 1892,
+          "resident_bytes": 1892
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_battle_flow.dll",
+          "file_bytes": 3888,
+          "expanded_bytes": 3888,
+          "fixed_bytes": 3140,
+          "resident_bytes": 3140
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_items_gen6.dll",
+          "file_bytes": 3152,
+          "expanded_bytes": 3152,
+          "fixed_bytes": 2492,
+          "resident_bytes": 2492
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_moves_hazards.dll",
+          "file_bytes": 2608,
+          "expanded_bytes": 2608,
+          "fixed_bytes": 2116,
+          "resident_bytes": 2116
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_moves_guards.dll",
+          "file_bytes": 4336,
+          "expanded_bytes": 4336,
+          "fixed_bytes": 3316,
+          "resident_bytes": 3316
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_moves_terrain.dll",
+          "file_bytes": 5344,
+          "expanded_bytes": 5344,
+          "fixed_bytes": 4180,
+          "resident_bytes": 4180
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_moves_type.dll",
+          "file_bytes": 4704,
+          "expanded_bytes": 4704,
+          "fixed_bytes": 3540,
+          "resident_bytes": 3540
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_moves_volatile.dll",
+          "file_bytes": 2736,
+          "expanded_bytes": 2736,
+          "fixed_bytes": 2124,
+          "resident_bytes": 2124
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_moves_stats.dll",
+          "file_bytes": 4976,
+          "expanded_bytes": 4976,
+          "fixed_bytes": 3756,
+          "resident_bytes": 3756
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_moves_flow.dll",
+          "file_bytes": 5616,
+          "expanded_bytes": 5616,
+          "fixed_bytes": 4276,
+          "resident_bytes": 4276
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_moves_trapping.dll",
+          "file_bytes": 816,
+          "expanded_bytes": 816,
+          "fixed_bytes": 660,
+          "resident_bytes": 660
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_moves_screens.dll",
+          "file_bytes": 1952,
+          "expanded_bytes": 1952,
+          "fixed_bytes": 1596,
+          "resident_bytes": 1596
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_moves_ability.dll",
+          "file_bytes": 1456,
+          "expanded_bytes": 1456,
+          "fixed_bytes": 1124,
+          "resident_bytes": 1124
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_strong_weather.dll",
+          "file_bytes": 1744,
+          "expanded_bytes": 1744,
+          "fixed_bytes": 1364,
+          "resident_bytes": 1364
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_mb_power.dll",
+          "file_bytes": 5520,
+          "expanded_bytes": 5600,
+          "fixed_bytes": 4036,
+          "resident_bytes": 4116
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_mb_defense.dll",
+          "file_bytes": 6880,
+          "expanded_bytes": 6928,
+          "fixed_bytes": 5076,
+          "resident_bytes": 5124
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_mb_reactive.dll",
+          "file_bytes": 4096,
+          "expanded_bytes": 4176,
+          "fixed_bytes": 2996,
+          "resident_bytes": 3076
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_mb_entry.dll",
+          "file_bytes": 3456,
+          "expanded_bytes": 3488,
+          "fixed_bytes": 2516,
+          "resident_bytes": 2548
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_mb_terrain.dll",
+          "file_bytes": 3744,
+          "expanded_bytes": 3840,
+          "fixed_bytes": 2788,
+          "resident_bytes": 2884
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_mb_hooked.dll",
+          "file_bytes": 4208,
+          "expanded_bytes": 4528,
+          "fixed_bytes": 3124,
+          "resident_bytes": 3444
+        },
+        {
+          "path": "build-unstripped/src/w2u_battle_abilities_mb_forms.dll",
+          "file_bytes": 4256,
+          "expanded_bytes": 4352,
+          "fixed_bytes": 3268,
+          "resident_bytes": 3364
+        }
+      ],
+      "scenarios": {
+        "no_custom": {
+          "used_bytes": 124184,
+          "free_bytes": 80616,
+          "resident_saving_vs_monolith": -20884
+        },
+        "typical_largest_single_group": {
+          "used_bytes": 129324,
+          "free_bytes": 75476,
+          "resident_saving_vs_monolith": -26024
+        },
+        "all_groups_conservative": {
+          "used_bytes": 195816,
+          "free_bytes": 8984,
+          "child_fixed_bytes": 71152
+        }
+      }
+    }
+  },
+  "main_changes": [
+    {
+      "status": "M",
+      "path": ".gitignore"
+    },
+    {
+      "status": "M",
+      "path": "README.md"
+    },
+    {
+      "status": "M",
+      "path": "data/graphics/move_animations/5_00000780.bin"
+    },
+    {
+      "status": "M",
+      "path": "data/graphics/move_spas/6_00000960.bin"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/121.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/140.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/188.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/190.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/192.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/247.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/296.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/301.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/311.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/350.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/360.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/396.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/402.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/411.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/412.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/426.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/439.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/443.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/486.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/491.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/546.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/749.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/791.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/807.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/810.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/811.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/816.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/849.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/874.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/882.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/902.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/913.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/pml/moves/914.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/text/system/17.toml"
+    },
+    {
+      "status": "M",
+      "path": "data/text/system/18.toml"
+    },
+    {
+      "status": "A",
+      "path": "docs/gen6-gen7-ability-item-audit.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/gen6-gen7-move-handler-audit.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/gen8-gen9-move-handler-progress.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/gen8-gen9-move-handler-reference.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/w2u-battle-modules.md"
+    },
+    {
+      "status": "A",
+      "path": "include/util/main_ram.h"
+    },
+    {
+      "status": "M",
+      "path": "include/w2u_abilities.h"
+    },
+    {
+      "status": "M",
+      "path": "include/w2u_battle.h"
+    },
+    {
+      "status": "M",
+      "path": "include/w2u_moves.h"
+    },
+    {
+      "status": "A",
+      "path": "include/w2u_weather.h"
+    },
+    {
+      "status": "M",
+      "path": "pmc/IRDO.yml"
+    },
+    {
+      "status": "M",
+      "path": "pmc/IREO.yml"
+    },
+    {
+      "status": "M",
+      "path": "pmc/black2upgrade_aliases.json"
+    },
+    {
+      "status": "M",
+      "path": "src/meson.build"
+    },
+    {
+      "status": "M",
+      "path": "src/pokeweb_gameplay/battle_modules/registry.json"
+    },
+    {
+      "status": "M",
+      "path": "src/pokeweb_gameplay/meson.build"
+    },
+    {
+      "status": "M",
+      "path": "src/pokeweb_gameplay/w2u_abilities.cpp"
+    },
+    {
+      "status": "M",
+      "path": "src/pokeweb_gameplay/w2u_battle_module_api_entries.inc"
+    },
+    {
+      "status": "M",
+      "path": "src/pokeweb_gameplay/w2u_battle_module_loader.cpp"
+    },
+    {
+      "status": "M",
+      "path": "src/pokeweb_gameplay/w2u_battle_module_registry.inc"
+    },
+    {
+      "status": "M",
+      "path": "src/pokeweb_gameplay/w2u_damage_hooks.s"
+    },
+    {
+      "status": "M",
+      "path": "src/pokeweb_gameplay/w2u_mega.cpp"
+    },
+    {
+      "status": "M",
+      "path": "src/pokeweb_gameplay/w2u_move_animation_hooks.s"
+    },
+    {
+      "status": "M",
+      "path": "src/pokeweb_gameplay/w2u_moves.cpp"
+    },
+    {
+      "status": "A",
+      "path": "src/pokeweb_gameplay/w2u_revival.cpp"
+    },
+    {
+      "status": "A",
+      "path": "src/pokeweb_gameplay/w2u_revival_hooks.s"
+    },
+    {
+      "status": "M",
+      "path": "src/pokeweb_gameplay/w2u_transform_hooks.s"
+    },
+    {
+      "status": "A",
+      "path": "src/pokeweb_gameplay/w2u_weather.cpp"
+    },
+    {
+      "status": "A",
+      "path": "src/pokeweb_gameplay/w2u_weather_hooks.s"
+    },
+    {
+      "status": "M",
+      "path": "src/pwan_animation/meson.build"
+    },
+    {
+      "status": "M",
+      "path": "src/pwan_animation/w2u_battle_anim.cpp"
+    },
+    {
+      "status": "M",
+      "path": "src/pwan_animation/w2u_egg_hatch_anim.cpp"
+    },
+    {
+      "status": "M",
+      "path": "src/pwan_animation/w2u_evolution_anim.cpp"
+    },
+    {
+      "status": "M",
+      "path": "src/pwan_animation/w2u_nonbattle_mcss.cpp"
+    },
+    {
+      "status": "M",
+      "path": "src/pwan_animation/w2u_summary_anim.cpp"
+    },
+    {
+      "status": "M",
+      "path": "src/pwan_animation/w2u_trainer_anim.cpp"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/AGENTS.md"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/README.md"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/gen67-mechanic-inventory.json"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/gen67-move-inventory.json"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/runtime/multi.c"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/runtime/multi.s"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/runtime/symbols.yml"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/build-animation-completion-fixtures.ts"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/build-battle-interaction-fixtures.ts"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/build-move-handler-fixtures.ts"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/build-multi-runtime.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/gen67-mechanic-fixtures.ts"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/gen67_mechanic_oracles.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/gen67_move_oracles.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/harness_paths.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/move-handler-doubles-fixtures.ts"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/move-handler-gen67-fixtures.ts"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/move-handler-multi-fixtures.ts"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/pokeweb-dependency.ts"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/summarize-gen67-mechanics.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/test-animation-completion.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/test-battle-interactions.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/test-move-handlers.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/scripts/verify-multi-runtime.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/tsconfig.json"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/unit/test_gen67_audit.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/unit/test_gen67_handler_fixes.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/unit/test_gen67_mechanics.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/unit/test_interactions.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/unit/test_move_handlers.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/unit/test_multi_battles.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/unit/test_test_location.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/battle/vite.config.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/audit_white2upgrade_battle_heap.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/generate_w2u_battle_registry.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/mkdata/impl/generic.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/test_battle.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/tests/check_pwan_substitute_runtime.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_applied_stat_history.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_battle_heap_acceptance.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/tests/test_battle_route_layout.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/tests/test_battle_transform_species.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_body_press_stat_adapter.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_chilly_reception_handler.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_coaching_handler.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_court_change_handler.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_doodle_handler.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_doubles_handlers.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_dragon_darts_handler.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/tests/test_final_damage_hook.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_last_respects_handler.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_main_ram.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_move_lifetime_contracts.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_move_metadata_labels.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_move_progress_inventory.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_native_move_context.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_npc_move_policy.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_pending_move_priority.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_population_bomb_handler.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_rage_fist_history.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_revival_blessing_handler.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_shed_tail_handler.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_shell_side_arm_handler.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_snowscape_handler.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_teatime_handler.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/tests/test_terrain_pulse_phase.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/tests/test_vram_call_ranges.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_w2u_battle_linkage.py"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/a/0/0/2/17"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/a/0/0/2/18"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/abilities/defense.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/abilities/forms.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/abilities/power.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/abilities/priority_speed.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/abilities/reactive.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/abilities/type.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/moves/ability.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/moves/flow.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/moves/guards.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/moves/hazards.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/moves/screens.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/moves/stats.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/moves/terrain.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/moves/trapping.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/moves/type.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/lib/w2u_battle/moves/volatile.dll"
+    },
+    {
+      "status": "M",
+      "path": "vfs/data/patches/White2Upgrade.dll"
+    }
+  ]
+}

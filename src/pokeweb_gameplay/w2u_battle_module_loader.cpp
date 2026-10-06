@@ -1,4 +1,5 @@
 #include "w2u_battle_module_loader.h"
+#include "util/main_ram.h"
 
 #include "Items.h"
 #include "Moves.h"
@@ -274,8 +275,7 @@ bool ResolvePmcRuntimeFromFile(const char* path, W2UPmcRuntimeApi* runtime)
                     }
                     functionAddress += baseAddress + W2U_RPM_PROLOG_SIZE;
                 }
-                if ((functionAddress & ~1u) < 0x02000000u ||
-                    (functionAddress & ~1u) >= 0x02400000u) {
+                if (!w2u::IsMainRamAddress(functionAddress & ~1u, 2u)) {
                     return false;
                 }
                 resolved[wantedIndex] = reinterpret_cast<void*>(functionAddress | 1u);
@@ -395,7 +395,7 @@ bool IsValidHandlerPointer(
     }
     // Reviewed game/PMC symbols resolve into main-memory code. Imported table
     // handlers such as the vanilla Protect and Overcoat handlers live here.
-    return codeAddress >= 0x02000000u && codeAddress < 0x02400000u;
+    return w2u::IsMainRamAddress(codeAddress, 2u);
 }
 
 bool IsModuleCodePointer(

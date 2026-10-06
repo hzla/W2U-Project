@@ -76,7 +76,7 @@ class GenericSerializer(Serializer):
                         if token in defines.keys():
                             final_value |= defines[token]
                         else:
-                            print(f'Label "{token}" not defined!')
+                            raise ValueError(f'Label "{token}" not defined')
                     return final_value
                 return -1
 
