@@ -33,6 +33,29 @@ def verify_hook_targets(definitions: set[str], database_symbols: set[str]) -> No
             raise RuntimeError(f"{name}: missing ESDB hook owner {match[1]}; hook has no mapped game target")
 
 
+def verify_unique_hook_targets(definitions: set[str], database: dict) -> None:
+    records = {entry["Name"]: entry for entry in database["Symbols"]}
+    segments = {entry["ID"]: str(entry["Name"]) for entry in database["Segments"]}
+    owners: dict[tuple[str, int], str] = {}
+    for name in sorted(definitions):
+        direct = re.fullmatch(r"(?:THUMB_BRANCH(?:_LINK)?|FULL_COPY)_(\d+|ARM9|ARM7)_0x([0-9A-Fa-f]+)", name)
+        if direct:
+            key = (direct[1], int(direct[2], 16) & ~1)
+        else:
+            link = re.fullmatch(r"THUMB_BRANCH_LINK_(.+)_0x([0-9A-Fa-f]+)", name)
+            branch = re.fullmatch(r"THUMB_BRANCH_(?:SAFESTACK_)?(.+)", name)
+            if not link and not branch:
+                continue
+            record = records.get((link or branch)[1])
+            if not record:
+                continue  # verify_hook_targets supplies the missing-symbol diagnostic.
+            key = (segments[record["Segment"]], (int(record["Address"]) & ~1) +
+                   (int(link[2], 16) if link else 0))
+        if key in owners:
+            raise RuntimeError(f"duplicate hook ownership at {key}: {owners[key]} and {name}")
+        owners[key] = name
+
+
 def symbols(path: Path, *arguments: str) -> set[str]:
     output = subprocess.run(
         ["arm-none-eabi-nm", *arguments, str(path)],
@@ -101,6 +124,7 @@ def main() -> int:
         raise RuntimeError("missing resident consumption bookkeeping hooks: " + ", ".join(sorted(missing_hooks)))
     database = yaml.safe_load(args.esdb.read_text(encoding="utf-8"))
     verify_hook_targets(core_definitions, {entry["Name"] for entry in database["Symbols"]})
+    verify_unique_hook_targets(core_definitions, database)
     addresses = {entry["Name"]: int(entry["Address"]) for entry in database["Symbols"]}
     for module in [args.core, *args.child]:
         verify_vram_branch_relocations(module, addresses)

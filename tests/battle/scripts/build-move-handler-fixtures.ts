@@ -1553,7 +1553,10 @@ const variants: Variant[] = gen67Audit ? focusedGen67 : revivalBlessing ? [
       ...(field.name === "electric" ? [{ id: "gravity-grounds-user-balloon", setupSlots: [1, 3], expectedPowers: [100], effectivePowers: [130], expectedMoveType: 12, expectedFloating: { attacker: false }, executionItems: { attacker: 541 } }] : []),
     ] },
   ]),
-  { name: "levitate", trainerId: 1, abilityId: 50, trainerMove: 150, playerAbilityId: 26, save: "battle-levitate.sav", cases: [
+  // Splash is forbidden by Gravity: a Splash-only NPC falls back to
+  // Struggle and its recoil contaminates the defender HP oracle. Growl
+  // remains selectable and cannot alter this special move's damage.
+  { name: "levitate", trainerId: 12, abilityId: 50, trainerMove: 45, playerAbilityId: 26, save: "battle-levitate.sav", cases: [
     { id: "levitate-stays-normal", setupSlot: 1, expectedPowers: [50], expectedMoveType: 0, expectedFloating: { attacker: true } },
     { id: "gravity-grounds-levitate", setupSlots: [1, 3], expectedPowers: [100], effectivePowers: [130], expectedMoveType: 12, expectedFloating: { attacker: false } },
   ] },
