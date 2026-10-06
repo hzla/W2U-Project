@@ -1610,6 +1610,12 @@ bool IsReceiverFailAbility(ABILITY ability)
     case ABIL_RECEIVER:
     case ABIL_POWER_OF_ALCHEMY:
     case ABIL_RKS_SYSTEM:
+    // Generation VIII / IX form abilities (Showdown's `noreceiver` flag)
+    case ABIL_GULP_MISSILE:
+    case ABIL_ICE_FACE:
+    case ABIL_HUNGER_SWITCH:
+    case ABIL_ZERO_TO_HERO:
+    case ABIL_COMMANDER:
         return true;
     default:
         return false;
@@ -4221,6 +4227,7 @@ bool IsW2UIgnorableAbility(ABILITY ability)
     case ABIL_QUEENLY_MAGESTY:
     case ABIL_WATER_BUBBLE:
     // Generation VIII / IX (ported from MegaB2W2; Showdown's `breakable` flag)
+    case ABIL_ICE_FACE:
     case ABIL_MIRROR_ARMOR:
     case ABIL_PUNK_ROCK:
     case ABIL_ICE_SCALES:

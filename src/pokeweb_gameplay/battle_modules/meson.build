@@ -145,4 +145,9 @@ w2u_battle_module_definitions = [
     'slug': 'abilities_mb_hooked',
     'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/GorillaTactics.cpp', '../megab2w2/abilities/PropellerTail.cpp', '../megab2w2/abilities/UnseenFist.cpp', '../megab2w2/abilities/QuickDraw.cpp', '../megab2w2/abilities/MoveAbilities.cpp', '../megab2w2/abilities/EffectAbilities.cpp'),
   },
+  {
+    'id': 29,
+    'slug': 'abilities_mb_forms',
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/FormAbilities.cpp'),
+  },
 ]

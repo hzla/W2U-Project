@@ -8473,3 +8473,39 @@ text = [
   "The foe's [VAR PKNICK(0)] can act faster than\\n",
   "normal, thanks to its Quick Draw!$",
 ]
+
+[msg.section_0.entries.1445]
+text = [
+  "[VAR PKNICK(0)] underwent a heroic\n",
+  "transformation!$",
+]
+
+[msg.section_0.entries.1446]
+text = [
+  "The wild [VAR PKNICK(0)] underwent a heroic\n",
+  "transformation!$",
+]
+
+[msg.section_0.entries.1447]
+text = [
+  "The foe's [VAR PKNICK(0)] underwent a heroic\n",
+  "transformation!$",
+]
+
+[msg.section_0.entries.1448]
+text = [
+  "[VAR PKNICK(0)] was swallowed by\n",
+  "[VAR PKNICK(1)] and became its commander!$",
+]
+
+[msg.section_0.entries.1449]
+text = [
+  "The wild [VAR PKNICK(0)] was swallowed by\n",
+  "[VAR PKNICK(1)] and became its commander!$",
+]
+
+[msg.section_0.entries.1450]
+text = [
+  "The foe's [VAR PKNICK(0)] was swallowed by\n",
+  "[VAR PKNICK(1)] and became its commander!$",
+]

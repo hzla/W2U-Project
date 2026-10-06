@@ -29,6 +29,7 @@ enum W2UBattleModuleId : u8 {
     W2U_MODULE_ABILITIES_MB_ENTRY,
     W2U_MODULE_ABILITIES_MB_TERRAIN,
     W2U_MODULE_ABILITIES_MB_HOOKED,
+    W2U_MODULE_ABILITIES_MB_FORMS,
     W2U_BATTLE_MODULE_COUNT,
     W2U_NO_MODULE = 0xFF,
 };
@@ -76,6 +77,7 @@ static const W2UBattleModuleDescriptor sBattleModuleDescriptors[] = {
     {"abilities/mb_entry.dll", W2U_NO_MODULE},
     {"abilities/mb_terrain.dll", W2U_MODULE_MOVES_TERRAIN},
     {"abilities/mb_hooked.dll", W2U_NO_MODULE},
+    {"abilities/mb_forms.dll", W2U_NO_MODULE},
 };
 
 #define W2U_ROUTE(kind, id, module) {(u16)(id), (u8)(kind), (u8)(module)}
@@ -341,6 +343,11 @@ static const W2UBattleMechanicRoute sBattleMechanicRoutes[] = {
     W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_RIPEN, W2U_MODULE_ABILITIES_MB_HOOKED),
     W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_OPPORTUNIST, W2U_MODULE_ABILITIES_MB_HOOKED),
     W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_CUD_CHEW, W2U_MODULE_ABILITIES_MB_HOOKED),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_ICE_FACE, W2U_MODULE_ABILITIES_MB_FORMS),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_GULP_MISSILE, W2U_MODULE_ABILITIES_MB_FORMS),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_HUNGER_SWITCH, W2U_MODULE_ABILITIES_MB_FORMS),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_ZERO_TO_HERO, W2U_MODULE_ABILITIES_MB_FORMS),
+    W2U_ROUTE(W2U_MECHANIC_ABILITY, ABIL_COMMANDER, W2U_MODULE_ABILITIES_MB_FORMS),
 };
 
 #undef W2U_ROUTE
@@ -389,6 +396,9 @@ extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_T
 #endif
 #if !defined(W2U_TARGET_B2)
 extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_HOOKED();
+#endif
+#if !defined(W2U_TARGET_B2)
+extern "C" const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_FORMS();
 #endif
 #if defined(W2U_TARGET_B2)
 // White 2-only modules (registry "white2_only"): not built for Black 2.
@@ -452,6 +462,11 @@ static const W2UBattleStaticApiGetter sBattleStaticApiGetters[] = {
     W2U_UnavailableStaticBattleModule,
 #else
     W2U_GetStaticBattleModuleApi_ABILITIES_MB_HOOKED,
+#endif
+#if defined(W2U_TARGET_B2)
+    W2U_UnavailableStaticBattleModule,
+#else
+    W2U_GetStaticBattleModuleApi_ABILITIES_MB_FORMS,
 #endif
 };
 #endif
