@@ -173,7 +173,8 @@ inline u32 BestStatWithStages(BattleMon* bm) {
     for (u32 i = 0; i < 5; ++i) {
         int s = (int)GetBattleMonStat(bm, 1 + i) - 6;
         u32 v = GetBattleMonStat(bm, 8 + i);
-        v = s >= 0 ? v * (2 + s) / 2 : v * 2 / (2 - s);
+        // u64: a u32 division by a variable calls __aeabi_uidiv, which the ESDB lacks (a branch to itself)
+        v = s >= 0 ? v * (2 + s) / 2 : (u32)((u64)v * 2 / (u32)(2 - s));
         if (v > bestValue) { bestValue = v; best = STAT_ATK + i; }
     }
     return best;
