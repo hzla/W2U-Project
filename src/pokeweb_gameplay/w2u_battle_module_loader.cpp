@@ -1,4 +1,5 @@
 #include "w2u_battle_module_loader.h"
+#include "w2u_battle_lifecycle.h"
 #include "util/main_ram.h"
 
 #include "Items.h"
@@ -66,6 +67,7 @@ struct W2UBattleModuleRecord {
     u32 fixedBytes;
     u8 state;
     u8 moduleId;
+    u16 loadOrdinal; // Uses the record's existing alignment padding.
 };
 
 // PMC's system heap is ExtLib's exl::heap::HeapArea. Its Alloc does not return null when no free block fits: it
@@ -577,6 +579,7 @@ void MarkFailure(u8 moduleId)
 
 bool LoadModule(u8 moduleId, W2UBattleMechanicKind expectedKind, u16 expectedId)
 {
+    if (!sRegistrationEnabled) return false;
     if (moduleId >= W2U_BATTLE_MODULE_COUNT) {
         return false;
     }
@@ -676,6 +679,7 @@ bool LoadModule(u8 moduleId, W2UBattleMechanicKind expectedKind, u16 expectedId)
     }
 
     record->state = W2U_MODULE_LOADED;
+    record->loadOrdinal = (u16)sTelemetry.loadedModuleCount;
     ++sTelemetry.loadedModuleCount;
     ++sTelemetry.loadCount;
     sTelemetry.currentChildBytes += fixedSize;
@@ -702,6 +706,7 @@ extern "C" const W2UBattleHandlerExport* W2U_BattleModules_FindLoaded(
     W2UBattleMechanicKind kind,
     u16 id)
 {
+    if (!sRegistrationEnabled) return 0;
     const W2UBattleMechanicRoute* route = FindRoute(kind, id);
     if (!route || route->module >= W2U_BATTLE_MODULE_COUNT ||
         sModuleRecords[route->module].state != W2U_MODULE_LOADED) {
@@ -721,10 +726,14 @@ extern "C" void W2U_BattleModules_Reset()
         return;
     }
     sResetting = true;
+    const bool registrationWasEnabled = sRegistrationEnabled;
     sRegistrationEnabled = false;
 
-    for (u32 index = W2U_BATTLE_MODULE_COUNT; index > 0; --index) {
-        W2UBattleModuleRecord* record = &sModuleRecords[index - 1];
+    W2UPmcModuleHandle handles[W2U_MAX_MODULE_RECORDS];
+    ClearBytes(handles, sizeof(handles));
+    // Clear every cached pointer before any child unload callback can run.
+    for (u32 index = 0; index < W2U_BATTLE_MODULE_COUNT; ++index) {
+        W2UBattleModuleRecord* record = &sModuleRecords[index];
         W2UPmcModuleHandle handle = record->handle;
         const bool loaded = record->state == W2U_MODULE_LOADED && handle;
         record->handle = 0;
@@ -732,8 +741,16 @@ extern "C" void W2U_BattleModules_Reset()
         record->expandedBytes = 0;
         record->fixedBytes = 0;
         record->state = W2U_MODULE_NOT_LOADED;
-        if (loaded) {
-            sPmcRuntime.unloadModule(handle);
+        if (loaded && record->loadOrdinal < W2U_MAX_MODULE_RECORDS) {
+            handles[record->loadOrdinal] = handle;
+        }
+        record->loadOrdinal = 0;
+    }
+    // Module IDs do not describe load order: registration may load any group
+    // first. Unload in the reverse order of successful loads, not reverse IDs.
+    for (u32 index = W2U_MAX_MODULE_RECORDS; index > 0; --index) {
+        if (handles[index - 1]) {
+            sPmcRuntime.unloadModule(handles[index - 1]);
             ++sTelemetry.unloadCount;
         }
     }
@@ -742,7 +759,7 @@ extern "C" void W2U_BattleModules_Reset()
     sTelemetry.currentChildBytes = 0;
     sTelemetry.failedModuleMask = 0;
     sTelemetry.lastFailureModuleId = W2U_NO_MODULE;
-    sRegistrationEnabled = true;
+    sRegistrationEnabled = registrationWasEnabled;
     sResetting = false;
 }
 
@@ -763,10 +780,12 @@ extern "C" __attribute__((visibility("default"))) int DllMain(
 {
     (void)manager;
     if (reason == 1) {
-        W2U_BattleModules_Reset();
+        W2U_BattleState_OnBattleExit();
+        sRegistrationEnabled = false;
         ClearBytes(&sPmcRuntime, sizeof(sPmcRuntime));
         sPmcRuntimeState = 0;
     } else if (module) {
+        sRegistrationEnabled = true;
         // PMC invokes DllMain after applying INTERNAL_RELOCATIONS, so the
         // allocation header now holds the core's post-fix size.
         sTelemetry.coreFixedBytes = ReadU32(static_cast<const u8*>(module), 4u);

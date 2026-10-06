@@ -1177,7 +1177,7 @@ class TripleAxelTests(unittest.TestCase):
             with self.assertRaisesRegex(AssertionError, "ontact"):
                 runner.verify_triple_axel(case, bad, self.variant)
 
-    def test_gen7_disguise_absorbs_one_strike_without_cost_not_the_sequence(self):
+    def test_disguise_absorbs_one_strike_with_one_eighth_hp_cost_not_the_sequence(self):
         case, result = self.result()
         case.update(expectedDisguise=True, damageRatios=[4096] * 3)
         result["before"]["defender"].update(species=778, form=0, maxHp=235)
@@ -1187,6 +1187,8 @@ class TripleAxelTests(unittest.TestCase):
             if index == 0:
                 call["calculatedDamage"] = 0
             hp -= call["calculatedDamage"]
+            if index == 0:
+                hp -= max(1, 235 // 8)
         result["after"]["defender"].update(hp=hp, form=1)
         self.assertTrue(runner.verify_triple_axel(case, result, self.variant)["passed"])
         for mutate in (lambda r: r["damageCalls"][0].update(calculatedDamage=11),

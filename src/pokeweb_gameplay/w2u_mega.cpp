@@ -1175,6 +1175,7 @@ void ResetMegaBattleState()
 extern "C" void W2U_BattleState_OnBattleExit()
 {
 #if defined(W2U_DYNAMIC_BATTLE_CORE)
+    W2U_BattleModules_SetRegistrationEnabled(false);
     W2U_BattleModules_Reset();
 #endif
 
@@ -1192,6 +1193,9 @@ extern "C" void W2U_BattleState_OnBattleExit()
 #if !defined(W2U_TARGET_B2)
     W2U_StrongWeather_Reset();
     W2U_MB_ResetBattleState();
+#endif
+#if defined(W2U_DYNAMIC_BATTLE_CORE)
+    W2U_BattleModules_SetRegistrationEnabled(true);
 #endif
 }
 
@@ -2588,6 +2592,7 @@ extern "C" void THUMB_BRANCH_LINK_ServerFlow_SetupBeforeFirstTurn_0x6E(
     const bool resetBattleState = ShouldResetMegaBattleStateForSetup(serverFlow);
     if (resetBattleState) {
 #if defined(W2U_DYNAMIC_BATTLE_CORE)
+        W2U_BattleModules_SetRegistrationEnabled(false);
         W2U_BattleModules_Reset();
 #endif
         ResetMegaBattleState();
@@ -2606,6 +2611,9 @@ extern "C" void THUMB_BRANCH_LINK_ServerFlow_SetupBeforeFirstTurn_0x6E(
 #endif
         RepairLeakedMegaForms(serverFlow ? serverFlow->pokeCon : nullptr);
         RepairLeakedBaseMegaAbilities(serverFlow ? serverFlow->pokeCon : nullptr);
+#if defined(W2U_DYNAMIC_BATTLE_CORE)
+        W2U_BattleModules_SetRegistrationEnabled(true);
+#endif
     } else {
         RepairLeakedMegaStateBeforeUse(serverFlow ? serverFlow->pokeCon : nullptr);
     }

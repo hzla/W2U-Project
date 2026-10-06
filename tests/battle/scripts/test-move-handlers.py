@@ -729,6 +729,8 @@ def verify_power(case, result, variant):
             expected_hp = 1
         else:
             expected_hp = max(0, expected_hp - calculation["calculatedDamage"])
+        if case.get("expectedDisguise") and index == 0:
+            expected_hp = max(0, expected_hp - max(1, target["maxHp"] // 8))
     before, after = calls[0]["defender"], result["after"]["defender"]
     total = sum(call["calculatedDamage"] for call in calls)
     if case.get("substitute"):
@@ -739,6 +741,8 @@ def verify_power(case, result, variant):
         check(after["hp"] == expected_hp, "Attack incorrectly bypassed Substitute or spilled damage through its break")
         check(after["substituteHp"] == expected_sub, "Wrong Substitute damage")
     else:
+        if case.get("expectedDisguise"):
+            total += max(1, before["maxHp"] // 8)
         applied = min(before["hp"], total) if case.get("allowFaint") else total
         check(before["hp"] - after["hp"] == applied and (applied > 0 or case.get("expectedDisguise")),
               "Native damage does not match actual HP loss")
@@ -1014,8 +1018,9 @@ def verify_triple_axel(case, result, variant):
         check(before["defender"]["species"] == 778 and before["defender"]["form"] == 0 and
               after["defender"]["form"] == 1, "Native Disguise was not busted by the first strike")
         check(len(calls) == 3 and calls[0]["defender"]["form"] == 0 and calls[0]["calculatedDamage"] == 0 and
-              calls[1]["defender"]["form"] == 1 and calls[1]["defender"]["hp"] == before["defender"]["hp"],
-              "Gen 7 Disguise did not absorb exactly the first strike without HP cost")
+              calls[1]["defender"]["form"] == 1 and
+              calls[1]["defender"]["hp"] == before["defender"]["hp"] - max(1, before["defender"]["maxHp"] // 8),
+              "Disguise did not absorb exactly the first strike with one 1/8-max-HP bust cost")
     if "expectedDefenderForm" in case:
         check(after["defender"]["form"] == case["expectedDefenderForm"], "Wrong completed Disguise form")
     if "disguiseSetupMove" in case:
@@ -1023,7 +1028,7 @@ def verify_triple_axel(case, result, variant):
         target = setup["before"]["defender"]
         check(setup["after"]["attacker"]["previousMoveId"] == case["disguiseSetupMove"] and
               target["form"] == 0 and setup["after"]["defender"]["form"] == 1 and
-              setup["after"]["defender"]["hp"] == target["hp"],
+              setup["after"]["defender"]["hp"] == target["hp"] - max(1, target["maxHp"] // 8),
               "Native setup did not preserve Disguise's single/fixed-damage absorption")
     if "followup" in case:
         summary["followup"] = verify_triple_axel(case["followup"]["case"], result["followup"], variant)
@@ -2850,7 +2855,7 @@ def main(argv=None):
     move_suites.extend(("population-bomb","shell-side-arm","snowscape","chilly-reception","shed-tail","revival-blessing"))
     move_suites.extend(("gen67-audit", "gen67-abilities", "gen67-items", "rage-fist-multi"))
     parser.add_argument("--move", choices=move_suites, default="ruination")
-    parser.add_argument("--rom", type=Path, default=ROOT.parent / "White2Upgrade.nds")
+    parser.add_argument("--rom", type=Path, default=ROOT / "build/White2Upgrade.nds")
     parser.add_argument("--core", type=Path, help="Fresh stripped core DLL to install in the private fixture ROM")
     parser.add_argument("--save", type=Path, default=shared.paths.DEFAULT_SAVE)
     parser.add_argument("--out", type=Path)

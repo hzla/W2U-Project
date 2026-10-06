@@ -72,13 +72,41 @@
           "note": "One fixture used Gravity-forbidden Splash, causing Struggle recoil. Fixed the fixture, not the damage oracle." },
         { "suite": "terrain-pulse", "passed_cases": 2, "complete_suite": false,
           "evidence": "work/move-handlers/terrain-pulse-20261006-123838-e15d89/result.json",
-          "note": "Both Levitate cases pass with a separate Growl-only opponent, including Gravity grounding." }
+          "note": "Diagnostic only: this retry accidentally used the outer release ROM. Excluded from integration acceptance; rerun on the integration ROM in stage 4." }
       ],
       "limits": ["Full ability, weather, renderer and release suites remain pending."]
+    },
+    "4": {
+      "status": "validated",
+      "policy": {
+        "parental_bond": "Quarter final damage on the second ordinary hit; fixed damage remains full.",
+        "disguise": "Mimikyu-only; one 1/8-max-HP bust cost plus shared hit-history bookkeeping.",
+        "grass_pelt": "Only mb_terrain owns the registration.",
+        "type_conversion": "Actual conversion grants the boost; incoming exceptional move types remain exempt.",
+        "lifecycle": "All pointers cleared before reverse-load-order unload; registration disabled through shared reset; resident unload uses battle-exit cleanup."
+      },
+      "rom_sha256": "a6401160df9ba3fa691c7daafa9c5be3f1328b2ade04a6f2d89ab303ccfdbaec",
+      "stripped_core_sha256": "ae99de854f08cbcd88360ef2a8d029cbc8a09c76fb2116b73eb5d5679f174f4c",
+      "stripped_build": true,
+      "rpm_linkage": true,
+      "all_groups_free_bytes": 23040,
+      "host_tests": { "run": 95, "skipped": 1, "failed": 0 },
+      "battle_unit_tests": 177,
+      "typecheck": true,
+      "black2_static_compile": true,
+      "native_tests": {
+        "suite": "gen67-abilities",
+        "passed_cases": 7,
+        "complete_suite": false,
+        "full_turn_validated": true,
+        "evidence": "work/move-handlers/gen67-abilities-20261006-124520-5359ea/result.json",
+        "input_rom_sha256": "3ac91a90ff8c5446e47e83542d476569e5e38c0cf103800848643825a4bb98af",
+        "note": "Native handler tests preceded the final teardown change; the final teardown callback has compiled re-entrant host tests. Full release lifecycle run remains pending."
+      },
+      "limits": ["Full ability, move, weather, renderer and hardware acceptance remains pending."]
     }
   },
   "pending_stages": [
-    4,
     5,
     6,
     7

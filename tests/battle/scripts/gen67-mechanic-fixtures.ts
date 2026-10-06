@@ -28,6 +28,7 @@ export type MechanicExpected = {
   abilities?:Partial<Record<BattleRole,number>>;
   hpExact?:Partial<Record<BattleRole,number>>;
   directLoss?:Partial<Record<BattleRole,number>>;
+  disguiseBustCost?:BattleRole[];
   healHalfBeforeHit?:boolean;
   terrainHealing?:BattleRole[];
   hpPoolGrowth?:BattleRole;
@@ -167,7 +168,7 @@ export function gen67MechanicVariants(kind:"ability"|"item"):MechanicVariant[] {
     add(211,"power-construct",150,[{id:"below-half-complete-hp-pool",userCurrentHp:10,mechanicAudit:{outgoing:[],incoming:[],beforeForms:{attacker:0},forms:{attacker:2},hpPoolGrowth:"attacker"}},
       {id:"healthy-retains-fifty-percent",mechanicAudit:{outgoing:[],incoming:[],forms:{attacker:0}}}],{speciesId:718});
     add(211,"power-construct-control",150,[{id:"wrong-species-cannot-change",userCurrentHp:10,mechanicAudit:{outgoing:[],incoming:[],forms:{attacker:0}}}]);
-    add(209,"disguise",55,[{id:"first-hit-busts-without-hp-cost",mechanicAudit:{outgoing:[strike(55,{absorbed:true})],incoming:[],forms:{defender:1}}}],{abilityId:50},{defenderSpecies:778,defenderForm:0,abilityId:209});
+    add(209,"disguise",55,[{id:"first-hit-busts-with-one-eighth-hp-cost",mechanicAudit:{outgoing:[strike(55,{absorbed:true})],incoming:[],forms:{defender:1},disguiseBustCost:["defender"]}}],{abilityId:50},{defenderSpecies:778,defenderForm:0,abilityId:209});
     add(209,"disguise-busted",55,[{id:"busted-form-takes-normal-damage",mechanicAudit:{outgoing:[strike(55)],incoming:[],forms:{defender:1}}}],{abilityId:50},{defenderSpecies:778,defenderForm:1,abilityId:209});
     const doubles = (ally:Partial<HarnessPokemon>={}) => {
       const v=variants.at(-1)!;const partner:HarnessPokemon={speciesId:149,level:50,abilityId:50,moves:[150],...ally};
