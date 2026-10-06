@@ -84,7 +84,6 @@ extern "C" void THUMB_BRANCH_ServerControl_ChangeWeatherCore(
 extern "C" bool W2U_Weather_QueueSnow(ServerFlow* flow, u32 user)
 {
     if (!flow || flow->simulationCounter || user >= 24 ||
-        BattleField_GetWeatherTurn() == 255 ||
         !ServerControl_ChangeWeatherCheck(flow, (WEATHER)SNOW, 5)) return false;
     // Native Icy Rock/item suppression handlers decide the extension.
     BattleEventVar_Push();

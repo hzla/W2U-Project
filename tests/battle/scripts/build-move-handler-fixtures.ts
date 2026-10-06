@@ -719,6 +719,7 @@ export type MoveCase = DoublesCase & MultiCase & { id: string; audit?: Gen67Expe
   expectedCategory?: number; categoryRoll?: number; expectedCategoryRolls?: number; contactExpected?: boolean; retaliationExpected?: boolean;
   expectedCritical?: number; burnRatio?: number;
   expectedWeatherTurns?: number; expectedLogicalWeather?: number; weatherSuccess?: boolean;
+  expectedNativeWeather?: number; expectedWeatherBlockMessage?: number;
   expectedWeatherTimeline?: number[]; expectedUserHealing?: number; expectedSnowDefense?: boolean;
   nativeSuccess?: boolean; initialHazards?: number[][]; screensRemain?: boolean;
   userSubstitute?: boolean; defenderSubstitute?: boolean;
@@ -850,6 +851,19 @@ const variants: Variant[] = gen67Audit ? focusedGen67 : revivalBlessing ? [
     {id:"existing-snow-without-bench-fails",setupSlot:1,expectedPivot:false,expectedEarlyMessages:1,weatherSuccess:false,expectedWeatherTurns:3,completeTurn:true},
   ]},
 ] : snowscape ? [
+  { name:"drizzle",trainerId:6,abilityId:2,abilitySlot:2,trainerMove:150,defenderSpecies:362,defenderLevel:100,playerAbilityId:50,save:"battle.sav",cases:[
+    {id:"ordinary-permanent-rain-is-replaceable",completeTurn:true,weatherSuccess:true,expectedWeatherTurns:4},
+  ]},
+  ...[{name:"primordial-sea",ability:189,species:642,native:2,message:206},
+      {name:"desolate-land",ability:190,species:641,native:1,message:210},
+      {name:"delta-stream",ability:191,species:645,native:0,message:203}].map((strong,index)=>({
+    name:strong.name,trainerId:7+index,abilityId:strong.ability,trainerMove:150,defenderSpecies:strong.species,
+    playerAbilityId:50,save:"battle.sav",cases:[{
+      id:"strong-weather-refuses-snow",completeTurn:true,weatherSuccess:false,
+      expectedWeatherTurns:strong.native?255:0,expectedNativeWeather:strong.native,
+      expectedWeatherBlockMessage:strong.message,
+    }],
+  })),
   { name:"normal",trainerId:1,abilityId:50,trainerMove:150,defenderSpecies:361,defenderLevel:100,playerAbilityId:50,save:"battle.sav",cases:[
     { id:"five-turn-snow-no-chip",completeTurn:true,weatherSuccess:true,expectedWeatherTurns:4 },
     { id:"repeat-snow-fails-without-refresh",setupSlot:0,completeTurn:true,weatherSuccess:false,expectedWeatherTurns:3 },

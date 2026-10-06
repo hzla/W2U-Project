@@ -104,10 +104,34 @@
         "note": "Native handler tests preceded the final teardown change; the final teardown callback has compiled re-entrant host tests. Full release lifecycle run remains pending."
       },
       "limits": ["Full ability, move, weather, renderer and hardware acceptance remains pending."]
+    },
+    "5": {
+      "status": "validated",
+      "policy": "Strong weather retains IDs 5/6/7 and precedence; Snow has logical/display ID 8 with native Hail transport. Ordinary permanent weather can be replaced; simulated switch-ins cannot mutate shared strong-weather state.",
+      "rom_sha256": "6d46861609918c41e9dc551a7fccf0a03f6113066c36670b92f451c5c2190b11",
+      "stripped_core_sha256": "a7215cf91c3d868704896dd0a36f57102ba07d268ae1ff829cee9fedb703f908",
+      "stripped_build": true,
+      "rpm_linkage": true,
+      "all_groups_free_bytes": 22960,
+      "host_tests": { "run": 97, "skipped": 1, "failed": 0 },
+      "battle_unit_tests": 177,
+      "typecheck": true,
+      "black2_static_compile": true,
+      "native_tests": [
+        { "suite": "snowscape", "passed_cases": 23, "complete_suite": true, "full_turn_validated": true,
+          "evidence": "work/move-handlers/snowscape-20261006-125647-3bc0cf/result.json" },
+        { "suite": "chilly-reception", "passed_cases": 9, "complete_suite": true, "full_turn_validated": true,
+          "evidence": "work/move-handlers/chilly-reception-20261006-125648-a2ce32/result.json" },
+        { "suite": "encore-policy", "passed_cases": 2, "complete_suite": true, "full_turn_validated": false,
+          "evidence": "work/move-handlers/encore-policy-20261006-125649-c51f22/result.json" },
+        { "suite": "terrain-pulse", "passed_cases": 36, "complete_suite": true, "full_turn_validated": false,
+          "evidence": "work/move-handlers/terrain-pulse-20261006-124521-191763/result.json",
+          "input_rom_sha256": "3ac91a90ff8c5446e47e83542d476569e5e38c0cf103800848643825a4bb98af" }
+      ],
+      "limits": ["Full release move/ability/item, renderer, lifecycle and hardware acceptance remains pending."]
     }
   },
   "pending_stages": [
-    5,
     6,
     7
   ]

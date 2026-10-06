@@ -78,9 +78,12 @@ int main(){
  }
  for(unsigned bad=0;bad<4;++bad){
    unsigned n=queued;f.simulationCounter=bad==0;available=bad!=1;turns=bad==2?255:0;
+   weather=bad==2?3:0;sSnow=bad==2;
    if(W2U_Weather_QueueSnow(&f,bad==3?24:0)||queued!=n)return 4;
  }
  f.simulationCounter=0;available=1;turns=0;
+ weather=2;turns=255;sSnow=0;
+ if(!W2U_Weather_QueueSnow(&f,0))return 23; // Ordinary permanent rain is replaceable.
  THUMB_BRANCH_ServerControl_ChangeWeatherCore(&f,8,8);
  if(weather!=3||turns!=8||!sSnow||logical!=8||duration!=8||command!=63)return 5;
  if(W2U_Weather_QueueSnow(&f,0))return 6;
