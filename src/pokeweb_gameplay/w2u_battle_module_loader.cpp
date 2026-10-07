@@ -6,7 +6,9 @@
 #include "Moves.h"
 #include "util/filesystem.h"
 #include "w2u_field_effects.h"
+#include "w2u_platform.h"
 #include "w2u_pmc_runtime.h"
+#include "swan/gfl/core/gfl_heap.h"
 extern "C" void W2U_AnimStreams_OnModuleUnload();
 
 namespace {
@@ -93,8 +95,128 @@ struct W2UPmcHeapArea {
 constexpr u32 W2U_PMC_HEAP_MAX_FREE_BLOCKS = 512u;
 W2UPmcHeapArea* sPmcHeap = 0;
 
+// Battle modules on a game heap (docs/megab2w2-integration.md, "Battle modules on the game heap"). PMC's
+// rpm::mgr::ModuleManager allocates, shrinks (FixModule) and frees module memory through its m_ModuleHeap (the word
+// after its vtable; PMC passes the manager to DllMain), and its LoadModule reallocates through the allocator stored
+// just before the block (ExtLib's p[-1]). Around W2U's own load / unload calls only, m_ModuleHeap points at an
+// ExtLib-compatible allocator over GFL heap 1, so the battle modules leave PMC's heap. Heap 1 is the parent the battle
+// heaps are carved from: measured 512,856 bytes free during battles, from the overworld and direct alike. The field's
+// heaps also come from it; they are destroyed before a battle starts and rebuilt only after W2U_BattleState_OnBattleExit
+// has unloaded the modules. So: only while a battle runs (battle heap 0x13 present, the field's heap 0x15 absent) and
+// with a reserve left for the game; anything else stays on PMC's heap as before. White 2 only.
+constexpr u32 W2U_MODULE_GAME_HEAP_ID = 1u;
+constexpr u32 W2U_MODULE_GAME_HEAP_RESERVE = 0x10000u;
+constexpr u32 W2U_BATTLE_SYSTEM_HEAP_ID = 0x13u;
+constexpr u32 W2U_FIELD_MAIN_HEAP_ID = 0x15u;
+constexpr u32 W2U_GAME_BLOCK_OVERHEAD = 24u;      // raw -> 8-aligned payload; {size, raw, allocator} before it
+
+void** sModuleManager = 0;                          // rpm::mgr::ModuleManager, from DllMain
+u32 sGameHeapModuleMask = 0;                        // module IDs placed on the game heap
+
+
 W2UBattleModuleRecord sModuleRecords[W2U_MAX_MODULE_RECORDS];
 W2UBattleModuleTelemetry sTelemetry;
+
+void sTelemetryGameHeapAdd(s32 delta)
+{
+    sTelemetry.gameHeapBytes = static_cast<u32>(static_cast<s32>(sTelemetry.gameHeapBytes) + delta);
+    if (sTelemetry.gameHeapBytes > sTelemetry.gameHeapPeakBytes) {
+        sTelemetry.gameHeapPeakBytes = sTelemetry.gameHeapBytes;
+    }
+}
+
+// exl::heap::Allocator's vtable order: the two destructors, Alloc, Realloc, Free (PMC's calls use +8 / +12 / +16).
+struct W2UGameHeapAllocator {
+    constexpr W2UGameHeapAllocator() {}
+    virtual void Destroy0() {}
+    virtual void Destroy1() {}
+    virtual void* Alloc(u32 size);
+    virtual void* Realloc(void* block, u32 newSize);
+    virtual void Free(void* block);
+};
+W2UGameHeapAllocator sGameHeapAllocator;
+
+void* W2UGameHeapAllocator::Alloc(u32 size)
+{
+    u8* raw = static_cast<u8*>(GFL_HeapAllocateCore(W2U_MODULE_GAME_HEAP_ID, size + W2U_GAME_BLOCK_OVERHEAD));
+    if (!raw) {
+        return 0;
+    }
+    u32* payload = reinterpret_cast<u32*>((reinterpret_cast<u32>(raw) + 16u + 7u) & ~7u);
+    payload[-3] = size;
+    payload[-2] = reinterpret_cast<u32>(raw);
+    payload[-1] = reinterpret_cast<u32>(this);
+    sTelemetryGameHeapAdd(static_cast<s32>(size + W2U_GAME_BLOCK_OVERHEAD));
+    return payload;
+}
+
+void* W2UGameHeapAllocator::Realloc(void* block, u32 newSize)
+{
+    if (!block) {
+        return Alloc(newSize);
+    }
+    u32* payload = static_cast<u32*>(block);
+    const u32 oldSize = payload[-3];
+    if (newSize <= oldSize) {                      // FixModule's shrink: give the tail back in place
+        u8* raw = reinterpret_cast<u8*>(payload[-2]);
+        GFL_HeapResizeCore(raw, static_cast<u32>(reinterpret_cast<u8*>(payload) - raw) + newSize);
+        payload[-3] = newSize;
+        sTelemetryGameHeapAdd(-static_cast<s32>(oldSize - newSize));
+        return block;
+    }
+    u8* grown = static_cast<u8*>(Alloc(newSize));
+    if (!grown) {
+        return 0;
+    }
+    const u8* from = static_cast<const u8*>(block);
+    for (u32 i = 0; i < oldSize; ++i) {
+        grown[i] = from[i];
+    }
+    Free(block);
+    return grown;
+}
+
+void W2UGameHeapAllocator::Free(void* block)
+{
+    if (!block) {
+        return;
+    }
+    u32* payload = static_cast<u32*>(block);
+    sTelemetryGameHeapAdd(-static_cast<s32>(payload[-3] + W2U_GAME_BLOCK_OVERHEAD));
+    GFL_HeapFreeCore(reinterpret_cast<void*>(payload[-2]));
+}
+
+bool GameHeapExists(u32 heapID)
+{
+#if defined(W2U_TARGET_B2)
+    (void)heapID;
+    return false;
+#else
+    typedef void* (*HeapHandleForIdFn)(u32 heapID);
+    return ((HeapHandleForIdFn)W2U_ADDR_GFL_HEAP_HANDLE_FOR_ID)(heapID) != 0;
+#endif
+}
+
+// Points PMC's ModuleManager at the game-heap allocator for one load / unload call (restores on scope exit). Active
+// only when the manager was seen and its heap is exactly PMC's (checked each time).
+struct ModuleHeapScope {
+    void* saved = 0;
+    bool active = false;
+    explicit ModuleHeapScope(bool onGameHeap)
+    {
+        if (onGameHeap && sModuleManager && sPmcHeap && sModuleManager[1] == sPmcHeap) {
+            saved = sModuleManager[1];
+            sModuleManager[1] = &sGameHeapAllocator;
+            active = true;
+        }
+    }
+    ~ModuleHeapScope()
+    {
+        if (active) {
+            sModuleManager[1] = saved;
+        }
+    }
+};
 W2UPmcRuntimeApi sPmcRuntime;
 bool sRegistrationEnabled = true;
 bool sResetting = false;
@@ -385,6 +507,24 @@ u32 LargestFreePmcBlock()
         block = block->next;
     }
     return block ? 0u : largest; // A cyclic/overlong list must not authorize an allocation.
+}
+
+// Game heap for this module? During a battle, with the module plus the reserve fitting heap 1 in one piece, and only
+// when PMC's manager uses exactly PMC's heap (so the swap restores what was there).
+bool PlaceOnGameHeap(u32 expandedSize)
+{
+#if defined(W2U_TARGET_B2)
+    (void)expandedSize;
+    return false;
+#else
+    EnsurePmcHeap();
+    if (!sModuleManager || !sPmcHeap || !IsMainRamPointer(sModuleManager) || sModuleManager[1] != sPmcHeap ||
+        !GameHeapExists(W2U_BATTLE_SYSTEM_HEAP_ID) || GameHeapExists(W2U_FIELD_MAIN_HEAP_ID)) {
+        return false;
+    }
+    return GFL_HeapGetHighestAllocatableSize(W2U_MODULE_GAME_HEAP_ID) >=
+        expandedSize + W2U_GAME_BLOCK_OVERHEAD + W2U_MODULE_GAME_HEAP_RESERVE;
+#endif
 }
 
 bool IsRangeInside(const void* base, u32 size, const void* pointer, u32 rangeSize)
@@ -714,9 +854,12 @@ bool LoadModule(u8 moduleId, W2UBattleMechanicKind expectedKind, u16 expectedId)
         }
     }
 
-    // Refuse a module that cannot fit (HeapArea::Alloc rounds the size up to 8): the mechanic is then missing for
-    // this battle instead of the game freezing inside the allocator.
-    const u32 largestFree = LargestFreePmcBlock();
+    // On the game heap if there is room (above); otherwise PMC's heap, refusing a module that cannot fit there
+    // (HeapArea::Alloc rounds the size up to 8): the mechanic is then missing for this battle instead of the game
+    // freezing inside the allocator.
+    const bool onGameHeap = PlaceOnGameHeap(expandedSize);
+    ModuleHeapScope heapScope(onGameHeap);
+    const u32 largestFree = heapScope.active ? 0xFFFFFFFFu : LargestFreePmcBlock();
     if (largestFree < ((expandedSize + 7u) & ~7u)) {
         ++sTelemetry.heapRefusalCount;
         sTelemetry.lastRefusedBytes = expandedSize;
@@ -764,6 +907,10 @@ bool LoadModule(u8 moduleId, W2UBattleMechanicKind expectedKind, u16 expectedId)
     }
 
     record->state = W2U_MODULE_LOADED;
+    if (heapScope.active) {
+        sGameHeapModuleMask |= 1u << moduleId;
+        ++sTelemetry.gameHeapModuleCount;
+    }
     record->loadOrdinal = (u16)sTelemetry.loadedModuleCount;
     ++sTelemetry.loadedModuleCount;
     ++sTelemetry.loadCount;
@@ -818,6 +965,7 @@ extern "C" void W2U_BattleModules_Reset()
 
     W2UPmcModuleHandle handles[W2U_MAX_MODULE_RECORDS];
     ClearBytes(handles, sizeof(handles));
+    u32 gameHeapOrdinals = 0;                     // load ordinals whose module lives on the game heap
     // Clear every cached pointer before any child unload callback can run.
     for (u32 index = 0; index < W2U_BATTLE_MODULE_COUNT; ++index) {
         W2UBattleModuleRecord* record = &sModuleRecords[index];
@@ -830,6 +978,9 @@ extern "C" void W2U_BattleModules_Reset()
         record->state = W2U_MODULE_NOT_LOADED;
         if (loaded && record->loadOrdinal < W2U_MAX_MODULE_RECORDS) {
             handles[record->loadOrdinal] = handle;
+            if (sGameHeapModuleMask & (1u << index)) {
+                gameHeapOrdinals |= 1u << record->loadOrdinal;
+            }
         }
         record->loadOrdinal = 0;
     }
@@ -837,10 +988,13 @@ extern "C" void W2U_BattleModules_Reset()
     // first. Unload in the reverse order of successful loads, not reverse IDs.
     for (u32 index = W2U_MAX_MODULE_RECORDS; index > 0; --index) {
         if (handles[index - 1]) {
+            ModuleHeapScope heapScope((gameHeapOrdinals & (1u << (index - 1))) != 0);
             sPmcRuntime.unloadModule(handles[index - 1]);
             ++sTelemetry.unloadCount;
         }
     }
+    sGameHeapModuleMask = 0;
+    sTelemetry.gameHeapModuleCount = 0;
 
     sTelemetry.loadedModuleCount = 0;
     sTelemetry.currentChildBytes = 0;
@@ -865,7 +1019,6 @@ extern "C" __attribute__((visibility("default"))) int DllMain(
     void* module,
     int reason)
 {
-    (void)manager;
     if (reason == 1) {
         W2U_BattleState_OnBattleExit();
         W2U_AnimStreams_OnModuleUnload();
@@ -873,8 +1026,10 @@ extern "C" __attribute__((visibility("default"))) int DllMain(
         ClearBytes(&sPmcRuntime, sizeof(sPmcRuntime));
         sPmcRuntimeState = 0;
         sPmcHeap = 0;
+        sModuleManager = 0;
     } else if (module) {
         sRegistrationEnabled = true;
+        sModuleManager = static_cast<void**>(manager);   // rpm::mgr::ModuleManager (see PlaceOnGameHeap)
         // PMC invokes DllMain after applying INTERNAL_RELOCATIONS, so the
         // allocation header now holds the core's post-fix size.
         sTelemetry.coreFixedBytes = ReadU32(static_cast<const u8*>(module), 4u);

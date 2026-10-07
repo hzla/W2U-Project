@@ -16,6 +16,9 @@ struct W2UBattleModuleTelemetry {
     u32 heapRefusalCount;      // loads refused because no PMC heap block was large enough
     u32 lastRefusedBytes;      // the size that last refusal needed
     u32 lastLargestFreeBytes;  // the largest free PMC heap block at that refusal
+    u32 gameHeapModuleCount;   // loaded modules placed on GFL heap 1 instead of PMC's heap (White 2, during battle)
+    u32 gameHeapBytes;         // their current size on that heap (blocks, including W2U's block headers)
+    u32 gameHeapPeakBytes;
 };
 
 extern "C" const W2UBattleHandlerExport* W2U_BattleModules_Resolve(

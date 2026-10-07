@@ -19,14 +19,17 @@ using W2UPmcModuleHandle=void*;
 constexpr unsigned W2U_MAX_MODULE_RECORDS=32,W2U_BATTLE_MODULE_COUNT=30,W2U_NO_MODULE=255;
 enum {W2U_MODULE_NOT_LOADED,W2U_MODULE_LOADED,W2U_MODULE_FAILED};
 struct W2UBattleModuleRecord {void* handle;void* api;u32 expandedBytes,fixedBytes;u8 state,moduleId;u16 loadOrdinal;};
-struct {u32 loadedModuleCount,currentChildBytes,failedModuleMask,lastFailureModuleId,unloadCount;} sTelemetry;
+struct {u32 loadedModuleCount,currentChildBytes,failedModuleMask,lastFailureModuleId,unloadCount,gameHeapModuleCount;} sTelemetry;
+u32 sGameHeapModuleMask;bool scopeOn;std::vector<bool> scopes;
+// A game-heap module (idea 9) is unloaded with PMC's module heap swapped to the game-heap allocator.
+struct ModuleHeapScope {explicit ModuleHeapScope(bool on){scopeOn=on;} ~ModuleHeapScope(){scopeOn=false;}};
 W2UBattleModuleRecord sModuleRecords[32];bool sResetting,sRegistrationEnabled=true;
 std::vector<void*> unloaded;bool invalid;
 extern "C" void W2U_BattleModules_Reset();
 void unload(void* p){
  if(sRegistrationEnabled)invalid=true;
  for(auto& r:sModuleRecords)if(r.handle||r.api||r.state==W2U_MODULE_LOADED)invalid=true;
- unloaded.push_back(p);W2U_BattleModules_Reset(); // Re-entry must be a no-op.
+ unloaded.push_back(p);scopes.push_back(scopeOn);W2U_BattleModules_Reset(); // Re-entry must be a no-op.
 }
 struct {void (*unloadModule)(void*);} sPmcRuntime={unload};
 void ClearBytes(void* p,u32 n){for(u32 i=0;i<n;++i)((u8*)p)[i]=0;}
@@ -38,9 +41,11 @@ int main(){
  }
  sModuleRecords[7].state=W2U_MODULE_FAILED;
  sTelemetry.loadedModuleCount=3;sTelemetry.currentChildBytes=8000;sTelemetry.failedModuleMask=128;
+ sGameHeapModuleMask=1u<<18;sTelemetry.gameHeapModuleCount=1;   // module 18 (loaded first) is on the game heap
  W2U_BattleModules_Reset();
  if(invalid||unloaded!=std::vector<void*>({(void*)3,(void*)2,(void*)1})||!sRegistrationEnabled)return 1;
  if(sTelemetry.loadedModuleCount||sTelemetry.currentChildBytes||sTelemetry.failedModuleMask||sTelemetry.unloadCount!=3)return 2;
+ if(scopes!=std::vector<bool>({false,false,true})||scopeOn||sGameHeapModuleMask||sTelemetry.gameHeapModuleCount)return 5;
  W2U_BattleModules_Reset();if(unloaded.size()!=3||sResetting)return 3;
  sRegistrationEnabled=false;W2U_BattleModules_Reset();if(sRegistrationEnabled)return 4;
  return 0;

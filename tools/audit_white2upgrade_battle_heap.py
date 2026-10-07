@@ -24,6 +24,15 @@ LOADER_FIXED_BYTES = 0
 PMC_ROOT_OBJECT_BYTES = 32
 PMC_WORK_AREA_BYTES = 32 + 16 + 4096 + 16
 PMC_BOOKKEEPING_AND_FRAGMENTATION_RESERVE = 512
+
+# Battle modules on GFL heap 1 (White 2, w2u_battle_module_loader.cpp PlaceOnGameHeap): the PMC floor applies to the
+# heap with every group there; the groups get a budget on heap 1 instead. Heap 1's room during battles was measured
+# natively (w2u-local harness `game_heaps: true`: direct-boot and overworld battles, the heaviest a doubles battle with
+# two Mega Evolutions, terrain, heavy rain and animations; 2026-10-07): 512,856 bytes free, unchanged for the whole
+# battle. The loader keeps GAME_HEAP_RESERVE of it for the game and falls back to PMC's heap when it is short.
+GAME_HEAP_BATTLE_ROOM = 512856
+GAME_HEAP_RESERVE = 0x10000
+GAME_HEAP_BLOCK_OVERHEAD = 24 + 16            # W2U's block header (size, raw, allocator, 8-alignment) + NNS's
 def u32(data: bytes, offset: int) -> int:
     return struct.unpack_from("<I", data, offset)[0]
 
@@ -137,6 +146,9 @@ def main() -> int:
     # relocation overhead last, with every other group already resident.
     largest_transient = max(children, key=lambda child: child["expanded_payload_bytes"] - child["allocated_payload_bytes"])
     transient_all = all_groups + largest_transient["expanded_payload_bytes"] - largest_transient["allocated_payload_bytes"]
+    game_heap_children = sum(child["allocated_payload_bytes"] + GAME_HEAP_BLOCK_OVERHEAD for child in children)
+    game_heap_transient = (game_heap_children + largest_transient["expanded_payload_bytes"]
+                           - largest_transient["allocated_payload_bytes"])
     report = {
         "heap_bytes": HEAP_BYTES,
         "required_headroom_bytes": REQUIRED_HEADROOM,
@@ -179,6 +191,22 @@ def main() -> int:
                 "last_loaded_module": largest_transient["path"],
                 "note": "Conservative expanded-module allocation before StartModule shrinks it; game heaps are separate.",
             },
+            "all_groups_on_game_heap": {
+                "used_bytes": no_custom,
+                "free_bytes": HEAP_BYTES - no_custom,
+                "note": "White 2: every group on GFL heap 1 during battle; PMC holds the residents only. The two "
+                        "all_groups scenarios above are the fallback worst case (heap 1 short: groups on PMC, the "
+                        "loader's refusal guard drops a mechanic instead of freezing).",
+            },
+        },
+        "game_heap": {
+            "heap_id": 1,
+            "measured_battle_room_bytes": GAME_HEAP_BATTLE_ROOM,
+            "reserve_bytes": GAME_HEAP_RESERVE,
+            "block_overhead_bytes": GAME_HEAP_BLOCK_OVERHEAD,
+            "all_groups_bytes": game_heap_children,
+            "all_groups_transient_bytes": game_heap_transient,
+            "spare_bytes": GAME_HEAP_BATTLE_ROOM - GAME_HEAP_RESERVE - game_heap_transient,
         },
     }
 
@@ -194,13 +222,18 @@ def main() -> int:
     if monolithic_resident_baseline - typical < 4 * 1024:
         failures.append("largest one-group scenario saves less than 4 KiB")
     if HEAP_BYTES - all_groups < REQUIRED_HEADROOM:
-        failures.append("all-group scenario leaves less than 12 KiB headroom")
+        failures.append("all-group scenario on PMC's heap (the fallback worst case) leaves less than 12 KiB headroom")
     if args.enforce and failures:
         raise RuntimeError("; ".join(failures))
-    if args.enforce_headroom and HEAP_BYTES - all_groups < REQUIRED_HEADROOM:
-        raise RuntimeError(
-            f"every module loaded leaves {HEAP_BYTES - all_groups} bytes of the PMC heap free, "
-            f"under the {REQUIRED_HEADROOM}-byte floor")
+    if args.enforce_headroom:
+        if HEAP_BYTES - no_custom < REQUIRED_HEADROOM:
+            raise RuntimeError(
+                f"with every group on the game heap, PMC's heap keeps {HEAP_BYTES - no_custom} bytes free, "
+                f"under the {REQUIRED_HEADROOM}-byte floor")
+        if game_heap_transient + GAME_HEAP_RESERVE > GAME_HEAP_BATTLE_ROOM:
+            raise RuntimeError(
+                f"every group on GFL heap 1 needs {game_heap_transient} bytes plus the {GAME_HEAP_RESERVE}-byte "
+                f"reserve, over the {GAME_HEAP_BATTLE_ROOM} bytes measured free there during battles")
     if failures:
         print("[!] acceptance warnings: " + "; ".join(failures))
     else:

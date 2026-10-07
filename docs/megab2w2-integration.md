@@ -692,6 +692,50 @@ The Electric / Psychic polish (wave, bolts, per-terrain styles) brought the core
   `sModuleRecords` 640: loader state; `sArtBuffer` 480; `sMoveState` 248; `sAuraFieldState` 140; `g_place` 128) are
   left as they are: the floor is met.
 
+### Battle modules on the game heap (2026-10-07)
+
+hzla's RC3 audit (with the PMC work area, reserve and transient load counted) left 12,312 bytes of PMC's heap free
+with every battle group loaded: 24 bytes above the floor. White 2 now loads the battle groups into GFL game heap 1
+instead (`w2u_battle_module_loader.cpp`), so PMC's heap holds only the resident core.
+
+How it works (no change to PMC):
+- PMC's `rpm::mgr::ModuleManager` allocates, shrinks (`FixModule`) and frees module memory through its `m_ModuleHeap`
+  (the word after its vtable; PMC passes the manager to `DllMain`), and its `LoadModule` reallocates through the
+  allocator stored just before the block (ExtLib's `p[-1]`). The loader has a small ExtLib-compatible allocator over
+  GFL heap 1 (vtable order Alloc +8 / Realloc +12 / Free +16, as PMC's own calls use; blocks 8-aligned with
+  {size, raw block, allocator} before them; the shrink is `GFL_HeapResizeCore` in place) and points `m_ModuleHeap`
+  at it only around its own load and unload calls (`ModuleHeapScope`), checking first that the manager's heap is
+  exactly PMC's.
+- Placement (`PlaceOnGameHeap`): only during a battle (battle heap 0x13 present, the field's heap 0x15 absent), when
+  the module plus a 64 KB reserve fits heap 1 in one piece; otherwise PMC's heap as before (with its refusal guard).
+  GFL aborts the game on a failed allocation, so the preflight keeps the reserve. Black 2: PMC's heap as before.
+- Telemetry: `gameHeapModuleCount`, `gameHeapBytes`, `gameHeapPeakBytes` (appended to the struct).
+
+Why heap 1 (measured natively with the local harness: `game_heaps`, `pmc_modules` and `trace`, in direct-boot battles
+and in a battle started from the overworld with the check ROM's new L+R+UP hotkey):
+- Heap 1 is the parent the battle's heaps are carved from. It has 512,856 bytes free throughout battles, including
+  the heaviest measured (doubles, two Mega Evolutions, terrain, heavy rain, animations). In the overworld it has
+  110,696: the field's heaps also come from it, but the game destroys them before a battle starts.
+- Teardown order (traced): battle end -> W2U unloads the battle modules (frame 3868) -> the game deletes the battle
+  heaps (3869) -> the field's heaps are rebuilt from heap 1 (3898; heap 0x15 alone takes 1,210,368 bytes in one
+  piece). Modules on heap 1 are always gone before the field needs it back.
+- PMC's manager in the ROM matches libRPM's layout (read live: `m_ModuleHeap` = PMC's HeapArea at 0x023AE000; PMC's
+  framework globals at 0x021FEA10).
+
+Heap audit (`tools/audit_white2upgrade_battle_heap.py`): the ROM's floor (`--enforce-headroom`) now applies to PMC's
+heap with every group on the game heap (`all_groups_on_game_heap`: 96,776 bytes free on this machine's GCC 14
+build, with the terrain sounds), and a game-heap budget: every group + block headers + the largest transient load + the 64 KB reserve must fit
+the measured 512,856 bytes (89,248 + 65,536 needed). The everything-on-PMC scenarios stay in the report as the
+fallback worst case. The resident core grows 848 bytes for the allocator and the swap.
+
+Checked: overworld and direct-boot battles with battle modules (`checks.yml` CHECK_FIELD_BATTLE_MODULES: the group sits
+outside PMC's heap during each battle, heap 1 is back to its overworld size after it, the field rebuilds normally); a
+doubles battle loading 12 groups at once (12 on heap 1, 40,936 bytes; heap 1's lowest free 471,200); the same battle
+on a build that forces the PMC fallback (all 12 on PMC's heap; message-for-message identical battle); the regression
+specs against the same build without this change (the eight local specs, 209 scenarios: all pass on both, spec for spec); host tests (only the 9 Windows-only failures
+of unmodified RC3; the loader-lifetime test now also checks that a game-heap module unloads with the swap active);
+Black 2 DLLs build; privacy scan clean.
+
 ## Phase 3: abilities
 
 ### Wave A: 51 hook-free abilities
