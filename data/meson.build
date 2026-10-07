@@ -109,6 +109,36 @@ vfs_files += custom_target(
   depend_files: meson.project_source_root() / 'tools' / 'audit_w2anim_game_heap.py',
 )
 
+# Terrain sounds (docs/megab2w2-integration.md, "Terrain sounds"): new sequences built from the base ROM's own sound
+# archive (recipes in tools/audio/terrain_sfx) and appended after the last vanilla one; the result replaces the
+# archive through the VFS overlay. The tool checks the IDs against include/w2u_terrain_sfx.h and the terrain move
+# scripts.
+terrain_sfx_dir = meson.project_source_root() / 'tools' / 'audio' / 'terrain_sfx'
+terrain_sfx_scripts = meson.current_source_dir() / 'graphics' / 'move_animations'
+vfs_files += custom_target(
+  'build_terrain_sfx',
+  input: [
+    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'data' / 'swan_sound_data.sdat',
+    terrain_sfx_dir / 'build_terrain_sfx.py',
+    terrain_sfx_dir / 'recipes.py',
+    terrain_sfx_dir / 'sfxlib.py',
+    meson.project_source_root() / 'include' / 'w2u_terrain_sfx.h',
+    terrain_sfx_scripts / '5_00000580.bin',
+    terrain_sfx_scripts / '5_00000581.bin',
+    terrain_sfx_scripts / '5_00000604.bin',
+    terrain_sfx_scripts / '5_00000624.bin',
+  ],
+  output: 'build_terrain_sfx.stamp',
+  command: [
+    'python3', '@INPUT1@',
+    '--sdat', '@INPUT0@',
+    '--output', meson.project_source_root() / 'vfs' / 'data' / 'swan_sound_data.sdat',
+    '--header', '@INPUT4@',
+    '--scripts', terrain_sfx_scripts,
+    '--stamp', '@OUTPUT@',
+  ],
+)
+
 # System Text (/a/0/0/2)
 system_text_arc = 'a' / '0' / '0' / '2'
 system_text_files = []

@@ -51,6 +51,13 @@ AUTHORED_MEMBER_OVERLAYS = (
 
 TEXT_ARCHIVES = ("a/0/0/2", "a/0/0/3")
 
+# Members whose White 2 version uses something Black 2 lacks: Black 2 takes its own version from these folders
+# (relative to --root). The terrain move scripts play sounds White 2's build appends to its sound archive
+# (data/meson.build build_terrain_sfx); Black 2 keeps the scripts' earlier, vanilla-sound versions.
+BLACK2_MEMBER_VERSIONS = {
+    "a/0/6/5": Path("data") / "graphics" / "move_animations" / "black2",   # 5_<member:08d>.bin
+}
+
 SIDECARS = (
     "poke_form_list.bin",
     "pokeicon_palette_map.bin",
@@ -116,14 +123,25 @@ def complete_replacement(path: str, vfs: Path, b2_rom: ndspy.rom.NintendoDSRom) 
     return result, {"policy": "replace-expanded-table", "members": len(expected)}
 
 
+def black2_member_versions(root: Path, path: str) -> dict[int, bytes]:
+    directory = BLACK2_MEMBER_VERSIONS.get(path)
+    if directory is None or not (root / directory).is_dir():
+        return {}
+    return {int(child.stem.split("_")[1]): child.read_bytes()
+            for child in (root / directory).glob("5_*.bin")}
+
+
 def authored_overlay(
     path: str,
     vfs: Path,
     w2_rom: ndspy.rom.NintendoDSRom,
     b2_rom: ndspy.rom.NintendoDSRom,
     allowed_member_ids: set[int] | None = None,
+    black2_versions: dict[int, bytes] | None = None,
 ) -> tuple[bytes | None, dict]:
     members = source_members(vfs / path)
+    if members and black2_versions:
+        members.update({member_id: data for member_id, data in black2_versions.items() if member_id in members})
     if not members:
         return None, {"policy": "authored-members", "membersPatched": 0}
     w2 = ndspy.narc.NARC(archive_bytes(w2_rom, path))
@@ -307,7 +325,8 @@ def main() -> int:
     for path in FULL_REPLACEMENTS:
         staged[path], merge_report[path] = complete_replacement(path, args.vfs, b2_rom)
     for path in AUTHORED_MEMBER_OVERLAYS:
-        data, report = authored_overlay(path, args.vfs, w2_rom, b2_rom)
+        data, report = authored_overlay(path, args.vfs, w2_rom, b2_rom,
+                                        black2_versions=black2_member_versions(args.root, path))
         merge_report[path] = report
         if data is not None:
             staged[path] = data
