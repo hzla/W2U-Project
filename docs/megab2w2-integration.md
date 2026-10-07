@@ -739,6 +739,39 @@ specs against the same build without this change (the eight local specs, 209 sce
 of unmodified RC3; the loader-lifetime test now also checks that a game-heap module unloads with the swap active);
 Black 2 DLLs build; privacy scan clean.
 
+### Resident core trims (2026-10-07)
+
+With the battle groups on heap 1, PMC's heap holds the resident core, so its size is what is left to cut. Two trims,
+3,305 bytes in all (core sections 76,449 -> 73,144 on this machine's GCC 14 build; the audit's
+`all_groups_on_game_heap` 96,776 -> 100,248 bytes free):
+
+- **No core copy of the strong-weather handlers** (632 bytes): `w2u_strong_weather.cpp` is built into the core and
+  into `abilities/strong_weather`, and both compiled the three ability handler tables and their handlers. The dynamic
+  core resolves those abilities through the module, so the core's copy was unreachable; it is now built only where
+  `W2U_BATTLE_CHILD` is defined (or without `W2U_DYNAMIC_BATTLE_CORE`).
+- **Tables in ROM files** (2,673 bytes net): the terrain textures' background mappings (2,392 bytes, 92 records) and
+  the Mega glyph's places (584 bytes, 73 records) are sidecar files in the filesystem root
+  (`w2u_terrain_texture_mappings.bin`, `w2u_mega_glyph_places.bin`, `include/w2u_rom_tables.h`), each read once
+  where it is needed: the battle background's record at the field's init, a Mega's place when its glyph is armed
+  (both on the main thread). `W2U_RomTable_Find` scans the file a few records at a time through a 208-byte stack
+  buffer and copies out the match. The files are built from the same generated `.inc` data:
+  `src/pokeweb_gameplay/w2u_rom_tables_data.cpp` is compiled with the core's flags (so the records have the core's
+  layout) but never linked, and `tools/stage_w2u_rom_tables.py` copies its sections out (refusing relocations and
+  partial records). Black 2 keeps its terrain table resident (its package lists its sidecars explicitly).
+
+Considered and left: the core with `-ffunction-sections -fdata-sections --gc-sections` grew by 1.4 KB (per-object data
+sections cost GCC its section anchors) and function sections alone found only 1,162 dead bytes, about half of them
+the strong-weather copy above; the rest is small `extern "C"` accessors that only an import scan of every other DLL
+could root safely. The Mega button tiles (3,840), the Mega table (1,044), the glyph tiles (1,024, uploaded inside the
+game's VBlank OAM transfer) and the module routes (1,276) are read every frame or on hot paths, so they stay
+resident. With modules on heap 1, sharing helpers between child modules or removing the loader's transient copy would
+save heap 1 rather than PMC (and the shared helpers would add about 0.6 KB to the core), so neither was done.
+
+Checked: the eight local regression specs (209 scenarios) all pass, as on the build before; the affected scenarios
+compared with the build before: the terrain floors and indicators pixel-identical in the indicator scenarios, the
+strong weathers 7/7, the Mega glyph in the same frames and place on front and back sprites; host tests unchanged
+(the nine Windows-only failures); the Black 2 core keeps its resident table and does not get the helper.
+
 ## Phase 3: abilities
 
 ### Wave A: 51 hook-free abilities

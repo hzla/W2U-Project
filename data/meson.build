@@ -64,6 +64,22 @@ foreach sidecar_name, sidecar_source : sidecar_vfs_files
   )
 endforeach
 
+# Read-only tables White 2's core looks up in ROM files instead of keeping them (include/w2u_rom_tables.h).
+w2u_rom_tables_root = meson.project_source_root() / 'vfs' / 'data'
+vfs_files += custom_target(
+  'stage_w2u_rom_tables',
+  input: w2u_rom_tables_object,
+  output: 'stage_w2u_rom_tables.stamp',
+  depend_files: [meson.project_source_root() / 'tools' / 'stage_w2u_rom_tables.py'],
+  command: [
+    'python3', meson.project_source_root() / 'tools' / 'stage_w2u_rom_tables.py',
+    '--object', '@INPUT@',
+    '--table', '.w2u_rom.terrain_texture_mappings:26:' + (w2u_rom_tables_root / 'w2u_terrain_texture_mappings.bin'),
+    '--table', '.w2u_rom.mega_glyph_places:8:' + (w2u_rom_tables_root / 'w2u_mega_glyph_places.bin'),
+    '--stamp', '@OUTPUT@',
+  ],
+)
+
 # Load all of the resources.
 subdir('encounters')
 subdir('graphics')
