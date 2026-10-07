@@ -90,6 +90,24 @@ message the same. Host tests: 147, with the nine Windows-only failures of unmodi
 now also checks that a heap-1 group unloads through the allocator. Built with GCC 14.3.1, which makes the same core
 336 bytes larger than RC3's GCC 16.1.0 (RC3 itself leaves 11,976 bytes here). Not run: hardware, DSi, Black 2.
 
+## Follow-up: terrain sounds (2026-10-07)
+
+Contributor follow-up. White 2's Electric, Grassy, Misty and Psychic Terrain get sounds after Sun / Moon's, built at
+build time from B2W2's own sound effects: one in the terrain move's animation, one when the terrain is applied (the
+Surges play only that one). Details: [the MegaB2W2 integration notes](megab2w2-integration.md) ("Terrain sounds").
+
+- `tools/audio/terrain_sfx` appends 22 sequences to the base ROM's sound archive (vanilla entries checked byte for
+  byte; 23,712 bytes added) and checks the IDs against `include/w2u_terrain_sfx.h` and the four move scripts. It
+  needs numpy and scipy (`requirements.txt`). No reference recording is stored or used at build time.
+- The applied sound costs 256 resident bytes; to pay for it, the terrain indicator's 480-byte art buffer moved from
+  core BSS to a scratch frame on the battle input's game heap. The indicator scenarios' screenshots are pixel-identical
+  before and after.
+- Black 2 keeps the four move scripts' previous versions (`data/graphics/move_animations/black2/`, used by its
+  package) and never plays the applied sound; not run here (no clean Black 2 ROM).
+
+Evidence (local harness, as above): the terrain scenarios with recordings checked for every take's sequences and
+channels, the field and battle-flow regression specs on the final build. Listening approval is the user's.
+
 ## Sources, commits, and delivered build
 
 Upgrade used `megab2w2-integration` at `4369e8a4738ea435a350eff4e9c527d523bd8c31` as its base and selectively ported `main` at `eb6c002384f2fcc4df7bfef6d3cdad5626364a73`. Pokeweb started at `d5e2dc0f47a7fe829204527a09572f4d48ef88c1`. Work happened in isolated checkouts; unrelated dirty work in the original checkouts was preserved.

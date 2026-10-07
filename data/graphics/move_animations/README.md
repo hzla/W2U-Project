@@ -26,8 +26,8 @@ These files override B2W2 `a/0/6/5`. While a move is active, edit its generator 
 | 577 | Draining Kiss | 356 | none | none | 364 | `8c4d832d31f9995cb54f8d8034f750246954f93f5243226a88a063383f8d03ea` |
 | 578 | Crafty Shield | 741 | none | none | 310 | `e577915a8d839311bdde75cf0b58d21f49f65d64445c35299ce32549cea7eaa3` |
 | 579 | Flower Shield | 248 | none | none | 412 | `042c04b50a80a59a2d60fea171ef2f43fd31bd04abdf224c0253d95be1b07c43` |
-| 580 | Grassy Terrain | 754 | none | none | 570 | `51cde55ece40fff7f10b6eb27bd432b4ebf042a22418b5d27ff10b7267fe2bac` |
-| 581 | Misty Terrain | 219 | none | none | 308 | `d796b40118516907533a8ff2c2d514b94e3f3899a7fd939bdd56b3d7f92f953b` |
+| 580 | Grassy Terrain | 754 | none | none | 570 | `d3587fa27d56b72ab94787e85dd84243d7582f56b5cce97e4c31677e2dc636a0` |
+| 581 | Misty Terrain | 219 | none | none | 346 | `03696add5cdf2f05420c4a085e62c0a177b1ac0335a8ecaba271f02de9395ff5` |
 | 582 | Electrify | 379, 743 | none | none | 782 | `72f7ca5523f438c12aff7149443104e0529f465b1c1949d9b3dbba6bd335475c` |
 | 583 | Play Rough | 231 | none | none | 1092 | `f8f7643c7ace42b174ef3dccb1172a340d815acc39ba3ac2723abeaa1350cf9d` |
 | 584 | Fairy Wind | 492 | none | none | 792 | `01470940fc31307ae021ae51b1fc2ab63adad25332932effbbcbfec5ec52e15c` |
@@ -50,7 +50,7 @@ These files override B2W2 `a/0/6/5`. While a move is active, edit its generator 
 | 601 | Geomancy | 275, 444, 445, 748, 749, 750, 751, 752, 753 | none | none | 2020 | `42e15bbeb5634702784f38a658766eb548f78e67987ba0c26380b30b5de936bb` |
 | 602 | Magnetic Flux | 572 | none | none | 532 | `f56c41bc3eef9c08755f2b97627f84f35104ba5e1a3d7df719d6ac6a064104ac` |
 | 603 | Happy Hour | 545 | none | none | 560 | `0e7f057bd6aeed35ee839d32205905df234ab9075eae9e773f0e7697978fd8b1` |
-| 604 | Electric Terrain | 742 | none | none | 1108 | `13fbdee6ab015be55360f095bc8be24d2e8e341358e03f92606b083997faf90c` |
+| 604 | Electric Terrain | 742 | none | none | 880 | `34de5bee172741149ac7a12713c6ab554a63a4b75e0c54962831cd50fdd681f4` |
 | 605 | Dazzling Gleam | 465 | none | none | 888 | `0cdec45d7265182287a9ce85a85d75bdd3942fb05805ac9a40654a87e2d2940a` |
 | 606 | Celebrate | 547 | none | none | 872 | `ba4dfff3e19388f1bea964307fb02470e9fb5ddb485ebbfe793681fbaf980880` |
 | 607 | Hold Hands | 549 | 153 | none | 968 | `06cbd3e2429d83c65ba19a770a220583ff9b100f5c56a2767f077a36e2570272` |
@@ -70,7 +70,7 @@ These files override B2W2 `a/0/6/5`. While a move is active, edit its generator 
 | 621 | Hyperspace Fury | 549, 775, 779 | 126 | none | 3042 | `9cedd074332993dd11e606466ed8891e3431e370367228d5bad432a72481b1dc` |
 | 622 | Move 622 | 765, 767, 770, 771, 783 | none | none | 1394 | `326cd39330cdc5fca1c9675e9c76a1d5fa6c590a4942483157d2b9144c0539d3` |
 | 623 | Move 623 | 776 | none | none | 540 | `b35de359d3df6cd81029d1e5a1086d5d3adf855047c206ebc36ae3590a860ad3` |
-| 624 | Move 624 | 786 | none | none | 562 | `b11823e9000dcd083042926fd9e7182e97f41259df27ca37b11ce5c9b9a0190f` |
+| 624 | Move 624 | 786 | none | none | 448 | `0503cd3e7b7d6ab6fa3babcdfd95e3060eaa6858c19a73442d5c5779df52aaf9` |
 | 626 | Move 626 | 787 | none | none | 362 | `0f3b09a95db057326688a9e2007bc50234612afe82df496b68e1dee64f77a6c2` |
 | 659 | Shore Up | 275, 502 | none | none | 774 | `272b4f4af1994966a3b99ac4aaa9983abc4d08dfea52086dfd1f8606c00ee40d` |
 | 660 | First Impression | 433, 617, 666, 760 | none | none | 828 | `ffe5d16055561e03ef32fd9cb43808ba5d994b79bf32917e43254a29f3348fe6` |

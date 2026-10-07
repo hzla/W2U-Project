@@ -94,9 +94,10 @@ void* sTerrainWork;
 void* sTerrainBiw;
 u32 sPanelWeather;         // the weather value the native panel got this time (0: no WEATHER panel)
 u16 sTerrainPalette[16];
-u32 sArtBuffer[W2U_INDICATOR_FRAME_BYTES / 4];
 
 extern "C" void GFL_ArcSysReadRange(void* destination, u32 arcID, u32 dataID, u32 offset, u32 size);
+extern "C" void* GFL_HeapAllocate(u32 heapID, u32 size, u32 clear, const char* file, u32 line);
+extern "C" void GFL_HeapFree(void* memory);
 
 u32 ReadWord(const void* base, u32 offset)
 {
@@ -108,18 +109,26 @@ u32 ReadHalfWord(const void* base, u32 offset)
     return *(const u16*)((const u8*)base + offset);
 }
 
-// Copy `frames` frames of member 941 (from `offset`) into the sheet's tiles starting at `tile`.
-void CopyFramesToVram(u32 offset, u32 frames, u32 tile)
+// Copy `frames` frames of member 941 (from `offset`) into the sheet's tiles starting at `tile`. Each frame is read
+// into a scratch frame on the battle input's game heap (`biw`'s heap, freed again here; not PMC's), then copied in
+// 32-bit words (VRAM ignores the byte writes a file read would make).
+void CopyFramesToVram(void* biw, u32 offset, u32 frames, u32 tile)
 {
+    const u32 heapID = ReadHalfWord(biw, W2U_BTLV_INPUT_HEAP_ID_OFFSET);
+    u32* buffer = (u32*)GFL_HeapAllocate((heapID & 0x7FFF) | 0x8000, W2U_INDICATOR_FRAME_BYTES, 0, "", 0);
+    if (!buffer) {
+        return;                                  // (no memory: the slot keeps its previous frames)
+    }
     for (u32 f = 0; f < frames; ++f) {
-        GFL_ArcSysReadRange(sArtBuffer, W2U_BATTGRA_ARC, W2U_INDICATOR_ART_MEMBER,
+        GFL_ArcSysReadRange(buffer, W2U_BATTGRA_ARC, W2U_INDICATOR_ART_MEMBER,
             offset + f * W2U_INDICATOR_FRAME_BYTES, W2U_INDICATOR_FRAME_BYTES);
         volatile u32* destination = (volatile u32*)(W2U_SUB_OBJ_VRAM +
             (W2U_INPUT_SHEET_VRAM_TILE + tile) * 32u + f * W2U_INDICATOR_FRAME_BYTES);
         for (u32 i = 0; i < W2U_INDICATOR_FRAME_BYTES / 4; ++i) {
-            destination[i] = sArtBuffer[i];
+            destination[i] = buffer[i];
         }
     }
+    GFL_HeapFree(buffer);
 }
 
 void UploadTerrainPalette()
@@ -144,7 +153,6 @@ typedef void* (*TcbAddFn)(void* manager, void (*func)(void*, void*), void* work,
 typedef void (*InputTaskAddFn)(void* input, void* tcb, void (*end)(void*));
 typedef void (*InputTaskEndFn)(void* input, void* tcb);
 extern "C" void* GFL_TCBMgrAddTask(void* manager, void (*func)(void*, void*), void* work, u32 priority);
-extern "C" void* GFL_HeapAllocate(u32 heapID, u32 size, u32 clear, const char* file, u32 line);
 const InputTaskAddFn InputTaskAdd = (InputTaskAddFn)0x021EF401u;
 const InputTaskEndFn InputTaskEnd = (InputTaskEndFn)0x021EF431u;
 
@@ -228,7 +236,6 @@ extern "C" void W2U_TerrainIndicator_Term()
 // Called before the native WEATHER panel: returns the weather value it gets, and prepares a strong weather's icon.
 extern "C" u32 W2U_CommandIndicators_WeatherForPanel(void* biw, u32 weather)
 {
-    (void)biw;
 #if !defined(W2U_TARGET_B2)
     sPanelSequenceFrom = 0;
     sPanelSequenceTo = 0;
@@ -246,10 +253,12 @@ extern "C" u32 W2U_CommandIndicators_WeatherForPanel(void* biw, u32 weather)
         sPanelSequenceFrom = 1 + 0xE;
         sPanelSequenceTo = 22;
     }
-    if (kind) {
-        CopyFramesToVram((kind - 1) * W2U_WEATHER_SLOT_FRAMES * W2U_INDICATOR_FRAME_BYTES, W2U_WEATHER_SLOT_FRAMES,
-            W2U_WEATHER_SLOT_TILE);
+    if (kind && biw) {
+        CopyFramesToVram(biw, (kind - 1) * W2U_WEATHER_SLOT_FRAMES * W2U_INDICATOR_FRAME_BYTES,
+            W2U_WEATHER_SLOT_FRAMES, W2U_WEATHER_SLOT_TILE);
     }
+#else
+    (void)biw;
 #endif
     sPanelWeather = weather;
     return weather;
@@ -285,7 +294,7 @@ extern "C" void W2U_TerrainIndicator_Create(void* biw)
         return;
     }
     const u32 index = terrain - TERRAIN_ELECTRIC;
-    CopyFramesToVram(W2U_TERRAIN_ART_OFFSET + index * W2U_TERRAIN_FRAMES * W2U_INDICATOR_FRAME_BYTES,
+    CopyFramesToVram(biw, W2U_TERRAIN_ART_OFFSET + index * W2U_TERRAIN_FRAMES * W2U_INDICATOR_FRAME_BYTES,
         W2U_TERRAIN_FRAMES, W2U_TERRAIN_SLOT_TILE);
     GFL_ArcSysReadRange(sTerrainPalette, W2U_BATTGRA_ARC, W2U_INDICATOR_ART_MEMBER,
         W2U_TERRAIN_PALETTES_OFFSET + index * 32u, sizeof(sTerrainPalette));

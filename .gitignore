@@ -36,3 +36,4 @@ vfs/data/zz_pokeweb_pwan/
 .vscode
 tools/migration/verify_pokeweb_migration.py
 .DS_Store
+vfs/data/swan_sound_data.sdat

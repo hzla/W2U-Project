@@ -4,6 +4,7 @@
 #include "w2u_battle.h"
 #include "w2u_battle_lifecycle.h"
 #include "w2u_platform.h"
+#include "w2u_terrain_sfx.h"
 #include "swan/gfl/core/gfl_heap.h"
 #include "swan/gfl/fs/gfl_archive.h"
 #include "swan/gfl/g3d/gfl_g3d_system.h"
@@ -12,6 +13,7 @@
 #include "swan/nds/gx.h"
 
 extern "C" void* BTLV_EFFECT_GetMcssWork();
+extern "C" void GFL_SEPlayKeepVol(u32 seq, u32 handle);    // play a sequence on sound handle `handle` (player + 1)
 extern "C" void BTLV_MCSS_GetPokeDefaultPos(void* mcssWork, VecFx32* position, int slot);
 extern "C" void* GFL_PTC_CreateEx(
     void* work,
@@ -172,6 +174,7 @@ volatile u32 sDeferredResetMsgID = W2U_NO_DEFERRED_MESSAGE;
 volatile u32 sDeferredResetSerial = 0u;
 volatile u32 sDeferredStartMsgID = W2U_NO_DEFERRED_MESSAGE;   // an ability's terrain: starts with this message
 volatile u32 sDeferredStartSerial = 0u;
+u32 sApplySoundSerial = 0u;                                  // the terrain request whose "applied" sound has played
 volatile u32 sElectricTransitionSerial = 0u;
 volatile u32 sElectricTransitionPhase = ELECTRIC_TRANSITION_IDLE;
 volatile bool sElectricAnimationStarted = false;
@@ -2313,6 +2316,42 @@ void PrepareRequestedTerrain(u32 terrain, bool animated)
 }
 } // namespace
 
+namespace {
+// Terrain sounds (docs/megab2w2-integration.md): take 2, "the terrain is applied", at the terrain's start message -
+// a Surge's (no animation, so the only sound) or, after the move's own take 1 in its animation, a terrain move's. Up
+// to three layers at once on sound handles 1 / 2 / 4; once per terrain request. White 2 only: Black 2's sound archive
+// does not have these sequences.
+constexpr u16 W2U_TERRAIN_APPLY_SOUNDS[4][3] = {
+    { W2U_TERRAIN_SFX_ELECTRIC_APPLY_0, W2U_TERRAIN_SFX_ELECTRIC_APPLY_1, W2U_TERRAIN_SFX_ELECTRIC_APPLY_2 },
+    { W2U_TERRAIN_SFX_GRASSY_APPLY_0, W2U_TERRAIN_SFX_GRASSY_APPLY_1, W2U_TERRAIN_SFX_GRASSY_APPLY_2 },
+    { W2U_TERRAIN_SFX_MISTY_APPLY_0, W2U_TERRAIN_SFX_MISTY_APPLY_1, W2U_TERRAIN_SFX_MISTY_APPLY_2 },
+    { W2U_TERRAIN_SFX_PSYCHIC_APPLY_0, W2U_TERRAIN_SFX_PSYCHIC_APPLY_1, W2U_TERRAIN_SFX_PSYCHIC_APPLY_2 },
+};
+constexpr u8 W2U_TERRAIN_SOUND_HANDLES[3] = {
+    W2U_TERRAIN_SFX_HANDLE_0, W2U_TERRAIN_SFX_HANDLE_1, W2U_TERRAIN_SFX_HANDLE_2,
+};
+constexpr u16 W2U_TERRAIN_START_MSGIDS[4] = {
+    BATTLE_ELECTRIC_TERRAIN_MSGID, BATTLE_GRASSY_TERRAIN_MSGID, BATTLE_MISTY_TERRAIN_MSGID,
+    BATTLE_PSYCHIC_TERRAIN_MSGID,
+};
+
+void PlayTerrainApplySound(u32 terrain, u32 requestSerial)
+{
+    const s32 index = TerrainTextureIndex(terrain);
+    if (index < 0 || requestSerial == sApplySoundSerial) {
+        return;
+    }
+    sApplySoundSerial = requestSerial;
+#if !defined(W2U_TARGET_B2)
+    for (u32 layer = 0; layer < 3u; ++layer) {
+        if (W2U_TERRAIN_APPLY_SOUNDS[index][layer]) {
+            GFL_SEPlayKeepVol(W2U_TERRAIN_APPLY_SOUNDS[index][layer], W2U_TERRAIN_SOUND_HANDLES[layer]);
+        }
+    }
+#endif
+}
+} // namespace
+
 extern "C" void W2U_TerrainTexture_DeferStartUntilMessage(u32 msgID)
 {
     sDeferredStartMsgID = msgID;
@@ -2329,6 +2368,13 @@ extern "C" void W2U_TerrainTexture_OnSetMessageStart(u32 msgID)
         // (a newer terrain request since then has its own start)
         if (sRequestSerial == startSerial && terrain >= TERRAIN_ELECTRIC && terrain <= TERRAIN_PSYCHIC) {
             PrepareRequestedTerrain(terrain, false);
+            PlayTerrainApplySound(terrain, startSerial);
+        }
+    } else {
+        // a terrain move's start message (an ability's is the deferred start above)
+        const s32 index = TerrainTextureIndex(sRequestedTerrain);
+        if (index >= 0 && msgID == W2U_TERRAIN_START_MSGIDS[index]) {
+            PlayTerrainApplySound(sRequestedTerrain, sRequestSerial);
         }
     }
 

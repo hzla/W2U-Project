@@ -27,6 +27,7 @@ Everything below is White 2. Black 2 builds and links, but gets none of the new 
 | Mega extras: held-START toggle, the Mega's cry with reverb, HP-gauge Mega icon, Mega glyph above the sprite | `megab2w2/mb_mega_extras.cpp`, called from `w2u_mega.cpp` | `mb_mega_*_tiles.inc`, `tools/pwan/gen_mega_glyph_heights.py`; Mega script `5_00000622.bin` lost its SPA 769 | Phase 5 |
 | Mega Rayquaza chosen with START when it knows Dragon Ascent (was triggered by the move) | `w2u_mega.cpp` | messages bank 18 1451-1453 | Mega Rayquaza |
 | Sun / Moon style terrains: floors, skies (4x repeat, drift), haze, glow, palette animation, ambient particles, Psychic's raster wave, Electric's sky lightning; heavy-rain look; Surges start terrain without a move animation | `w2u_terrain_texture.cpp`, `w2u_terrain_texture_mappings.inc`; `w2u_moves.cpp` (Surges) | `tools/graphics/draw_terrain_floor_tiles.py`, `build_terrain_texture_mvp.py`, `build_terrain_ambient_effects.py` (all art drawn by these scripts) | Polish sections |
+| Terrain sounds after Sun / Moon's: one sound in the terrain move's animation, one when a terrain is applied (the Surges play only that one), built from B2W2's own sound effects | `w2u_terrain_texture.cpp` (the applied sound), `include/w2u_terrain_sfx.h` | `tools/audio/terrain_sfx` (recipes; appends 22 sequences to the sound archive at build time), the four terrain move scripts | Terrain sounds |
 | PMC heap 200 KiB, module loader out-of-memory guard, ROM build fails below 12 KiB free with every module loaded, `strip_rpms` default on | `tools/patch_pmc_sysheap.py`, `w2u_battle_module_loader.cpp`, `tools/audit_white2upgrade_battle_heap.py`, `meson.build` / `meson_options.txt` | - | Fix: PMC heap out of memory, Heap saving steps |
 | Build guards: every White 2 DLL import must resolve; jump tables rejected | `tools/verify_rpm_imports.py`, `tools/package_rpm_checked.py` | - | W2U fixes |
 
@@ -66,6 +67,7 @@ Unchanged from W2U (`meson setup` + `ninja -C build White2Upgrade.nds`), plus:
 - Every White 2 DLL rule runs `tools/verify_rpm_imports.py`: a call to a function the ESDB lacks fails the build.
 - Windows hosts: see "Build notes".
 - Two build directories must not build at the same time: both stage into the same in-tree `vfs/`.
+- The terrain sounds' build step (`tools/audio/terrain_sfx`) needs numpy and scipy (added to `requirements.txt`).
 
 ### Testing
 
@@ -113,6 +115,7 @@ Collected from the record below; nothing here is merged until these are settled.
 | 11 | Licence and asset terms for contributed code and art (PokeRogue art is private use only and is not on this branch); Booster Energy's icon is from Showdown's item sheet (credit if kept) | Provisional decisions, Wave B |
 | 12 | Open work: the Black 2 port of all of the above; Neutralizing Gas (the last unported ability) | - |
 | 13 | Pokeweb-Serverless: the harness patch for ability IDs above 255, to take upstream | Abilities above 255 |
+| 14 | Terrain sounds: numpy and scipy as build requirements; the sounds are made from B2W2's own sound effects and modelled on Sun / Moon's (same open licence question as the other assets); Black 2 keeps the terrain moves' old sounds | Terrain sounds |
 
 ## Provisional decisions
 
@@ -1021,6 +1024,63 @@ Ball in a wild battle).
 Not covered by a scenario: Ice Face restored on entry in hail, Hunger Switch resetting on switching out, Tatsugiri
 switching out once freed (the harness can't answer the replacement prompt after Dondozo faints), Gulp Missile through
 Dive.
+
+## Terrain sounds (2026-10-07)
+
+User request: recreate Sun / Moon's Psychic, Misty, Grassy and Electric Terrain sounds with the DS sound engine and
+B2W2's own sound effects, to the user's design outlines. Each terrain has two sounds, matched to two takes in the
+reference recordings (length, envelope, spectrum over time, pan, event times; the recordings are not in the project):
+
+- take 1 in the terrain move's animation (attacker side), take 2 when the terrain is applied (its start message).
+  A terrain move plays both; a Surge (and Seed Sower, Hadron Engine) only take 2.
+
+Build: `tools/audio/terrain_sfx/build_terrain_sfx.py` (target `build_terrain_sfx`, `data/meson.build`) reads the base
+ROM's `data/swan_sound_data.sdat`, builds the recipes (`recipes.py`, `sfxlib.py`) and writes the archive to
+`vfs/data/swan_sound_data.sdat` (ignored by git), which replaces the base one in the ROM.
+- Recipes are scripts and parameters only: donor waves are read from the archive itself, baked offline where the DS
+  cannot do it live (low-pass sweeps, trims, seamless loops; re-encoded as IMA-ADPCM), and sequenced live (vibrato,
+  pan, pitch bend, random pitch, echo taps, envelopes). Nothing derived from the reference recordings is stored.
+- 22 sequences are appended after the last vanilla one: 2416-2437 (banks 2290-2311, wave archives 2290-2293). Vanilla
+  entries are unchanged (checked byte for byte at build time). 23,712 bytes are added to the archive; new sample data
+  is 16.6 KB in four wave archives, the rest reuses vanilla wave archives as they are.
+- The build fails if the base archive is not the vanilla one (2,416 sequences), if an SE exceeds the 10,200-byte SE
+  player heap (sequence + bank + wave archives must fit; the largest is 9,408), or if `include/w2u_terrain_sfx.h`
+  or the move scripts' PlaySound IDs disagree with the recipes.
+
+| Terrain | Take 1 (move script) | Take 2 (applied) | Donors |
+|---|---|---|---|
+| Electric | 2432-2434 (`5_00000604.bin`) | 2435-2437 | Thunder Wave, Spark, Charge |
+| Grassy | 2426-2428 (`5_00000580.bin`) | 2429-2431 | Razor Leaf, Magical Leaf, Synthesis, Giga Drain |
+| Misty | 2420-2422 (`5_00000581.bin`) | 2423-2425 | Mist, Charm, Wish |
+| Psychic | 2416-2417 (`5_00000624.bin`: Psychic Terrain 678 plays member 624) | 2418-2419 | Psychic / Confusion, Calm Mind |
+
+Playing them:
+- A take is up to three SEs started together on the SE players SE_1 / SE_2 / SE_3 (sound handles 1 / 2 / 4). Found in
+  White 2's ARM9: `GFL_SndSEPlay` looks the player up with `GFL_SndSeqGetPlayerIndex`, which gives every ID outside
+  1350-2414 handle 1, so appended SEs played that way would cut each other off; `GFL_SEPlayKeepVol(seq, handle)`
+  (0x20061DD) takes the handle. The battle's SE helper (ov168 0x21E56D4) uses it for every PlaySound `player` but 5
+  (the default), so the move scripts name players 1 / 2 / 4 and take 2 calls `GFL_SEPlayKeepVol` directly.
+- Take 1: the four scripts' sound commands (PlaySound, the `SEQ_SE_DUMMY5` timers, AdjustSound) are replaced by the
+  take's PlaySound commands at the first one's place (pan 14, the attacker's side). `README.md` there: the four rows'
+  sizes and hashes updated by hand (its generator is in Pokeweb).
+- Take 2: `W2U_TerrainTexture_OnSetMessageStart` plays it once per terrain request: at an ability's deferred start,
+  or when the requested terrain's start message (1292 / 1295 / 1298 / 1313) starts. With battle animations off only
+  take 2 plays. 256 bytes of resident code and tables (core 84,928 bytes; 43,944 free with every module loaded).
+- To pay for it, the terrain indicator's 480-byte art buffer (`sArtBuffer`, core BSS) is gone: `CopyFramesToVram`
+  reads each frame into a scratch frame on the battle input's game heap (`biw`'s heap) and frees it again after the
+  upload. The indicators are unchanged: the indicator scenarios' message screenshots are pixel-identical before and
+  after (Electric, Grassy, Misty; Psychic differs only in its animated wave and sprite pose).
+- Channel budget: the SE players share channels 12-15 (the BGM also uses 12, 13 and 15); every take holds at most
+  four channels at once (three to four, release tails counted: retriggered layers release in 63 ms or cut).
+- Black 2: its sound archive does not have the new sequences. Its package (`build_black2upgrade_package.py`) takes the
+  four scripts' previous versions from `data/graphics/move_animations/black2/` (not staged for White 2), and the
+  take-2 call is White 2 only. Not run here (no clean Black 2 ROM).
+
+Where the hardware changed the user's outlines (details in the recipes): Psychic's low-pass sweep over Calm Mind's
+chimes is stepped across three baked versions (each sweeping inside; the DS cannot start a sample mid-way); a track's
+LFO modulates pitch or pan, not both, so the hum's heavy left / right panning is sequenced. Mist's and Haze's main
+samples are low tones, so Misty's whoosh is Mist's second sound (its spray); Charm has no chime, so the sparkle is
+Wish's. Electric's random pitches use the sequence's random command (B2W2's own sequences use it).
 
 ## Fix: Mega Rayquaza is chosen, not triggered by Dragon Ascent (2026-10-06)
 
