@@ -63,6 +63,33 @@ leaving **12,312 bytes**—only 24 bytes above the 12 KiB floor. Conservative
 expanded loading leaves 9,256 bytes. This transient limit and the acceptance
 gaps below remain open; RC3 is still a release candidate.
 
+## Follow-up: battle groups on game heap 1 (2026-10-07)
+
+Contributor follow-up on RC3 (`36355ece7`). White 2 now loads the battle groups into GFL game heap 1 while a battle
+runs, so PMC's heap holds only the resident core. Details and measurements are in
+[the MegaB2W2 integration notes](megab2w2-integration.md) ("Battle modules on the game heap").
+
+- The loader points PMC's `ModuleManager` heap at a small ExtLib-compatible allocator over heap 1 around its own
+  load and unload calls only, after checking that the manager's heap is exactly PMC's. It does this only during a
+  battle (battle heap 0x13 present, the field's heap 0x15 absent) and only when the group plus a 64 KiB reserve fits
+  heap 1 in one block; otherwise the group goes to PMC's heap as in RC3, with the existing refusal guard. No PMC
+  change. Black 2 is unaffected: its core has no module loader.
+- Heap 1 had 512,856 bytes free throughout every measured battle, direct-boot and started from the overworld. The
+  field's heaps are destroyed before a battle and rebuilt only after the groups are unloaded (traced).
+- The heap audit's `--enforce-headroom` now applies the 12 KiB floor to PMC's heap with every group on heap 1
+  (`all_groups_on_game_heap`: 96,776 bytes free) and checks a heap-1 budget (all groups, block headers and the largest
+  transient load: 89,248 bytes, plus the 65,536-byte reserve, against 512,856). The all-groups-on-PMC scenarios stay
+  in the report as the fallback worst case, not gated. Transient expanded loads now happen on heap 1 as well.
+
+Evidence (the contributor's local harness, which is not in this checkout, so like the incoming results above these
+are not counted as integration runs): the eight local regression specs, 209 scenarios, pass on this build and on
+the same build without the change, spec for spec; a battle started from the overworld with a group loaded (outside
+PMC's heap during the battle, heap 1 back to its overworld size after it); a doubles battle loading 12 groups at once
+(40,936 bytes on heap 1, lowest free 471,200); a build forced onto the PMC fallback runs that battle message for
+message the same. Host tests: 147, with the nine Windows-only failures of unmodified RC3; the loader-lifetime test
+now also checks that a heap-1 group unloads through the allocator. Built with GCC 14.3.1, which makes the same core
+336 bytes larger than RC3's GCC 16.1.0 (RC3 itself leaves 11,976 bytes here). Not run: hardware, DSi, Black 2.
+
 ## Sources, commits, and delivered build
 
 Upgrade used `megab2w2-integration` at `4369e8a4738ea435a350eff4e9c527d523bd8c31` as its base and selectively ported `main` at `eb6c002384f2fcc4df7bfef6d3cdad5626364a73`. Pokeweb started at `d5e2dc0f47a7fe829204527a09572f4d48ef88c1`. Work happened in isolated checkouts; unrelated dirty work in the original checkouts was preserved.
