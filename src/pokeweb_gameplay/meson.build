@@ -8,6 +8,7 @@ pokeweb_gameplay = files(
     'w2u_moves.cpp',
     'w2u_revival.cpp',
     'w2u_revival_hooks.s',
+    'w2u_rom_tables.cpp',
     'w2u_weather.cpp',
     'w2u_strong_weather.cpp',
     'w2u_terrain_indicator.cpp',

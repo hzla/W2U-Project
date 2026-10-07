@@ -32,6 +32,7 @@
 // W2U.
 #include "ability_api.h"
 #include "mb_resident.h"
+#include "w2u_rom_tables.h"
 
 extern "C" {
 // ARM9
@@ -234,10 +235,12 @@ const u16 MEGA_GLYPH_PALETTE[16] = {0x0000, 0x2F5A, 0x2F3B, 0x2F59, 0x2B57, 0x2A
 const u8 MEGA_GLYPH_TILES[1024] __attribute__((aligned(4))) = {
 #include "mb_mega_glyph_tiles.inc"
 };
-struct GlyphPlace { u16 species; u8 form, frontTop, frontCx, backTop, backCx; };
-const GlyphPlace GLYPH_PLACES[] = {
-#include "mb_mega_glyph_heights.inc"
-};
+// Each Mega's place (mb_mega_glyph_heights.inc) is read from a ROM file when its glyph is armed
+// (include/w2u_rom_tables.h).
+bool GlyphPlaceMatches(const void* record, u32 speciesForm) {
+    const W2UMegaGlyphPlace* p = static_cast<const W2UMegaGlyphPlace*>(record);
+    return p->species == (speciesForm & 0xFFFF) && p->form == (speciesForm >> 16);
+}
 constexpr u32 GLYPH_VRAM = 0x7B80;                 // 4 stages x 256 bytes, below the gauge icon
 constexpr u16 GLYPH_TILE = GLYPH_VRAM / 64;
 constexpr u8 PAL_GLYPH = 13;
@@ -377,11 +380,12 @@ extern "C" void W2U_MB_MegaGlyphArm(u32 viewPos, u32 species, u32 form) {
     g_glyph.top = DEFAULT_TOP;
     g_glyph.cx = CANVAS_CENTRE;
     const bool front = (viewPos & 1) != 0;
-    for (const GlyphPlace& p : GLYPH_PLACES)
-        if (p.species == species && p.form == form) {
-            g_glyph.top = front ? p.frontTop : p.backTop;
-            g_glyph.cx = front ? p.frontCx : p.backCx;
-        }
+    W2UMegaGlyphPlace p;
+    if (W2U_RomTable_Find(W2U_PATH_MEGA_GLYPH_PLACES, sizeof(p), GlyphPlaceMatches, (species & 0xFFFF) | (form << 16),
+                          &p)) {
+        g_glyph.top = front ? p.frontTop : p.backTop;
+        g_glyph.cx = front ? p.frontCx : p.backCx;
+    }
 }
 
 // While the player picks a move (default camera, W2U_Mega_OnActionSelectFightWait): cache every view position's

@@ -108,6 +108,26 @@ Surges play only that one). Details: [the MegaB2W2 integration notes](megab2w2-i
 Evidence (local harness, as above): the terrain scenarios with recordings checked for every take's sequences and
 channels, the field and battle-flow regression specs on the final build. Listening approval is the user's.
 
+## Follow-up: resident core trims (2026-10-07)
+
+Contributor follow-up. With the groups on heap 1, the resident core is what fills PMC's heap; it is now 3,305 bytes
+smaller (`all_groups_on_game_heap` 96,776 -> 100,248 bytes free on GCC 14.3.1). Details:
+[the MegaB2W2 integration notes](megab2w2-integration.md) ("Resident core trims").
+
+- The core no longer compiles its own copy of the strong-weather ability handlers (632 bytes): the dynamic core reaches
+  them through `abilities/strong_weather`, so the copy was unreachable.
+- The terrain textures' background mappings (2,392 bytes) and the Mega glyph's places (584 bytes) are sidecar files
+  read once where they are needed, on the main thread (`include/w2u_rom_tables.h`). They are built from the same
+  generated `.inc` data by compiling `w2u_rom_tables_data.cpp` with the core's flags and copying its sections out
+  (`tools/stage_w2u_rom_tables.py` rejects relocations and partial records). Black 2 keeps its table resident.
+- Measured and not done: `--gc-sections` on the core (larger with data sections; 1,162 dead bytes with function
+  sections, half of them the copy above), tables used every frame or in VBlank, and sharing helpers between child
+  modules or removing the loader's transient copy (both would now save heap 1, not PMC).
+
+Evidence (local harness, as above): the eight local regression specs (209 scenarios) pass on this build as on the
+one before; the terrain floors and indicators are pixel-identical in the indicator scenarios, and the Mega glyph sits
+in the same frames and place. Host tests unchanged; Black 2 keeps its resident table.
+
 ## Sources, commits, and delivered build
 
 Upgrade used `megab2w2-integration` at `4369e8a4738ea435a350eff4e9c527d523bd8c31` as its base and selectively ported `main` at `eb6c002384f2fcc4df7bfef6d3cdad5626364a73`. Pokeweb started at `d5e2dc0f47a7fe829204527a09572f4d48ef88c1`. Work happened in isolated checkouts; unrelated dirty work in the original checkouts was preserved.

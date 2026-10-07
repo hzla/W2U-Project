@@ -37,3 +37,5 @@ vfs/data/zz_pokeweb_pwan/
 tools/migration/verify_pokeweb_migration.py
 .DS_Store
 vfs/data/swan_sound_data.sdat
+vfs/data/w2u_terrain_texture_mappings.bin
+vfs/data/w2u_mega_glyph_places.bin

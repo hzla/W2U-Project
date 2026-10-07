@@ -94,6 +94,19 @@ w2u_main_elf = custom_target(
   command: ['arm-none-eabi-g++', w2u_cpp_args, includes ,'-o', '@OUTPUT@', '@INPUT@'],
 )
 
+# Read-only tables kept in ROM files instead of the core (include/w2u_rom_tables.h): compiled with the core's flags
+# but never linked; data/meson.build stages its sections as files.
+w2u_rom_tables_object = custom_target(
+  'w2u_rom_tables_data.o',
+  input: files('pokeweb_gameplay/w2u_rom_tables_data.cpp'),
+  depend_files: [files(
+    'pokeweb_gameplay/w2u_terrain_texture_mappings.inc',
+    'pokeweb_gameplay/megab2w2/mb_mega_glyph_heights.inc',
+  ), w2u_header_deps],
+  output: 'w2u_rom_tables_data.o',
+  command: ['arm-none-eabi-g++', w2u_cpp_args, includes, '-c', '-o', '@OUTPUT@', '@INPUT@'],
+)
+
 w2u_main_dll = custom_target(
   'w2u_main.dll',
   input: w2u_main_elf,

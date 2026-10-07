@@ -356,6 +356,9 @@ extern "C" b32 THUMB_BRANCH_167_0x21B792C(void* client, int* sequence, const u32
 #endif // !W2U_BATTLE_CHILD
 
 // ---- ability handlers (abilities/strong_weather battle module) ---------------------------------------------
+// Only the module needs them: the dynamic core resolves these abilities through the module, so a resident copy would
+// be about 600 bytes of PMC heap nothing calls.
+#if defined(W2U_BATTLE_CHILD) || !defined(W2U_DYNAMIC_BATTLE_CORE)
 
 namespace {
 
@@ -477,5 +480,7 @@ BattleEventHandlerTableEntry DesolateLandHandlers[W2U_DESOLATE_LAND_HANDLER_COUN
     {EVENT_MOVE_EXECUTE_CHECK2, HandlerStrongWeatherFizzleSun},
     {EVENT_MOVE_EXECUTE_FAIL, HandlerStrongWeatherFizzleMsgSun},
 };
+
+#endif // W2U_BATTLE_CHILD || !W2U_DYNAMIC_BATTLE_CORE
 
 #endif // W2U_TARGET_B2

@@ -4,6 +4,7 @@
 #include "w2u_battle.h"
 #include "w2u_battle_lifecycle.h"
 #include "w2u_platform.h"
+#include "w2u_rom_tables.h"
 #include "w2u_terrain_sfx.h"
 #include "swan/gfl/core/gfl_heap.h"
 #include "swan/gfl/fs/gfl_archive.h"
@@ -151,22 +152,22 @@ struct FieldPaletteFadeWork {
 // Each terrain NSBTX is an exact-layout clone of this model's TEX0. Native
 // member 119 supplies a one-track NSBTA template; its private loaded copy is
 // retargeted from pasted1 to the selected primary floor material.
-struct TerrainTextureMapping {
-    u16 fieldMember;
-    // The generated Electric/Grassy/Misty/Psychic resources are always four
-    // consecutive archive members. Store only the first member so expanding
-    // background coverage does not waste resident PMC heap on redundant IDs.
-    u16 terrainTextureBaseMember;
-    u16 floorAnimationMember;
-    char floorMaterial[W2U_NITRO_NAME_LENGTH];
-    // The backdrop's (batt_sky*) palette range in colours; Grassy / Misty clones replace that sky (0: none).
-    u16 skyPaletteFirst;
-    u16 skyPaletteCount;
-};
+// White 2 reads the table from a ROM file once per battle (include/w2u_rom_tables.h); Black 2 keeps it resident.
+typedef W2UTerrainTextureMapping TerrainTextureMapping;
+static_assert(W2U_TERRAIN_NITRO_NAME_LENGTH == W2U_NITRO_NAME_LENGTH, "material name length");
 
+#if defined(W2U_TARGET_B2)
 const TerrainTextureMapping sMappings[] = {
 #include "w2u_terrain_texture_mappings.inc"
 };
+#else
+TerrainTextureMapping sMappingStorage;          // this battle's mapping (sCurrentMapping points here)
+
+bool MappingMatches(const void* record, u32 fieldMember)
+{
+    return static_cast<const TerrainTextureMapping*>(record)->fieldMember == fieldMember;
+}
+#endif
 
 volatile u32 sRequestedTerrain = TERRAIN_NULL;
 volatile u32 sRequestSerial = 1u;
@@ -694,12 +695,17 @@ void SetFieldPaletteFadeResource(G3DResource* resource)
 
 const TerrainTextureMapping* FindMapping(u32 fieldMember)
 {
+#if defined(W2U_TARGET_B2)
     for (u32 index = 0; index < sizeof(sMappings) / sizeof(sMappings[0]); ++index) {
         if (sMappings[index].fieldMember == fieldMember) {
             return &sMappings[index];
         }
     }
     return 0;
+#else
+    return W2U_RomTable_Find(W2U_PATH_TERRAIN_TEXTURE_MAPPINGS, sizeof(TerrainTextureMapping), MappingMatches,
+                             fieldMember, &sMappingStorage) ? &sMappingStorage : 0;
+#endif
 }
 
 bool HasCompatibleLayout(const NNSG3DResTex* fieldTex, const NNSG3DResTex* terrainTex)
