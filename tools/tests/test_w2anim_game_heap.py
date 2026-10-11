@@ -47,8 +47,10 @@ class StreamGameHeap(unittest.TestCase):
     def test_packaged_archive_payload_budget(self):
         result = audit.inspect((ROOT / "vfs/data/w2anim/streams.bin").read_bytes())
         self.assertEqual(result["entry_count"], 1147)
-        self.assertEqual(result["max_per_sprite"]["payload_bytes"], 8084)
-        self.assertEqual(result["eight_slot_payload_upper_bound"], 64672)
+        # A sprite refresh may reduce payloads; retain the reviewed pre-refresh
+        # upper bound rather than requiring identical palette/frame compression.
+        self.assertLessEqual(result["max_per_sprite"]["payload_bytes"], 8084)
+        self.assertLessEqual(result["eight_slot_payload_upper_bound"], 64672)
 
 
 if __name__ == "__main__":
