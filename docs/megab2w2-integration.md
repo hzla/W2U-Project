@@ -1237,4 +1237,14 @@ Checked (`wave_mega.yml`): START + ExtremeSpeed Mega Evolves it ("AAA's fervent 
 Ascent without START does not; without Dragon Ascent START does nothing; a foe Rayquaza with Dragon Ascent Mega
 Evolves on its own ("Elena's fervent wish..."). The other Mega scenarios still pass (10 / 10).
 
+## Battle text: missing std messages, lines that overflow the box (2026-10-14)
 
+Std messages (bank 19, shown through `PushMessage(..., 1u, id)` / `Btlv_StringParam_Setup(..., 1, id)`): the
+gameplay port (cea1c52f3) uses std IDs that W2U's bank never had (it held 0-200): Assault Vest 201, Belch 225, Sticky
+Web 226 / 227 (laid on your / the foe's side) and 228 / 229 (removed), Crafty Shield 231 / 232. The strong weathers
+(6bdfcc5ed) then appended their own texts from 201, so a status move refused by Assault Vest showed Delta Stream's
+"Mysterious strong winds are protecting Flying-type Pokemon!". Now: Assault Vest uses 223
+(`BATTLE_ASSAULTVEST_MSGID`), and 223-232 hold the texts, in Gen 5 wording (`your team` / `the foe's team`, as Spikes);
+224 and 230 are spare. The blank entries 215-220 (74f6e61cd) are left alone. Checked: `wave_text.yml` (local:
+Assault Vest and Belch refusals, Sticky Web both sides and Rapid Spin, Crafty Shield) and the item name in the
+refusal text on screen.
