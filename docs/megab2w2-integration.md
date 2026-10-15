@@ -28,12 +28,30 @@ Everything below is White 2. Black 2 builds and links, but gets none of the new 
 | Mega Rayquaza chosen with START when it knows Dragon Ascent (was triggered by the move) | `w2u_mega.cpp` | messages bank 18 1451-1453 | Mega Rayquaza |
 | Sun / Moon style terrains: floors, skies (4x repeat, drift), haze, glow, palette animation, ambient particles, Psychic's raster wave, Electric's sky lightning; heavy-rain look; Surges start terrain without a move animation | `w2u_terrain_texture.cpp`, `w2u_terrain_texture_mappings.inc`; `w2u_moves.cpp` (Surges) | `tools/graphics/draw_terrain_floor_tiles.py`, `build_terrain_texture_mvp.py`, `build_terrain_ambient_effects.py` (all art drawn by these scripts) | Polish sections |
 | Terrain sounds after Sun / Moon's: one sound in the terrain move's animation, one when a terrain is applied (the Surges play only that one), built from B2W2's own sound effects | `w2u_terrain_texture.cpp` (the applied sound), `include/w2u_terrain_sfx.h` | `tools/audio/terrain_sfx` (recipes; appends 22 sequences to the sound archive at build time), the four terrain move scripts | Terrain sounds |
-| PMC heap 200 KiB, module loader out-of-memory guard, ROM build fails below 12 KiB free with every module loaded, `strip_rpms` default on | `tools/patch_pmc_sysheap.py`, `w2u_battle_module_loader.cpp`, `tools/audit_white2upgrade_battle_heap.py`, `meson.build` / `meson_options.txt` | - | Fix: PMC heap out of memory, Heap saving steps |
+| PMC heap 200 KiB, module loader out-of-memory guard, ROM build fails below 12 KiB of PMC's heap free, `strip_rpms` default on; battle modules on GFL game heap 1 during battles (PMC's heap as fallback), core trims and ROM-file tables | `tools/patch_pmc_sysheap.py`, `w2u_battle_module_loader.cpp`, `tools/audit_white2upgrade_battle_heap.py`, `include/w2u_rom_tables.h`, `meson.build` / `meson_options.txt` | `tools/stage_w2u_rom_tables.py` | Fix: PMC heap out of memory, Heap saving steps, Battle modules on the game heap, Resident core trims |
 | Build guards: every White 2 DLL import must resolve; jump tables rejected | `tools/verify_rpm_imports.py`, `tools/package_rpm_checked.py` | - | W2U fixes |
 
-Heap with all of it (build audit, stripped, 2026-10-06): core 84,672 bytes resident; 115,992 bytes of the 200 KiB
-heap free in a battle with no module loaded, 44,200 with every battle module loaded at once (floor 12,288, enforced
-by the build).
+### Memory: PMC heap vs. game heaps
+
+Two kinds of memory, with different lifetimes; every feature on this branch was placed in one of them on purpose:
+
+| Memory | Lifetime | What this branch puts there | Measured room | Guard |
+|---|---|---|---|---|
+| PMC heap (200 KiB, top of ARM9 arena region 0) | The whole game | The resident core `White2Upgrade.dll` (hooks, w2anim runtime, terrain renderer, Mega extras, module loader), battle log + counters, PMC's work area; battle groups only as a fallback | 100,248 bytes free with every group on heap 1 (audit, 2026-10-07, GCC 14); 7.9 KB of arena left below it, so the cap cannot grow much | ROM build fails below 12 KiB free (`--enforce-headroom`) |
+| GFL game heap 1 | Parent of the battle heaps; the field's heaps are carved from it outside battle | The battle module groups, during battles only (freed at battle exit, 30 frames before the field rebuilds) | 512,856 bytes free in every measured battle | Audit's heap-1 budget (89,248 needed + 65,536 reserve); runtime preflight with the 64 KiB reserve |
+| Battle heaps 0x12 / 0x13 / 0x14 | One battle | 0x13: w2anim stream buffers per sprite (TEX4 up to ~8 KB, A3I5 up to ~18 KB), battle effects / particles; terrain palette staging and ambient particles in battles without the field | 0x13 lowest free 108,024 bytes (heaviest battle measured; 273,456 with four large A3I5 sprites in a lighter doubles) | `tools/audit_w2anim_game_heap.py`; preflight, A3I5 falls back to a primed still |
+| Field heaps (0x15 ...) | Destroyed before each battle | Terrain palette staging and ambient particles in battles started from the field | - | `GetFieldLowHeapID()` returns 0 for a missing heap |
+
+So: the resident core is the scarce, always-paid cost (new resident code and BSS come straight out of PMC's floor);
+mechanics go into module groups; per-screen buffers go on that screen's game heap and are freed on exit; large
+read-only tables can be ROM files read on demand. GFL aborts the game on a failed allocation, so every game-heap
+allocation preflights and degrades (feature off, still sprite), never freezes. Black 2 has no module loader and keeps
+everything on PMC's heap. Details: "Fix: PMC heap out of memory", "Heap saving steps", "Battle modules on the game
+heap", "Resident core trims", and "A3I5 sprites" (heap 0x13).
+
+Earlier snapshot, before the groups moved to heap 1 (build audit, stripped, 2026-10-06): core 84,672 bytes resident;
+115,992 bytes of the 200 KiB heap free in a battle with no module loaded, 44,200 with every battle module loaded on
+PMC's heap at once.
 
 ### Fixes to W2U itself
 
