@@ -34,6 +34,26 @@ subdir('src')
 # Assets
 subdir('data')
 
+vfs_base_stage = custom_target(
+  'stage_vfs_base',
+  input: [
+    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'y9.bin',
+    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'data' / 'a' / '0' / '1' / '2',
+    meson.project_source_root() / 'pmc' / 'OVL344.bin',
+  ],
+  depend_files: files('tools/stage_vfs_base.py'),
+  output: 'stage_vfs_base.stamp',
+  build_always_stale: true,
+  command: [
+    python3_native, meson.project_source_root() / 'tools' / 'stage_vfs_base.py',
+    '--base', meson.project_source_root() / '..' / 'IRDO_Extracted',
+    '--output', meson.project_source_root() / 'vfs',
+    '--pmc-overlay', '@INPUT2@',
+    '--stamp', '@OUTPUT@',
+  ],
+)
+vfs_files += vfs_base_stage
+
 black2_package_builder = meson.project_source_root() / 'tools' / 'build_black2upgrade_package.py'
 black2_clean_rom = meson.project_source_root() / get_option('black2_base_rom')
 black2_clean_w2_rom = meson.project_source_root() / '..' / 'Port-Pokeweb' / 'cleanwhite2.nds'

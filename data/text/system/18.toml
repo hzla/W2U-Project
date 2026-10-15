@@ -6650,26 +6650,26 @@ text = [
 
 [msg.section_0.entries.1114]
 text = [
-  "The wild [VAR PKNICK(0)] received [VAR ITEM2(2)]\\n",
-  "from [VAR PKNICK(1)]!$",
+  "The wild [VAR PKNICK(0)] received\\n",
+  "[VAR ITEM2(2)] from [VAR PKNICK(1)]!$",
 ]
 
 [msg.section_0.entries.1115]
 text = [
-  "The wild [VAR PKNICK(0)] received [VAR ITEM2(2)]\\n",
-  "from the wild [VAR PKNICK(1)]!$",
+  "The wild [VAR PKNICK(0)] received\\n",
+  "[VAR ITEM2(2)] from the wild [VAR PKNICK(1)]!$",
 ]
 
 [msg.section_0.entries.1116]
 text = [
-  "The foe's [VAR PKNICK(0)] received [VAR ITEM2(2)]\\n",
-  "from [VAR PKNICK(1)]!$",
+  "The foe's [VAR PKNICK(0)] received\\n",
+  "[VAR ITEM2(2)] from [VAR PKNICK(1)]!$",
 ]
 
 [msg.section_0.entries.1117]
 text = [
-  "The foe's [VAR PKNICK(0)] received [VAR ITEM2(2)]\\n",
-  "from the foe's [VAR PKNICK(1)]!$",
+  "The foe's [VAR PKNICK(0)] received\\n",
+  "[VAR ITEM2(2)] from its ally [VAR PKNICK(1)]!$",
 ]
 
 [msg.section_0.entries.1118]
@@ -7793,17 +7793,20 @@ text = [
 
 [msg.section_0.entries.1328]
 text = [
-  "[VAR PKNICK(0)] concentrated intensely!$",
+  "[VAR PKNICK(0)]\\n",
+  "concentrated intensely!$",
 ]
 
 [msg.section_0.entries.1329]
 text = [
-  "The wild [VAR PKNICK(0)] concentrated intensely!$",
+  "The wild [VAR PKNICK(0)]\\n",
+  "concentrated intensely!$",
 ]
 
 [msg.section_0.entries.1330]
 text = [
-  "The foe's [VAR PKNICK(0)] concentrated intensely!$",
+  "The foe's [VAR PKNICK(0)]\\n",
+  "concentrated intensely!$",
 ]
 
 [msg.section_0.entries.1331]
@@ -7856,17 +7859,20 @@ text = [
 
 [msg.section_0.entries.1340]
 text = [
-  "[VAR PKNICK(0)] switched Speed with its target!$",
+  "[VAR PKNICK(0)] switched\\n",
+  "Speed with its target!$",
 ]
 
 [msg.section_0.entries.1341]
 text = [
-  "The wild [VAR PKNICK(0)] switched Speed with its target!$",
+  "The wild [VAR PKNICK(0)] switched\\n",
+  "Speed with its target!$",
 ]
 
 [msg.section_0.entries.1342]
 text = [
-  "The foe's [VAR PKNICK(0)] switched Speed with its target!$",
+  "The foe's [VAR PKNICK(0)] switched\\n",
+  "Speed with its target!$",
 ]
 
 [msg.section_0.entries.1343]
@@ -7889,35 +7895,38 @@ text = [
 
 [msg.section_0.entries.1346]
 text = [
-  "[VAR PKNICK(0)] used up all its electricity!$",
+  "[VAR PKNICK(0)] used up all\\n",
+  "its electricity!$",
 ]
 
 [msg.section_0.entries.1347]
 text = [
-  "The wild [VAR PKNICK(0)] used up all its electricity!$",
+  "The wild [VAR PKNICK(0)] used up all\\n",
+  "its electricity!$",
 ]
 
 [msg.section_0.entries.1348]
 text = [
-  "The foe's [VAR PKNICK(0)] used up all its electricity!$",
+  "The foe's [VAR PKNICK(0)] used up all\\n",
+  "its electricity!$",
 ]
 
 [msg.section_0.entries.1349]
 text = [
-  "[VAR PKNICK(0)] is about to be attacked\n",
-  "by its [VAR ITEM2(1)]!$",
+  "[VAR PKNICK(0)] is about to\\n",
+  "be attacked by its [VAR ITEM2(1)]!$",
 ]
 
 [msg.section_0.entries.1350]
 text = [
-  "The wild [VAR PKNICK(0)] is about to be attacked\n",
-  "by its [VAR ITEM2(1)]!$",
+  "The wild [VAR PKNICK(0)] is about to\\n",
+  "be attacked by its [VAR ITEM2(1)]!$",
 ]
 
 [msg.section_0.entries.1351]
 text = [
-  "The foe's [VAR PKNICK(0)] is about to be attacked\n",
-  "by its [VAR ITEM2(1)]!$",
+  "The foe's [VAR PKNICK(0)] is about to\\n",
+  "be attacked by its [VAR ITEM2(1)]!$",
 ]
 
 [msg.section_0.entries.1352]
@@ -8386,73 +8395,73 @@ text = [
 
 [msg.section_0.entries.1430]
 text = [
-  "[VAR PKNICK(0)] turned the sunlight harsh, sending\\n",
-  "its ancient pulse into a frenzy!$",
+  "[VAR PKNICK(0)] turned the sunlight\\n",
+  "harsh! Its ancient pulse is in a frenzy!$",
 ]
 
 [msg.section_0.entries.1431]
 text = [
-  "The wild [VAR PKNICK(0)] turned the sunlight harsh,\\n",
-  "sending its ancient pulse into a frenzy!$",
+  "The wild [VAR PKNICK(0)] turned the sunlight\\n",
+  "harsh! Its ancient pulse is in a frenzy!$",
 ]
 
 [msg.section_0.entries.1432]
 text = [
-  "The foe's [VAR PKNICK(0)] turned the sunlight harsh,\\n",
-  "sending its ancient pulse into a frenzy!$",
+  "The foe's [VAR PKNICK(0)] turned the sunlight\\n",
+  "harsh! Its ancient pulse is in a frenzy!$",
 ]
 
 [msg.section_0.entries.1433]
 text = [
-  "[VAR PKNICK(0)] basked in the sunlight, sending\\n",
-  "its ancient pulse into a frenzy!$",
+  "[VAR PKNICK(0)] basked in the sun,\\n",
+  "sending its ancient pulse into a frenzy!$",
 ]
 
 [msg.section_0.entries.1434]
 text = [
-  "The wild [VAR PKNICK(0)] basked in the sunlight,\\n",
+  "The wild [VAR PKNICK(0)] basked in the sun,\\n",
   "sending its ancient pulse into a frenzy!$",
 ]
 
 [msg.section_0.entries.1435]
 text = [
-  "The foe's [VAR PKNICK(0)] basked in the sunlight,\\n",
+  "The foe's [VAR PKNICK(0)] basked in the sun,\\n",
   "sending its ancient pulse into a frenzy!$",
 ]
 
 [msg.section_0.entries.1436]
 text = [
-  "[VAR PKNICK(0)] turned the ground into Electric\\n",
-  "Terrain, energizing its futuristic engine!$",
+  "[VAR PKNICK(0)] made Electric Terrain,\\n",
+  "energizing its futuristic engine!$",
 ]
 
 [msg.section_0.entries.1437]
 text = [
-  "The wild [VAR PKNICK(0)] turned the ground into Electric\\n",
-  "Terrain, energizing its futuristic engine!$",
+  "The wild [VAR PKNICK(0)] made Electric Terrain,\\n",
+  "energizing its futuristic engine!$",
 ]
 
 [msg.section_0.entries.1438]
 text = [
-  "The foe's [VAR PKNICK(0)] turned the ground into Electric\\n",
-  "Terrain, energizing its futuristic engine!$",
+  "The foe's [VAR PKNICK(0)] made Electric Terrain,\\n",
+  "energizing its futuristic engine!$",
 ]
 
 [msg.section_0.entries.1439]
 text = [
-  "[VAR PKNICK(0)] used the Electric Terrain to\\n",
-  "energize its futuristic engine!$",
+  "[VAR PKNICK(0)] used Electric Terrain\\n",
+  "to energize its futuristic engine!$",
 ]
 
 [msg.section_0.entries.1440]
 text = [
-  "The wild [VAR PKNICK(0)] used the Electric Terrain\\n",
+  "The wild [VAR PKNICK(0)] used Electric Terrain\\n",
   "to energize its futuristic engine!$",
 ]
 
 [msg.section_0.entries.1441]
 text = [
-  "The foe's [VAR PKNICK(0)] used the Electric Terrain\\n",
+  "The foe's [VAR PKNICK(0)] used Electric Terrain\\n",
   "to energize its futuristic engine!$",
 ]
 

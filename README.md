@@ -135,6 +135,11 @@ the cmproj's `VFSBase` is not sufficient to relocate all inputs. The Black 2
 base path can be changed with `-Dblack2_base_rom=...`. A loose `IRDO.nds` in
 the repository root is not the primary input for the White 2 VFS build.
 
+`vfs/` is ignored build output. Start with an empty or absent directory; the
+build generates its overlay table, zone changes, assets, and patches from the
+clean `IRDO_Extracted` input and the project's asset and code sources. Unchanged
+retail resources are read directly from `VFSBase`.
+
 ### White 2
 
 `strip_rpms` defaults to true, so the default build is stripped:

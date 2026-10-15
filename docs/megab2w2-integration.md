@@ -1248,3 +1248,15 @@ Web 226 / 227 (laid on your / the foe's side) and 228 / 229 (removed), Crafty Sh
 224 and 230 are spare. The blank entries 215-220 (74f6e61cd) are left alone. Checked: `wave_text.yml` (local:
 Assault Vest and Belch refusals, Sticky Web both sides and Rapid Spin, Crafty Shield) and the item name in the
 refusal text on screen.
+
+Text width: the battle text box shows 239 px (to the last glyph's ink; measured on the overflowing Booster Energy
+line: "The foe's Great Tusk used its Booster Energ" showed, the "y" did not; the widest vanilla line is 239 px too).
+The font is 6 px per letter, 4 px per space. A local checker (`w2u-local/text/check_battle_text_width.py`) measures
+every line of banks 18 / 19 with the vanilla font, placeholders filled with the widest names (Pokemon names cut to
+10, items up to Terrain Extender). It found 18 ported lines over (Laser Focus, Speed Swap, Double Shock, the
+held-item "is about to be attacked by its [item]" message, Orichalcum Pulse, Hadron Engine, Protosynthesis in sun, Quark Drive
+in terrain) plus the vanilla "received [item] from" lines with Gen 6+ item names. All re-broken to two lines (the
+battle printer was not shown to scroll a third), every variant of a message alike; three messages reworded to fit:
+Orichalcum Pulse "turned the sunlight / harsh! Its ancient pulse is in a frenzy!", Protosynthesis "basked in the sun,",
+Hadron Engine "made Electric Terrain, / energizing its futuristic engine!", Quark Drive "used Electric Terrain"; 1117
+(an ally passing an item between two foes) "from its ally". Now 0 lines over in both banks.
