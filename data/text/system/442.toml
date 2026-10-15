@@ -4547,360 +4547,3118 @@ text = [
 
 [msg.section_0.entries.650]
 text = [
-  "Chespin Pokédex entry.$",
+  "Such a thick shell of wood covers its\\n",
+  "head and back that even a direct hit\\n",
+  "from a truck wouldn’t faze it.$",
 ]
 
 [msg.section_0.entries.651]
 text = [
-  "Quilladin Pokédex entry.$",
+  "They strengthen their lower bodies by\\n",
+  "running into one another. They are very\\n",
+  "kind and won’t start fights.$",
 ]
 
 [msg.section_0.entries.652]
 text = [
-  "Chesnaught Pokédex entry.$",
+  "When it takes a defensive posture with\\n",
+  "its fists guarding its face, it could\\n",
+  "withstand a bomb blast.$",
 ]
 
 [msg.section_0.entries.653]
 text = [
-  "Fennekin Pokédex entry.$",
+  "As it walks, it munches on a twig in place\\n",
+  "of a snack. It intimidates opponents by\\n",
+  "puffing hot air out of its ears.$",
 ]
 
 [msg.section_0.entries.654]
 text = [
-  "Braixen Pokédex entry.$",
+  "When the twig is plucked from its tail,\\n",
+  "friction sets the twig alight. The flame\\n",
+  "is used to send signals to its allies.$",
 ]
 
 [msg.section_0.entries.655]
 text = [
-  "Delphox Pokédex entry.$",
+  "It gazes into the flame at the tip of its\\n",
+  "branch to achieve a focused state, which\\n",
+  "allows it to see into the future.$",
 ]
 
 [msg.section_0.entries.656]
 text = [
-  "Froakie Pokédex entry.$",
+  "It protects its skin by covering its body\\n",
+  "in delicate bubbles.$",
 ]
 
 [msg.section_0.entries.657]
 text = [
-  "Frogadier Pokédex entry.$",
+  "Its swiftness is unparalleled. It can\\n",
+  "scale a tower of more than 2,000 feet in\\n",
+  "a minute’s time.$",
 ]
 
 [msg.section_0.entries.658]
 text = [
-  "Greninja Pokédex entry.$",
+  "It creates throwing stars out of\\n",
+  "compressed water.$",
 ]
 
 [msg.section_0.entries.659]
 text = [
-  "Bunnelby Pokédex entry.$",
+  "It excels at digging holes. Using its\\n",
+  "ears, it can dig a nest 33 feet deep in\\n",
+  "one night.$",
 ]
 
 [msg.section_0.entries.660]
 text = [
-  "Diggersby Pokédex entry.$",
+  "With power equal to an excavator, it can\\n",
+  "dig through dense bedrock. It’s a huge\\n",
+  "help during tunnel construction.$",
 ]
 
 [msg.section_0.entries.661]
 text = [
-  "Fletchling Pokédex entry.$",
+  "Its melodious cries are actually\\n",
+  "warnings. Fletchling will mercilessly peck\\n",
+  "at anything that enters its territory.$",
 ]
 
 [msg.section_0.entries.662]
 text = [
-  "Fletchinder Pokédex entry.$",
+  "Fletchinder are exceedingly territorial\\n",
+  "and aggressive. These Pokémon fight\\n",
+  "among themselves over feeding grounds.$",
 ]
 
 [msg.section_0.entries.663]
 text = [
-  "Talonflame Pokédex entry.$",
+  "Its favorite foods are Wingull and\\n",
+  "Pikipek. It attacks with a powerful kick\\n",
+  "and grasps them firmly in its talons.$",
 ]
 
 [msg.section_0.entries.664]
 text = [
-  "Scatterbug Pokédex entry.$",
+  "The powder that covers its body\\n",
+  "regulates its temperature, so it can live\\n",
+  "in any region or climate.$",
 ]
 
 [msg.section_0.entries.665]
 text = [
-  "Spewpa Pokédex entry.$",
+  "The beaks of bird Pokémon can’t begin to\\n",
+  "scratch its stalwart body. To defend\\n",
+  "itself, it spews powder.$",
 ]
 
 [msg.section_0.entries.666]
 text = [
-  "Vivillon Pokédex entry.$",
+  "The patterns on this Pokémon’s wings\\n",
+  "depend on the climate and topography of\\n",
+  "its habitat. It scatters colorful scales.$",
 ]
 
 [msg.section_0.entries.667]
 text = [
-  "Litleo Pokédex entry.$",
+  "This hot-blooded Pokémon is filled with\\n",
+  "curiosity. When it gets angry or starts\\n",
+  "fighting, its short mane gets hot.$",
 ]
 
 [msg.section_0.entries.668]
 text = [
-  "Pyroar Pokédex entry.$",
+  "The male with the largest mane of fire is\\n",
+  "the leader of the pride.$",
 ]
 
 [msg.section_0.entries.669]
 text = [
-  "Flabébé Pokédex entry.$",
+  "Flabébé wears a crown made from pollen\\n",
+  "it’s collected from its flower. The crown\\n",
+  "has hidden healing properties.$",
 ]
 
 [msg.section_0.entries.670]
 text = [
-  "Floette Pokédex entry.$",
+  "It raises flowers and uses them as\\n",
+  "weapons. The more gorgeous the blossom,\\n",
+  "the more power it contains.$",
 ]
 
 [msg.section_0.entries.671]
 text = [
-  "Florges Pokédex entry.$",
+  "Its life can span several hundred years.\\n",
+  "It’s said to devote its entire life to\\n",
+  "protecting gardens.$",
 ]
 
 [msg.section_0.entries.672]
 text = [
-  "Skiddo Pokédex entry.$",
+  "If it has sunshine and water, it doesn’t\\n",
+  "need to eat, because it can generate\\n",
+  "energy from the leaves on its back.$",
 ]
 
 [msg.section_0.entries.673]
 text = [
-  "Gogoat Pokédex entry.$",
+  "They inhabit mountainous regions. The\\n",
+  "leader of the herd is decided by a battle\\n",
+  "of clashing horns.$",
 ]
 
 [msg.section_0.entries.674]
 text = [
-  "Pancham Pokédex entry.$",
+  "It follows Pangoro around like a\\n",
+  "henchman. When Pancham makes a big\\n",
+  "mistake, its leaf gets taken away.$",
 ]
 
 [msg.section_0.entries.675]
 text = [
-  "Pangoro Pokédex entry.$",
+  "This rowdy Pokémon boasts great physical\\n",
+  "strength. Many Trainers are also smitten\\n",
+  "by its lively character.$",
 ]
 
 [msg.section_0.entries.676]
 text = [
-  "Furfrou Pokédex entry.$",
+  "Left alone, its fur will grow longer and\\n",
+  "longer, but it will only allow someone it\\n",
+  "trusts to cut it.$",
 ]
 
 [msg.section_0.entries.677]
 text = [
-  "Espurr Pokédex entry.$",
+  "It has enough psychic energy to blast\\n",
+  "everything within 300 feet of itself, but\\n",
+  "it has no control over its power.$",
 ]
 
 [msg.section_0.entries.678]
 text = [
-  "Meowstic Pokédex entry.$",
+  "When in danger, it raises its ears and\\n",
+  "releases enough psychic power to grind a\\n",
+  "10-ton truck into dust.$",
 ]
 
 [msg.section_0.entries.679]
 text = [
-  "Honedge Pokédex entry.$",
+  "The blue eye on the sword’s handguard is\\n",
+  "the true body of Honedge. With its old\\n",
+  "cloth, it drains people’s lives away.$",
 ]
 
 [msg.section_0.entries.680]
 text = [
-  "Doublade Pokédex entry.$",
+  "The two swords employ a strategy of\\n",
+  "rapidly alternating between offense and\\n",
+  "defense to bring down their prey.$",
 ]
 
 [msg.section_0.entries.681]
 text = [
-  "Aegislash Pokédex entry.$",
+  "Apparently, it can detect the innate\\n",
+  "qualities of leadership.$",
 ]
 
 [msg.section_0.entries.682]
 text = [
-  "Spritzee Pokédex entry.$",
+  "The scent its body gives off enraptures\\n",
+  "those who smell it. Noble ladies had no\\n",
+  "shortage of love for Spritzee.$",
 ]
 
 [msg.section_0.entries.683]
 text = [
-  "Aromatisse Pokédex entry.$",
+  "It devises various scents, pleasant and\\n",
+  "unpleasant, and emits scents its enemies\\n",
+  "dislike to gain an edge in battle.$",
 ]
 
 [msg.section_0.entries.684]
 text = [
-  "Swirlix Pokédex entry.$",
+  "It eats its own weight in sugar every\\n",
+  "day. If it doesn’t get enough sugar, it\\n",
+  "becomes incredibly grumpy.$",
 ]
 
 [msg.section_0.entries.685]
 text = [
-  "Slurpuff Pokédex entry.$",
+  "Slurpuff’s fur contains a lot of air,\\n",
+  "making it soft to the touch and lighter\\n",
+  "than it looks.$",
 ]
 
 [msg.section_0.entries.686]
 text = [
-  "Inkay Pokédex entry.$",
+  "When exchanging information with others\\n",
+  "of its kind, it flashes the light-emitting\\n",
+  "spots on its body in a complex rhythm.$",
 ]
 
 [msg.section_0.entries.687]
 text = [
-  "Malamar Pokédex entry.$",
+  "It’s said that Malamar’s hypnotic powers\\n",
+  "played a role in certain history-changing\\n",
+  "events.$",
 ]
 
 [msg.section_0.entries.688]
 text = [
-  "Binacle Pokédex entry.$",
+  "Two Binacle live together on one rock.\\n",
+  "When they fight, one of them will move to\\n",
+  "a different rock.$",
 ]
 
 [msg.section_0.entries.689]
 text = [
-  "Barbaracle Pokédex entry.$",
+  "When they evolve, two Binacle multiply\\n",
+  "into seven. They fight with the power of\\n",
+  "seven Binacle.$",
 ]
 
 [msg.section_0.entries.690]
 text = [
-  "Skrelp Pokédex entry.$",
+  "It’s not good at swimming, so it clings to\\n",
+  "the seaweed. In the Alola region, it’s\\n",
+  "often found near Dhelmise.$",
 ]
 
 [msg.section_0.entries.691]
 text = [
-  "Dragalge Pokédex entry.$",
+  "Tales are told of ships that wander into\\n",
+  "seas where Dragalge live, never to\\n",
+  "return.$",
 ]
 
 [msg.section_0.entries.692]
 text = [
-  "Clauncher Pokédex entry.$",
+  "Its claws occasionally fall off, and it\\n",
+  "keeps a low profile until they grow back.\\n",
+  "The meat of its claws is so delicious!$",
 ]
 
 [msg.section_0.entries.693]
 text = [
-  "Clawitzer Pokédex entry.$",
+  "Its right arm is packed with meat. When\\n",
+  "its pincer falls off, it’s exported to be\\n",
+  "used as a cooking ingredient.$",
 ]
 
 [msg.section_0.entries.694]
 text = [
-  "Helioptile Pokédex entry.$",
+  "When spread, the frills on its head act\\n",
+  "like solar panels, generating the power\\n",
+  "behind this Pokémon’s electric moves.$",
 ]
 
 [msg.section_0.entries.695]
 text = [
-  "Heliolisk Pokédex entry.$",
+  "A now-vanished desert culture treasured\\n",
+  "these Pokémon.$",
 ]
 
 [msg.section_0.entries.696]
 text = [
-  "Tyrunt Pokédex entry.$",
+  "This Pokémon was restored from a fossil.\\n",
+  "If something happens that it doesn’t\\n",
+  "like, it throws a tantrum and runs wild.$",
 ]
 
 [msg.section_0.entries.697]
 text = [
-  "Tyrantrum Pokédex entry.$",
+  "A single bite of Tyrantrum’s massive jaws\\n",
+  "will demolish a car. This Pokémon was the\\n",
+  "king of the ancient world.$",
 ]
 
 [msg.section_0.entries.698]
 text = [
-  "Amaura Pokédex entry.$",
+  "Amaura is an ancient Pokémon that has\\n",
+  "gone extinct. Specimens of this species\\n",
+  "can sometimes be found frozen in ice.$",
 ]
 
 [msg.section_0.entries.699]
 text = [
-  "Aurorus Pokédex entry.$",
+  "When gripped by rage, Aurorus will\\n",
+  "emanate freezing air, covering\\n",
+  "everything around it in ice.$",
 ]
 
 [msg.section_0.entries.700]
 text = [
-  "Sylveon Pokédex entry.$",
+  "There’s a Galarian fairy tale that\\n",
+  "describes a beautiful Sylveon vanquishing\\n",
+  "a dreadful dragon Pokémon.$",
 ]
 
 [msg.section_0.entries.701]
 text = [
-  "Hawlucha Pokédex entry.$",
+  "It drives its opponents to exhaustion\\n",
+  "with its agile maneuvers, then ends the\\n",
+  "fight with a flashy finishing move.$",
 ]
 
 [msg.section_0.entries.702]
 text = [
-  "Dedenne Pokédex entry.$",
+  "It sneaks into people’s homes and steals\\n",
+  "electricity from their outlets.$",
 ]
 
 [msg.section_0.entries.703]
 text = [
-  "Carbink Pokédex entry.$",
+  "When beset by attackers, Carbink wipes\\n",
+  "them all out by firing high-energy beams\\n",
+  "from the gems embedded in its body.$",
 ]
 
 [msg.section_0.entries.704]
 text = [
-  "Goomy Pokédex entry.$",
+  "Its body is mostly water. If it dries out,\\n",
+  "it will die, so it’s always sitting with\\n",
+  "perfect stillness in the shade.$",
 ]
 
 [msg.section_0.entries.705]
 text = [
-  "Sliggoo Pokédex entry.$",
+  "The lump on its back contains its tiny\\n",
+  "brain. It thinks only of food and\\n",
+  "escaping its enemies.$",
 ]
 
 [msg.section_0.entries.706]
 text = [
-  "Goodra Pokédex entry.$",
+  "Underneath its slimy skin is a thick layer\\n",
+  "of fat, and the combination of the two\\n",
+  "makes enemies’ attacks slide right off.$",
 ]
 
 [msg.section_0.entries.707]
 text = [
-  "Klefki Pokédex entry.$",
+  "It inserts its horn into chinks in metal,\\n",
+  "absorbing metal ions. For some reason, it\\n",
+  "collects keys.$",
 ]
 
 [msg.section_0.entries.708]
 text = [
-  "Phantump Pokédex entry.$",
+  "With a voice like a human child’s, it cries\\n",
+  "out to lure adults deep into the forest,\\n",
+  "getting them lost among the trees.$",
 ]
 
 [msg.section_0.entries.709]
 text = [
-  "Trevenant Pokédex entry.$",
+  "It can control trees at will. It will trap\\n",
+  "people who harm the forest, so they can\\n",
+  "never leave.$",
 ]
 
 [msg.section_0.entries.710]
 text = [
-  "Pumpkaboo Pokédex entry.$",
+  "Spirits that wander this world are placed\\n",
+  "into Pumpkaboo’s body. They’re then\\n",
+  "moved on to the afterlife.$",
 ]
 
 [msg.section_0.entries.711]
 text = [
-  "Gourgeist Pokédex entry.$",
+  "It enwraps its prey in its hairlike arms.\\n",
+  "It sings joyfully as it observes the\\n",
+  "suffering of its prey.$",
 ]
 
 [msg.section_0.entries.712]
 text = [
-  "Bergmite Pokédex entry.$",
+  "This Pokémon lives in areas of frigid cold.\\n",
+  "It secures itself to the back of an\\n",
+  "Avalugg by freezing its feet in place.$",
 ]
 
 [msg.section_0.entries.713]
 text = [
-  "Avalugg Pokédex entry.$",
+  "At high latitudes, this Pokémon can be\\n",
+  "found with clusters of Bergmite on its\\n",
+  "back as it swims among the icebergs.$",
 ]
 
 [msg.section_0.entries.714]
 text = [
-  "Noibat Pokédex entry.$",
+  "It flies around in search of fruit to eat.\\n",
+  "It uses ultrasonic waves to detect which\\n",
+  "fruits are ripe.$",
 ]
 
 [msg.section_0.entries.715]
 text = [
-  "Noivern Pokédex entry.$",
+  "Flying through the darkness, it weakens\\n",
+  "enemies with ultrasonic waves that could\\n",
+  "crush stone. Its fangs finish the fight.$",
 ]
 
 [msg.section_0.entries.716]
 text = [
-  "Xerneas Pokédex entry.$",
+  "When the horns on its head shine in seven\\n",
+  "colors, it is said to be sharing\\n",
+  "everlasting life.$",
 ]
 
 [msg.section_0.entries.717]
 text = [
-  "Yveltal Pokédex entry.$",
+  "When its life comes to an end, it absorbs\\n",
+  "the life energy of every living thing and\\n",
+  "turns into a cocoon once more.$",
 ]
 
 [msg.section_0.entries.718]
 text = [
-  "Zygarde Pokédex entry.$",
+  "Some say it can change to an even more\\n",
+  "powerful form when battling those who\\n",
+  "threaten the ecosystem.$",
 ]
 
 [msg.section_0.entries.719]
 text = [
-  "Diancie Pokédex entry.$",
+  "It can instantly create many diamonds by\\n",
+  "compressing the carbon in the air\\n",
+  "between its hands.$",
 ]
 
 [msg.section_0.entries.720]
 text = [
-  "Hoopa Pokédex entry.$",
+  "It gathers things it likes and passes\\n",
+  "them through its loop to teleport them\\n",
+  "to a secret place.$",
 ]
 
 [msg.section_0.entries.721]
 text = [
-  "Volcanion Pokédex entry.$",
+  "It expels its internal steam from the\\n",
+  "arms on its back. It has enough power to\\n",
+  "blow away a mountain.$",
+]
+
+[msg.section_0.entries.722]
+text = [
+  "It feels relaxed in tight, dark places\\n",
+  "and has been known to use its Trainer’s\\n",
+  "pocket or bag as a nest.$",
+]
+
+[msg.section_0.entries.723]
+text = [
+  "This narcissistic Pokémon is a clean\\n",
+  "freak. If you don’t groom it diligently,\\n",
+  "it will stop listening to you.$",
+]
+
+[msg.section_0.entries.724]
+text = [
+  "Although basically cool and cautious,\\n",
+  "when it’s caught by surprise, it’s seized\\n",
+  "by panic.$",
+]
+
+[msg.section_0.entries.725]
+text = [
+  "Trying to pet Litten before it trusts\\n",
+  "you will result in a nasty scratch from\\n",
+  "its sharp claws. Be careful.$",
+]
+
+[msg.section_0.entries.726]
+text = [
+  "When facing a powerful enemy, Torracat’s\\n",
+  "fighting spirit gets pumped up, and its\\n",
+  "fire bell blazes hotter.$",
+]
+
+[msg.section_0.entries.727]
+text = [
+  "When its fighting spirit is set alight, the\\n",
+  "flames around its waist become especially\\n",
+  "intense.$",
+]
+
+[msg.section_0.entries.728]
+text = [
+  "Popplio gets on top of its bouncy water\\n",
+  "balloons to jump higher. It’s quite the\\n",
+  "acrobatic fighter!$",
+]
+
+[msg.section_0.entries.729]
+text = [
+  "On nights when the sea is calm, Brionne\\n",
+  "dance with one another to the singing of\\n",
+  "the Primarina that’s leading them.$",
+]
+
+[msg.section_0.entries.730]
+text = [
+  "For Primarina, every battle’s a stage.\\n",
+  "Its singing and the dancing of its\\n",
+  "balloons will mesmerize the audience.$",
+]
+
+[msg.section_0.entries.731]
+text = [
+  "It may look spindly, but its neck muscles\\n",
+  "are heavy-duty. It can peck at a tree 16\\n",
+  "times per second!$",
+]
+
+[msg.section_0.entries.732]
+text = [
+  "From its mouth, it fires the seeds of\\n",
+  "berries it has eaten. The scattered\\n",
+  "seeds give rise to new plants.$",
+]
+
+[msg.section_0.entries.733]
+text = [
+  "Known for forming harmonious couples,\\n",
+  "this Pokémon is brought to wedding\\n",
+  "ceremonies as a good luck charm.$",
+]
+
+[msg.section_0.entries.734]
+text = [
+  "Although it will eat anything, it prefers\\n",
+  "fresh living things, so it marches down\\n",
+  "streets in search of prey.$",
+]
+
+[msg.section_0.entries.735]
+text = [
+  "Patient by nature, this Pokémon loses\\n",
+  "control of itself and pounces when it\\n",
+  "spots its favorite meal - Rattata!$",
+]
+
+[msg.section_0.entries.736]
+text = [
+  "It uses its big jaws to dig nests into\\n",
+  "the forest floor, and it loves to feed on\\n",
+  "sweet tree sap.$",
+]
+
+[msg.section_0.entries.737]
+text = [
+  "Its stout shell provides excellent\\n",
+  "defense from attacks. It uses\\n",
+  "electricity on persistent opponents.$",
+]
+
+[msg.section_0.entries.738]
+text = [
+  "It produces electricity via an electrical\\n",
+  "organ in its abdomen.$",
+]
+
+[msg.section_0.entries.739]
+text = [
+  "Its hard pincers are well suited to both\\n",
+  "offense and defense. Fights between two\\n",
+  "Crabrawler are like boxing matches.$",
+]
+
+[msg.section_0.entries.740]
+text = [
+  "It stores coldness in its pincers and\\n",
+  "pummels its foes. It can even smash\\n",
+  "thick walls of ice to bits!$",
+]
+
+[msg.section_0.entries.741]
+text = [
+  "This Oricorio has sipped red nectar. Its\\n",
+  "passionate dance moves cause its enemies\\n",
+  "to combust in both body and mind.$",
+]
+
+[msg.section_0.entries.742]
+text = [
+  "Nectar and pollen are its favorite fare.\\n",
+  "In fields of flowers, it gets into\\n",
+  "skirmishes with Butterfree over food.$",
+]
+
+[msg.section_0.entries.743]
+text = [
+  "Ribombee absolutely hate getting wet or\\n",
+  "rained on. In the cloudy Galar region,\\n",
+  "they are very seldom seen.$",
+]
+
+[msg.section_0.entries.744]
+text = [
+  "This Pokémon can bond very strongly with\\n",
+  "its Trainer, but it also has a habit of\\n",
+  "biting.$",
+]
+
+[msg.section_0.entries.745]
+text = [
+  "This Lycanroc is calm and cautious. The\\n",
+  "rocks jutting from its mane are razor\\n",
+  "sharp.$",
+]
+
+[msg.section_0.entries.746]
+text = [
+  "When it senses danger, its eyes tear up.\\n",
+  "The sparkle of its tears signals other\\n",
+  "Wishiwashi to gather.$",
+]
+
+[msg.section_0.entries.747]
+text = [
+  "Aside from its head, its body parts\\n",
+  "regenerate quickly if they’re cut off.$",
+]
+
+[msg.section_0.entries.748]
+text = [
+  "Toxapex crawls along the ocean floor on\\n",
+  "its 12 legs. It leaves a trail of Corsola\\n",
+  "bits scattered in its wake.$",
+]
+
+[msg.section_0.entries.749]
+text = [
+  "Possessing mighty power, Mudbray can be\\n",
+  "loaded with 50 times its own body weight\\n",
+  "and will be totally fine.$",
+]
+
+[msg.section_0.entries.750]
+text = [
+  "Mudsdale has so much stamina that it\\n",
+  "could carry over 10 tons across the\\n",
+  "Galar region without rest or sleep.$",
+]
+
+[msg.section_0.entries.751]
+text = [
+  "When it comes across enemies or\\n",
+  "potential prey, this Pokémon smashes its\\n",
+  "water-bubble-covered head into them.$",
+]
+
+[msg.section_0.entries.752]
+text = [
+  "It acts as a caretaker for Dewpider,\\n",
+  "putting them inside its bubble and letting\\n",
+  "them eat any leftover food.$",
+]
+
+[msg.section_0.entries.753]
+text = [
+  "During the day, Fomantis basks in\\n",
+  "sunlight and sleeps peacefully. It wakes\\n",
+  "and moves around at night.$",
+]
+
+[msg.section_0.entries.754]
+text = [
+  "This Pokémon resembles a beautiful\\n",
+  "flower. A properly raised Lurantis will\\n",
+  "have gorgeous, brilliant colors.$",
+]
+
+[msg.section_0.entries.755]
+text = [
+  "Pokémon living in the forest eat the\\n",
+  "delicious caps on Morelull’s head. The\\n",
+  "caps regrow overnight.$",
+]
+
+[msg.section_0.entries.756]
+text = [
+  "If you see a light deep in a forest at\\n",
+  "night, don’t go near. Shiinotic will make\\n",
+  "you fall fast asleep.$",
+]
+
+[msg.section_0.entries.757]
+text = [
+  "The males will do whatever the females\\n",
+  "tell them. They give the females most of\\n",
+  "their food.$",
+]
+
+[msg.section_0.entries.758]
+text = [
+  "The winner of competitions between\\n",
+  "Salazzle is decided by which one has the\\n",
+  "most male Salandit with it.$",
+]
+
+[msg.section_0.entries.759]
+text = [
+  "Stufful hates to be hugged or touched in\\n",
+  "any way. It will squirm, thrash, and\\n",
+  "resist with amazing power.$",
+]
+
+[msg.section_0.entries.760]
+text = [
+  "It boasts tremendous physical strength.\\n",
+  "Many people call it the most dangerous\\n",
+  "Pokémon in the Alola region.$",
+]
+
+[msg.section_0.entries.761]
+text = [
+  "When under attack, it secretes a sweet\\n",
+  "and delicious sweat. The scent only calls\\n",
+  "more enemies to it.$",
+]
+
+[msg.section_0.entries.762]
+text = [
+  "Any Corvisquire that pecks at this\\n",
+  "Pokémon will be greeted with a smack from\\n",
+  "its sepals followed by a sharp kick.$",
+]
+
+[msg.section_0.entries.763]
+text = [
+  "This feared Pokémon has long, slender\\n",
+  "legs and a cruel heart. It shows no\\n",
+  "mercy as it stomps on its opponents.$",
+]
+
+[msg.section_0.entries.764]
+text = [
+  "These Pokémon smell very nice. All Comfey\\n",
+  "wear different flowers, so each of these\\n",
+  "Pokémon has its own individual scent.$",
+]
+
+[msg.section_0.entries.765]
+text = [
+  "With waves of its fan - made from leaves\\n",
+  "and its own fur - Oranguru skillfully\\n",
+  "gives instructions to other Pokémon.$",
+]
+
+[msg.section_0.entries.766]
+text = [
+  "Passimian live in groups of about 20, with\\n",
+  "each member performing an assigned role.$",
+]
+
+[msg.section_0.entries.767]
+text = [
+  "An astonishingly cowardly Pokémon,\\n",
+  "Wimpod will whir its legs at high speeds to\\n",
+  "run away if anything comes near it.$",
+]
+
+[msg.section_0.entries.768]
+text = [
+  "The shell covering its body is as hard as\\n",
+  "diamond. This Pokémon will do anything it\\n",
+  "takes to win.$",
+]
+
+[msg.section_0.entries.769]
+text = [
+  "It likes the shovel on its head, so\\n",
+  "Sandygast will get serious and fight any\\n",
+  "children who come to take it back.$",
+]
+
+[msg.section_0.entries.770]
+text = [
+  "Buried beneath the castle are masses of\\n",
+  "dried-up bones from those whose vitality\\n",
+  "it has drained.$",
+]
+
+[msg.section_0.entries.771]
+text = [
+  "It’s covered in a slime that keeps its\\n",
+  "skin moist, allowing it to stay on land\\n",
+  "for days without drying up.$",
+]
+
+[msg.section_0.entries.772]
+text = [
+  "It was modeled after a mighty Pokémon of\\n",
+  "myth. The mask placed upon it limits its\\n",
+  "power in order to keep it under control.$",
+]
+
+[msg.section_0.entries.773]
+text = [
+  "The final factor needed to release this\\n",
+  "Pokémon’s true power was a strong bond\\n",
+  "with a Trainer it trusts.$",
+]
+
+[msg.section_0.entries.774]
+text = [
+  "Although its outer shell is uncommonly\\n",
+  "durable, the shock of falling to the\\n",
+  "ground smashes the shell to smithereens.$",
+]
+
+[msg.section_0.entries.775]
+text = [
+  "It remains asleep from birth to death as\\n",
+  "a result of the sedative properties of\\n",
+  "the leaves that form its diet.$",
+]
+
+[msg.section_0.entries.776]
+text = [
+  "Explosive substances coat the shell on\\n",
+  "its back. Enemies that dare attack it will\\n",
+  "be blown away by an immense detonation.$",
+]
+
+[msg.section_0.entries.777]
+text = [
+  "Its capacity to produce electricity is\\n",
+  "somewhat limited, so it gets charged up\\n",
+  "by letting lightning strike it!$",
+]
+
+[msg.section_0.entries.778]
+text = [
+  "There was a scientist who peeked under\\n",
+  "Mimikyu’s old rag in the name of\\n",
+  "research.$",
+]
+
+[msg.section_0.entries.779]
+text = [
+  "It stuns its prey with psychokinesis and\\n",
+  "then grinds them to mush with its strong\\n",
+  "teeth.$",
+]
+
+[msg.section_0.entries.780]
+text = [
+  "If a child it has made friends with is\\n",
+  "bullied, Drampa will find the bully’s\\n",
+  "house and burn it to the ground.$",
+]
+
+[msg.section_0.entries.781]
+text = [
+  "After lowering its anchor, it waits for\\n",
+  "its prey. It catches large Wailord and\\n",
+  "drains their life-force.$",
+]
+
+[msg.section_0.entries.782]
+text = [
+  "It expresses its feelings by smacking its\\n",
+  "scales. Metallic sounds echo through the\\n",
+  "tall mountains where Jangmo-o lives.$",
+]
+
+[msg.section_0.entries.783]
+text = [
+  "Before attacking its enemies, it clashes\\n",
+  "its scales together and roars. Its\\n",
+  "sharp claws shred the opposition.$",
+]
+
+[msg.section_0.entries.784]
+text = [
+  "Certain ruins have paintings of ancient\\n",
+  "warriors wearing armor made of Kommo-o\\n",
+  "scales.$",
+]
+
+[msg.section_0.entries.785]
+text = [
+  "It confuses its enemies by flying too\\n",
+  "quickly for the eye to follow.$",
+]
+
+[msg.section_0.entries.786]
+text = [
+  "This guardian deity of Akala is\\n",
+  "guilelessly cruel. The fragrant aroma of\\n",
+  "flowers is the source of its energy.$",
+]
+
+[msg.section_0.entries.787]
+text = [
+  "Although it’s called a guardian deity,\\n",
+  "it’s violent enough to crush anyone it\\n",
+  "sees as an enemy.$",
+]
+
+[msg.section_0.entries.788]
+text = [
+  "Although it’s called a guardian deity,\\n",
+  "terrible calamities sometimes befall\\n",
+  "those who recklessly approach Tapu Fini.$",
+]
+
+[msg.section_0.entries.789]
+text = [
+  "This Pokémon came from another universe.\\n",
+  "Its gaseous body is so light that even a\\n",
+  "gentle breeze can blow it away.$",
+]
+
+[msg.section_0.entries.790]
+text = [
+  "As it absorbs light, Cosmoem continues\\n",
+  "to grow. Its golden shell is surprisingly\\n",
+  "solid.$",
+]
+
+[msg.section_0.entries.791]
+text = [
+  "Solgaleo was once known as the Beast\\n",
+  "That Devours the Sun. Energy in the form\\n",
+  "of light radiates boundlessly from it.$",
+]
+
+[msg.section_0.entries.792]
+text = [
+  "It sometimes summons unknown powers and\\n",
+  "life-forms here to this world from holes\\n",
+  "that lead to other worlds.$",
+]
+
+[msg.section_0.entries.793]
+text = [
+  "A life-form from another world, it was\\n",
+  "dubbed a UB and is thought to produce a\\n",
+  "strong neurotoxin.$",
+]
+
+[msg.section_0.entries.794]
+text = [
+  "Buzzwole goes around showing off its\\n",
+  "abnormally swollen muscles. It is one\\n",
+  "kind of Ultra Beast.$",
+]
+
+[msg.section_0.entries.795]
+text = [
+  "A life-form that lives in another world,\\n",
+  "its body is thin and supple, but it also\\n",
+  "possesses great power.$",
+]
+
+[msg.section_0.entries.796]
+text = [
+  "It appeared from the Ultra Wormhole. It\\n",
+  "raided a power plant, so people think it\\n",
+  "energizes itself with electricity.$",
+]
+
+[msg.section_0.entries.797]
+text = [
+  "One of the dangerous UBs, high energy\\n",
+  "readings can be detected coming from\\n",
+  "both of its huge arms.$",
+]
+
+[msg.section_0.entries.798]
+text = [
+  "This Ultra Beast’s body, which is as thin\\n",
+  "as paper, is like a sharpened sword.$",
+]
+
+[msg.section_0.entries.799]
+text = [
+  "An unknown life-form called a UB. It may\\n",
+  "be constantly hungry - it is certainly\\n",
+  "always devouring something.$",
+]
+
+[msg.section_0.entries.800]
+text = [
+  "It needs light to survive, and it goes on\\n",
+  "a rampage seeking it out. Its laser\\n",
+  "beams will cut anything to pieces.$",
+]
+
+[msg.section_0.entries.801]
+text = [
+  "Built roughly 500 years ago by a\\n",
+  "scientist, the part called the Soul-Heart\\n",
+  "is the actual life-form.$",
+]
+
+[msg.section_0.entries.802]
+text = [
+  "This Pokémon can conceal itself in any\\n",
+  "shadow, so it went undiscovered for a\\n",
+  "long time.$",
+]
+
+[msg.section_0.entries.803]
+text = [
+  "This Ultra Beast is well enough liked to\\n",
+  "be chosen as a first partner in its own\\n",
+  "world.$",
+]
+
+[msg.section_0.entries.804]
+text = [
+  "One kind of Ultra Beast, it fires a\\n",
+  "glowing, venomous liquid from its needles.\\n",
+  "This liquid is also immensely adhesive.$",
+]
+
+[msg.section_0.entries.805]
+text = [
+  "It appeared from an Ultra Wormhole.$",
+]
+
+[msg.section_0.entries.806]
+text = [
+  "It slithers toward people. Then, without\\n",
+  "warning, it triggers the explosion of its\\n",
+  "own head.$",
+]
+
+[msg.section_0.entries.807]
+text = [
+  "Electricity sparks from the pads on its\\n",
+  "limbs. Wherever Zeraora runs, lightning\\n",
+  "flashes and thunder echoes.$",
+]
+
+[msg.section_0.entries.808]
+text = [
+  "They live as a group, but when the time\\n",
+  "comes, one strong Meltan will absorb all\\n",
+  "the others and evolve.$",
+]
+
+[msg.section_0.entries.809]
+text = [
+  "Centrifugal force is behind the punches\\n",
+  "of Melmetal’s heavy hex-nut arms.$",
+]
+
+[msg.section_0.entries.810]
+text = [
+  "It attacks with rapid beats of its stick.\\n",
+  "As it strikes with amazing speed, it gets\\n",
+  "more and more pumped.$",
+]
+
+[msg.section_0.entries.811]
+text = [
+  "The faster a Thwackey can beat out a\\n",
+  "rhythm with its two sticks, the more\\n",
+  "respect it wins from its peers.$",
+]
+
+[msg.section_0.entries.812]
+text = [
+  "By drumming, it taps into the power of\\n",
+  "its special tree stump. The roots of the\\n",
+  "stump follow its direction in battle.$",
+]
+
+[msg.section_0.entries.813]
+text = [
+  "A warm-up of running around gets fire\\n",
+  "energy coursing through this Pokémon’s\\n",
+  "body.$",
+]
+
+[msg.section_0.entries.814]
+text = [
+  "It kicks berries right off the branches\\n",
+  "of trees and then juggles them with its\\n",
+  "feet, practicing its footwork.$",
+]
+
+[msg.section_0.entries.815]
+text = [
+  "It’s skilled at both offense and defense,\\n",
+  "and it gets pumped up when cheered on.$",
+]
+
+[msg.section_0.entries.816]
+text = [
+  "When it gets wet, its skin changes color,\\n",
+  "and this Pokémon becomes invisible as if\\n",
+  "it were camouflaged.$",
+]
+
+[msg.section_0.entries.817]
+text = [
+  "Highly intelligent but also very lazy, it\\n",
+  "keeps enemies out of its territory by\\n",
+  "laying traps everywhere.$",
+]
+
+[msg.section_0.entries.818]
+text = [
+  "It has many hidden capabilities, such as\\n",
+  "fingertips that shoot water and a\\n",
+  "membrane on its back for gliding.$",
+]
+
+[msg.section_0.entries.819]
+text = [
+  "Found throughout the Galar region, this\\n",
+  "Pokémon becomes uneasy if its cheeks are\\n",
+  "ever completely empty of berries.$",
+]
+
+[msg.section_0.entries.820]
+text = [
+  "Common throughout the Galar region, this\\n",
+  "Pokémon has strong teeth and can chew\\n",
+  "through the toughest of berry shells.$",
+]
+
+[msg.section_0.entries.821]
+text = [
+  "It will bravely challenge any opponent,\\n",
+  "no matter how powerful.$",
+]
+
+[msg.section_0.entries.822]
+text = [
+  "The lessons of many harsh battles have\\n",
+  "taught it how to accurately judge an\\n",
+  "opponent’s strength.$",
+]
+
+[msg.section_0.entries.823]
+text = [
+  "This Pokémon reigns supreme in the skies\\n",
+  "of the Galar region.$",
+]
+
+[msg.section_0.entries.824]
+text = [
+  "Often found in gardens, this Pokémon has\\n",
+  "hairs on its body that it uses to assess\\n",
+  "its surroundings.$",
+]
+
+[msg.section_0.entries.825]
+text = [
+  "As it grows inside its shell, it uses its\\n",
+  "psychic abilities to monitor the outside\\n",
+  "world and prepare for evolution.$",
+]
+
+[msg.section_0.entries.826]
+text = [
+  "It emits psychic energy to observe and\\n",
+  "study what's around it, even things over\\n",
+  "six miles away.$",
+]
+
+[msg.section_0.entries.827]
+text = [
+  "Aided by the soft pads on its feet, it\\n",
+  "silently raids the food stores of other\\n",
+  "Pokémon.$",
+]
+
+[msg.section_0.entries.828]
+text = [
+  "With a lithe body and sharp claws, it\\n",
+  "goes around stealing food and eggs.\\n",
+  "Boltund is its natural enemy.$",
+]
+
+[msg.section_0.entries.829]
+text = [
+  "It anchors itself in the ground with its\\n",
+  "single leg, then basks in the sun.$",
+]
+
+[msg.section_0.entries.830]
+text = [
+  "The cotton on the head of this Pokémon\\n",
+  "can be spun into a glossy, gorgeous yarn\\n",
+  "- a Galar regional specialty.$",
+]
+
+[msg.section_0.entries.831]
+text = [
+  "If its fleece grows too long, Wooloo\\n",
+  "won’t be able to move.$",
+]
+
+[msg.section_0.entries.832]
+text = [
+  "Its majestic horns are meant only to\\n",
+  "impress the opposite gender. They never\\n",
+  "see use in battle.$",
+]
+
+[msg.section_0.entries.833]
+text = [
+  "Apparently the itch of its teething\\n",
+  "impels it to snap its jaws at anything in\\n",
+  "front of it.$",
+]
+
+[msg.section_0.entries.834]
+text = [
+  "This Pokémon rapidly extends its\\n",
+  "retractable neck to sink its sharp fangs\\n",
+  "into distant enemies and take them down.$",
+]
+
+[msg.section_0.entries.835]
+text = [
+  "This gluttonous Pokémon only assists\\n",
+  "people with their work because it wants\\n",
+  "treats.$",
+]
+
+[msg.section_0.entries.836]
+text = [
+  "It sends electricity through its legs to\\n",
+  "boost their strength. Running at top\\n",
+  "speed, it easily breaks 50 mph.$",
+]
+
+[msg.section_0.entries.837]
+text = [
+  "It can race around like a unicycle, even\\n",
+  "on rough, rocky terrain. Burning coal\\n",
+  "sustains it.$",
+]
+
+[msg.section_0.entries.838]
+text = [
+  "It forms coal inside its body. Coal\\n",
+  "dropped by this Pokémon once helped fuel\\n",
+  "the lives of people in the Galar region.$",
+]
+
+[msg.section_0.entries.839]
+text = [
+  "It’s usually peaceful, but the vandalism\\n",
+  "of mines enrages it.$",
+]
+
+[msg.section_0.entries.840]
+text = [
+  "As soon as it’s born, it burrows into an\\n",
+  "apple.$",
+]
+
+[msg.section_0.entries.841]
+text = [
+  "It flies on wings of apple skin and spits\\n",
+  "a powerful acid. It can also change its\\n",
+  "shape into that of an apple.$",
+]
+
+[msg.section_0.entries.842]
+text = [
+  "Its body is covered in sweet nectar, and\\n",
+  "the skin on its back is especially yummy.\\n",
+  "Children used to have it as a snack.$",
+]
+
+[msg.section_0.entries.843]
+text = [
+  "It spews sand from its nostrils. While\\n",
+  "the enemy is blinded, it burrows into the\\n",
+  "ground to hide.$",
+]
+
+[msg.section_0.entries.844]
+text = [
+  "Its unique style of coiling allows it to\\n",
+  "blast sand out of its sand sac more\\n",
+  "efficiently.$",
+]
+
+[msg.section_0.entries.845]
+text = [
+  "This hungry Pokémon swallows Arrokuda\\n",
+  "whole.$",
+]
+
+[msg.section_0.entries.846]
+text = [
+  "After it’s eaten its fill, its movements\\n",
+  "become extremely sluggish. That’s when\\n",
+  "Cramorant swallows it up.$",
+]
+
+[msg.section_0.entries.847]
+text = [
+  "This Pokémon has a jaw that’s as sharp\\n",
+  "as a spear and as strong as steel.$",
+]
+
+[msg.section_0.entries.848]
+text = [
+  "It stores poison in an internal poison\\n",
+  "sac and secretes that poison through\\n",
+  "its skin.$",
+]
+
+[msg.section_0.entries.849]
+text = [
+  "This short-tempered and aggressive\\n",
+  "Pokémon chugs stagnant water to absorb\\n",
+  "any toxins it might contain.$",
+]
+
+[msg.section_0.entries.850]
+text = [
+  "It wraps prey up with its heated body,\\n",
+  "cooking them in its coils.$",
+]
+
+[msg.section_0.entries.851]
+text = [
+  "When it heats up, its body temperature\\n",
+  "reaches about 1,500 degrees Fahrenheit.$",
+]
+
+[msg.section_0.entries.852]
+text = [
+  "It’s very curious, but its means of\\n",
+  "investigating things is to try to punch\\n",
+  "them with its tentacles.$",
+]
+
+[msg.section_0.entries.853]
+text = [
+  "Searching for an opponent to test its\\n",
+  "skills against, it emerges onto land.$",
+]
+
+[msg.section_0.entries.854]
+text = [
+  "This Pokémon is said to have been born\\n",
+  "when a lonely spirit possessed a cold,\\n",
+  "leftover cup of tea.$",
+]
+
+[msg.section_0.entries.855]
+text = [
+  "This species lives in antique teapots.\\n",
+  "Most pots are forgeries, but on rare\\n",
+  "occasions, an authentic work is found.$",
+]
+
+[msg.section_0.entries.856]
+text = [
+  "If this Pokémon senses a strong emotion,\\n",
+  "it will run away as fast as it can. It\\n",
+  "prefers areas without people.$",
+]
+
+[msg.section_0.entries.857]
+text = [
+  "No matter who you are, if you bring\\n",
+  "strong emotions near this Pokémon, it\\n",
+  "will silence you violently.$",
+]
+
+[msg.section_0.entries.858]
+text = [
+  "It emits psychic power strong enough to\\n",
+  "cause headaches as a deterrent to the\\n",
+  "approach of others.$",
+]
+
+[msg.section_0.entries.859]
+text = [
+  "It sneaks into people’s homes, stealing\\n",
+  "things and feasting on the negative\\n",
+  "energy of the frustrated occupants.$",
+]
+
+[msg.section_0.entries.860]
+text = [
+  "With sly cunning, it tries to lure people\\n",
+  "into the woods. Some believe it to have\\n",
+  "the power to make crops grow.$",
+]
+
+[msg.section_0.entries.861]
+text = [
+  "With the hair wrapped around its body\\n",
+  "helping to enhance its muscles, this\\n",
+  "Pokémon can overwhelm even Machamp.$",
+]
+
+[msg.section_0.entries.862]
+text = [
+  "It evolved after experiencing numerous\\n",
+  "fights.$",
+]
+
+[msg.section_0.entries.863]
+text = [
+  "After many battles, it evolved dangerous\\n",
+  "claws that come together to form\\n",
+  "daggers when extended.$",
+]
+
+[msg.section_0.entries.864]
+text = [
+  "Be cautious of the ectoplasmic body\\n",
+  "surrounding its soul. You’ll become stiff\\n",
+  "as stone if you touch it.$",
+]
+
+[msg.section_0.entries.865]
+text = [
+  "After deflecting attacks with its hard\\n",
+  "leaf shield, it strikes back with its\\n",
+  "sharp leek stalk.$",
+]
+
+[msg.section_0.entries.866]
+text = [
+  "Its amusing movements make it very\\n",
+  "popular. It releases its psychic power\\n",
+  "from the pattern on its belly.$",
+]
+
+[msg.section_0.entries.867]
+text = [
+  "Never touch its shadowlike body, or\\n",
+  "you’ll be shown the horrific memories\\n",
+  "behind the picture carved into it.$",
+]
+
+[msg.section_0.entries.868]
+text = [
+  "They say that any patisserie visited by\\n",
+  "Milcery is guaranteed success and good\\n",
+  "fortune.$",
+]
+
+[msg.section_0.entries.869]
+text = [
+  "When Alcremie is content, the cream it\\n",
+  "secretes from its hands becomes sweeter\\n",
+  "and richer.$",
+]
+
+[msg.section_0.entries.870]
+text = [
+  "Five of them are troopers, and one is\\n",
+  "the brass. The brass’s orders are\\n",
+  "absolute.$",
+]
+
+[msg.section_0.entries.871]
+text = [
+  "It feeds on seaweed, using its teeth to\\n",
+  "scrape it off rocks. Electric current\\n",
+  "flows from the tips of its spines.$",
+]
+
+[msg.section_0.entries.872]
+text = [
+  "It eats snow that piles up on the\\n",
+  "ground.$",
+]
+
+[msg.section_0.entries.873]
+text = [
+  "Icy scales fall from its wings like snow\\n",
+  "as it flies over fields and mountains.$",
+]
+
+[msg.section_0.entries.874]
+text = [
+  "Once a year, on a specific date and at a\\n",
+  "specific time, they gather out of\\n",
+  "nowhere and form up in a circle.$",
+]
+
+[msg.section_0.entries.875]
+text = [
+  "It drifted in on the flow of ocean waters\\n",
+  "from a frigid place.$",
+]
+
+[msg.section_0.entries.876]
+text = [
+  "Through its horns, it can pick up on the\\n",
+  "emotions of creatures around it.$",
+]
+
+[msg.section_0.entries.877]
+text = [
+  "As it eats the seeds stored up in its\\n",
+  "pocket-like pouches, this Pokémon is not\\n",
+  "just satisfying its constant hunger.$",
+]
+
+[msg.section_0.entries.878]
+text = [
+  "If a job requires serious strength, this\\n",
+  "Pokémon will excel at it.$",
+]
+
+[msg.section_0.entries.879]
+text = [
+  "They came over from another region long\\n",
+  "ago and worked together with humans.\\n",
+  "Their green skin is resistant to water.$",
+]
+
+[msg.section_0.entries.880]
+text = [
+  "The powerful muscles in its tail generate\\n",
+  "its electricity.$",
+]
+
+[msg.section_0.entries.881]
+text = [
+  "The shaking of its freezing upper half is\\n",
+  "what generates its electricity. It has a\\n",
+  "hard time walking around.$",
+]
+
+[msg.section_0.entries.882]
+text = [
+  "Powerful legs and jaws made it the apex\\n",
+  "predator of its time.$",
+]
+
+[msg.section_0.entries.883]
+text = [
+  "The skin on its face is impervious to\\n",
+  "attack, but breathing difficulties made\\n",
+  "this Pokémon go extinct anyway.$",
+]
+
+[msg.section_0.entries.884]
+text = [
+  "Its body resembles polished metal, and\\n",
+  "it’s both lightweight and strong. The\\n",
+  "only drawback is that it rusts easily.$",
+]
+
+[msg.section_0.entries.885]
+text = [
+  "If this weak Pokémon is by itself, a mere\\n",
+  "child could defeat it.$",
+]
+
+[msg.section_0.entries.886]
+text = [
+  "It’s capable of flying faster than 120\\n",
+  "mph.$",
+]
+
+[msg.section_0.entries.887]
+text = [
+  "Apparently the Dreepy inside Dragapult’s\\n",
+  "horns eagerly look forward to being\\n",
+  "launched out at Mach speeds.$",
+]
+
+[msg.section_0.entries.888]
+text = [
+  "Known as a legendary hero, this Pokémon\\n",
+  "absorbs metal particles, transforming\\n",
+  "them into a weapon it uses to battle.$",
+]
+
+[msg.section_0.entries.889]
+text = [
+  "This Pokémon slept for aeons while in the\\n",
+  "form of a statue. It was asleep for so\\n",
+  "long, people forgot that it ever existed.$",
+]
+
+[msg.section_0.entries.890]
+text = [
+  "The core on its chest absorbs energy\\n",
+  "emanating from the lands of the Galar\\n",
+  "region.$",
+]
+
+[msg.section_0.entries.891]
+text = [
+  "Kubfu trains hard to perfect its moves.\\n",
+  "The moves it masters will determine which\\n",
+  "form it takes when it evolves.$",
+]
+
+[msg.section_0.entries.892]
+text = [
+  "This form of Urshifu is a strong believer\\n",
+  "in the one-hit KO.$",
+]
+
+[msg.section_0.entries.893]
+text = [
+  "Once the vines on Zarude’s body tear\\n",
+  "off, they become nutrients in the soil.\\n",
+  "This helps the plants of the forest grow.$",
+]
+
+[msg.section_0.entries.894]
+text = [
+  "Its entire body is made up of a single\\n",
+  "organ that generates electrical energy.$",
+]
+
+[msg.section_0.entries.895]
+text = [
+  "Its body is composed of crystallized\\n",
+  "dragon energy. Regidrago is said to have\\n",
+  "the powers of every dragon Pokémon.$",
+]
+
+[msg.section_0.entries.896]
+text = [
+  "Glastrier emits intense cold from its\\n",
+  "hooves. It’s also a belligerent Pokémon\\n",
+  "- anything it wants, it takes by force.$",
+]
+
+[msg.section_0.entries.897]
+text = [
+  "It probes its surroundings with all its\\n",
+  "senses save one - it doesn’t use its\\n",
+  "sense of sight.$",
+]
+
+[msg.section_0.entries.898]
+text = [
+  "Calyrex is known in legend as a king that\\n",
+  "ruled over Galar in ancient times.$",
+]
+
+[msg.section_0.entries.899]
+text = [
+  "The black orbs shine with an uncanny\\n",
+  "light when the Pokémon is erecting\\n",
+  "invisible barriers.$",
+]
+
+[msg.section_0.entries.900]
+text = [
+  "A violent creature that fells towering\\n",
+  "trees with its crude axes and shields\\n",
+  "itself with hard stone.$",
+]
+
+[msg.section_0.entries.901]
+text = [
+  "Hisui's swampy terrain gave Ursaluna its\\n",
+  "burly physique and its newfound capacity\\n",
+  "to manipulate peat at will.$",
+]
+
+[msg.section_0.entries.902]
+text = [
+  "Clads itself in the souls of comrades\\n",
+  "that perished before fulfilling their\\n",
+  "goals of journeying upstream.$",
+]
+
+[msg.section_0.entries.903]
+text = [
+  "With its virulent poison and daunting\\n",
+  "physical prowess, no other species could\\n",
+  "hope to best it on the frozen highlands.$",
+]
+
+[msg.section_0.entries.904]
+text = [
+  "Its lancelike spikes and savage\\n",
+  "temperament have earned it the nickname\\n",
+  "“sea fiend.”$",
+]
+
+[msg.section_0.entries.905]
+text = [
+  "When it flies to this land from across the\\n",
+  "sea, the bitter winter comes to an end.$",
+]
+
+[msg.section_0.entries.906]
+text = [
+  "Its fluffy fur is similar in composition to\\n",
+  "plants. This Pokémon frequently washes\\n",
+  "its face to keep it from drying out.$",
+]
+
+[msg.section_0.entries.907]
+text = [
+  "Floragato deftly wields the vine hidden\\n",
+  "beneath its long fur, slamming the hard\\n",
+  "flower bud against its opponents.$",
+]
+
+[msg.section_0.entries.908]
+text = [
+  "With skillful misdirection, it rigs foes\\n",
+  "with pollen-packed flower bombs.$",
+]
+
+[msg.section_0.entries.909]
+text = [
+  "It lies on warm rocks and uses the heat\\n",
+  "absorbed by its square-shaped scales to\\n",
+  "create fire energy.$",
+]
+
+[msg.section_0.entries.910]
+text = [
+  "The valve in Crocalor’s flame sac is\\n",
+  "closely connected to its vocal cords.$",
+]
+
+[msg.section_0.entries.911]
+text = [
+  "Skeledirge’s gentle singing soothes the\\n",
+  "souls of all that hear it.$",
+]
+
+[msg.section_0.entries.912]
+text = [
+  "This Pokémon migrated to Paldea from\\n",
+  "distant lands long ago. The gel secreted\\n",
+  "by its feathers repels water and grime.$",
+]
+
+[msg.section_0.entries.913]
+text = [
+  "Hardworking Quaxwell observe people and\\n",
+  "Pokémon from various regions and add\\n",
+  "their movements to their dances.$",
+]
+
+[msg.section_0.entries.914]
+text = [
+  "Dancing in ways that evoke far-away\\n",
+  "places, this Pokémon mesmerizes all that\\n",
+  "see it.$",
+]
+
+[msg.section_0.entries.915]
+text = [
+  "This Pokémon spurns all but the finest of\\n",
+  "foods. Its body gives off an herblike\\n",
+  "scent that bug Pokémon detest.$",
+]
+
+[msg.section_0.entries.916]
+text = [
+  "Oinkologne is proud of its fine, glossy\\n",
+  "skin. It emits a concentrated scent from\\n",
+  "the tip of its tail.$",
+]
+
+[msg.section_0.entries.917]
+text = [
+  "The thread it secretes from its rear is\\n",
+  "as strong as wire.$",
+]
+
+[msg.section_0.entries.918]
+text = [
+  "Spidops covers its territory in tough,\\n",
+  "sticky threads to set up traps for\\n",
+  "intruders.$",
+]
+
+[msg.section_0.entries.919]
+text = [
+  "It has its third set of legs folded up.$",
+]
+
+[msg.section_0.entries.920]
+text = [
+  "When it decides to fight all out, it\\n",
+  "stands on its previously folded legs to\\n",
+  "enter Showdown Mode.$",
+]
+
+[msg.section_0.entries.921]
+text = [
+  "The pads of its paws are\\n",
+  "electricity-discharging organs.$",
+]
+
+[msg.section_0.entries.922]
+text = [
+  "When its group is attacked, Pawmo is the\\n",
+  "first to leap into battle, defeating\\n",
+  "enemies with electric shocks.$",
+]
+
+[msg.section_0.entries.923]
+text = [
+  "Pawmot’s fluffy fur acts as a battery.\\n",
+  "It can store the same amount of\\n",
+  "electricity as an electric car.$",
+]
+
+[msg.section_0.entries.924]
+text = [
+  "The pair sticks together no matter what.\\n",
+  "They split any food they find exactly in\\n",
+  "half and then eat it together.$",
+]
+
+[msg.section_0.entries.925]
+text = [
+  "The larger pair protects the little ones\\n",
+  "during battles.$",
+]
+
+[msg.section_0.entries.926]
+text = [
+  "This Pokémon is smooth and moist to the\\n",
+  "touch. Yeast in Fidough’s breath induces\\n",
+  "fermentation in the Pokémon’s vicinity.$",
+]
+
+[msg.section_0.entries.927]
+text = [
+  "The surface of this Pokémon’s skin\\n",
+  "hardens when exposed to intense heat,\\n",
+  "and its body has an appetizing aroma.$",
+]
+
+[msg.section_0.entries.928]
+text = [
+  "This Pokémon converts nutrients into oil,\\n",
+  "which it stores in the fruit on its head.$",
+]
+
+[msg.section_0.entries.929]
+text = [
+  "It basks in the sun to its heart’s\\n",
+  "content until the fruits on its head\\n",
+  "ripen.$",
+]
+
+[msg.section_0.entries.930]
+text = [
+  "This calm Pokémon is very compassionate.\\n",
+  "It will share its delicious, nutrient-rich\\n",
+  "oil with weakened Pokémon.$",
+]
+
+[msg.section_0.entries.931]
+text = [
+  "Green-feathered flocks hold the most\\n",
+  "sway.$",
+]
+
+[msg.section_0.entries.932]
+text = [
+  "The ground scrapes its body as it\\n",
+  "travels, causing it to leave salt behind.$",
+]
+
+[msg.section_0.entries.933]
+text = [
+  "This Pokémon dry cures its prey by\\n",
+  "spraying salt over them.$",
+]
+
+[msg.section_0.entries.934]
+text = [
+  "Many Pokémon gather around Garganacl,\\n",
+  "hoping to lick at its mineral-rich salt.$",
+]
+
+[msg.section_0.entries.935]
+text = [
+  "Its firepower increases when it fights,\\n",
+  "reaching over 1,800 degrees Fahrenheit.\\n",
+  "It likes berries that are rich in fat.$",
+]
+
+[msg.section_0.entries.936]
+text = [
+  "This Pokémon clads itself in armor that\\n",
+  "has been fortified by psychic and fire\\n",
+  "energy, and it shoots blazing fireballs.$",
+]
+
+[msg.section_0.entries.937]
+text = [
+  "An old set of armor steeped in grudges\\n",
+  "caused this Pokémon’s evolution.$",
+]
+
+[msg.section_0.entries.938]
+text = [
+  "It floats using the electricity stored in\\n",
+  "its body.$",
+]
+
+[msg.section_0.entries.939]
+text = [
+  "What appear to be eyeballs are organs\\n",
+  "that discharge the electricity from\\n",
+  "Bellibolt's belly-button dynamo.$",
+]
+
+[msg.section_0.entries.940]
+text = [
+  "When its wings catch the wind, the bones\\n",
+  "within produce electricity.$",
+]
+
+[msg.section_0.entries.941]
+text = [
+  "It uses its throat sac to store\\n",
+  "electricity generated by its wings.$",
+]
+
+[msg.section_0.entries.942]
+text = [
+  "Its jaw and fangs are strong enough to\\n",
+  "crunch through boulders, and its thick\\n",
+  "fat makes an excellent defense.$",
+]
+
+[msg.section_0.entries.943]
+text = [
+  "This Pokémon can store energy in its\\n",
+  "large dewlap. Mabosstiff unleashes this\\n",
+  "energy all at once to blow away enemies.$",
+]
+
+[msg.section_0.entries.944]
+text = [
+  "To keep enemies away, it paints markings\\n",
+  "around its nest with a poisonous liquid\\n",
+  "that has an acrid odor.$",
+]
+
+[msg.section_0.entries.945]
+text = [
+  "The color of the poisonous saliva\\n",
+  "depends on what the Pokémon eats.$",
+]
+
+[msg.section_0.entries.946]
+text = [
+  "Not even Bramblin knows where it is\\n",
+  "headed as it tumbles across the\\n",
+  "wilderness, blown by the wind.$",
+]
+
+[msg.section_0.entries.947]
+text = [
+  "It will open the branches of its head to\\n",
+  "envelop its prey.$",
+]
+
+[msg.section_0.entries.948]
+text = [
+  "Toedscool lives in muggy forests. The\\n",
+  "flaps that fall from its body are chewy\\n",
+  "and very delicious.$",
+]
+
+[msg.section_0.entries.949]
+text = [
+  "It coils its 10 tentacles around prey and\\n",
+  "sucks out their nutrients, causing the\\n",
+  "prey pain.$",
+]
+
+[msg.section_0.entries.950]
+text = [
+  "Klawf hangs upside-down from cliffs,\\n",
+  "waiting for prey.$",
+]
+
+[msg.section_0.entries.951]
+text = [
+  "Traditional Paldean dishes can be\\n",
+  "extremely spicy because they include the\\n",
+  "shed front teeth of Capsakid.$",
+]
+
+[msg.section_0.entries.952]
+text = [
+  "The green head has turned vicious due to\\n",
+  "the spicy chemicals stimulating its brain.$",
+]
+
+[msg.section_0.entries.953]
+text = [
+  "It rolls its mud ball around while the\\n",
+  "energy it needs for evolution matures.$",
+]
+
+[msg.section_0.entries.954]
+text = [
+  "An infant sleeps inside the ball. Rabsca\\n",
+  "rolls the ball soothingly with its legs to\\n",
+  "ensure the infant sleeps comfortably.$",
+]
+
+[msg.section_0.entries.955]
+text = [
+  "It spends its time running around\\n",
+  "wastelands.$",
+]
+
+[msg.section_0.entries.956]
+text = [
+  "It emits psychic power from the gaps\\n",
+  "between its multicolored frills and\\n",
+  "sprints at speeds greater than 120 mph.$",
+]
+
+[msg.section_0.entries.957]
+text = [
+  "It swings its handmade hammer around to\\n",
+  "protect itself, but the hammer is often\\n",
+  "stolen by Pokémon that eat metal.$",
+]
+
+[msg.section_0.entries.958]
+text = [
+  "These Pokémon make their homes in piles\\n",
+  "of scrap metal.$",
+]
+
+[msg.section_0.entries.959]
+text = [
+  "This intelligent Pokémon has a very\\n",
+  "daring disposition.$",
+]
+
+[msg.section_0.entries.960]
+text = [
+  "This Pokémon can pick up the scent of a\\n",
+  "Veluza just over 65 feet away and will\\n",
+  "hide itself in the sand.$",
+]
+
+[msg.section_0.entries.961]
+text = [
+  "A variety of fish Pokémon, Wugtrio was\\n",
+  "once considered to be a regional form of\\n",
+  "Dugtrio.$",
+]
+
+[msg.section_0.entries.962]
+text = [
+  "Bombirdier uses the apron on its chest\\n",
+  "to bundle up food, which it carries back\\n",
+  "to its nest.$",
+]
+
+[msg.section_0.entries.963]
+text = [
+  "Its water ring is made from seawater\\n",
+  "mixed with a sticky fluid that Finizen\\n",
+  "secretes from its blowhole.$",
+]
+
+[msg.section_0.entries.964]
+text = [
+  "This Pokémon changes its appearance if it\\n",
+  "hears its allies calling for help.$",
+]
+
+[msg.section_0.entries.965]
+text = [
+  "The steel section is Varoom’s actual\\n",
+  "body.$",
+]
+
+[msg.section_0.entries.966]
+text = [
+  "Revavroom viciously threatens others\\n",
+  "with the sound of its exhaust.$",
+]
+
+[msg.section_0.entries.967]
+text = [
+  "Apparently Cyclizar has been allowing\\n",
+  "people to ride on its back since ancient\\n",
+  "times.$",
+]
+
+[msg.section_0.entries.968]
+text = [
+  "This Pokémon lives in arid deserts. It\\n",
+  "maintains its metal body by consuming\\n",
+  "iron from the soil.$",
+]
+
+[msg.section_0.entries.969]
+text = [
+  "It absorbs nutrients from cave walls.\\n",
+  "The petals it wears are made of\\n",
+  "crystallized poison.$",
+]
+
+[msg.section_0.entries.970]
+text = [
+  "When this Pokémon detects danger, it will\\n",
+  "open up its crystalline petals and fire\\n",
+  "beams from its conical body.$",
+]
+
+[msg.section_0.entries.971]
+text = [
+  "It is said that a dog Pokémon that died\\n",
+  "in the wild without ever interacting with\\n",
+  "a human was reborn as this Pokémon.$",
+]
+
+[msg.section_0.entries.972]
+text = [
+  "Houndstone spends most of its time\\n",
+  "sleeping in graveyards.$",
+]
+
+[msg.section_0.entries.973]
+text = [
+  "It ties the base of its neck into a knot\\n",
+  "so that energy stored in its belly does\\n",
+  "not escape from its beak.$",
+]
+
+[msg.section_0.entries.974]
+text = [
+  "This species left the ocean and began\\n",
+  "living on land a very long time ago. It\\n",
+  "seems to be closely related to Wailmer.$",
+]
+
+[msg.section_0.entries.975]
+text = [
+  "This Pokémon wanders around snowy, icy\\n",
+  "areas.$",
+]
+
+[msg.section_0.entries.976]
+text = [
+  "When Veluza discards unnecessary flesh,\\n",
+  "its mind becomes honed and its psychic\\n",
+  "power increases.$",
+]
+
+[msg.section_0.entries.977]
+text = [
+  "This Pokémon is a glutton, but it’s bad\\n",
+  "at getting food. It teams up with a\\n",
+  "Tatsugiri to catch prey.$",
+]
+
+[msg.section_0.entries.978]
+text = [
+  "This is a small dragon Pokémon. It lives\\n",
+  "inside the mouth of Dondozo to protect\\n",
+  "itself from enemies on the outside.$",
+]
+
+[msg.section_0.entries.979]
+text = [
+  "It imbues its fists with the power of the\\n",
+  "rage that it kept hidden in its heart.$",
+]
+
+[msg.section_0.entries.980]
+text = [
+  "When attacked, this Pokémon will\\n",
+  "retaliate by sticking thick spines out\\n",
+  "from its body.$",
+]
+
+[msg.section_0.entries.981]
+text = [
+  "The hardened head from its tail protects\\n",
+  "its main head as Farigiraf whips its long\\n",
+  "neck to headbutt enemies.$",
+]
+
+[msg.section_0.entries.982]
+text = [
+  "This Pokémon uses its hard tail to make\\n",
+  "its nest by boring holes into bedrock\\n",
+  "deep underground.$",
+]
+
+[msg.section_0.entries.983]
+text = [
+  "Only a Bisharp that stands above all\\n",
+  "others in its vast army can evolve into\\n",
+  "Kingambit.$",
+]
+
+[msg.section_0.entries.984]
+text = [
+  "This creature resembles a mysterious\\n",
+  "Pokémon that, according to a paranormal\\n",
+  "magazine, has lived since ancient times.$",
+]
+
+[msg.section_0.entries.985]
+text = [
+  "It resembles a mysterious Pokémon\\n",
+  "described in a paranormal magazine as a\\n",
+  "Jigglypuff from one billion years ago.$",
+]
+
+[msg.section_0.entries.986]
+text = [
+  "It is possible that the creature listed\\n",
+  "as Brute Bonnet in a certain book could\\n",
+  "actually be this Pokémon.$",
+]
+
+[msg.section_0.entries.987]
+text = [
+  "This Pokémon has characteristics similar\\n",
+  "to those of Flutter Mane, a creature\\n",
+  "mentioned in a certain book.$",
+]
+
+[msg.section_0.entries.988]
+text = [
+  "This mysterious Pokémon has some\\n",
+  "similarities to a creature that an old\\n",
+  "book introduced as Slither Wing.$",
+]
+
+[msg.section_0.entries.989]
+text = [
+  "It slightly resembles a Magneton that\\n",
+  "lived for 10,000 years and was featured\\n",
+  "in an article in a paranormal magazine.$",
+]
+
+[msg.section_0.entries.990]
+text = [
+  "Sightings of this Pokémon have occurred\\n",
+  "in recent years.$",
+]
+
+[msg.section_0.entries.991]
+text = [
+  "It resembles a mysterious object\\n",
+  "mentioned in an old book. There are only\\n",
+  "two reported sightings of this Pokémon.$",
+]
+
+[msg.section_0.entries.992]
+text = [
+  "This Pokémon shares many similarities\\n",
+  "with Iron Hands, an object mentioned in\\n",
+  "a certain expedition journal.$",
+]
+
+[msg.section_0.entries.993]
+text = [
+  "It’s possible that Iron Jugulis, an\\n",
+  "object described in an old book, may\\n",
+  "actually be this Pokémon.$",
+]
+
+[msg.section_0.entries.994]
+text = [
+  "No records exist of this species being\\n",
+  "caught.$",
+]
+
+[msg.section_0.entries.995]
+text = [
+  "Some of its notable features match those\\n",
+  "of an object named within a certain\\n",
+  "expedition journal as Iron Thorns.$",
+]
+
+[msg.section_0.entries.996]
+text = [
+  "Frigibax absorbs heat through its dorsal\\n",
+  "fin and converts the heat into ice\\n",
+  "energy.$",
+]
+
+[msg.section_0.entries.997]
+text = [
+  "Arctibax freezes the air around it,\\n",
+  "protecting its face with an ice mask and\\n",
+  "turning its dorsal fin into a blade of ice.$",
+]
+
+[msg.section_0.entries.998]
+text = [
+  "This Pokémon blasts cryogenic air out\\n",
+  "from its mouth. This air can instantly\\n",
+  "freeze even liquid-hot lava.$",
+]
+
+[msg.section_0.entries.999]
+text = [
+  "This Pokémon was born inside a treasure\\n",
+  "chest about 1,500 years ago.$",
+]
+
+[msg.section_0.entries.1000]
+text = [
+  "It has a sturdy body made up of stacked\\n",
+  "coins.$",
+]
+
+[msg.section_0.entries.1001]
+text = [
+  "It drains the life-force from vegetation,\\n",
+  "causing nearby forests to instantly\\n",
+  "wither and fields to turn barren.$",
+]
+
+[msg.section_0.entries.1002]
+text = [
+  "The hatred of those who perished by the\\n",
+  "sword long ago has clad itself in snow\\n",
+  "and become a Pokémon.$",
+]
+
+[msg.section_0.entries.1003]
+text = [
+  "The fear poured into an ancient ritual\\n",
+  "vessel has clad itself in rocks and dirt\\n",
+  "to become a Pokémon.$",
+]
+
+[msg.section_0.entries.1004]
+text = [
+  "It controls flames burning at over 5,400\\n",
+  "degrees Fahrenheit.$",
+]
+
+[msg.section_0.entries.1005]
+text = [
+  "It is possible that this is the creature\\n",
+  "listed as Roaring Moon in an expedition\\n",
+  "journal that still holds many mysteries.$",
+]
+
+[msg.section_0.entries.1006]
+text = [
+  "It has some similarities to a mad\\n",
+  "scientist’s invention covered in a\\n",
+  "paranormal magazine.$",
+]
+
+[msg.section_0.entries.1007]
+text = [
+  "This Pokémon resembles Cyclizar, but it\\n",
+  "is far burlier and more ferocious.$",
+]
+
+[msg.section_0.entries.1008]
+text = [
+  "Much remains unknown about this\\n",
+  "creature. It resembles Cyclizar, but it\\n",
+  "is far more ruthless and powerful.$",
+]
+
+[msg.section_0.entries.1009]
+text = [
+  "It resembles an illustration published in\\n",
+  "a paranormal magazine, said to be a\\n",
+  "depiction of a super-ancient Suicune.$",
+]
+
+[msg.section_0.entries.1010]
+text = [
+  "According to the few eyewitness\\n",
+  "accounts, it used its shining blades to\\n",
+  "julienne large trees and boulders.$",
+]
+
+[msg.section_0.entries.1011]
+text = [
+  "Dipplin is two creatures in one Pokémon.\\n",
+  "Its evolution was triggered by a special\\n",
+  "apple grown only in one place.$",
+]
+
+[msg.section_0.entries.1012]
+text = [
+  "Poltchageist looks like a regional form of\\n",
+  "Sinistea, but the two were recently\\n",
+  "found to be entirely unrelated.$",
+]
+
+[msg.section_0.entries.1013]
+text = [
+  "It prefers cool, dark places, such as\\n",
+  "the back of a shelf or the space beneath\\n",
+  "a home's floorboards.$",
+]
+
+[msg.section_0.entries.1014]
+text = [
+  "Okidogi is a ruffian with a short temper.\\n",
+  "It can pulverize anything by swinging\\n",
+  "around the chain on its neck.$",
+]
+
+[msg.section_0.entries.1015]
+text = [
+  "The chain is made from toxins that\\n",
+  "enhance capabilities.$",
+]
+
+[msg.section_0.entries.1016]
+text = [
+  "Fezandipiti beats its glossy wings to\\n",
+  "scatter pheromones that captivate\\n",
+  "people and Pokémon.$",
+]
+
+[msg.section_0.entries.1017]
+text = [
+  "This Pokémon's type changes based on\\n",
+  "which mask it's wearing. It confounds its\\n",
+  "enemies with nimble movements and kicks.$",
+]
+
+[msg.section_0.entries.1018]
+text = [
+  "It digs holes on mountains, searching for\\n",
+  "food. It’s so durable that being caught\\n",
+  "in a cave-in won’t faze it.$",
+]
+
+[msg.section_0.entries.1019]
+text = [
+  "Seven syrpents live inside an apple made\\n",
+  "of syrup. The syrpent in the center is\\n",
+  "the commander.$",
+]
+
+[msg.section_0.entries.1020]
+text = [
+  "It resembles an eerie Pokémon once\\n",
+  "shown in a paranormal magazine.$",
+]
+
+[msg.section_0.entries.1021]
+text = [
+  "It's said to incinerate everything\\n",
+  "around it with lightning launched from its\\n",
+  "fur.$",
+]
+
+[msg.section_0.entries.1022]
+text = [
+  "It resembles a Pokémon described in a\\n",
+  "dubious magazine as a Terrakion that had\\n",
+  "been modified by an evil organization.$",
+]
+
+[msg.section_0.entries.1023]
+text = [
+  "There was supposedly an incident in which\\n",
+  "it launched shining blades to cut\\n",
+  "everything around it to pieces.$",
+]
+
+[msg.section_0.entries.1024]
+text = [
+  "$",
+]
+
+[msg.section_0.entries.1025]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1026]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1027]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1028]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1029]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1030]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1031]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1032]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1033]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1034]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1035]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1036]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1037]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1038]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1039]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1040]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1041]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1042]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1043]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1044]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1045]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1046]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1047]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1048]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1049]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1050]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1051]
+text = [
+  "When alone, nothing happens.\\n",
+  "However, if there are two or more,\\n",
+  "an odd power is said to emerge.$",
+]
+
+[msg.section_0.entries.1052]
+text = [
+  "Temperature and weather affect its\\n",
+  "cellular structure, so this Pokémon\\n",
+  "changes form according to the weather.$",
+]
+
+[msg.section_0.entries.1053]
+text = [
+  "Temperature and weather affect its\\n",
+  "cellular structure, so this Pokémon\\n",
+  "changes form according to the weather.$",
+]
+
+[msg.section_0.entries.1054]
+text = [
+  "Temperature and weather affect its\\n",
+  "cellular structure, so this Pokémon\\n",
+  "changes form according to the weather.$",
+]
+
+[msg.section_0.entries.1055]
+text = [
+  "An alien virus that fell to earth\\n",
+  "on a meteor underwent a DNA\\n",
+  "mutation to become this Pokémon.$",
+]
+
+[msg.section_0.entries.1056]
+text = [
+  "An alien virus that fell to earth\\n",
+  "on a meteor underwent a DNA\\n",
+  "mutation to become this Pokémon.$",
+]
+
+[msg.section_0.entries.1057]
+text = [
+  "An alien virus that fell to earth\\n",
+  "on a meteor underwent a DNA\\n",
+  "mutation to become this Pokémon.$",
+]
+
+[msg.section_0.entries.1058]
+text = [
+  "Even if it is born where there are\\n",
+  "no cocooning materials, it somehow\\n",
+  "always ends up with a cloak.$",
+]
+
+[msg.section_0.entries.1059]
+text = [
+  "Even if it is born where there are\\n",
+  "no cocooning materials, it somehow\\n",
+  "always ends up with a cloak.$",
+]
+
+[msg.section_0.entries.1060]
+text = [
+  "When evolving, its body takes in\\n",
+  "surrounding materials. As a result,\\n",
+  "there are many body variations.$",
+]
+
+[msg.section_0.entries.1061]
+text = [
+  "When evolving, its body takes in\\n",
+  "surrounding materials. As a result,\\n",
+  "there are many body variations.$",
+]
+
+[msg.section_0.entries.1062]
+text = [
+  "If it senses strong sunlight, it\\n",
+  "opens its folded petals to absorb\\n",
+  "the sun's rays with its whole body.$",
+]
+
+[msg.section_0.entries.1063]
+text = [
+  "Beware of pushing strongly on\\n",
+  "its squishy body, as it makes a\\n",
+  "mysterious purple fluid ooze out.$",
+]
+
+[msg.section_0.entries.1064]
+text = [
+  "Long ago, its entire back was\\n",
+  "shielded with a sturdy shell. There\\n",
+  "are traces of it left in its cells.$",
+]
+
+[msg.section_0.entries.1065]
+text = [
+  "Its electric-like body can enter\\n",
+  "some kinds of machines and take\\n",
+  "control in order to make mischief.$",
+]
+
+[msg.section_0.entries.1066]
+text = [
+  "Its electric-like body can enter\\n",
+  "some kinds of machines and take\\n",
+  "control in order to make mischief.$",
+]
+
+[msg.section_0.entries.1067]
+text = [
+  "Its electric-like body can enter\\n",
+  "some kinds of machines and take\\n",
+  "control in order to make mischief.$",
+]
+
+[msg.section_0.entries.1068]
+text = [
+  "Its electric-like body can enter\\n",
+  "some kinds of machines and take\\n",
+  "control in order to make mischief.$",
+]
+
+[msg.section_0.entries.1069]
+text = [
+  "Its electric-like body can enter\\n",
+  "some kinds of machines and take\\n",
+  "control in order to make mischief.$",
+]
+
+[msg.section_0.entries.1070]
+text = [
+  "It was banished for its violence.\\n",
+  "It silently gazed upon the old\\n",
+  "world from the Distortion World.$",
+]
+
+[msg.section_0.entries.1071]
+text = [
+  "The flowers all over its body burst\\n",
+  "into bloom if it is lovingly hugged\\n",
+  "and senses gratitude.$",
+]
+
+[msg.section_0.entries.1072]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1073]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1074]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1075]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1076]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1077]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1078]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1079]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1080]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1081]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1082]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1083]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1084]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1085]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1086]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1087]
+text = [
+  "It is said to have emerged from an\\n",
+  "egg in a place where there was\\n",
+  "nothing then shaped the world.$",
+]
+
+[msg.section_0.entries.1088]
+text = [
+  "Red- and blue-striped Basculin are\\n",
+  "very violent and always fighting.\\n",
+  "They are also remarkably tasty.$",
+]
+
+[msg.section_0.entries.1089]
+text = [
+  "When one is injured in a fierce battle,\\n",
+  "it hardens into a stone-like form.\\n",
+  "Then it meditates and sharpens its mind.$",
+]
+
+[msg.section_0.entries.1090]
+text = [
+  "Their coloring changes according to the\\n",
+  "seasons and can be slightly affected by\\n",
+  "the temperature and humidity as well.$",
+]
+
+[msg.section_0.entries.1091]
+text = [
+  "Their coloring changes according to the\\n",
+  "seasons and can be slightly affected by\\n",
+  "the temperature and humidity as well.$",
+]
+
+[msg.section_0.entries.1092]
+text = [
+  "Their coloring changes according to the\\n",
+  "seasons and can be slightly affected by\\n",
+  "the temperature and humidity as well.$",
+]
+
+[msg.section_0.entries.1093]
+text = [
+  "They migrate according to the seasons,\\n",
+  "so some people call Sawsbuck\\n",
+  "the harbingers of spring.$",
+]
+
+[msg.section_0.entries.1094]
+text = [
+  "They migrate according to the seasons,\\n",
+  "so some people call Sawsbuck\\n",
+  "the harbingers of spring.$",
+]
+
+[msg.section_0.entries.1095]
+text = [
+  "They migrate according to the seasons,\\n",
+  "so some people call Sawsbuck\\n",
+  "the harbingers of spring.$",
+]
+
+[msg.section_0.entries.1096]
+text = [
+  "In every direction it flies,\\n",
+  "creating winds so powerful,\\n",
+  "they blow everything away.$",
+]
+
+[msg.section_0.entries.1097]
+text = [
+  "As it flies around, it shoots lightning all\\n",
+  "over the place and causes forest fires.\\n",
+  "It is therefore disliked.$",
+]
+
+[msg.section_0.entries.1098]
+text = [
+  "From the forces of lightning and wind,\\n",
+  "it creates energy to give nutrients to\\n",
+  "the soil and make the land abundant.$",
+]
+
+[msg.section_0.entries.1099]
+text = [
+  "This legendary ice Pokémon waits for\\n",
+  "a hero to fill in the missing parts\\n",
+  "of its body with truth or ideals.$",
+]
+
+[msg.section_0.entries.1100]
+text = [
+  "This legendary ice Pokémon waits for\\n",
+  "a hero to fill in the missing parts\\n",
+  "of its body with truth or ideals.$",
+]
+
+[msg.section_0.entries.1101]
+text = [
+  "When it is resolute, its body fills\\n",
+  "with power and it becomes swifter.\\n",
+  "Its jumps are then too fast to follow.$",
+]
+
+[msg.section_0.entries.1102]
+text = [
+  "The melodies sung by Meloetta have\\n",
+  "the power to make Pokémon that\\n",
+  "hear them happy or sad.$",
+]
+
+[msg.section_0.entries.1103]
+text = [
+  "This Pokémon existed 300 million years\\n",
+  "ago. Team Plasma altered it and\\n",
+  "attached a cannon to its back.$",
+]
+
+[msg.section_0.entries.1104]
+text = [
+  "This Pokémon existed 300 million years\\n",
+  "ago. Team Plasma altered it and\\n",
+  "attached a cannon to its back.$",
+]
+
+[msg.section_0.entries.1105]
+text = [
+  "This Pokémon existed 300 million years\\n",
+  "ago. Team Plasma altered it and\\n",
+  "attached a cannon to its back.$",
+]
+
+[msg.section_0.entries.1106]
+text = [
+  "This Pokémon existed 300 million years\\n",
+  "ago. Team Plasma altered it and\\n",
+  "attached a cannon to its back.$",
 ]
