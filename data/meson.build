@@ -88,6 +88,26 @@ subdir('pml')
 subdir('trainers')
 subdir('text')
 
+# Pokedex form chain (a/0/9/7 member 0, u16 per text index: its next form's index, 0 = none): retail's form texts moved
+# from 650-732 to 1024-1106 (species 650-1023 own those indices now); built by w2u-local's dexdata tool together with
+# system text 442 / 451 / 464 / 471 (docs/pokedex-text.md).
+vfs_files += custom_target(
+  'stage_pokedex_form_table',
+  input: [
+    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'data' / 'a' / '0' / '9' / '7',
+    meson.current_source_dir() / 'pokedex' / 'form_name_table.bin',
+  ],
+  output: 'stage_pokedex_form_table.stamp',
+  depend_files: files(meson.project_source_root() / 'tools' / 'mkdata' / 'stage_narc_members.py'),
+  command: [
+    python3_native, meson.project_source_root() / 'tools' / 'mkdata' / 'stage_narc_members.py',
+    '--base', '@INPUT0@',
+    '--output', meson.project_source_root() / 'vfs' / 'data' / 'a' / '0' / '9' / '7',
+    '--replace', '0=@INPUT1@',
+    '--stamp', '@OUTPUT@',
+  ],
+)
+
 # Animated Pokemon sprites (D2, docs/megab2w2-integration.md Phase 4): the PWAN assets converted into w2anim streams for
 # the resident runtime (src/w2anim). PWAN's NARC and runtime DLLs are no longer staged; an old staged NARC is removed.
 w2anim_black2_pokegra = meson.current_build_dir() / 'w2anim_black2_pokegra'
