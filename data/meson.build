@@ -89,8 +89,8 @@ subdir('trainers')
 subdir('text')
 
 # Pokedex form chain (a/0/9/7 member 0, u16 per text index: its next form's index, 0 = none): retail's form texts moved
-# from 650-732 to 1024-1106 (species 650-1023 own those indices now); built by w2u-local's dexdata tool together with
-# system text 442 / 451 / 464 / 471 (docs/pokedex-text.md).
+# from 650-732 to 1024-1106 (species 650-1023 own those indices now), W2U's own forms at 1107+; built by w2u-local's
+# dexdata tool together with system text 442 / 451 / 464 / 471 (docs/pokedex-text.md).
 vfs_files += custom_target(
   'stage_pokedex_form_table',
   input: [
