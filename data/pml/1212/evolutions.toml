@@ -1,8 +1,8 @@
 [SPECIES_1212]
 
 [SPECIES_1212.EVOLUTION_0]
-Method = "METHOD_LEVELUP"
-Parameter = 30
+Method = "METHOD_ITEM_USE"
+Parameter = 85
 "Target Species" = "SPECIES_ELECTRODE"
 
 [SPECIES_1212.EVOLUTION_1]

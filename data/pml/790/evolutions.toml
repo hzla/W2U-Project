@@ -1,14 +1,14 @@
 [SPECIES_790]
 
 [SPECIES_790.EVOLUTION_0]
-Method = "METHOD_NONE"
-Parameter = 0
-"Target Species" = "SPECIES_NONE"
+Method = "METHOD_LEVELUP_RANDOM_1"
+Parameter = 53
+"Target Species" = "SPECIES_791"
 
 [SPECIES_790.EVOLUTION_1]
-Method = "METHOD_NONE"
-Parameter = 0
-"Target Species" = "SPECIES_NONE"
+Method = "METHOD_LEVELUP_RANDOM_2"
+Parameter = 53
+"Target Species" = "SPECIES_792"
 
 [SPECIES_790.EVOLUTION_2]
 Method = "METHOD_NONE"

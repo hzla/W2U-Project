@@ -44,6 +44,7 @@ endforeach
 
 sidecar_vfs_files = {
   'poke_form_list.bin': meson.current_source_dir() / 'pml' / 'poke_form_list.bin',
+  'evolution_forms.bin': meson.current_source_dir() / 'pml' / 'evolution_forms.bin',
   'pokeicon_palette_map.bin': meson.current_source_dir() / 'pml' / 'pokeicon_palette_map.bin',
   'type_chart.bin': meson.current_source_dir() / 'pml' / 'types' / 'type_chart.bin',
   'type_palette_map.bin': meson.current_source_dir() / 'pml' / 'types' / 'type_palette_map.bin',

@@ -6,9 +6,9 @@ Parameter = 0
 "Target Species" = "SPECIES_SCIZOR"
 
 [SPECIES_SCYTHER.EVOLUTION_1]
-Method = "METHOD_NONE"
-Parameter = 0
-"Target Species" = "SPECIES_NONE"
+Method = "METHOD_ITEM_USE"
+Parameter = 108
+"Target Species" = "SPECIES_900"
 
 [SPECIES_SCYTHER.EVOLUTION_2]
 Method = "METHOD_NONE"

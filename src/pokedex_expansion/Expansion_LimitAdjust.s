@@ -69,3 +69,15 @@ FULL_COPY_CheckEvolveSpecies_0x3EC:
 FULL_COPY_CheckEvolveSpecies_0x44C:
     cmp r0, #8
     .size FULL_COPY_CheckEvolveSpecies_0x44C, . - FULL_COPY_CheckEvolveSpecies_0x44C
+
+@ Read the evolutions of the Pokemon's form (w2u_evolution.cpp): getEvolutionInfoFile(species, dest) becomes
+@ W2U_Evolution_Read(species, dest, pkm); CheckEvolveSpecies keeps the Pokemon in r7 (decomp shinka_check.c).
+@ A Thumb function, so the redirected BL stays in Thumb state.
+.type THUMB_BRANCH_LINK_CheckEvolveSpecies_0xBA, %function
+.thumb_func
+THUMB_BRANCH_LINK_CheckEvolveSpecies_0xBA:
+    mov r2, r7
+    ldr r3, =W2U_Evolution_Read
+    bx r3
+    .pool
+    .size THUMB_BRANCH_LINK_CheckEvolveSpecies_0xBA, . - THUMB_BRANCH_LINK_CheckEvolveSpecies_0xBA

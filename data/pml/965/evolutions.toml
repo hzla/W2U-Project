@@ -1,9 +1,9 @@
 [SPECIES_965]
 
 [SPECIES_965.EVOLUTION_0]
-Method = "METHOD_NONE"
-Parameter = 0
-"Target Species" = "SPECIES_NONE"
+Method = "METHOD_LEVELUP"
+Parameter = 40
+"Target Species" = "SPECIES_966"
 
 [SPECIES_965.EVOLUTION_1]
 Method = "METHOD_NONE"

@@ -1,9 +1,9 @@
 [SPECIES_1209]
 
 [SPECIES_1209.EVOLUTION_0]
-Method = "METHOD_NONE"
-Parameter = 0
-"Target Species" = "SPECIES_NONE"
+Method = "METHOD_ITEM_HELD_DAY"
+Parameter = 259
+"Target Species" = "SPECIES_865"
 
 [SPECIES_1209.EVOLUTION_1]
 Method = "METHOD_NONE"

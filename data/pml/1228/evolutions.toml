@@ -1,9 +1,9 @@
 [SPECIES_1228]
 
 [SPECIES_1228.EVOLUTION_0]
-Method = "METHOD_ITEM_HELD_NIGHT"
-Parameter = 0
-"Target Species" = "SPECIES_WEAVILE"
+Method = "METHOD_ITEM_HELD_DAY"
+Parameter = 326
+"Target Species" = "SPECIES_903"
 
 [SPECIES_1228.EVOLUTION_1]
 Method = "METHOD_NONE"

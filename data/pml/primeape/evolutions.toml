@@ -1,9 +1,9 @@
 [SPECIES_PRIMEAPE]
 
 [SPECIES_PRIMEAPE.EVOLUTION_0]
-Method = "METHOD_NONE"
-Parameter = 0
-"Target Species" = "SPECIES_NONE"
+Method = "METHOD_LEVELUP_MOVE"
+Parameter = 889
+"Target Species" = "SPECIES_979"
 
 [SPECIES_PRIMEAPE.EVOLUTION_1]
 Method = "METHOD_NONE"

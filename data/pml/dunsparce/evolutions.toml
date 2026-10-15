@@ -1,9 +1,9 @@
 [SPECIES_DUNSPARCE]
 
 [SPECIES_DUNSPARCE.EVOLUTION_0]
-Method = "METHOD_NONE"
-Parameter = 0
-"Target Species" = "SPECIES_NONE"
+Method = "METHOD_LEVELUP_MOVE"
+Parameter = 887
+"Target Species" = "SPECIES_982"
 
 [SPECIES_DUNSPARCE.EVOLUTION_1]
 Method = "METHOD_NONE"
