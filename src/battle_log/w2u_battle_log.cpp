@@ -363,7 +363,8 @@ static void ZeroBlock(u8* block, u32 size)
 
 static void InitializeBlock(u8* block, const LogBlockSpec& spec)
 {
-    ZeroBlock(block, spec.size);
+    // Only the log's own bytes: block 31's tail holds the Pokedex's form lists.
+    ZeroBlock(block, W2U_BATTLE_LOG_BLOCK_USED_SIZE(spec.capacity));
     WriteU32(block, W2U_BATTLE_LOG_MAGIC);
     WriteU16(block + 4, W2U_BATTLE_LOG_VERSION);
     SetBlockCount(block, 0);

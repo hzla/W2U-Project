@@ -4,8 +4,10 @@
 #include "personal_data.h"
 #include "FileSystem.h"
 #include "w2u_platform.h"
+#include "w2u_battle_log.h"
 
 #define REGIONAL_DEX_FILE_INDEX 1290
+#define SAVE_BLOCK_POKEDEX 0x36
 
 #define POKE_FORM_LIST_SIZE 0xB7
 #define POKEDEX_MAGIC 0xBEEFCAFE
@@ -16,6 +18,19 @@
 #define POKEDEX_EXTENSION_SLOT_COUNT 9
 #define POKEDEX_FORM_FLAG_BYTES 9
 #define POKEDEX_FORM_FLAG_BITS (POKEDEX_FORM_FLAG_BYTES * 8)
+// The form lists proper: in save block 31 after the battle log (the Pokedex block has no room for W2U's 433 form
+// bits). Seen forms and the form shown, normal and shiny, 512 bits each (docs/save-format.md).
+#define POKEDEX_FORM_AREA_MAGIC 0x4D524644 // "DFRM"
+#define POKEDEX_FORM_AREA_VERSION 1
+#define POKEDEX_FORM_LIST_BYTES 64
+#define POKEDEX_FORM_LIST_BITS (POKEDEX_FORM_LIST_BYTES * 8)
+#ifndef SPECIES_WISHIWASHI
+#define SPECIES_WISHIWASHI 746
+#define SPECIES_MIMIKYU 778
+#define SPECIES_EISCUE 875
+#define SPECIES_MORPEKO 877
+#define SPECIES_PALAFIN 964
+#endif
 #define POKEDEX_TEXT_VERSION_BYTES 432
 #define POKEDEX_NATIONAL_OBTAINED_FLAG 0x00000001
 #define POKEDEX_NATIONAL_MODE_FLAG 0x00000800
@@ -55,6 +70,22 @@ namespace w2u {
             u32 pachiRandom;
         };
 
+        struct PokedexFormArea {
+            u32 magic;
+            u16 version;
+            u16 listBytes;
+            u32 reserved[2];
+            u8 seen[2][POKEDEX_FORM_LIST_BYTES];  // retail's seenForms: every form seen (normal, shiny)
+            u8 shown[2][POKEDEX_FORM_LIST_BYTES]; // retail's shownForms: the form the Pokedex shows (normal, shiny)
+        };
+
+        static_assert(W2U_BATTLE_LOG_BLOCK_USED_SIZE(W2U_BATTLE_LOG_WIFI_NEGOTIATION_CAPACITY)
+                          <= W2U_POKEDEX_FORM_AREA_OFFSET,
+                      "the Pokedex form area overlaps the battle log");
+        static_assert(W2U_POKEDEX_FORM_AREA_OFFSET + sizeof(PokedexFormArea) <= W2U_BATTLE_LOG_WIFI_NEGOTIATION_SIZE,
+                      "the Pokedex form area exceeds save block 31");
+        static_assert(sizeof(PokedexFormArea) == 0x110, "PokedexFormArea layout");
+
         typedef void PokemonParam;
 
         struct PokemonDexSnapshot {
@@ -76,6 +107,8 @@ namespace w2u {
 		extern "C" PersonalData* PML_PersonalLoad(u16 species, u16 form, u16 heapId);
 		extern "C" u32 PML_PersonalGetParam(PersonalData* personal, PersonalField field);
 		extern "C" void PML_PersonalFree(PersonalData* personal);
+        extern "C" void *SaveControl_GetInstance();
+        extern "C" void *SaveControl_GetBlockPtr(void *saveControl, u32 blockID);
 
         extern ArcTool **g_PMLPersonalArcBW2 = (ArcTool **)W2U_ADDR_PERSONAL_ARC_BW2;
 
@@ -311,40 +344,120 @@ namespace w2u {
             SetDexBit(pokedex, pokedex->seen[slot], species);
         }
 
-        static inline void SetDrawData(PokedexSave *pokedex, u32 species, u32 sex, u32 shiny, u32 form) {
+        // A species' first bit in the form lists and its form count (pokemonFormList order), or false if it has none.
+        static inline b32 GetFormBits(u32 species, u32 *firstBit, u32 *formCount) {
             Poke_form pokemonFormList[POKE_FORM_LIST_SIZE];
-            if (ReadDataFromFile(W2U_PATH_POKE_FORM_LIST, POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
-                s32 formIdx = 0;
-                for (u32 formListIdx = 0; formListIdx < POKE_FORM_LIST_SIZE && pokemonFormList[formListIdx].species; ++formListIdx) {
-                    Poke_form* pokeForm = &pokemonFormList[formListIdx];
-                    if (species == pokeForm->species) {
-                        u32 formCount = pokeForm->form_count;
-                        for (u32 currentForm = 0; currentForm < formCount; ++currentForm) {
-                            u32 flagIdx = formIdx + currentForm;
-                            if (flagIdx < POKEDEX_FORM_FLAG_BITS) {
-                                u32 formGroup = flagIdx >> 3;
-                                u8 formMask = (u8)(1 << (flagIdx & 7));
-                                formMask = ~formMask;
-                                pokedex->forms[formGroup] &= formMask;
-                                pokedex->shinyForms[formGroup] &= formMask;
-                            }
-                        }
-                        if (form >= formCount) {
-                            form = 0;
-                        }
-                        formIdx += form;
-                        if ((u32)formIdx < POKEDEX_FORM_FLAG_BITS) {
-                            if (shiny) {
-                                pokedex->shinyForms[formIdx >> 3] |= 1 << (formIdx & 7);
-                            }
-                            else {
-                                pokedex->forms[formIdx >> 3] |= 1 << (formIdx & 7);
-                            }
-                        }
-                        break;
-                    }
-                    formIdx += pokeForm->form_count;
+            if (!ReadDataFromFile(W2U_PATH_POKE_FORM_LIST, POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
+                return 0;
+            }
+            u32 bit = 0;
+            for (u32 i = 0; i < POKE_FORM_LIST_SIZE && pokemonFormList[i].species; ++i) {
+                if (pokemonFormList[i].species == species) {
+                    *firstBit = bit;
+                    *formCount = pokemonFormList[i].form_count;
+                    return 1;
                 }
+                bit += pokemonFormList[i].form_count;
+            }
+            return 0;
+        }
+
+        // The live save's form lists, set up on first use: a save from before them keeps the forms its Pokedex block
+        // recorded (the first 72 bits; a form shown was seen). Null for a Pokedex that is not the live save's.
+        static PokedexFormArea *GetFormArea(PokedexSave *pokedex) {
+            void *saveControl = SaveControl_GetInstance();
+            if (!saveControl || SaveControl_GetBlockPtr(saveControl, SAVE_BLOCK_POKEDEX) != pokedex) {
+                return 0;
+            }
+            u8 *block = (u8 *)SaveControl_GetBlockPtr(saveControl, W2U_POKEDEX_FORM_AREA_BLOCK);
+            if (!block) {
+                return 0;
+            }
+            PokedexFormArea *area = (PokedexFormArea *)(block + W2U_POKEDEX_FORM_AREA_OFFSET);
+            if (area->magic != POKEDEX_FORM_AREA_MAGIC || area->version != POKEDEX_FORM_AREA_VERSION
+                || area->listBytes != POKEDEX_FORM_LIST_BYTES) {
+                ClearMemory(area, sizeof(PokedexFormArea));
+                for (u32 i = 0; i < POKEDEX_FORM_FLAG_BYTES; ++i) {
+                    area->shown[0][i] = pokedex->forms[i];
+                    area->shown[1][i] = pokedex->shinyForms[i];
+                    area->seen[0][i] = pokedex->formFlags[0][i] | pokedex->forms[i];
+                    area->seen[1][i] = pokedex->formFlags[1][i] | pokedex->shinyForms[i];
+                }
+                area->magic = POKEDEX_FORM_AREA_MAGIC;
+                area->version = POKEDEX_FORM_AREA_VERSION;
+                area->listBytes = POKEDEX_FORM_LIST_BYTES;
+            }
+            return area;
+        }
+
+        // The list a form bit lives in: the form area's, or the Pokedex block's 72-bit one for a Pokedex that is not
+        // the live save's. Null past the list's end.
+        static inline u8 *FormList(PokedexSave *pokedex, PokedexFormArea *area, b32 seen, u32 shiny, u32 bit) {
+            if (area) {
+                if (bit >= POKEDEX_FORM_LIST_BITS) {
+                    return 0;
+                }
+                return seen ? area->seen[shiny ? 1 : 0] : area->shown[shiny ? 1 : 0];
+            }
+            if (bit >= POKEDEX_FORM_FLAG_BITS) {
+                return 0;
+            }
+            return seen ? pokedex->formFlags[shiny ? 1 : 0] : (shiny ? pokedex->shinyForms : pokedex->forms);
+        }
+
+        // Retail's getForm: marks a form seen, and with it the forms its species changes into in battle.
+        static inline void SetFormSeen(PokedexSave *pokedex, u32 species, u32 shiny, u32 form) {
+            u32 firstBit, formCount;
+            if (!GetFormBits(species, &firstBit, &formCount)) {
+                return;
+            }
+            if (form >= formCount) {
+                form = 0;
+            }
+            u32 count = 1;
+            switch (species) {
+            case SPECIES_CASTFORM:
+                form = 0;
+                count = 4;
+                break;
+            case SPECIES_DARMANITAN:                      // Standard / Zen, Galarian Standard / Galarian Zen
+                form &= ~1u;
+                count = 2;
+                break;
+            case SPECIES_CHERRIM:
+            case SPECIES_MELOETTA:
+            case SPECIES_AEGISLASH:
+            case SPECIES_WISHIWASHI:
+            case SPECIES_MIMIKYU:
+            case SPECIES_EISCUE:
+            case SPECIES_MORPEKO:
+            case SPECIES_PALAFIN:
+                form = 0;
+                count = 2;
+                break;
+            }
+            PokedexFormArea *area = GetFormArea(pokedex);
+            for (u32 i = 0; i < count && form + i < formCount; ++i) {
+                u32 bit = firstBit + form + i;
+                u8 *list = FormList(pokedex, area, 1, shiny, bit);
+                SetSpeciesBit(list, bit);
+            }
+        }
+
+        static inline void SetDrawData(PokedexSave *pokedex, u32 species, u32 sex, u32 shiny, u32 form) {
+            u32 firstBit, formCount;
+            if (GetFormBits(species, &firstBit, &formCount)) {
+                PokedexFormArea *area = GetFormArea(pokedex);
+                for (u32 i = 0; i < formCount; ++i) {
+                    u32 bit = firstBit + i;
+                    ResetSpeciesBit(FormList(pokedex, area, 0, 0, bit), bit);
+                    ResetSpeciesBit(FormList(pokedex, area, 0, 1, bit), bit);
+                }
+                if (form >= formCount) {
+                    form = 0;
+                }
+                u32 bit = firstBit + form;
+                SetSpeciesBit(FormList(pokedex, area, 0, shiny, bit), bit);
             }
 
             ClearDrawSexFlags(pokedex, species);
@@ -583,33 +696,22 @@ namespace w2u {
 				}
 			}
 			else {
-				s32 formIdx = getIndexPokemonWithForms(species);
-		
-				Poke_form pokemonFormList[POKE_FORM_LIST_SIZE];
-				if (!ReadDataFromFile(W2U_PATH_POKE_FORM_LIST, POKE_FORM_LIST_SIZE * sizeof(Poke_form), (u8*)pokemonFormList)) {
+				u32 firstBit, formCount;
+				if (!GetFormBits(species, &firstBit, &formCount)) {
 					return;
 				}
-		
-				u16 formCount = pokemonFormList[formListIdx].form_count;
-				if (formCount) {
-					for (u32 currentForm = 0; currentForm < formCount; ++currentForm) {
-                        u32 flagIdx = formIdx + currentForm;
-                        if (flagIdx >= POKEDEX_FORM_FLAG_BITS) {
-                            continue;
-                        }
-						u32 formGroup = flagIdx >> 3;
-						u8 formMask = (u8)(1 << (flagIdx & 7));
-		
-						if ((pokedex->forms[formGroup] & formMask) != 0) {
-							*form = currentForm;
-							*shiny = 0;
-							break;
-						}
-						if ((pokedex->shinyForms[formGroup] & formMask) != 0) {
-							*form = currentForm;
-							*shiny = 1;
-							break;
-						}
+				PokedexFormArea *area = GetFormArea(pokedex);
+				for (u32 currentForm = 0; currentForm < formCount; ++currentForm) {
+					u32 bit = firstBit + currentForm;
+					if (CheckSpeciesBit(FormList(pokedex, area, 0, 0, bit), bit)) {
+						*form = currentForm;
+						*shiny = 0;
+						break;
+					}
+					if (CheckSpeciesBit(FormList(pokedex, area, 0, 1, bit), bit)) {
+						*form = currentForm;
+						*shiny = 1;
+						break;
 					}
 				}
 		
@@ -647,6 +749,7 @@ namespace w2u {
             }
 
             SetSeenSexFlag(pokedex, species, pokemonData.sex, pokemonData.shiny);
+            SetFormSeen(pokedex, species, pokemonData.shiny, pokemonData.form);
             if (caught) {
                 SetDexBit(pokedex, pokedex->caught, species);
             }
@@ -674,6 +777,29 @@ namespace w2u {
 #else
             RegisterPokedexSeen(pokedex, pokemon, 1);
 #endif
+        }
+
+        // Retail func_0200d8d4 (decomp src/system/pokedex.c), used by the Pokedex's form and habitat pages: whether a
+        // species' form (or, for a species without forms, a sex) has been seen, normal or shiny. Retail reads its
+        // 88-bit lists at retail's offsets and the species lists only up to 672.
+        extern "C" b32 THUMB_BRANCH_PokeDex_IsFormSeen(PokedexSave *pokedex, u16 species, u32 sex, b32 shiny, u32 form) {
+            if (!IsValidDexSpecies(species)) {
+                return (b32)-1;
+            }
+            u32 firstBit, formCount;
+            if (GetFormBits(species, &firstBit, &formCount)) {
+                u32 bit = firstBit + form;
+                return form < formCount && CheckSpeciesBit(FormList(pokedex, GetFormArea(pokedex), 1, shiny, bit), bit);
+            }
+            u32 male = shiny ? 2 : 0;
+            u32 female = shiny ? 3 : 1;
+            if (sex == 0) {
+                return CheckDexBit(pokedex, pokedex->seen[male], species);
+            }
+            if (sex == 1) {
+                return CheckDexBit(pokedex, pokedex->seen[female], species);
+            }
+            return CheckDexBit(pokedex, pokedex->seen[male], species) || CheckDexBit(pokedex, pokedex->seen[female], species);
         }
 
         extern "C" u16 THUMB_BRANCH_PokeDex_GetCaughtNo(PokedexSave *pokedex) {
