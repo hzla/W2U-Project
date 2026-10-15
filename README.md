@@ -57,12 +57,17 @@ fit there is refused rather than freezing the game.
 Native aliases stay resident. Temporary move registration does not guarantee
 that every move in a moveset is loaded before action-order queries.
 
-PWAN assets in `assets/pokeweb_pwan/` use the compact `PWNC` v3 config. For
-White 2 the build converts them into w2anim streams
-(`tools/w2anim/build_w2anim_streams.py` → `vfs/data/w2anim/streams.bin`); sides
-listed in `data/graphics/w2anim/sprites.toml` can instead stream full-size A3I5
-art. Unconfigured Pokémon use native static graphics. Black 2 keeps its four
-PWAN runtimes (built separately) and `pwan.narc`.
+Animated battle sprites: both games use the same PWAN assets
+(`assets/pokeweb_pwan/`, 96x96, 15 colours, the compact `PWNC` v3 config); they
+differ only in the runtime that plays them. White 2 converts them at build time
+into w2anim streams (`tools/w2anim/build_w2anim_streams.py` →
+`vfs/data/w2anim/streams.bin`: same pixels, palettes and timing) and plays them
+with W2U's resident w2anim runtime, which keeps its buffers on the sprite's game
+heap instead of PMC's heap and covers every screen that draws Pokémon sprites
+with a few generic hooks. Black 2 keeps Pokeweb's four PWAN runtimes (built
+separately) and `pwan.narc`. Sides listed in `data/graphics/w2anim/sprites.toml`
+can stream full-size A3I5 art instead (White 2 only; none listed at present).
+Pokémon without a PWAN use their native static graphics.
 See the [PWAN workflow](docs/pwan-animation-workflow.md),
 [memory-reduction notes](docs/pwan-memory-reduction.md) and the w2anim sections
 of the [integration notes](docs/megab2w2-integration.md).
