@@ -23,6 +23,10 @@ permanent on the player's next ordinary game save.
 | 30 | Pal Pad / Wi-Fi List | `0x07C4` | 140 |
 | 31 | Wi-Fi Negotiation | `0x0D54` | 110 |
 
+Block 31's bytes from `0x620` on are not the log's: they hold the Pokédex's form lists
+([save-format.md](save-format.md), "The form area"). Initializing a block zeroes only its header and records
+(`W2U_BATTLE_LOG_BLOCK_USED_SIZE`), so the form lists survive a log reset.
+
 These Wi-Fi features are incompatible with the log. The three blocks are
 initialized together the first time a completed trainer battle is recorded,
 providing a total capacity of 600 trainer records. Once full, new records are

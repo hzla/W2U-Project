@@ -26,6 +26,13 @@
 #define W2U_BATTLE_LOG_WIFI_LIST_CAPACITY 140
 #define W2U_BATTLE_LOG_WIFI_NEGOTIATION_CAPACITY 110
 
+// The log owns only its header and records in each block (block 31: 0x000-0x613). Block 31's bytes from
+// W2U_POKEDEX_FORM_AREA_OFFSET on hold the Pokedex's form lists (src/pokedex_expansion/w2u_pokedex.cpp,
+// docs/save-format.md), which initializing the log must keep.
+#define W2U_BATTLE_LOG_BLOCK_USED_SIZE(capacity) (W2U_BATTLE_LOG_HEADER_SIZE + (capacity) * W2U_BATTLE_LOG_RECORD_SIZE)
+#define W2U_POKEDEX_FORM_AREA_BLOCK W2U_BATTLE_LOG_BLOCK_WIFI_NEGOTIATION
+#define W2U_POKEDEX_FORM_AREA_OFFSET 0x620
+
 #define W2U_BATTLE_LOG_FLAG_OVERFLOW 0x0001
 
 // On-disk 112-bit trainer-battle record (three high bits are reserved):

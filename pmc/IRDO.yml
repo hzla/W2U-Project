@@ -1501,6 +1501,9 @@ Symbols:
   - Name: PokeDex_GetSeenNoUnova
     Segment: 0x0
     Address: 0x200d889
+  - Name: PokeDex_IsFormSeen
+    Segment: 0x0
+    Address: 0x200d8d5
   - Name: PokeDex_IsCompleteNational
     Segment: 0x0
     Address: 0x200da2d

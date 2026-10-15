@@ -36,16 +36,40 @@ retail uses for foreign-language entries. The decomp's retail struct is `PokeDex
 - Species 673-1023 (`POKEDEX_EXTENSION_SPECIES_MIN` .. `SPECIES_CNT`): nine lists of 44 bytes (352 bits, bit =
   species - 673) inside `textVersionUp`, in this order: caught, seen[0..3], the four shown lists (`seenMale`,
   `seenFemale`, `shinyMale`, `shinyFemale`). 396 of the 432 bytes; the last 36 are unused.
-- Form lists: 9 bytes (72 form bits) each instead of 11 (88), in the order of `pokemonFormList`
-  (`data/pml/poke_form_list.bin`, 0xB7 entries; a species' forms take `form_count` consecutive bits). From
-  `formFlags` on, every field sits 8 bytes earlier than in retail.
-- **Known limitation (found 2026-10-15):** W2U's form list needs 433 form bits (182 species with forms), the lists
-  hold 72, and `SetDrawData` skips any bit past 72 without a word. So for 151 of the 182 species (from Muk, species
-  89, on; including the later regional forms) the Pokédex records no seen / shown forms. Fixing it needs about 55
-  bytes per list instead of 9 (4 lists: about 0xB0 more bytes), more than the block's spare room (0x500-byte slot,
-  0x4D8 used with the footer) and the extension area's 36 unused bytes: a save-layout change, best made together
-  with the move to the decomp (or by moving the form lists into a new area).
+- Form lists in this block: 9 bytes (72 form bits) each instead of 11 (88). From `formFlags` on, every field sits 8
+  bytes earlier than in retail. Since 2026-10-15 they are only read once, to move a save's forms into the form area
+  below (W2U's form list needs 433 bits: 182 species, `data/pml/poke_form_list.bin`, 0xB7 entries, a species' forms
+  taking `form_count` consecutive bits).
 - Foreign-language Pokédex entries are not kept (the area holds the extension lists).
+
+### The form area: block 31 (0x1B) + 0x620, 0x110 bytes
+
+The Pokédex's form lists, moved out of block 54 (no room there) into save block 31, which W2U's battle log owns
+([battle-log-save-format.md](battle-log-save-format.md)): the log uses 0x000-0x613 (header and 110 records) and
+initializes only those bytes, so the area after it survives a log reset. Retail's Wi-Fi Negotiation code is
+redirected to a scratch copy and never writes the block.
+
+| Offset (in the area) | Size | Field |
+|---|---|---|
+| 0x00 | 4 | magic `DFRM` (0x4D524644) |
+| 0x04 | 2 | version (1) |
+| 0x06 | 2 | bytes per list (64: 512 form bits) |
+| 0x08 | 8 | reserved, zero |
+| 0x10 | 2 x 64 | seen forms, normal then shiny (retail `seenForms`) |
+| 0x90 | 2 x 64 | the form the Pokédex shows, normal then shiny (retail `shownForms`) |
+
+- `src/pokedex_expansion/w2u_pokedex.cpp` (`GetFormArea`) sets the area up the first time the live save's Pokédex
+  needs it: zeroed, then the 72 bits of block 54's lists copied in (a form shown counts as seen), then the header.
+  A Pokédex that is not the live save's block (a copy) keeps using block 54's 72-bit lists.
+- Registering a Pokémon marks its form seen as retail's `getForm` does, with the forms it changes into in battle
+  (Castform, Cherrim, Darmanitan in pairs, Meloetta, Aegislash, Wishiwashi, Mimikyu, Eiscue, Morpeko, Palafin).
+  Before this, W2U set no seen-form bits at all, so the Pokédex's form page had nothing to list.
+- Retail's form check for the form and habitat pages (`func_0200d8d4`, `PokeDex_IsFormSeen` in `pmc/IRDO.yml`)
+  is replaced: it read retail's 88-bit lists at retail's offsets.
+- Checked in game (2026-10-15, `w2u-local/checks/dexforms_check.yml`): a battle against Galarian Stunfisk sets
+  form bit 270 seen and shown in the live save, and the area is unchanged after the battle log's first record.
+- A save from an older W2U build keeps its forms (moved in on first use); an older build reading a newer save sees
+  only the forms block 54 had when the area was made.
 
 **A retail save in a W2U build** (derived from the two layouts, partly confirmed in game): the block's CRC is checked
 over 0x4D4 bytes, so a retail block reads as corrupt. The game loads it anyway at start, but the full check at game
