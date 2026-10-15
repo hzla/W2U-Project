@@ -60,6 +60,7 @@ BLACK2_MEMBER_VERSIONS = {
 
 SIDECARS = (
     "poke_form_list.bin",
+    "evolution_forms.bin",
     "pokeicon_palette_map.bin",
     "type_chart.bin",
     "type_palette_map.bin",

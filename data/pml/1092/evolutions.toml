@@ -1,9 +1,9 @@
 [SPECIES_1092]
 
 [SPECIES_1092.EVOLUTION_0]
-Method = "METHOD_NONE"
+Method = "METHOD_TRADE"
 Parameter = 0
-"Target Species" = "SPECIES_NONE"
+"Target Species" = "SPECIES_GOURGEIST"
 
 [SPECIES_1092.EVOLUTION_1]
 Method = "METHOD_NONE"

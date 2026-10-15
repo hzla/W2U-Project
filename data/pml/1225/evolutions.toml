@@ -3,7 +3,7 @@
 [SPECIES_1225.EVOLUTION_0]
 Method = "METHOD_LEVELUP"
 Parameter = 20
-"Target Species" = "SPECIES_QUAGSIRE"
+"Target Species" = "SPECIES_980"
 
 [SPECIES_1225.EVOLUTION_1]
 Method = "METHOD_NONE"

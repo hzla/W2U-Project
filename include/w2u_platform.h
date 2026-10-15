@@ -6,6 +6,7 @@
 #if defined(W2U_TARGET_B2)
 
 #define W2U_PATH_POKE_FORM_LIST                     "data/black2upgrade/poke_form_list.bin"
+#define W2U_PATH_EVOLUTION_FORMS                    "data/black2upgrade/evolution_forms.bin"
 #define W2U_PATH_POKEICON_PALETTE_MAP               "data/black2upgrade/pokeicon_palette_map.bin"
 #define W2U_PATH_TYPE_CHART                         "data/black2upgrade/type_chart.bin"
 #define W2U_PATH_TYPE_PALETTE_MAP                   "data/black2upgrade/type_palette_map.bin"
@@ -50,6 +51,7 @@
 #else
 
 #define W2U_PATH_POKE_FORM_LIST                     "poke_form_list.bin"
+#define W2U_PATH_EVOLUTION_FORMS                    "evolution_forms.bin"
 #define W2U_PATH_POKEICON_PALETTE_MAP               "pokeicon_palette_map.bin"
 #define W2U_PATH_TYPE_CHART                         "type_chart.bin"
 #define W2U_PATH_TYPE_PALETTE_MAP                   "type_palette_map.bin"

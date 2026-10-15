@@ -1,8 +1,8 @@
 [SPECIES_1190]
 
 [SPECIES_1190.EVOLUTION_0]
-Method = "METHOD_LEVELUP"
-Parameter = 22
+Method = "METHOD_ITEM_USE"
+Parameter = 84
 "Target Species" = "SPECIES_SANDSLASH"
 
 [SPECIES_1190.EVOLUTION_1]

@@ -1471,6 +1471,7 @@ endforeach
 
 b2u_main_sources = [
   files('pokedex_expansion/w2u_pokedex.cpp'),
+  files('pokedex_expansion/w2u_evolution.cpp'),
   files('pokedex_expansion/w2u_pokegra.cpp'),
   files('type_expansion/type_effectiveness.cpp'),
   files('pokeweb_gameplay/w2u_abilities.cpp'),

@@ -1,9 +1,9 @@
 [SPECIES_GIRAFARIG]
 
 [SPECIES_GIRAFARIG.EVOLUTION_0]
-Method = "METHOD_NONE"
-Parameter = 0
-"Target Species" = "SPECIES_NONE"
+Method = "METHOD_LEVELUP_MOVE"
+Parameter = 888
+"Target Species" = "SPECIES_981"
 
 [SPECIES_GIRAFARIG.EVOLUTION_1]
 Method = "METHOD_NONE"

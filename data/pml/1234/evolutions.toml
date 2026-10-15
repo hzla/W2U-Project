@@ -1,8 +1,8 @@
 [SPECIES_1234]
 
 [SPECIES_1234.EVOLUTION_0]
-Method = "METHOD_LEVELUP"
-Parameter = 35
+Method = "METHOD_ITEM_USE"
+Parameter = 84
 "Target Species" = "SPECIES_DARMANITAN"
 
 [SPECIES_1234.EVOLUTION_1]
