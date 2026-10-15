@@ -8212,14 +8212,14 @@ text = [
 
 [msg.section_0.entries.1401]
 text = [
-  "The wild [VAR PKNICK(0)] used its Booster Energy\\n",
-  "to activate Protosynthesis!$",
+  "The wild [VAR PKNICK(0)] used its Booster\\n",
+  "Energy to activate Protosynthesis!$",
 ]
 
 [msg.section_0.entries.1402]
 text = [
-  "The foe's [VAR PKNICK(0)] used its Booster Energy\\n",
-  "to activate Protosynthesis!$",
+  "The foe's [VAR PKNICK(0)] used its Booster\\n",
+  "Energy to activate Protosynthesis!$",
 ]
 
 [msg.section_0.entries.1403]
@@ -8356,14 +8356,14 @@ text = [
 
 [msg.section_0.entries.1425]
 text = [
-  "The wild [VAR PKNICK(0)] used its Booster Energy\\n",
-  "to activate its Quark Drive!$",
+  "The wild [VAR PKNICK(0)] used its Booster\\n",
+  "Energy to activate its Quark Drive!$",
 ]
 
 [msg.section_0.entries.1426]
 text = [
-  "The foe's [VAR PKNICK(0)] used its Booster Energy\\n",
-  "to activate its Quark Drive!$",
+  "The foe's [VAR PKNICK(0)] used its Booster\\n",
+  "Energy to activate its Quark Drive!$",
 ]
 
 [msg.section_0.entries.1427]
