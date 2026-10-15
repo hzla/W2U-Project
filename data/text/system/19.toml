@@ -1245,3 +1245,57 @@ text = ["It started to snow!$"]
 
 [msg.section_0.entries.222]
 text = ["The snow stopped.$"]
+
+[msg.section_0.entries.223]
+text = [
+  "The effects of the [VAR ITEM2(1)]\\n",
+  "prevent status moves from being used!$",
+]
+
+[msg.section_0.entries.224]
+text = ["$"]
+
+[msg.section_0.entries.225]
+text = [
+  "[VAR PKNICK(0)] hasn't eaten a Berry,\\n",
+  "so it can't possibly belch!$",
+]
+
+[msg.section_0.entries.226]
+text = [
+  "A sticky web has been laid out\\n",
+  "beneath your team's feet!$",
+]
+
+[msg.section_0.entries.227]
+text = [
+  "A sticky web has been laid out\\n",
+  "beneath the foe's team's feet!$",
+]
+
+[msg.section_0.entries.228]
+text = [
+  "The sticky web disappeared\\n",
+  "from around your team's feet!$",
+]
+
+[msg.section_0.entries.229]
+text = [
+  "The sticky web disappeared\\n",
+  "from around the foe's team's feet!$",
+]
+
+[msg.section_0.entries.230]
+text = ["$"]
+
+[msg.section_0.entries.231]
+text = [
+  "Crafty Shield protected\\n",
+  "your team!$",
+]
+
+[msg.section_0.entries.232]
+text = [
+  "Crafty Shield protected\\n",
+  "the foe's team!$",
+]
