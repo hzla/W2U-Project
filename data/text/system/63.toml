@@ -783,14 +783,14 @@ text = [
 [msg.section_0.entries.113]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have certain Pokémon hold it, and this stone\\n",
-  "will enable them to Mega Evolve in battle.$",
+  "Have certain Pokémon hold it so that\\n",
+  "they can Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.114]
 text = [
-  "An item to be held by a Pokémon.\\n",
-  "These pads protect the holder from effects\\n",
+  "An item to be held by a Pokémon. These\\n",
+  "pads protect the holder from effects\\n",
   "caused by making direct contact.$",
 ]
 
@@ -831,57 +831,79 @@ text = [
 
 [msg.section_0.entries.120]
 text = [
-  "A capsule that allows a Pokemon with two Abilities to switch between these abilities when it is used.$",
+  "A capsule that allows a Pokémon with\\n",
+  "two Abilities to switch between these\\n",
+  "abilities when it is used.$",
 ]
 
 [msg.section_0.entries.121]
 text = [
-  "An item to be held by a Pokemon. This offensive vest raises Sp. Def but prevents the use of status moves.$",
+  "An item to be held by a Pokémon. This\\n",
+  "offensive vest raises Sp. Def but\\n",
+  "prevents the use of status moves.$",
 ]
 
 [msg.section_0.entries.122]
 text = [
-  "An item to be held by a Pokemon. It boosts Sp. Def if hit with a Water-type attack. It can only be used once.$",
+  "An item to be held by a Pokémon. It\\n",
+  "boosts Sp. Def if hit with a Water-type\\n",
+  "attack. It can only be used once.$",
 ]
 
 [msg.section_0.entries.123]
 text = [
-  "If held by a Pokemon, this Berry will increase the Pokemon's Sp. Def stat when hit by a special attack.$",
+  "If held by a Pokémon, this Berry will\\n",
+  "increase the Pokémon's Sp. Def stat\\n",
+  "when hit by a special attack.$",
 ]
 
 [msg.section_0.entries.124]
 text = [
-  "This ring contains an untold power that somehow enables Pokemon carrying Mega Stones to Mega Evolve in battle.$",
+  "This ring contains an untold power that\\n",
+  "somehow enables Pokémon carrying Mega\\n",
+  "Stones to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.125]
 text = [
-  "An item to be held by a Pokemon. This feather boosts the power of Fairy-type moves.$",
+  "An item to be held by a Pokémon. This\\n",
+  "feather boosts the power of Fairy-type\\n",
+  "moves.$",
 ]
 
 [msg.section_0.entries.126]
 text = [
-  "If held by a Pokemon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.$",
+  "If held by a Pokémon, this Berry will\\n",
+  "lessen the damage taken from one\\n",
+  "supereffective Fairy-type attack.$",
 ]
 
 [msg.section_0.entries.127]
 text = [
-  "An item to be held by a Pokemon. These goggles protect the holder from weather damage and powder moves.$",
+  "An item to be held by a Pokémon. These\\n",
+  "goggles protect the holder from\\n",
+  "weather damage and powder moves.$",
 ]
 
 [msg.section_0.entries.128]
 text = [
-  "An item to be held by a Pokemon. It boosts Attack if hit with an Ice-type attack. It can only be used once.$",
+  "An item to be held by a Pokémon. It\\n",
+  "boosts Attack if hit with an Ice-type\\n",
+  "attack. It can only be used once.$",
 ]
 
 [msg.section_0.entries.129]
 text = [
-  "An item to be held by a Pokemon. Attack and Sp. Atk sharply increase if the holder is hit with a move it's weak to.$",
+  "An item to be held by a Pokémon. Attack\\n",
+  "and Sp. Atk sharply increase if the\\n",
+  "holder is hit with a move it's weak to.$",
 ]
 
 [msg.section_0.entries.130]
 text = [
-  "A patch that allows a Pokemon with a Hidden Ability to switch between its regular Ability and its Hidden Ability.$",
+  "A patch that allows a Pokémon with a\\n",
+  "Hidden Ability to switch between its\\n",
+  "regular Ability and its Hidden Ability.$",
 ]
 
 [msg.section_0.entries.131]
@@ -2901,7 +2923,9 @@ text = [
 
 [msg.section_0.entries.426]
 text = [
-  "A capsule of stored energy. When held, it activates the Protosynthesis or Quark Drive Ability.$",
+  "A capsule of stored energy. When held,\\n",
+  "it activates the Protosynthesis or\\n",
+  "Quark Drive Ability.$",
 ]
 
 [msg.section_0.entries.427]
@@ -3293,22 +3317,30 @@ text = [
 
 [msg.section_0.entries.485]
 text = [
-  "An item to be held by a Pokemon. It boosts Defense on Electric Terrain. It can only be used once.$",
+  "An item to be held by a Pokémon. It\\n",
+  "boosts Defense on Electric Terrain. It\\n",
+  "can only be used once.$",
 ]
 
 [msg.section_0.entries.486]
 text = [
-  "An item to be held by a Pokemon. It boosts Defense on Grassy Terrain. It can only be used once.$",
+  "An item to be held by a Pokémon. It\\n",
+  "boosts Defense on Grassy Terrain. It\\n",
+  "can only be used once.$",
 ]
 
 [msg.section_0.entries.487]
 text = [
-  "An item to be held by a Pokemon. It boosts Sp. Def on Psychic Terrain. It can only be used once.$",
+  "An item to be held by a Pokémon. It\\n",
+  "boosts Sp. Def on Psychic Terrain. It\\n",
+  "can only be used once.$",
 ]
 
 [msg.section_0.entries.488]
 text = [
-  "An item to be held by a Pokemon. It boosts Sp. Def on Misty Terrain. It can only be used once.$",
+  "An item to be held by a Pokémon. It\\n",
+  "boosts Sp. Def on Misty Terrain. It can\\n",
+  "only be used once.$",
 ]
 
 [msg.section_0.entries.489]
@@ -3412,29 +3444,29 @@ text = [
 [msg.section_0.entries.505]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Venusaur hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Venusaur hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.506]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Charizard hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Charizard hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.507]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Charizard hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Charizard hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.508]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Blastoise hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Blastoise hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.509]
@@ -3454,8 +3486,8 @@ text = [
 [msg.section_0.entries.511]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Alakazam hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Alakazam hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.512]
@@ -3475,8 +3507,8 @@ text = [
 [msg.section_0.entries.514]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Kangaskhan hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Kangaskhan hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.515]
@@ -3489,15 +3521,15 @@ text = [
 [msg.section_0.entries.516]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Gyarados hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Gyarados hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.517]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Aerodactyl hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Aerodactyl hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.518]
@@ -3517,8 +3549,8 @@ text = [
 [msg.section_0.entries.520]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Ampharos hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Ampharos hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.521]
@@ -3538,50 +3570,50 @@ text = [
 [msg.section_0.entries.523]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Heracross hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Heracross hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.524]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Houndoom hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Houndoom hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.525]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Tyranitar hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Tyranitar hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.526]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Sceptile hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Sceptile hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.527]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Blaziken hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Blaziken hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.528]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Swampert hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Swampert hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.529]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Gardevoir hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Gardevoir hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.530]
@@ -4023,29 +4055,29 @@ text = [
 [msg.section_0.entries.593]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Medicham hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Medicham hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.594]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Manectric hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Manectric hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.595]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Sharpedo hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Sharpedo hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.596]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Camerupt hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Camerupt hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.597]
@@ -4079,15 +4111,15 @@ text = [
 [msg.section_0.entries.601]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Salamence hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Salamence hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.602]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Metagross hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Metagross hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.603]
@@ -4114,8 +4146,8 @@ text = [
 [msg.section_0.entries.606]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Garchomp hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Garchomp hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.607]
@@ -4128,8 +4160,8 @@ text = [
 [msg.section_0.entries.608]
 text = [
   "One of the mysterious Mega Stones.\\n",
-  "Have Abomasnow hold it, and this stone will\\n",
-  "enable it to Mega Evolve in battle.$",
+  "Have Abomasnow hold it, and this stone\\n",
+  "will enable it to Mega Evolve in battle.$",
 ]
 
 [msg.section_0.entries.609]
