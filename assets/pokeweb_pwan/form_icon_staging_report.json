@@ -190,7 +190,7 @@
     {
       "targetIcon": 2244,
       "paletteKey": 1118,
-      "sourceStem": "SLOWBRO_2",
+      "sourceStem": "SLOWBRO_1",
       "palette": 0,
       "key": "REGIONAL_GALAR_SLOWBRO",
       "name": "Galarian Slowbro"
@@ -1160,7 +1160,7 @@
     {
       "targetIcon": 2422,
       "paletteKey": 1207,
-      "sourceStem": "SLOWBRO_1",
+      "sourceStem": "SLOWBRO_2",
       "palette": 0,
       "key": "MEGA_SLOWBRO",
       "name": "Mega Slowbro",
