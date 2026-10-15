@@ -5,7 +5,7 @@
 "Base Speed" = 60
 "Base Special Attack" = 30
 "Base Special Defense" = 41
-"Primary Type" = "TYPE_NORMAL"
+"Primary Type" = "TYPE_DARK"
 "Secondary Type" = "TYPE_NORMAL"
 "Capture Rate" = 255
 "Evolution Stage" = 1
@@ -21,12 +21,12 @@
 "Egg Group 2" = 5
 "Primary Ability" = 53
 "Secondary Ability" = 82
-"Hidden Ability" = 223
+"Hidden Ability" = 95
 "Escape Rate" = 120
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0
 "Form Count" = 2
-Color = 5
+Color = 8
 "Base Experience" = 56
 "Height (cm)" = 40
 "Weight (cg)" = 175

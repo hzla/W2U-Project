@@ -1,12 +1,12 @@
 [SPECIES_1240]
-"Base HP" = 60
-"Base Attack" = 105
+"Base HP" = 55
+"Base Attack" = 100
 "Base Defense" = 60
-"Base Speed" = 105
-"Base Special Attack" = 120
+"Base Speed" = 110
+"Base Special Attack" = 125
 "Base Special Defense" = 60
-"Primary Type" = "TYPE_DARK"
-"Secondary Type" = "TYPE_DARK"
+"Primary Type" = "TYPE_NORMAL"
+"Secondary Type" = "TYPE_GHOST"
 "Capture Rate" = 45
 "Evolution Stage" = 2
 "EV Yield" = 512
@@ -29,7 +29,7 @@
 Color = 7
 "Base Experience" = 179
 "Height (cm)" = 160
-"Weight (cg)" = 811
+"Weight (cg)" = 730
 "TM HM 1" = -1408020935
 "TM HM 2" = 1149827972
 "TM HM 3" = 1675629583

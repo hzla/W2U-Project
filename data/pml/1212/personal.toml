@@ -6,7 +6,7 @@
 "Base Special Attack" = 55
 "Base Special Defense" = 55
 "Primary Type" = "TYPE_ELECTRIC"
-"Secondary Type" = "TYPE_ELECTRIC"
+"Secondary Type" = "TYPE_GRASS"
 "Capture Rate" = 190
 "Evolution Stage" = 1
 "EV Yield" = 64
@@ -29,7 +29,7 @@
 Color = 0
 "Base Experience" = 66
 "Height (cm)" = 50
-"Weight (cg)" = 104
+"Weight (cg)" = 130
 "TM HM 1" = -2053928416
 "TM HM 2" = -2130662656
 "TM HM 3" = 851444640

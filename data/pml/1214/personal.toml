@@ -1,12 +1,12 @@
 [SPECIES_1214]
 "Base HP" = 95
-"Base Attack" = 95
+"Base Attack" = 105
 "Base Defense" = 85
-"Base Speed" = 55
+"Base Speed" = 45
 "Base Special Attack" = 125
-"Base Special Defense" = 65
+"Base Special Defense" = 75
 "Primary Type" = "TYPE_GRASS"
-"Secondary Type" = "TYPE_PSYCHIC"
+"Secondary Type" = "TYPE_DRAGON"
 "Capture Rate" = 45
 "Evolution Stage" = 2
 "EV Yield" = 512
@@ -19,8 +19,8 @@
 "Experience Group" = 5
 "Egg Group 1" = 7
 "Egg Group 2" = 7
-"Primary Ability" = 34
-"Secondary Ability" = 34
+"Primary Ability" = 119
+"Secondary Ability" = 119
 "Hidden Ability" = 139
 "Escape Rate" = 0
 "Form Data Offset" = 0
@@ -28,8 +28,8 @@
 "Form Count" = 2
 Color = 2
 "Base Experience" = 182
-"Height (cm)" = 200
-"Weight (cg)" = 1200
+"Height (cm)" = 1090
+"Weight (cg)" = 4156
 "TM HM 1" = -1808677340
 "TM HM 2" = -2146387447
 "TM HM 3" = -1426844632

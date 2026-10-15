@@ -5,7 +5,7 @@
 "Base Speed" = 15
 "Base Special Attack" = 40
 "Base Special Defense" = 40
-"Primary Type" = "TYPE_WATER"
+"Primary Type" = "TYPE_PSYCHIC"
 "Secondary Type" = "TYPE_PSYCHIC"
 "Capture Rate" = 190
 "Evolution Stage" = 1
@@ -19,7 +19,7 @@
 "Experience Group" = 0
 "Egg Group 1" = 1
 "Egg Group 2" = 2
-"Primary Ability" = 12
+"Primary Ability" = 82
 "Secondary Ability" = 20
 "Hidden Ability" = 144
 "Escape Rate" = 60

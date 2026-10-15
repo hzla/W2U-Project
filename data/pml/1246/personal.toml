@@ -1,12 +1,12 @@
 [SPECIES_1246]
-"Base HP" = 78
-"Base Attack" = 107
-"Base Defense" = 75
-"Base Speed" = 70
-"Base Special Attack" = 100
-"Base Special Defense" = 100
+"Base HP" = 88
+"Base Attack" = 112
+"Base Defense" = 80
+"Base Speed" = 60
+"Base Special Attack" = 95
+"Base Special Defense" = 95
 "Primary Type" = "TYPE_GRASS"
-"Secondary Type" = "TYPE_GHOST"
+"Secondary Type" = "TYPE_FIGHTING"
 "Capture Rate" = 45
 "Evolution Stage" = 3
 "EV Yield" = 12
@@ -21,7 +21,7 @@
 "Egg Group 2" = 4
 "Primary Ability" = 65
 "Secondary Ability" = 65
-"Hidden Ability" = 203
+"Hidden Ability" = 113
 "Escape Rate" = 0
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0
@@ -29,7 +29,7 @@
 Color = 5
 "Base Experience" = 265
 "Height (cm)" = 160
-"Weight (cg)" = 366
+"Weight (cg)" = 370
 "TM HM 1" = -2076604640
 "TM HM 2" = 1153544
 "TM HM 3" = -1562377184

@@ -1,12 +1,12 @@
 [SPECIES_1200]
-"Base HP" = 90
-"Base Attack" = 110
+"Base HP" = 95
+"Base Attack" = 115
 "Base Defense" = 80
-"Base Speed" = 95
-"Base Special Attack" = 100
+"Base Speed" = 90
+"Base Special Attack" = 95
 "Base Special Defense" = 80
 "Primary Type" = "TYPE_FIRE"
-"Secondary Type" = "TYPE_FIRE"
+"Secondary Type" = "TYPE_ROCK"
 "Capture Rate" = 75
 "Evolution Stage" = 2
 "EV Yield" = 8
@@ -21,15 +21,15 @@
 "Egg Group 2" = 5
 "Primary Ability" = 22
 "Secondary Ability" = 18
-"Hidden Ability" = 154
+"Hidden Ability" = 69
 "Escape Rate" = 0
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0
 "Form Count" = 2
 Color = 5
 "Base Experience" = 194
-"Height (cm)" = 190
-"Weight (cg)" = 1550
+"Height (cm)" = 200
+"Weight (cg)" = 1680
 "TM HM 1" = -1942403536
 "TM HM 2" = 335724196
 "TM HM 3" = 1925193740
