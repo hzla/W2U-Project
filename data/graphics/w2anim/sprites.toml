@@ -17,9 +17,10 @@
 # Where Pokemon sides stand: "pwan" as their PWAN stands (Pokeweb grounds them on canvas row 95), "carrier" with their
 # lowest row on the carrier's ground point, row 88, where the game's own sprites stand (measured in battle: vanilla
 # feet about 7 px above a row-95 PWAN's). TEX4 sides move up as far as their top row allows.
-grounding = "pwan"
+grounding = "carrier"
 # The same for backs alone (default: as `grounding`). Row 88 was measured on fronts; vanilla backs keep their feet
-# behind the text box. Under "pwan" an A3I5 back rises no higher than the 96x96 frame's top row and sinks instead.
+# behind the text box, so backs stay where their PWAN stands. Under "pwan" an A3I5 back rises no higher than the
+# 96x96 frame's top row and sinks instead.
 grounding_back = "pwan"
 
 # No sides listed yet. 19 full-size sides were built and tried (Megas Rayquaza, Charizard X, Beedrill, Alakazam,

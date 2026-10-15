@@ -1128,6 +1128,8 @@ row 88 (measured in battle: vanilla feet at screen row ~96, a row-95 PWAN's bott
 - `grounding_back` (default: as `grounding`): the same for backs alone. Row 88 was measured on fronts; vanilla backs
   keep their feet behind the text box, and backs on 88 stood visibly higher. Backs stay on `"pwan"`; under it an A3I5
   back rises no higher than the 96x96 frame's top row (`a3i5.BACK_TOP_ROW`) and sinks as far as needed instead.
+- Shipped: `grounding = "carrier"`, `grounding_back = "pwan"`. Checked with the 2026-10-10 sprite refresh
+  (3ff00d2cd) as well: it keeps every PWAN's lowest row, so the grounding is the same.
 
 Glyph: `tools/pwan/gen_mega_glyph_heights.py` measures A3I5 sides from their source MANI at their placement (and any
 side with an offset or a grounding move); the top fields are signed now (a full-size Mega reaches above the 96x96
