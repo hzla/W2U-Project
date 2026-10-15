@@ -252,7 +252,7 @@ constexpr u32 CAMERA_MTX_LIT = 0x02019FA4, PROJ_MTX_LIT = 0x02019FC0;   // MCSS_
 
 constexpr u32 VBLANK_COUNT = 0x027FFC3C;          // NitroSDK HW_VBLANK_COUNT_BUF: real frames (the OAM transfer
                                                    // runs several times a frame)
-struct { bool active, uploaded, started; u32 vpos, start; u8 top, cx; } g_glyph;
+struct { bool active, uploaded, started; u32 vpos, start; s16 top; u8 cx; } g_glyph;
 // each view position's ground point and scale at the default camera, cached while the player picks a move (W2U's
 // Mega animation and its PWAN sprites leave the MCSS sprite's own scale / position unusable for this until later)
 struct Place { s16 gx, gy, scale; s32 depth; bool valid; } g_place[GAUGES];

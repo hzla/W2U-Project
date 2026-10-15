@@ -25,10 +25,15 @@ struct W2UTerrainTextureMapping {
 };
 static_assert(sizeof(W2UTerrainTextureMapping) == 26, "terrain mapping record layout");
 
-// mb_mega_extras.cpp: where the Mega glyph sits above each Mega's sprite (mb_mega_glyph_heights.inc).
+// mb_mega_extras.cpp: where the Mega glyph sits above each Mega's sprite (mb_mega_glyph_heights.inc; top rows in
+// canvas rows from the 96x96 frame's top, negative for A3I5 sprites that reach above it).
 struct W2UMegaGlyphPlace {
     u16 species;
-    u8 form, frontTop, frontCx, backTop, backCx;
+    u8 form;
+    s8 frontTop;
+    u8 frontCx;
+    s8 backTop;
+    u8 backCx;
 };
 static_assert(sizeof(W2UMegaGlyphPlace) == 8, "Mega glyph place record layout");
 

@@ -20,6 +20,10 @@
 //   MANI    {'MANI', u16 version, u16 flags, u16 boxW, boxH, seqCount, uniqueCount, u32 seqOffset, framesOffset,
 //            paletteOffset} (offsets from the MANI start); seq {u16 unique, u16 duration}; frames {u32 offset, size}
 //            (from the MANI start; LZ10 / LZ11 blobs of boxH rows); palettes 2 x 16 BGR555 (normal, shiny)
+//           flags: 1 own palettes, 2 TEX4 (else A3I5: rows of 128 texels, index | alpha << 5), 4 durations in 1/60 s
+//           ticks (else ms), 8 morph block: at MANI + 0x1C, {s16 x0, y0: the box's top-left relative to the sprite's
+//           ground point, y down; u8 map[16]: A3I5 index -> 4 bpp index 1..15; u8 source[16]: 4 bpp index -> the A3I5
+//           index whose colour it shows (entry 0 unused)} for the evolution renderer's 4 bpp bitmaps (A3I5 only)
 //
 // MCSS facts (MegaB2W2 docs/MODLOG.md "Animated sprites"): a sprite slot owns 16 KB of texture VRAM (sys->texBase +
 // slot * 0x4000; 256x128 4 bpp natively) and 0x20 bytes of palette VRAM (sys->palBase + slot * 0x20); its image proxy
@@ -57,7 +61,8 @@ constexpr u32 NATIVE_ROW_BYTES = 128;                  // 256 texels, 4 bpp
 constexpr u32 A3I5_ROW_BYTES = 128;                    // 128 texels, 8 bpp
 constexpr u32 GX_TEXSIZE_128 = 4, GX_TEXFMT_A3I5 = 1;
 
-constexpr u16 MANI_OWN_PALETTES = 1, MANI_TEX4 = 2, MANI_TICKS = 4;
+constexpr u16 MANI_OWN_PALETTES = 1, MANI_TEX4 = 2, MANI_TICKS = 4, MANI_MORPH = 8, MANI_FLAGS = 15;
+constexpr u32 MANI_MORPH_OFFSET = 0x1C;
 constexpr u16 ENTRY_CARRIER = 1;
 constexpr u32 ARC_POKEGRA = 4;
 
@@ -68,6 +73,7 @@ struct ManiHeader {
     u32 paletteOffset;
 };
 struct SeqEntry { u16 unique, duration; };
+struct MorphBlock { s16 x0, y0; u8 map[16]; u8 source[16]; };
 struct FrameEntry { u32 offset, size; };
 
 // MCSS system / sprite fields
@@ -98,12 +104,14 @@ struct Stream {
     volatile u8 pending;                               // staging holds a frame for the next VBlank
     volatile u8 palettePending;
     u8 active, started, formatSet;
-    u8 primed;                                         // TEX4: frame 0 and the palette went into MCSS's own upload
+    u8 still;                                          // A3I5 primed without buffers: only keeps the A3I5 format
+    u8 primed;                                         // frame 0 and the palette went into MCSS's own upload
     u8 role;                                           // evolution: 1 the Pokemon before, 2 after (0: none)
     volatile u8 indepPending;                          // evolution: the morph bitmap holds a new frame for VBlank
     u16 indepShown;                                    // evolution: unique frame in the morph bitmap
     u8* indepBmp; u32 indepTex;                        // evolution: the morph renderer's bitmap (RAM) and its VRAM
     u16 palette[16];                                   // own palette (normal or shiny), MANI_OWN_PALETTES only
+    MorphBlock morph;                                  // MANI_MORPH only (A3I5 in the evolution renderer)
 };
 Stream g_streams[MAX_STREAMS];
 void* g_vblankTask = nullptr;
@@ -162,7 +170,7 @@ bool FindEntry(u16 arc, u32 sheet, IndexEntry& out) {
 
 void Free(Stream& s) {
     if (!s.active) return;
-    s.active = 0; s.pending = 0; s.palettePending = 0; s.indepPending = 0; s.role = 0; s.indepBmp = nullptr;
+    s.active = 0; s.still = 0; s.pending = 0; s.palettePending = 0; s.indepPending = 0; s.role = 0; s.indepBmp = nullptr;
     if (s.meta) GFL_HeapFree(s.meta);
     if (s.lz) GFL_HeapFree(s.lz);
     if (s.staging) GFL_HeapFree(s.staging);
@@ -291,21 +299,35 @@ u8* McssUploadWork(void* sys, u8* spr) {
     return nullptr;
 }
 
+// A3I5: MCSS's 256x128 4 bpp sheet buffer is 16 KB, the size of the 128x128 A3I5 texture, and both have 128-byte
+// rows, so frame 0 is decompressed straight into it (the rows below the box cleared: alpha 0) and the proxy switched to
+// A3I5 before MCSS's own upload. Needs only the LZ buffer, not staging (an A3I5 sprite whose staging cannot be
+// allocated stays a correct still).
 bool Prime(Stream& s) {
     u8* work = McssUploadWork(s.sys, s.spr);
     u8* chr = work ? *(u8**)work : nullptr;
     u8* raw = chr ? *(u8**)(chr + 0x14) : nullptr;
-    if (!raw || *(u32*)(chr + 0x10) < (u32)(s.boxH - 1) * NATIVE_ROW_BYTES + s.rowBytes) return false;
+    const bool tex4 = (s.flags & MANI_TEX4) != 0;
+    if (!raw || *(u32*)(chr + 0x10) < (tex4 ? (u32)(s.boxH - 1) * NATIVE_ROW_BYTES + s.rowBytes : SLOT_TEX_BYTES))
+        return false;
     const u16 u = Seq(s)[0].unique;
     FrameEntry fe = Frames(s)[u];
     if (!Read(s.mani + fe.offset, s.lz, fe.size) || !ValidLz(s.lz, fe.size, s.boxH * s.rowBytes)) return false;
-    sys_uncomp_lz1x(s.lz, s.staging);
-    for (u32 y = 0; y < s.boxH; ++y) {
-        u8* dst = raw + y * NATIVE_ROW_BYTES;
-        const u8* src = s.staging + y * s.rowBytes;
-        for (u32 x = 0; x < s.rowBytes; ++x) dst[x] = src[x];
+    if (tex4) {
+        sys_uncomp_lz1x(s.lz, s.staging);
+        for (u32 y = 0; y < s.boxH; ++y) {
+            u8* dst = raw + y * NATIVE_ROW_BYTES;
+            const u8* src = s.staging + y * s.rowBytes;
+            for (u32 x = 0; x < s.rowBytes; ++x) dst[x] = src[x];
+        }
+        cp15_flushDC(raw, s.boxH * NATIVE_ROW_BYTES);
+    } else {
+        sys_uncomp_lz1x(s.lz, raw);
+        for (u32 i = s.boxH * A3I5_ROW_BYTES; i < SLOT_TEX_BYTES; ++i) raw[i] = 0;
+        cp15_flushDC(raw, SLOT_TEX_BYTES);
+        SprSetA3I5(s.spr);
+        s.formatSet = 1;
     }
-    cp15_flushDC(raw, s.boxH * NATIVE_ROW_BYTES);
     if (s.flags & MANI_OWN_PALETTES) {
         u8* pal = *(u8**)(work + 4);
         u16* palRaw = pal ? *(u16**)(pal + 0x0C) : nullptr;
@@ -325,9 +347,10 @@ void Register(void* sys, int slot, const IndexEntry& entry, bool shiny) {
     for (auto& o : g_streams) if (!o.active) { s = &o; break; }
     if (!s) return;
     ManiHeader h;
-    if (!Read(entry.maniOffset, &h, sizeof(h)) || h.magic != MANI_MAGIC || h.version != 2 || (h.flags & ~7) || !h.seqCount || !h.uniqueCount ||
-        !h.boxH || !h.boxW || h.boxH > 128 || h.boxW > ((h.flags & MANI_TEX4) ? 256 : 128) ||
-        ((h.flags & MANI_TEX4) && (h.boxW & 1)))
+    if (!Read(entry.maniOffset, &h, sizeof(h)) || h.magic != MANI_MAGIC || h.version != 2 || (h.flags & ~MANI_FLAGS) ||
+        !h.seqCount || !h.uniqueCount || !h.boxH || !h.boxW || h.boxH > 128 ||
+        h.boxW > ((h.flags & MANI_TEX4) ? 256 : 128) || ((h.flags & MANI_TEX4) && (h.boxW & 1)) ||
+        ((h.flags & MANI_MORPH) && (h.flags & MANI_TEX4)))
         return;
     u8* spr = SysSprite(sys, slot);
     const u16 heap = SprHeap(spr);
@@ -351,6 +374,13 @@ void Register(void* sys, int slot, const IndexEntry& entry, bool shiny) {
             GFL_HeapFree(s->meta); s->meta = nullptr; return;
         }
     }
+    if (h.flags & MANI_MORPH) {
+        const u32 end = MANI_MORPH_OFFSET + sizeof(MorphBlock);
+        bool ok = h.seqOffset >= end && h.framesOffset >= end && (!(h.flags & MANI_OWN_PALETTES) || h.paletteOffset >= end) &&
+                  Read(entry.maniOffset + MANI_MORPH_OFFSET, &s->morph, sizeof(s->morph));
+        for (u32 i = 0; ok && i < 16; ++i) ok = s->morph.map[i] >= 1 && s->morph.map[i] <= 15 && s->morph.source[i] < 16;
+        if (!ok) { GFL_HeapFree(s->meta); s->meta = nullptr; return; }
+    }
     u32 maxBlob = 0;
     FrameEntry* frames = (FrameEntry*)(s->meta + seqBytes);
     bool valid = true;
@@ -360,20 +390,30 @@ void Register(void* sys, int slot, const IndexEntry& entry, bool shiny) {
         if (frames[i].size > maxBlob) maxBlob = frames[i].size;
     }
     if (!valid) { GFL_HeapFree(s->meta); s->meta = nullptr; return; }
+    s->sys = sys; s->spr = spr; s->slot = slot; s->mani = entry.maniOffset;
+    s->formatSet = 0;
     s->lz = (u8*)GFL_HeapAllocate(heap, (maxBlob + 3) & ~3u, 0, "w2anim", __LINE__);
-    s->staging = (u8*)GFL_HeapAllocate(heap, h.boxH * s->rowBytes, 0, "w2anim", __LINE__);
+    s->staging = s->lz ? (u8*)GFL_HeapAllocate(heap, h.boxH * s->rowBytes, 0, "w2anim", __LINE__) : nullptr;
     if (!s->lz || !s->staging) {
+        // no room to animate: an A3I5 sprite is still primed (its first frame and colours instead of the carrier's
+        // 4 bpp sheet) and kept as a still - no buffers, only the slot, so the A3I5 format is set again once MCSS's
+        // own upload is done (that upload resets the image proxy)
+        const bool still = s->lz && !(h.flags & MANI_TEX4) && Prime(*s);
         if (s->lz) GFL_HeapFree(s->lz);
         if (s->staging) GFL_HeapFree(s->staging);
         GFL_HeapFree(s->meta);
         s->meta = s->lz = s->staging = nullptr;
+        if (still) {
+            s->still = 1; s->started = 0; s->pending = 0; s->palettePending = 0; s->role = 0; s->indepPending = 0;
+            s->indepBmp = nullptr; s->active = 1;
+            if (!g_vblankTask) g_vblankTask = GFL_VBlankTCBAdd(VBlankUpload, nullptr, 0);
+        }
         return;
     }
-    s->sys = sys; s->spr = spr; s->slot = slot; s->mani = entry.maniOffset;
-    s->seqPos = 0; s->elapsed = 0; s->pending = 0; s->palettePending = 0; s->started = 0; s->formatSet = 0;
+    s->seqPos = 0; s->elapsed = 0; s->pending = 0; s->palettePending = 0; s->started = 0; s->still = 0;
     s->role = 0; s->indepPending = 0; s->indepShown = 0xFFFF; s->indepBmp = nullptr; s->indepTex = 0;
     s->shown = 0xFFFF;
-    s->primed = (h.flags & MANI_TEX4) && Prime(*s);
+    s->primed = Prime(*s);
     s->active = 1;
     if (!g_vblankTask) g_vblankTask = GFL_VBlankTCBAdd(VBlankUpload, nullptr, 0);
 }
@@ -385,10 +425,15 @@ void Tick(void* sys, bool firstFrameOnly = false) {
     for (auto& s : g_streams) {
         if (!s.active || s.sys != sys) continue;
         if (SlotGone(s)) { Free(s); continue; }
+        if (s.still) {                                 // primed A3I5 still: the format again after MCSS's upload
+            if (!s.started && !SprUploadTask(s.spr)) { s.started = 1; SprSetA3I5(s.spr); }
+            continue;
+        }
         if (s.pending) continue;                       // previous frame not uploaded yet
         if (!s.started) {
             if (SprUploadTask(s.spr)) continue;        // MCSS is still uploading its own texture
             s.started = 1;
+            if (s.primed && !(s.flags & MANI_TEX4)) SprSetA3I5(s.spr);   // in case MCSS's upload reset the proxy
             if (s.primed) continue;                    // frame 0 and the palette came with MCSS's own upload
             if (s.flags & MANI_OWN_PALETTES) {         // MCSS's buffers first: its fades / flashes start from them
                 u32 n = SprPaletteSize(s.spr) < sizeof(s.palette) ? SprPaletteSize(s.spr) : sizeof(s.palette);
@@ -425,7 +470,7 @@ void Tick(void* sys, bool firstFrameOnly = false) {
 // documented. The 96x96 frame sits at (16, 16).
 constexpr u32 EVO_WORK_MORPH = 0x58, MORPH_POKE[2] = { 0x08, 0x0C };
 constexpr u32 POKE_BMP = 0x10, POKE_TEX = 0x14, POKE_PAL = 0x2C, POKE_FADE_COLOR = 0x4C, POKE_FADE_RATE = 0x56;
-constexpr u32 MORPH_SIDE = 128, MORPH_ROW_BYTES = MORPH_SIDE / 2, MORPH_ORIGIN = 16;
+constexpr u32 MORPH_SIDE = 128, MORPH_ROW_BYTES = MORPH_SIDE / 2, MORPH_ORIGIN = 16, MORPH_GROUND_ROW = 88;
 
 bool InMainRam(const void* p) { u32 a = (u32)p; return a >= 0x02000000 && a < 0x02400000; }
 
@@ -446,17 +491,42 @@ void MorphUpdate(void* work) {
     for (u32 r = 0; r < 2; ++r) {
         u8* poke = *(u8**)(mgr + MORPH_POKE[r]);
         Stream* s = nullptr;
-        for (auto& o : g_streams) if (o.active && o.role == r + 1 && o.started && o.shown != 0xFFFF) { s = &o; break; }
-        if (!s || !InMainRam(poke) || !(s->flags & MANI_TEX4)) continue;
+        for (auto& o : g_streams)
+            if (o.active && !o.still && o.role == r + 1 && o.started && o.shown != 0xFFFF) { s = &o; break; }
+        const bool tex4 = s && (s->flags & MANI_TEX4);
+        const u16 a3i5Morph = MANI_MORPH | MANI_OWN_PALETTES;
+        if (!s || !InMainRam(poke) || !(tex4 || (s->flags & a3i5Morph) == a3i5Morph)) continue;
         if (s->flags & MANI_OWN_PALETTES) {            // the renderer's fade, applied to the stream's palette
             u16* pal = (u16*)(poke + POKE_PAL);
             const u16 to = *(u16*)(poke + POKE_FADE_COLOR);
             const s32 rate = *(s16*)(poke + POKE_FADE_RATE);
-            for (u32 i = 1; i < 16; ++i) pal[i] = Fade(s->palette[i], to, rate);
+            for (u32 i = 1; i < 16; ++i) pal[i] = Fade(s->palette[tex4 ? i : s->morph.source[i]], to, rate);
         }
         u8* bmpObj = *(u8**)(poke + POKE_BMP);
         u8* bmp = InMainRam(bmpObj) ? *(u8**)bmpObj : nullptr;
         if (!InMainRam(bmp) || (s->indepShown == s->shown && s->indepBmp == bmp)) continue;
+        if (!tex4) {
+            // A3I5 (8 bpp, index | alpha << 5) -> the bitmap's 4 bpp through the build's colour map; the box sits where
+            // a 96x96 frame's ground point would be (frame at (16, 16), ground row 88)
+            const s32 bx = (s32)(MORPH_ORIGIN + 48) + s->morph.x0, by = (s32)(MORPH_ORIGIN + MORPH_GROUND_ROW) + s->morph.y0;
+            for (u32 y = 0; y < MORPH_SIDE; ++y) {
+                u8* row = bmp + y * MORPH_ROW_BYTES;
+                const s32 sy = (s32)y - by;
+                for (u32 x = 0; x < MORPH_SIDE; x += 2) {
+                    u8 pair = 0;
+                    for (u32 k = 0; k < 2; ++k) {
+                        const s32 sx = (s32)(x + k) - bx;
+                        if (sy < 0 || sy >= (s32)s->boxH || sx < 0 || sx >= (s32)s->boxW) continue;
+                        const u8 t = s->staging[sy * A3I5_ROW_BYTES + sx];
+                        if (t >> 5) pair |= (u8)(s->morph.map[t & 15] << (k ? 0 : 4));   // high nibble = left pixel
+                    }
+                    row[x / 2] = pair;
+                }
+            }
+            cp15_flushDC(bmp, MORPH_SIDE * MORPH_ROW_BYTES);
+            s->indepBmp = bmp; s->indepTex = *(u32*)(poke + POKE_TEX); s->indepShown = s->shown; s->indepPending = 1;
+            continue;
+        }
         // the stream's staging holds its current frame (96 rows of 48 bytes, low nibble = left pixel)
         for (u32 y = 0; y < MORPH_SIDE; ++y) {
             u8* row = bmp + y * MORPH_ROW_BYTES;

@@ -20,6 +20,17 @@ block instead (the most common carrier cell set among the indexed blocks), prime
 palette, and streams the rest. Trainer frames are moved up TRAINER_SHIFT rows: Pokeweb's trainer canvas stands on its
 bottom row (96), a Pokemon carrier's ground point is canvas row 88.
 
+Per-sprite settings (--sprites, data/graphics/w2anim/sprites.toml; tools/w2anim/a3i5.py): a side listed there can
+stream as A3I5 from a committed source MANI (full-size art; this step then also writes the block's cell files into
+--pokegra, keeping the carrier set's original members in --black2-pokegra for Black 2's package), and any side can
+carry a manual offset correction (Pokeweb's per-side offset: px, +x right, +y down, -48..48; TEX4: the frames shifted
+inside the 96x96 frame like Pokeweb's shiftPwanFrames, A3I5: the quad moved). Its top-level `grounding` decides where a
+Pokemon side stands: "pwan" (default) as its PWAN stands, "carrier" its lowest row over all frames on the carrier's
+ground point, row 88 (see ground_raise; Pokeweb grounds PWANs on row 95, 8 px below where the game's own sprites stand).
+`grounding_back` (default: the same as `grounding`) does the same for backs alone: row 88 was measured on fronts. Backs
+under "pwan" stand as their PWAN stands, an A3I5 back no higher than the 96x96 frame's top (a3i5.BACK_TOP_ROW).
+The grounding applies before the manual offset.
+
 Output layout: see the comment at the top of w2u_anim_streams.cpp. Sheets indexed: front 2 (+3 female when present),
 back 11 (+12 female when present) of the block. Compressed MANIs are cached per PWAN file content in --cache.
 
@@ -36,12 +47,15 @@ import json
 import os
 import struct
 import sys
+import tomllib
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools" / "pwan"))
 from pwan_config import parse_config  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import a3i5  # noqa: E402
 
 ARC_POKEGRA = 4
 ARC_TRAINER = 71
@@ -68,7 +82,7 @@ FORM_START = 14480
 ROW_BYTES = FRAME_W // 2
 # PWAN's four OBJ-compatible regions: (byte offset, x, y, tiles wide, tiles high)
 REGIONS = ((0x0000, 0, 0, 8, 8), (0x0800, 64, 0, 4, 8), (0x0C00, 0, 64, 8, 4), (0x1000, 64, 64, 4, 4))
-CACHE_VERSION = b"w2anim-tex4-2"
+CACHE_VERSION = b"w2anim-tex4-3"
 
 
 def align4(n: int) -> int:
@@ -163,17 +177,140 @@ def shift_up(pixels: bytes, rows: int) -> bytes:
     return pixels[rows * ROW_BYTES:] + bytes(rows * ROW_BYTES) if rows else pixels
 
 
-def build_mani(path: Path, normal: list[int] | None, shiny: list[int] | None, shift: int = 0) -> tuple[bytes, dict]:
-    """normal / shiny None: a stream with its own palette only (trainers: the PWAN palette for both)."""
+def shift_frame(pixels: bytes, dx: int, dy: int) -> bytes:
+    """Pokeweb's shiftPwanFrames on one linear frame (96 rows of 48 bytes, low nibble = left pixel): every pixel moved
+    by (dx, dy), what leaves the 96x96 frame dropped."""
+    if not dx and not dy:
+        return pixels
+    out = bytearray(len(pixels))
+    for y in range(FRAME_H):
+        ty = y + dy
+        if not 0 <= ty < FRAME_H:
+            continue
+        for x in range(FRAME_W):
+            tx = x + dx
+            if not 0 <= tx < FRAME_W:
+                continue
+            b = pixels[y * ROW_BYTES + x // 2]
+            v = (b >> 4) if x & 1 else (b & 15)
+            if v:
+                out[ty * ROW_BYTES + tx // 2] |= v << 4 if tx & 1 else v
+    return bytes(out)
+
+
+def pwan_bottom(path: Path) -> int | None:
+    """The PWAN side's lowest opaque row + 1 over every frame it shows (its grounding)."""
+    _pal, timeline, frames = read_pwan(path)
+    low = 0
+    for f in {f for f, _ in timeline}:
+        lin = untile(frames[f])
+        for y in range(FRAME_H - 1, low - 1, -1):
+            if any(lin[y * ROW_BYTES:(y + 1) * ROW_BYTES]):
+                low = max(low, y + 1)
+                break
+    return low or None
+
+
+def pwan_rows(path: Path) -> tuple[int, int] | None:
+    """The PWAN side's top opaque row and lowest opaque row + 1 over every frame it shows."""
+    _pal, timeline, frames = read_pwan(path)
+    rows = [y for f in {f for f, _ in timeline} for lin in (untile(frames[f]),) for y in range(FRAME_H)
+            if any(lin[y * ROW_BYTES:(y + 1) * ROW_BYTES])]
+    return (min(rows), max(rows) + 1) if rows else None
+
+
+def ground_raise(path: Path, grounding: str) -> int:
+    """Rows a TEX4 side moves up under grounding "carrier": its lowest row onto the carrier's ground row (88), as far as
+    its top row allows inside the 96x96 frame (art that fills the frame keeps part of the sink; such art is what A3I5
+    is for). Sides already standing above the ground point stay."""
+    if grounding != "carrier":
+        return 0
+    rows = pwan_rows(path)
+    return max(0, min(rows[1] - a3i5.GROUND_ROW, rows[0])) if rows else 0
+
+
+def a3i5_bottom(path: Path, grounding: str) -> int | None:
+    """The PWAN bottom an A3I5 side's placement starts from: under grounding "carrier" never below the ground point
+    (a PWAN that floated keeps its height)."""
+    bottom = pwan_bottom(path)
+    return min(bottom, a3i5.GROUND_ROW) if bottom and grounding == "carrier" else bottom
+
+
+def a3i5_top(side: str, grounding: str) -> int | None:
+    """The canvas row an A3I5 side's top may reach (taller art sinks): under grounding "carrier" the screen's top
+    (Pokeweb's 96x96 frame did the same by its size); a back under "pwan" the 96x96 frame's top."""
+    if grounding == "carrier":
+        return a3i5.SCREEN_TOP_ROW[side]
+    return a3i5.BACK_TOP_ROW if side == "back" else None
+
+
+def a3i5_max_sink(side: str, grounding: str) -> int | None:
+    """How far that limit may sink an A3I5 side: MAX_SINK, but a back under "pwan" as far as it must."""
+    return None if side == "back" and grounding != "carrier" else a3i5.MAX_SINK
+
+
+def load_grounding(path: Path | None) -> dict[str, str]:
+    """{"front": ..., "back": ...} from sprites.toml's `grounding` and `grounding_back` (default: `grounding`)."""
+    settings = tomllib.loads(path.read_text(encoding="utf-8")) if path and path.exists() else {}
+    front = settings.get("grounding", "pwan")
+    back = settings.get("grounding_back", front)
+    for key, value in (("grounding", front), ("grounding_back", back)):
+        if value not in ("pwan", "carrier"):
+            raise ValueError(f"{path}: {key} {value!r} (pwan / carrier)")
+    return {"front": front, "back": back}
+
+
+def load_sprites(path: Path | None) -> dict:
+    """data/graphics/w2anim/sprites.toml -> {(species, form, side): settings}."""
+    if not path or not path.exists():
+        return {}
+    rows = tomllib.loads(path.read_text(encoding="utf-8")).get("side", [])
+    out = {}
+    for row in rows:
+        key = (int(row["species"]), int(row.get("form", 0)), row["side"])
+        if row["side"] not in ("front", "back") or key in out:
+            raise ValueError(f"{path}: bad or repeated side {key}")
+        fmt = row.get("format", "tex4")
+        if fmt not in ("tex4", "a3i5") or (fmt == "a3i5") != ("source" in row):
+            raise ValueError(f"{path}: {key}: format {fmt!r} (a3i5 needs a source, tex4 none)")
+        if fmt == "tex4" and (row.get("timing") or row.get("altitude")):
+            raise ValueError(f"{path}: {key}: timing / altitude apply to a3i5 sides (a TEX4 side's timing is its PWAN's)")
+        a3i5.check_offset(row.get("offset"))
+        out[key] = row
+    return out
+
+
+def stage_members(pokegra: Path, black2: Path | None, written: dict[int, bytes]) -> None:
+    """Write the A3I5 blocks' members; the carrier set's originals go to black2 (Black 2 keeps PWAN carriers). A
+    member that is no longer A3I5 gets its original back."""
+    if black2:
+        black2.mkdir(parents=True, exist_ok=True)
+        for kept in black2.iterdir():
+            if kept.name.isdigit() and int(kept.name) not in written:
+                (pokegra / kept.name).write_bytes(kept.read_bytes())
+                kept.unlink()
+    for member, data in sorted(written.items()):
+        target = pokegra / str(member)
+        current = target.read_bytes() if target.exists() else b""
+        if black2 and current != data:
+            (black2 / str(member)).write_bytes(current)
+        if current != data:
+            target.write_bytes(data)
+
+
+def build_mani(path: Path, normal: list[int] | None, shiny: list[int] | None, shift: int = 0,
+               offset: tuple[int, int] = (0, 0)) -> tuple[bytes, dict]:
+    """normal / shiny None: a stream with its own palette only (trainers: the PWAN palette for both). offset: the
+    side's manual offset correction (px, +y down)."""
     import ndspy.lz10
     palette, timeline, frames = read_pwan(path)
     if normal is None:
         normal, shiny = list(palette), list(palette)
-    own = palette[1:] != normal[1:] or shift != 0
+    own = palette[1:] != normal[1:] or shift != 0 or offset != (0, 0)
     unique: dict[bytes, int] = {}
     blobs: list[bytes] = []
     seq: list[tuple[int, int]] = []
-    linear = [shift_up(untile(f), shift) for f in frames]
+    linear = [shift_frame(shift_up(untile(f), shift), *offset) for f in frames]
     for frame, ticks in timeline:
         pixels = linear[frame]
         if pixels not in unique:
@@ -208,16 +345,16 @@ def build_mani(path: Path, normal: list[int] | None, shiny: list[int] | None, sh
 
 
 def cached_mani(job: tuple) -> tuple[bytes, dict]:
-    path_s, normal, shiny, cache_dir, shift = job
+    path_s, normal, shiny, cache_dir, shift, offset = job
     path = Path(path_s)
-    key = hashlib.sha1(CACHE_VERSION + path.read_bytes() + struct.pack("<H", shift) +
+    key = hashlib.sha1(CACHE_VERSION + path.read_bytes() + struct.pack("<Hhh", shift, *offset) +
                        (struct.pack("<32H", *normal, *shiny) if normal else b"own")).hexdigest()
     if cache_dir:
         cached = Path(cache_dir) / f"{key}.mani"
         meta = Path(cache_dir) / f"{key}.json"
         if cached.exists() and meta.exists():
             return cached.read_bytes(), json.loads(meta.read_text())
-    data, info = build_mani(path, normal, shiny, shift)
+    data, info = build_mani(path, normal, shiny, shift, tuple(offset))
     if cache_dir:
         Path(cache_dir).mkdir(parents=True, exist_ok=True)
         cached.write_bytes(data)
@@ -237,8 +374,18 @@ def main() -> int:
     ap.add_argument("--jobs", type=int, default=os.cpu_count() or 1)
     ap.add_argument("--trainers", type=Path, help="Pokeweb trainer animations (PWNT config.bin + NNN.pwan); default "
                     "assets/pokeweb_pwan/trainers when present")
+    ap.add_argument("--sprites", type=Path, help="per-sprite settings (data/graphics/w2anim/sprites.toml)")
+    ap.add_argument("--a3i5-sources", type=Path, help="the A3I5 source MANIs (data/graphics/w2anim/a3i5)")
+    ap.add_argument("--black2-pokegra", type=Path, help="where the carrier members an A3I5 block replaces are kept "
+                    "for Black 2's package")
     args = ap.parse_args()
-
+    settings = load_sprites(args.sprites)
+    grounding = load_grounding(args.sprites)
+    tpl = a3i5.template(lambda n: (args.pokegra / str(n)).read_bytes()) if any(
+        r.get("format") == "a3i5" for r in settings.values()) else None
+    prebuilt: list[tuple[bytes, dict]] = []       # A3I5 streams, after the TEX4 jobs' results
+    written: dict[int, bytes] = {}
+    used: set[tuple[int, int, str]] = set()
     entries, _ = parse_config(args.pwan / "config.bin")
     jobs, sheets = [], []                 # sheets: (job index, [sheet files], shiny NCLR file)
     seen: set[tuple[int, int]] = set()
@@ -259,14 +406,32 @@ def main() -> int:
             if (block, sheet_off) in seen:
                 raise ValueError(f"block {block} side {side}: two config rows")
             seen.add((block, sheet_off))
-            normal = nclr_colors(args.pokegra / str(base + 18))
-            shiny = nclr_colors(args.pokegra / str(base + 19))
-            jobs.append((str(path), normal, shiny, str(args.cache) if args.cache else None, 0))
+            row = settings.get((species, form, side), {})
+            used.add((species, form, side))
+            if row.get("format") == "a3i5":
+                source = (args.a3i5_sources / row["source"]).read_bytes()
+                g = grounding[side]
+                data, side_files, info = a3i5.build(source, row.get("timing") or {}, a3i5_bottom(path, g),
+                                                    int(row.get("altitude", 0)), row.get("offset"), tpl,
+                                                    a3i5_top(side, g), a3i5_max_sink(side, g))
+                side_base = base + (0 if side == "front" else 9)
+                for k, member in side_files.items():
+                    written[side_base + k] = member
+                info.update(ownPalettes=True, format="a3i5", bytes=len(data))
+                prebuilt.append((data, info))
+                job_index = -len(prebuilt)              # resolved after the TEX4 jobs
+            else:
+                normal = nclr_colors(args.pokegra / str(base + 18))
+                shiny = nclr_colors(args.pokegra / str(base + 19))
+                dx, dy = a3i5.check_offset(row.get("offset"))
+                offset = (dx, dy - ground_raise(path, grounding[side]))
+                jobs.append((str(path), normal, shiny, str(args.cache) if args.cache else None, 0, offset))
+                job_index = len(jobs) - 1
             files = [base + sheet_off]
             female = args.pokegra / str(base + sheet_off + 1)
             if female.exists() and female.stat().st_size:
                 files.append(base + sheet_off + 1)
-            sheets.append((len(jobs) - 1, files, base + 19, asset, side, species, form))
+            sheets.append((job_index, files, base + 19, asset, side, species, form))
 
     trainers = args.trainers or (args.pwan / "trainers")
     trainer_rows = []
@@ -278,12 +443,19 @@ def main() -> int:
             if not path.exists():
                 raise FileNotFoundError(path)
             if asset not in asset_job:
-                jobs.append((str(path), None, None, str(args.cache) if args.cache else None, TRAINER_SHIFT))
+                jobs.append((str(path), None, None, str(args.cache) if args.cache else None, TRAINER_SHIFT, (0, 0)))
                 asset_job[asset] = len(jobs) - 1
             trainer_rows.append((asset_job[asset], graphic, asset, carrier))
 
+    unused = sorted(set(settings) - used)
+    if unused:
+        raise ValueError(f"sprites.toml sides without a PWAN side / pokegra block: {unused}")
     with ProcessPoolExecutor(max_workers=max(1, args.jobs)) as ex:
         results = list(ex.map(cached_mani, jobs, chunksize=8))
+    tex4_count = len(results)
+    results += prebuilt
+    sheets = [(j if j >= 0 else tex4_count + (-j - 1), *rest) for j, *rest in sheets]
+    stage_members(args.pokegra, args.black2_pokegra, written)
 
     index = []
     blobs_off = align4(16 + INDEX_ENTRY.size * (sum(len(s[1]) for s in sheets) + len(trainer_rows)))
@@ -314,6 +486,8 @@ def main() -> int:
     os.replace(tmp, args.output)
 
     own = sum(1 for _d, info in results if info["ownPalettes"])
+    if prebuilt:
+        print(f"[+] w2anim A3I5: {len(prebuilt)} sides, {len(written)} pokegra members written")
     if trainer_rows:
         print(f"[+] w2anim trainers: {len(trainer_rows)} graphics on carrier block {trainer_rows[0][3]}")
     print(f"[+] w2anim streams: {len(results)} animations, {len(index)} sheets, {own} with own palettes, "

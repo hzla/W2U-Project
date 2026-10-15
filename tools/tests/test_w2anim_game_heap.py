@@ -44,13 +44,21 @@ class StreamGameHeap(unittest.TestCase):
             with self.subTest(length=length), self.assertRaises(ValueError):
                 audit.inspect(archive()[:length])
 
+    # Per-sprite payload budgets on the sprite's game heap: TEX4 (96x96 PWAN frames) as before; A3I5 (full-size art,
+    # data/graphics/w2anim/sprites.toml) up to 128 rows of 128 bytes plus its tables and LZ buffer.
+    TEX4_BUDGET = 8084
+    A3I5_BUDGET = 20480
+
     def test_packaged_archive_payload_budget(self):
         result = audit.inspect((ROOT / "vfs/data/w2anim/streams.bin").read_bytes())
         self.assertEqual(result["entry_count"], 1147)
-        # A sprite refresh may reduce payloads; retain the reviewed pre-refresh
-        # upper bound rather than requiring identical palette/frame compression.
-        self.assertLessEqual(result["max_per_sprite"]["payload_bytes"], 8084)
-        self.assertLessEqual(result["eight_slot_payload_upper_bound"], 64672)
+        # A sprite refresh may reduce payloads (3ff00d2cd): budgets per format are upper bounds, not exact sizes.
+        by_format = result["max_per_sprite_by_format"]
+        self.assertLessEqual(by_format["tex4"], self.TEX4_BUDGET)
+        if by_format["a3i5"] is not None:
+            self.assertLessEqual(by_format["a3i5"], self.A3I5_BUDGET)
+        self.assertLessEqual(result["four_largest_payload_sum"], 4 * self.A3I5_BUDGET)
+        self.assertEqual(result["eight_slot_payload_upper_bound"], 8 * result["max_per_sprite"]["payload_bytes"])
 
 
 if __name__ == "__main__":

@@ -22,7 +22,7 @@ def inspect(data):
         if data[mani:mani + 4] != b"MANI":
             raise ValueError("Missing MANI header")
         version, flags, width, height, sequence, unique, seq_offset, frame_offset, pal_offset = struct.unpack_from("<6H3I", data, mani + 4)
-        if version != 2 or flags & ~7 or not sequence or not unique or not height or not width:
+        if version != 2 or flags & ~15 or (flags & 8 and flags & 2) or not sequence or not unique or not height or not width:
             raise ValueError("Invalid MANI format")
         if height > 128 or width > (256 if flags & 2 else 128) or (flags & 2 and width & 1):
             raise ValueError("Unsupported runtime dimensions")
@@ -37,15 +37,26 @@ def inspect(data):
         meta = sequence * 4 + unique * 8
         compressed = (max_blob + 3) & ~3
         staging = height * (width // 2 if flags & 2 else 128)
-        records.append({"arc": arc, "sheet": sheet, "manifest_offset": mani,
+        records.append({"arc": arc, "sheet": sheet, "manifest_offset": mani, "format": "tex4" if flags & 2 else "a3i5",
                         "sequence_count": sequence, "unique_frame_count": unique,
                         "metadata_bytes": meta, "compressed_buffer_bytes": compressed,
                         "staging_bytes": staging, "payload_bytes": meta + compressed + staging})
     if not records:
         raise ValueError("Empty stream archive")
     maximum = max(records, key=lambda row: row["payload_bytes"])
+    by_format = {fmt: max((r for r in records if r["format"] == fmt), key=lambda row: row["payload_bytes"], default=None)
+                 for fmt in ("tex4", "a3i5")}
+    # doubles worst case: the four largest different streams on the field at once (any four sprites can meet)
+    distinct = {}
+    for r in records:
+        distinct[r["manifest_offset"]] = r["payload_bytes"]
+    four_largest = sum(sorted(distinct.values(), reverse=True)[:4])
     return {"entry_count": count, "unique_manifests": len({row["manifest_offset"] for row in records}),
-            "max_per_sprite": maximum, "four_sprite_payload_upper_bound": maximum["payload_bytes"] * 4,
+            "max_per_sprite": maximum,
+            "max_per_sprite_by_format": {fmt: (r["payload_bytes"] if r else None) for fmt, r in by_format.items()},
+            "a3i5_stream_count": sum(1 for r in records if r["format"] == "a3i5"),
+            "four_largest_payload_sum": four_largest,
+            "four_sprite_payload_upper_bound": maximum["payload_bytes"] * 4,
             "eight_slot_payload_upper_bound": maximum["payload_bytes"] * 8,
             "pmc_heap_bytes": 0, "allocations_per_sprite": 3,
             "note": "Payload bounds only: game allocator headers and the shared VBlank task are not measured here. Native lifecycle measurements are separate."}
