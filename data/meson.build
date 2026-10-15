@@ -9,7 +9,7 @@ double_battle_fix = custom_target(
   'stage_double_battle_fix_w2',
   input: [
     meson.project_source_root() / '..' / 'IRDO_Extracted' / 'overlay' / 'overlay_0036.bin',
-    meson.project_source_root() / '..' / 'IRDO_Extracted' / 'y9.bin',
+    meson.project_source_root() / 'vfs' / 'y9.bin',
   ],
   output: 'stage_double_battle_fix_w2.stamp',
   command: [
@@ -90,6 +90,7 @@ subdir('text')
 
 # Animated Pokemon sprites (D2, docs/megab2w2-integration.md Phase 4): the PWAN assets converted into w2anim streams for
 # the resident runtime (src/w2anim). PWAN's NARC and runtime DLLs are no longer staged; an old staged NARC is removed.
+w2anim_black2_pokegra = meson.current_build_dir() / 'w2anim_black2_pokegra'
 w2anim_streams = custom_target(
   'build_w2anim_streams',
   input: pwan_assets,
@@ -98,7 +99,7 @@ w2anim_streams = custom_target(
   command: ['sh', '-eu', '-c', '''
     rm -f "$7/zz_pokeweb_pwan/pwan.narc"
     rmdir "$7/zz_pokeweb_pwan" 2>/dev/null || true
-    python3 "$1" --pwan "$2" --pokegra "$3" --personal "$4" --output "$5" --cache "$6" --stamp "$8"
+    python3 "$1" --pwan "$2" --pokegra "$3" --personal "$4" --output "$5" --cache "$6" --stamp "$8" --sprites "$9" --a3i5-sources "${10}" --black2-pokegra "${11}"
   ''',
     'build_w2anim_streams',
     w2anim_streams_py.full_path(),
@@ -109,6 +110,11 @@ w2anim_streams = custom_target(
     meson.current_build_dir() / 'w2anim_cache',
     meson.project_source_root() / 'vfs' / 'data',
     '@OUTPUT@',
+    # per-sprite settings and A3I5 sources (tools/w2anim/a3i5.py); the carrier members an A3I5 block replaces are kept
+    # for Black 2's package
+    meson.current_source_dir() / 'graphics' / 'w2anim' / 'sprites.toml',
+    meson.current_source_dir() / 'graphics' / 'w2anim' / 'a3i5',
+    w2anim_black2_pokegra,
   ],
   build_always_stale: true,
 )

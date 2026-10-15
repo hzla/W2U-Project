@@ -69,6 +69,8 @@ SIDECARS = (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--clean-b2", type=Path, required=True)
+    parser.add_argument("--black2-pokegra", type=Path, help="carrier members kept for Black 2 by the W2 A3I5 sprite "
+                        "stage (build/data/w2anim_black2_pokegra)")
     parser.add_argument("--clean-w2", type=Path, required=True)
     parser.add_argument("--vfs", type=Path, required=True)
     parser.add_argument("--root", type=Path, required=True)
@@ -336,7 +338,11 @@ def main() -> int:
     # from the W2 staging tree.
     battle_path = "a/0/0/4"
     battle_ids = {member_id for member_id in source_members(args.vfs / battle_path) if member_id >= 13000}
-    data, report = authored_overlay(battle_path, args.vfs, w2_rom, b2_rom, battle_ids)
+    # White 2's A3I5 sprites replace some blocks' cell files (tools/w2anim/a3i5.py); Black 2 runs the PWAN carriers,
+    # so it takes the carrier members the W2 build kept aside
+    pokegra_versions = ({int(child.name): child.read_bytes() for child in args.black2_pokegra.iterdir()
+                         if child.name.isdigit()} if args.black2_pokegra and args.black2_pokegra.is_dir() else {})
+    data, report = authored_overlay(battle_path, args.vfs, w2_rom, b2_rom, battle_ids, black2_versions=pokegra_versions)
     merge_report[battle_path] = report
     if data is not None:
         staged[battle_path] = data

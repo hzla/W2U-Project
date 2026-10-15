@@ -1,0 +1,28 @@
+# Per-sprite settings for W2U's animated battle sprites (tools/w2anim/build_w2anim_streams.py, tools/w2anim/a3i5.py;
+# docs/megab2w2-integration.md "A3I5 sprites"). Every animated side streams its PWAN asset as TEX4 unless listed here.
+#
+# [[side]]: species, form (default 0), side ("front" / "back"), and:
+#   format     "tex4" (default: the PWAN, 96x96, 15 colours) or "a3i5" (full-size art up to 128x128, 16 colours, from
+#              `source`, a MANI in data/graphics/w2anim/a3i5 made by tools/w2anim/import_a3i5_sources.py)
+#   offset     [dx, dy]: manual offset correction in px (+x right, +y down, -48..48), as Pokeweb's per-side PWAN
+#              offset; TEX4: the frames shift inside the 96x96 frame, A3I5: the quad moves
+#   altitude   a3i5: px the box's bottom stands above where the PWAN stood, under grounding = "carrier" above the
+#              ground point (floating / flying Pokemon)
+#   timing     a3i5: w2anim's timing options over the source's own durations (ms, even, loop_ms, min_ms, frame_ms,
+#              scale, hold); empty: the source timing
+#   fit        a3i5, import only: fit art larger than 128 into 128x128 (nearest neighbour)
+#   [side.provenance]  a3i5: url / sha256 (and shiny_url / shiny_sha256) of the original GIF, credit; the GIFs are not
+#              committed, the import tool downloads and checks them
+
+# Where Pokemon sides stand: "pwan" as their PWAN stands (Pokeweb grounds them on canvas row 95), "carrier" with their
+# lowest row on the carrier's ground point, row 88, where the game's own sprites stand (measured in battle: vanilla
+# feet about 7 px above a row-95 PWAN's). TEX4 sides move up as far as their top row allows.
+grounding = "pwan"
+# The same for backs alone (default: as `grounding`). Row 88 was measured on fronts; vanilla backs keep their feet
+# behind the text box. Under "pwan" an A3I5 back rises no higher than the 96x96 frame's top row and sinks instead.
+grounding_back = "pwan"
+
+# No sides listed yet. 19 full-size sides were built and tried (Megas Rayquaza, Charizard X, Beedrill, Alakazam,
+# Blaziken, Salamence, Latias, Latios; Gholdengo, Celesteela, Eternatus, Lunala, Dragapult, Great Tusk, Kingambit) and
+# set aside for the standardized TEX4 set of the sprite refresh (3ff00d2cd), to be revisited later
+# (docs/megab2w2-integration.md "A3I5 sprites").

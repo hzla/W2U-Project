@@ -1076,6 +1076,89 @@ Not covered by a scenario: Ice Face restored on entry in hail, Hunger Switch res
 switching out once freed (the harness can't answer the replacement prompt after Dondozo faints), Gulp Missile through
 Dive.
 
+## A3I5 sprites (2026-10-07)
+
+Pokeweb compiles every battle sprite into a 96x96, 15-colour PWAN: any GIF canvas over 96 is scaled down (bilinear,
+then median cut), so full-size art (Showdown's 100x108 Mega Rayquaza, for one) is shrunk and blurred. w2anim's
+runtime already had MegaB2W2's A3I5 mode (128x128, 8 bpp: index | alpha << 5, all 16 palette entries real colours).
+Listed sides now stream through it at full size; every other side stays TEX4 from its PWAN, byte for byte. Survey,
+costs and policy: MegaB2W2 `research/w2u/a3i5_design_2026-10-07.md` (A3I5 only where it visibly helps: art over
+96x96 or exactly 16 colours).
+
+Settings (`data/graphics/w2anim/sprites.toml`, one `[[side]]` per species / form / side, read by
+`tools/w2anim/build_w2anim_streams.py` through `tools/w2anim/a3i5.py`):
+- `format`: `tex4` (default, the PWAN) or `a3i5` with `source`, a committed source MANI in
+  `data/graphics/w2anim/a3i5/` (the frames at the GIF's own durations, own normal + exact shiny palettes, the
+  evolution renderer's 16 -> 15 colour map). `tools/w2anim/import_a3i5_sources.py` makes it from the original GIF named
+  in `[side.provenance]` (url, sha256, shiny url and sha256, credit): it downloads into `work/` (ignored), checks the
+  hashes, reduces > 16 colours, checks every frame pixel-exact through W2U's decoder and compares the first frame with
+  the PWAN (silhouette after Pokeweb's fit; a low match flags other art). The GIFs are not committed. It uses w2anim
+  (MegaB2W2 `tools/w2anim`, GPL-3.0-or-later) as an external package; the normal build does not.
+- `timing` (a3i5): w2anim's options over the source durations (`ms`, `even`, `loop_ms`, `min_ms`, `frame_ms`,
+  `scale`, `hold`); empty = the source timing. PWAN's timelines are often faster than their sources (Gen 6 at
+  0.42-0.78x, Megas 0.5x), which was unintended; A3I5 sides use their own.
+- `altitude` (a3i5): px the box's bottom stands above where the PWAN stood (under grounding `carrier`: above the
+  carrier's ground row 88); floating / flying Pokemon.
+- `offset = [dx, dy]` (both formats): the manual offset correction, Pokeweb's per-side PWAN offset (px, +x right,
+  +y down, -48..48). TEX4: the frames shift inside the 96x96 frame exactly as Pokeweb's `shiftPwanFrames`; A3I5: the
+  quad moves (no clip).
+
+Build: for an A3I5 side the step writes the streamed MANI (timing applied, placement in its morph block) and the
+block's cell files: one quad covering the box at its placement (record), its NCER, the first frame in the 4 bpp sheet,
+and Metapod's (block 11) still animation files, as MegaB2W2 does. Blocks are resolved by species / form
+(`native_block`), never by pokegra folder name (block 802, Mega Rayquaza's carrier, is the folder `furfrou/form_1`).
+The carrier members an A3I5 block replaces are kept in `build/data/w2anim_black2_pokegra/` and Black 2's package
+takes them (`--black2-pokegra`): Black 2 keeps the PWAN carriers.
+
+Runtime (`src/w2anim/w2u_anim_streams.cpp`, +848 bytes of resident code):
+- priming: frame 0 is decompressed into MCSS's own 16 KB sheet buffer (the size of a 128x128 A3I5 texture, both
+  128-byte rows) and the proxy set to A3I5, so the first frame MCSS uploads is right. MCSS's upload resets the image
+  proxy, so the stream sets A3I5 again once that upload is done;
+- evolution (MorphUpdate): the frame is converted to the renderer's 4 bpp bitmap through the MANI's colour map (flag 8,
+  morph block at 0x1C) and placed by its ground offset;
+- no heap for a stream's buffers: an A3I5 sprite stays a correct still (primed; kept registered without buffers).
+
+Grounding (`sprites.toml` top level, 2026-10-07 / 10-14): Pokeweb grounds every PWAN on canvas row 95
+(`tools/pwan/ground_pwan_assets.py`, Scatterbug reference); the game's own front sprites stand on the carrier's ground
+row 88 (measured in battle: vanilla feet at screen row ~96, a row-95 PWAN's bottom at ~103).
+- `grounding`: `"pwan"` (the code default: as the PWAN stands) or `"carrier"`: a side's lowest row over all frames on
+  row 88. TEX4 sides rise as far as their top row allows (`ground_raise`); an A3I5 side stands on 88 and, if its art is
+  taller than the screen allows (`a3i5.SCREEN_TOP_ROW`, front -6 / back -22), sinks by at most `a3i5.MAX_SINK` (8)
+  and keeps a small top cut beyond that (Mega Rayquaza 13 px, Celesteela front 14, Mega Blaziken 12).
+- `grounding_back` (default: as `grounding`): the same for backs alone. Row 88 was measured on fronts; vanilla backs
+  keep their feet behind the text box, and backs on 88 stood visibly higher. Backs stay on `"pwan"`; under it an A3I5
+  back rises no higher than the 96x96 frame's top row (`a3i5.BACK_TOP_ROW`) and sinks as far as needed instead.
+
+Glyph: `tools/pwan/gen_mega_glyph_heights.py` measures A3I5 sides from their source MANI at their placement (and any
+side with an offset or a grounding move); the top fields are signed now (a full-size Mega reaches above the 96x96
+frame). On the tallest foes the glyph's keep-on-screen clamp puts it over the head (accepted).
+
+Heap (`tools/audit_w2anim_game_heap.py` now reports per format and the four largest streams): A3I5 payload up to
+17,956 bytes per sprite (TEX4 under 8,084), four largest 69,664. Measured natively with four large A3I5 sprites in
+doubles (eight-sprite set): heap 0x13 low 273,456 vs 317,656 with TEX4 (+44,200), no blanked frame in 4,559. PMC: +864
+bytes (the code).
+
+Sprites: none listed yet. 19 sides were built and checked in battle (Megas Rayquaza, Charizard X, Beedrill, Alakazam,
+Blaziken, Salamence, Latias, Latios fronts; Gholdengo front, Celesteela front / back, Eternatus front / back, Lunala
+front / back, Dragapult front, Great Tusk front from Showdown's gen5ani; Kingambit front / back by Ghasty001) and set
+aside for the standardized TEX4 set of the sprite refresh (3ff00d2cd), to be revisited later. That refresh fixed the
+blur (nearest-neighbour sampling) and the timing; it still fits sources over 96x96 by dropping rows / columns (12 of
+the 19: 100-117 px, up to 18 %) and merges colours above 15 (Mega Rayquaza 16, Celesteela back 17, Lunala 23 / 22).
+Their entries (provenance URLs, hashes, credits) are kept in MegaB2W2 `research/w2u/a3i5_sides_20261014.toml`; the
+sources re-import with `tools/w2anim/import_a3i5_sources.py`. Not taken: Ghasty001's Gholdengo back (the same art as
+the PWAN back; the A3I5 version only stood higher and covered the foe's HP box; its shiny file is a copy of the
+normal one).
+Build note: removing an A3I5 side does not restore the block members the A3I5 step wrote into `vfs/data/a/0/0/4`
+(the staging keeps an existing Gen 7 fallback sheet); after removing one, `git checkout` those members. A fresh
+checkout is clean.
+
+Checked: runtime checks on patched ROMs (battle start both sides, Mega swap, four large sprites in doubles, evolution
+into and out of an A3I5 sprite, the no-heap still, Blacephalon through both the A3I5 and a TEX4-from-GIF path);
+wave_mega 10/10 and the eight A3I5 Megas' foe scenarios (clean swap, glyph) on the pipeline-built ROM; every other
+stream byte-identical to the build before; host tests (A3I5 build, Pokeweb offset equivalence, payload budgets,
+placement and per-side grounding). The eight-sprite state passed the local regression (209 / 209, PUNK_ROCK made
+burn-proof first); the 19-sprite / grounding state was checked with screenshot scenarios, its regression is pending.
+
 ## Terrain sounds (2026-10-07)
 
 User request: recreate Sun / Moon's Psychic, Misty, Grassy and Electric Terrain sounds with the DS sound engine and
@@ -1151,4 +1234,5 @@ AI for a foe) with any move, and it holds any item. `w2u_mega.cpp`:
 Checked (`wave_mega.yml`): START + ExtremeSpeed Mega Evolves it ("AAA's fervent wish...", then Delta Stream); Dragon
 Ascent without START does not; without Dragon Ascent START does nothing; a foe Rayquaza with Dragon Ascent Mega
 Evolves on its own ("Elena's fervent wish..."). The other Mega scenarios still pass (10 / 10).
+
 
