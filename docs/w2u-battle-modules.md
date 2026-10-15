@@ -1,10 +1,10 @@
 # White 2 on-demand battle modules
 
 White 2 keeps battle hooks, Mega Evolution, terrain graphics, shared state,
-aliases, and the registration dispatchers in `White2Upgrade.dll`. The 62
-managed ability entries (including updated Overcoat), 101 managed move entries,
-13 custom item entries and their subordinate field/side/position entries are
-grouped into 23 RPMs under
+aliases, and the registration dispatchers in `White2Upgrade.dll`. The 141
+managed ability entries (including updated Overcoat), 153 managed move entries,
+13 custom item entries and their 12 subordinate field/side/position entries are
+grouped into 30 RPMs under
 `vfs/data/lib/w2u_battle/`.
 
 Updated Overcoat stays in the defense group, retaining its native weather
@@ -40,12 +40,29 @@ The same dispatcher is linked statically for Black 2; no raw hook or ABI layout
 change is added for this phase.
 
 At registration time, the resident loader reads the RPM through the ROM
-filesystem, validates its bounds, allocates its declared expanded size from
-PMC, starts it at `INTERNAL_RELOCATIONS`, and resolves
+filesystem, validates its bounds, allocates its declared expanded size,
+starts it at `INTERNAL_RELOCATIONS`, and resolves
 `W2U_GetBattleModuleApi`. Successful and failed resolutions are cached for the
-battle. A fixed 24-record table is used; there is no loader heap and there are
-no per-event references. Modules unload in reverse order at battle teardown,
-the next-battle guard, or resident module unload.
+battle. A fixed 32-record table is used; there are no per-event references.
+Modules unload in reverse order at battle teardown, the next-battle guard, or
+resident module unload.
+
+Placement (the PMC heap / game heap split is summarised in the README's
+"Memory: PMC heap vs. game heaps"): PMC's heap holds the resident core for the
+whole game, while the GFL game heaps are created and destroyed per screen. The
+battle groups therefore follow the battle's lifetime on a game heap. During a
+battle (battle heap 0x13 present, field heap 0x15 absent)
+a module goes on GFL game heap 1 when it plus a 64 KiB reserve fits there in
+one block. PMC's `rpm::mgr::ModuleManager` allocates, shrinks and frees module
+memory through its `m_ModuleHeap`, so the loader points that at a small
+ExtLib-compatible allocator over heap 1 only around its own load and unload
+calls (`ModuleHeapScope`), after checking the manager's heap is exactly PMC's.
+Otherwise the module goes on PMC's heap; before allocating there the loader
+walks the heap's free list and refuses a module that cannot fit (ExtLib's
+`HeapArea::Alloc` spins forever instead of returning null), so that mechanic
+is missing for the battle rather than the game freezing. Black 2 has no
+module loader. Telemetry adds `gameHeapModuleCount`, `gameHeapBytes`,
+`gameHeapPeakBytes`, and the heap-refusal counters.
 
 Private descriptors store relative paths, sharing one `lib/w2u_battle/` prefix.
 The loader reconstructs full paths in a bounded 64-byte stack buffer; registry
@@ -91,7 +108,11 @@ RPMTool can report parser errors while exiting successfully; validating an
 existing DLL alone would not catch a stale build. Resident branch-hook owners
 must resolve in the ESDB, including battle setup, damage-root and added-type
 effectiveness call sites. This owner check does not cover legacy `FULL_COPY`
-aliases.
+aliases. Every White 2 DLL rule also runs `tools/verify_rpm_imports.py`: each
+undefined import must be in `pmc/IRDO.yml` or be a core global, because
+RPMTool otherwise packages a call to an unknown function as a branch to itself
+(a hang at run time). Plain `__aeabi_uidiv` / `__aeabi_idiv` imports and
+`__gnu_thumb1_case_*` jump tables are rejected for the same reason.
 
 Black 2 compiles the same gameplay sources without the dynamic-core define.
 The registry generates 22 uniquely named hidden API getters plus a static
@@ -101,10 +122,10 @@ compiled. No child RPMs are built into or staged for the Black 2 package.
 Useful build targets:
 
 ```sh
-ninja -C build-stripped src/stage_w2u_battle_modules.stamp
-ninja -C build-stripped src/white2upgrade-battle-heap-audit.json
-ninja -C build-stripped src/Black2Upgrade.dll
-ninja -C build-stripped src/black2upgrade-compatibility.json
+ninja -C build src/stage_w2u_battle_modules.stamp
+ninja -C build src/white2upgrade-battle-heap-audit.json
+ninja -C build src/Black2Upgrade.dll
+ninja -C build src/black2upgrade-compatibility.json
 ```
 
 The runtime telemetry returned by `W2U_BattleModules_GetTelemetry()` records
