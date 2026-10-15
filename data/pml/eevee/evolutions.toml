@@ -6,7 +6,7 @@ Parameter = 0
 "Target Species" = "SPECIES_GLACEON"
 
 [SPECIES_EEVEE.EVOLUTION_1]
-Method = "METHOD_LOCATION_ELEC2"
+Method = "METHOD_LOCATION_MOSS"
 Parameter = 0
 "Target Species" = "SPECIES_LEAFEON"
 
