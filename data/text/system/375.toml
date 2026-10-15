@@ -1013,8 +1013,8 @@ text = [
 
 [msg.section_0.entries.169]
 text = [
-  "Halves damage from physical\n",
-  "moves.$",
+  "Halves damage from\\n",
+  "physical moves.$",
 ]
 
 [msg.section_0.entries.170]
@@ -1132,8 +1132,8 @@ text = [
 
 [msg.section_0.entries.189]
 text = [
-  "Heavy rain that stops Fire-\n",
-  "type attacks.$",
+  "Heavy rain that stops\\n",
+  "Fire-type attacks.$",
 ]
 
 [msg.section_0.entries.190]
@@ -1198,7 +1198,8 @@ text = [
 
 [msg.section_0.entries.200]
 text = [
-  "Powers up Steel-type moves.$",
+  "Powers up Steel-type\\n",
+  "moves.$",
 ]
 
 [msg.section_0.entries.201]
@@ -1209,8 +1210,8 @@ text = [
 
 [msg.section_0.entries.202]
 text = [
-  "Boosts the Pokémon’s Speed\\n",
-  "stat in a hailstorm.$",
+  "Boosts the Pokémon’s\\n",
+  "Speed stat in a hailstorm.$",
 ]
 
 [msg.section_0.entries.203]
@@ -1245,8 +1246,8 @@ text = [
 
 [msg.section_0.entries.208]
 text = [
-  "Forms a strong school while\\n",
-  "its HP is high.$",
+  "Forms a strong school\\n",
+  "while its HP is high.$",
 ]
 
 [msg.section_0.entries.209]
@@ -1269,8 +1270,8 @@ text = [
 
 [msg.section_0.entries.212]
 text = [
-  "Can poison Steel and Poison\\n",
-  "types.$",
+  "Can poison Steel and\\n",
+  "Poison types.$",
 ]
 
 [msg.section_0.entries.213]
@@ -1293,8 +1294,8 @@ text = [
 
 [msg.section_0.entries.216]
 text = [
-  "Copies dance moves used by\\n",
-  "others.$",
+  "Copies dance moves used\\n",
+  "by others.$",
 ]
 
 [msg.section_0.entries.217]
@@ -1347,8 +1348,8 @@ text = [
 
 [msg.section_0.entries.225]
 text = [
-  "Its type matches the memory\\n",
-  "disc it holds.$",
+  "Its type matches the\\n",
+  "memory disc it holds.$",
 ]
 
 [msg.section_0.entries.226]
@@ -1371,8 +1372,8 @@ text = [
 
 [msg.section_0.entries.229]
 text = [
-  "Sets Grassy Terrain when it\\n",
-  "enters battle.$",
+  "Sets Grassy Terrain when\\n",
+  "it enters battle.$",
 ]
 
 [msg.section_0.entries.230]
@@ -1419,8 +1420,8 @@ text = [
 
 [msg.section_0.entries.237]
 text = [
-  "Fetches the first Poké Ball\\n",
-  "that failed.$",
+  "Fetches the first Poké\\n",
+  "Ball that failed.$",
 ]
 
 [msg.section_0.entries.238]
@@ -1431,14 +1432,14 @@ text = [
 
 [msg.section_0.entries.239]
 text = [
-  "Ignores Abilities and moves\\n",
-  "that redirect.$",
+  "Ignores Abilities and\\n",
+  "moves that redirect.$",
 ]
 
 [msg.section_0.entries.240]
 text = [
-  "Bounces back stat-lowering\\n",
-  "effects.$",
+  "Bounces back\\n",
+  "stat-lowering effects.$",
 ]
 
 [msg.section_0.entries.241]
@@ -1449,8 +1450,8 @@ text = [
 
 [msg.section_0.entries.242]
 text = [
-  "Ignores Abilities and moves\\n",
-  "that redirect.$",
+  "Ignores Abilities and\\n",
+  "moves that redirect.$",
 ]
 
 [msg.section_0.entries.243]
@@ -1515,8 +1516,8 @@ text = [
 
 [msg.section_0.entries.253]
 text = [
-  "Contact makes both faint in\\n",
-  "three turns.$",
+  "Contact makes both faint\\n",
+  "in three turns.$",
 ]
 
 [msg.section_0.entries.254]
@@ -1545,14 +1546,14 @@ text = [
 
 [msg.section_0.entries.258]
 text = [
-  "Changes mode at the end of\\n",
-  "each turn.$",
+  "Changes mode at the end\\n",
+  "of each turn.$",
 ]
 
 [msg.section_0.entries.259]
 text = [
-  "Enables the Pokémon to move\\n",
-  "first occasionally.$",
+  "Enables the Pokémon to\\n",
+  "move first occasionally.$",
 ]
 
 [msg.section_0.entries.260]
@@ -1563,8 +1564,8 @@ text = [
 
 [msg.section_0.entries.261]
 text = [
-  "Resets allies' stat changes\\n",
-  "on entry.$",
+  "Resets allies' stat\\n",
+  "changes on entry.$",
 ]
 
 [msg.section_0.entries.262]
@@ -1605,14 +1606,14 @@ text = [
 
 [msg.section_0.entries.268]
 text = [
-  "Contact passes this Ability\\n",
-  "to the attacker.$",
+  "Contact passes this\\n",
+  "Ability to the attacker.$",
 ]
 
 [msg.section_0.entries.269]
 text = [
-  "Sets Grassy Terrain when it\\n",
-  "is hit.$",
+  "Sets Grassy Terrain when\\n",
+  "it is hit.$",
 ]
 
 [msg.section_0.entries.270]
@@ -1623,14 +1624,14 @@ text = [
 
 [msg.section_0.entries.271]
 text = [
-  "At half HP, trades defenses\\n",
-  "for offense.$",
+  "At half HP, trades\\n",
+  "defenses for offense.$",
 ]
 
 [msg.section_0.entries.272]
 text = [
-  "Can't get statuses; halves\\n",
-  "Ghost damage.$",
+  "Can't get statuses;\\n",
+  "halves Ghost damage.$",
 ]
 
 [msg.section_0.entries.273]
@@ -1653,7 +1654,8 @@ text = [
 
 [msg.section_0.entries.276]
 text = [
-  "Powers up Rock-type moves.$",
+  "Powers up Rock-type\\n",
+  "moves.$",
 ]
 
 [msg.section_0.entries.277]
@@ -1664,8 +1666,8 @@ text = [
 
 [msg.section_0.entries.278]
 text = [
-  "Becomes its Hero Form when\\n",
-  "it switches out.$",
+  "Becomes its Hero Form\\n",
+  "when it switches out.$",
 ]
 
 [msg.section_0.entries.279]
@@ -1682,14 +1684,14 @@ text = [
 
 [msg.section_0.entries.281]
 text = [
-  "Sun or Booster Energy raise\\n",
-  "its best stat.$",
+  "Sun or Booster Energy\\n",
+  "raise its best stat.$",
 ]
 
 [msg.section_0.entries.282]
 text = [
-  "Electric Terrain or Booster\\n",
-  "Energy boost it.$",
+  "Electric Terrain or\\n",
+  "Booster Energy boost it.$",
 ]
 
 [msg.section_0.entries.283]
@@ -1765,8 +1767,8 @@ text = [
 
 [msg.section_0.entries.295]
 text = [
-  "Physical hits scatter Toxic\\n",
-  "Spikes.$",
+  "Physical hits scatter\\n",
+  "Toxic Spikes.$",
 ]
 
 [msg.section_0.entries.296]
@@ -1777,8 +1779,8 @@ text = [
 
 [msg.section_0.entries.297]
 text = [
-  "Ground moves restore its HP\\n",
-  "instead.$",
+  "Ground moves restore its\\n",
+  "HP instead.$",
 ]
 
 [msg.section_0.entries.298]
@@ -1789,8 +1791,8 @@ text = [
 
 [msg.section_0.entries.299]
 text = [
-  "Ignores evasion; Normal and\\n",
-  "Fighting hit Ghosts.$",
+  "Ignores evasion; Normal\\n",
+  "and Fighting hit Ghosts.$",
 ]
 
 [msg.section_0.entries.300]
@@ -1831,8 +1833,8 @@ text = [
 
 [msg.section_0.entries.306]
 text = [
-  "Clears weather and terrain\\n",
-  "in Stellar Form.$",
+  "Clears weather and\\n",
+  "terrain in Stellar Form.$",
 ]
 
 [msg.section_0.entries.307]
@@ -1849,14 +1851,14 @@ text = [
 
 [msg.section_0.entries.309]
 text = [
-  "Normal moves become Dragon\\n",
-  "and get stronger.$",
+  "Normal moves become\\n",
+  "Dragon and get stronger.$",
 ]
 
 [msg.section_0.entries.310]
 text = [
-  "Its moves act as if the sun\\n",
-  "were harsh.$",
+  "Its moves act as if the\\n",
+  "sun were harsh.$",
 ]
 
 [msg.section_0.entries.311]
@@ -1879,6 +1881,6 @@ text = [
 
 [msg.section_0.entries.314]
 text = [
-  "Halves damage from contact\\n",
-  "moves.$",
+  "Halves damage from\\n",
+  "contact moves.$",
 ]
