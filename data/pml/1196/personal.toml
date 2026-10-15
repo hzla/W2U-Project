@@ -1,12 +1,12 @@
 [SPECIES_1196]
 "Base HP" = 40
-"Base Attack" = 45
+"Base Attack" = 35
 "Base Defense" = 35
 "Base Speed" = 90
-"Base Special Attack" = 40
+"Base Special Attack" = 50
 "Base Special Defense" = 40
-"Primary Type" = "TYPE_NORMAL"
-"Secondary Type" = "TYPE_NORMAL"
+"Primary Type" = "TYPE_DARK"
+"Secondary Type" = "TYPE_DARK"
 "Capture Rate" = 255
 "Evolution Stage" = 1
 "EV Yield" = 64
@@ -21,12 +21,12 @@
 "Egg Group 2" = 5
 "Primary Ability" = 53
 "Secondary Ability" = 101
-"Hidden Ability" = 127
+"Hidden Ability" = 155
 "Escape Rate" = 0
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0
 "Form Count" = 3
-Color = 2
+Color = 1
 "Base Experience" = 58
 "Height (cm)" = 40
 "Weight (cg)" = 42

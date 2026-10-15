@@ -1,11 +1,11 @@
 [SPECIES_1227]
 "Base HP" = 65
 "Base Attack" = 95
-"Base Defense" = 75
+"Base Defense" = 85
 "Base Speed" = 85
 "Base Special Attack" = 55
 "Base Special Defense" = 55
-"Primary Type" = "TYPE_WATER"
+"Primary Type" = "TYPE_DARK"
 "Secondary Type" = "TYPE_POISON"
 "Capture Rate" = 45
 "Evolution Stage" = 1
@@ -26,7 +26,7 @@
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0
 "Form Count" = 2
-Color = 7
+Color = 4
 "Base Experience" = 86
 "Height (cm)" = 50
 "Weight (cg)" = 39

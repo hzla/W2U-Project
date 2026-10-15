@@ -1,12 +1,12 @@
 [SPECIES_1239]
-"Base HP" = 40
-"Base Attack" = 65
+"Base HP" = 35
+"Base Attack" = 60
 "Base Defense" = 40
-"Base Speed" = 65
-"Base Special Attack" = 80
+"Base Speed" = 70
+"Base Special Attack" = 85
 "Base Special Defense" = 40
-"Primary Type" = "TYPE_DARK"
-"Secondary Type" = "TYPE_DARK"
+"Primary Type" = "TYPE_NORMAL"
+"Secondary Type" = "TYPE_GHOST"
 "Capture Rate" = 75
 "Evolution Stage" = 1
 "EV Yield" = 256

@@ -1,12 +1,12 @@
 [SPECIES_1209]
 "Base HP" = 52
-"Base Attack" = 65
+"Base Attack" = 95
 "Base Defense" = 55
-"Base Speed" = 60
+"Base Speed" = 55
 "Base Special Attack" = 58
 "Base Special Defense" = 62
-"Primary Type" = "TYPE_NORMAL"
-"Secondary Type" = "TYPE_FLYING"
+"Primary Type" = "TYPE_FIGHTING"
+"Secondary Type" = "TYPE_FIGHTING"
 "Capture Rate" = 45
 "Evolution Stage" = 2
 "EV Yield" = 4
@@ -19,9 +19,9 @@
 "Experience Group" = 0
 "Egg Group 1" = 4
 "Egg Group 2" = 5
-"Primary Ability" = 51
-"Secondary Ability" = 39
-"Hidden Ability" = 128
+"Primary Ability" = 80
+"Secondary Ability" = 80
+"Hidden Ability" = 113
 "Escape Rate" = 120
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0
@@ -29,7 +29,7 @@
 Color = 5
 "Base Experience" = 123
 "Height (cm)" = 80
-"Weight (cg)" = 150
+"Weight (cg)" = 420
 "TM HM 1" = -2078996960
 "TM HM 2" = 539277952
 "TM HM 3" = 600314884

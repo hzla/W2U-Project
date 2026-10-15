@@ -5,8 +5,8 @@
 "Base Speed" = 50
 "Base Special Attack" = 15
 "Base Special Defense" = 45
-"Primary Type" = "TYPE_FIRE"
-"Secondary Type" = "TYPE_FIRE"
+"Primary Type" = "TYPE_ICE"
+"Secondary Type" = "TYPE_ICE"
 "Capture Rate" = 120
 "Evolution Stage" = 1
 "EV Yield" = 4
@@ -26,10 +26,10 @@
 "Form Data Offset" = 0
 "Form Sprite Offset" = 0
 "Form Count" = 2
-Color = 0
+Color = 8
 "Base Experience" = 63
-"Height (cm)" = 60
-"Weight (cg)" = 375
+"Height (cm)" = 70
+"Weight (cg)" = 400
 "TM HM 1" = -869200336
 "TM HM 2" = 344112740
 "TM HM 3" = 601915904

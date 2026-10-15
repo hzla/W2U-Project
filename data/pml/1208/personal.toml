@@ -1,15 +1,15 @@
 [SPECIES_1208]
 "Base HP" = 95
-"Base Attack" = 75
-"Base Defense" = 110
+"Base Attack" = 100
+"Base Defense" = 95
 "Base Speed" = 30
 "Base Special Attack" = 100
-"Base Special Defense" = 80
-"Primary Type" = "TYPE_WATER"
+"Base Special Defense" = 70
+"Primary Type" = "TYPE_POISON"
 "Secondary Type" = "TYPE_PSYCHIC"
 "Capture Rate" = 75
 "Evolution Stage" = 2
-"EV Yield" = 32
+"EV Yield" = 8
 "Wild Item (50%)" = 0
 "Wild Item (5%)" = 221
 "Wild Item (1%)" = 0
@@ -19,7 +19,7 @@
 "Experience Group" = 0
 "Egg Group 1" = 1
 "Egg Group 2" = 2
-"Primary Ability" = 12
+"Primary Ability" = 259
 "Secondary Ability" = 20
 "Hidden Ability" = 144
 "Escape Rate" = 60
@@ -29,7 +29,7 @@
 Color = 9
 "Base Experience" = 172
 "Height (cm)" = 160
-"Weight (cg)" = 785
+"Weight (cg)" = 705
 "TM HM 1" = -31721876
 "TM HM 2" = 80321188
 "TM HM 3" = 720384296
