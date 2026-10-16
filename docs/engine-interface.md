@@ -126,6 +126,8 @@ lives as long as the module, not the battle. Battle-scoped state is a later impr
 | Electromorphosis, Wind Power | `abilities/charge.c` | `megab2w2/abilities/Charge.cpp` | `ELECTROMORPHOSIS`, `WIND_POWER` (`wave_a.yml`) |
 | Unseen Fist, Piercing Drill | `abilities/unseen_fist.c` | `megab2w2/abilities/UnseenFist.cpp` | `UNSEEN_FIST`, `UNSEEN_FIST_NONCONTACT`, `PIERCING_DRILL` (`wave_c.yml`) |
 | Lingering Aroma, Wandering Spirit | `abilities/lingering_aroma.c` | `megab2w2/abilities/LingeringAroma.cpp` | `LINGERING_AROMA`, `WANDERING_SPIRIT` (`wave_a.yml`) |
+| Cotton Down, Perish Body, Toxic Debris | `abilities/hit_reactions.c` | `megab2w2/abilities/HitReactions.cpp` | `COTTON_DOWN`, `PERISH_BODY`, `TOXIC_DEBRIS` (`wave_a.yml`) |
+| Poison Puppeteer | `abilities/poison_puppeteer.c` | its part of `megab2w2/abilities/MoveAbilities.cpp` | `POISON_PUPPETEER` (`wave_c.yml`); `MYCELIUM_MIGHT`, `MEGA_SOL*` unchanged |
 
 Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
 W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting

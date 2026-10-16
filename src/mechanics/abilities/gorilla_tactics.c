@@ -36,7 +36,7 @@ static void HandlerGorillaTacticsLock(BattleEventItem *item, BtlServerFlow *flow
         return;
     }
     param = (BattleHandlerAddConditionParam *)BattleHandler_PushWork(flow, HANDLER_CMD_ADD_CONDITION, monId);
-    param->condition = MON_CONDITION_CHOICE_LOCK;
+    param->condition = CONDITION_CHOICE_LOCK;
     param->value = MakeConditionParamPermanent(move);
     param->targetIndex = monId;
     param->overwrite = 2;               /* as the Choice items lock */
@@ -58,7 +58,7 @@ static void HandlerGorillaTacticsEnd(BattleEventItem *item, BtlServerFlow *flow,
         return;
     }
     param = (BattleHandlerCureConditionParam *)BattleHandler_PushWork(flow, HANDLER_CMD_CURE_CONDITION, monId);
-    param->condition = MON_CONDITION_CHOICE_LOCK;
+    param->condition = CONDITION_CHOICE_LOCK;
     param->monIds[0] = monId;
     param->count = 1;
     param->useString = 1;

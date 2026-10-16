@@ -37,6 +37,8 @@
 #define GetBattleMonHeldItem BattleMon_GetHeldItem
 #define PokeTypePair_MakeMonotype PokeTypePair_MakePure
 #define GetTurnFlag BattleMon_GetTurnFlag
+#define SetConditionTurns Condition_MakeTurn
+#define MakeConditionPermanent Condition_MakePermanent
 #endif
 
 #ifdef __cplusplus
@@ -93,6 +95,7 @@ enum {
     EVENT_STAT_CHANGE_GUARD = 0x5C,
     EVENT_ADD_CONDITION_CHECK = 0x65,   /* a status for the defender: VAR_FAIL_FLAG blocks it (Water Veil) */
     EVENT_ADD_CONDITION_FAILED = 0x67,  /* the blocked status' message */
+    EVENT_STATUS_INFLICTED = 0x68,      /* a status was inflicted: VAR_CONDITION, the attacker and the defender */
     EVENT_ABILITY_NULLIFIED = 0x6A,
     EVENT_TURN_CHECK = 0x76,            /* the end of the turn */
     EVENT_AFTER_KO = 0x83,
@@ -103,6 +106,7 @@ enum {
 
 /* Event variables (W2U's names) */
 enum {
+    VAR_CONDITION = 0x1D,               /* the status (CONDITION_*) */
     VAR_STAT = 0x1F,                    /* EVENT_STAT_CHANGE_CHECK: the stat (STATSTAGE_*) */
     VAR_STAT_CHANGE = 0x20,             /* EVENT_STAT_CHANGE_CHECK: the stages (< 0: a drop) */
     VAR_FAIL_CAUSE = 0x22,              /* EVENT_DAMP_MOVE_CHECK: why the move fails (0x13: Damp) */
@@ -142,13 +146,15 @@ enum {
     HANDLER_CMD_CURE_CONDITION = 0x0B,  /* BattleHandlerCureConditionParam */
     HANDLER_CMD_ADD_CONDITION = 0x0C,   /* BattleHandlerAddConditionParam */
     HANDLER_CMD_CHANGE_STAT = 0x0E,     /* BattleHandlerStatChangeParam */
-    HANDLER_CMD_CHANGE_TYPE = 0x14,     /* BattleHandlerChangeTypeParam: "X transformed into the Y type!" */
+    HANDLER_CMD_CHANGE_TYPE = 0x14,
+    HANDLER_CMD_ADD_SIDE_EFFECT = 0x19, /* BattleHandlerAddSideEffectParam */     /* BattleHandlerChangeTypeParam: "X transformed into the Y type!" */
     HANDLER_CMD_REMOVE_SIDE_EFFECT = 0x1A,
     HANDLER_CMD_CHANGE_ABILITY = 0x1F,  /* BattleHandlerAbilityChangeParam */ /* BattleHandlerRemoveSideEffectParam */
 };
 
 /* BattleHandler_StrSetup message kinds */
 enum {
+    HANDLER_STR_STD = 1,                /* one message (bank 19); its arguments as AddArg gives them */
     HANDLER_STR_SET = 2,                /* a set of three messages (player's, wild, foe's Pokémon), bank 18 */
 };
 
@@ -192,20 +198,18 @@ enum {
     TURN_FLAG_PROTECT = 7,              /* protected this turn (Protect, Detect...) */
 };
 
-/* CheckCondition's conditions (W2U's names) */
-enum {
-    MON_CONDITION_GASTRO_ACID = 0x10,   /* the ability is suppressed */
-    MON_CONDITION_CHOICE_LOCK = 0x1B,   /* locked into one move (the Choice items) */
-};
-
-/* Major statuses (BattleHandlerAddConditionParam.condition) */
+/* Conditions: the majors, then the others (CheckCondition, the add and cure condition work) */
 enum {
     CONDITION_PARALYSIS = 1,
     CONDITION_SLEEP = 2,
     CONDITION_FREEZE = 3,
     CONDITION_BURN = 4,
     CONDITION_POISON = 5,               /* bad poison: poison with Toxic's turn counter */
+    CONDITION_CONFUSION = 6,
     CONDITION_YAWN = 14,                /* Yawn's drowsiness, checked like the majors */
+    CONDITION_GASTRO_ACID = 0x10,       /* the ability is suppressed */
+    CONDITION_PERISH_SONG = 20,
+    CONDITION_CHOICE_LOCK = 0x1B,       /* locked into one move (the Choice items) */
 };
 
 /* A condition's value: its kind and turns (decomp: include/battle/btl_pokeparam.h, a union) */
@@ -256,6 +260,16 @@ typedef struct BattleHandlerAbilityChangeParam {
     u8 unk09[3];
     BattleHandlerString string;
 } BattleHandlerAbilityChangeParam;
+
+typedef struct BattleHandlerAddSideEffectParam {
+    u32 header : 23;
+    u32 popup : 1;
+    u32 unk24 : 8;
+    u32 effect;                         /* SIDE_EFFECT_* */
+    BattleCondition cont;
+    u8 side;
+    BattleHandlerString string;
+} BattleHandlerAddSideEffectParam;
 
 typedef struct BattleHandlerRemoveSideEffectParam {
     u32 header;
@@ -308,6 +322,7 @@ W2U_ENGINE_LAYOUT(recover_hp_string, __builtin_offsetof(BattleHandlerRecoverHPPa
 W2U_ENGINE_LAYOUT(cure_count, __builtin_offsetof(BattleHandlerCureConditionParam, count) == 0x14);
 W2U_ENGINE_LAYOUT(add_condition_overwrite, __builtin_offsetof(BattleHandlerAddConditionParam, overwrite) == 0x10);
 W2U_ENGINE_LAYOUT(ability_change_string, __builtin_offsetof(BattleHandlerAbilityChangeParam, string) == 0x0C);
+W2U_ENGINE_LAYOUT(add_side_effect_string, __builtin_offsetof(BattleHandlerAddSideEffectParam, string) == 0x10);
 W2U_ENGINE_LAYOUT(move_param_type, __builtin_offsetof(BtlFlowMoveParam, type) == 0x06);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 
@@ -348,6 +363,7 @@ enum {
     SIDE_EFFECT_SAFEGUARD = 2,
     SIDE_EFFECT_MIST = 3,
     SIDE_EFFECT_TAILWIND = 4,
+    SIDE_EFFECT_TOXIC_SPIKES = 7,
 };
 #define BATTLE_SIDES 2
 
@@ -393,6 +409,7 @@ b32 BattleEventVar_RewriteValue(u16 key, s32 value);
 /* btl_main.c, btl_server_flow.c, btl_pokeparam.c */
 b32 IsAllyMonID(u8 monId1, u8 monId2);
 u8 GetSideFromMonID(u8 monId);
+u8 GetSideFromOpposingMonID(u8 monId);          /* the side facing the Pokémon */
 /* W2U's name (the decomp has none yet): the side effect is up on the side */
 b32 SideEffect_IsActive(u32 side, u32 effect);
 BattleMon *GetBattleMon(BtlServerFlow *serverFlow, u8 monId);
@@ -433,6 +450,8 @@ void BtlCalc_BuildMoveCondition(MoveConditionParam param, BattleMon *mon, Battle
 
 /* A condition value that lasts until removed (the Choice lock's move) */
 BattleCondition MakeConditionParamPermanent(u16 param);
+BattleCondition MakeConditionPermanent(void);
+BattleCondition SetConditionTurns(u8 turns);
 
 /* btl_handler.c: the current event's targets contain the Pokémon (EVENT_AFTER_MOVE_HITS) */
 b32 HandlerTargetsContain(u32 monId);

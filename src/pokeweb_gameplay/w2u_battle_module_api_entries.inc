@@ -681,13 +681,13 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ANGER_SHELL), (u16)W2U_ARRAY_COUNT(AngerShellHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AngerShellHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COTTON_DOWN), (u16)W2U_ARRAY_COUNT(MB_CottonDownHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CottonDownHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COTTON_DOWN), (u16)W2U_ARRAY_COUNT(CottonDownHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CottonDownHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PERISH_BODY), (u16)W2U_ARRAY_COUNT(MB_PerishBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PerishBodyHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PERISH_BODY), (u16)W2U_ARRAY_COUNT(PerishBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PerishBodyHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_DEBRIS), (u16)W2U_ARRAY_COUNT(MB_ToxicDebrisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ToxicDebrisHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_DEBRIS), (u16)W2U_ARRAY_COUNT(ToxicDebrisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ToxicDebrisHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WANDERING_SPIRIT), (u16)W2U_ARRAY_COUNT(LingeringAromaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, LingeringAromaHandlers},
@@ -718,17 +718,17 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_COTTON_DOWN) >= 0 && (ABIL_COTTON_DOWN) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_CottonDownHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_CottonDownHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(CottonDownHandlers)) > 0 && (W2U_ARRAY_COUNT(CottonDownHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_PERISH_BODY) >= 0 && (ABIL_PERISH_BODY) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PerishBodyHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PerishBodyHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PerishBodyHandlers)) > 0 && (W2U_ARRAY_COUNT(PerishBodyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_TOXIC_DEBRIS) >= 0 && (ABIL_TOXIC_DEBRIS) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ToxicDebrisHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ToxicDebrisHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ToxicDebrisHandlers)) > 0 && (W2U_ARRAY_COUNT(ToxicDebrisHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -942,7 +942,7 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MYCELIUM_MIGHT), (u16)W2U_ARRAY_COUNT(MB_MyceliumMightHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MyceliumMightHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_POISON_PUPPETEER), (u16)W2U_ARRAY_COUNT(MB_PoisonPuppeteerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PoisonPuppeteerHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_POISON_PUPPETEER), (u16)W2U_ARRAY_COUNT(PoisonPuppeteerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PoisonPuppeteerHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MEGA_SOL), (u16)W2U_ARRAY_COUNT(MB_MegaSolHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MegaSolHandlers},
@@ -1000,7 +1000,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_POISON_PUPPETEER) >= 0 && (ABIL_POISON_PUPPETEER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PoisonPuppeteerHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PoisonPuppeteerHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PoisonPuppeteerHandlers)) > 0 && (W2U_ARRAY_COUNT(PoisonPuppeteerHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -1805,13 +1805,13 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_reactiveEntries[]
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ANGER_SHELL), (u16)W2U_ARRAY_COUNT(AngerShellHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, AngerShellHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COTTON_DOWN), (u16)W2U_ARRAY_COUNT(MB_CottonDownHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CottonDownHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COTTON_DOWN), (u16)W2U_ARRAY_COUNT(CottonDownHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CottonDownHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PERISH_BODY), (u16)W2U_ARRAY_COUNT(MB_PerishBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PerishBodyHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PERISH_BODY), (u16)W2U_ARRAY_COUNT(PerishBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PerishBodyHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_DEBRIS), (u16)W2U_ARRAY_COUNT(MB_ToxicDebrisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ToxicDebrisHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_DEBRIS), (u16)W2U_ARRAY_COUNT(ToxicDebrisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ToxicDebrisHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WANDERING_SPIRIT), (u16)W2U_ARRAY_COUNT(LingeringAromaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, LingeringAromaHandlers},
@@ -1842,17 +1842,17 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_COTTON_DOWN) >= 0 && (ABIL_COTTON_DOWN) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_CottonDownHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_CottonDownHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(CottonDownHandlers)) > 0 && (W2U_ARRAY_COUNT(CottonDownHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_PERISH_BODY) >= 0 && (ABIL_PERISH_BODY) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PerishBodyHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PerishBodyHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PerishBodyHandlers)) > 0 && (W2U_ARRAY_COUNT(PerishBodyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_TOXIC_DEBRIS) >= 0 && (ABIL_TOXIC_DEBRIS) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ToxicDebrisHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ToxicDebrisHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ToxicDebrisHandlers)) > 0 && (W2U_ARRAY_COUNT(ToxicDebrisHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -2081,7 +2081,7 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_hookedEntries[] =
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MYCELIUM_MIGHT), (u16)W2U_ARRAY_COUNT(MB_MyceliumMightHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MyceliumMightHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_POISON_PUPPETEER), (u16)W2U_ARRAY_COUNT(MB_PoisonPuppeteerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PoisonPuppeteerHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_POISON_PUPPETEER), (u16)W2U_ARRAY_COUNT(PoisonPuppeteerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PoisonPuppeteerHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MEGA_SOL), (u16)W2U_ARRAY_COUNT(MB_MegaSolHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MegaSolHandlers},
@@ -2139,7 +2139,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_POISON_PUPPETEER) >= 0 && (ABIL_POISON_PUPPETEER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PoisonPuppeteerHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PoisonPuppeteerHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PoisonPuppeteerHandlers)) > 0 && (W2U_ARRAY_COUNT(PoisonPuppeteerHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)

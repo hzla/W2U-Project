@@ -100,11 +100,17 @@ static inline b32 W2U_OnField(BtlServerFlow *flow, u8 monId)
     return monId < BATTLE_MAX_MON_ID && Handler_PokeIDToPokePos(flow, monId) != BATTLE_POS_NONE;
 }
 
+/* The Pokémon is on the field and has not fainted (MegaB2W2's ForEachOnField) */
+static inline b32 W2U_OnFieldAlive(BtlServerFlow *flow, u8 monId)
+{
+    return W2U_OnField(flow, monId) && !IsFainted(GetBattleMon(flow, monId));
+}
+
 /* The Pokémon has this ability and it works (not suppressed by Gastro Acid): for checks outside the holder's own
  * handlers */
 static inline b32 W2U_HasActiveAbility(BattleMon *mon, u16 ability)
 {
-    return mon && (u16)GetBattleMonStat(mon, BMV_ABILITY) == ability && !CheckCondition(mon, MON_CONDITION_GASTRO_ACID);
+    return mon && (u16)GetBattleMonStat(mon, BMV_ABILITY) == ability && !CheckCondition(mon, CONDITION_GASTRO_ACID);
 }
 
 /* The lowest monId on the field with this ability working, or BATTLE_MAX_MON_ID: for field-wide effects that apply

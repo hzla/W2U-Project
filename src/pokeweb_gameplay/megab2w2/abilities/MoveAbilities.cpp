@@ -1,10 +1,8 @@
 // Ported from MegaB2W2 (src/patches/MegaEvolution/abilities/MoveAbilities.cpp); see docs/megab2w2-integration.md.
-// Abilities that change how the holder's own moves work (Gen 9 / Showdown), one file, three logic names:
+// Abilities that change how the holder's own moves work (Gen 9 / Showdown), one file:
 //   Mycelium Might    Status moves go last in their priority bracket (event 0x0F, var 0x11 = 0; the move from the
 //                     resident core, as Quick Draw) and ignore the target's ability (vanilla Mold Breaker's start /
 //                     end handlers, called only for status moves).
-//   Poison Puppeteer  A Pokemon the holder poisons (or badly poisons) also becomes confused (event 0x68: the status
-//                     was inflicted; Confuse Ray's continuation; not if already confused).
 //   Mega Sol          The holder's moves act as if the sun were out (Fire x1.5 / Water x0.5, one-turn Solar Beam,
 //                     Fire Weather Ball, Synthesis 2/3, Thunder / Hurricane 50%...): while its move runs
 //                     (EVENT_MOVE_START .. EVENT_MOVE_END) the resident ServerEvent_GetWeather answers sun. (Everything
@@ -51,24 +49,7 @@ const BattleEventHandlerTableEntry MYCELIUM_MIGHT_HANDLERS[] = {
     { EVENT_TURN_CHECK, HandlerMyceliumMightTurnEnd },
 };
 
-// ---- Poison Puppeteer --------------------------------------------------------------------------------------
-void HandlerPoisonPuppeteerStatus(BattleEventItem*, ServerFlow* sf, u32 pokeID, u32*) {
-    if (ability::Attacker() != pokeID || (u32)BattleEventVar_GetValue(VAR_CONDITION) != COND_POISON) return;
-    u32 target = ability::Defender();
-    if (target == pokeID || target >= ability::MAX_POKE_ID) return;
-    BattleMon* bm = GetBattleMon(sf, target);
-    if (BattleMon_IsFainted(bm) || CheckCondition(bm, MV_CONDITION_CONFUSION)) return;
-    auto* p = (HandlerParam_AddCondition*)BattleHandler_PushWork(sf, EFFECT_ADD_CONDITION, pokeID);
-    p->header.flags |= HANDLER_ABILITY_POPUP_FLAG;
-    p->condition = MV_CONDITION_CONFUSION;
-    BTL_MakeSickCont(PML_MoveGetSickCont(MV_CONFUSE_RAY), GetBattleMon(sf, pokeID), &p->cont);
-    p->pokeID = (u8)target;
-    BattleHandler_PopWork(sf, p);
-    MLOG("[ABIL] Poison Puppeteer: poke %d confuses poke %d", pokeID, target);
-}
-const BattleEventHandlerTableEntry POISON_PUPPETEER_HANDLERS[] = {
-    { MV_EVENT_STATUS_INFLICTED, HandlerPoisonPuppeteerStatus },
-};
+// Poison Puppeteer: src/mechanics/abilities/poison_puppeteer.c.
 
 // ---- Mega Sol ----------------------------------------------------------------------------------------------
 void HandlerMegaSolMoveStart(BattleEventItem*, ServerFlow* sf, u32 pokeID, u32*) {
@@ -88,9 +69,6 @@ const BattleEventHandlerTableEntry MEGA_SOL_HANDLERS[] = {
 // W2U battle module tables (registry: src/pokeweb_gameplay/battle_modules/registry.json)
 BattleEventHandlerTableEntry MB_MyceliumMightHandlers[4] = {MYCELIUM_MIGHT_HANDLERS[0], MYCELIUM_MIGHT_HANDLERS[1],
                                                             MYCELIUM_MIGHT_HANDLERS[2], MYCELIUM_MIGHT_HANDLERS[3]};
-BattleEventHandlerTableEntry MB_PoisonPuppeteerHandlers[1] = {POISON_PUPPETEER_HANDLERS[0]};
 BattleEventHandlerTableEntry MB_MegaSolHandlers[2] = {MEGA_SOL_HANDLERS[0], MEGA_SOL_HANDLERS[1]};
 static_assert(sizeof(MYCELIUM_MIGHT_HANDLERS) / sizeof(MYCELIUM_MIGHT_HANDLERS[0]) == 4, "MB_MyceliumMightHandlers");
-static_assert(sizeof(POISON_PUPPETEER_HANDLERS) / sizeof(POISON_PUPPETEER_HANDLERS[0]) == 1,
-              "MB_PoisonPuppeteerHandlers");
 static_assert(sizeof(MEGA_SOL_HANDLERS) / sizeof(MEGA_SOL_HANDLERS[0]) == 2, "MB_MegaSolHandlers");
