@@ -33,7 +33,7 @@ w2u_battle_module_definitions = [
   {
     'id': 6,
     'slug': 'abilities_reactive',
-    'sources': files('../w2u_abilities.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/stamina.c'),
   },
   {
     'id': 7,
@@ -128,7 +128,7 @@ w2u_battle_module_definitions = [
   {
     'id': 25,
     'slug': 'abilities_mb_reactive',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Berserk.cpp', '../megab2w2/abilities/HitReactions.cpp', '../megab2w2/abilities/LingeringAroma.cpp', '../megab2w2/abilities/SpicySpray.cpp', '../megab2w2/abilities/Stamina.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Berserk.cpp', '../megab2w2/abilities/HitReactions.cpp', '../megab2w2/abilities/LingeringAroma.cpp', '../megab2w2/abilities/SpicySpray.cpp', '../../mechanics/abilities/stamina.c'),
   },
   {
     'id': 26,

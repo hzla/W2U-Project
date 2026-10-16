@@ -54,6 +54,14 @@ static inline b32 W2U_TargetsPokemon(u16 move)
 
     return target <= MOVE_TARGET_ENEMY_ALL || target == MOVE_TARGET_ENEMY_RANDOM;
 }
+/* The final type of a move as attacker uses it (after -ate abilities, Weather Ball...) */
+static inline u32 W2U_FinalMoveType(BtlServerFlow *flow, u16 move, u8 attacker)
+{
+    BtlFlowMoveParam param = { 0 };
+
+    ServerEvent_GetMoveParam(flow, move, GetBattleMon(flow, attacker), &param);
+    return param.type;
+}
 /* The current event's move makes contact, used by its attacker */
 static inline b32 W2U_MakesContact(BtlServerFlow *flow, u16 move)
 {
@@ -66,6 +74,8 @@ static inline u16 W2U_HolderAbility(BtlServerFlow *flow, u8 monId)
 {
     return (u16)GetBattleMonStat(GetBattleMon(flow, monId), BMV_ABILITY);
 }
+
+static inline b32 W2U_IsFainted(BtlServerFlow *flow, u8 monId) { return IsFainted(GetBattleMon(flow, monId)); }
 
 /* Ratios (fixed point, W2U_RATIO_ONE = x1) */
 static inline void W2U_MulRatio(s32 ratio) { BattleEventVar_MulValue(VAR_RATIO, ratio); }
@@ -104,6 +114,29 @@ static inline void W2U_ChangeStatStage(BtlServerFlow *flow, u8 holder, u8 target
     param->count = 1;
     param->monIds[0] = target;
     BattleHandler_PopWork(flow, param);
+}
+
+/* The holder's own stat stage change with the ability popup around it, as W2U's abilities push it
+ * (PushAbilityStatStageChange in w2u_abilities.cpp): nothing if the holder has fainted or the stat can't change that
+ * way any more. True if pushed. */
+static inline b32 W2U_PopupStatChange(BtlServerFlow *flow, u8 monId, u32 stat, s32 stages)
+{
+    BattleMon *mon = GetBattleMon(flow, monId);
+    BattleHandlerStatChangeParam *param;
+
+    if (!mon || IsFainted(mon) || !IsStatChangeValid(mon, stat, stages)) {
+        return 0;
+    }
+    BattleHandler_PushRun(flow, HANDLER_CMD_POPUP_IN, monId);
+    param = (BattleHandlerStatChangeParam *)BattleHandler_PushWork(flow, HANDLER_CMD_CHANGE_STAT, monId);
+    param->count = 1;
+    param->monIds[0] = monId;
+    param->unk0e = 1;
+    param->stat = stat;
+    param->change = (s8)stages;
+    BattleHandler_PopWork(flow, param);
+    BattleHandler_PushRun(flow, HANDLER_CMD_POPUP_OUT, monId);
+    return 1;
 }
 
 #define W2U_MSG_SET_DOESNT_AFFECT 210   /* bank 18: "It doesn't affect {0}..." */
