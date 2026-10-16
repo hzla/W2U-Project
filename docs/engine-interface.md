@@ -128,10 +128,16 @@ lives as long as the module, not the battle. Battle-scoped state is a later impr
 | Lingering Aroma, Wandering Spirit | `abilities/lingering_aroma.c` | `megab2w2/abilities/LingeringAroma.cpp` | `LINGERING_AROMA`, `WANDERING_SPIRIT` (`wave_a.yml`) |
 | Cotton Down, Perish Body, Toxic Debris | `abilities/hit_reactions.c` | `megab2w2/abilities/HitReactions.cpp` | `COTTON_DOWN`, `PERISH_BODY`, `TOXIC_DEBRIS` (`wave_a.yml`) |
 | Poison Puppeteer | `abilities/poison_puppeteer.c` | its part of `megab2w2/abilities/MoveAbilities.cpp` | `POISON_PUPPETEER` (`wave_c.yml`); `MYCELIUM_MIGHT`, `MEGA_SOL*` unchanged |
+| Pastel Veil | `abilities/pastel_veil.c` | `megab2w2/abilities/Veil.cpp` (only Pastel Veil used it) | `PASTEL_VEIL`, `PASTEL_VEIL_ALLY` (`wave_a.yml`); `AROMA_VEIL`, `FLOWER_VEIL`, `SWEET_VEIL` unchanged |
+| Tera Shell | `abilities/tera_shell.c` | `megab2w2/abilities/Shields.cpp` (only Tera Shell used it) | `TERA_SHELL` (`wave_a.yml`); `DISGUISE`, `COMATOSE` unchanged |
 
 Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
 W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting
 W2U's would mean either rule for all three, a behaviour change to decide on.
+
+MegaB2W2 code that was never reached is gone rather than converted: the Aroma, Flower and Sweet Veil rows (W2U's
+own handlers serve those), MegaB2W2's Disguise (W2U's `DisguiseHandlers`), its Comatose (never registered; W2U
+handles Comatose in its own hooks) and the Boost rows of Tough Claws, Strong Jaw, Mega Launcher and Steelworker.
 
 Beast Boost itself stays in `w2u_abilities.cpp` for now: it picks the highest stat from the BattleMon's fields,
 which needs the BattleMon layout in `engine.h` first.

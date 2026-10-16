@@ -683,8 +683,8 @@
         "../mechanics/abilities/mirror_armor.c",
         "../mechanics/abilities/purifying_salt.c",
         "../mechanics/abilities/armor_tail.c",
-        "megab2w2/abilities/Shields.cpp",
-        "megab2w2/abilities/Veil.cpp",
+        "../mechanics/abilities/tera_shell.c",
+        "../mechanics/abilities/pastel_veil.c",
         "../mechanics/abilities/wind_rider.c",
         "../mechanics/abilities/damp.c"
       ],
@@ -700,8 +700,8 @@
         ["ability", "ABIL_MIRROR_ARMOR", "MirrorArmorHandlers"],
         ["ability", "ABIL_PURIFYING_SALT", "PurifyingSaltHandlers"],
         ["ability", "ABIL_ARMOR_TAIL", "ArmorTailHandlers"],
-        ["ability", "ABIL_TERA_SHELL", "MB_TeraShellHandlers"],
-        ["ability", "ABIL_PASTEL_VEIL", "MB_VeilHandlers"],
+        ["ability", "ABIL_TERA_SHELL", "TeraShellHandlers"],
+        ["ability", "ABIL_PASTEL_VEIL", "PastelVeilHandlers"],
         ["ability", "ABIL_WELL_BAKED_BODY", "WellBakedBodyHandlers"],
         ["ability", "ABIL_WIND_RIDER", "WindRiderHandlers"]
       ]

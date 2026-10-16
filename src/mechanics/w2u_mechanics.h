@@ -41,3 +41,5 @@ extern "C" BattleEventHandlerTableEntry CottonDownHandlers[1];
 extern "C" BattleEventHandlerTableEntry PerishBodyHandlers[1];
 extern "C" BattleEventHandlerTableEntry ToxicDebrisHandlers[1];
 extern "C" BattleEventHandlerTableEntry PoisonPuppeteerHandlers[1];
+extern "C" BattleEventHandlerTableEntry PastelVeilHandlers[4];
+extern "C" BattleEventHandlerTableEntry TeraShellHandlers[2];

@@ -582,10 +582,10 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ARMOR_TAIL), (u16)W2U_ARRAY_COUNT(ArmorTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ArmorTailHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TERA_SHELL), (u16)W2U_ARRAY_COUNT(MB_TeraShellHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_TeraShellHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TERA_SHELL), (u16)W2U_ARRAY_COUNT(TeraShellHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TeraShellHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PASTEL_VEIL), (u16)W2U_ARRAY_COUNT(MB_VeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_VeilHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PASTEL_VEIL), (u16)W2U_ARRAY_COUNT(PastelVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PastelVeilHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WELL_BAKED_BODY), (u16)W2U_ARRAY_COUNT(WellBakedBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WellBakedBodyHandlers},
@@ -657,12 +657,12 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_TERA_SHELL) >= 0 && (ABIL_TERA_SHELL) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_TeraShellHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_TeraShellHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(TeraShellHandlers)) > 0 && (W2U_ARRAY_COUNT(TeraShellHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_PASTEL_VEIL) >= 0 && (ABIL_PASTEL_VEIL) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_VeilHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_VeilHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PastelVeilHandlers)) > 0 && (W2U_ARRAY_COUNT(PastelVeilHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -1701,10 +1701,10 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_defenseEntries[] 
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ARMOR_TAIL), (u16)W2U_ARRAY_COUNT(ArmorTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ArmorTailHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TERA_SHELL), (u16)W2U_ARRAY_COUNT(MB_TeraShellHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_TeraShellHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TERA_SHELL), (u16)W2U_ARRAY_COUNT(TeraShellHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TeraShellHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PASTEL_VEIL), (u16)W2U_ARRAY_COUNT(MB_VeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_VeilHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PASTEL_VEIL), (u16)W2U_ARRAY_COUNT(PastelVeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PastelVeilHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WELL_BAKED_BODY), (u16)W2U_ARRAY_COUNT(WellBakedBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WellBakedBodyHandlers},
@@ -1776,12 +1776,12 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_TERA_SHELL) >= 0 && (ABIL_TERA_SHELL) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_TeraShellHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_TeraShellHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(TeraShellHandlers)) > 0 && (W2U_ARRAY_COUNT(TeraShellHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_PASTEL_VEIL) >= 0 && (ABIL_PASTEL_VEIL) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_VeilHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_VeilHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PastelVeilHandlers)) > 0 && (W2U_ARRAY_COUNT(PastelVeilHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
