@@ -59,68 +59,6 @@ namespace w2u {
             return GEN8PLUS_ICON_ARCHIVE_START + ((Species - GEN8PLUS_SPECIES_START) * 2);
         }
 
-        static inline b32 IsMegaIconForm(u32 Species, u32 Form) {
-            if (!Form) {
-                return false;
-            }
-
-            switch (Species) {
-            case SPECIES_CHARIZARD:
-            case SPECIES_MEWTWO:
-                return Form <= 2;
-            case SPECIES_VENUSAUR:
-            case SPECIES_BLASTOISE:
-            case SPECIES_BEEDRILL:
-            case SPECIES_PIDGEOT:
-            case SPECIES_ALAKAZAM:
-            case SPECIES_SLOWBRO:
-            case SPECIES_GENGAR:
-            case SPECIES_KANGASKHAN:
-            case SPECIES_PINSIR:
-            case SPECIES_GYARADOS:
-            case SPECIES_AERODACTYL:
-            case SPECIES_AMPHAROS:
-            case SPECIES_STEELIX:
-            case SPECIES_SCIZOR:
-            case SPECIES_HERACROSS:
-            case SPECIES_HOUNDOOM:
-            case SPECIES_TYRANITAR:
-            case SPECIES_SCEPTILE:
-            case SPECIES_BLAZIKEN:
-            case SPECIES_SWAMPERT:
-            case SPECIES_GARDEVOIR:
-            case SPECIES_SABLEYE:
-            case SPECIES_MAWILE:
-            case SPECIES_AGGRON:
-            case SPECIES_MEDICHAM:
-            case SPECIES_MANECTRIC:
-            case SPECIES_SHARPEDO:
-            case SPECIES_CAMERUPT:
-            case SPECIES_ALTARIA:
-            case SPECIES_BANETTE:
-            case SPECIES_ABSOL:
-            case SPECIES_GLALIE:
-            case SPECIES_SALAMENCE:
-            case SPECIES_METAGROSS:
-            case SPECIES_LATIAS:
-            case SPECIES_LATIOS:
-            case SPECIES_LOPUNNY:
-            case SPECIES_GARCHOMP:
-            case SPECIES_LUCARIO:
-            case SPECIES_ABOMASNOW:
-            case SPECIES_GALLADE:
-            case SPECIES_AUDINO:
-                return Form == 1;
-            default:
-                return false;
-            }
-        }
-
-        static inline u32 DirectFormIconSpecies(u32 Species, u32 Form) {
-            u32 formDataOffset = PML_PersonalGetParamSingle(Species, 0, Personal_FormeDataOffs);
-            return formDataOffset ? formDataOffset + Form - 1 : 0;
-        }
-
         static inline b32 HasExpandedGraphics(u32 Species) {
             return IsGen7Species(Species) ||
                 IsGen8PlusSpecies(Species) ||
@@ -246,16 +184,9 @@ namespace w2u {
                 u32 formSprite = PML_PersonalGetParamSingle(Species, 0, Personal_SpriteForme);
                 // Forme is valid.
 				if (Form < formCount && !formSprite) {
-                    u32 directFormSpecies = DirectFormIconSpecies(Species, Form);
-                    u32 directIconIndex = directFormSpecies ? 2 * directFormSpecies + 8 : 0;
-                    if (IsMegaIconForm(Species, Form) &&
-                        directIconIndex &&
-                        GFL_ArcSysGetDataLength(7u, directIconIndex)) {
-                        iconIndex = directIconIndex;
-                    }
-                    else {
-                        iconIndex = 2 * (formSpriteOffset + Form - 1) + ICON_FORM_START;
-                    }
+                    // Every form, Megas included, at its form slot: Megas once used a direct slot (8 + 2 * personal
+                    // index) too, which overlapped other forms' slots (docs/pokemon-icons.md)
+                    iconIndex = 2 * (formSpriteOffset + Form - 1) + ICON_FORM_START;
                 }
             }
 			
@@ -300,16 +231,7 @@ namespace w2u {
 				u32 formCount = PML_PersonalGetParamSingle(Species, 0, Personal_FormeCount);
 				// Form is valid.
 				if (Form < formCount && !formSprite) {
-                    u32 directFormSpecies = DirectFormIconSpecies(Species, Form);
-                    u32 directIconIndex = directFormSpecies ? 2 * directFormSpecies + 8 : 0;
-                    if (IsMegaIconForm(Species, Form) &&
-                        directIconIndex &&
-                        GFL_ArcSysGetDataLength(7u, directIconIndex)) {
-                        paletteIndex = directFormSpecies;
-                    }
-                    else {
-					    paletteIndex = formSpriteOffset + (Form - 1) + (EGG_INDEX + 2);
-                    }
+                    paletteIndex = formSpriteOffset + (Form - 1) + (EGG_INDEX + 2);
 				}   
 				
 			}
