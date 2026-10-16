@@ -23,7 +23,7 @@ w2u_battle_module_definitions = [
   {
     'id': 4,
     'slug': 'abilities_power',
-    'sources': files('../w2u_abilities.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/power_spot.c'),
   },
   {
     'id': 5,
@@ -118,7 +118,7 @@ w2u_battle_module_definitions = [
   {
     'id': 23,
     'slug': 'abilities_mb_power',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Boost.cpp', '../megab2w2/abilities/Charge.cpp', '../megab2w2/abilities/MindsEye.cpp', '../megab2w2/abilities/Neuroforce.cpp', '../megab2w2/abilities/PowerSpot.cpp', '../megab2w2/abilities/Protean.cpp', '../megab2w2/abilities/PunkRock.cpp', '../megab2w2/abilities/Ruin.cpp', '../megab2w2/abilities/SupremeOverlord.cpp', '../megab2w2/abilities/ToxicChain.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Boost.cpp', '../megab2w2/abilities/Charge.cpp', '../megab2w2/abilities/MindsEye.cpp', '../megab2w2/abilities/Neuroforce.cpp', '../../mechanics/abilities/power_spot.c', '../megab2w2/abilities/Protean.cpp', '../../mechanics/abilities/punk_rock.c', '../megab2w2/abilities/Ruin.cpp', '../megab2w2/abilities/SupremeOverlord.cpp', '../megab2w2/abilities/ToxicChain.cpp'),
   },
   {
     'id': 24,

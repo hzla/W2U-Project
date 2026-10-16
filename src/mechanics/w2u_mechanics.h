@@ -5,3 +5,6 @@
 #include "w2u_abilities.h"
 
 extern "C" BattleEventHandlerTableEntry FluffyHandlers[1];   // abilities/fluffy.c: Fluffy, Ice Scales, Aura Guard
+extern "C" BattleEventHandlerTableEntry PowerSpotHandlers[1];  // abilities/power_spot.c: Power Spot, Steely Spirit
+extern "C" BattleEventHandlerTableEntry BatteryHandlers[1];    // abilities/power_spot.c
+extern "C" BattleEventHandlerTableEntry PunkRockHandlers[2];   // abilities/punk_rock.c

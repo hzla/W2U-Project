@@ -24,7 +24,7 @@ static const FluffyRow sFluffyRows[] = {
     { ABIL_AURA_GUARD, MATCH_CONTACT, 0, 2048 },
 };
 
-static b32 RowMatches(const FluffyRow *row, BtlServerFlow *flow, u16 move)
+static b32 FluffyRowMatches(const FluffyRow *row, BtlServerFlow *flow, u16 move)
 {
     /* if, not switch: switch jump tables need a libgcc helper the ESDB lacks */
     if (row->match == MATCH_CONTACT) {
@@ -49,7 +49,7 @@ static void HandlerFluffyDamageRatio(BattleEventItem *item, BtlServerFlow *flow,
     ability = W2U_HolderAbility(flow, monId);
     move = W2U_Move();
     for (i = 0; i < NELEMS(sFluffyRows); ++i) {
-        if (sFluffyRows[i].ability == ability && RowMatches(&sFluffyRows[i], flow, move)) {
+        if (sFluffyRows[i].ability == ability && FluffyRowMatches(&sFluffyRows[i], flow, move)) {
             ratio = W2U_RatioMul(ratio, sFluffyRows[i].ratio);
         }
     }
