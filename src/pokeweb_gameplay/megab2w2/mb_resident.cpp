@@ -9,11 +9,13 @@
 extern "C" {
 b32  Battle_IsRedirectBlocked(ServerFlow* sf, u32 attacker, u32 redirector, u16 move);   // ov167 0x21ABE10
 u32  BattleField_GetWeather();                                                          // ov167 0x21D59F0
-void BattleHandler_UseHeldItem(ServerFlow* sf, void* param);                            // ov167 0x21AD968
-void BattleHandler_RecoverHP(ServerFlow* sf, void* param, u32 a2);                      // ov167 0x21AC8AC
-u32  BattleHandler_Damage(ServerFlow* sf, void* param);                                 // ov167 0x21AC9D8
-void BattleHandler_StatChange(ServerFlow* sf, void* param, u32 a2);                     // ov167 0x21ACDD0
-void BattleHandler_ForceUseItem(ServerFlow* sf, void* param);                           // ov167 0x21AD9BC
+// The handler-effect commands return their result (nonzero: done), which the dispatcher keeps: checkPrevResult and
+// BattleHandler_Result read it, so the wrappers below pass it on.
+u8   BattleHandler_UseHeldItem(ServerFlow* sf, void* param);                            // ov167 0x21AD968
+u8   BattleHandler_RecoverHP(ServerFlow* sf, void* param, u32 a2);                      // ov167 0x21AC8AC
+u8   BattleHandler_Damage(ServerFlow* sf, void* param);                                 // ov167 0x21AC9D8
+u8   BattleHandler_StatChange(ServerFlow* sf, void* param, u32 a2);                     // ov167 0x21ACDD0
+u8   BattleHandler_ForceUseItem(ServerFlow* sf, void* param);                           // ov167 0x21AD9BC
 b32  ServerControl_IsGuaranteedHit(ServerFlow* sf, BattleMon* attacker, BattleMon* target); // ov167 0x21A2E0C
 void ServerControl_RechargeAction(ServerFlow* sf, BattleMon* bm);                       // ov167 0x21A9014
 bool BattleMon_GetConditionFlag(BattleMon* bm, u32 flag);
@@ -50,19 +52,19 @@ b32 RedirectBlocked(ServerFlow* sf, u32 attacker, u32 redirector, u16 move) {
 // ---- Ripen / Cud Chew: Berries eaten ----------------------------------------------------------------------------
 // The handler-effect dispatcher (ov167 0x21AC4F8) carries a held item's effects out inside its UseHeldItem, so a
 // "this Ripen holder is eating a Berry" flag around that call sees the Berry's own heal / stat / damage effects.
-void UseItem(ServerFlow* sf, void* param, bool force) {
+u8 UseItem(ServerFlow* sf, void* param, bool force) {
     u32 pokeID = force ? ((HandlerParam_ForceUseItemFX*)param)->pokeID : HeaderPoke(param);
     BattleMon* bm = Mon(sf, pokeID);
     u16 item = !bm ? 0 : force ? ((HandlerParam_ForceUseItemFX*)param)->item : BattleMon_GetHeldItem(bm);
     u8 prev = sRipenUser;
     if (bm && ability::IsBerry(item) && ability::HasActiveAbility(bm, ABIL_RIPEN)) sRipenUser = (u8)pokeID;
-    if (force) BattleHandler_ForceUseItem(sf, param);
-    else BattleHandler_UseHeldItem(sf, param);
+    u8 result = force ? BattleHandler_ForceUseItem(sf, param) : BattleHandler_UseHeldItem(sf, param);
     sRipenUser = prev;
     if (bm && ability::IsBerry(item) && sCudChewing != pokeID && ability::HasActiveAbility(bm, ABIL_CUD_CHEW)) {
         sCudBerry[pokeID] = item;
         sCudCounter[pokeID] = 2;   // the end of this turn, then the next: chewed again
     }
+    return result;
 }
 } // namespace
 
@@ -108,22 +110,23 @@ extern "C" u32 THUMB_BRANCH_LINK_167_0x219FBF8(ServerFlow* sf, u16 move, BattleM
     return ServerEvent_GetMovePriority(sf, move, bm);
 }
 
-extern "C" void THUMB_BRANCH_LINK_167_0x21AC59E(ServerFlow* sf, void* param) { UseItem(sf, param, false); }
-extern "C" void THUMB_BRANCH_LINK_167_0x21AC6D6(ServerFlow* sf, void* param) {
-    UseItem(sf, param, true);
+extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC59E(ServerFlow* sf, void* param) { return UseItem(sf, param, false); }
+extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC6D6(ServerFlow* sf, void* param) {
+    u8 result = UseItem(sf, param, true);
     sCudChewing = NONE;
+    return result;
 }
-extern "C" void THUMB_BRANCH_LINK_167_0x21AC5AA(ServerFlow* sf, void* param, u32 a2) {
+extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC5AA(ServerFlow* sf, void* param, u32 a2) {
     auto* p = (HandlerParam_RecoverHP*)param;
     if (sRipenUser != NONE && p->pokeID == sRipenUser) p->amount = (u16)(p->amount * 2);   // Sitrus, Oran...
-    BattleHandler_RecoverHP(sf, param, a2);
+    return BattleHandler_RecoverHP(sf, param, a2);
 }
-extern "C" u32 THUMB_BRANCH_LINK_167_0x21AC5C0(ServerFlow* sf, void* param) {
+extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC5C0(ServerFlow* sf, void* param) {
     auto* p = (HandlerParam_DamageFX*)param;
     if (sRipenUser != NONE && p->pokeID != sRipenUser) p->amount = (u16)(p->amount * 2);   // Jaboca / Rowap
     return BattleHandler_Damage(sf, param);
 }
-extern "C" void THUMB_BRANCH_LINK_167_0x21AC604(ServerFlow* sf, void* param, u32 a2) {
+extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC604(ServerFlow* sf, void* param, u32 a2) {
     auto* p = (HandlerParam_ChangeStatStage*)param;
     bool single = p->stages > 0 && p->pokeCount == 1 && p->pokeIDs[0] < MAX_ID;
     bool copy = single && sOppPendingCopies[p->pokeIDs[0]] > 0;
@@ -132,8 +135,9 @@ extern "C" void THUMB_BRANCH_LINK_167_0x21AC604(ServerFlow* sf, void* param, u32
         p->stages = (s8)(p->stages * 2 > 6 ? 6 : p->stages * 2);
     bool prev = sOppCopying;
     if (copy) sOppCopying = true;
-    BattleHandler_StatChange(sf, param, a2);
+    u8 result = BattleHandler_StatChange(sf, param, a2);
     sOppCopying = prev;
+    return result;
 }
 
 // ServerEvent_GetWeather (ov167 0x21A65A0), rewritten whole as vanilla: Air Lock / Cloud Nine (event 0x7A,
