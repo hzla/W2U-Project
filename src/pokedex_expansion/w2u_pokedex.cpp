@@ -33,7 +33,10 @@
 #endif
 #define POKEDEX_TEXT_VERSION_BYTES 432
 #define POKEDEX_NATIONAL_OBTAINED_FLAG 0x00000001
-#define POKEDEX_NATIONAL_MODE_FLAG 0x00000800
+// Bits 10-11 of the flags: the list the Pokedex shows (decomp ov302 zukan.c): 0 the regional one, 1 the national
+// one, 2 "national Pokedex just obtained" (the awards first, then the regional list)
+#define POKEDEX_MODE_MASK 0x00000C00
+#define POKEDEX_MODE_NATIONAL 0x00000400
 #define SPINDA_SPECIES 327
 #define POKEMON_PARADATA_OFFSET 8
 #define POKEMON_PARADATA_SIZE 128
@@ -468,21 +471,31 @@ namespace w2u {
             return sizeof(PokedexSave);
         }
 
+        // The national Pokedex is always obtained. The list starts national and keeps the player's choice (regional
+        // or national); the "just obtained" mode (2), and 3, which setting bit 11 on every query used to produce
+        // from a national choice, become national: they sent the list back to the regional one each time.
+        static inline void EnsureNationalPokedex(PokedexSave *pokedex) {
+            pokedex->flags |= POKEDEX_NATIONAL_OBTAINED_FLAG;
+            if ((pokedex->flags & POKEDEX_MODE_MASK) > POKEDEX_MODE_NATIONAL) {
+                pokedex->flags = (pokedex->flags & ~POKEDEX_MODE_MASK) | POKEDEX_MODE_NATIONAL;
+            }
+        }
+
         extern "C" void THUMB_BRANCH_initPokedex(PokedexSave *pokedex) {
             ClearMemory(pokedex, sizeof(PokedexSave));
             pokedex->zukanMagic = POKEDEX_MAGIC;
-            pokedex->flags = POKEDEX_NATIONAL_OBTAINED_FLAG | POKEDEX_NATIONAL_MODE_FLAG;
+            pokedex->flags = POKEDEX_NATIONAL_OBTAINED_FLAG | POKEDEX_MODE_NATIONAL;
         }
 
         extern "C" void THUMB_BRANCH_PokeDex_SetNationalObtained(PokedexSave *pokedex) {
             if (pokedex) {
-                pokedex->flags |= POKEDEX_NATIONAL_OBTAINED_FLAG | POKEDEX_NATIONAL_MODE_FLAG;
+                EnsureNationalPokedex(pokedex);
             }
         }
 
         extern "C" b32 THUMB_BRANCH_PokeDex_IsNationalObtained(PokedexSave *pokedex) {
             if (pokedex) {
-                pokedex->flags |= POKEDEX_NATIONAL_OBTAINED_FLAG | POKEDEX_NATIONAL_MODE_FLAG;
+                EnsureNationalPokedex(pokedex);
             }
             return 1;
         }
