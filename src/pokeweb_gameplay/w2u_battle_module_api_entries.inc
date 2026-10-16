@@ -591,7 +591,7 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WELL_BAKED_BODY), (u16)W2U_ARRAY_COUNT(WellBakedBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WellBakedBodyHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_WIND_RIDER), (u16)W2U_ARRAY_COUNT(MB_WindRiderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_WindRiderHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_WIND_RIDER), (u16)W2U_ARRAY_COUNT(WindRiderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WindRiderHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
@@ -672,7 +672,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_WIND_RIDER) >= 0 && (ABIL_WIND_RIDER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_WindRiderHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_WindRiderHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(WindRiderHandlers)) > 0 && (W2U_ARRAY_COUNT(WindRiderHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #elif W2U_BATTLE_MODULE_ID == 25
@@ -786,7 +786,7 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_AS_ONE_SPECTRIER), (u16)W2U_ARRAY_COUNT(MB_NeighHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeighHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SCREEN_CLEANER), (u16)W2U_ARRAY_COUNT(MB_ScreenCleanerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ScreenCleanerHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SCREEN_CLEANER), (u16)W2U_ARRAY_COUNT(ScreenCleanerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ScreenCleanerHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
@@ -842,7 +842,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_SCREEN_CLEANER) >= 0 && (ABIL_SCREEN_CLEANER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ScreenCleanerHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ScreenCleanerHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ScreenCleanerHandlers)) > 0 && (W2U_ARRAY_COUNT(ScreenCleanerHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #elif W2U_BATTLE_MODULE_ID == 27
@@ -1710,7 +1710,7 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_defenseEntries[] 
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WELL_BAKED_BODY), (u16)W2U_ARRAY_COUNT(WellBakedBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WellBakedBodyHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_WIND_RIDER), (u16)W2U_ARRAY_COUNT(MB_WindRiderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_WindRiderHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_WIND_RIDER), (u16)W2U_ARRAY_COUNT(WindRiderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WindRiderHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_defenseApi = {
@@ -1791,7 +1791,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_WIND_RIDER) >= 0 && (ABIL_WIND_RIDER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_WindRiderHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_WindRiderHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(WindRiderHandlers)) > 0 && (W2U_ARRAY_COUNT(WindRiderHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_DEFENSE()
@@ -1915,7 +1915,7 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_entryEntries[] = 
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_AS_ONE_SPECTRIER), (u16)W2U_ARRAY_COUNT(MB_NeighHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeighHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SCREEN_CLEANER), (u16)W2U_ARRAY_COUNT(MB_ScreenCleanerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ScreenCleanerHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SCREEN_CLEANER), (u16)W2U_ARRAY_COUNT(ScreenCleanerHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ScreenCleanerHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_entryApi = {
@@ -1971,7 +1971,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_SCREEN_CLEANER) >= 0 && (ABIL_SCREEN_CLEANER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ScreenCleanerHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ScreenCleanerHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ScreenCleanerHandlers)) > 0 && (W2U_ARRAY_COUNT(ScreenCleanerHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_ENTRY()

@@ -685,7 +685,7 @@
         "megab2w2/abilities/QueenlyMajesty.cpp",
         "megab2w2/abilities/Shields.cpp",
         "megab2w2/abilities/Veil.cpp",
-        "megab2w2/abilities/WindRider.cpp",
+        "../mechanics/abilities/wind_rider.c",
         "../mechanics/abilities/damp.c"
       ],
       "entries": [
@@ -703,7 +703,7 @@
         ["ability", "ABIL_TERA_SHELL", "MB_TeraShellHandlers"],
         ["ability", "ABIL_PASTEL_VEIL", "MB_VeilHandlers"],
         ["ability", "ABIL_WELL_BAKED_BODY", "WellBakedBodyHandlers"],
-        ["ability", "ABIL_WIND_RIDER", "MB_WindRiderHandlers"]
+        ["ability", "ABIL_WIND_RIDER", "WindRiderHandlers"]
       ]
     },
     {
@@ -740,7 +740,7 @@
         "megab2w2/abilities/Hospitality.cpp",
         "megab2w2/abilities/IntrepidSword.cpp",
         "megab2w2/abilities/Neigh.cpp",
-        "megab2w2/abilities/ScreenCleaner.cpp"
+        "../mechanics/abilities/screen_cleaner.c"
       ],
       "entries": [
         ["ability", "ABIL_CURIOUS_MEDICINE", "MB_CuriousMedicineHandlers"],
@@ -752,7 +752,7 @@
         ["ability", "ABIL_GRIM_NEIGH", "MB_NeighHandlers"],
         ["ability", "ABIL_AS_ONE_GLASTRIER", "MB_NeighHandlers"],
         ["ability", "ABIL_AS_ONE_SPECTRIER", "MB_NeighHandlers"],
-        ["ability", "ABIL_SCREEN_CLEANER", "MB_ScreenCleanerHandlers"]
+        ["ability", "ABIL_SCREEN_CLEANER", "ScreenCleanerHandlers"]
       ]
     },
     {

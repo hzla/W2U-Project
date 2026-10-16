@@ -76,6 +76,10 @@ The build checks the rest:
 - `verify_w2u_mechanics_c`: each file passes as strict C99 (`-std=c99 -Wall -Wextra -pedantic -Werror`). The battle
   modules themselves compile it with g++, like the rest.
 
+Data IDs the C mechanics read live in `megab2w2/mb_ids.h` (abilities, types, W2U's extra move flags), visible to C;
+a vanilla ID that exists only as a C++ enumerator (`ABIL_DAMP`) is defined in the mechanic itself. Never define a
+name in `engine.h` that a data header has too: the mechanics compile as C++ as well, where both are seen.
+
 ## Rules
 
 - No addresses or struct offsets in a mechanic: they belong in `engine.h`.
@@ -102,6 +106,8 @@ The build checks the rest:
 | Eelevate | `abilities/eelevate.c` | `megab2w2/abilities/BeastBoost.cpp` (its Beast Boost table was never registered) | `EELEVATE`, `EELEVATE_KO` (`wave_a.yml`); `BEAST_BOOST` unchanged |
 | Damp | `abilities/damp.c` | `megab2w2/abilities/Damp.cpp` | `MISTY_EXPLOSION_DAMP`, `EXPLOSION_DAMP`, `MIND_BLOWN_DAMP`, `MIND_BLOWN_CONTROL`, `SUN_CONTROL` (`wave_field.yml`) |
 | Spicy Spray, Toxic Chain | `abilities/status_on_hit.c` | `megab2w2/abilities/SpicySpray.cpp`, `ToxicChain.cpp` | `SPICY_SPRAY`, `TOXIC_CHAIN` (`wave_a.yml`): burned / badly poisoned as before |
+| Screen Cleaner | `abilities/screen_cleaner.c` | `megab2w2/abilities/ScreenCleaner.cpp` | `SCREEN_CLEANER`, `SCREEN_CLEANER_NONE` (`wave_a.yml`) |
+| Wind Rider | `abilities/wind_rider.c` | `megab2w2/abilities/WindRider.cpp` | `WIND_RIDER`, `WIND_RIDER_TAILWIND` (`wave_a.yml`) |
 
 Beast Boost itself stays in `w2u_abilities.cpp` for now: it picks the highest stat from the BattleMon's fields,
 which needs the BattleMon layout in `engine.h` first.
