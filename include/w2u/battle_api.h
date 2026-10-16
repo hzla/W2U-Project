@@ -51,6 +51,8 @@ u8 W2U_MB_OpportunistCopying(void);             /* C++ bool */
 u32 W2U_MoveState_GetTerrain(void);
 b32 W2U_MoveState_SetTerrainFromAbility(BtlServerFlow *flow, u32 monId, u32 terrain, u32 msgID, u32 animMove);
 b32 W2U_MoveState_SetTerrainFromAbilityNamed(BtlServerFlow *flow, u32 monId, u32 terrain, u32 msgID, u32 animMove);
+/* Commander: the Dondozo's Tatsugiri form + 1 (Order Up's stat), 0 when it ends */
+void W2U_MoveState_SetCommanderForm(u32 monId, u32 form);
 
 W2U_C_END
 
@@ -328,6 +330,67 @@ static inline const PartyPkm *W2U_BattleMonSource(BattleMon *mon)
 #else
     return *(const PartyPkm **)((u8 *)mon + W2U_BATTLEMON_SOURCE);
 #endif
+}
+
+/* Battle Pokémon */
+static inline u32 W2U_Species(BattleMon *mon)
+{
+#if defined(W2U_DECOMP)
+    return GetBattleMonSpecies(mon);
+#else
+    return *(const u16 *)((const u8 *)mon + W2U_BATTLEMON_SPECIES);
+#endif
+}
+
+static inline u32 W2U_Form(BattleMon *mon) { return GetBattleMonStat(mon, BMV_FORM); }
+
+/* The species' own Pokémon, able to act: not fainted, not transformed (form abilities) */
+static inline b32 W2U_IsUsableSpecies(BattleMon *mon, u32 species)
+{
+    return mon && W2U_Species(mon) == species && !IsFainted(mon) && !TransformCheck(mon);
+}
+
+/* A condition that lasts while the Pokémon monId stays (Condition_MakeMonLink: Bind's, Mean Look's) */
+static inline BattleCondition W2U_ConditionLinkedTo(u32 monId)
+{
+    BattleCondition condition;
+
+    condition.raw = 3u | ((monId & 0x3Fu) << 3);
+    return condition;
+}
+
+/* The flow's main module and client command queue */
+static inline BtlMainModule *W2U_MainModule(BtlServerFlow *flow)
+{
+#if defined(W2U_DECOMP)
+    return flow->mainModule;
+#else
+    return *(BtlMainModule **)((u8 *)flow + W2U_SERVERFLOW_MAIN_MODULE);
+#endif
+}
+
+static inline BtlServerCmdQueue *W2U_ServerQueue(BtlServerFlow *flow)
+{
+#if defined(W2U_DECOMP)
+    return flow->queue;
+#else
+    return *(BtlServerCmdQueue **)((u8 *)flow + W2U_SERVERFLOW_QUEUE);
+#endif
+}
+
+/* Changes the Pokémon's form. Whether it stays on switching out is W2U's switch-out hook's call (w2u_mega.cpp
+ * W2U_AbilityPreservesFormOnSwitchOut: Disguise, Battle Bond, Ice Face, Zero to Hero) */
+static inline void W2U_ChangeForm(BtlServerFlow *flow, u8 monId, u32 form, b32 popup)
+{
+    BattleHandlerChangeFormParam *param =
+        (BattleHandlerChangeFormParam *)BattleHandler_PushWork(flow, HANDLER_CMD_CHANGE_FORM, monId);
+
+    if (popup) {
+        param->popup = 1;
+    }
+    param->monIndex = monId;
+    param->form = (u8)form;
+    BattleHandler_PopWork(flow, param);
 }
 
 /* The AI's damage simulation runs the damage events too (dozens a turn): handlers that log or count skip it */

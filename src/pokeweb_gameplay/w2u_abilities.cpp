@@ -10,7 +10,6 @@
 #include "w2u_weather.h"
 #include "w2u_strong_weather.h"
 #if !defined(W2U_TARGET_B2)
-#include "megab2w2/mb_ability_tables.h"   // ported MegaB2W2 ability tables (White 2 only)
 #include "../mechanics/w2u_mechanics.h"     // the C mechanics' handler tables (src/mechanics)
 #endif
 
