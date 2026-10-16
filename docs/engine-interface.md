@@ -99,6 +99,16 @@ The build checks the rest:
 | Good as Gold | `abilities/good_as_gold.c` | `megab2w2/abilities/GoodAsGold.cpp` | the five `GOOD_AS_GOLD*` scenarios (`wave_a.yml`), transcripts identical |
 | Neuroforce | `abilities/neuroforce.c` | `megab2w2/abilities/Neuroforce.cpp` | `NEUROFORCE` (`wave_a.yml`) |
 | Stamina, Water Compaction, Steam Engine, Thermal Exchange | `abilities/stamina.c` | `w2u_abilities.cpp` `HandlerStamina` / `HandlerWaterCompaction`, `megab2w2/abilities/Stamina.cpp` | `STAMINA`, `WATER_COMPACTION` (`wave_shared.yml`), `STEAM_ENGINE`, `THERMAL_EXCHANGE`, `THERMAL_EXCHANGE_BURN` (`wave_a.yml`), transcripts identical |
+| Eelevate | `abilities/eelevate.c` | `megab2w2/abilities/BeastBoost.cpp` (its Beast Boost table was never registered) | `EELEVATE`, `EELEVATE_KO` (`wave_a.yml`); `BEAST_BOOST` unchanged |
+| Damp | `abilities/damp.c` | `megab2w2/abilities/Damp.cpp` | `MISTY_EXPLOSION_DAMP`, `EXPLOSION_DAMP`, `MIND_BLOWN_DAMP`, `MIND_BLOWN_CONTROL`, `SUN_CONTROL` (`wave_field.yml`) |
+
+Beast Boost itself stays in `w2u_abilities.cpp` for now: it picks the highest stat from the BattleMon's fields,
+which needs the BattleMon layout in `engine.h` first.
+
+Found while converting (behaviour unchanged): `GetBattleMonStat(8 .. 0xC)` returns the stats with stat stages
+applied (`RawBattleMonStat`, IRDO.yml's `BattleMon_GetRealStat`, is the unstaged one, with Wonder Room's swap).
+MegaB2W2's `BestStat`, which Eelevate uses, therefore picks the highest *boosted* stat, unlike Beast Boost and
+Showdown; its `BestStatWithStages` applies the stages a second time.
 
 Battery keeps W2U's effect on the attacking stat (`EVENT_ATTACKER_POWER`). Showdown (and the MegaB2W2 row that was
 never registered) boosts the move's base power, which rounds differently; switching would be a behaviour change.

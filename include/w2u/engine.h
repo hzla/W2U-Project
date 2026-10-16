@@ -25,6 +25,9 @@
 #define BtlCalc_ClassifyEffectiveness TypeEffectivenessClass
 #define IsFainted BattleMon_IsFainted
 #define IsStatChangeValid BattleMon_IsStatChangeValid
+#define HandlerDampEffective HandlerDampMessage
+#define HandlerDampStart HandlerDampMoveStart
+#define HandlerDampEnd HandlerDampNullified
 #endif
 
 #ifdef __cplusplus
@@ -57,7 +60,12 @@ typedef struct BattleEventHandlerEntry {
 /* Battle events (W2U's names; the decomp's are numbers so far) */
 enum {
     EVENT_ACTION_END = 0x02,            /* a Pokémon's action is over (Water Veil cures its status here) */
+    EVENT_MOVE_START = 0x03,            /* the attacker's move begins */
     EVENT_MOVE_END = 0x04,
+    EVENT_CHECK_FLOATING = 0x12,        /* VAR_MON_ID floats (Levitate) */
+    EVENT_CHECK_NO_EFFECT_TYPE = 0x1B,  /* a move's type found no effect (Levitate's popup) */
+    EVENT_DAMP_MOVE_CHECK = 0x1F,       /* may the move be used? VAR_FAIL_CAUSE (Damp) */
+    EVENT_DAMP_FAIL_MESSAGE = 0x21,     /* the failed move's message */
     EVENT_CHECK_NO_EFFECT = 0x2D,       /* per target: may the move affect it? (Volt Absorb, Soundproof) */
     EVENT_ACCURACY_STAGE = 0x33,        /* a hit's accuracy / evasion stages: VAR_EVASION_STAGE (6 = neutral) */
     EVENT_MOVE_POWER = 0x38,            /* VAR_MOVE_POWER_RATIO *= x (Iron Fist, Technician) */
@@ -70,15 +78,21 @@ enum {
     EVENT_STAT_CHANGE_GUARD = 0x5C,
     EVENT_ADD_CONDITION_CHECK = 0x65,   /* a status for the defender: VAR_FAIL_FLAG blocks it (Water Veil) */
     EVENT_ADD_CONDITION_FAILED = 0x67,  /* the blocked status' message */
+    EVENT_ABILITY_NULLIFIED = 0x6A,
+    EVENT_TURN_CHECK = 0x76,            /* the end of the turn */
+    EVENT_AFTER_KO = 0x83,              /* the attacker's move KO'd targets: VAR_TARGET_COUNT, VAR_TARGET0.. */
     EVENT_AFTER_ABILITY_CHANGE = 0x8A,
 };
 
 /* Event variables (W2U's names) */
 enum {
     VAR_STAT = 0x1F,                    /* EVENT_STAT_CHANGE_CHECK: the stat (STATSTAGE_*) */
+    VAR_FAIL_CAUSE = 0x22,              /* EVENT_DAMP_MOVE_CHECK: why the move fails (0x13: Damp) */
     VAR_MON_ID = 0x02,
     VAR_ATTACKING_MON = 0x03,
     VAR_DEFENDING_MON = 0x04,
+    VAR_TARGET_COUNT = 0x05,            /* EVENT_AFTER_KO: the move's targets, VAR_TARGET0 + i */
+    VAR_TARGET0 = 0x06,
     VAR_MOVE_ID = 0x12,
     VAR_MOVE_TYPE = 0x16,
     VAR_MOVE_CATEGORY = 0x1A,
@@ -176,6 +190,11 @@ enum {
 
 /* GetBattleMonStat values */
 enum {
+    BMV_ATTACK = 0x08,                  /* the raw stats: Attack .. Speed, 0x08 .. 0x0C */
+    BMV_DEFENSE = 0x09,
+    BMV_SPECIAL_ATTACK = 0x0A,
+    BMV_SPECIAL_DEFENSE = 0x0B,
+    BMV_SPEED = 0x0C,
     BMV_ABILITY = 0x10,
 };
 
@@ -261,6 +280,14 @@ void HandlerWaterVeil(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 
 void HandlerWaterVeilCureStatus(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 void HandlerWaterVeilActionEnd(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 void HandlerAddStatusFailedCommon(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerLevitate(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerLevitateAddImmunity(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerLevitateTurnCheck(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+/* Damp's: the failed move's popup and message, and its bookkeeping around moves and when nullified */
+void HandlerDampEffective(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerDampStart(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerDampMoveEnd(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerDampEnd(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 
 W2U_C_END
 

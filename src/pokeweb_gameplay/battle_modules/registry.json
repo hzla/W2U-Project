@@ -675,7 +675,7 @@
       "source": "abilities",
       "white2_only": true,
       "extra_sources": [
-        "megab2w2/abilities/BeastBoost.cpp",
+        "../mechanics/abilities/eelevate.c",
         "../mechanics/abilities/absorb.c",
         "../mechanics/abilities/fluffy.c",
         "../mechanics/abilities/good_as_gold.c",
@@ -686,17 +686,17 @@
         "megab2w2/abilities/Shields.cpp",
         "megab2w2/abilities/Veil.cpp",
         "megab2w2/abilities/WindRider.cpp",
-        "megab2w2/abilities/Damp.cpp"
+        "../mechanics/abilities/damp.c"
       ],
       "entries": [
-        ["ability", "ABIL_EELEVATE", "MB_EelevateHandlers"],
+        ["ability", "ABIL_EELEVATE", "EelevateHandlers"],
         ["ability", "ABIL_EARTH_EATER", "EarthEaterHandlers"],
         ["ability", "ABIL_ICE_SCALES", "FluffyHandlers"],
         ["ability", "ABIL_AURA_GUARD", "FluffyHandlers"],
         ["ability", "ABIL_GOOD_AS_GOLD", "GoodAsGoldHandlers"],
         ["ability", "ABIL_GUARD_DOG", "MB_GuardDogHandlers"],
         ["ability", "ABIL_INTIMIDATE", "MB_IntimidateTrackedHandlers"],
-        ["ability", "ABIL_DAMP", "MB_DampHandlers"],
+        ["ability", "ABIL_DAMP", "DampHandlers"],
         ["ability", "ABIL_MIRROR_ARMOR", "MB_MirrorArmorHandlers"],
         ["ability", "ABIL_PURIFYING_SALT", "MB_PurifyingSaltHandlers"],
         ["ability", "ABIL_ARMOR_TAIL", "MB_QueenlyMajestyHandlers"],

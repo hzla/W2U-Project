@@ -2,7 +2,6 @@
 
 #pragma once
 
-extern BattleEventHandlerTableEntry MB_EelevateHandlers[4];
 extern BattleEventHandlerTableEntry MB_BerserkHandlers[2];
 extern BattleEventHandlerTableEntry MB_BoostHandlers[2];
 extern BattleEventHandlerTableEntry MB_ChargeHandlers[5];
@@ -34,7 +33,6 @@ extern BattleEventHandlerTableEntry MB_SupremeOverlordHandlers[3];
 extern BattleEventHandlerTableEntry MB_ToxicChainHandlers[1];
 extern BattleEventHandlerTableEntry MB_VeilHandlers[7];
 extern BattleEventHandlerTableEntry MB_WindRiderHandlers[5];
-extern BattleEventHandlerTableEntry MB_DampHandlers[5];
 extern BattleEventHandlerTableEntry MB_GrassPeltHandlers[1];
 // wave C (abilities/mb_hooked)
 extern BattleEventHandlerTableEntry MB_GorillaTacticsHandlers[4];

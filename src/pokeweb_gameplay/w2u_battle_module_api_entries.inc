@@ -549,7 +549,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #elif W2U_BATTLE_MODULE_ID == 24
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_EELEVATE), (u16)W2U_ARRAY_COUNT(MB_EelevateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EelevateHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_EELEVATE), (u16)W2U_ARRAY_COUNT(EelevateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, EelevateHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_EARTH_EATER), (u16)W2U_ARRAY_COUNT(EarthEaterHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, EarthEaterHandlers},
@@ -570,7 +570,7 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_INTIMIDATE), (u16)W2U_ARRAY_COUNT(MB_IntimidateTrackedHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IntimidateTrackedHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_DAMP), (u16)W2U_ARRAY_COUNT(MB_DampHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_DampHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_DAMP), (u16)W2U_ARRAY_COUNT(DampHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DampHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIRROR_ARMOR), (u16)W2U_ARRAY_COUNT(MB_MirrorArmorHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MirrorArmorHandlers},
@@ -602,7 +602,7 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_EELEVATE) >= 0 && (ABIL_EELEVATE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_EelevateHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_EelevateHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(EelevateHandlers)) > 0 && (W2U_ARRAY_COUNT(EelevateHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -637,7 +637,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_DAMP) >= 0 && (ABIL_DAMP) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_DampHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_DampHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(DampHandlers)) > 0 && (W2U_ARRAY_COUNT(DampHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -1668,7 +1668,7 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_mb_defenseEntries[] = {
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_EELEVATE), (u16)W2U_ARRAY_COUNT(MB_EelevateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EelevateHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_EELEVATE), (u16)W2U_ARRAY_COUNT(EelevateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, EelevateHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_EARTH_EATER), (u16)W2U_ARRAY_COUNT(EarthEaterHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, EarthEaterHandlers},
@@ -1689,7 +1689,7 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_defenseEntries[] 
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_INTIMIDATE), (u16)W2U_ARRAY_COUNT(MB_IntimidateTrackedHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IntimidateTrackedHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_DAMP), (u16)W2U_ARRAY_COUNT(MB_DampHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_DampHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_DAMP), (u16)W2U_ARRAY_COUNT(DampHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, DampHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIRROR_ARMOR), (u16)W2U_ARRAY_COUNT(MB_MirrorArmorHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MirrorArmorHandlers},
@@ -1721,7 +1721,7 @@ static const W2UBattleModuleApi sBattleModule_abilities_mb_defenseApi = {
 };
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_EELEVATE) >= 0 && (ABIL_EELEVATE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_EelevateHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_EelevateHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(EelevateHandlers)) > 0 && (W2U_ARRAY_COUNT(EelevateHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -1756,7 +1756,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_DAMP) >= 0 && (ABIL_DAMP) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_DampHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_DampHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(DampHandlers)) > 0 && (W2U_ARRAY_COUNT(DampHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)

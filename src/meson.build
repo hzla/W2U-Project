@@ -173,6 +173,8 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/good_as_gold.c',
   'mechanics/abilities/neuroforce.c',
   'mechanics/abilities/stamina.c',
+  'mechanics/abilities/eelevate.c',
+  'mechanics/abilities/damp.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',
