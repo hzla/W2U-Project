@@ -206,6 +206,7 @@ def stage_battle_assets(slices: dict[str, dict[str, Path]]) -> dict:
 
 
 def stage_icons() -> None:
+    # The species icon as a placeholder; stage_minior_mimikyu_icons.py writes the forms' own icons (rerun it after this).
     ICON_SOURCE.mkdir(parents=True, exist_ok=True)
     for form in range(1, FORM_COUNT):
         asset = FORM_ASSET_BASE + FORM_SPRITE_START + form - 1
