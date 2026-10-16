@@ -789,7 +789,7 @@
         "../mechanics/abilities/quick_draw.c",
         "../mechanics/abilities/move_abilities.c",
         "../mechanics/abilities/poison_puppeteer.c",
-        "megab2w2/abilities/EffectAbilities.cpp"
+        "../mechanics/abilities/effect_abilities.c"
       ],
       "entries": [
         ["ability", "ABIL_GORILLA_TACTICS", "GorillaTacticsHandlers"],
@@ -801,9 +801,9 @@
         ["ability", "ABIL_MYCELIUM_MIGHT", "MyceliumMightHandlers"],
         ["ability", "ABIL_POISON_PUPPETEER", "PoisonPuppeteerHandlers"],
         ["ability", "ABIL_MEGA_SOL", "MegaSolHandlers"],
-        ["ability", "ABIL_RIPEN", "MB_RipenHandlers"],
-        ["ability", "ABIL_OPPORTUNIST", "MB_OpportunistHandlers"],
-        ["ability", "ABIL_CUD_CHEW", "MB_CudChewHandlers"]
+        ["ability", "ABIL_RIPEN", "RipenHandlers"],
+        ["ability", "ABIL_OPPORTUNIST", "OpportunistHandlers"],
+        ["ability", "ABIL_CUD_CHEW", "CudChewHandlers"]
       ]
     },
     {

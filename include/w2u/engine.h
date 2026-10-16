@@ -96,11 +96,14 @@ enum {
     EVENT_REFRESH_ACTIVATION = 0x58,    /* ServerEvent_RefreshActivation */
     EVENT_STAT_CHANGE_CHECK = 0x5B,     /* may VAR_MON_ID's stat change? */
     EVENT_STAT_CHANGE_GUARD = 0x5C,
+    EVENT_STAT_CHANGE_APPLIED = 0x5D,   /* VAR_MON_ID's VAR_STAT changed by VAR_STAT_CHANGE, as applied (raises too) */
     EVENT_ADD_CONDITION_CHECK = 0x65,   /* a status for the defender: VAR_FAIL_FLAG blocks it (Water Veil) */
     EVENT_ADD_CONDITION_FAILED = 0x67,  /* the blocked status' message */
     EVENT_STATUS_INFLICTED = 0x68,      /* a status was inflicted: VAR_CONDITION, the attacker and the defender */
     EVENT_ABILITY_NULLIFIED = 0x6A,
+    EVENT_USE_ITEM = 0x72,              /* VAR_MON_ID uses its held item */
     EVENT_TURN_CHECK = 0x76,            /* the end of the turn */
+    EVENT_TURN_CHECK_END = 0x77,        /* after the end-of-turn checks */
     EVENT_AFTER_KO = 0x83,
     EVENT_AFTER_MOVE_HITS = 0x87,       /* a move's hits are done: the targets (HandlerTargetsContain) */              /* the attacker's move KO'd targets: VAR_TARGET_COUNT, VAR_TARGET0.. */
     EVENT_BEFORE_ABILITY_CHANGE = 0x89,
@@ -177,6 +180,7 @@ enum {
     HANDLER_CMD_REMOVE_SIDE_EFFECT = 0x1A,
     HANDLER_CMD_CHANGE_WEATHER = 0x1D,  /* BattleHandlerChangeWeatherParam */
     HANDLER_CMD_CHANGE_ABILITY = 0x1F,
+    HANDLER_CMD_FORCE_USE_ITEM = 0x22,  /* BattleHandlerForceUseItemParam: eat or use an item now (Bug Bite) */
     HANDLER_CMD_CONSUME_ITEM = 0x23,    /* BattleHandlerConsumeItemParam: the item animation and message, used up */  /* BattleHandlerAbilityChangeParam */ /* BattleHandlerRemoveSideEffectParam */
 };
 
@@ -316,6 +320,15 @@ typedef struct BattleHandlerConsumeItemParam {
     BattleHandlerString string;
 } BattleHandlerConsumeItemParam;
 
+typedef struct BattleHandlerForceUseItemParam {
+    u32 header : 24;
+    u32 checkPrevResult : 1;            /* skipped when the previous command failed */
+    u32 unk25 : 7;
+    u8 monIndex;
+    u8 unk05;
+    u16 item;
+} BattleHandlerForceUseItemParam;
+
 typedef struct BattleHandlerRemoveSideEffectParam {
     u32 header;
     u8 effects[3];                      /* a bit set: its size in bytes (3), then the SIDE_EFFECT_* bits 0-15 */
@@ -370,6 +383,7 @@ W2U_ENGINE_LAYOUT(ability_change_string, __builtin_offsetof(BattleHandlerAbility
 W2U_ENGINE_LAYOUT(add_side_effect_string, __builtin_offsetof(BattleHandlerAddSideEffectParam, string) == 0x10);
 W2U_ENGINE_LAYOUT(change_weather_string, __builtin_offsetof(BattleHandlerChangeWeatherParam, string) == 0x08);
 W2U_ENGINE_LAYOUT(consume_item_string, __builtin_offsetof(BattleHandlerConsumeItemParam, string) == 0x08);
+W2U_ENGINE_LAYOUT(force_use_item_item, __builtin_offsetof(BattleHandlerForceUseItemParam, item) == 0x06);
 W2U_ENGINE_LAYOUT(move_param_type, __builtin_offsetof(BtlFlowMoveParam, type) == 0x06);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 

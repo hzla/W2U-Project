@@ -54,3 +54,6 @@ extern "C" BattleEventHandlerTableEntry SandSpitHandlers[1];
 extern "C" BattleEventHandlerTableEntry PulseHandlers[3];
 extern "C" BattleEventHandlerTableEntry MimicryHandlers[5];
 extern "C" BattleEventHandlerTableEntry GrassPeltHandlers[1];
+extern "C" BattleEventHandlerTableEntry RipenHandlers[1];
+extern "C" BattleEventHandlerTableEntry OpportunistHandlers[5];
+extern "C" BattleEventHandlerTableEntry CudChewHandlers[1];

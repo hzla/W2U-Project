@@ -35,6 +35,14 @@ u16 W2U_MB_PendingMove(BtlServerFlow *flow, u32 monId);
 void W2U_MB_ClearPendingMove(u32 monId);
 /* Mega Sol: the Pokémon whose move is running (0xFF: none); the weather reads as sun meanwhile */
 void W2U_MB_SetMegaSolAttacker(u32 monId);
+/* Cud Chew: the effect dispatcher notes a Berry a holder ate. At each turn end this counts down and returns the
+ * Berry to chew again at the end of the next turn (0: nothing yet); the second bite is not noted. */
+u16 W2U_MB_CudChewTurnEnd(u32 monId);
+void W2U_MB_CudChewForget(u32 monId);
+/* Opportunist: a copy the holder queued (one stat change, run by the dispatcher with the copying flag set, so the
+ * copy is not recorded again) */
+void W2U_MB_OpportunistCopyQueued(u32 monId);
+u8 W2U_MB_OpportunistCopying(void);             /* C++ bool */
 
 /* W2U's terrain (w2u_moves.cpp): the current one (W2U_TERRAIN_*), and starting one from an ability under its popup
  * (W2U's Surge path: the popup, then the message, with which the terrain fades in; W2U's after-terrain-change event
@@ -53,6 +61,10 @@ static inline u8 W2U_Defender(void) { return (u8)BattleEventVar_GetValue(VAR_DEF
 static inline u16 W2U_Move(void) { return (u16)BattleEventVar_GetValue(VAR_MOVE_ID); }
 /* The move's type as this hit uses it (after -ate abilities, Weather Ball...) */
 static inline u32 W2U_MoveType(void) { return BattleEventVar_GetValue(VAR_MOVE_TYPE); }
+
+/* Items */
+/* Berries: 149 (Cheri) .. 212 (Rowap), the vanilla Berry range (Cheek Pouch, Ripen, Cud Chew) */
+static inline b32 W2U_IsBerry(u32 item) { return item >= 149 && item <= 212; }
 
 /* Pokémon on the same side: a Pokémon is its own ally (IsAllyMonID compares sides) */
 static inline b32 W2U_IsAlly(u8 a, u8 b) { return IsAllyMonID(a, b); }

@@ -152,6 +152,7 @@ hooks will have to provide.
 | Protosynthesis, Quark Drive | `abilities/protosynthesis.c` | `megab2w2/abilities/Protosynthesis.cpp` | the six `PROTOSYNTHESIS*` / `QUARK_DRIVE*` scenarios (`wave_b.yml`) |
 | Sand Spit, Seed Sower | `abilities/sand_spit.c` | `megab2w2/abilities/SandSpit.cpp` | `SAND_SPIT`, `SEED_SOWER` (`wave_b.yml`) |
 | Orichalcum Pulse, Hadron Engine, Grass Pelt, Mimicry | `abilities/terrain_abilities.c` | `megab2w2/abilities/TerrainAbilities.cpp` | `ORICHALCUM_PULSE`, `HADRON_ENGINE`, `MIMICRY` (`wave_b.yml`), `GRASS_PELT` (`wave_shared.yml`) |
+| Ripen, Opportunist, Cud Chew | `abilities/effect_abilities.c` | `megab2w2/abilities/EffectAbilities.cpp` | `RIPEN`, `OPPORTUNIST`, `OPPORTUNIST_BOTH`, `CUD_CHEW` (`wave_c.yml`) |
 
 Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
 W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting
@@ -169,6 +170,10 @@ applied (`RawBattleMonStat`, IRDO.yml's `BattleMon_GetRealStat`, is the unstaged
 MegaB2W2's `BestStat`, which Eelevate uses, therefore picks the highest *boosted* stat, unlike Beast Boost and
 Showdown; its `BestStatWithStages`, which Protosynthesis and Quark Drive use (kept in `protosynthesis.c`), applies the
 stages a second time.
+
+Two MegaB2W2 names that said the wrong thing, behaviour unchanged: event 0x5D is "a stat change was applied" (raises
+too: Opportunist copies raises from it), not "stat lowered"; and bit 24 of the force-use-item header, which MegaB2W2 and
+PW2Code set for Cud Chew as "eat, not held", is the header's `checkPrevResult` in the decomp's layout.
 
 Battery keeps W2U's effect on the attacking stat (`EVENT_ATTACKING_STAT`). Showdown (and the MegaB2W2 row that was
 never registered) boosts the move's base power, which rounds differently; switching would be a behaviour change.
