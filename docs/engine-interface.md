@@ -31,8 +31,9 @@ declare the same engine under older names (it `#error`s).
 What mechanics would otherwise write by hand: who the event is about (`W2U_Attacker`, `W2U_Defender`, `W2U_Move`,
 `W2U_MoveType`), moves (`W2U_MoveCategory`, `W2U_MoveHasFlag`, `W2U_MakesContact`, `W2U_TargetsPokemon`), sides and the field
 (`W2U_IsAlly`, `W2U_OnField`, `W2U_HasActiveAbility`, `W2U_FirstFieldHolder`), the holder (`W2U_HolderAbility`), ratios (`W2U_MulRatio`, `W2U_MulMovePower`), effects through the
-handler-effect queue (`W2U_PopupMessage`, `W2U_PopupMessageAbout`, `W2U_ChangeStatStage`, `W2U_PopupStatChange` (W2U's own abilities' way), `W2U_AddCondition`, `W2U_BlockMove`), `W2U_IsSimulating`. It grows from
-`megab2w2/ability_api.h` as mechanics need more.
+handler-effect queue (`W2U_PopupMessage`, `W2U_PopupMessageAbout`, `W2U_ChangeStatStage`, `W2U_PopupStatChange` (W2U's own abilities' way), `W2U_AddCondition`, `W2U_BlockMove`), `W2U_IsSimulating`. It grew from
+MegaB2W2's `ability_api.h`, gone since every user moved here (the resident core last), and grows as mechanics need
+more.
 
 `engine.h` defines the handler-effect work it fills (`BattleHandlerMessageParam`, `BattleHandlerStatChangeParam`) as
 the decomp does, with compile-time checks of the offsets the vanilla code uses. A name the cleanup gives that
@@ -45,7 +46,8 @@ the decomp does, with compile-time checks of the offsets the vanilla code uses. 
 
 Some mechanics need state the engine's events don't carry: the move a Pokémon will use this turn (Quick Draw,
 Mycelium Might), the sun during Mega Sol's moves, the Berry Cud Chew ate. W2U's resident core
-(`megab2w2/mb_resident.cpp`) keeps it through its engine call-site hooks and exposes it as plain C functions
+(`megab2w2/mb_resident.cpp`, C++ written on `engine.h` / `battle_api.h` like the mechanics, with the decomp's names
+for the functions its call-site hooks wrap) keeps it through those hooks and exposes it as plain C functions
 (`W2U_MB_*`), and the terrain module the same way (`W2U_MoveState_*`, with C helpers in `battle_api.h`: `W2U_Terrain`,
 `W2U_SetTerrainFromAbility`, `W2U_TerrainType`; Commander's `W2U_MoveState_SetCommanderForm` for Order Up). Which
 form changes survive switching out is W2U's too: its switch-out hook keeps the form for a list of abilities

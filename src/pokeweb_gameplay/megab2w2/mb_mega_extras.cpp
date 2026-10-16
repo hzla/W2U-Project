@@ -30,7 +30,7 @@
 //
 // Every hooked call site was checked in W2U's built ROM (same BL and target as vanilla White 2); none is hooked by
 // W2U.
-#include "ability_api.h"
+#include "w2u/engine.h"
 #include "mb_resident.h"
 #include "w2u_rom_tables.h"
 
@@ -193,7 +193,7 @@ u8* g_gauges;
 BattleMon* g_mon[GAUGES];
 
 bool ShowsIcon(BattleMon* bm) {
-    return bm && !BattleMon_IsFainted(bm) && !BattleMon_TransformCheck(bm) && W2U_Mega_IsMegaEvolved(bm);
+    return bm && !IsFainted(bm) && !TransformCheck(bm) && W2U_Mega_IsMegaEvolved(bm);
 }
 
 // previous unused OAM entry before `slot` (disabled: attr0 bits 8-9 = 2, or y = 0xC0), -1 if none

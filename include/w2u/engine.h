@@ -8,8 +8,9 @@
  * differently from IRDO.yml, the injection section maps it with a #define. Event IDs and event variables have no
  * names in the decomp yet: W2U owns those names, with the values the engine uses.
  *
- * Mechanic files include this (through w2u/battle_api.h) and never the C++ engine headers (w2u_abilities.h,
- * megab2w2/battle.h, megab2w2/battle_events.h), which declare the same engine under older names. */
+ * Mechanic files and the resident MegaB2W2 core (megab2w2/mb_resident.cpp) include this (through w2u/battle_api.h)
+ * and never W2U's C++ engine headers (w2u_abilities.h, w2u_battle.h), which declare the same engine under older
+ * names. */
 #ifndef W2U_ENGINE_H
 #define W2U_ENGINE_H
 
@@ -41,6 +42,9 @@
 #define MakeConditionPermanent Condition_MakePermanent
 #define IsSubstituteActive BattleMon_IsSubstituteActive
 #define TransformCheck BattleMon_TransformCheck
+#define GetMonID BattleMon_GetID
+#define GetFieldWeather BattleField_GetWeather
+#define IsGuaranteedHit ServerControl_IsGuaranteedHit
 #endif
 
 #ifdef __cplusplus
@@ -115,6 +119,7 @@ enum {
     EVENT_TURN_CHECK = 0x76,            /* the end of the turn */
     EVENT_TURN_CHECK_END = 0x77,        /* after the end-of-turn checks */
     EVENT_TURN_CHECK_DONE = 0x78,       /* the turn's end is over */
+    EVENT_WEATHER_NEGATION = 0x7A,      /* Air Lock, Cloud Nine: VAR_WEATHER_NEGATED */
     EVENT_AFTER_WEATHER_CHANGE = 0x7E,
     EVENT_AFTER_KO = 0x83,              /* the attacker's damaging move is done: VAR_TARGET_COUNT, VAR_TARGET0.. (W2U:
                                          * EVENT_DAMAGE_PROCESSING_END_HIT_REAL; Moxie counts its KOs here) */
@@ -148,6 +153,7 @@ enum {
     VAR_NO_EFFECT = 0x40,
     VAR_FAIL_FLAG = 0x41,
     VAR_BREAK_PROTECT = 0x51,           /* EVENT_PROTECT_BREAK_CHECK: 1 broken (Feint), 2 through (W2U) */               /* the status, Yawn and stat change checks: 1 = blocked */
+    VAR_WEATHER_NEGATED = 0x41,         /* EVENT_WEATHER_NEGATION: nonzero, the weather has no effect (VAR_FAIL_FLAG's slot) */
     VAR_DAMAGE = 0x32,                  /* EVENT_MOVE_DAMAGE_PROCESSING_END: the hit's damage */
     VAR_SUBSTITUTE_HIT = 0x46,          /* nonzero: the hit landed on a substitute */
     VAR_NO_SECONDARY = 0x47,            /* nonzero: no secondary effects for this hit (Shield Dust) */               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
@@ -430,6 +436,40 @@ typedef struct BattleHandlerChangeFormParam {
     BattleHandlerString string;
 } BattleHandlerChangeFormParam;
 
+/* The start of every handler command's work (BattleHandler_PushWork fills it in) */
+typedef struct BattleHandlerHeader {
+    u32 command : 8;
+    u32 monId : 5;                      /* the Pokémon the command is pushed for */
+    u32 size : 10;
+    u32 popup : 1;                      /* inside the ability popup */
+    u32 checkPrevResult : 1;            /* skipped when the previous command failed */
+    u32 checkFainted : 1;               /* skipped when monId has fainted */
+    u32 unk26 : 6;
+} BattleHandlerHeader;
+
+/* A Pokémon's chosen action (decomp: include/battle/btl_action.h) */
+typedef union BattleAction {
+    u32 raw;
+    struct {
+        u32 action : 4;                 /* BTL_ACTION_* */
+        u32 target : 3;
+        u32 move : 16;
+        u32 unk23 : 9;
+    } bits;
+} BattleAction;
+#define BTL_ACTION_FIGHT 1
+
+/* The turn's action order (decomp: include/battle/btl_action_order.h) */
+typedef struct ActionOrderEntry {
+    BattleMon *mon;
+    BattleAction action;
+    u32 key;                            /* the sort key: speed, priorities */
+    u8 clientId;
+    u8 done;                            /* the action has run */
+    u8 interrupting;
+    u8 unk0F;
+} ActionOrderEntry;
+
 /* Continue flags (BattleHandlerFlagParam, BattleHandlerHideTurnParam; W2U's names) */
 enum {
     CONT_FLAG_SHADOW_FORCE = 0x06,      /* hidden: no move reaches it (Shadow Force's charge turn) */
@@ -494,6 +534,9 @@ W2U_ENGINE_LAYOUT(flag_mon, __builtin_offsetof(BattleHandlerFlagParam, monIndex)
 W2U_ENGINE_LAYOUT(hide_turn_flag, __builtin_offsetof(BattleHandlerHideTurnParam, flag) == 0x08);
 W2U_ENGINE_LAYOUT(hide_turn_string, __builtin_offsetof(BattleHandlerHideTurnParam, string) == 0x0C);
 W2U_ENGINE_LAYOUT(change_form_string, __builtin_offsetof(BattleHandlerChangeFormParam, string) == 0x08);
+W2U_ENGINE_LAYOUT(handler_header_size, sizeof(BattleHandlerHeader) == 4);
+W2U_ENGINE_LAYOUT(action_order_size, sizeof(ActionOrderEntry) == 0x10);
+W2U_ENGINE_LAYOUT(action_order_done, __builtin_offsetof(ActionOrderEntry, done) == 0x0D);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 
 /* Stat stages (W2U's names: the decomp's are numbers) */
@@ -573,6 +616,11 @@ enum {
 W2U_C_BEGIN
 
 /* battle_event.c */
+void BattleEvent_CallHandlers(BtlServerFlow *flow, u32 event);
+/* A frame of event variables around an event call; line is a debug aid the game ignores */
+void BattleEventVar_Push(u32 line);
+void BattleEventVar_Pop(u32 line);
+void BattleEventVar_SetRewriteOnceValue(u32 key, s32 value);
 u32 BattleEventVar_GetValue(u32 key);
 void BattleEventVar_MulValue(u16 key, s32 value);
 b32 BattleEventVar_RewriteValue(u16 key, s32 value);
@@ -592,6 +640,8 @@ b32 CheckCondition(const BattleMon *mon, u32 conditionId);
 u32 GetBattleMonHeldItem(BattleMon *mon);
 b32 IsSubstituteActive(BattleMon *mon);
 b32 TransformCheck(BattleMon *mon);             /* transformed (Transform, Imposter) */
+u8 GetMonID(BattleMon *mon);
+u32 GetAdditionalConditionFlag(BattleMon *mon, u32 flag);   /* CONT_FLAG_* */
 u16 GetBattleMonSpecies(const BattleMon *mon);  /* decomp builds (W2U_Species): not in IRDO.yml */
 u32 GetTurnFlag(BattleMon *mon, u32 flag);
 PokeTypePair GetPokeType(BattleMon *mon);
@@ -607,6 +657,14 @@ u8 Handler_PokePosToPokeID(BtlServerFlow *flow, u8 battlePosition);
 u32 BtlSetup_GetBattleStyle(BtlMainModule *mainModule);
 /* The weather as it is (Air Lock doesn't hide it) */
 u8 ServerEvent_GetWeather(BtlServerFlow *flow);
+/* The field's weather, before Air Lock and Cloud Nine */
+u32 GetFieldWeather(void);
+/* No Guard, Lock-On and Mind Reader: the move hits whatever (the hide check is skipped) */
+b32 IsGuaranteedHit(BtlServerFlow *flow, BattleMon *attacker, BattleMon *defender);
+/* "X must recharge!": the recharge turn's action */
+void ServerControl_RechargeAction(BtlServerFlow *flow, BattleMon *rechargingMon);
+/* Lightning Rod, Storm Drain, Follow Me, Rage Powder ask first: nonzero, the move isn't redirected */
+b32 Battle_IsRedirectBlocked(BtlServerFlow *flow, u8 attackerId, u8 defenderId, u16 move);
 /* The move's priority after the events (Prankster, Gale Wings, Triage), + 7 */
 u8 ServerEvent_GetMovePriority(BtlServerFlow *flow, u16 move, BattleMon *mon);
 u32 GetBattleMonStatus(BattleMon *mon);         /* 0: none, else CONDITION_* */
@@ -632,6 +690,14 @@ void BtlCalc_BuildMoveCondition(MoveConditionParam param, BattleMon *mon, Battle
 BattleCondition MakeConditionParamPermanent(u16 param);
 BattleCondition MakeConditionPermanent(void);
 BattleCondition SetConditionTurns(u8 turns);
+
+/* btl_server_flow.c: the handler commands the dispatcher runs; each returns its result (nonzero: done), which the
+ * dispatcher keeps for checkPrevResult and BattleHandler_Result */
+u8 BattleHandler_UseHeldItem(BtlServerFlow *flow, BattleHandlerHeader *param);
+u8 BattleHandler_ForceUseItem(BtlServerFlow *flow, BattleHandlerForceUseItemParam *param);
+u8 BattleHandler_RecoverHP(BtlServerFlow *flow, const BattleHandlerRecoverHPParam *param, u16 itemId);
+u8 BattleHandler_Damage(BtlServerFlow *flow, BattleHandlerDamageParam *param);
+u8 BattleHandler_StatChange(BtlServerFlow *flow, const BattleHandlerStatChangeParam *param, u16 context);
 
 /* btl_server_cmd.c: a command for the clients (SERVER_CMD_*) and its arguments */
 void ServerDisplay_AddCommon(BtlServerCmdQueue *queue, u32 commandId, ...);
@@ -700,6 +766,8 @@ W2U_C_END
 #define W2U_SERVERFLOW_MAIN_MODULE 0x04         /* BtlServerFlow.mainModule */
 #define W2U_SERVERFLOW_POKECON 0x08             /* BtlServerFlow.pokeCon */
 #define W2U_SERVERFLOW_QUEUE 0x0C               /* BtlServerFlow.queue: the commands for the clients */
+#define W2U_SERVERFLOW_ACTION_ORDER_COUNT 0x782  /* BtlServerFlow.actionOrderCount */
+#define W2U_SERVERFLOW_ACTION_ORDER 0x7E0       /* BtlServerFlow.actionOrder[6] */
 #define W2U_BATTLEMON_SOURCE 0x00               /* BattleMon.core.src: the party Pokémon it battles as */
 #define W2U_BATTLEMON_SPECIES 0x0C              /* BattleMon.core.species (GetBattleMonSpecies isn't in IRDO.yml) */
 #endif

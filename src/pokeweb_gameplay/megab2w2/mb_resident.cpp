@@ -1,201 +1,179 @@
 // MegaB2W2 wave C, the resident half (White2Upgrade.dll, White 2 only; ported from MegaB2W2's PropellerTail.cpp,
 // QuickDraw.cpp, MegaServer.cpp, EffectAbilities.cpp and MoveAbilities.cpp). Engine call sites the event system
-// does not reach, and the state they share with battle module abilities/mb_hooked (mb_resident.h). Every call site
-// below is a BL whose target was checked against vanilla White 2 and W2U's overlay 167; none is hooked by W2U.
+// does not reach, and the state the C mechanics share with them (the W2U_MB_* extensions in w2u/battle_api.h). Every
+// call site below is a BL whose target was checked against vanilla White 2 and W2U's overlay 167; none is hooked by
+// W2U. Written against the engine interface (include/w2u/engine.h, docs/engine-interface.md); the THUMB_BRANCH_*
+// call-site hooks are the injection build's, which a decomp build replaces with calls written into its source.
 // See docs/megab2w2-integration.md (wave C).
-#include "ability_api.h"
+#include "w2u/battle_api.h"
+#include "megab2w2/mb_ids.h"
 #include "mb_resident.h"
 
-extern "C" {
-b32  Battle_IsRedirectBlocked(ServerFlow* sf, u32 attacker, u32 redirector, u16 move);   // ov167 0x21ABE10
-u32  BattleField_GetWeather();                                                          // ov167 0x21D59F0
-// The handler-effect commands return their result (nonzero: done), which the dispatcher keeps: checkPrevResult and
-// BattleHandler_Result read it, so the wrappers below pass it on.
-u8   BattleHandler_UseHeldItem(ServerFlow* sf, void* param);                            // ov167 0x21AD968
-u8   BattleHandler_RecoverHP(ServerFlow* sf, void* param, u32 a2);                      // ov167 0x21AC8AC
-u8   BattleHandler_Damage(ServerFlow* sf, void* param);                                 // ov167 0x21AC9D8
-u8   BattleHandler_StatChange(ServerFlow* sf, void* param, u32 a2);                     // ov167 0x21ACDD0
-u8   BattleHandler_ForceUseItem(ServerFlow* sf, void* param);                           // ov167 0x21AD9BC
-b32  ServerControl_IsGuaranteedHit(ServerFlow* sf, BattleMon* attacker, BattleMon* target); // ov167 0x21A2E0C
-void ServerControl_RechargeAction(ServerFlow* sf, BattleMon* bm);                       // ov167 0x21A9014
-bool BattleMon_GetConditionFlag(BattleMon* bm, u32 flag);
-}
-
 namespace {
-constexpr u32 NONE = 0xFF;
-constexpr u32 MAX_ID = ability::MAX_POKE_ID;
+constexpr u8 NONE = 0xFF;
+constexpr u32 SPECIES_TATSUGIRI = 978;
 
-u16 sSortMove[MAX_ID];          // the move of each fight action at the last action-order sort
-u8 sRipenUser = NONE;           // a Ripen holder eating a Berry (its UseHeldItem / ForceUseItem is running)
-u8 sCudChewing = NONE;          // a Cud Chew holder's second bite is running
-u16 sCudBerry[MAX_ID];
-u8 sCudCounter[MAX_ID];
-u8 sOppPendingCopies[MAX_ID];
-bool sOppCopying;
+u16 sSortMove[BATTLE_MAX_MON_ID];   // the move of each fight action at the last action-order sort
+u8 sRipenUser = NONE;               // a Ripen holder eating a Berry (its UseHeldItem / ForceUseItem is running)
+u8 sCudChewing = NONE;              // a Cud Chew holder's second bite is running
+u16 sCudBerry[BATTLE_MAX_MON_ID];
+u8 sCudCounter[BATTLE_MAX_MON_ID];
+u8 sOppPendingCopies[BATTLE_MAX_MON_ID];
+u8 sOppCopying;
 u8 sMegaSolAttacker = NONE;
 
-struct HandlerParam_ForceUseItemFX { HandlerParam_Header header; u8 pokeID; u8 ateBerry; u16 item; };
-struct HandlerParam_DamageFX { HandlerParam_Header header; u16 amount; u8 pokeID; u8 flags; };
-
-u32 HeaderPoke(void* param) { return (((HandlerParam_Header*)param)->flags >> 8) & 0x1F; }
-BattleMon* Mon(ServerFlow* sf, u32 pokeID) { return pokeID < MAX_ID ? GetBattleMon(sf, pokeID) : nullptr; }
+BattleMon* Mon(BtlServerFlow* flow, u32 monId) { return monId < BATTLE_MAX_MON_ID ? GetBattleMon(flow, (u8)monId) : nullptr; }
 
 // ---- Propeller Tail / Stalwart: the holder's moves are not redirected -------------------------------------------
 // Lightning Rod / Storm Drain (0x21C0D82) and Follow Me / Rage Powder (0x21C64C4) ask Battle_IsRedirectBlocked
 // first (nonzero: no redirection). W2U's Spotlight checks the abilities itself (w2u_moves.cpp).
-b32 RedirectBlocked(ServerFlow* sf, u32 attacker, u32 redirector, u16 move) {
-    BattleMon* bm = Mon(sf, attacker);
-    if (ability::HasActiveAbility(bm, ABIL_PROPELLER_TAIL) || ability::HasActiveAbility(bm, ABIL_STALWART)) return 1;
-    return Battle_IsRedirectBlocked(sf, attacker, redirector, move);
+b32 RedirectBlocked(BtlServerFlow* flow, u8 attacker, u8 redirector, u16 move) {
+    BattleMon* mon = Mon(flow, attacker);
+    if (W2U_HasActiveAbility(mon, ABIL_PROPELLER_TAIL) || W2U_HasActiveAbility(mon, ABIL_STALWART)) return 1;
+    return Battle_IsRedirectBlocked(flow, attacker, redirector, move);
 }
 
 // ---- Ripen / Cud Chew: Berries eaten ----------------------------------------------------------------------------
 // The handler-effect dispatcher (ov167 0x21AC4F8) carries a held item's effects out inside its UseHeldItem, so a
 // "this Ripen holder is eating a Berry" flag around that call sees the Berry's own heal / stat / damage effects.
-u8 UseItem(ServerFlow* sf, void* param, bool force) {
-    u32 pokeID = force ? ((HandlerParam_ForceUseItemFX*)param)->pokeID : HeaderPoke(param);
-    BattleMon* bm = Mon(sf, pokeID);
-    u16 item = !bm ? 0 : force ? ((HandlerParam_ForceUseItemFX*)param)->item : BattleMon_GetHeldItem(bm);
+// The command's result goes back to the dispatcher (checkPrevResult, BattleHandler_Result).
+u8 UseItem(BtlServerFlow* flow, void* param, bool force) {
+    BattleHandlerForceUseItemParam* forced = (BattleHandlerForceUseItemParam*)param;
+    u32 monId = force ? forced->monIndex : ((BattleHandlerHeader*)param)->monId;
+    BattleMon* mon = Mon(flow, monId);
+    u16 item = !mon ? 0 : force ? forced->item : (u16)GetBattleMonHeldItem(mon);
     u8 prev = sRipenUser;
-    if (bm && ability::IsBerry(item) && ability::HasActiveAbility(bm, ABIL_RIPEN)) sRipenUser = (u8)pokeID;
-    u8 result = force ? BattleHandler_ForceUseItem(sf, param) : BattleHandler_UseHeldItem(sf, param);
+    if (mon && W2U_IsBerry(item) && W2U_HasActiveAbility(mon, ABIL_RIPEN)) sRipenUser = (u8)monId;
+    u8 result = force ? BattleHandler_ForceUseItem(flow, forced)
+                      : BattleHandler_UseHeldItem(flow, (BattleHandlerHeader*)param);
     sRipenUser = prev;
-    if (bm && ability::IsBerry(item) && sCudChewing != pokeID && ability::HasActiveAbility(bm, ABIL_CUD_CHEW)) {
-        sCudBerry[pokeID] = item;
-        sCudCounter[pokeID] = 2;   // the end of this turn, then the next: chewed again
+    if (mon && W2U_IsBerry(item) && sCudChewing != monId && W2U_HasActiveAbility(mon, ABIL_CUD_CHEW)) {
+        sCudBerry[monId] = item;
+        sCudCounter[monId] = 2;   // the end of this turn, then the next: chewed again
     }
     return result;
 }
 } // namespace
 
-// ---- Commander (battle module abilities/mb_forms) ----------------------------------------------------------------
-// The module hides a commanding Tatsugiri with Shadow Force's flag (6) and sets the recharge flag (12) each turn so
-// the command menu skips it. Showdown: nothing reaches a commanding Tatsugiri, No Guard and Lock-On included, and it
-// makes no choice at all.
-static constexpr u16 SPECIES_TATSUGIRI = 978;
-static constexpr u32 CONDITIONFLAG_SHADOWFORCE = 0x6;
-// BattleMon +0x0C: the species (W2U's BattleMon layout; there is no species getter in the ESDB)
-static u16 Species(BattleMon* bm) { return *(u16*)((u8*)bm + 0x0C); }
-static bool Commanding(BattleMon* bm) {
-    return bm && Species(bm) == SPECIES_TATSUGIRI && ability::HasActiveAbility(bm, ABIL_COMMANDER) &&
-           BattleMon_GetConditionFlag(bm, CONDITIONFLAG_SHADOWFORCE);
+// ---- Commander (src/mechanics/abilities/form_abilities.c) --------------------------------------------------------
+// The mechanic hides a commanding Tatsugiri with Shadow Force's flag and sets the recharge flag each turn so the
+// command menu skips it. Showdown: nothing reaches a commanding Tatsugiri, No Guard and Lock-On included, and it makes
+// no choice at all.
+static bool Commanding(BattleMon* mon) {
+    return mon && W2U_Species(mon) == SPECIES_TATSUGIRI && W2U_HasActiveAbility(mon, ABIL_COMMANDER) &&
+           GetAdditionalConditionFlag(mon, CONT_FLAG_SHADOW_FORCE);
 }
-// No Guard / Lock-On / Mind Reader (ServerControl_IsGuaranteedHit) skip the hide check: not for it
-static b32 GuaranteedHit(ServerFlow* sf, BattleMon* attacker, BattleMon* target) {
-    return Commanding(target) ? 0 : ServerControl_IsGuaranteedHit(sf, attacker, target);
+// No Guard / Lock-On / Mind Reader (IsGuaranteedHit) skip the hide check: not for it
+static b32 GuaranteedHit(BtlServerFlow* flow, BattleMon* attacker, BattleMon* target) {
+    return Commanding(target) ? 0 : IsGuaranteedHit(flow, attacker, target);
 }
 
 // ---- the call sites --------------------------------------------------------------------------------------------
 // The hide checks' guaranteed-hit tests (ov167 0x21A3340, 0x21A6F7C; each followed by the hide check 0x21AA4A0)
-extern "C" b32 THUMB_BRANCH_LINK_167_0x21A3340(ServerFlow* sf, BattleMon* a, BattleMon* t) { return GuaranteedHit(sf, a, t); }
-extern "C" b32 THUMB_BRANCH_LINK_167_0x21A6F7C(ServerFlow* sf, BattleMon* a, BattleMon* t) { return GuaranteedHit(sf, a, t); }
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21A3340(BtlServerFlow* flow, BattleMon* a, BattleMon* t) { return GuaranteedHit(flow, a, t); }
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21A6F7C(BtlServerFlow* flow, BattleMon* a, BattleMon* t) { return GuaranteedHit(flow, a, t); }
 // ActionOrder_Proc's recharge action (kind 7): "X must recharge!" (message 0x350), not for a commanding Tatsugiri
-extern "C" void THUMB_BRANCH_LINK_167_0x21A094E(ServerFlow* sf, BattleMon* bm) {
-    if (!Commanding(bm)) ServerControl_RechargeAction(sf, bm);
+extern "C" void THUMB_BRANCH_LINK_167_0x21A094E(BtlServerFlow* flow, BattleMon* mon) {
+    if (!Commanding(mon)) ServerControl_RechargeAction(flow, mon);
 }
 
-extern "C" b32 THUMB_BRANCH_LINK_167_0x21C0D82(ServerFlow* sf, u32 a, u32 r, u16 m) { return RedirectBlocked(sf, a, r, m); }
-extern "C" b32 THUMB_BRANCH_LINK_167_0x21C64C4(ServerFlow* sf, u32 a, u32 r, u16 m) { return RedirectBlocked(sf, a, r, m); }
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21C0D82(BtlServerFlow* flow, u8 a, u8 r, u16 m) { return RedirectBlocked(flow, a, r, m); }
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21C64C4(BtlServerFlow* flow, u8 a, u8 r, u16 m) { return RedirectBlocked(flow, a, r, m); }
 
 // The two ServerEvent_GetMovePriority calls: the turn's first action order (0x21A0266, before its event 0x0F check)
 // and SortActionOrderBySpeed (0x219FBF8). Event 0x0F follows for the same Pokemon without a move.
-extern "C" u32 THUMB_BRANCH_LINK_167_0x21A0266(ServerFlow* sf, u16 move, BattleMon* bm) {
-    u32 id = BattleMon_GetID(bm);
-    if (id < MAX_ID) sSortMove[id] = move;
-    return ServerEvent_GetMovePriority(sf, move, bm);
+extern "C" u8 THUMB_BRANCH_LINK_167_0x21A0266(BtlServerFlow* flow, u16 move, BattleMon* mon) {
+    u32 id = GetMonID(mon);
+    if (id < BATTLE_MAX_MON_ID) sSortMove[id] = move;
+    return ServerEvent_GetMovePriority(flow, move, mon);
 }
-extern "C" u32 THUMB_BRANCH_LINK_167_0x219FBF8(ServerFlow* sf, u16 move, BattleMon* bm) {
-    u32 id = BattleMon_GetID(bm);
-    if (id < MAX_ID) sSortMove[id] = move;
-    return ServerEvent_GetMovePriority(sf, move, bm);
+extern "C" u8 THUMB_BRANCH_LINK_167_0x219FBF8(BtlServerFlow* flow, u16 move, BattleMon* mon) {
+    u32 id = GetMonID(mon);
+    if (id < BATTLE_MAX_MON_ID) sSortMove[id] = move;
+    return ServerEvent_GetMovePriority(flow, move, mon);
 }
 
-extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC59E(ServerFlow* sf, void* param) { return UseItem(sf, param, false); }
-extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC6D6(ServerFlow* sf, void* param) {
-    u8 result = UseItem(sf, param, true);
+// The dispatcher's command calls; each returns the command's result
+extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC59E(BtlServerFlow* flow, void* param) { return UseItem(flow, param, false); }
+extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC6D6(BtlServerFlow* flow, void* param) {
+    u8 result = UseItem(flow, param, true);
     sCudChewing = NONE;
     return result;
 }
-extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC5AA(ServerFlow* sf, void* param, u32 a2) {
-    auto* p = (HandlerParam_RecoverHP*)param;
-    if (sRipenUser != NONE && p->pokeID == sRipenUser) p->amount = (u16)(p->amount * 2);   // Sitrus, Oran...
-    return BattleHandler_RecoverHP(sf, param, a2);
+extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC5AA(BtlServerFlow* flow, BattleHandlerRecoverHPParam* param, u16 itemId) {
+    if (sRipenUser != NONE && param->targetIndex == sRipenUser) param->amount = (u16)(param->amount * 2);   // Sitrus, Oran...
+    return BattleHandler_RecoverHP(flow, param, itemId);
 }
-extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC5C0(ServerFlow* sf, void* param) {
-    auto* p = (HandlerParam_DamageFX*)param;
-    if (sRipenUser != NONE && p->pokeID != sRipenUser) p->amount = (u16)(p->amount * 2);   // Jaboca / Rowap
-    return BattleHandler_Damage(sf, param);
+extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC5C0(BtlServerFlow* flow, BattleHandlerDamageParam* param) {
+    if (sRipenUser != NONE && param->targetIndex != sRipenUser) param->amount = (u16)(param->amount * 2);   // Jaboca / Rowap
+    return BattleHandler_Damage(flow, param);
 }
-extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC604(ServerFlow* sf, void* param, u32 a2) {
-    auto* p = (HandlerParam_ChangeStatStage*)param;
-    bool single = p->stages > 0 && p->pokeCount == 1 && p->pokeIDs[0] < MAX_ID;
-    bool copy = single && sOppPendingCopies[p->pokeIDs[0]] > 0;
-    if (copy) --sOppPendingCopies[p->pokeIDs[0]];
-    if (single && sRipenUser != NONE && p->pokeIDs[0] == sRipenUser)                     // Liechi, Salac...
-        p->stages = (s8)(p->stages * 2 > 6 ? 6 : p->stages * 2);
-    bool prev = sOppCopying;
-    if (copy) sOppCopying = true;
-    u8 result = BattleHandler_StatChange(sf, param, a2);
+extern "C" u8 THUMB_BRANCH_LINK_167_0x21AC604(BtlServerFlow* flow, BattleHandlerStatChangeParam* param, u16 context) {
+    bool single = param->change > 0 && param->count == 1 && param->monIds[0] < BATTLE_MAX_MON_ID;
+    bool copy = single && sOppPendingCopies[param->monIds[0]] > 0;
+    if (copy) --sOppPendingCopies[param->monIds[0]];
+    if (single && sRipenUser != NONE && param->monIds[0] == sRipenUser)                           // Liechi, Salac...
+        param->change = (s8)(param->change * 2 > 6 ? 6 : param->change * 2);
+    u8 prev = sOppCopying;
+    if (copy) sOppCopying = 1;
+    u8 result = BattleHandler_StatChange(flow, param, context);
     sOppCopying = prev;
     return result;
 }
 
-// ServerEvent_GetWeather (ov167 0x21A65A0), rewritten whole as vanilla: Air Lock / Cloud Nine (event 0x7A,
+// ServerEvent_GetWeather (ov167 0x21A65A0), rewritten whole as vanilla: Air Lock / Cloud Nine (EVENT_WEATHER_NEGATION,
 // VAR_WEATHER_NEGATED) -> no weather, else the field's. Mega Sol first: during its holder's move, sun. (Its 8-byte
 // GetWeather thunk at 0x21ABE08 is too short for PMC's 12-byte branch.)
-extern "C" u32 THUMB_BRANCH_ServerEvent_GetWeather(ServerFlow* sf) {
-    if (sMegaSolAttacker != NONE && ability::HasActiveAbility(Mon(sf, sMegaSolAttacker), ABIL_MEGA_SOL))
+extern "C" u32 THUMB_BRANCH_ServerEvent_GetWeather(BtlServerFlow* flow) {
+    if (sMegaSolAttacker != NONE && W2U_HasActiveAbility(Mon(flow, sMegaSolAttacker), ABIL_MEGA_SOL))
         return WEATHER_SUN;
-    BattleEventVar_Push();
+    BattleEventVar_Push(__LINE__);
     BattleEventVar_SetRewriteOnceValue(VAR_WEATHER_NEGATED, 0);
-    BattleEvent_CallHandlers(sf, EVENT_WEATHER_NEGATION);
-    int negated = BattleEventVar_GetValue(VAR_WEATHER_NEGATED);
-    BattleEventVar_Pop();
-    return negated ? 0 : BattleField_GetWeather();
+    BattleEvent_CallHandlers(flow, EVENT_WEATHER_NEGATION);
+    u32 negated = BattleEventVar_GetValue(VAR_WEATHER_NEGATED);
+    BattleEventVar_Pop(__LINE__);
+    return negated ? 0 : GetFieldWeather();
 }
 
-// ---- the API (mb_resident.h) ------------------------------------------------------------------------------------
-extern "C" void W2U_MB_MegaExtrasReset();   // mb_mega_extras.cpp
-
+// ---- the API (w2u/battle_api.h's W2U extensions, mb_resident.h) --------------------------------------------------
 extern "C" void W2U_MB_ResetBattleState() {
     W2U_MB_MegaExtrasReset();
     sRipenUser = sCudChewing = sMegaSolAttacker = NONE;
-    sOppCopying = false;
-    for (u32 i = 0; i < MAX_ID; ++i) {
+    sOppCopying = 0;
+    for (u32 i = 0; i < BATTLE_MAX_MON_ID; ++i) {
         sSortMove[i] = 0; sCudBerry[i] = 0; sCudCounter[i] = 0; sOppPendingCopies[i] = 0;
     }
 }
 
-extern "C" u16 W2U_MB_PendingMove(ServerFlow* sf, u32 pokeID) {
-    ActionOrderWork* all = SF_ActOrder(sf);
-    for (u32 i = 0; i < SF_NumActOrder(sf); ++i) {
-        const ActionOrderWork& e = all[i];
-        if (e.done || !e.battleMon || BattleMon_GetID(e.battleMon) != pokeID) continue;
-        if ((e.action & 0xF) != BTL_ACTION_FIGHT) return 0;
-        return (u16)(e.action >> 7);
+extern "C" u16 W2U_MB_PendingMove(BtlServerFlow* flow, u32 monId) {
+    ActionOrderEntry* order = W2U_ActionOrder(flow);
+    for (u32 i = 0; i < W2U_ActionOrderCount(flow); ++i) {
+        const ActionOrderEntry& e = order[i];
+        if (e.done || !e.mon || GetMonID(e.mon) != monId) continue;
+        return W2U_ActionMove(e.action);
     }
     // The turn's first order runs before the action order is filled in: the move just noted for this Pokemon.
-    return pokeID < MAX_ID ? sSortMove[pokeID] : 0;
+    return monId < BATTLE_MAX_MON_ID ? sSortMove[monId] : 0;
 }
 
-extern "C" void W2U_MB_ClearPendingMove(u32 pokeID) {
-    if (pokeID < MAX_ID) sSortMove[pokeID] = 0;
+extern "C" void W2U_MB_ClearPendingMove(u32 monId) {
+    if (monId < BATTLE_MAX_MON_ID) sSortMove[monId] = 0;
 }
 
-extern "C" u16 W2U_MB_CudChewTurnEnd(u32 pokeID) {
-    if (pokeID >= MAX_ID || !sCudBerry[pokeID] || --sCudCounter[pokeID]) return 0;
-    u16 item = sCudBerry[pokeID];
-    sCudBerry[pokeID] = 0;
-    sCudChewing = (u8)pokeID;   // cleared when the bite has run: it is not noted again
+extern "C" u16 W2U_MB_CudChewTurnEnd(u32 monId) {
+    if (monId >= BATTLE_MAX_MON_ID || !sCudBerry[monId] || --sCudCounter[monId]) return 0;
+    u16 item = sCudBerry[monId];
+    sCudBerry[monId] = 0;
+    sCudChewing = (u8)monId;   // cleared when the bite has run: it is not noted again
     return item;
 }
-extern "C" void W2U_MB_CudChewForget(u32 pokeID) {
-    if (pokeID < MAX_ID) sCudBerry[pokeID] = 0;
+extern "C" void W2U_MB_CudChewForget(u32 monId) {
+    if (monId < BATTLE_MAX_MON_ID) sCudBerry[monId] = 0;
 }
 
-extern "C" void W2U_MB_OpportunistCopyQueued(u32 pokeID) {
-    if (pokeID < MAX_ID) ++sOppPendingCopies[pokeID];
+extern "C" void W2U_MB_OpportunistCopyQueued(u32 monId) {
+    if (monId < BATTLE_MAX_MON_ID) ++sOppPendingCopies[monId];
 }
-extern "C" bool W2U_MB_OpportunistCopying() { return sOppCopying; }
+extern "C" u8 W2U_MB_OpportunistCopying(void) { return sOppCopying; }
 
-extern "C" void W2U_MB_SetMegaSolAttacker(u32 pokeID) { sMegaSolAttacker = (u8)(pokeID < MAX_ID ? pokeID : NONE); }
+extern "C" void W2U_MB_SetMegaSolAttacker(u32 monId) { sMegaSolAttacker = (u8)(monId < BATTLE_MAX_MON_ID ? monId : NONE); }

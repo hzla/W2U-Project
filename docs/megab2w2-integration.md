@@ -18,7 +18,7 @@ Everything below is White 2. Black 2 builds and links, but gets none of the new 
 |---|---|---|---|
 | Primal weathers: Primordial Sea, Desolate Land, Delta Stream | `w2u_strong_weather.cpp`, `include/w2u_strong_weather.h`; module `abilities/strong_weather` | `tools/graphics/build_strong_weather_effects.py` (SPAs 1031-1033, effect scripts 960-964); messages bank 19 201-212 | Phase 2a, Field checks |
 | Command-screen weather / terrain indicators (animated, terrain stacked under weather) | `w2u_terrain_indicator.cpp` (+ `_hooks.s`) | `tools/graphics/build_command_indicators.py` (battgra 420-423, 941) | Phase 2b |
-| Abilities from MegaB2W2 or written from Showdown: 51 in wave A, 7 in wave B, 13 in wave C, 5 form abilities, Grass Pelt, Chilling Neigh (Gen 8 / 9 and MegaB2W2 customs) | MegaB2W2's logic files as they are, `src/pokeweb_gameplay/megab2w2/abilities/`, behind its engine headers (`battle.h`, `ability_api.h` ...); resident hooks `megab2w2/mb_resident.cpp`; modules `abilities/mb_power`, `mb_defense`, `mb_reactive`, `mb_entry`, `mb_terrain`, `mb_hooked`, `mb_forms` (registry ids 23-29, `battle_modules/registry.json`) | messages bank 18 1352-1450, bank 19 213-214; `mb_ids.h` | Phase 3 (waves A-C), Phase 6, Form abilities |
+| Abilities from MegaB2W2 or written from Showdown: 51 in wave A, 7 in wave B, 13 in wave C, 5 form abilities, Grass Pelt, Chilling Neigh (Gen 8 / 9 and MegaB2W2 customs) | MegaB2W2's logic files, converted to C since (`src/mechanics/abilities/`, on `include/w2u/engine.h`: docs/engine-interface.md); resident hooks `megab2w2/mb_resident.cpp`, on the same headers; modules `abilities/mb_power`, `mb_defense`, `mb_reactive`, `mb_entry`, `mb_terrain`, `mb_hooked`, `mb_forms` (registry ids 23-29, `battle_modules/registry.json`) | messages bank 18 1352-1450, bank 19 213-214; `mb_ids.h` | Phase 3 (waves A-C), Phase 6, Form abilities |
 | Abilities above 255 (up to 1023), in species data and in each Pokemon | `w2u_ability_storage.cpp`, `w2u_ability_storage_ui.cpp` | `tools/mkdata` packs them (D10: Pokeweb's packing); Gen 8 / 9 species given their real abilities | Abilities above 255 |
 | Booster Energy (item 426) | with Protosynthesis / Quark Drive (`mb_terrain`) | `data/items/booster_energy.toml`, icon in `assets/item_icons` | Wave B |
 | Expanding Force, Misty Explosion; Damp with Showdown's move list | W2U's `HandlerTerrainPower`; `megab2w2/abilities/Damp.cpp` | move data | Field checks |
@@ -794,8 +794,9 @@ strong weathers 7/7, the Mega glyph in the same frames and place on front and ba
 
 ### Wave A: 51 hook-free abilities
 
-MegaB2W2's logic files are compiled as they are against their own engine headers
-(`src/pokeweb_gameplay/megab2w2/`: `battle.h`, `battle_events.h`, `ability_api.h`, `mb_ids.h`); the two sides meet
+MegaB2W2's logic files were compiled as they were against their own engine headers
+(`src/pokeweb_gameplay/megab2w2/`: `battle.h`, `battle_events.h`, `ability_api.h`, `mb_ids.h`; all but `mb_ids.h`
+gone since: the logic is C on `include/w2u/engine.h`, docs/engine-interface.md); the two sides meet
 only at the handler tables (`MB_<Logic>Handlers`, same `{event, handler}` layout), declared for the generated
 module API in `megab2w2/mb_ability_tables.h` (gone since: the converted C tables are declared in
 `src/mechanics/w2u_mechanics.h`, docs/engine-interface.md). W2U's `W2U_MoveMakesContact` and move-record flags replace MegaB2W2's

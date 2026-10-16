@@ -5,7 +5,7 @@
  * W2U_HANDLER_TABLE and registers the table per ability / item / move with W2U_MECHANIC; the battle module registry
  * (src/pokeweb_gameplay/battle_modules/registry.json) must list the same entries, which its generator checks.
  *
- * The helpers grow from megab2w2/ability_api.h as mechanics are converted. */
+ * The helpers grew from MegaB2W2's ability_api.h, gone since everything that used it moved here. */
 #ifndef W2U_BATTLE_API_H
 #define W2U_BATTLE_API_H
 
@@ -376,6 +376,31 @@ static inline BtlServerCmdQueue *W2U_ServerQueue(BtlServerFlow *flow)
 #else
     return *(BtlServerCmdQueue **)((u8 *)flow + W2U_SERVERFLOW_QUEUE);
 #endif
+}
+
+/* The turn's action order */
+static inline u32 W2U_ActionOrderCount(BtlServerFlow *flow)
+{
+#if defined(W2U_DECOMP)
+    return flow->actionOrderCount;
+#else
+    return *((const u8 *)flow + W2U_SERVERFLOW_ACTION_ORDER_COUNT);
+#endif
+}
+
+static inline ActionOrderEntry *W2U_ActionOrder(BtlServerFlow *flow)
+{
+#if defined(W2U_DECOMP)
+    return flow->actionOrder;
+#else
+    return (ActionOrderEntry *)((u8 *)flow + W2U_SERVERFLOW_ACTION_ORDER);
+#endif
+}
+
+/* The move of a fight action, 0 for any other action (the decomp's BattleAction_GetMove) */
+static inline u16 W2U_ActionMove(BattleAction action)
+{
+    return action.bits.action == BTL_ACTION_FIGHT ? (u16)action.bits.move : 0;
 }
 
 /* Changes the Pokémon's form. Whether it stays on switching out is W2U's switch-out hook's call (w2u_mega.cpp
