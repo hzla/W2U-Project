@@ -24,8 +24,6 @@ extern BattleEventHandlerTableEntry MB_MirrorArmorHandlers[4];
 extern BattleEventHandlerTableEntry MB_NeighHandlers[4];
 extern BattleEventHandlerTableEntry MB_ProteanHandlers[2];
 extern BattleEventHandlerTableEntry MB_PurifyingSaltHandlers[7];
-extern BattleEventHandlerTableEntry MB_QueenlyMajestyHandlers[1];
-extern BattleEventHandlerTableEntry MB_RuinHandlers[4];
 extern BattleEventHandlerTableEntry MB_TeraShellHandlers[2];
 extern BattleEventHandlerTableEntry MB_SupremeOverlordHandlers[3];
 extern BattleEventHandlerTableEntry MB_VeilHandlers[7];

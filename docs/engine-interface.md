@@ -29,9 +29,9 @@ declare the same engine under older names (it `#error`s).
 ## Layer B: `include/w2u/battle_api.h`
 
 What mechanics would otherwise write by hand: who the event is about (`W2U_Attacker`, `W2U_Defender`, `W2U_Move`,
-`W2U_MoveType`), moves (`W2U_MoveCategory`, `W2U_MoveHasFlag`, `W2U_MakesContact`, `W2U_TargetsPokemon`), sides
-(`W2U_IsAlly`), the holder (`W2U_HolderAbility`), ratios (`W2U_MulRatio`, `W2U_MulMovePower`), effects through the
-handler-effect queue (`W2U_PopupMessage`, `W2U_ChangeStatStage`, `W2U_PopupStatChange` (W2U's own abilities' way), `W2U_AddCondition`, `W2U_BlockMove`), `W2U_IsSimulating`. It grows from
+`W2U_MoveType`), moves (`W2U_MoveCategory`, `W2U_MoveHasFlag`, `W2U_MakesContact`, `W2U_TargetsPokemon`), sides and the field
+(`W2U_IsAlly`, `W2U_OnField`, `W2U_HasActiveAbility`, `W2U_FirstFieldHolder`), the holder (`W2U_HolderAbility`), ratios (`W2U_MulRatio`, `W2U_MulMovePower`), effects through the
+handler-effect queue (`W2U_PopupMessage`, `W2U_PopupMessageAbout`, `W2U_ChangeStatStage`, `W2U_PopupStatChange` (W2U's own abilities' way), `W2U_AddCondition`, `W2U_BlockMove`), `W2U_IsSimulating`. It grows from
 `megab2w2/ability_api.h` as mechanics need more.
 
 `engine.h` defines the handler-effect work it fills (`BattleHandlerMessageParam`, `BattleHandlerStatChangeParam`) as
@@ -108,6 +108,12 @@ name in `engine.h` that a data header has too: the mechanics compile as C++ as w
 | Spicy Spray, Toxic Chain | `abilities/status_on_hit.c` | `megab2w2/abilities/SpicySpray.cpp`, `ToxicChain.cpp` | `SPICY_SPRAY`, `TOXIC_CHAIN` (`wave_a.yml`): burned / badly poisoned as before |
 | Screen Cleaner | `abilities/screen_cleaner.c` | `megab2w2/abilities/ScreenCleaner.cpp` | `SCREEN_CLEANER`, `SCREEN_CLEANER_NONE` (`wave_a.yml`) |
 | Wind Rider | `abilities/wind_rider.c` | `megab2w2/abilities/WindRider.cpp` | `WIND_RIDER`, `WIND_RIDER_TAILWIND` (`wave_a.yml`) |
+| Sword / Beads / Tablets / Vessel of Ruin | `abilities/ruin.c` | `megab2w2/abilities/Ruin.cpp` | `SWORD_OF_RUIN`, `BEADS_OF_RUIN`, `TABLETS_OF_RUIN`, `VESSEL_OF_RUIN` (`wave_a.yml`) |
+| Armor Tail | `abilities/armor_tail.c` | `megab2w2/abilities/QueenlyMajesty.cpp` (only Armor Tail used it) | `ARMOR_TAIL` (`wave_a.yml`); `QUEENLY_MAJESTY`, `DAZZLING` unchanged |
+
+Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
+W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting
+W2U's would mean either rule for all three, a behaviour change to decide on.
 
 Beast Boost itself stays in `w2u_abilities.cpp` for now: it picks the highest stat from the BattleMon's fields,
 which needs the BattleMon layout in `engine.h` first.
@@ -117,7 +123,7 @@ applied (`RawBattleMonStat`, IRDO.yml's `BattleMon_GetRealStat`, is the unstaged
 MegaB2W2's `BestStat`, which Eelevate uses, therefore picks the highest *boosted* stat, unlike Beast Boost and
 Showdown; its `BestStatWithStages` applies the stages a second time.
 
-Battery keeps W2U's effect on the attacking stat (`EVENT_ATTACKER_POWER`). Showdown (and the MegaB2W2 row that was
+Battery keeps W2U's effect on the attacking stat (`EVENT_ATTACKING_STAT`). Showdown (and the MegaB2W2 row that was
 never registered) boosts the move's base power, which rounds differently; switching would be a behaviour change.
 
 Black 2 builds from its baseline copy (`b2_baseline/w2u_abilities.cpp.inc`), whose Fluffy, Battery, Stamina and

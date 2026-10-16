@@ -3,7 +3,7 @@
  *   Steely Spirit  Steel moves on the holder's side: power x1.5, the holder's too (several holders each apply)
  *   Battery        allies' special moves: the attacking stat x1.3, not the holder's own
  * Power Spot and Steely Spirit share a table (EVENT_MOVE_POWER, Showdown's onAllyBasePower). Battery keeps W2U's
- * own effect on the attacking stat (EVENT_ATTACKER_POWER) and its registry name, which Black 2's baseline copy
+ * own effect on the attacking stat (EVENT_ATTACKING_STAT) and its registry name, which Black 2's baseline copy
  * (b2_baseline/w2u_abilities.cpp.inc) also provides; Showdown boosts the base power instead, which rounds differently.
  * Each module links only the table it registers (--gc-sections). */
 #include "w2u/battle_api.h"
@@ -72,6 +72,6 @@ W2U_MECHANIC(ABILITY, ABIL_POWER_SPOT, PowerSpotHandlers);
 W2U_MECHANIC(ABILITY, ABIL_STEELY_SPIRIT, PowerSpotHandlers);
 
 W2U_HANDLER_TABLE(BatteryHandlers) = {
-    { EVENT_ATTACKER_POWER, HandlerBatteryAttackerPower },
+    { EVENT_ATTACKING_STAT, HandlerBatteryAttackerPower },
 };
 W2U_MECHANIC(ABILITY, ABIL_BATTERY, BatteryHandlers);

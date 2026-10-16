@@ -24,3 +24,5 @@ extern "C" BattleEventHandlerTableEntry SpicySprayHandlers[1];
 extern "C" BattleEventHandlerTableEntry ToxicChainHandlers[1];
 extern "C" BattleEventHandlerTableEntry ScreenCleanerHandlers[2];
 extern "C" BattleEventHandlerTableEntry WindRiderHandlers[5];
+extern "C" BattleEventHandlerTableEntry RuinHandlers[4];
+extern "C" BattleEventHandlerTableEntry ArmorTailHandlers[1];
