@@ -26,3 +26,6 @@ extern "C" BattleEventHandlerTableEntry ScreenCleanerHandlers[2];
 extern "C" BattleEventHandlerTableEntry WindRiderHandlers[5];
 extern "C" BattleEventHandlerTableEntry RuinHandlers[4];
 extern "C" BattleEventHandlerTableEntry ArmorTailHandlers[1];
+extern "C" BattleEventHandlerTableEntry NeighHandlers[4];
+extern "C" BattleEventHandlerTableEntry HospitalityHandlers[2];
+extern "C" BattleEventHandlerTableEntry GorillaTacticsHandlers[4];

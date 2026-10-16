@@ -737,21 +737,21 @@
       "white2_only": true,
       "extra_sources": [
         "megab2w2/abilities/EntryEffects.cpp",
-        "megab2w2/abilities/Hospitality.cpp",
+        "../mechanics/abilities/hospitality.c",
         "megab2w2/abilities/IntrepidSword.cpp",
-        "megab2w2/abilities/Neigh.cpp",
+        "../mechanics/abilities/neigh.c",
         "../mechanics/abilities/screen_cleaner.c"
       ],
       "entries": [
         ["ability", "ABIL_CURIOUS_MEDICINE", "MB_CuriousMedicineHandlers"],
         ["ability", "ABIL_COSTAR", "MB_CostarHandlers"],
         ["ability", "ABIL_SUPERSWEET_SYRUP", "MB_SupersweetSyrupHandlers"],
-        ["ability", "ABIL_HOSPITALITY", "MB_HospitalityHandlers"],
+        ["ability", "ABIL_HOSPITALITY", "HospitalityHandlers"],
         ["ability", "ABIL_INTREPID_SWORD", "MB_IntrepidSwordHandlers"],
         ["ability", "ABIL_DAUNTLESS_SHIELD", "MB_IntrepidSwordHandlers"],
-        ["ability", "ABIL_GRIM_NEIGH", "MB_NeighHandlers"],
-        ["ability", "ABIL_AS_ONE_GLASTRIER", "MB_NeighHandlers"],
-        ["ability", "ABIL_AS_ONE_SPECTRIER", "MB_NeighHandlers"],
+        ["ability", "ABIL_GRIM_NEIGH", "NeighHandlers"],
+        ["ability", "ABIL_AS_ONE_GLASTRIER", "NeighHandlers"],
+        ["ability", "ABIL_AS_ONE_SPECTRIER", "NeighHandlers"],
         ["ability", "ABIL_SCREEN_CLEANER", "ScreenCleanerHandlers"]
       ]
     },
@@ -783,7 +783,7 @@
       "source": "abilities",
       "white2_only": true,
       "extra_sources": [
-        "megab2w2/abilities/GorillaTactics.cpp",
+        "../mechanics/abilities/gorilla_tactics.c",
         "../mechanics/abilities/propeller_tail.c",
         "megab2w2/abilities/UnseenFist.cpp",
         "megab2w2/abilities/QuickDraw.cpp",
@@ -791,7 +791,7 @@
         "megab2w2/abilities/EffectAbilities.cpp"
       ],
       "entries": [
-        ["ability", "ABIL_GORILLA_TACTICS", "MB_GorillaTacticsHandlers"],
+        ["ability", "ABIL_GORILLA_TACTICS", "GorillaTacticsHandlers"],
         ["ability", "ABIL_PROPELLER_TAIL", "PropellerTailHandlers"],
         ["ability", "ABIL_STALWART", "PropellerTailHandlers"],
         ["ability", "ABIL_UNSEEN_FIST", "MB_UnseenFistHandlers"],

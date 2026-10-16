@@ -110,6 +110,9 @@ name in `engine.h` that a data header has too: the mechanics compile as C++ as w
 | Wind Rider | `abilities/wind_rider.c` | `megab2w2/abilities/WindRider.cpp` | `WIND_RIDER`, `WIND_RIDER_TAILWIND` (`wave_a.yml`) |
 | Sword / Beads / Tablets / Vessel of Ruin | `abilities/ruin.c` | `megab2w2/abilities/Ruin.cpp` | `SWORD_OF_RUIN`, `BEADS_OF_RUIN`, `TABLETS_OF_RUIN`, `VESSEL_OF_RUIN` (`wave_a.yml`) |
 | Armor Tail | `abilities/armor_tail.c` | `megab2w2/abilities/QueenlyMajesty.cpp` (only Armor Tail used it) | `ARMOR_TAIL` (`wave_a.yml`); `QUEENLY_MAJESTY`, `DAZZLING` unchanged |
+| Grim Neigh, As One (both) | `abilities/neigh.c` | `megab2w2/abilities/Neigh.cpp` | `GRIM_NEIGH`, `AS_ONE` (`wave_a.yml`) |
+| Hospitality | `abilities/hospitality.c` | `megab2w2/abilities/Hospitality.cpp` | `HOSPITALITY`, `HOSPITALITY_FULL` (`wave_a.yml`) |
+| Gorilla Tactics | `abilities/gorilla_tactics.c` | `megab2w2/abilities/GorillaTactics.cpp` | `GORILLA_TACTICS`, `GORILLA_TACTICS_LOCK` (`wave_c.yml`) |
 
 Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
 W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting

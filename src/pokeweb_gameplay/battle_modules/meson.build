@@ -133,7 +133,7 @@ w2u_battle_module_definitions = [
   {
     'id': 26,
     'slug': 'abilities_mb_entry',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/EntryEffects.cpp', '../megab2w2/abilities/Hospitality.cpp', '../megab2w2/abilities/IntrepidSword.cpp', '../megab2w2/abilities/Neigh.cpp', '../../mechanics/abilities/screen_cleaner.c'),
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/EntryEffects.cpp', '../../mechanics/abilities/hospitality.c', '../megab2w2/abilities/IntrepidSword.cpp', '../../mechanics/abilities/neigh.c', '../../mechanics/abilities/screen_cleaner.c'),
   },
   {
     'id': 27,
@@ -143,7 +143,7 @@ w2u_battle_module_definitions = [
   {
     'id': 28,
     'slug': 'abilities_mb_hooked',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/GorillaTactics.cpp', '../../mechanics/abilities/propeller_tail.c', '../megab2w2/abilities/UnseenFist.cpp', '../megab2w2/abilities/QuickDraw.cpp', '../megab2w2/abilities/MoveAbilities.cpp', '../megab2w2/abilities/EffectAbilities.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/gorilla_tactics.c', '../../mechanics/abilities/propeller_tail.c', '../megab2w2/abilities/UnseenFist.cpp', '../megab2w2/abilities/QuickDraw.cpp', '../megab2w2/abilities/MoveAbilities.cpp', '../megab2w2/abilities/EffectAbilities.cpp'),
   },
   {
     'id': 29,
