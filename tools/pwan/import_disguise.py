@@ -86,6 +86,7 @@ def inherit_mimikyu_carrier() -> list[int]:
 
 
 def persist_form_icon() -> None:
+    # The species icon as a placeholder; stage_minior_mimikyu_icons.py writes the forms' own icons (rerun it after this).
     form_import.copy_icon_index(BASE_ICON, BUSTED_ICON)
     ICON_SOURCE.mkdir(parents=True, exist_ok=True)
     for offset in range(form_import.ICONS_PER_SPECIES):

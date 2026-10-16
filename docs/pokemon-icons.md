@@ -33,3 +33,15 @@ yellow Floette, Mega Scolipede (Scolipede's icon) and Hisuian Growlithe in the P
 
 When staging icons: write a form's icon to its form slot only. The direct slots of personal indices are not icon
 slots any more.
+
+## Minior and Mimikyu (2026-10-15)
+
+`import_minior.py` and `import_disguise.py` gave every Minior form and Busted Mimikyu the species icon.
+`tools/pwan/stage_minior_mimikyu_icons.py` writes their own icons from the Essentials icons (`MINIOR` for the six Meteor
+forms, which look alike in game; `MINIOR_7` ... `MINIOR_13` for the Cores; `MIMIKYU_1`), and redoes the two species
+icons: Minior's showed the Red Core (form 0 is the Red Meteor) and Mimikyu's palette turned it olive. The art is placed
+where the Gen 7 icons sit, so a form lines up with its species' icon. Rerun it after either importer.
+
+## Icons still missing
+
+The Z-A Megas, the Z Megas, Mega Floette, Mega Meowstic and Mega Magearna still show their species' icon.
