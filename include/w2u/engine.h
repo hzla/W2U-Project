@@ -19,6 +19,12 @@
 
 #include "swantypes.h"
 
+/* Injection builds: names the cleanup gives that IRDO.yml spells differently (the declarations below then declare
+ * the IRDO.yml symbol) */
+#if !defined(W2U_DECOMP)
+#define BtlCalc_ClassifyEffectiveness TypeEffectivenessClass
+#endif
+
 #ifdef __cplusplus
 #define W2U_EXTERN_C extern "C"
 #define W2U_C_BEGIN extern "C" {
@@ -61,6 +67,7 @@ enum {
 
 /* Event variables (W2U's names) */
 enum {
+    VAR_STAT = 0x1F,                    /* EVENT_STAT_CHANGE_CHECK: the stat (STATSTAGE_*) */
     VAR_MON_ID = 0x02,
     VAR_ATTACKING_MON = 0x03,
     VAR_DEFENDING_MON = 0x04,
@@ -69,8 +76,69 @@ enum {
     VAR_MOVE_CATEGORY = 0x1A,
     VAR_EVASION_STAGE = 0x28,           /* 6 = neutral */
     VAR_MOVE_POWER_RATIO = 0x31,        /* fixed point, 4096 = x1 */
+    VAR_TYPE_EFFECTIVENESS = 0x38,      /* EVENT_DAMAGE_RATIO: the hit's effectiveness (BtlCalc_ClassifyEffectiveness) */
     VAR_RATIO = 0x35,                   /* fixed point, 4096 = x1 */
+    VAR_NO_EFFECT = 0x40,               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
 };
+
+/* BtlCalc_ClassifyEffectiveness results */
+enum {
+    EFFECTIVENESS_IMMUNE = 0,
+    EFFECTIVENESS_NEUTRAL = 1,
+    EFFECTIVENESS_SUPER = 2,
+    EFFECTIVENESS_RESISTED = 3,
+};
+
+/* Handler commands (BattleHandler_PushWork / PushRun; the decomp's are numbers) */
+enum {
+    HANDLER_CMD_POPUP_IN = 0x02,        /* PushRun: the ability popup appears */
+    HANDLER_CMD_POPUP_OUT = 0x03,
+    HANDLER_CMD_MESSAGE = 0x04,         /* BattleHandlerMessageParam */
+    HANDLER_CMD_CHANGE_STAT = 0x0E,     /* BattleHandlerStatChangeParam */
+};
+
+/* BattleHandler_StrSetup message kinds */
+enum {
+    HANDLER_STR_SET = 2,                /* a set of three messages (player's, wild, foe's Pokémon), bank 18 */
+};
+
+/* The handler-effect work the commands take (decomp: include/battle/btl_handler.h) */
+typedef struct BattleHandlerString {
+    u16 message;
+    u16 flags;
+    u32 args[8];
+    u32 soundEffect;
+} BattleHandlerString;
+
+typedef struct BattleHandlerMessageParam {
+    u32 header : 23;
+    u32 popup : 1;                      /* inside the ability popup */
+    u32 unk24 : 8;
+    BattleHandlerString string;
+} BattleHandlerMessageParam;
+
+typedef struct BattleHandlerStatChangeParam {
+    u32 header : 23;
+    u32 popup : 1;
+    u32 unk24 : 8;
+    u32 stat;                           /* STATSTAGE_* */
+    u32 value;
+    s8 change;                          /* stages, +-1..6 */
+    u8 flag;
+    u8 unk0e;                           /* 1, as the vanilla abilities set it */
+    u8 count;
+    u8 monIds[8];
+    BattleHandlerString string;
+} BattleHandlerStatChangeParam;
+
+/* The layouts the vanilla code uses (C99 has no static_assert: a negative array size fails the build) */
+#define W2U_ENGINE_LAYOUT(name, cond) typedef char w2u_engine_layout_##name[(cond) ? 1 : -1]
+W2U_ENGINE_LAYOUT(string_size, sizeof(BattleHandlerString) == 0x28);
+W2U_ENGINE_LAYOUT(message_string, __builtin_offsetof(BattleHandlerMessageParam, string) == 0x04);
+W2U_ENGINE_LAYOUT(stat_change_change, __builtin_offsetof(BattleHandlerStatChangeParam, change) == 0x0C);
+W2U_ENGINE_LAYOUT(stat_change_count, __builtin_offsetof(BattleHandlerStatChangeParam, count) == 0x0F);
+W2U_ENGINE_LAYOUT(stat_change_mons, __builtin_offsetof(BattleHandlerStatChangeParam, monIds) == 0x10);
+W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 
 /* Stat stages (W2U's names: the decomp's are numbers) */
 enum {
@@ -99,6 +167,24 @@ enum {
 enum {
     MOVE_PARAM_TYPE = 0x00,
     MOVE_PARAM_CATEGORY = 0x02,
+    MOVE_PARAM_TARGET = 0x1B,
+};
+
+/* Move targets (MOVE_PARAM_TARGET) */
+enum {
+    MOVE_TARGET_OTHER_SELECT = 0,
+    MOVE_TARGET_FRIEND_AND_USER = 1,
+    MOVE_TARGET_FRIEND_SELECT = 2,
+    MOVE_TARGET_ENEMY_SELECT = 3,
+    MOVE_TARGET_OTHER_ALL = 4,
+    MOVE_TARGET_ENEMY_ALL = 5,
+    MOVE_TARGET_FRIEND_ALL = 6,
+    MOVE_TARGET_USER = 7,
+    MOVE_TARGET_ALL = 8,
+    MOVE_TARGET_ENEMY_RANDOM = 9,
+    MOVE_TARGET_FIELD = 10,
+    MOVE_TARGET_FIELD_SIDE_ENEMY = 11,
+    MOVE_TARGET_FIELD_SIDE_FRIEND = 12,
 };
 enum {
     MOVE_CATEGORY_STATUS = 0,
@@ -120,6 +206,16 @@ b32 BattleEventVar_RewriteValue(u16 key, s32 value);
 b32 IsAllyMonID(u8 monId1, u8 monId2);
 BattleMon *GetBattleMon(BtlServerFlow *serverFlow, u8 monId);
 u32 GetBattleMonStat(const BattleMon *mon, u32 stat);
+
+/* btl_handler_work.c: the handler-effect queue */
+void *BattleHandler_PushWork(BtlServerFlow *flow, u32 command, u32 monId);
+void BattleHandler_PushRun(BtlServerFlow *flow, u32 command, u32 monId);
+void BattleHandler_PopWork(BtlServerFlow *flow, void *work);
+void BattleHandler_StrSetup(BattleHandlerString *string, u32 enabled, u16 message);
+void BattleHandler_AddArg(BattleHandlerString *string, u32 arg);
+
+/* btl_calc.c */
+u32 BtlCalc_ClassifyEffectiveness(s32 effectivenessId);
 
 /* waza_tool.c */
 s32 PML_MoveGetParam(u16 move, u32 param);

@@ -29,9 +29,17 @@ declare the same engine under older names (it `#error`s).
 ## Layer B: `include/w2u/battle_api.h`
 
 What mechanics would otherwise write by hand: who the event is about (`W2U_Attacker`, `W2U_Defender`, `W2U_Move`,
-`W2U_MoveType`), moves (`W2U_MoveCategory`, `W2U_MakesContact`), the holder (`W2U_HolderAbility`), ratios
-(`W2U_MulRatio`, `W2U_RatioMul`), `W2U_IsSimulating`. It grows from `megab2w2/ability_api.h`; the effect helpers
-(popups, stat stage changes, messages) come with the first mechanic that needs the handler-effect structs.
+`W2U_MoveType`), moves (`W2U_MoveCategory`, `W2U_MoveHasFlag`, `W2U_MakesContact`, `W2U_TargetsPokemon`), sides
+(`W2U_IsAlly`), the holder (`W2U_HolderAbility`), ratios (`W2U_MulRatio`, `W2U_MulMovePower`), effects through the
+handler-effect queue (`W2U_PopupMessage`, `W2U_ChangeStatStage`, `W2U_BlockMove`), `W2U_IsSimulating`. It grows from
+`megab2w2/ability_api.h` as mechanics need more.
+
+`engine.h` defines the handler-effect work it fills (`BattleHandlerMessageParam`, `BattleHandlerStatChangeParam`) as
+the decomp does, with compile-time checks of the offsets the vanilla code uses. A name the cleanup gives that
+`IRDO.yml` spells differently is mapped there for injection builds (`BtlCalc_ClassifyEffectiveness` is
+`TypeEffectivenessClass`).
+
+`w2u-local/decomp/wire_mechanic.py` does the registry steps below for converted MegaB2W2 files.
 
 ## Writing a mechanic
 
@@ -88,6 +96,8 @@ The build checks the rest:
 | Earth Eater, Well-Baked Body | `abilities/absorb.c` | `megab2w2/abilities/EarthEater.cpp`, `WellBakedBody.cpp` | `EARTH_EATER`, `WELL_BAKED_BODY` (`wave_a.yml`) |
 | Mind's Eye | `abilities/minds_eye.c` | `megab2w2/abilities/MindsEye.cpp` | `MINDS_EYE` (`wave_a.yml`) |
 | Propeller Tail, Stalwart | `abilities/propeller_tail.c` | `megab2w2/abilities/PropellerTail.cpp` | `PROPELLER_TAIL`, `STALWART_FOLLOW_ME` and their controls (`wave_c.yml`) |
+| Good as Gold | `abilities/good_as_gold.c` | `megab2w2/abilities/GoodAsGold.cpp` | the five `GOOD_AS_GOLD*` scenarios (`wave_a.yml`), transcripts identical |
+| Neuroforce | `abilities/neuroforce.c` | `megab2w2/abilities/Neuroforce.cpp` | `NEUROFORCE` (`wave_a.yml`) |
 
 Battery keeps W2U's effect on the attacking stat (`EVENT_ATTACKER_POWER`). Showdown (and the MegaB2W2 row that was
 never registered) boosts the move's base power, which rounds differently; switching would be a behaviour change.

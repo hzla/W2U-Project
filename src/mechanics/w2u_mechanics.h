@@ -12,3 +12,5 @@ extern "C" BattleEventHandlerTableEntry EarthEaterHandlers[1];    // abilities/a
 extern "C" BattleEventHandlerTableEntry WellBakedBodyHandlers[1]; // abilities/absorb.c
 extern "C" BattleEventHandlerTableEntry MindsEyeHandlers[4];      // abilities/minds_eye.c
 extern "C" BattleEventHandlerTableEntry PropellerTailHandlers[1]; // abilities/propeller_tail.c: Propeller Tail, Stalwart
+extern "C" BattleEventHandlerTableEntry GoodAsGoldHandlers[1];
+extern "C" BattleEventHandlerTableEntry NeuroforceHandlers[1];
