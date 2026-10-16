@@ -2,8 +2,6 @@
 
 #pragma once
 
-extern BattleEventHandlerTableEntry MB_BoostHandlers[2];
-extern BattleEventHandlerTableEntry MB_ChargeHandlers[5];
 extern BattleEventHandlerTableEntry MB_CuriousMedicineHandlers[2];
 extern BattleEventHandlerTableEntry MB_CostarHandlers[2];
 extern BattleEventHandlerTableEntry MB_SupersweetSyrupHandlers[2];

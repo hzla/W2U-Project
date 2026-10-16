@@ -33,3 +33,5 @@ extern "C" BattleEventHandlerTableEntry LiberoHandlers[2];
 extern "C" BattleEventHandlerTableEntry MirrorArmorHandlers[4];
 extern "C" BattleEventHandlerTableEntry PurifyingSaltHandlers[7];
 extern "C" BattleEventHandlerTableEntry AngerShellHandlers[2];
+extern "C" BattleEventHandlerTableEntry BoostHandlers[2];
+extern "C" BattleEventHandlerTableEntry ChargeHandlers[5];

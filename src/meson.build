@@ -187,6 +187,8 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/mirror_armor.c',
   'mechanics/abilities/purifying_salt.c',
   'mechanics/abilities/anger_shell.c',
+  'mechanics/abilities/boost.c',
+  'mechanics/abilities/charge.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',

@@ -82,7 +82,8 @@ name in `engine.h` that a data header has too: the mechanics compile as C++ as w
 
 State a mechanic keeps between events beyond the item's `work[]` (Libero's once-per-switch-in flag, Mirror
 Armor's reflected marks, Anger Shell's HP before a move) is a file-static array per monId, as MegaB2W2 kept it: it
-lives as long as the module, not the battle. Battle-scoped state is a later improvement.
+lives as long as the module, not the battle. Battle-scoped state is a later improvement. MegaB2W2 had battle-start resets for two of them
+(`Charge_ResetForBattle`, `IntrepidSword_ResetForBattle`) that nothing in W2U calls.
 
 ## Rules
 
@@ -121,6 +122,8 @@ lives as long as the module, not the battle. Battle-scoped state is a later impr
 | Libero | `abilities/libero.c` | `megab2w2/abilities/Protean.cpp` (only Libero used it) | `LIBERO` (`wave_a.yml`); `PROTEAN` unchanged |
 | Mirror Armor | `abilities/mirror_armor.c` | `megab2w2/abilities/MirrorArmor.cpp` | `MIRROR_ARMOR`, `MIRROR_ARMOR_INTIMIDATE` (`wave_a.yml`) |
 | Anger Shell | `abilities/anger_shell.c` | `megab2w2/abilities/Berserk.cpp` (only Anger Shell used it) | `ANGER_SHELL` (`wave_a.yml`); `BERSERK`, `BERSERK_SHEER_FORCE*` unchanged |
+| Sharpness, Transistor, Dragon's Maw, Rocky Payload, Fire Mane | `abilities/boost.c` | `megab2w2/abilities/Boost.cpp` (its Tough Claws / Strong Jaw / Mega Launcher / Steelworker rows were never reached) | `SHARPNESS`, `TRANSISTOR`, `DRAGONS_MAW`, `ROCKY_PAYLOAD`, `FIRE_MANE` (`wave_a.yml`); `STEELWORKER` unchanged |
+| Electromorphosis, Wind Power | `abilities/charge.c` | `megab2w2/abilities/Charge.cpp` | `ELECTROMORPHOSIS`, `WIND_POWER` (`wave_a.yml`) |
 
 Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
 W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting
