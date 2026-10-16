@@ -28,6 +28,14 @@ W2U_C_BEGIN
  * when it hits physically). Logic reacting to contact asks this, not the move's flag. */
 b32 W2U_MoveMakesContact(BtlServerFlow *flow, u16 move, u32 attacker);
 
+/* The resident core's battle state (megab2w2/mb_resident.cpp), kept by its engine call-site hooks */
+/* The move the Pokémon's fight action will use this turn (EVENT_SPECIAL_PRIORITY carries no move); 0: none */
+u16 W2U_MB_PendingMove(BtlServerFlow *flow, u32 monId);
+/* Turn end: forget the Pokémon's noted move */
+void W2U_MB_ClearPendingMove(u32 monId);
+/* Mega Sol: the Pokémon whose move is running (0xFF: none); the weather reads as sun meanwhile */
+void W2U_MB_SetMegaSolAttacker(u32 monId);
+
 W2U_C_END
 
 /* Who and what the current event is about */

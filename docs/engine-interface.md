@@ -41,6 +41,16 @@ the decomp does, with compile-time checks of the offsets the vanilla code uses. 
 
 `w2u-local/decomp/wire_mechanic.py` does the registry steps below for converted MegaB2W2 files.
 
+## W2U's own engine extensions
+
+Some mechanics need state the engine's events don't carry: the move a Pokémon will use this turn (Quick Draw,
+Mycelium Might), the sun during Mega Sol's moves, the Berry Cud Chew ate. W2U's resident core
+(`megab2w2/mb_resident.cpp`) keeps it through its engine call-site hooks and exposes it as plain C functions
+(`W2U_MB_*`), and the terrain module the same way (`W2U_MoveState_*`). `battle_api.h` declares them among W2U's
+extensions, so a mechanic calls them like any other API function and stays portable. In a decomp build, those
+functions stay, and only the hooks that feed them become calls written into the decomp's source (the named hooks
+of the plan's step 4).
+
 ## Writing a mechanic
 
 ```c
@@ -134,6 +144,10 @@ hooks will have to provide.
 | Poison Puppeteer | `abilities/poison_puppeteer.c` | its part of `megab2w2/abilities/MoveAbilities.cpp` | `POISON_PUPPETEER` (`wave_c.yml`); `MYCELIUM_MIGHT`, `MEGA_SOL*` unchanged |
 | Pastel Veil | `abilities/pastel_veil.c` | `megab2w2/abilities/Veil.cpp` (only Pastel Veil used it) | `PASTEL_VEIL`, `PASTEL_VEIL_ALLY` (`wave_a.yml`); `AROMA_VEIL`, `FLOWER_VEIL`, `SWEET_VEIL` unchanged |
 | Tera Shell | `abilities/tera_shell.c` | `megab2w2/abilities/Shields.cpp` (only Tera Shell used it) | `TERA_SHELL` (`wave_a.yml`); `DISGUISE`, `COMATOSE` unchanged |
+| Guard Dog (and the tracked Intimidate it needs) | `abilities/guard_dog.c` | `megab2w2/abilities/GuardDog.cpp` | `GUARD_DOG`, `GUARD_DOG_ROAR`, `MIRROR_ARMOR_INTIMIDATE` (`wave_a.yml`) |
+| Intrepid Sword, Dauntless Shield | `abilities/intrepid_sword.c` | `megab2w2/abilities/IntrepidSword.cpp` | `INTREPID_SWORD`, `DAUNTLESS_SHIELD` (`wave_a.yml`) |
+| Quick Draw | `abilities/quick_draw.c` | `megab2w2/abilities/QuickDraw.cpp` | `QUICK_DRAW`, `QUICK_DRAW_STATUS` (`wave_c.yml`) |
+| Mycelium Might, Mega Sol | `abilities/move_abilities.c` | the rest of `megab2w2/abilities/MoveAbilities.cpp` | `MYCELIUM_MIGHT`, `MEGA_SOL`, `MEGA_SOL_FIRE` (`wave_c.yml`) |
 
 Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
 W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting
