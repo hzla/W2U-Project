@@ -118,17 +118,17 @@ w2u_battle_module_definitions = [
   {
     'id': 23,
     'slug': 'abilities_mb_power',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Boost.cpp', '../megab2w2/abilities/Charge.cpp', '../../mechanics/abilities/minds_eye.c', '../../mechanics/abilities/neuroforce.c', '../../mechanics/abilities/power_spot.c', '../megab2w2/abilities/Protean.cpp', '../../mechanics/abilities/punk_rock.c', '../../mechanics/abilities/ruin.c', '../megab2w2/abilities/SupremeOverlord.cpp', '../../mechanics/abilities/status_on_hit.c'),
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Boost.cpp', '../megab2w2/abilities/Charge.cpp', '../../mechanics/abilities/minds_eye.c', '../../mechanics/abilities/neuroforce.c', '../../mechanics/abilities/power_spot.c', '../../mechanics/abilities/libero.c', '../../mechanics/abilities/punk_rock.c', '../../mechanics/abilities/ruin.c', '../megab2w2/abilities/SupremeOverlord.cpp', '../../mechanics/abilities/status_on_hit.c'),
   },
   {
     'id': 24,
     'slug': 'abilities_mb_defense',
-    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/eelevate.c', '../../mechanics/abilities/absorb.c', '../../mechanics/abilities/fluffy.c', '../../mechanics/abilities/good_as_gold.c', '../megab2w2/abilities/GuardDog.cpp', '../megab2w2/abilities/MirrorArmor.cpp', '../megab2w2/abilities/PurifyingSalt.cpp', '../../mechanics/abilities/armor_tail.c', '../megab2w2/abilities/Shields.cpp', '../megab2w2/abilities/Veil.cpp', '../../mechanics/abilities/wind_rider.c', '../../mechanics/abilities/damp.c'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/eelevate.c', '../../mechanics/abilities/absorb.c', '../../mechanics/abilities/fluffy.c', '../../mechanics/abilities/good_as_gold.c', '../megab2w2/abilities/GuardDog.cpp', '../../mechanics/abilities/mirror_armor.c', '../../mechanics/abilities/purifying_salt.c', '../../mechanics/abilities/armor_tail.c', '../megab2w2/abilities/Shields.cpp', '../megab2w2/abilities/Veil.cpp', '../../mechanics/abilities/wind_rider.c', '../../mechanics/abilities/damp.c'),
   },
   {
     'id': 25,
     'slug': 'abilities_mb_reactive',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Berserk.cpp', '../megab2w2/abilities/HitReactions.cpp', '../megab2w2/abilities/LingeringAroma.cpp', '../../mechanics/abilities/status_on_hit.c', '../../mechanics/abilities/stamina.c'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/anger_shell.c', '../megab2w2/abilities/HitReactions.cpp', '../megab2w2/abilities/LingeringAroma.cpp', '../../mechanics/abilities/status_on_hit.c', '../../mechanics/abilities/stamina.c'),
   },
   {
     'id': 26,

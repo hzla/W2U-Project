@@ -80,6 +80,10 @@ Data IDs the C mechanics read live in `megab2w2/mb_ids.h` (abilities, types, W2U
 a vanilla ID that exists only as a C++ enumerator (`ABIL_DAMP`) is defined in the mechanic itself. Never define a
 name in `engine.h` that a data header has too: the mechanics compile as C++ as well, where both are seen.
 
+State a mechanic keeps between events beyond the item's `work[]` (Libero's once-per-switch-in flag, Mirror
+Armor's reflected marks, Anger Shell's HP before a move) is a file-static array per monId, as MegaB2W2 kept it: it
+lives as long as the module, not the battle. Battle-scoped state is a later improvement.
+
 ## Rules
 
 - No addresses or struct offsets in a mechanic: they belong in `engine.h`.
@@ -113,6 +117,10 @@ name in `engine.h` that a data header has too: the mechanics compile as C++ as w
 | Grim Neigh, As One (both) | `abilities/neigh.c` | `megab2w2/abilities/Neigh.cpp` | `GRIM_NEIGH`, `AS_ONE` (`wave_a.yml`) |
 | Hospitality | `abilities/hospitality.c` | `megab2w2/abilities/Hospitality.cpp` | `HOSPITALITY`, `HOSPITALITY_FULL` (`wave_a.yml`) |
 | Gorilla Tactics | `abilities/gorilla_tactics.c` | `megab2w2/abilities/GorillaTactics.cpp` | `GORILLA_TACTICS`, `GORILLA_TACTICS_LOCK` (`wave_c.yml`) |
+| Purifying Salt | `abilities/purifying_salt.c` | `megab2w2/abilities/PurifyingSalt.cpp` | `PURIFYING_SALT`, `PURIFYING_SALT_GHOST`, `PURIFYING_SALT_YAWN` (`wave_a.yml`) |
+| Libero | `abilities/libero.c` | `megab2w2/abilities/Protean.cpp` (only Libero used it) | `LIBERO` (`wave_a.yml`); `PROTEAN` unchanged |
+| Mirror Armor | `abilities/mirror_armor.c` | `megab2w2/abilities/MirrorArmor.cpp` | `MIRROR_ARMOR`, `MIRROR_ARMOR_INTIMIDATE` (`wave_a.yml`) |
+| Anger Shell | `abilities/anger_shell.c` | `megab2w2/abilities/Berserk.cpp` (only Anger Shell used it) | `ANGER_SHELL` (`wave_a.yml`); `BERSERK`, `BERSERK_SHEER_FORCE*` unchanged |
 
 Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
 W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting

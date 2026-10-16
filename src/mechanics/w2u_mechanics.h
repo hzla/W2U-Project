@@ -29,3 +29,7 @@ extern "C" BattleEventHandlerTableEntry ArmorTailHandlers[1];
 extern "C" BattleEventHandlerTableEntry NeighHandlers[4];
 extern "C" BattleEventHandlerTableEntry HospitalityHandlers[2];
 extern "C" BattleEventHandlerTableEntry GorillaTacticsHandlers[4];
+extern "C" BattleEventHandlerTableEntry LiberoHandlers[2];
+extern "C" BattleEventHandlerTableEntry MirrorArmorHandlers[4];
+extern "C" BattleEventHandlerTableEntry PurifyingSaltHandlers[7];
+extern "C" BattleEventHandlerTableEntry AngerShellHandlers[2];
