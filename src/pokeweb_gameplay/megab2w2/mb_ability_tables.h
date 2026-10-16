@@ -2,7 +2,6 @@
 
 #pragma once
 
-extern BattleEventHandlerTableEntry MB_BerserkHandlers[2];
 extern BattleEventHandlerTableEntry MB_BoostHandlers[2];
 extern BattleEventHandlerTableEntry MB_ChargeHandlers[5];
 extern BattleEventHandlerTableEntry MB_CuriousMedicineHandlers[2];
@@ -19,9 +18,6 @@ extern BattleEventHandlerTableEntry MB_PerishBodyHandlers[1];
 extern BattleEventHandlerTableEntry MB_ToxicDebrisHandlers[1];
 extern BattleEventHandlerTableEntry MB_IntrepidSwordHandlers[1];
 extern BattleEventHandlerTableEntry MB_LingeringAromaHandlers[1];
-extern BattleEventHandlerTableEntry MB_MirrorArmorHandlers[4];
-extern BattleEventHandlerTableEntry MB_ProteanHandlers[2];
-extern BattleEventHandlerTableEntry MB_PurifyingSaltHandlers[7];
 extern BattleEventHandlerTableEntry MB_TeraShellHandlers[2];
 extern BattleEventHandlerTableEntry MB_SupremeOverlordHandlers[3];
 extern BattleEventHandlerTableEntry MB_VeilHandlers[7];

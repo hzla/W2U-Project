@@ -35,6 +35,7 @@
 #define Handler_PokeIDToPokePos Battle_GetMonPos
 #define HandlerGetAlivePartyCount Battle_ExpandPos
 #define GetBattleMonHeldItem BattleMon_GetHeldItem
+#define PokeTypePair_MakeMonotype PokeTypePair_MakePure
 #endif
 
 #ifdef __cplusplus
@@ -69,6 +70,7 @@ enum {
     EVENT_ACTION_END = 0x02,            /* a Pokémon's action is over (Water Veil cures its status here) */
     EVENT_MOVE_START = 0x03,            /* the attacker's move begins */
     EVENT_MOVE_END = 0x04,
+    EVENT_YAWN_CHECK = 0x0E,            /* may VAR_MON_ID get drowsy? VAR_FAIL_FLAG blocks it (Insomnia) */
     EVENT_CHECK_FLOATING = 0x12,        /* VAR_MON_ID floats (Levitate) */
     EVENT_CHECK_NO_EFFECT_TYPE = 0x1B,  /* a move's type found no effect (Levitate's popup) */
     EVENT_DAMP_MOVE_CHECK = 0x1F,       /* may the move be used? VAR_FAIL_CAUSE (Damp) */
@@ -91,7 +93,8 @@ enum {
     EVENT_ADD_CONDITION_FAILED = 0x67,  /* the blocked status' message */
     EVENT_ABILITY_NULLIFIED = 0x6A,
     EVENT_TURN_CHECK = 0x76,            /* the end of the turn */
-    EVENT_AFTER_KO = 0x83,              /* the attacker's move KO'd targets: VAR_TARGET_COUNT, VAR_TARGET0.. */
+    EVENT_AFTER_KO = 0x83,
+    EVENT_AFTER_MOVE_HITS = 0x87,       /* a move's hits are done: the targets (HandlerTargetsContain) */              /* the attacker's move KO'd targets: VAR_TARGET_COUNT, VAR_TARGET0.. */
     EVENT_BEFORE_ABILITY_CHANGE = 0x89,
     EVENT_AFTER_ABILITY_CHANGE = 0x8A,
 };
@@ -99,6 +102,7 @@ enum {
 /* Event variables (W2U's names) */
 enum {
     VAR_STAT = 0x1F,                    /* EVENT_STAT_CHANGE_CHECK: the stat (STATSTAGE_*) */
+    VAR_STAT_CHANGE = 0x20,             /* EVENT_STAT_CHANGE_CHECK: the stages (< 0: a drop) */
     VAR_FAIL_CAUSE = 0x22,              /* EVENT_DAMP_MOVE_CHECK: why the move fails (0x13: Damp) */
     VAR_MON_ID = 0x02,
     VAR_ATTACKING_MON = 0x03,
@@ -113,6 +117,7 @@ enum {
     VAR_TYPE_EFFECTIVENESS = 0x38,      /* EVENT_DAMAGE_RATIO: the hit's effectiveness (BtlCalc_ClassifyEffectiveness) */
     VAR_RATIO = 0x35,                   /* fixed point, 4096 = x1 */
     VAR_NO_EFFECT = 0x40,
+    VAR_FAIL_FLAG = 0x41,               /* the status, Yawn and stat change checks: 1 = blocked */
     VAR_SUBSTITUTE_HIT = 0x46,          /* nonzero: the hit landed on a substitute */
     VAR_NO_SECONDARY = 0x47,            /* nonzero: no secondary effects for this hit (Shield Dust) */               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
 };
@@ -134,6 +139,7 @@ enum {
     HANDLER_CMD_CURE_CONDITION = 0x0B,  /* BattleHandlerCureConditionParam */
     HANDLER_CMD_ADD_CONDITION = 0x0C,   /* BattleHandlerAddConditionParam */
     HANDLER_CMD_CHANGE_STAT = 0x0E,     /* BattleHandlerStatChangeParam */
+    HANDLER_CMD_CHANGE_TYPE = 0x14,     /* BattleHandlerChangeTypeParam: "X transformed into the Y type!" */
     HANDLER_CMD_REMOVE_SIDE_EFFECT = 0x1A, /* BattleHandlerRemoveSideEffectParam */
 };
 
@@ -190,6 +196,7 @@ enum {
     CONDITION_FREEZE = 3,
     CONDITION_BURN = 4,
     CONDITION_POISON = 5,               /* bad poison: poison with Toxic's turn counter */
+    CONDITION_YAWN = 14,                /* Yawn's drowsiness, checked like the majors */
 };
 
 /* A condition's value: its kind and turns (decomp: include/battle/btl_pokeparam.h, a union) */
@@ -217,6 +224,17 @@ typedef struct BattleHandlerAddConditionParam {
     u8 overwrite;
     BattleHandlerString string;
 } BattleHandlerAddConditionParam;
+
+typedef u16 PokeTypePair;
+
+typedef struct BattleHandlerChangeTypeParam {
+    u32 header : 23;
+    u32 popup : 1;
+    u32 unk24 : 8;
+    PokeTypePair type;
+    u8 monIndex;
+    u8 suppressMessage;
+} BattleHandlerChangeTypeParam;
 
 typedef struct BattleHandlerRemoveSideEffectParam {
     u32 header;
@@ -285,6 +303,8 @@ enum {
 
 /* GetBattleMonStat values */
 enum {
+    BMV_HP = 0x0D,
+    BMV_MAX_HP = 0x0E,
     BMV_ATTACK = 0x08,                  /* the raw stats: Attack .. Speed, 0x08 .. 0x0C */
     BMV_DEFENSE = 0x09,
     BMV_SPECIAL_ATTACK = 0x0A,
@@ -358,6 +378,8 @@ u32 GetBattleMonStat(const BattleMon *mon, u32 stat);
 b32 IsFainted(const BattleMon *mon);
 b32 CheckCondition(const BattleMon *mon, u32 conditionId);
 u32 GetBattleMonHeldItem(BattleMon *mon);
+PokeTypePair GetPokeType(BattleMon *mon);
+PokeTypePair PokeTypePair_MakeMonotype(u32 singleTypeId);
 b32 IsMonFullHP(BattleMon *mon);
 /* Max HP / divisor, at least 1 */
 u32 DivideMaxHPZeroCheck(BattleMon *mon, u32 divisor);
@@ -388,6 +410,9 @@ void BtlCalc_BuildMoveCondition(MoveConditionParam param, BattleMon *mon, Battle
 
 /* A condition value that lasts until removed (the Choice lock's move) */
 BattleCondition MakeConditionParamPermanent(u16 param);
+
+/* btl_handler.c: the current event's targets contain the Pokémon (EVENT_AFTER_MOVE_HITS) */
+b32 HandlerTargetsContain(u32 monId);
 
 /* btl_server_flow.c */
 /* Set while the engine checks a matchup: Mummy and Flame Body skip their reactions then */
@@ -422,6 +447,12 @@ void HandlerDampStart(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 
 void HandlerDampMoveEnd(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 void HandlerDampEnd(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 /* Unnerve's: its entry message (once: work[0]) and the same when activations are refreshed */
+/* Blocks a status (VAR_FAIL_FLAG) for the holder: true if it did (Water Veil's check) */
+b32 HandlerCommonGuardStatus(void *flow, u32 monId, u32 status);
+/* Cures the holder's status: on entering or gaining the ability / at the action's end */
+void CommonAbilityCureStatus(BtlServerFlow *flow, u8 monId, u32 status);
+void CommonAbilityCureStatusCore(BtlServerFlow *flow, u8 monId, u32 status);
+void HandlerInsomniaYawnCheck(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 void HandlerUnnerveMemberIn(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 void HandlerUnnerveRotationIn(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 
