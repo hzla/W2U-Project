@@ -644,7 +644,7 @@
         "../mechanics/abilities/libero.c",
         "../mechanics/abilities/punk_rock.c",
         "../mechanics/abilities/ruin.c",
-        "megab2w2/abilities/SupremeOverlord.cpp",
+        "../mechanics/abilities/supreme_overlord.c",
         "../mechanics/abilities/status_on_hit.c"
       ],
       "entries": [
@@ -665,7 +665,7 @@
         ["ability", "ABIL_SWORD_OF_RUIN", "RuinHandlers"],
         ["ability", "ABIL_TABLETS_OF_RUIN", "RuinHandlers"],
         ["ability", "ABIL_BEADS_OF_RUIN", "RuinHandlers"],
-        ["ability", "ABIL_SUPREME_OVERLORD", "MB_SupremeOverlordHandlers"],
+        ["ability", "ABIL_SUPREME_OVERLORD", "SupremeOverlordHandlers"],
         ["ability", "ABIL_TOXIC_CHAIN", "ToxicChainHandlers"]
       ]
     },

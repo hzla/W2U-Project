@@ -60,3 +60,4 @@ extern "C" BattleEventHandlerTableEntry CudChewHandlers[1];
 extern "C" BattleEventHandlerTableEntry CuriousMedicineHandlers[2];
 extern "C" BattleEventHandlerTableEntry CostarHandlers[2];
 extern "C" BattleEventHandlerTableEntry SupersweetSyrupHandlers[2];
+extern "C" BattleEventHandlerTableEntry SupremeOverlordHandlers[3];

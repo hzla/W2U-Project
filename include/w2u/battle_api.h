@@ -304,6 +304,32 @@ static inline void W2U_Message(BtlServerFlow *flow, u8 monId, u16 message)
     BattleHandler_PopWork(flow, param);
 }
 
+/* Parties */
+static inline BtlPokeCon *W2U_PokeCon(BtlServerFlow *flow)
+{
+#if defined(W2U_DECOMP)
+    return flow->pokeCon;
+#else
+    return *(BtlPokeCon **)((u8 *)flow + W2U_SERVERFLOW_POKECON);
+#endif
+}
+
+/* The party of the Pokémon's client */
+static inline BattleParty *W2U_PartyOf(BtlServerFlow *flow, u8 monId)
+{
+    return GetPartyData(W2U_PokeCon(flow), MonIDToClientID(monId));
+}
+
+/* The party Pokémon a battle Pokémon battles as */
+static inline const PartyPkm *W2U_BattleMonSource(BattleMon *mon)
+{
+#if defined(W2U_DECOMP)
+    return mon->core.src;
+#else
+    return *(const PartyPkm **)((u8 *)mon + W2U_BATTLEMON_SOURCE);
+#endif
+}
+
 /* The AI's damage simulation runs the damage events too (dozens a turn): handlers that log or count skip it */
 static inline b32 W2U_IsSimulating(BtlServerFlow *flow)
 {

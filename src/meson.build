@@ -204,6 +204,7 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/terrain_abilities.c',
   'mechanics/abilities/effect_abilities.c',
   'mechanics/abilities/entry_effects.c',
+  'mechanics/abilities/supreme_overlord.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',
