@@ -45,6 +45,7 @@
 #define GetMonID BattleMon_GetID
 #define GetFieldWeather BattleField_GetWeather
 #define IsGuaranteedHit ServerControl_IsGuaranteedHit
+#define RawBattleMonStat BattleMon_GetRealStat
 #endif
 
 #ifdef __cplusplus
@@ -154,6 +155,7 @@ enum {
     VAR_FAIL_FLAG = 0x41,
     VAR_BREAK_PROTECT = 0x51,           /* EVENT_PROTECT_BREAK_CHECK: 1 broken (Feint), 2 through (W2U) */               /* the status, Yawn and stat change checks: 1 = blocked */
     VAR_WEATHER_NEGATED = 0x41,         /* EVENT_WEATHER_NEGATION: nonzero, the weather has no effect (VAR_FAIL_FLAG's slot) */
+    VAR_NO_DEFAULT_MESSAGE = 0x51,      /* EVENT_CHECK_NO_EFFECT: nonzero, no "It doesn't affect X..." (VAR_BREAK_PROTECT's slot) */
     VAR_DAMAGE = 0x32,                  /* EVENT_MOVE_DAMAGE_PROCESSING_END: the hit's damage */
     VAR_SUBSTITUTE_HIT = 0x46,          /* nonzero: the hit landed on a substitute */
     VAR_NO_SECONDARY = 0x47,            /* nonzero: no secondary effects for this hit (Shield Dust) */               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
@@ -634,7 +636,10 @@ u8 GetSideFromOpposingMonID(u8 monId);          /* the side facing the Pokémon 
 /* W2U's name (the decomp has none yet): the side effect is up on the side */
 b32 SideEffect_IsActive(u32 side, u32 effect);
 BattleMon *GetBattleMon(BtlServerFlow *serverFlow, u8 monId);
+/* BMV_ATTACK .. BMV_SPEED: the stat with its stat stage applied */
 u32 GetBattleMonStat(const BattleMon *mon, u32 stat);
+/* BMV_ATTACK .. BMV_SPEED: the stat without stages (Wonder Room swaps the defenses) */
+s32 RawBattleMonStat(const BattleMon *mon, u32 stat);
 b32 IsFainted(const BattleMon *mon);
 b32 CheckCondition(const BattleMon *mon, u32 conditionId);
 u32 GetBattleMonHeldItem(BattleMon *mon);
@@ -646,6 +651,7 @@ u16 GetBattleMonSpecies(const BattleMon *mon);  /* decomp builds (W2U_Species): 
 u32 GetTurnFlag(BattleMon *mon, u32 flag);
 PokeTypePair GetPokeType(BattleMon *mon);
 PokeTypePair PokeTypePair_MakeMonotype(u32 singleTypeId);
+b32 PokeTypePair_HasType(PokeTypePair pair, u32 queryTypeId);
 b32 IsMonFullHP(BattleMon *mon);
 /* Max HP / divisor, at least 1 */
 u32 DivideMaxHPZeroCheck(BattleMon *mon, u32 divisor);

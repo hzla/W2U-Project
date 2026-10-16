@@ -106,22 +106,31 @@ static inline u16 W2U_HolderAbility(BtlServerFlow *flow, u8 monId)
 }
 
 static inline b32 W2U_IsFainted(BtlServerFlow *flow, u8 monId) { return IsFainted(GetBattleMon(flow, monId)); }
-/* The highest of Attack .. Speed as GetBattleMonStat returns them, stat stages applied, as STATSTAGE_ATTACK ..
- * STATSTAGE_SPEED; ties: the first. MegaB2W2's "BestStat" (Eelevate). Showdown's Beast Boost compares the stats
- * without stages, as w2u_abilities.cpp's GetHighestStatStage does. */
-static inline u32 W2U_BestBoostedStat(BtlServerFlow *flow, u8 monId)
+/* The highest of Attack .. Speed, as STATSTAGE_ATTACK .. STATSTAGE_SPEED; ties: the first (Showdown's order).
+ * withStages: the stats with their stat stages applied (Protosynthesis, Quark Drive: Showdown's getBestStat(true,
+ * true)), else without (Beast Boost, Eelevate). */
+static inline u32 W2U_BestStatOf(BattleMon *mon, b32 withStages)
 {
-    BattleMon *mon = GetBattleMon(flow, monId);
     u32 best = STATSTAGE_ATTACK, bestValue = 0, i;
 
     for (i = 0; i < 5; ++i) {
-        u32 value = GetBattleMonStat(mon, BMV_ATTACK + i);
+        u32 value = withStages ? GetBattleMonStat(mon, BMV_ATTACK + i) : (u32)RawBattleMonStat(mon, BMV_ATTACK + i);
         if (value > bestValue) {
             bestValue = value;
             best = STATSTAGE_ATTACK + i;
         }
     }
     return best;
+}
+
+static inline u32 W2U_BestBoostedStat(BtlServerFlow *flow, u8 monId)
+{
+    return W2U_BestStatOf(GetBattleMon(flow, monId), 1);
+}
+
+static inline u32 W2U_BestRawStat(BtlServerFlow *flow, u8 monId)
+{
+    return W2U_BestStatOf(GetBattleMon(flow, monId), 0);
 }
 
 /* The Pokémon is on the field */

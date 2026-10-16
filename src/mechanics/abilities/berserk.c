@@ -5,8 +5,7 @@
  * popup). The HP before the move is taken when every other Pokémon's move starts (fixed-damage moves skip the damage
  * events) and compared after its hits when the holder is among the targets. A substitute takes the hits: the HP
  * doesn't change, nothing happens.
- * Only Anger Shell is registered here: Berserk keeps W2U's own handler (w2u_abilities.cpp); its row stays for the
- * shared logic. */
+ * One table for both (registry name BerserkHandlers; Black 2's baseline copy keeps W2U's earlier per-hit Berserk). */
 #include "w2u/battle_api.h"
 #include "megab2w2/mb_ids.h"
 
@@ -87,8 +86,9 @@ static void HandlerAngerShellAfterHits(BattleEventItem *item, BtlServerFlow *flo
     }
 }
 
-W2U_HANDLER_TABLE(AngerShellHandlers) = {
+W2U_HANDLER_TABLE(BerserkHandlers) = {
     { EVENT_MOVE_START, HandlerAngerShellMoveStart },
     { EVENT_AFTER_MOVE_HITS, HandlerAngerShellAfterHits },
 };
-W2U_MECHANIC(ABILITY, ABIL_ANGER_SHELL, AngerShellHandlers);
+W2U_MECHANIC(ABILITY, ABIL_BERSERK, BerserkHandlers);
+W2U_MECHANIC(ABILITY, ABIL_ANGER_SHELL, BerserkHandlers);
