@@ -203,6 +203,7 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/sand_spit.c',
   'mechanics/abilities/terrain_abilities.c',
   'mechanics/abilities/effect_abilities.c',
+  'mechanics/abilities/entry_effects.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',

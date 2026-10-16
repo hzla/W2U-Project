@@ -736,16 +736,16 @@
       "source": "abilities",
       "white2_only": true,
       "extra_sources": [
-        "megab2w2/abilities/EntryEffects.cpp",
+        "../mechanics/abilities/entry_effects.c",
         "../mechanics/abilities/hospitality.c",
         "../mechanics/abilities/intrepid_sword.c",
         "../mechanics/abilities/neigh.c",
         "../mechanics/abilities/screen_cleaner.c"
       ],
       "entries": [
-        ["ability", "ABIL_CURIOUS_MEDICINE", "MB_CuriousMedicineHandlers"],
-        ["ability", "ABIL_COSTAR", "MB_CostarHandlers"],
-        ["ability", "ABIL_SUPERSWEET_SYRUP", "MB_SupersweetSyrupHandlers"],
+        ["ability", "ABIL_CURIOUS_MEDICINE", "CuriousMedicineHandlers"],
+        ["ability", "ABIL_COSTAR", "CostarHandlers"],
+        ["ability", "ABIL_SUPERSWEET_SYRUP", "SupersweetSyrupHandlers"],
         ["ability", "ABIL_HOSPITALITY", "HospitalityHandlers"],
         ["ability", "ABIL_INTREPID_SWORD", "IntrepidSwordHandlers"],
         ["ability", "ABIL_DAUNTLESS_SHIELD", "IntrepidSwordHandlers"],

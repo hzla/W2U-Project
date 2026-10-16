@@ -133,7 +133,7 @@ w2u_battle_module_definitions = [
   {
     'id': 26,
     'slug': 'abilities_mb_entry',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/EntryEffects.cpp', '../../mechanics/abilities/hospitality.c', '../../mechanics/abilities/intrepid_sword.c', '../../mechanics/abilities/neigh.c', '../../mechanics/abilities/screen_cleaner.c'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/entry_effects.c', '../../mechanics/abilities/hospitality.c', '../../mechanics/abilities/intrepid_sword.c', '../../mechanics/abilities/neigh.c', '../../mechanics/abilities/screen_cleaner.c'),
   },
   {
     'id': 27,
