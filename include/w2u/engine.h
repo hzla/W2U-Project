@@ -73,7 +73,8 @@ enum {
     EVENT_ACTION_END = 0x02,            /* a Pokémon's action is over (Water Veil cures its status here) */
     EVENT_MOVE_START = 0x03,            /* the attacker's move begins */
     EVENT_MOVE_END = 0x04,
-    EVENT_YAWN_CHECK = 0x0E,            /* may VAR_MON_ID get drowsy? VAR_FAIL_FLAG blocks it (Insomnia) */
+    EVENT_YAWN_CHECK = 0x0E,
+    EVENT_SPECIAL_PRIORITY = 0x0F,      /* VAR_MON_ID's place within its priority bracket: VAR_SPECIAL_PRIORITY */            /* may VAR_MON_ID get drowsy? VAR_FAIL_FLAG blocks it (Insomnia) */
     EVENT_CHECK_FLOATING = 0x12,        /* VAR_MON_ID floats (Levitate) */
     EVENT_CHECK_NO_EFFECT_TYPE = 0x1B,  /* a move's type found no effect (Levitate's popup) */
     EVENT_DAMP_MOVE_CHECK = 0x1F,       /* may the move be used? VAR_FAIL_CAUSE (Damp) */
@@ -101,6 +102,7 @@ enum {
     EVENT_AFTER_KO = 0x83,
     EVENT_AFTER_MOVE_HITS = 0x87,       /* a move's hits are done: the targets (HandlerTargetsContain) */              /* the attacker's move KO'd targets: VAR_TARGET_COUNT, VAR_TARGET0.. */
     EVENT_BEFORE_ABILITY_CHANGE = 0x89,
+    EVENT_FORCE_OUT_CHECK = 0x8B,       /* may VAR_MON_ID be forced out (Roar, Whirlwind)? */
     EVENT_AFTER_ABILITY_CHANGE = 0x8A,
 };
 
@@ -115,6 +117,7 @@ enum {
     VAR_DEFENDING_MON = 0x04,
     VAR_TARGET_COUNT = 0x05,            /* EVENT_AFTER_KO: the move's targets, VAR_TARGET0 + i */
     VAR_TARGET0 = 0x06,
+    VAR_SPECIAL_PRIORITY = 0x11,        /* EVENT_SPECIAL_PRIORITY: 0 last, 1 normal, 2 first in the bracket */
     VAR_MOVE_ID = 0x12,
     VAR_MOVE_TYPE = 0x16,
     VAR_MOVE_CATEGORY = 0x1A,           /* EVENT_DEFENDING_STAT: 1 = the defending stat is Defense (Psyshock too) */
@@ -505,6 +508,11 @@ b32 HandlerCommonGuardStatus(void *flow, u32 monId, u32 status);
 void CommonAbilityCureStatus(BtlServerFlow *flow, u8 monId, u32 status);
 void CommonAbilityCureStatusCore(BtlServerFlow *flow, u8 monId, u32 status);
 void HandlerInsomniaYawnCheck(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+/* Intimidate's entry handler; Suction Cups' force-out guard; Mold Breaker's move start / end (the skip check) */
+void HandlerIntimidateMemberIn(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerSuctionCups(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerMoldBreakerStart(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerMoldBreakerEnd(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 void HandlerUnnerveMemberIn(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 void HandlerUnnerveRotationIn(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 

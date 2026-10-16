@@ -195,6 +195,10 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/hit_reactions.c',
   'mechanics/abilities/pastel_veil.c',
   'mechanics/abilities/tera_shell.c',
+  'mechanics/abilities/guard_dog.c',
+  'mechanics/abilities/intrepid_sword.c',
+  'mechanics/abilities/quick_draw.c',
+  'mechanics/abilities/move_abilities.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',
