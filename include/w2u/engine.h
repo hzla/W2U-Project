@@ -32,6 +32,7 @@
 #define BtlCalc_BuildMoveCondition BTL_MakeSickCont
 #define PML_MoveGetConditionParam PML_MoveGetSickCont
 #define Handler_CheckMatchup sub_21ABF54
+#define Handler_PokeIDToPokePos Battle_GetMonPos
 #endif
 
 #ifdef __cplusplus
@@ -73,7 +74,8 @@ enum {
     EVENT_CHECK_NO_EFFECT = 0x2D,       /* per target: may the move affect it? (Volt Absorb, Soundproof) */
     EVENT_ACCURACY_STAGE = 0x33,        /* a hit's accuracy / evasion stages: VAR_EVASION_STAGE (6 = neutral) */
     EVENT_MOVE_POWER = 0x38,            /* VAR_MOVE_POWER_RATIO *= x (Iron Fist, Technician) */
-    EVENT_ATTACKER_POWER = 0x3B,        /* the attacker's attacking stat: VAR_RATIO *= x (Huge Power) */
+    EVENT_ATTACKING_STAT = 0x3B,        /* the attacker's attacking stat: VAR_RATIO *= x (Huge Power, Guts) */
+    EVENT_DEFENDING_STAT = 0x3C,        /* the defender's defending stat: VAR_RATIO *= x; VAR_MOVE_CATEGORY 1: Defense */
     EVENT_CHECK_TYPE_EFFECTIVENESS = 0x3E,
     EVENT_DAMAGE_RATIO = 0x47,          /* the final damage of a hit: VAR_RATIO *= x (Filter, Multiscale) */
     EVENT_AFTER_DAMAGE_REACTION = 0x4B, /* a hit landed on the defender (Rough Skin, Weak Armor, Justified) */
@@ -99,7 +101,7 @@ enum {
     VAR_TARGET0 = 0x06,
     VAR_MOVE_ID = 0x12,
     VAR_MOVE_TYPE = 0x16,
-    VAR_MOVE_CATEGORY = 0x1A,
+    VAR_MOVE_CATEGORY = 0x1A,           /* EVENT_DEFENDING_STAT: 1 = the defending stat is Defense (Psyshock too) */
     VAR_EVASION_STAGE = 0x28,           /* 6 = neutral */
     VAR_MOVE_POWER_RATIO = 0x31,        /* fixed point, 4096 = x1 */
     VAR_TYPE_EFFECTIVENESS = 0x38,      /* EVENT_DAMAGE_RATIO: the hit's effectiveness (BtlCalc_ClassifyEffectiveness) */
@@ -160,6 +162,15 @@ typedef struct BattleHandlerStatChangeParam {
     u8 monIds[8];
     BattleHandlerString string;
 } BattleHandlerStatChangeParam;
+
+/* Battle Pokémon IDs and positions */
+#define BATTLE_MAX_MON_ID 24                /* monIds are 0-23 */
+#define BATTLE_POS_NONE 6                   /* Handler_PokeIDToPokePos: not on the field */
+
+/* CheckCondition's conditions (W2U's names) */
+enum {
+    MON_CONDITION_GASTRO_ACID = 0x10,   /* the ability is suppressed */
+};
 
 /* Major statuses (BattleHandlerAddConditionParam.condition) */
 enum {
@@ -312,6 +323,11 @@ b32 SideEffect_IsActive(u32 side, u32 effect);
 BattleMon *GetBattleMon(BtlServerFlow *serverFlow, u8 monId);
 u32 GetBattleMonStat(const BattleMon *mon, u32 stat);
 b32 IsFainted(const BattleMon *mon);
+b32 CheckCondition(const BattleMon *mon, u32 conditionId);
+/* The Pokémon's battle position, BATTLE_POS_NONE if it is not on the field */
+u8 Handler_PokeIDToPokePos(BtlServerFlow *flow, u8 monId);
+/* The move's priority after the events (Prankster, Gale Wings, Triage), + 7 */
+u8 ServerEvent_GetMovePriority(BtlServerFlow *flow, u16 move, BattleMon *mon);
 u32 GetBattleMonStatus(BattleMon *mon);         /* 0: none, else CONDITION_* */
 /* The stat can still change by stageDelta (not at +6 / -6 already) */
 b32 IsStatChangeValid(BattleMon *mon, u32 statId, s32 stageDelta);

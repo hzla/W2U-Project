@@ -94,6 +94,33 @@ static inline u32 W2U_BestBoostedStat(BtlServerFlow *flow, u8 monId)
     return best;
 }
 
+/* The Pokémon is on the field */
+static inline b32 W2U_OnField(BtlServerFlow *flow, u8 monId)
+{
+    return monId < BATTLE_MAX_MON_ID && Handler_PokeIDToPokePos(flow, monId) != BATTLE_POS_NONE;
+}
+
+/* The Pokémon has this ability and it works (not suppressed by Gastro Acid): for checks outside the holder's own
+ * handlers */
+static inline b32 W2U_HasActiveAbility(BattleMon *mon, u16 ability)
+{
+    return mon && (u16)GetBattleMonStat(mon, BMV_ABILITY) == ability && !CheckCondition(mon, MON_CONDITION_GASTRO_ACID);
+}
+
+/* The lowest monId on the field with this ability working, or BATTLE_MAX_MON_ID: for field-wide effects that apply
+ * once however many holders there are (the Ruin abilities) */
+static inline u8 W2U_FirstFieldHolder(BtlServerFlow *flow, u16 ability)
+{
+    u8 monId;
+
+    for (monId = 0; monId < BATTLE_MAX_MON_ID; ++monId) {
+        if (W2U_OnField(flow, monId) && W2U_HasActiveAbility(GetBattleMon(flow, monId), ability)) {
+            return monId;
+        }
+    }
+    return BATTLE_MAX_MON_ID;
+}
+
 /* Ratios (fixed point, W2U_RATIO_ONE = x1) */
 static inline void W2U_MulRatio(s32 ratio) { BattleEventVar_MulValue(VAR_RATIO, ratio); }
 static inline void W2U_MulMovePower(s32 ratio) { BattleEventVar_MulValue(VAR_MOVE_POWER_RATIO, ratio); }
@@ -102,17 +129,23 @@ static inline u32 W2U_RatioMul(u32 a, u32 b) { return a * b >> 12; }
 
 /* Effects: pushed to the handler-effect queue, as the vanilla abilities do */
 
-/* The holder's ability popup around a set message (bank 18; argument 0 = the holder) */
-static inline void W2U_PopupMessage(BtlServerFlow *flow, u8 monId, u16 message)
+/* The holder's ability popup around a set message (bank 18) about a Pokémon (its argument 0) */
+static inline void W2U_PopupMessageAbout(BtlServerFlow *flow, u8 holder, u16 message, u8 about)
 {
     BattleHandlerMessageParam *param;
 
-    BattleHandler_PushRun(flow, HANDLER_CMD_POPUP_IN, monId);
-    param = (BattleHandlerMessageParam *)BattleHandler_PushWork(flow, HANDLER_CMD_MESSAGE, monId);
+    BattleHandler_PushRun(flow, HANDLER_CMD_POPUP_IN, holder);
+    param = (BattleHandlerMessageParam *)BattleHandler_PushWork(flow, HANDLER_CMD_MESSAGE, holder);
     BattleHandler_StrSetup(&param->string, HANDLER_STR_SET, message);
-    BattleHandler_AddArg(&param->string, monId);
+    BattleHandler_AddArg(&param->string, about);
     BattleHandler_PopWork(flow, param);
-    BattleHandler_PushRun(flow, HANDLER_CMD_POPUP_OUT, monId);
+    BattleHandler_PushRun(flow, HANDLER_CMD_POPUP_OUT, holder);
+}
+
+/* The holder's ability popup around a set message about the holder */
+static inline void W2U_PopupMessage(BtlServerFlow *flow, u8 monId, u16 message)
+{
+    W2U_PopupMessageAbout(flow, monId, message, monId);
 }
 
 /* One Pokémon's stat stage change (STATSTAGE_*, +-1..6), as Defiant and Weak Armor push it; popup: inside the
