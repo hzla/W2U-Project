@@ -5,8 +5,7 @@
  * W2U_HANDLER_TABLE and registers the table per ability / item / move with W2U_MECHANIC; the battle module registry
  * (src/pokeweb_gameplay/battle_modules/registry.json) must list the same entries, which its generator checks.
  *
- * The helpers grow from megab2w2/ability_api.h as mechanics are converted: queries and ratios now; the effect
- * helpers (popups, stat stage changes, messages) with the first mechanic that needs the handler-effect structs. */
+ * The helpers grow from megab2w2/ability_api.h as mechanics are converted. */
 #ifndef W2U_BATTLE_API_H
 #define W2U_BATTLE_API_H
 
@@ -47,6 +46,14 @@ static inline u32 W2U_MoveCategory(u16 move) { return (u32)PML_MoveGetParam(move
 /* The move record's flag (MOVE_FLAG_SOUND ...); contact as used now: W2U_MakesContact */
 static inline b32 W2U_MoveHasFlag(u16 move, u32 flag) { return getMoveFlag(move, flag); }
 static inline b32 W2U_IsStatusMove(u16 move) { return W2U_MoveCategory(move) == MOVE_CATEGORY_STATUS; }
+/* The move picks Pokémon as targets (one, several, all adjacent foes), not the user, the field, a side or every
+ * Pokémon at once (Haze, Perish Song): the moves a "can't be targeted by" ability stops */
+static inline b32 W2U_TargetsPokemon(u16 move)
+{
+    u32 target = (u32)PML_MoveGetParam(move, MOVE_PARAM_TARGET);
+
+    return target <= MOVE_TARGET_ENEMY_ALL || target == MOVE_TARGET_ENEMY_RANDOM;
+}
 /* The current event's move makes contact, used by its attacker */
 static inline b32 W2U_MakesContact(BtlServerFlow *flow, u16 move)
 {
@@ -65,6 +72,52 @@ static inline void W2U_MulRatio(s32 ratio) { BattleEventVar_MulValue(VAR_RATIO, 
 static inline void W2U_MulMovePower(s32 ratio) { BattleEventVar_MulValue(VAR_MOVE_POWER_RATIO, ratio); }
 /* a x b in fixed point, as the game multiplies ratios */
 static inline u32 W2U_RatioMul(u32 a, u32 b) { return a * b >> 12; }
+
+/* Effects: pushed to the handler-effect queue, as the vanilla abilities do */
+
+/* The holder's ability popup around a set message (bank 18; argument 0 = the holder) */
+static inline void W2U_PopupMessage(BtlServerFlow *flow, u8 monId, u16 message)
+{
+    BattleHandlerMessageParam *param;
+
+    BattleHandler_PushRun(flow, HANDLER_CMD_POPUP_IN, monId);
+    param = (BattleHandlerMessageParam *)BattleHandler_PushWork(flow, HANDLER_CMD_MESSAGE, monId);
+    BattleHandler_StrSetup(&param->string, HANDLER_STR_SET, message);
+    BattleHandler_AddArg(&param->string, monId);
+    BattleHandler_PopWork(flow, param);
+    BattleHandler_PushRun(flow, HANDLER_CMD_POPUP_OUT, monId);
+}
+
+/* One Pokémon's stat stage change (STATSTAGE_*, +-1..6), as Defiant and Weak Armor push it; popup: inside the
+ * holder's ability popup */
+static inline void W2U_ChangeStatStage(BtlServerFlow *flow, u8 holder, u8 target, u32 stat, s32 stages, b32 popup)
+{
+    BattleHandlerStatChangeParam *param =
+        (BattleHandlerStatChangeParam *)BattleHandler_PushWork(flow, HANDLER_CMD_CHANGE_STAT, holder);
+
+    if (popup) {
+        param->popup = 1;
+    }
+    param->stat = stat;
+    param->change = (s8)stages;
+    param->unk0e = 1;
+    param->count = 1;
+    param->monIds[0] = target;
+    BattleHandler_PopWork(flow, param);
+}
+
+#define W2U_MSG_SET_DOESNT_AFFECT 210   /* bank 18: "It doesn't affect {0}..." */
+
+/* From an EVENT_CHECK_NO_EFFECT handler: the move does not affect the holder, with the ability popup and "It
+ * doesn't affect..." (Soundproof). False if another handler already decided (the variable is rewritten once). */
+static inline b32 W2U_BlockMove(BtlServerFlow *flow, u8 monId)
+{
+    if (!BattleEventVar_RewriteValue(VAR_NO_EFFECT, 1)) {
+        return 0;
+    }
+    W2U_PopupMessage(flow, monId, W2U_MSG_SET_DOESNT_AFFECT);
+    return 1;
+}
 
 /* The AI's damage simulation runs the damage events too (dozens a turn): handlers that log or count skip it */
 static inline b32 W2U_IsSimulating(BtlServerFlow *flow)

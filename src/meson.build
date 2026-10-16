@@ -170,6 +170,8 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/absorb.c',
   'mechanics/abilities/minds_eye.c',
   'mechanics/abilities/propeller_tail.c',
+  'mechanics/abilities/good_as_gold.c',
+  'mechanics/abilities/neuroforce.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',
