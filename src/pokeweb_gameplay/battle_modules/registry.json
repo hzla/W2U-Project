@@ -713,16 +713,16 @@
       "white2_only": true,
       "extra_sources": [
         "../mechanics/abilities/anger_shell.c",
-        "megab2w2/abilities/HitReactions.cpp",
+        "../mechanics/abilities/hit_reactions.c",
         "../mechanics/abilities/lingering_aroma.c",
         "../mechanics/abilities/status_on_hit.c",
         "../mechanics/abilities/stamina.c"
       ],
       "entries": [
         ["ability", "ABIL_ANGER_SHELL", "AngerShellHandlers"],
-        ["ability", "ABIL_COTTON_DOWN", "MB_CottonDownHandlers"],
-        ["ability", "ABIL_PERISH_BODY", "MB_PerishBodyHandlers"],
-        ["ability", "ABIL_TOXIC_DEBRIS", "MB_ToxicDebrisHandlers"],
+        ["ability", "ABIL_COTTON_DOWN", "CottonDownHandlers"],
+        ["ability", "ABIL_PERISH_BODY", "PerishBodyHandlers"],
+        ["ability", "ABIL_TOXIC_DEBRIS", "ToxicDebrisHandlers"],
         ["ability", "ABIL_WANDERING_SPIRIT", "LingeringAromaHandlers"],
         ["ability", "ABIL_LINGERING_AROMA", "LingeringAromaHandlers"],
         ["ability", "ABIL_SPICY_SPRAY", "SpicySprayHandlers"],
@@ -788,6 +788,7 @@
         "../mechanics/abilities/unseen_fist.c",
         "megab2w2/abilities/QuickDraw.cpp",
         "megab2w2/abilities/MoveAbilities.cpp",
+        "../mechanics/abilities/poison_puppeteer.c",
         "megab2w2/abilities/EffectAbilities.cpp"
       ],
       "entries": [
@@ -798,7 +799,7 @@
         ["ability", "ABIL_PIERCING_DRILL", "UnseenFistHandlers"],
         ["ability", "ABIL_QUICK_DRAW", "MB_QuickDrawHandlers"],
         ["ability", "ABIL_MYCELIUM_MIGHT", "MB_MyceliumMightHandlers"],
-        ["ability", "ABIL_POISON_PUPPETEER", "MB_PoisonPuppeteerHandlers"],
+        ["ability", "ABIL_POISON_PUPPETEER", "PoisonPuppeteerHandlers"],
         ["ability", "ABIL_MEGA_SOL", "MB_MegaSolHandlers"],
         ["ability", "ABIL_RIPEN", "MB_RipenHandlers"],
         ["ability", "ABIL_OPPORTUNIST", "MB_OpportunistHandlers"],
