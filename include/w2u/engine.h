@@ -54,6 +54,8 @@
 /* Types (decomp: include/struct_decls.h, include/battle/btl_event.h) */
 typedef struct BattleEventItem BattleEventItem;
 typedef struct BattleMon BattleMon;
+typedef struct PartyPkm PartyPkm;
+typedef struct BtlPokeCon BtlPokeCon;
 #if defined(W2U_DECOMP)
 typedef struct BtlServerFlow BtlServerFlow;
 #else
@@ -369,6 +371,15 @@ typedef struct BattleHandlerCureConditionParam {
     u8 unk16[2];
 } BattleHandlerCureConditionParam;
 
+/* A client's party in battle (decomp: include/battle/btl_main.h) */
+typedef struct BattleParty {
+    BattleMon *mons[6];
+    u8 count;
+    u8 unk19[3];
+} BattleParty;
+
+#define PKM_PARAM_IS_EGG 0x4c                /* PokeParty_GetParam */
+
 /* A move's parameters as the events changed them (ServerEvent_GetMoveParam) */
 typedef struct BtlFlowMoveParam {
     u16 move;
@@ -401,6 +412,7 @@ W2U_ENGINE_LAYOUT(consume_item_string, __builtin_offsetof(BattleHandlerConsumeIt
 W2U_ENGINE_LAYOUT(force_use_item_item, __builtin_offsetof(BattleHandlerForceUseItemParam, item) == 0x06);
 W2U_ENGINE_LAYOUT(set_stat_stages_size, sizeof(BattleHandlerSetStatStageParam) == 0x0C);
 W2U_ENGINE_LAYOUT(reset_stat_stages_ids, __builtin_offsetof(BattleHandlerResetStatStageParam, monIndices) == 0x05);
+W2U_ENGINE_LAYOUT(battle_party_count, __builtin_offsetof(BattleParty, count) == 0x18);
 W2U_ENGINE_LAYOUT(move_param_type, __builtin_offsetof(BtlFlowMoveParam, type) == 0x06);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 
@@ -486,6 +498,8 @@ b32 BattleEventVar_RewriteValue(u16 key, s32 value);
 
 /* btl_main.c, btl_server_flow.c, btl_pokeparam.c */
 b32 IsAllyMonID(u8 monId1, u8 monId2);
+u8 MonIDToClientID(u8 monId);
+BattleParty *GetPartyData(BtlPokeCon *pokeCon, u32 clientId);
 u8 GetSideFromMonID(u8 monId);
 u8 GetSideFromOpposingMonID(u8 monId);          /* the side facing the Pokémon */
 /* W2U's name (the decomp has none yet): the side effect is up on the side */
@@ -541,6 +555,9 @@ u8 GetWeather(BtlServerFlow *serverFlow);
 b32 Handler_CheckMatchup(BtlServerFlow *flow);
 b32 AbilityEvent_RollEffectChance(BtlServerFlow *flow, u32 chancePercent);
 
+/* poke_tool.c */
+u32 PokeParty_GetParam(const PartyPkm *pkm, u32 param, void *buffer);
+
 /* waza_tool.c */
 s32 PML_MoveGetParam(u16 move, u32 param);
 b32 getMoveFlag(u16 move, u32 flag);
@@ -588,6 +605,8 @@ W2U_C_END
 /* Struct fields the injection build reads by offset (battle_api.h); a decomp build uses the field */
 #if !defined(W2U_DECOMP)
 #define W2U_SERVERFLOW_SIMULATION_DEPTH 0x774   /* BtlServerFlow.simulationDepth: nonzero while the AI simulates */
+#define W2U_SERVERFLOW_POKECON 0x08             /* BtlServerFlow.pokeCon */
+#define W2U_BATTLEMON_SOURCE 0x00               /* BattleMon.core.src: the party Pokémon it battles as */
 #endif
 
 #endif /* W2U_ENGINE_H */

@@ -154,6 +154,7 @@ hooks will have to provide.
 | Orichalcum Pulse, Hadron Engine, Grass Pelt, Mimicry | `abilities/terrain_abilities.c` | `megab2w2/abilities/TerrainAbilities.cpp` | `ORICHALCUM_PULSE`, `HADRON_ENGINE`, `MIMICRY` (`wave_b.yml`), `GRASS_PELT` (`wave_shared.yml`) |
 | Ripen, Opportunist, Cud Chew | `abilities/effect_abilities.c` | `megab2w2/abilities/EffectAbilities.cpp` | `RIPEN`, `OPPORTUNIST`, `OPPORTUNIST_BOTH`, `CUD_CHEW` (`wave_c.yml`) |
 | Curious Medicine, Costar, Supersweet Syrup | `abilities/entry_effects.c` | `megab2w2/abilities/EntryEffects.cpp` | `CURIOUS_MEDICINE`, `COSTAR`, `SUPERSWEET_SYRUP` (`wave_a.yml`) |
+| Supreme Overlord | `abilities/supreme_overlord.c` | `megab2w2/abilities/SupremeOverlord.cpp` | `SUPREME_OVERLORD`, `SUPREME_OVERLORD_NONE` (`wave_a.yml`) |
 
 Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
 W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting

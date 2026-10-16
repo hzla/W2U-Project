@@ -2,7 +2,6 @@
 
 #pragma once
 
-extern BattleEventHandlerTableEntry MB_SupremeOverlordHandlers[3];
 // wave C (abilities/mb_hooked)
 // abilities/FormAbilities.cpp (module abilities/mb_forms)
 extern BattleEventHandlerTableEntry MB_IceFaceHandlers[4];
