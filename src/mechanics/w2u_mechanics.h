@@ -14,3 +14,7 @@ extern "C" BattleEventHandlerTableEntry MindsEyeHandlers[4];      // abilities/m
 extern "C" BattleEventHandlerTableEntry PropellerTailHandlers[1]; // abilities/propeller_tail.c: Propeller Tail, Stalwart
 extern "C" BattleEventHandlerTableEntry GoodAsGoldHandlers[1];
 extern "C" BattleEventHandlerTableEntry NeuroforceHandlers[1];
+extern "C" BattleEventHandlerTableEntry StaminaHandlers[1];
+extern "C" BattleEventHandlerTableEntry WaterCompactionHandlers[1];
+extern "C" BattleEventHandlerTableEntry SteamEngineHandlers[1];
+extern "C" BattleEventHandlerTableEntry ThermalExchangeHandlers[6];

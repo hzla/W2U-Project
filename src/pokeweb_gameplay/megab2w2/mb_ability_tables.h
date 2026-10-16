@@ -30,8 +30,6 @@ extern BattleEventHandlerTableEntry MB_RuinHandlers[4];
 extern BattleEventHandlerTableEntry MB_ScreenCleanerHandlers[2];
 extern BattleEventHandlerTableEntry MB_TeraShellHandlers[2];
 extern BattleEventHandlerTableEntry MB_SpicySprayHandlers[1];
-extern BattleEventHandlerTableEntry MB_StaminaHandlers[1];
-extern BattleEventHandlerTableEntry MB_ThermalExchangeHandlers[6];
 extern BattleEventHandlerTableEntry MB_SupremeOverlordHandlers[3];
 extern BattleEventHandlerTableEntry MB_ToxicChainHandlers[1];
 extern BattleEventHandlerTableEntry MB_VeilHandlers[7];

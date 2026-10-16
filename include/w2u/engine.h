@@ -23,6 +23,8 @@
  * the IRDO.yml symbol) */
 #if !defined(W2U_DECOMP)
 #define BtlCalc_ClassifyEffectiveness TypeEffectivenessClass
+#define IsFainted BattleMon_IsFainted
+#define IsStatChangeValid BattleMon_IsStatChangeValid
 #endif
 
 #ifdef __cplusplus
@@ -54,6 +56,7 @@ typedef struct BattleEventHandlerEntry {
 
 /* Battle events (W2U's names; the decomp's are numbers so far) */
 enum {
+    EVENT_ACTION_END = 0x02,            /* a Pokémon's action is over (Water Veil cures its status here) */
     EVENT_MOVE_END = 0x04,
     EVENT_CHECK_NO_EFFECT = 0x2D,       /* per target: may the move affect it? (Volt Absorb, Soundproof) */
     EVENT_ACCURACY_STAGE = 0x33,        /* a hit's accuracy / evasion stages: VAR_EVASION_STAGE (6 = neutral) */
@@ -61,8 +64,13 @@ enum {
     EVENT_ATTACKER_POWER = 0x3B,        /* the attacker's attacking stat: VAR_RATIO *= x (Huge Power) */
     EVENT_CHECK_TYPE_EFFECTIVENESS = 0x3E,
     EVENT_DAMAGE_RATIO = 0x47,          /* the final damage of a hit: VAR_RATIO *= x (Filter, Multiscale) */
+    EVENT_AFTER_DAMAGE_REACTION = 0x4B, /* a hit landed on the defender (Rough Skin, Weak Armor, Justified) */
+    EVENT_SWITCH_IN = 0x55,
     EVENT_STAT_CHANGE_CHECK = 0x5B,     /* may VAR_MON_ID's stat change? */
     EVENT_STAT_CHANGE_GUARD = 0x5C,
+    EVENT_ADD_CONDITION_CHECK = 0x65,   /* a status for the defender: VAR_FAIL_FLAG blocks it (Water Veil) */
+    EVENT_ADD_CONDITION_FAILED = 0x67,  /* the blocked status' message */
+    EVENT_AFTER_ABILITY_CHANGE = 0x8A,
 };
 
 /* Event variables (W2U's names) */
@@ -78,7 +86,8 @@ enum {
     VAR_MOVE_POWER_RATIO = 0x31,        /* fixed point, 4096 = x1 */
     VAR_TYPE_EFFECTIVENESS = 0x38,      /* EVENT_DAMAGE_RATIO: the hit's effectiveness (BtlCalc_ClassifyEffectiveness) */
     VAR_RATIO = 0x35,                   /* fixed point, 4096 = x1 */
-    VAR_NO_EFFECT = 0x40,               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
+    VAR_NO_EFFECT = 0x40,
+    VAR_SUBSTITUTE_HIT = 0x46,          /* nonzero: the hit landed on a substitute */               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
 };
 
 /* BtlCalc_ClassifyEffectiveness results */
@@ -131,6 +140,18 @@ typedef struct BattleHandlerStatChangeParam {
     BattleHandlerString string;
 } BattleHandlerStatChangeParam;
 
+/* A move's parameters as the events changed them (ServerEvent_GetMoveParam) */
+typedef struct BtlFlowMoveParam {
+    u16 move;
+    u16 originalMove;
+    u16 userType;                       /* PokeTypePair */
+    u8 type;                            /* the final type (after -ate abilities, Weather Ball...) */
+    u8 unk07;
+    u32 category;
+    u32 targetType;
+    u32 flags;
+} BtlFlowMoveParam;
+
 /* The layouts the vanilla code uses (C99 has no static_assert: a negative array size fails the build) */
 #define W2U_ENGINE_LAYOUT(name, cond) typedef char w2u_engine_layout_##name[(cond) ? 1 : -1]
 W2U_ENGINE_LAYOUT(string_size, sizeof(BattleHandlerString) == 0x28);
@@ -138,6 +159,7 @@ W2U_ENGINE_LAYOUT(message_string, __builtin_offsetof(BattleHandlerMessageParam, 
 W2U_ENGINE_LAYOUT(stat_change_change, __builtin_offsetof(BattleHandlerStatChangeParam, change) == 0x0C);
 W2U_ENGINE_LAYOUT(stat_change_count, __builtin_offsetof(BattleHandlerStatChangeParam, count) == 0x0F);
 W2U_ENGINE_LAYOUT(stat_change_mons, __builtin_offsetof(BattleHandlerStatChangeParam, monIds) == 0x10);
+W2U_ENGINE_LAYOUT(move_param_type, __builtin_offsetof(BtlFlowMoveParam, type) == 0x06);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 
 /* Stat stages (W2U's names: the decomp's are numbers) */
@@ -206,6 +228,10 @@ b32 BattleEventVar_RewriteValue(u16 key, s32 value);
 b32 IsAllyMonID(u8 monId1, u8 monId2);
 BattleMon *GetBattleMon(BtlServerFlow *serverFlow, u8 monId);
 u32 GetBattleMonStat(const BattleMon *mon, u32 stat);
+b32 IsFainted(const BattleMon *mon);
+/* The stat can still change by stageDelta (not at +6 / -6 already) */
+b32 IsStatChangeValid(BattleMon *mon, u32 statId, s32 stageDelta);
+void ServerEvent_GetMoveParam(BtlServerFlow *flow, u16 move, BattleMon *moveUser, BtlFlowMoveParam *moveParamsOut);
 
 /* btl_handler_work.c: the handler-effect queue */
 void *BattleHandler_PushWork(BtlServerFlow *flow, u32 command, u32 monId);
@@ -231,6 +257,10 @@ void CommonTypeNoEffectRankUp(BtlServerFlow *flow, u8 monId, u32 stat, u32 amoun
 void HandlerScrappy(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 void HandlerKeenEyeCheck(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 void HandlerKeenEyeGuard(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerWaterVeil(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerWaterVeilCureStatus(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerWaterVeilActionEnd(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerAddStatusFailedCommon(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 
 W2U_C_END
 

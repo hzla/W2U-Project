@@ -3058,35 +3058,7 @@ BattleEventHandlerTableEntry WaterBubbleHandlers[] = {
 };
 
 
-extern "C" void HandlerStamina(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)work;
-    if (pokemonSlot == (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON) &&
-        !BattleEventVar_GetValue(VAR_SUBSTITUTE_FLAG)) {
-        PushAbilityStatStageChange(serverFlow, pokemonSlot, STATSTAGE_DEFENSE, 1);
-    }
-}
-
-BattleEventHandlerTableEntry StaminaHandlers[] = {
-    {EVENT_MOVE_DAMAGE_REACTION_1, HandlerStamina},
-};
-
-
-extern "C" void HandlerWaterCompaction(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)work;
-    if (pokemonSlot == (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON) &&
-        !BattleEventVar_GetValue(VAR_SUBSTITUTE_FLAG) &&
-        BattleEventVar_GetValue(VAR_MOVE_TYPE) == TYPE_WATER) {
-        PushAbilityStatStageChange(serverFlow, pokemonSlot, STATSTAGE_DEFENSE, 2);
-    }
-}
-
-BattleEventHandlerTableEntry WaterCompactionHandlers[] = {
-    {EVENT_MOVE_DAMAGE_REACTION_1, HandlerWaterCompaction},
-};
+// Stamina, Water Compaction: src/mechanics/abilities/stamina.c (with Steam Engine and Thermal Exchange).
 
 
 extern "C" void HandlerMerciless(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)

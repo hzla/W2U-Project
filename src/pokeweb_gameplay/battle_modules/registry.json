@@ -99,6 +99,9 @@
       "id": 6,
       "name": "abilities/reactive",
       "source": "abilities",
+      "extra_sources": [
+        "../mechanics/abilities/stamina.c"
+      ],
       "entries": [
         ["ability", "ABIL_COMPETITIVE", "CompetitiveHandlers"],
         ["ability", "ABIL_GOOEY", "GooeyHandlers"],
@@ -713,7 +716,7 @@
         "megab2w2/abilities/HitReactions.cpp",
         "megab2w2/abilities/LingeringAroma.cpp",
         "megab2w2/abilities/SpicySpray.cpp",
-        "megab2w2/abilities/Stamina.cpp"
+        "../mechanics/abilities/stamina.c"
       ],
       "entries": [
         ["ability", "ABIL_ANGER_SHELL", "MB_BerserkHandlers"],
@@ -723,8 +726,8 @@
         ["ability", "ABIL_WANDERING_SPIRIT", "MB_LingeringAromaHandlers"],
         ["ability", "ABIL_LINGERING_AROMA", "MB_LingeringAromaHandlers"],
         ["ability", "ABIL_SPICY_SPRAY", "MB_SpicySprayHandlers"],
-        ["ability", "ABIL_STEAM_ENGINE", "MB_StaminaHandlers"],
-        ["ability", "ABIL_THERMAL_EXCHANGE", "MB_ThermalExchangeHandlers"]
+        ["ability", "ABIL_STEAM_ENGINE", "SteamEngineHandlers"],
+        ["ability", "ABIL_THERMAL_EXCHANGE", "ThermalExchangeHandlers"]
       ]
     },
     {

@@ -699,10 +699,10 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SPICY_SPRAY), (u16)W2U_ARRAY_COUNT(MB_SpicySprayHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SpicySprayHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_STEAM_ENGINE), (u16)W2U_ARRAY_COUNT(MB_StaminaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_StaminaHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_STEAM_ENGINE), (u16)W2U_ARRAY_COUNT(SteamEngineHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SteamEngineHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_THERMAL_EXCHANGE), (u16)W2U_ARRAY_COUNT(MB_ThermalExchangeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ThermalExchangeHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_THERMAL_EXCHANGE), (u16)W2U_ARRAY_COUNT(ThermalExchangeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ThermalExchangeHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
@@ -748,12 +748,12 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_STEAM_ENGINE) >= 0 && (ABIL_STEAM_ENGINE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_StaminaHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_StaminaHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(SteamEngineHandlers)) > 0 && (W2U_ARRAY_COUNT(SteamEngineHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_THERMAL_EXCHANGE) >= 0 && (ABIL_THERMAL_EXCHANGE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ThermalExchangeHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ThermalExchangeHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ThermalExchangeHandlers)) > 0 && (W2U_ARRAY_COUNT(ThermalExchangeHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #elif W2U_BATTLE_MODULE_ID == 26
@@ -1823,10 +1823,10 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_reactiveEntries[]
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SPICY_SPRAY), (u16)W2U_ARRAY_COUNT(MB_SpicySprayHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SpicySprayHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_STEAM_ENGINE), (u16)W2U_ARRAY_COUNT(MB_StaminaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_StaminaHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_STEAM_ENGINE), (u16)W2U_ARRAY_COUNT(SteamEngineHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SteamEngineHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_THERMAL_EXCHANGE), (u16)W2U_ARRAY_COUNT(MB_ThermalExchangeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ThermalExchangeHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_THERMAL_EXCHANGE), (u16)W2U_ARRAY_COUNT(ThermalExchangeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ThermalExchangeHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_reactiveApi = {
@@ -1872,12 +1872,12 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_STEAM_ENGINE) >= 0 && (ABIL_STEAM_ENGINE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_StaminaHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_StaminaHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(SteamEngineHandlers)) > 0 && (W2U_ARRAY_COUNT(SteamEngineHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_THERMAL_EXCHANGE) >= 0 && (ABIL_THERMAL_EXCHANGE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ThermalExchangeHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ThermalExchangeHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ThermalExchangeHandlers)) > 0 && (W2U_ARRAY_COUNT(ThermalExchangeHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_REACTIVE()
