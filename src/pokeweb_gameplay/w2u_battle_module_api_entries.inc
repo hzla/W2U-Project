@@ -948,13 +948,13 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MEGA_SOL), (u16)W2U_ARRAY_COUNT(MegaSolHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MegaSolHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_RIPEN), (u16)W2U_ARRAY_COUNT(MB_RipenHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RipenHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_RIPEN), (u16)W2U_ARRAY_COUNT(RipenHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, RipenHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_OPPORTUNIST), (u16)W2U_ARRAY_COUNT(MB_OpportunistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_OpportunistHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_OPPORTUNIST), (u16)W2U_ARRAY_COUNT(OpportunistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, OpportunistHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_CUD_CHEW), (u16)W2U_ARRAY_COUNT(MB_CudChewHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CudChewHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_CUD_CHEW), (u16)W2U_ARRAY_COUNT(CudChewHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CudChewHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
@@ -1010,17 +1010,17 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_RIPEN) >= 0 && (ABIL_RIPEN) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_RipenHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_RipenHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(RipenHandlers)) > 0 && (W2U_ARRAY_COUNT(RipenHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_OPPORTUNIST) >= 0 && (ABIL_OPPORTUNIST) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_OpportunistHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_OpportunistHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(OpportunistHandlers)) > 0 && (W2U_ARRAY_COUNT(OpportunistHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_CUD_CHEW) >= 0 && (ABIL_CUD_CHEW) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_CudChewHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_CudChewHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(CudChewHandlers)) > 0 && (W2U_ARRAY_COUNT(CudChewHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #elif W2U_BATTLE_MODULE_ID == 29
@@ -2087,13 +2087,13 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_hookedEntries[] =
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_MEGA_SOL), (u16)W2U_ARRAY_COUNT(MegaSolHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MegaSolHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_RIPEN), (u16)W2U_ARRAY_COUNT(MB_RipenHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_RipenHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_RIPEN), (u16)W2U_ARRAY_COUNT(RipenHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, RipenHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_OPPORTUNIST), (u16)W2U_ARRAY_COUNT(MB_OpportunistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_OpportunistHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_OPPORTUNIST), (u16)W2U_ARRAY_COUNT(OpportunistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, OpportunistHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_CUD_CHEW), (u16)W2U_ARRAY_COUNT(MB_CudChewHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CudChewHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_CUD_CHEW), (u16)W2U_ARRAY_COUNT(CudChewHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CudChewHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_hookedApi = {
@@ -2149,17 +2149,17 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_RIPEN) >= 0 && (ABIL_RIPEN) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_RipenHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_RipenHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(RipenHandlers)) > 0 && (W2U_ARRAY_COUNT(RipenHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_OPPORTUNIST) >= 0 && (ABIL_OPPORTUNIST) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_OpportunistHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_OpportunistHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(OpportunistHandlers)) > 0 && (W2U_ARRAY_COUNT(OpportunistHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_CUD_CHEW) >= 0 && (ABIL_CUD_CHEW) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_CudChewHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_CudChewHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(CudChewHandlers)) > 0 && (W2U_ARRAY_COUNT(CudChewHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_HOOKED()

@@ -143,7 +143,7 @@ w2u_battle_module_definitions = [
   {
     'id': 28,
     'slug': 'abilities_mb_hooked',
-    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/gorilla_tactics.c', '../../mechanics/abilities/propeller_tail.c', '../../mechanics/abilities/unseen_fist.c', '../../mechanics/abilities/quick_draw.c', '../../mechanics/abilities/move_abilities.c', '../../mechanics/abilities/poison_puppeteer.c', '../megab2w2/abilities/EffectAbilities.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/gorilla_tactics.c', '../../mechanics/abilities/propeller_tail.c', '../../mechanics/abilities/unseen_fist.c', '../../mechanics/abilities/quick_draw.c', '../../mechanics/abilities/move_abilities.c', '../../mechanics/abilities/poison_puppeteer.c', '../../mechanics/abilities/effect_abilities.c'),
   },
   {
     'id': 29,
