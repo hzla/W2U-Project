@@ -167,6 +167,9 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/fluffy.c',
   'mechanics/abilities/power_spot.c',
   'mechanics/abilities/punk_rock.c',
+  'mechanics/abilities/absorb.c',
+  'mechanics/abilities/minds_eye.c',
+  'mechanics/abilities/propeller_tail.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',

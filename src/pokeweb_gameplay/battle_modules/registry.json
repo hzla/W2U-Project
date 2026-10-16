@@ -635,7 +635,7 @@
       "extra_sources": [
         "megab2w2/abilities/Boost.cpp",
         "megab2w2/abilities/Charge.cpp",
-        "megab2w2/abilities/MindsEye.cpp",
+        "../mechanics/abilities/minds_eye.c",
         "megab2w2/abilities/Neuroforce.cpp",
         "../mechanics/abilities/power_spot.c",
         "megab2w2/abilities/Protean.cpp",
@@ -652,7 +652,7 @@
         ["ability", "ABIL_FIRE_MANE", "MB_BoostHandlers"],
         ["ability", "ABIL_WIND_POWER", "MB_ChargeHandlers"],
         ["ability", "ABIL_ELECTROMORPHOSIS", "MB_ChargeHandlers"],
-        ["ability", "ABIL_MINDS_EYE", "MB_MindsEyeHandlers"],
+        ["ability", "ABIL_MINDS_EYE", "MindsEyeHandlers"],
         ["ability", "ABIL_NEUROFORCE", "MB_NeuroforceHandlers"],
         ["ability", "ABIL_POWER_SPOT", "PowerSpotHandlers"],
         ["ability", "ABIL_STEELY_SPIRIT", "PowerSpotHandlers"],
@@ -673,7 +673,7 @@
       "white2_only": true,
       "extra_sources": [
         "megab2w2/abilities/BeastBoost.cpp",
-        "megab2w2/abilities/EarthEater.cpp",
+        "../mechanics/abilities/absorb.c",
         "../mechanics/abilities/fluffy.c",
         "megab2w2/abilities/GoodAsGold.cpp",
         "megab2w2/abilities/GuardDog.cpp",
@@ -682,13 +682,12 @@
         "megab2w2/abilities/QueenlyMajesty.cpp",
         "megab2w2/abilities/Shields.cpp",
         "megab2w2/abilities/Veil.cpp",
-        "megab2w2/abilities/WellBakedBody.cpp",
         "megab2w2/abilities/WindRider.cpp",
         "megab2w2/abilities/Damp.cpp"
       ],
       "entries": [
         ["ability", "ABIL_EELEVATE", "MB_EelevateHandlers"],
-        ["ability", "ABIL_EARTH_EATER", "MB_EarthEaterHandlers"],
+        ["ability", "ABIL_EARTH_EATER", "EarthEaterHandlers"],
         ["ability", "ABIL_ICE_SCALES", "FluffyHandlers"],
         ["ability", "ABIL_AURA_GUARD", "FluffyHandlers"],
         ["ability", "ABIL_GOOD_AS_GOLD", "MB_GoodAsGoldHandlers"],
@@ -700,7 +699,7 @@
         ["ability", "ABIL_ARMOR_TAIL", "MB_QueenlyMajestyHandlers"],
         ["ability", "ABIL_TERA_SHELL", "MB_TeraShellHandlers"],
         ["ability", "ABIL_PASTEL_VEIL", "MB_VeilHandlers"],
-        ["ability", "ABIL_WELL_BAKED_BODY", "MB_WellBakedBodyHandlers"],
+        ["ability", "ABIL_WELL_BAKED_BODY", "WellBakedBodyHandlers"],
         ["ability", "ABIL_WIND_RIDER", "MB_WindRiderHandlers"]
       ]
     },
@@ -782,7 +781,7 @@
       "white2_only": true,
       "extra_sources": [
         "megab2w2/abilities/GorillaTactics.cpp",
-        "megab2w2/abilities/PropellerTail.cpp",
+        "../mechanics/abilities/propeller_tail.c",
         "megab2w2/abilities/UnseenFist.cpp",
         "megab2w2/abilities/QuickDraw.cpp",
         "megab2w2/abilities/MoveAbilities.cpp",
@@ -790,8 +789,8 @@
       ],
       "entries": [
         ["ability", "ABIL_GORILLA_TACTICS", "MB_GorillaTacticsHandlers"],
-        ["ability", "ABIL_PROPELLER_TAIL", "MB_PropellerTailHandlers"],
-        ["ability", "ABIL_STALWART", "MB_PropellerTailHandlers"],
+        ["ability", "ABIL_PROPELLER_TAIL", "PropellerTailHandlers"],
+        ["ability", "ABIL_STALWART", "PropellerTailHandlers"],
         ["ability", "ABIL_UNSEEN_FIST", "MB_UnseenFistHandlers"],
         ["ability", "ABIL_PIERCING_DRILL", "MB_UnseenFistHandlers"],
         ["ability", "ABIL_QUICK_DRAW", "MB_QuickDrawHandlers"],

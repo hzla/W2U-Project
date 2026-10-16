@@ -74,6 +74,8 @@ The build checks the rest:
 - A mechanic includes `w2u/battle_api.h` and data headers only.
 - No `switch` over more than a few cases. Jump tables need a libgcc helper the ESDB lacks; use `if` chains or tables.
 - No runtime division by a variable (`__aeabi_uidiv` is missing too).
+- Give even static functions and tables names unique to the mechanic (`FluffyRowMatches`, not `RowMatches`):
+  rpmtool resolves symbols by name across a module's files, static or not.
 - Mechanic code never touches the PMC heap, module groups or DLL loading.
 
 ## Converted so far
@@ -81,5 +83,14 @@ The build checks the rest:
 | Mechanic | File | Replaces | Checked with |
 |---|---|---|---|
 | Fluffy, Ice Scales, Aura Guard | `src/mechanics/abilities/fluffy.c` | `w2u_abilities.cpp` `HandlerFluffy`, `megab2w2/abilities/Fluffy.cpp` | `FLUFFY_CONTACT`, `FLUFFY_FIRE`, `FLUFFY_FIRE_CONTACT` (`wave_shared.yml`), `ICE_SCALES`, `AURA_GUARD` (`wave_a.yml`): the same damage as before |
+| Power Spot, Steely Spirit, Battery | `abilities/power_spot.c` | `megab2w2/abilities/PowerSpot.cpp`, `w2u_abilities.cpp` `HandlerBattery` | `POWER_SPOT`, `STEELY_SPIRIT` (`wave_a.yml`), `BATTERY` (`wave_shared.yml`) |
+| Punk Rock | `abilities/punk_rock.c` | `megab2w2/abilities/PunkRock.cpp` | `PUNK_ROCK`, `PUNK_ROCK_DEF` (`wave_a.yml`) |
+| Earth Eater, Well-Baked Body | `abilities/absorb.c` | `megab2w2/abilities/EarthEater.cpp`, `WellBakedBody.cpp` | `EARTH_EATER`, `WELL_BAKED_BODY` (`wave_a.yml`) |
+| Mind's Eye | `abilities/minds_eye.c` | `megab2w2/abilities/MindsEye.cpp` | `MINDS_EYE` (`wave_a.yml`) |
+| Propeller Tail, Stalwart | `abilities/propeller_tail.c` | `megab2w2/abilities/PropellerTail.cpp` | `PROPELLER_TAIL`, `STALWART_FOLLOW_ME` and their controls (`wave_c.yml`) |
 
-Black 2 builds from its baseline copy (`b2_baseline/w2u_abilities.cpp.inc`), whose Fluffy stays as it was.
+Battery keeps W2U's effect on the attacking stat (`EVENT_ATTACKER_POWER`). Showdown (and the MegaB2W2 row that was
+never registered) boosts the move's base power, which rounds differently; switching would be a behaviour change.
+
+Black 2 builds from its baseline copy (`b2_baseline/w2u_abilities.cpp.inc`), whose Fluffy and Battery stay as they
+were; the other mechanics here are White 2 only.

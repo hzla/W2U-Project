@@ -409,7 +409,7 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ELECTROMORPHOSIS), (u16)W2U_ARRAY_COUNT(MB_ChargeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ChargeHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MINDS_EYE), (u16)W2U_ARRAY_COUNT(MB_MindsEyeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MindsEyeHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MINDS_EYE), (u16)W2U_ARRAY_COUNT(MindsEyeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MindsEyeHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_NEUROFORCE), (u16)W2U_ARRAY_COUNT(MB_NeuroforceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeuroforceHandlers},
@@ -488,7 +488,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_MINDS_EYE) >= 0 && (ABIL_MINDS_EYE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_MindsEyeHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_MindsEyeHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(MindsEyeHandlers)) > 0 && (W2U_ARRAY_COUNT(MindsEyeHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -552,7 +552,7 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_EELEVATE), (u16)W2U_ARRAY_COUNT(MB_EelevateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EelevateHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_EARTH_EATER), (u16)W2U_ARRAY_COUNT(MB_EarthEaterHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EarthEaterHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_EARTH_EATER), (u16)W2U_ARRAY_COUNT(EarthEaterHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, EarthEaterHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_SCALES), (u16)W2U_ARRAY_COUNT(FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FluffyHandlers},
@@ -588,7 +588,7 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PASTEL_VEIL), (u16)W2U_ARRAY_COUNT(MB_VeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_VeilHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_WELL_BAKED_BODY), (u16)W2U_ARRAY_COUNT(MB_WellBakedBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_WellBakedBodyHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_WELL_BAKED_BODY), (u16)W2U_ARRAY_COUNT(WellBakedBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WellBakedBodyHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WIND_RIDER), (u16)W2U_ARRAY_COUNT(MB_WindRiderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_WindRiderHandlers},
@@ -607,7 +607,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_EARTH_EATER) >= 0 && (ABIL_EARTH_EATER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_EarthEaterHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_EarthEaterHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(EarthEaterHandlers)) > 0 && (W2U_ARRAY_COUNT(EarthEaterHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -667,7 +667,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_WELL_BAKED_BODY) >= 0 && (ABIL_WELL_BAKED_BODY) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_WellBakedBodyHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_WellBakedBodyHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(WellBakedBodyHandlers)) > 0 && (W2U_ARRAY_COUNT(WellBakedBodyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -924,10 +924,10 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GORILLA_TACTICS), (u16)W2U_ARRAY_COUNT(MB_GorillaTacticsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GorillaTacticsHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROPELLER_TAIL), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROPELLER_TAIL), (u16)W2U_ARRAY_COUNT(PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PropellerTailHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_STALWART), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_STALWART), (u16)W2U_ARRAY_COUNT(PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PropellerTailHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_UNSEEN_FIST), (u16)W2U_ARRAY_COUNT(MB_UnseenFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_UnseenFistHandlers},
@@ -970,12 +970,12 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_PROPELLER_TAIL) >= 0 && (ABIL_PROPELLER_TAIL) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PropellerTailHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PropellerTailHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PropellerTailHandlers)) > 0 && (W2U_ARRAY_COUNT(PropellerTailHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_STALWART) >= 0 && (ABIL_STALWART) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PropellerTailHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PropellerTailHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PropellerTailHandlers)) > 0 && (W2U_ARRAY_COUNT(PropellerTailHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -1523,7 +1523,7 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_powerEntries[] = 
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ELECTROMORPHOSIS), (u16)W2U_ARRAY_COUNT(MB_ChargeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ChargeHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MINDS_EYE), (u16)W2U_ARRAY_COUNT(MB_MindsEyeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MindsEyeHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MINDS_EYE), (u16)W2U_ARRAY_COUNT(MindsEyeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MindsEyeHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_NEUROFORCE), (u16)W2U_ARRAY_COUNT(MB_NeuroforceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_NeuroforceHandlers},
@@ -1602,7 +1602,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_MINDS_EYE) >= 0 && (ABIL_MINDS_EYE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_MindsEyeHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_MindsEyeHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(MindsEyeHandlers)) > 0 && (W2U_ARRAY_COUNT(MindsEyeHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -1671,7 +1671,7 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_defenseEntries[] 
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_EELEVATE), (u16)W2U_ARRAY_COUNT(MB_EelevateHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EelevateHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_EARTH_EATER), (u16)W2U_ARRAY_COUNT(MB_EarthEaterHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EarthEaterHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_EARTH_EATER), (u16)W2U_ARRAY_COUNT(EarthEaterHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, EarthEaterHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_SCALES), (u16)W2U_ARRAY_COUNT(FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FluffyHandlers},
@@ -1707,7 +1707,7 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_defenseEntries[] 
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_PASTEL_VEIL), (u16)W2U_ARRAY_COUNT(MB_VeilHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_VeilHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_WELL_BAKED_BODY), (u16)W2U_ARRAY_COUNT(MB_WellBakedBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_WellBakedBodyHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_WELL_BAKED_BODY), (u16)W2U_ARRAY_COUNT(WellBakedBodyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, WellBakedBodyHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_WIND_RIDER), (u16)W2U_ARRAY_COUNT(MB_WindRiderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_WindRiderHandlers},
@@ -1726,7 +1726,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_EARTH_EATER) >= 0 && (ABIL_EARTH_EATER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_EarthEaterHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_EarthEaterHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(EarthEaterHandlers)) > 0 && (W2U_ARRAY_COUNT(EarthEaterHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -1786,7 +1786,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_WELL_BAKED_BODY) >= 0 && (ABIL_WELL_BAKED_BODY) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_WellBakedBodyHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_WellBakedBodyHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(WellBakedBodyHandlers)) > 0 && (W2U_ARRAY_COUNT(WellBakedBodyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -2063,10 +2063,10 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_hookedEntries[] =
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GORILLA_TACTICS), (u16)W2U_ARRAY_COUNT(MB_GorillaTacticsHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GorillaTacticsHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROPELLER_TAIL), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROPELLER_TAIL), (u16)W2U_ARRAY_COUNT(PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PropellerTailHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_STALWART), (u16)W2U_ARRAY_COUNT(MB_PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PropellerTailHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_STALWART), (u16)W2U_ARRAY_COUNT(PropellerTailHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PropellerTailHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_UNSEEN_FIST), (u16)W2U_ARRAY_COUNT(MB_UnseenFistHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_UnseenFistHandlers},
@@ -2109,12 +2109,12 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_PROPELLER_TAIL) >= 0 && (ABIL_PROPELLER_TAIL) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PropellerTailHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PropellerTailHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PropellerTailHandlers)) > 0 && (W2U_ARRAY_COUNT(PropellerTailHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_STALWART) >= 0 && (ABIL_STALWART) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PropellerTailHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PropellerTailHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PropellerTailHandlers)) > 0 && (W2U_ARRAY_COUNT(PropellerTailHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
