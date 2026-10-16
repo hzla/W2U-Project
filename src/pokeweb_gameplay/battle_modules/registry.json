@@ -714,7 +714,7 @@
       "extra_sources": [
         "../mechanics/abilities/anger_shell.c",
         "megab2w2/abilities/HitReactions.cpp",
-        "megab2w2/abilities/LingeringAroma.cpp",
+        "../mechanics/abilities/lingering_aroma.c",
         "../mechanics/abilities/status_on_hit.c",
         "../mechanics/abilities/stamina.c"
       ],
@@ -723,8 +723,8 @@
         ["ability", "ABIL_COTTON_DOWN", "MB_CottonDownHandlers"],
         ["ability", "ABIL_PERISH_BODY", "MB_PerishBodyHandlers"],
         ["ability", "ABIL_TOXIC_DEBRIS", "MB_ToxicDebrisHandlers"],
-        ["ability", "ABIL_WANDERING_SPIRIT", "MB_LingeringAromaHandlers"],
-        ["ability", "ABIL_LINGERING_AROMA", "MB_LingeringAromaHandlers"],
+        ["ability", "ABIL_WANDERING_SPIRIT", "LingeringAromaHandlers"],
+        ["ability", "ABIL_LINGERING_AROMA", "LingeringAromaHandlers"],
         ["ability", "ABIL_SPICY_SPRAY", "SpicySprayHandlers"],
         ["ability", "ABIL_STEAM_ENGINE", "SteamEngineHandlers"],
         ["ability", "ABIL_THERMAL_EXCHANGE", "ThermalExchangeHandlers"]
@@ -785,7 +785,7 @@
       "extra_sources": [
         "../mechanics/abilities/gorilla_tactics.c",
         "../mechanics/abilities/propeller_tail.c",
-        "megab2w2/abilities/UnseenFist.cpp",
+        "../mechanics/abilities/unseen_fist.c",
         "megab2w2/abilities/QuickDraw.cpp",
         "megab2w2/abilities/MoveAbilities.cpp",
         "megab2w2/abilities/EffectAbilities.cpp"
@@ -794,8 +794,8 @@
         ["ability", "ABIL_GORILLA_TACTICS", "GorillaTacticsHandlers"],
         ["ability", "ABIL_PROPELLER_TAIL", "PropellerTailHandlers"],
         ["ability", "ABIL_STALWART", "PropellerTailHandlers"],
-        ["ability", "ABIL_UNSEEN_FIST", "MB_UnseenFistHandlers"],
-        ["ability", "ABIL_PIERCING_DRILL", "MB_UnseenFistHandlers"],
+        ["ability", "ABIL_UNSEEN_FIST", "UnseenFistHandlers"],
+        ["ability", "ABIL_PIERCING_DRILL", "UnseenFistHandlers"],
         ["ability", "ABIL_QUICK_DRAW", "MB_QuickDrawHandlers"],
         ["ability", "ABIL_MYCELIUM_MIGHT", "MB_MyceliumMightHandlers"],
         ["ability", "ABIL_POISON_PUPPETEER", "MB_PoisonPuppeteerHandlers"],

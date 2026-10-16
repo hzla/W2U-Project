@@ -124,6 +124,8 @@ lives as long as the module, not the battle. Battle-scoped state is a later impr
 | Anger Shell | `abilities/anger_shell.c` | `megab2w2/abilities/Berserk.cpp` (only Anger Shell used it) | `ANGER_SHELL` (`wave_a.yml`); `BERSERK`, `BERSERK_SHEER_FORCE*` unchanged |
 | Sharpness, Transistor, Dragon's Maw, Rocky Payload, Fire Mane | `abilities/boost.c` | `megab2w2/abilities/Boost.cpp` (its Tough Claws / Strong Jaw / Mega Launcher / Steelworker rows were never reached) | `SHARPNESS`, `TRANSISTOR`, `DRAGONS_MAW`, `ROCKY_PAYLOAD`, `FIRE_MANE` (`wave_a.yml`); `STEELWORKER` unchanged |
 | Electromorphosis, Wind Power | `abilities/charge.c` | `megab2w2/abilities/Charge.cpp` | `ELECTROMORPHOSIS`, `WIND_POWER` (`wave_a.yml`) |
+| Unseen Fist, Piercing Drill | `abilities/unseen_fist.c` | `megab2w2/abilities/UnseenFist.cpp` | `UNSEEN_FIST`, `UNSEEN_FIST_NONCONTACT`, `PIERCING_DRILL` (`wave_c.yml`) |
+| Lingering Aroma, Wandering Spirit | `abilities/lingering_aroma.c` | `megab2w2/abilities/LingeringAroma.cpp` | `LINGERING_AROMA`, `WANDERING_SPIRIT` (`wave_a.yml`) |
 
 Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
 W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting
