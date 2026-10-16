@@ -9,7 +9,7 @@ static void HandlerPunkRockMovePower(BattleEventItem *item, BtlServerFlow *flow,
     (void)item;
     (void)flow;
     (void)work;
-    if (W2U_Attacker() == monId && W2U_MoveHasFlag(W2U_Move(), MOVE_FLAG_SOUND)) {
+    if (W2U_Attacker() == monId && W2U_MoveHasFlag(W2U_Move(), MOVE_FLAG_INDEX_SOUND)) {
         W2U_MulMovePower(5325);         /* x1.3 */
     }
 }
@@ -19,7 +19,7 @@ static void HandlerPunkRockDamageRatio(BattleEventItem *item, BtlServerFlow *flo
     (void)item;
     (void)flow;
     (void)work;
-    if (W2U_Defender() == monId && W2U_Attacker() != monId && W2U_MoveHasFlag(W2U_Move(), MOVE_FLAG_SOUND)) {
+    if (W2U_Defender() == monId && W2U_Attacker() != monId && W2U_MoveHasFlag(W2U_Move(), MOVE_FLAG_INDEX_SOUND)) {
         W2U_MulRatio(2048);             /* x0.5 */
     }
 }

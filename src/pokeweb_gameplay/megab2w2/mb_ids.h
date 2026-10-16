@@ -1,7 +1,11 @@
 // Ported from MegaB2W2 (generated ability / type / message IDs); see docs/megab2w2-integration.md.
 
 #pragma once
+#if defined(W2U_DECOMP)
+#include "types.h"
+#else
 #include "swantypes.h"
+#endif
 
 #define ABIL_AROMA_VEIL 165
 #define ABIL_FLOWER_VEIL 166
@@ -174,7 +178,7 @@
 
 // MegaB2W2 extended move flags as W2U move-record flag indices (getMoveFlag); the C mechanics (src/mechanics) read
 // them too, and the IDs above. The rest is C++ only.
-enum { MOVE_FLAG_PULSE = 0x16, MOVE_FLAG_BITE = 0x15, MOVE_FLAG_BALLISTIC = 0x14, MOVE_FLAG_SLICING = 0x11, MOVE_FLAG_WIND = 0x10, MOVE_FLAG_DANCE = 0x13, MOVE_FLAG_POWDER = 0xE, MOVE_FLAG_HEAL = 0xC, MOVE_FLAG_NO_PARENTAL_BOND = 0xFF };
+enum { MOVE_FLAG_INDEX_PULSE = 0x16, MOVE_FLAG_INDEX_BITE = 0x15, MOVE_FLAG_INDEX_BALLISTIC = 0x14, MOVE_FLAG_INDEX_SLICING = 0x11, MOVE_FLAG_INDEX_WIND = 0x10, MOVE_FLAG_INDEX_DANCE = 0x13, MOVE_FLAG_INDEX_POWDER = 0xE, MOVE_FLAG_INDEX_HEAL = 0xC, MOVE_FLAG_INDEX_NO_PARENTAL_BOND = 0xFF };
 #ifdef __cplusplus
 typedef u32 MoveFlagExt;
 extern "C" b32 getMoveFlag(u16 move, u32 flag);

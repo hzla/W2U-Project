@@ -73,7 +73,7 @@ static inline b32 W2U_IsAlly(u8 a, u8 b) { return IsAllyMonID(a, b); }
 
 /* Moves */
 static inline u32 W2U_MoveCategory(u16 move) { return (u32)PML_MoveGetParam(move, MOVE_PARAM_CATEGORY); }
-/* The move record's flag (MOVE_FLAG_SOUND ...); contact as used now: W2U_MakesContact */
+/* The move record's flag (MOVE_FLAG_INDEX_SOUND ...); contact as used now: W2U_MakesContact */
 static inline b32 W2U_MoveHasFlag(u16 move, u32 flag) { return getMoveFlag(move, flag); }
 static inline b32 W2U_IsStatusMove(u16 move) { return W2U_MoveCategory(move) == MOVE_CATEGORY_STATUS; }
 /* The move picks Pokémon as targets (one, several, all adjacent foes), not the user, the field, a side or every
@@ -82,7 +82,7 @@ static inline b32 W2U_TargetsPokemon(u16 move)
 {
     u32 target = (u32)PML_MoveGetParam(move, MOVE_PARAM_TARGET);
 
-    return target <= MOVE_TARGET_ENEMY_ALL || target == MOVE_TARGET_ENEMY_RANDOM;
+    return target <= MOVE_TARGET_ADJACENT_FOES || target == MOVE_TARGET_RANDOM_FOE;
 }
 /* The final type of a move as attacker uses it (after -ate abilities, Weather Ball...) */
 static inline u32 W2U_FinalMoveType(BtlServerFlow *flow, u16 move, u8 attacker)

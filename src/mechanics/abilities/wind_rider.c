@@ -13,7 +13,7 @@ static void HandlerWindRiderNoEffect(BattleEventItem *item, BtlServerFlow *flow,
     if (W2U_Defender() != monId || W2U_Attacker() == monId) {
         return;
     }
-    if (!W2U_MoveHasFlag(W2U_Move(), MOVE_FLAG_WIND) || !BattleEventVar_RewriteValue(VAR_NO_EFFECT, 1)) {
+    if (!W2U_MoveHasFlag(W2U_Move(), MOVE_FLAG_INDEX_WIND) || !BattleEventVar_RewriteValue(VAR_NO_EFFECT, 1)) {
         return;
     }
     CommonTypeNoEffectRankUp(flow, monId, STATSTAGE_ATTACK, 1);

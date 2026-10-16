@@ -18,7 +18,11 @@
 #error "w2u/engine.h and w2u_abilities.h declare the same engine twice: a mechanic file includes w2u/battle_api.h only"
 #endif
 
+#if defined(W2U_DECOMP)
+#include "w2u/engine_decomp.h"              /* the decomp's headers, and its names for W2U's (decomp builds) */
+#else
 #include "swantypes.h"
+#endif
 
 /* Injection builds: names the cleanup gives that IRDO.yml spells differently (the declarations below then declare
  * the IRDO.yml symbol) */
@@ -58,6 +62,7 @@
 #define W2U_C_END
 #endif
 
+#if !defined(W2U_DECOMP)   /* decomp builds: w2u/engine_decomp.h (the decomp's own declarations) */
 /* Types (decomp: include/struct_decls.h, include/battle/btl_event.h) */
 typedef struct BattleEventItem BattleEventItem;
 typedef struct BattleMon BattleMon;
@@ -79,6 +84,7 @@ typedef struct BattleEventHandlerEntry {
     BattleEventHandlerFn handler;
 } BattleEventHandlerEntry;
 
+#endif /* !W2U_DECOMP */
 /* Battle events (W2U's names; the decomp's are numbers so far) */
 enum {
     EVENT_ACTION_END = 0x02,            /* a Pokémon's action is over (Water Veil cures its status here) */
@@ -220,6 +226,7 @@ enum {
     HANDLER_STR_SET = 2,                /* a set of three messages (player's, wild, foe's Pokémon), bank 18 */
 };
 
+#if !defined(W2U_DECOMP)   /* decomp builds: w2u/engine_decomp.h (the decomp's own declarations) */
 /* The handler-effect work the commands take (decomp: include/battle/btl_handler.h) */
 typedef struct BattleHandlerString {
     u16 message;
@@ -249,6 +256,7 @@ typedef struct BattleHandlerStatChangeParam {
     BattleHandlerString string;
 } BattleHandlerStatChangeParam;
 
+#endif /* !W2U_DECOMP */
 /* Battle Pokémon IDs and positions */
 #define BATTLE_MAX_MON_ID 24                /* monIds are 0-23 */
 #define BATTLE_POS_NONE 6                   /* Handler_PokeIDToPokePos: not on the field */
@@ -260,6 +268,7 @@ enum {
     TURN_FLAG_PROTECT = 7,              /* protected this turn (Protect, Detect...) */
 };
 
+#if !defined(W2U_DECOMP)   /* decomp builds: w2u/engine_decomp.h (the decomp's own declarations) */
 /* Conditions: the majors, then the others (CheckCondition, the add and cure condition work) */
 enum {
     CONDITION_PARALYSIS = 1,
@@ -472,6 +481,7 @@ typedef struct ActionOrderEntry {
     u8 unk0F;
 } ActionOrderEntry;
 
+#endif /* !W2U_DECOMP */
 /* Continue flags (BattleHandlerFlagParam, BattleHandlerHideTurnParam; W2U's names) */
 enum {
     CONT_FLAG_SHADOW_FORCE = 0x06,      /* hidden: no move reaches it (Shadow Force's charge turn) */
@@ -484,9 +494,12 @@ enum {
     SERVER_CMD_HIDE_SPRITE = 0x31,      /* (monId, 1) hides the Pokémon's sprite (a charge turn), (monId, 0) shows it */
 };
 
+#if !defined(W2U_DECOMP)
 #define BTL_STYLE_DOUBLE 1                  /* BtlSetup_GetBattleStyle */
+#endif
 #define CONDITION_CANT_ESCAPE 0x16          /* Mean Look's: can't switch out */
 
+#if !defined(W2U_DECOMP)   /* decomp builds: w2u/engine_decomp.h (the decomp's own declarations) */
 /* A client's party in battle (decomp: include/battle/btl_main.h) */
 typedef struct BattleParty {
     BattleMon *mons[6];
@@ -541,6 +554,7 @@ W2U_ENGINE_LAYOUT(action_order_size, sizeof(ActionOrderEntry) == 0x10);
 W2U_ENGINE_LAYOUT(action_order_done, __builtin_offsetof(ActionOrderEntry, done) == 0x0D);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 
+#endif /* !W2U_DECOMP */
 /* Stat stages (W2U's names: the decomp's are numbers) */
 enum {
     STATSTAGE_ATTACK = 1,
@@ -566,11 +580,11 @@ enum {
     BMV_FORM = 0x13,
 };
 
-/* getMoveFlag flags (the move record's flag bits) */
+/* getMoveFlag's flags: bit indices into the move record's flags (the decomp's MOVE_FLAG_* are the bit masks) */
 enum {
-    MOVE_FLAG_CONTACT = 0,
-    MOVE_FLAG_SOUND = 8,
-};                                      /* W2U's own flags (MOVE_FLAG_WIND ...): megab2w2/mb_ids.h */
+    MOVE_FLAG_INDEX_CONTACT = 0,
+    MOVE_FLAG_INDEX_SOUND = 8,
+};                                      /* W2U's own flags (MOVE_FLAG_INDEX_WIND ...): megab2w2/mb_ids.h */
 
 /* Side effects (SideEffect_IsActive, BattleHandlerRemoveSideEffectParam) */
 enum {
@@ -583,6 +597,7 @@ enum {
 };
 #define BATTLE_SIDES 2
 
+#if !defined(W2U_DECOMP)   /* decomp builds: w2u/engine_decomp.h (the decomp's own declarations) */
 /* PML_MoveGetParam parameters and the categories it returns */
 enum {
     MOVE_PARAM_TYPE = 0x00,
@@ -590,31 +605,38 @@ enum {
     MOVE_PARAM_TARGET = 0x1B,
 };
 
-/* Move targets (MOVE_PARAM_TARGET) */
+#endif /* !W2U_DECOMP */
+
+/* Move targets (MOVE_PARAM_TARGET; the decomp's names, include/constants/battle.h) */
+#if !defined(W2U_DECOMP)   /* decomp builds: w2u/engine_decomp.h (the decomp's own declarations) */
 enum {
-    MOVE_TARGET_OTHER_SELECT = 0,
-    MOVE_TARGET_FRIEND_AND_USER = 1,
-    MOVE_TARGET_FRIEND_SELECT = 2,
-    MOVE_TARGET_ENEMY_SELECT = 3,
-    MOVE_TARGET_OTHER_ALL = 4,
-    MOVE_TARGET_ENEMY_ALL = 5,
-    MOVE_TARGET_FRIEND_ALL = 6,
-    MOVE_TARGET_USER = 7,
-    MOVE_TARGET_ALL = 8,
-    MOVE_TARGET_ENEMY_RANDOM = 9,
-    MOVE_TARGET_FIELD = 10,
-    MOVE_TARGET_FIELD_SIDE_ENEMY = 11,
-    MOVE_TARGET_FIELD_SIDE_FRIEND = 12,
+    MOVE_TARGET_SELECTED = 0,           /* one adjacent Pokémon the user picks (Pound) */
+    MOVE_TARGET_USER_OR_ALLY = 1,       /* Acupressure */
+    MOVE_TARGET_ALLY = 2,               /* Helping Hand */
+    MOVE_TARGET_FOE = 3,                /* one foe (Me First) */
+    MOVE_TARGET_ALL_ADJACENT = 4,       /* every adjacent Pokémon but the user (Surf, Earthquake) */
+    MOVE_TARGET_ADJACENT_FOES = 5,      /* every adjacent foe (Growl, Rock Slide) */
+    MOVE_TARGET_USER_PARTY = 6,         /* the user's party (Heal Bell) */
+    MOVE_TARGET_USER = 7,               /* Swords Dance */
+    MOVE_TARGET_ALL = 8,                /* every Pokémon in battle (Perish Song) */
+    MOVE_TARGET_RANDOM_FOE = 9,         /* Thrash, Outrage */
+    MOVE_TARGET_FIELD = 10,             /* the whole field (Rain Dance, Trick Room) */
+    MOVE_TARGET_FOE_SIDE = 11,          /* the foes' side (Spikes) */
+    MOVE_TARGET_USER_SIDE = 12,         /* the user's side (Reflect) */
 };
+#endif /* !W2U_DECOMP */
+#if !defined(W2U_DECOMP)   /* decomp builds: w2u/engine_decomp.h (the decomp's own declarations) */
 enum {
     MOVE_CATEGORY_STATUS = 0,
     MOVE_CATEGORY_PHYSICAL = 1,
     MOVE_CATEGORY_SPECIAL = 2,
 };
+#endif /* !W2U_DECOMP */
 
 /* Data IDs (abilities, types, moves, items, messages) are not the engine's: mechanics take them from the data
  * headers (megab2w2/mb_ids.h for now). */
 
+#if !defined(W2U_DECOMP)   /* decomp builds: w2u/engine_decomp.h (the decomp's own declarations) */
 W2U_C_BEGIN
 
 /* battle_event.c */
@@ -766,6 +788,7 @@ void HandlerUnnerveRotationIn(BattleEventItem *item, BtlServerFlow *flow, u8 mon
 
 W2U_C_END
 
+#endif /* !W2U_DECOMP */
 /* Struct fields the injection build reads by offset (battle_api.h); a decomp build uses the field */
 #if !defined(W2U_DECOMP)
 #define W2U_SERVERFLOW_SIMULATION_DEPTH 0x774   /* BtlServerFlow.simulationDepth: nonzero while the AI simulates */
