@@ -39,8 +39,13 @@ static inline u16 W2U_Move(void) { return (u16)BattleEventVar_GetValue(VAR_MOVE_
 /* The move's type as this hit uses it (after -ate abilities, Weather Ball...) */
 static inline u32 W2U_MoveType(void) { return BattleEventVar_GetValue(VAR_MOVE_TYPE); }
 
+/* Pokémon on the same side: a Pokémon is its own ally (IsAllyMonID compares sides) */
+static inline b32 W2U_IsAlly(u8 a, u8 b) { return IsAllyMonID(a, b); }
+
 /* Moves */
 static inline u32 W2U_MoveCategory(u16 move) { return (u32)PML_MoveGetParam(move, MOVE_PARAM_CATEGORY); }
+/* The move record's flag (MOVE_FLAG_SOUND ...); contact as used now: W2U_MakesContact */
+static inline b32 W2U_MoveHasFlag(u16 move, u32 flag) { return getMoveFlag(move, flag); }
 static inline b32 W2U_IsStatusMove(u16 move) { return W2U_MoveCategory(move) == MOVE_CATEGORY_STATUS; }
 /* The current event's move makes contact, used by its attacker */
 static inline b32 W2U_MakesContact(BtlServerFlow *flow, u16 move)
@@ -57,6 +62,7 @@ static inline u16 W2U_HolderAbility(BtlServerFlow *flow, u8 monId)
 
 /* Ratios (fixed point, W2U_RATIO_ONE = x1) */
 static inline void W2U_MulRatio(s32 ratio) { BattleEventVar_MulValue(VAR_RATIO, ratio); }
+static inline void W2U_MulMovePower(s32 ratio) { BattleEventVar_MulValue(VAR_MOVE_POWER_RATIO, ratio); }
 /* a x b in fixed point, as the game multiplies ratios */
 static inline u32 W2U_RatioMul(u32 a, u32 b) { return a * b >> 12; }
 

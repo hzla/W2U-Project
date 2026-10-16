@@ -65,6 +65,9 @@
       "id": 4,
       "name": "abilities/power",
       "source": "abilities",
+      "extra_sources": [
+        "../mechanics/abilities/power_spot.c"
+      ],
       "entries": [
         ["ability", "ABIL_PARENTAL_BOND", "ParentalBondHandlers"],
         ["ability", "ABIL_STRONG_JAW", "MoveFlagPowerBoostHandlers"],
@@ -634,9 +637,9 @@
         "megab2w2/abilities/Charge.cpp",
         "megab2w2/abilities/MindsEye.cpp",
         "megab2w2/abilities/Neuroforce.cpp",
-        "megab2w2/abilities/PowerSpot.cpp",
+        "../mechanics/abilities/power_spot.c",
         "megab2w2/abilities/Protean.cpp",
-        "megab2w2/abilities/PunkRock.cpp",
+        "../mechanics/abilities/punk_rock.c",
         "megab2w2/abilities/Ruin.cpp",
         "megab2w2/abilities/SupremeOverlord.cpp",
         "megab2w2/abilities/ToxicChain.cpp"
@@ -651,10 +654,10 @@
         ["ability", "ABIL_ELECTROMORPHOSIS", "MB_ChargeHandlers"],
         ["ability", "ABIL_MINDS_EYE", "MB_MindsEyeHandlers"],
         ["ability", "ABIL_NEUROFORCE", "MB_NeuroforceHandlers"],
-        ["ability", "ABIL_POWER_SPOT", "MB_PowerSpotHandlers"],
-        ["ability", "ABIL_STEELY_SPIRIT", "MB_PowerSpotHandlers"],
+        ["ability", "ABIL_POWER_SPOT", "PowerSpotHandlers"],
+        ["ability", "ABIL_STEELY_SPIRIT", "PowerSpotHandlers"],
         ["ability", "ABIL_LIBERO", "MB_ProteanHandlers"],
-        ["ability", "ABIL_PUNK_ROCK", "MB_PunkRockHandlers"],
+        ["ability", "ABIL_PUNK_ROCK", "PunkRockHandlers"],
         ["ability", "ABIL_VESSEL_OF_RUIN", "MB_RuinHandlers"],
         ["ability", "ABIL_SWORD_OF_RUIN", "MB_RuinHandlers"],
         ["ability", "ABIL_TABLETS_OF_RUIN", "MB_RuinHandlers"],

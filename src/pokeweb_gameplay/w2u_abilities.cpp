@@ -3248,22 +3248,7 @@ BattleEventHandlerTableEntry TerrainSurgeHandlers[] = {
 };
 
 
-extern "C" void HandlerBattery(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)serverFlow;
-    (void)work;
-    u32 attackingSlot = (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON);
-    if (pokemonSlot != attackingSlot &&
-        MainModule_IsAllyMonID(pokemonSlot, attackingSlot) &&
-        BattleEventVar_GetValue(VAR_MOVE_CATEGORY) == SPLIT_SPECIAL) {
-        BattleEventVar_MulValue(VAR_RATIO, W2U_ABILITY_POWER_RATIO_1_3_DECIMAL);
-    }
-}
-
-BattleEventHandlerTableEntry BatteryHandlers[] = {
-    {EVENT_ATTACKER_POWER, HandlerBattery},
-};
+// Battery: src/mechanics/abilities/power_spot.c (with Power Spot and Steely Spirit).
 
 
 // Fluffy: src/mechanics/abilities/fluffy.c (with Ice Scales and Aura Guard).
