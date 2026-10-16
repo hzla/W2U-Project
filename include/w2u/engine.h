@@ -129,6 +129,16 @@ enum {
     VAR_NO_SECONDARY = 0x47,            /* nonzero: no secondary effects for this hit (Shield Dust) */               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
 };
 
+/* VAR_TYPE_EFFECTIVENESS values */
+enum {
+    TYPE_EFFECTIVENESS_X0 = 0,
+    TYPE_EFFECTIVENESS_X1_4 = 1,
+    TYPE_EFFECTIVENESS_X1_2 = 2,
+    TYPE_EFFECTIVENESS_X1 = 3,
+    TYPE_EFFECTIVENESS_X2 = 4,
+    TYPE_EFFECTIVENESS_X4 = 5,
+};
+
 /* BtlCalc_ClassifyEffectiveness results */
 enum {
     EFFECTIVENESS_IMMUNE = 0,

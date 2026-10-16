@@ -193,6 +193,8 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/lingering_aroma.c',
   'mechanics/abilities/poison_puppeteer.c',
   'mechanics/abilities/hit_reactions.c',
+  'mechanics/abilities/pastel_veil.c',
+  'mechanics/abilities/tera_shell.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',

@@ -12,9 +12,7 @@ extern BattleEventHandlerTableEntry MB_PulseHandlers[3];
 extern BattleEventHandlerTableEntry MB_MimicryHandlers[5];
 extern BattleEventHandlerTableEntry MB_SandSpitHandlers[1];
 extern BattleEventHandlerTableEntry MB_IntrepidSwordHandlers[1];
-extern BattleEventHandlerTableEntry MB_TeraShellHandlers[2];
 extern BattleEventHandlerTableEntry MB_SupremeOverlordHandlers[3];
-extern BattleEventHandlerTableEntry MB_VeilHandlers[7];
 extern BattleEventHandlerTableEntry MB_GrassPeltHandlers[1];
 // wave C (abilities/mb_hooked)
 extern BattleEventHandlerTableEntry MB_QuickDrawHandlers[2];

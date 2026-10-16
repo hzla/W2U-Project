@@ -123,7 +123,7 @@ w2u_battle_module_definitions = [
   {
     'id': 24,
     'slug': 'abilities_mb_defense',
-    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/eelevate.c', '../../mechanics/abilities/absorb.c', '../../mechanics/abilities/fluffy.c', '../../mechanics/abilities/good_as_gold.c', '../megab2w2/abilities/GuardDog.cpp', '../../mechanics/abilities/mirror_armor.c', '../../mechanics/abilities/purifying_salt.c', '../../mechanics/abilities/armor_tail.c', '../megab2w2/abilities/Shields.cpp', '../megab2w2/abilities/Veil.cpp', '../../mechanics/abilities/wind_rider.c', '../../mechanics/abilities/damp.c'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/eelevate.c', '../../mechanics/abilities/absorb.c', '../../mechanics/abilities/fluffy.c', '../../mechanics/abilities/good_as_gold.c', '../megab2w2/abilities/GuardDog.cpp', '../../mechanics/abilities/mirror_armor.c', '../../mechanics/abilities/purifying_salt.c', '../../mechanics/abilities/armor_tail.c', '../../mechanics/abilities/tera_shell.c', '../../mechanics/abilities/pastel_veil.c', '../../mechanics/abilities/wind_rider.c', '../../mechanics/abilities/damp.c'),
   },
   {
     'id': 25,
