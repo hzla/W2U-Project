@@ -10,7 +10,6 @@ extern BattleEventHandlerTableEntry MB_EarthEaterHandlers[1];
 extern BattleEventHandlerTableEntry MB_CuriousMedicineHandlers[2];
 extern BattleEventHandlerTableEntry MB_CostarHandlers[2];
 extern BattleEventHandlerTableEntry MB_SupersweetSyrupHandlers[2];
-extern BattleEventHandlerTableEntry MB_FluffyHandlers[1];
 extern BattleEventHandlerTableEntry MB_GoodAsGoldHandlers[1];
 extern BattleEventHandlerTableEntry MB_GuardDogHandlers[2];
 extern BattleEventHandlerTableEntry MB_IntimidateTrackedHandlers[2];

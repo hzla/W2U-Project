@@ -161,6 +161,31 @@ w2u_battle_registry_generated = meson.project_source_root() / 'src' / 'pokeweb_g
 w2u_battle_api_generated = meson.project_source_root() / 'src' / 'pokeweb_gameplay' / 'w2u_battle_module_api_entries.inc'
 w2u_battle_meson_generated = meson.project_source_root() / 'src' / 'pokeweb_gameplay' / 'battle_modules' / 'meson.build'
 w2u_battle_registry_generator = meson.project_source_root() / 'tools' / 'generate_w2u_battle_registry.py'
+# The C mechanics (src/mechanics, include/w2u/battle_api.h; docs/engine-interface.md). The battle modules compile
+# them with g++ like the rest; this keeps them C: each must also pass as strict C99.
+w2u_mechanics_sources = files(
+  'mechanics/abilities/fluffy.c',
+)
+w2u_mechanics_c_check = custom_target(
+  'verify_w2u_mechanics_c',
+  input: w2u_mechanics_sources,
+  output: 'verify_w2u_mechanics_c.stamp',
+  depend_files: files('../include/w2u/engine.h', '../include/w2u/battle_api.h'),
+  command: ['sh', '-eu', '-c', '''
+      output="$1"
+      root="$2"
+      shift 2
+      for input in "$@"; do
+        arm-none-eabi-gcc -std=c99 -Wall -Wextra -pedantic -Werror -fsyntax-only -mthumb -march=armv5t -I"$root/include" -I"$root/include/swan" -I"$root/src/pokeweb_gameplay" "$input"
+      done
+      touch "$output"
+    ''',
+    'verify_w2u_mechanics_c',
+    '@OUTPUT@',
+    meson.project_source_root(),
+    '@INPUT@',
+  ],
+)
 w2u_battle_registry_check = custom_target(
   'verify_w2u_battle_registry',
   input: [
@@ -175,7 +200,7 @@ w2u_battle_registry_check = custom_target(
     files('pokeweb_gameplay/w2u_strong_weather.cpp'),
   ],
   output: 'verify_w2u_battle_registry.stamp',
-  depend_files: [w2u_battle_registry_generator],
+  depend_files: [w2u_battle_registry_generator, w2u_mechanics_sources],
   command: [
     'python3', w2u_battle_registry_generator,
     '--registry', '@INPUT0@',
@@ -352,7 +377,7 @@ w2u_battle_module_stage = custom_target(
   'stage_w2u_battle_modules',
   input: w2u_battle_module_dlls,
   output: 'stage_w2u_battle_modules.stamp',
-  depends: [w2u_battle_registry_check, w2u_battle_linkage_check],
+  depends: [w2u_battle_registry_check, w2u_battle_linkage_check, w2u_mechanics_c_check],
   build_always_stale: true,
   depend_files: [
     meson.project_source_root() / 'tools' / 'stage_w2u_battle_modules.py',

@@ -172,10 +172,13 @@
 #define TYPE_DARK 16
 #define TYPE_FAIRY 17
 
-// MegaB2W2 extended move flags as W2U move-record flag indices (getMoveFlag)
+// MegaB2W2 extended move flags as W2U move-record flag indices (getMoveFlag). C++ only: the IDs above are also read
+// by the C mechanics (src/mechanics).
+#ifdef __cplusplus
 enum MoveFlagExt : u32 { MOVE_FLAG_PULSE = 0x16, MOVE_FLAG_BITE = 0x15, MOVE_FLAG_BALLISTIC = 0x14, MOVE_FLAG_SLICING = 0x11, MOVE_FLAG_WIND = 0x10, MOVE_FLAG_DANCE = 0x13, MOVE_FLAG_POWDER = 0xE, MOVE_FLAG_HEAL = 0xC, MOVE_FLAG_NO_PARENTAL_BOND = 0xFF };
 extern "C" b32 getMoveFlag(u16 move, u32 flag);
 namespace moves { inline bool HasFlag(u16 move, MoveFlagExt flag) { return flag != 0xFF && getMoveFlag(move, flag); } }
+#endif
 
 #define BTLMSG_SET_AROMA_VEIL 1352   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
 #define BTLMSG_SET_AS_ONE 1355   // W2U text bank 18 (+0 player, +1 wild, +2 foe)

@@ -555,10 +555,10 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_EARTH_EATER), (u16)W2U_ARRAY_COUNT(MB_EarthEaterHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EarthEaterHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_SCALES), (u16)W2U_ARRAY_COUNT(MB_FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_FluffyHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_SCALES), (u16)W2U_ARRAY_COUNT(FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FluffyHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_AURA_GUARD), (u16)W2U_ARRAY_COUNT(MB_FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_FluffyHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_AURA_GUARD), (u16)W2U_ARRAY_COUNT(FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FluffyHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GOOD_AS_GOLD), (u16)W2U_ARRAY_COUNT(MB_GoodAsGoldHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GoodAsGoldHandlers},
@@ -612,12 +612,12 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_ICE_SCALES) >= 0 && (ABIL_ICE_SCALES) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_FluffyHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_FluffyHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(FluffyHandlers)) > 0 && (W2U_ARRAY_COUNT(FluffyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_AURA_GUARD) >= 0 && (ABIL_AURA_GUARD) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_FluffyHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_FluffyHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(FluffyHandlers)) > 0 && (W2U_ARRAY_COUNT(FluffyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -1674,10 +1674,10 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_defenseEntries[] 
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_EARTH_EATER), (u16)W2U_ARRAY_COUNT(MB_EarthEaterHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_EarthEaterHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_SCALES), (u16)W2U_ARRAY_COUNT(MB_FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_FluffyHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_SCALES), (u16)W2U_ARRAY_COUNT(FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FluffyHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_AURA_GUARD), (u16)W2U_ARRAY_COUNT(MB_FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_FluffyHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_AURA_GUARD), (u16)W2U_ARRAY_COUNT(FluffyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, FluffyHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_GOOD_AS_GOLD), (u16)W2U_ARRAY_COUNT(MB_GoodAsGoldHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GoodAsGoldHandlers},
@@ -1731,12 +1731,12 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_ICE_SCALES) >= 0 && (ABIL_ICE_SCALES) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_FluffyHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_FluffyHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(FluffyHandlers)) > 0 && (W2U_ARRAY_COUNT(FluffyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_AURA_GUARD) >= 0 && (ABIL_AURA_GUARD) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_FluffyHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_FluffyHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(FluffyHandlers)) > 0 && (W2U_ARRAY_COUNT(FluffyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)

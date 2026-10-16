@@ -80,6 +80,9 @@
       "id": 5,
       "name": "abilities/defense",
       "source": "abilities",
+      "extra_sources": [
+        "../mechanics/abilities/fluffy.c"
+      ],
       "entries": [
         ["ability", "ABIL_FUR_COAT", "FurCoatHandlers"],
         ["ability", "ABIL_BULLETPROOF", "BulletProofHandlers"],
@@ -668,7 +671,7 @@
       "extra_sources": [
         "megab2w2/abilities/BeastBoost.cpp",
         "megab2w2/abilities/EarthEater.cpp",
-        "megab2w2/abilities/Fluffy.cpp",
+        "../mechanics/abilities/fluffy.c",
         "megab2w2/abilities/GoodAsGold.cpp",
         "megab2w2/abilities/GuardDog.cpp",
         "megab2w2/abilities/MirrorArmor.cpp",
@@ -683,8 +686,8 @@
       "entries": [
         ["ability", "ABIL_EELEVATE", "MB_EelevateHandlers"],
         ["ability", "ABIL_EARTH_EATER", "MB_EarthEaterHandlers"],
-        ["ability", "ABIL_ICE_SCALES", "MB_FluffyHandlers"],
-        ["ability", "ABIL_AURA_GUARD", "MB_FluffyHandlers"],
+        ["ability", "ABIL_ICE_SCALES", "FluffyHandlers"],
+        ["ability", "ABIL_AURA_GUARD", "FluffyHandlers"],
         ["ability", "ABIL_GOOD_AS_GOLD", "MB_GoodAsGoldHandlers"],
         ["ability", "ABIL_GUARD_DOG", "MB_GuardDogHandlers"],
         ["ability", "ABIL_INTIMIDATE", "MB_IntimidateTrackedHandlers"],

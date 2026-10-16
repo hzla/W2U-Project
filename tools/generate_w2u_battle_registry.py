@@ -466,6 +466,40 @@ def check_sources(registry: dict, paths: list[Path]) -> None:
             raise RuntimeError(f"grouped source is missing generated API marker {marker}")
 
 
+MECHANIC_LINE = re.compile(r"^W2U_MECHANIC\(\s*(\w+)\s*,\s*(\w+)\s*,\s*(\w+)\s*\)", re.M)
+HANDLER_TABLE = re.compile(r"^W2U_HANDLER_TABLE\(\s*(\w+)\s*\)", re.M)
+
+
+def check_mechanics(registry: dict, paths: list[Path]) -> None:
+    """The C mechanics (src/mechanics, include/w2u/battle_api.h) register their tables with W2U_MECHANIC(kind, id,
+    table) lines: every table a mechanic defines must have exactly the registry entries its lines name."""
+    declared: set[tuple[str, str, str]] = set()
+    tables: set[str] = set()
+    for path in paths:
+        if path.suffix != ".c":
+            continue
+        text = path.read_text()
+        tables.update(HANDLER_TABLE.findall(text))
+        declared.update((kind.lower(), mechanic_id, table) for kind, mechanic_id, table in MECHANIC_LINE.findall(text))
+    listed = {
+        (kind, mechanic_id, table)
+        for module in registry["modules"]
+        for kind, mechanic_id, table in module["entries"]
+        if table in tables
+    }
+    unregistered = sorted(declared - listed)
+    unmarked = sorted(listed - declared)
+    if unregistered or unmarked:
+        raise RuntimeError(
+            "W2U_MECHANIC lines and registry.json disagree: "
+            + "; ".join([f"no registry entry for W2U_MECHANIC{entry}" for entry in unregistered]
+                        + [f"no W2U_MECHANIC line for registry entry {list(entry)}" for entry in unmarked])
+        )
+    missing = sorted(table for _kind, _mechanic_id, table in declared if table not in tables)
+    if missing:
+        raise RuntimeError("W2U_MECHANIC names tables no W2U_HANDLER_TABLE defines: " + ", ".join(missing))
+
+
 def check_meson(registry: dict, path: Path) -> None:
     text = path.read_text()
     for module in registry["modules"]:
@@ -542,6 +576,7 @@ def main() -> int:
         check_meson(registry, args.meson)
     if args.source:
         check_sources(registry, args.source)
+        check_mechanics(registry, args.source)
     if args.stamp:
         args.stamp.parent.mkdir(parents=True, exist_ok=True)
         args.stamp.touch()
