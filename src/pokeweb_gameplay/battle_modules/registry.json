@@ -51,6 +51,9 @@
       "id": 3,
       "name": "abilities/type",
       "source": "abilities",
+      "extra_sources": [
+        "../mechanics/abilities/protean.c"
+      ],
       "entries": [
         ["ability", "ABIL_PROTEAN", "ProteanHandlers"],
         ["ability", "ABIL_REFRIGERATE", "NormalMoveConversionHandlers"],
@@ -100,7 +103,8 @@
       "name": "abilities/reactive",
       "source": "abilities",
       "extra_sources": [
-        "../mechanics/abilities/stamina.c"
+        "../mechanics/abilities/stamina.c",
+        "../mechanics/abilities/berserk.c"
       ],
       "entries": [
         ["ability", "ABIL_COMPETITIVE", "CompetitiveHandlers"],
@@ -117,13 +121,17 @@
       "id": 7,
       "name": "abilities/priority_speed",
       "source": "abilities",
+      "extra_sources": [
+        "../mechanics/abilities/queenly_majesty.c"
+      ],
       "entries": [
         ["ability", "ABIL_GALE_WINGS", "GaleWingsHandlers"],
         ["ability", "ABIL_SLUSH_RUSH", "SlushRushHandlers"],
         ["ability", "ABIL_TRIAGE", "TriageHandlers"],
         ["ability", "ABIL_SURGE_SURFER", "SurgeSurferHandlers"],
-        ["ability", "ABIL_QUEENLY_MAGESTY", "QueenlyMajestyHandlers"],
-        ["ability", "ABIL_DAZZLING", "QueenlyMajestyHandlers"]
+        ["ability", "ABIL_QUEENLY_MAJESTY", "QueenlyMajestyHandlers"],
+        ["ability", "ABIL_DAZZLING", "QueenlyMajestyHandlers"],
+        ["ability", "ABIL_ARMOR_TAIL", "QueenlyMajestyHandlers"]
       ]
     },
     {
@@ -641,7 +649,7 @@
         "../mechanics/abilities/minds_eye.c",
         "../mechanics/abilities/neuroforce.c",
         "../mechanics/abilities/power_spot.c",
-        "../mechanics/abilities/libero.c",
+        "../mechanics/abilities/protean.c",
         "../mechanics/abilities/punk_rock.c",
         "../mechanics/abilities/ruin.c",
         "../mechanics/abilities/supreme_overlord.c",
@@ -659,7 +667,7 @@
         ["ability", "ABIL_NEUROFORCE", "NeuroforceHandlers"],
         ["ability", "ABIL_POWER_SPOT", "PowerSpotHandlers"],
         ["ability", "ABIL_STEELY_SPIRIT", "PowerSpotHandlers"],
-        ["ability", "ABIL_LIBERO", "LiberoHandlers"],
+        ["ability", "ABIL_LIBERO", "ProteanHandlers"],
         ["ability", "ABIL_PUNK_ROCK", "PunkRockHandlers"],
         ["ability", "ABIL_VESSEL_OF_RUIN", "RuinHandlers"],
         ["ability", "ABIL_SWORD_OF_RUIN", "RuinHandlers"],
@@ -682,7 +690,6 @@
         "../mechanics/abilities/guard_dog.c",
         "../mechanics/abilities/mirror_armor.c",
         "../mechanics/abilities/purifying_salt.c",
-        "../mechanics/abilities/armor_tail.c",
         "../mechanics/abilities/tera_shell.c",
         "../mechanics/abilities/pastel_veil.c",
         "../mechanics/abilities/wind_rider.c",
@@ -699,7 +706,6 @@
         ["ability", "ABIL_DAMP", "DampHandlers"],
         ["ability", "ABIL_MIRROR_ARMOR", "MirrorArmorHandlers"],
         ["ability", "ABIL_PURIFYING_SALT", "PurifyingSaltHandlers"],
-        ["ability", "ABIL_ARMOR_TAIL", "ArmorTailHandlers"],
         ["ability", "ABIL_TERA_SHELL", "TeraShellHandlers"],
         ["ability", "ABIL_PASTEL_VEIL", "PastelVeilHandlers"],
         ["ability", "ABIL_WELL_BAKED_BODY", "WellBakedBodyHandlers"],
@@ -712,14 +718,14 @@
       "source": "abilities",
       "white2_only": true,
       "extra_sources": [
-        "../mechanics/abilities/anger_shell.c",
+        "../mechanics/abilities/berserk.c",
         "../mechanics/abilities/hit_reactions.c",
         "../mechanics/abilities/lingering_aroma.c",
         "../mechanics/abilities/status_on_hit.c",
         "../mechanics/abilities/stamina.c"
       ],
       "entries": [
-        ["ability", "ABIL_ANGER_SHELL", "AngerShellHandlers"],
+        ["ability", "ABIL_ANGER_SHELL", "BerserkHandlers"],
         ["ability", "ABIL_COTTON_DOWN", "CottonDownHandlers"],
         ["ability", "ABIL_PERISH_BODY", "PerishBodyHandlers"],
         ["ability", "ABIL_TOXIC_DEBRIS", "ToxicDebrisHandlers"],

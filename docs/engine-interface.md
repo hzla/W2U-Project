@@ -96,8 +96,8 @@ Data IDs the C mechanics read live in `megab2w2/mb_ids.h` (abilities, types, W2U
 a vanilla ID that exists only as a C++ enumerator (`ABIL_DAMP`) is defined in the mechanic itself. Never define a
 name in `engine.h` that a data header has too: the mechanics compile as C++ as well, where both are seen.
 
-State a mechanic keeps between events beyond the item's `work[]` (Libero's once-per-switch-in flag, Mirror
-Armor's reflected marks, Anger Shell's HP before a move, Electromorphosis' charge) is a file-static array per monId,
+State a mechanic keeps between events beyond the item's `work[]` (Protean's once-per-switch-in flag, Mirror
+Armor's reflected marks, Berserk's HP before a move, Electromorphosis' charge) is a file-static array per monId,
 as MegaB2W2 kept it. On White 2 that is battle-scoped already: `W2U_BattleState_OnBattleExit` and the first turn's
 setup (`W2U_BattleModules_Reset`) unload every battle module, and the next battle loads them again from their files,
 which store the zeroed arrays as zeros (`bss_bytes: 0` in the heap audit). So MegaB2W2's battle-start resets
@@ -128,20 +128,20 @@ hooks will have to provide.
 | Good as Gold | `abilities/good_as_gold.c` | `megab2w2/abilities/GoodAsGold.cpp` | the five `GOOD_AS_GOLD*` scenarios (`wave_a.yml`), transcripts identical |
 | Neuroforce | `abilities/neuroforce.c` | `megab2w2/abilities/Neuroforce.cpp` | `NEUROFORCE` (`wave_a.yml`) |
 | Stamina, Water Compaction, Steam Engine, Thermal Exchange | `abilities/stamina.c` | `w2u_abilities.cpp` `HandlerStamina` / `HandlerWaterCompaction`, `megab2w2/abilities/Stamina.cpp` | `STAMINA`, `WATER_COMPACTION` (`wave_shared.yml`), `STEAM_ENGINE`, `THERMAL_EXCHANGE`, `THERMAL_EXCHANGE_BURN` (`wave_a.yml`), transcripts identical |
-| Eelevate | `abilities/eelevate.c` | `megab2w2/abilities/BeastBoost.cpp` (its Beast Boost table was never registered) | `EELEVATE`, `EELEVATE_KO` (`wave_a.yml`); `BEAST_BOOST` unchanged |
+| Eelevate | `abilities/eelevate.c` | `megab2w2/abilities/BeastBoost.cpp` (its Beast Boost table was never registered) | `EELEVATE`, `EELEVATE_KO`, `EELEVATE_RAW` (`wave_a.yml`); `BEAST_BOOST` unchanged |
 | Damp | `abilities/damp.c` | `megab2w2/abilities/Damp.cpp` | `MISTY_EXPLOSION_DAMP`, `EXPLOSION_DAMP`, `MIND_BLOWN_DAMP`, `MIND_BLOWN_CONTROL`, `SUN_CONTROL` (`wave_field.yml`) |
 | Spicy Spray, Toxic Chain | `abilities/status_on_hit.c` | `megab2w2/abilities/SpicySpray.cpp`, `ToxicChain.cpp` | `SPICY_SPRAY`, `TOXIC_CHAIN` (`wave_a.yml`): burned / badly poisoned as before |
 | Screen Cleaner | `abilities/screen_cleaner.c` | `megab2w2/abilities/ScreenCleaner.cpp` | `SCREEN_CLEANER`, `SCREEN_CLEANER_NONE` (`wave_a.yml`) |
 | Wind Rider | `abilities/wind_rider.c` | `megab2w2/abilities/WindRider.cpp` | `WIND_RIDER`, `WIND_RIDER_TAILWIND` (`wave_a.yml`) |
 | Sword / Beads / Tablets / Vessel of Ruin | `abilities/ruin.c` | `megab2w2/abilities/Ruin.cpp` | `SWORD_OF_RUIN`, `BEADS_OF_RUIN`, `TABLETS_OF_RUIN`, `VESSEL_OF_RUIN` (`wave_a.yml`) |
-| Armor Tail | `abilities/armor_tail.c` | `megab2w2/abilities/QueenlyMajesty.cpp` (only Armor Tail used it) | `ARMOR_TAIL` (`wave_a.yml`); `QUEENLY_MAJESTY`, `DAZZLING` unchanged |
+| Queenly Majesty, Dazzling, Armor Tail | `abilities/queenly_majesty.c` | `megab2w2/abilities/QueenlyMajesty.cpp`, `w2u_abilities.cpp` `HandlerQueenlyMajesty` | `ARMOR_TAIL` (`wave_a.yml`), `QUEENLY_MAJESTY`, `QUEENLY_MAJESTY_SPREAD`, `QUEENLY_MAJESTY_NORMAL`, `QUEENLY_MAJESTY_ALLY`, `DAZZLING` (`wave_shared.yml`) |
 | Grim Neigh, As One (both) | `abilities/neigh.c` | `megab2w2/abilities/Neigh.cpp` | `GRIM_NEIGH`, `AS_ONE` (`wave_a.yml`) |
 | Hospitality | `abilities/hospitality.c` | `megab2w2/abilities/Hospitality.cpp` | `HOSPITALITY`, `HOSPITALITY_FULL` (`wave_a.yml`) |
 | Gorilla Tactics | `abilities/gorilla_tactics.c` | `megab2w2/abilities/GorillaTactics.cpp` | `GORILLA_TACTICS`, `GORILLA_TACTICS_LOCK` (`wave_c.yml`) |
 | Purifying Salt | `abilities/purifying_salt.c` | `megab2w2/abilities/PurifyingSalt.cpp` | `PURIFYING_SALT`, `PURIFYING_SALT_GHOST`, `PURIFYING_SALT_YAWN` (`wave_a.yml`) |
-| Libero | `abilities/libero.c` | `megab2w2/abilities/Protean.cpp` (only Libero used it) | `LIBERO` (`wave_a.yml`); `PROTEAN` unchanged |
+| Protean, Libero | `abilities/protean.c` | `megab2w2/abilities/Protean.cpp`, `w2u_abilities.cpp` `HandlerProtean` | `LIBERO` (`wave_a.yml`), `PROTEAN` (`wave_shared.yml`) |
 | Mirror Armor | `abilities/mirror_armor.c` | `megab2w2/abilities/MirrorArmor.cpp` | `MIRROR_ARMOR`, `MIRROR_ARMOR_INTIMIDATE` (`wave_a.yml`) |
-| Anger Shell | `abilities/anger_shell.c` | `megab2w2/abilities/Berserk.cpp` (only Anger Shell used it) | `ANGER_SHELL` (`wave_a.yml`); `BERSERK`, `BERSERK_SHEER_FORCE*` unchanged |
+| Berserk, Anger Shell | `abilities/berserk.c` | `megab2w2/abilities/Berserk.cpp`, `w2u_abilities.cpp` `HandlerBerserk` | `ANGER_SHELL` (`wave_a.yml`), `BERSERK`, `BERSERK_SHEER_FORCE`, `BERSERK_SHEER_FORCE_PLAIN` (`wave_shared.yml`) |
 | Sharpness, Transistor, Dragon's Maw, Rocky Payload, Fire Mane | `abilities/boost.c` | `megab2w2/abilities/Boost.cpp` (its Tough Claws / Strong Jaw / Mega Launcher / Steelworker rows were never reached) | `SHARPNESS`, `TRANSISTOR`, `DRAGONS_MAW`, `ROCKY_PAYLOAD`, `FIRE_MANE` (`wave_a.yml`); `STEELWORKER` unchanged |
 | Electromorphosis, Wind Power | `abilities/charge.c` | `megab2w2/abilities/Charge.cpp` | `ELECTROMORPHOSIS`, `WIND_POWER` (`wave_a.yml`) |
 | Unseen Fist, Piercing Drill | `abilities/unseen_fist.c` | `megab2w2/abilities/UnseenFist.cpp` | `UNSEEN_FIST`, `UNSEEN_FIST_NONCONTACT`, `PIERCING_DRILL` (`wave_c.yml`) |
@@ -154,7 +154,7 @@ hooks will have to provide.
 | Intrepid Sword, Dauntless Shield | `abilities/intrepid_sword.c` | `megab2w2/abilities/IntrepidSword.cpp` | `INTREPID_SWORD`, `DAUNTLESS_SHIELD` (`wave_a.yml`) |
 | Quick Draw | `abilities/quick_draw.c` | `megab2w2/abilities/QuickDraw.cpp` | `QUICK_DRAW`, `QUICK_DRAW_STATUS` (`wave_c.yml`) |
 | Mycelium Might, Mega Sol | `abilities/move_abilities.c` | the rest of `megab2w2/abilities/MoveAbilities.cpp` | `MYCELIUM_MIGHT`, `MEGA_SOL`, `MEGA_SOL_FIRE` (`wave_c.yml`) |
-| Protosynthesis, Quark Drive | `abilities/protosynthesis.c` | `megab2w2/abilities/Protosynthesis.cpp` | the six `PROTOSYNTHESIS*` / `QUARK_DRIVE*` scenarios (`wave_b.yml`) |
+| Protosynthesis, Quark Drive | `abilities/protosynthesis.c` | `megab2w2/abilities/Protosynthesis.cpp` | the seven `PROTOSYNTHESIS*` / `QUARK_DRIVE*` scenarios (`wave_b.yml`) |
 | Sand Spit, Seed Sower | `abilities/sand_spit.c` | `megab2w2/abilities/SandSpit.cpp` | `SAND_SPIT`, `SEED_SOWER` (`wave_b.yml`) |
 | Orichalcum Pulse, Hadron Engine, Grass Pelt, Mimicry | `abilities/terrain_abilities.c` | `megab2w2/abilities/TerrainAbilities.cpp` | `ORICHALCUM_PULSE`, `HADRON_ENGINE`, `MIMICRY` (`wave_b.yml`), `GRASS_PELT` (`wave_shared.yml`) |
 | Ripen, Opportunist, Cud Chew | `abilities/effect_abilities.c` | `megab2w2/abilities/EffectAbilities.cpp` | `RIPEN`, `OPPORTUNIST`, `OPPORTUNIST_BOTH`, `CUD_CHEW` (`wave_c.yml`) |
@@ -162,9 +162,15 @@ hooks will have to provide.
 | Supreme Overlord | `abilities/supreme_overlord.c` | `megab2w2/abilities/SupremeOverlord.cpp` | `SUPREME_OVERLORD`, `SUPREME_OVERLORD_NONE` (`wave_a.yml`) |
 | Ice Face, Gulp Missile, Hunger Switch, Zero to Hero, Commander | `abilities/form_abilities.c` | `megab2w2/abilities/FormAbilities.cpp` (and the then empty `megab2w2/mb_ability_tables.h`) | the twelve `ICE_FACE*`, `GULP_MISSILE*`, `HUNGER_SWITCH`, `ZERO_TO_HERO`, `COMMANDER*` scenarios (`wave_forms.yml`), transcripts identical |
 
-Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
-W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting
-W2U's would mean either rule for all three, a behaviour change to decide on.
+Behaviour decided 2026-10-16 (where W2U and MegaB2W2 had implemented an ability twice, or a finding was a bug):
+Protean and Libero share the Gen 9 rule (once per switch-in; not for calling moves or future attacks); Berserk and
+Anger Shell share Showdown's timing (once after the move, from above half HP to half or less); Queenly Majesty,
+Dazzling and Armor Tail show the holder's popup and "X cannot use Y!" (bank 18 905-907) once per move, and read the
+move's own priority (W2U's `W2U_GetQueuedMovePriority` adds the turn-order bracket, so a Quick Claw activation made
+an ordinary move count; W2U's Psychic Terrain still uses it); Protosynthesis and Quark Drive apply stat stages once;
+Eelevate compares the stats without stages, as Beast Boost does; Bulbasaur's base HP is 45 again (it was 50). Black
+2's baseline copy (`b2_baseline/w2u_abilities.cpp.inc`) keeps W2U's earlier Protean, Berserk and Queenly Majesty.
+Battery stays as it is for now.
 
 MegaB2W2 code that was never reached is gone rather than converted: the Aroma, Flower and Sweet Veil rows (W2U's
 own handlers serve those), MegaB2W2's Disguise (W2U's `DisguiseHandlers`), its Comatose (never registered; W2U
@@ -173,11 +179,11 @@ handles Comatose in its own hooks) and the Boost rows of Tough Claws, Strong Jaw
 Beast Boost itself stays in `w2u_abilities.cpp` for now: it picks the highest stat from the BattleMon's fields,
 which needs the BattleMon layout in `engine.h` first.
 
-Found while converting (behaviour unchanged): `GetBattleMonStat(8 .. 0xC)` returns the stats with stat stages
-applied (`RawBattleMonStat`, IRDO.yml's `BattleMon_GetRealStat`, is the unstaged one, with Wonder Room's swap).
-MegaB2W2's `BestStat`, which Eelevate uses, therefore picks the highest *boosted* stat, unlike Beast Boost and
-Showdown; its `BestStatWithStages`, which Protosynthesis and Quark Drive use (kept in `protosynthesis.c`), applies the
-stages a second time.
+Found while converting: `GetBattleMonStat(8 .. 0xC)` returns the stats with stat stages applied
+(`RawBattleMonStat`, IRDO.yml's `BattleMon_GetRealStat`, is the unstaged one, with Wonder Room's swap). MegaB2W2's
+`BestStat` (Eelevate) therefore picked the highest *boosted* stat, and its `BestStatWithStages` (Protosynthesis,
+Quark Drive) applied the stages a second time; both fixed 2026-10-16 (`W2U_BestStatOf`). Beast Boost reads the
+BattleMon's stat fields, which differs from Eelevate's `RawBattleMonStat` only under Wonder Room.
 
 Two MegaB2W2 names that said the wrong thing, behaviour unchanged: event 0x5D is "a stat change was applied" (raises
 too: Opportunist copies raises from it), not "stat lowered"; and bit 24 of the force-use-item header, which MegaB2W2 and

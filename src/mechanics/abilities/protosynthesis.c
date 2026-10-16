@@ -48,28 +48,9 @@ static b32 ProtosynthesisCondition(BtlServerFlow *flow, u8 monId)
     return GetWeather(flow) == WEATHER_SUN;
 }
 
-/* The highest of Attack .. Speed, as MegaB2W2's BestStatWithStages computes it: GetBattleMonStat's stats (which
- * already include the stat stages) with the stages applied again. Kept as it was; Showdown applies them once. */
-static u32 ProtosynthesisBestStat(BattleMon *mon)
-{
-    u32 best = STATSTAGE_ATTACK, bestValue = 0, i;
-
-    for (i = 0; i < 5; ++i) {
-        s32 stage = (s32)GetBattleMonStat(mon, STATSTAGE_ATTACK + i) - STATSTAGE_NEUTRAL;
-        u32 value = GetBattleMonStat(mon, BMV_ATTACK + i);
-        /* u64: a u32 division by a variable calls __aeabi_uidiv, which the ESDB lacks */
-        value = stage >= 0 ? value * (u32)(2 + stage) / 2 : (u32)((u64)value * 2 / (u32)(2 - stage));
-        if (value > bestValue) {
-            bestValue = value;
-            best = STATSTAGE_ATTACK + i;
-        }
-    }
-    return best;
-}
-
 static void ProtosynthesisActivate(BtlServerFlow *flow, u8 monId, b32 booster)
 {
-    u32 stat = ProtosynthesisBestStat(GetBattleMon(flow, monId));
+    u32 stat = W2U_BestBoostedStat(flow, monId);    /* stat stages applied once (Showdown) */
 
     sProtosynthesisState[monId].stat = (u8)stat;
     sProtosynthesisState[monId].booster = (u8)booster;

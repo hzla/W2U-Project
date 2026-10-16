@@ -3097,25 +3097,6 @@ BattleEventHandlerTableEntry SteelworkerHandlers[] = {
 };
 
 
-extern "C" void HandlerBerserk(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)work;
-    if (!IsTargetSlotInCurrentDamageEvent(pokemonSlot) ||
-        BattleEventVar_GetValue(VAR_SUBSTITUTE_FLAG)) {
-        return;
-    }
-
-    BattleMon* currentMon = GetAbilityBattleMon(serverFlow, pokemonSlot);
-    if (DamageCrossedBelowHalfHP(currentMon, (u32)BattleEventVar_GetValue(VAR_DAMAGE))) {
-        PushAbilityStatStageChange(serverFlow, pokemonSlot, STATSTAGE_SPECIAL_ATTACK, 1);
-    }
-}
-
-BattleEventHandlerTableEntry BerserkHandlers[] = {
-    {EVENT_DAMAGE_PROCESSING_END_HIT_2, HandlerBerserk},
-};
-
 
 extern "C" void HandlerSlushRush(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
 {
@@ -3283,27 +3264,6 @@ BattleEventHandlerTableEntry PrismArmorHandlers[] = {
     {EVENT_MOVE_DAMAGE_PROCESSING_2, HandlerPrismArmor},
 };
 
-
-extern "C" void HandlerQueenlyMajesty(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)work;
-    u32 defendingSlot = (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON);
-    u32 attackingSlot = (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON);
-    if ((pokemonSlot != defendingSlot && !MainModule_IsAllyMonID(pokemonSlot, defendingSlot)) ||
-        defendingSlot == attackingSlot) {
-        return;
-    }
-
-    BattleMon* attackingMon = GetAbilityBattleMon(serverFlow, attackingSlot);
-    if (W2U_GetQueuedMovePriority(serverFlow, attackingMon) > 0) {
-        BattleEventVar_RewriteValue(VAR_NO_EFFECT_FLAG, 1);
-    }
-}
-
-BattleEventHandlerTableEntry QueenlyMajestyHandlers[] = {
-    {EVENT_ABILITY_CHECK_NO_EFFECT, HandlerQueenlyMajesty},
-};
 
 
 extern "C" void HandlerInnardsOut(
@@ -3983,64 +3943,6 @@ BattleEventHandlerTableEntry SymbiosisHandlers[] = {
     {EVENT_MOVE_DAMAGE_SIDE_AFTER, HandlerSymbiosisDelayed},
 };
 
-
-extern "C" void HandlerProtean(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)work;
-    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_MON_ID)) {
-        return;
-    }
-
-    if (!serverFlow || !serverFlow->pokeCon) {
-        return;
-    }
-
-    BattleMon* currentMon = PokeCon_GetBattleMon(serverFlow->pokeCon, pokemonSlot);
-    if (!currentMon) {
-        return;
-    }
-
-    MOVE_ID moveID = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
-    // Ability events run before move events. Type-consuming moves must fail
-    // before Protean can supply the typing that their prerequisite requires.
-    const u16 requiredType = moveID == MOVE_DOUBLE_SHOCK ? TYPE_ELECTRIC : TYPE_FIRE;
-    if ((moveID == MOVE_BURN_UP || moveID == MOVE_DOUBLE_SHOCK) &&
-        currentMon->Type1 != requiredType &&
-        currentMon->Type2 != requiredType) {
-        return;
-    }
-
-    MoveParam params;
-    W2U_ServerEvent_GetMoveParam(
-        serverFlow,
-        moveID,
-        currentMon,
-        &params);
-
-    if (params.moveType >= TYPE_NULL) {
-        return;
-    }
-
-    u16 newType = PokeTypePair_MakeMonotype(params.moveType);
-    if (newType == BattleMon_GetPokeType(currentMon)) {
-        return;
-    }
-
-    BattleHandler_PushRun(serverFlow, EFFECT_ABILITY_POPUP_ADD, pokemonSlot);
-
-    HandlerParam_ChangeType* changeType =
-        (HandlerParam_ChangeType*)BattleHandler_PushWork(serverFlow, EFFECT_CHANGE_TYPE, pokemonSlot);
-    changeType->pokeType = newType;
-    changeType->pokeID = (u8)pokemonSlot;
-    BattleHandler_PopWork(serverFlow, changeType);
-
-    BattleHandler_PushRun(serverFlow, EFFECT_ABILITY_POPUP_REMOVE, pokemonSlot);
-}
-
-BattleEventHandlerTableEntry ProteanHandlers[] = {
-    {EVENT_MOVE_EXECUTE_CHECK2, HandlerProtean},
-};
 
 
 extern "C" void HandlerMagician(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)

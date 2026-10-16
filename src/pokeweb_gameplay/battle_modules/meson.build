@@ -18,7 +18,7 @@ w2u_battle_module_definitions = [
   {
     'id': 3,
     'slug': 'abilities_type',
-    'sources': files('../w2u_abilities.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/protean.c'),
   },
   {
     'id': 4,
@@ -33,12 +33,12 @@ w2u_battle_module_definitions = [
   {
     'id': 6,
     'slug': 'abilities_reactive',
-    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/stamina.c'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/stamina.c', '../../mechanics/abilities/berserk.c'),
   },
   {
     'id': 7,
     'slug': 'abilities_priority_speed',
-    'sources': files('../w2u_abilities.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/queenly_majesty.c'),
   },
   {
     'id': 8,
@@ -118,17 +118,17 @@ w2u_battle_module_definitions = [
   {
     'id': 23,
     'slug': 'abilities_mb_power',
-    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/boost.c', '../../mechanics/abilities/charge.c', '../../mechanics/abilities/minds_eye.c', '../../mechanics/abilities/neuroforce.c', '../../mechanics/abilities/power_spot.c', '../../mechanics/abilities/libero.c', '../../mechanics/abilities/punk_rock.c', '../../mechanics/abilities/ruin.c', '../../mechanics/abilities/supreme_overlord.c', '../../mechanics/abilities/status_on_hit.c'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/boost.c', '../../mechanics/abilities/charge.c', '../../mechanics/abilities/minds_eye.c', '../../mechanics/abilities/neuroforce.c', '../../mechanics/abilities/power_spot.c', '../../mechanics/abilities/protean.c', '../../mechanics/abilities/punk_rock.c', '../../mechanics/abilities/ruin.c', '../../mechanics/abilities/supreme_overlord.c', '../../mechanics/abilities/status_on_hit.c'),
   },
   {
     'id': 24,
     'slug': 'abilities_mb_defense',
-    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/eelevate.c', '../../mechanics/abilities/absorb.c', '../../mechanics/abilities/fluffy.c', '../../mechanics/abilities/good_as_gold.c', '../../mechanics/abilities/guard_dog.c', '../../mechanics/abilities/mirror_armor.c', '../../mechanics/abilities/purifying_salt.c', '../../mechanics/abilities/armor_tail.c', '../../mechanics/abilities/tera_shell.c', '../../mechanics/abilities/pastel_veil.c', '../../mechanics/abilities/wind_rider.c', '../../mechanics/abilities/damp.c'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/eelevate.c', '../../mechanics/abilities/absorb.c', '../../mechanics/abilities/fluffy.c', '../../mechanics/abilities/good_as_gold.c', '../../mechanics/abilities/guard_dog.c', '../../mechanics/abilities/mirror_armor.c', '../../mechanics/abilities/purifying_salt.c', '../../mechanics/abilities/tera_shell.c', '../../mechanics/abilities/pastel_veil.c', '../../mechanics/abilities/wind_rider.c', '../../mechanics/abilities/damp.c'),
   },
   {
     'id': 25,
     'slug': 'abilities_mb_reactive',
-    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/anger_shell.c', '../../mechanics/abilities/hit_reactions.c', '../../mechanics/abilities/lingering_aroma.c', '../../mechanics/abilities/status_on_hit.c', '../../mechanics/abilities/stamina.c'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/berserk.c', '../../mechanics/abilities/hit_reactions.c', '../../mechanics/abilities/lingering_aroma.c', '../../mechanics/abilities/status_on_hit.c', '../../mechanics/abilities/stamina.c'),
   },
   {
     'id': 26,
