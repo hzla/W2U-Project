@@ -33,6 +33,8 @@
 #define PML_MoveGetConditionParam PML_MoveGetSickCont
 #define Handler_CheckMatchup sub_21ABF54
 #define Handler_PokeIDToPokePos Battle_GetMonPos
+#define HandlerGetAlivePartyCount Battle_ExpandPos
+#define GetBattleMonHeldItem BattleMon_GetHeldItem
 #endif
 
 #ifdef __cplusplus
@@ -71,6 +73,7 @@ enum {
     EVENT_CHECK_NO_EFFECT_TYPE = 0x1B,  /* a move's type found no effect (Levitate's popup) */
     EVENT_DAMP_MOVE_CHECK = 0x1F,       /* may the move be used? VAR_FAIL_CAUSE (Damp) */
     EVENT_DAMP_FAIL_MESSAGE = 0x21,     /* the failed move's message */
+    EVENT_AFTER_MOVE_USE = 0x22,        /* the attacker's move was used: the Choice items lock here */
     EVENT_CHECK_NO_EFFECT = 0x2D,       /* per target: may the move affect it? (Volt Absorb, Soundproof) */
     EVENT_ACCURACY_STAGE = 0x33,        /* a hit's accuracy / evasion stages: VAR_EVASION_STAGE (6 = neutral) */
     EVENT_MOVE_POWER = 0x38,            /* VAR_MOVE_POWER_RATIO *= x (Iron Fist, Technician) */
@@ -80,6 +83,8 @@ enum {
     EVENT_DAMAGE_RATIO = 0x47,          /* the final damage of a hit: VAR_RATIO *= x (Filter, Multiscale) */
     EVENT_AFTER_DAMAGE_REACTION = 0x4B, /* a hit landed on the defender (Rough Skin, Weak Armor, Justified) */
     EVENT_SWITCH_IN = 0x55,
+    EVENT_BEFORE_SWITCH_IN_BATCH = 0x56, /* ServerEvent_BeforeSwitchInBatch */
+    EVENT_REFRESH_ACTIVATION = 0x58,    /* ServerEvent_RefreshActivation */
     EVENT_STAT_CHANGE_CHECK = 0x5B,     /* may VAR_MON_ID's stat change? */
     EVENT_STAT_CHANGE_GUARD = 0x5C,
     EVENT_ADD_CONDITION_CHECK = 0x65,   /* a status for the defender: VAR_FAIL_FLAG blocks it (Water Veil) */
@@ -87,6 +92,7 @@ enum {
     EVENT_ABILITY_NULLIFIED = 0x6A,
     EVENT_TURN_CHECK = 0x76,            /* the end of the turn */
     EVENT_AFTER_KO = 0x83,              /* the attacker's move KO'd targets: VAR_TARGET_COUNT, VAR_TARGET0.. */
+    EVENT_BEFORE_ABILITY_CHANGE = 0x89,
     EVENT_AFTER_ABILITY_CHANGE = 0x8A,
 };
 
@@ -124,6 +130,8 @@ enum {
     HANDLER_CMD_POPUP_IN = 0x02,        /* PushRun: the ability popup appears */
     HANDLER_CMD_POPUP_OUT = 0x03,
     HANDLER_CMD_MESSAGE = 0x04,         /* BattleHandlerMessageParam */
+    HANDLER_CMD_RECOVER_HP = 0x05,      /* BattleHandlerRecoverHPParam */
+    HANDLER_CMD_CURE_CONDITION = 0x0B,  /* BattleHandlerCureConditionParam */
     HANDLER_CMD_ADD_CONDITION = 0x0C,   /* BattleHandlerAddConditionParam */
     HANDLER_CMD_CHANGE_STAT = 0x0E,     /* BattleHandlerStatChangeParam */
     HANDLER_CMD_REMOVE_SIDE_EFFECT = 0x1A, /* BattleHandlerRemoveSideEffectParam */
@@ -166,10 +174,13 @@ typedef struct BattleHandlerStatChangeParam {
 /* Battle Pokémon IDs and positions */
 #define BATTLE_MAX_MON_ID 24                /* monIds are 0-23 */
 #define BATTLE_POS_NONE 6                   /* Handler_PokeIDToPokePos: not on the field */
+/* HandlerGetAlivePartyCount's code: the range (high byte) and the position (low byte) */
+#define BATTLE_RANGE_FULL_FRIENDS 7         /* the whole side of the position */
 
 /* CheckCondition's conditions (W2U's names) */
 enum {
     MON_CONDITION_GASTRO_ACID = 0x10,   /* the ability is suppressed */
+    MON_CONDITION_CHOICE_LOCK = 0x1B,   /* locked into one move (the Choice items) */
 };
 
 /* Major statuses (BattleHandlerAddConditionParam.condition) */
@@ -213,6 +224,25 @@ typedef struct BattleHandlerRemoveSideEffectParam {
     u8 side;
 } BattleHandlerRemoveSideEffectParam;
 
+typedef struct BattleHandlerRecoverHPParam {
+    u32 header : 23;
+    u32 popup : 1;
+    u32 unk24 : 8;
+    u16 amount;
+    u8 targetIndex;
+    u8 bypassHealBlock;
+    BattleHandlerString string;
+} BattleHandlerRecoverHPParam;
+
+typedef struct BattleHandlerCureConditionParam {
+    u32 header;
+    u32 condition;
+    u8 monIds[12];
+    u8 count;
+    u8 useString;
+    u8 unk16[2];
+} BattleHandlerCureConditionParam;
+
 /* A move's parameters as the events changed them (ServerEvent_GetMoveParam) */
 typedef struct BtlFlowMoveParam {
     u16 move;
@@ -235,6 +265,9 @@ W2U_ENGINE_LAYOUT(stat_change_mons, __builtin_offsetof(BattleHandlerStatChangePa
 W2U_ENGINE_LAYOUT(condition_size, sizeof(BattleCondition) == 4);
 W2U_ENGINE_LAYOUT(add_condition_target, __builtin_offsetof(BattleHandlerAddConditionParam, targetIndex) == 0x0F);
 W2U_ENGINE_LAYOUT(add_condition_string, __builtin_offsetof(BattleHandlerAddConditionParam, string) == 0x14);
+W2U_ENGINE_LAYOUT(recover_hp_string, __builtin_offsetof(BattleHandlerRecoverHPParam, string) == 0x08);
+W2U_ENGINE_LAYOUT(cure_count, __builtin_offsetof(BattleHandlerCureConditionParam, count) == 0x14);
+W2U_ENGINE_LAYOUT(add_condition_overwrite, __builtin_offsetof(BattleHandlerAddConditionParam, overwrite) == 0x10);
 W2U_ENGINE_LAYOUT(move_param_type, __builtin_offsetof(BtlFlowMoveParam, type) == 0x06);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 
@@ -324,6 +357,12 @@ BattleMon *GetBattleMon(BtlServerFlow *serverFlow, u8 monId);
 u32 GetBattleMonStat(const BattleMon *mon, u32 stat);
 b32 IsFainted(const BattleMon *mon);
 b32 CheckCondition(const BattleMon *mon, u32 conditionId);
+u32 GetBattleMonHeldItem(BattleMon *mon);
+b32 IsMonFullHP(BattleMon *mon);
+/* Max HP / divisor, at least 1 */
+u32 DivideMaxHPZeroCheck(BattleMon *mon, u32 divisor);
+/* The Pokémon a position code covers ((range << 8) | position), into monIds: their count */
+u8 HandlerGetAlivePartyCount(BtlServerFlow *handler, u16 code, u8 *monIds);
 /* The Pokémon's battle position, BATTLE_POS_NONE if it is not on the field */
 u8 Handler_PokeIDToPokePos(BtlServerFlow *flow, u8 monId);
 /* The move's priority after the events (Prankster, Gale Wings, Triage), + 7 */
@@ -346,6 +385,9 @@ u32 BtlCalc_ClassifyEffectiveness(s32 effectivenessId);
 BattleCondition BtlCalc_MakeMajorStatusCondition(u32 status);
 /* The value of the condition a move inflicts, for the Pokémon using it */
 void BtlCalc_BuildMoveCondition(MoveConditionParam param, BattleMon *mon, BattleCondition *out);
+
+/* A condition value that lasts until removed (the Choice lock's move) */
+BattleCondition MakeConditionParamPermanent(u16 param);
 
 /* btl_server_flow.c */
 /* Set while the engine checks a matchup: Mummy and Flame Body skip their reactions then */
@@ -379,6 +421,9 @@ void HandlerDampEffective(BattleEventItem *item, BtlServerFlow *flow, u8 monId, 
 void HandlerDampStart(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 void HandlerDampMoveEnd(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 void HandlerDampEnd(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+/* Unnerve's: its entry message (once: work[0]) and the same when activations are refreshed */
+void HandlerUnnerveMemberIn(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
+void HandlerUnnerveRotationIn(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work);
 
 W2U_C_END
 
