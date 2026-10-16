@@ -11,6 +11,7 @@
 #include "w2u_strong_weather.h"
 #if !defined(W2U_TARGET_B2)
 #include "megab2w2/mb_ability_tables.h"   // ported MegaB2W2 ability tables (White 2 only)
+#include "../mechanics/w2u_mechanics.h"     // the C mechanics' handler tables (src/mechanics)
 #endif
 
 #define W2U_ABILITY_POWER_RATIO_1_2X 4915
@@ -3265,31 +3266,7 @@ BattleEventHandlerTableEntry BatteryHandlers[] = {
 };
 
 
-extern "C" void HandlerFluffy(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)work;
-    if (pokemonSlot != (u32)BattleEventVar_GetValue(VAR_DEFENDING_MON)) {
-        return;
-    }
-
-    u32 ratio = 4096;
-    if (BattleEventVar_GetValue(VAR_MOVE_TYPE) == TYPE_FIRE) {
-        ratio *= 2;
-    }
-
-    MOVE_ID moveID = (MOVE_ID)BattleEventVar_GetValue(VAR_MOVE_ID);
-    u32 attackingSlot = (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON);
-    if (W2U_MoveMakesContact(serverFlow, moveID, attackingSlot)) {
-        ratio /= 2;
-    }
-
-    BattleEventVar_MulValue(VAR_RATIO, ratio);
-}
-
-BattleEventHandlerTableEntry FluffyHandlers[] = {
-    {EVENT_MOVE_DAMAGE_PROCESSING_2, HandlerFluffy},
-};
+// Fluffy: src/mechanics/abilities/fluffy.c (with Ice Scales and Aura Guard).
 
 
 extern "C" void HandlerSoulHeart(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
