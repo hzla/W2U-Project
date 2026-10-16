@@ -26,11 +26,9 @@ extern BattleEventHandlerTableEntry MB_ProteanHandlers[2];
 extern BattleEventHandlerTableEntry MB_PurifyingSaltHandlers[7];
 extern BattleEventHandlerTableEntry MB_QueenlyMajestyHandlers[1];
 extern BattleEventHandlerTableEntry MB_RuinHandlers[4];
-extern BattleEventHandlerTableEntry MB_ScreenCleanerHandlers[2];
 extern BattleEventHandlerTableEntry MB_TeraShellHandlers[2];
 extern BattleEventHandlerTableEntry MB_SupremeOverlordHandlers[3];
 extern BattleEventHandlerTableEntry MB_VeilHandlers[7];
-extern BattleEventHandlerTableEntry MB_WindRiderHandlers[5];
 extern BattleEventHandlerTableEntry MB_GrassPeltHandlers[1];
 // wave C (abilities/mb_hooked)
 extern BattleEventHandlerTableEntry MB_GorillaTacticsHandlers[4];

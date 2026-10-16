@@ -176,6 +176,8 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/eelevate.c',
   'mechanics/abilities/damp.c',
   'mechanics/abilities/status_on_hit.c',
+  'mechanics/abilities/screen_cleaner.c',
+  'mechanics/abilities/wind_rider.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',

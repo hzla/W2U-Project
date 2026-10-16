@@ -123,7 +123,7 @@ w2u_battle_module_definitions = [
   {
     'id': 24,
     'slug': 'abilities_mb_defense',
-    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/eelevate.c', '../../mechanics/abilities/absorb.c', '../../mechanics/abilities/fluffy.c', '../../mechanics/abilities/good_as_gold.c', '../megab2w2/abilities/GuardDog.cpp', '../megab2w2/abilities/MirrorArmor.cpp', '../megab2w2/abilities/PurifyingSalt.cpp', '../megab2w2/abilities/QueenlyMajesty.cpp', '../megab2w2/abilities/Shields.cpp', '../megab2w2/abilities/Veil.cpp', '../megab2w2/abilities/WindRider.cpp', '../../mechanics/abilities/damp.c'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/eelevate.c', '../../mechanics/abilities/absorb.c', '../../mechanics/abilities/fluffy.c', '../../mechanics/abilities/good_as_gold.c', '../megab2w2/abilities/GuardDog.cpp', '../megab2w2/abilities/MirrorArmor.cpp', '../megab2w2/abilities/PurifyingSalt.cpp', '../megab2w2/abilities/QueenlyMajesty.cpp', '../megab2w2/abilities/Shields.cpp', '../megab2w2/abilities/Veil.cpp', '../../mechanics/abilities/wind_rider.c', '../../mechanics/abilities/damp.c'),
   },
   {
     'id': 25,
@@ -133,7 +133,7 @@ w2u_battle_module_definitions = [
   {
     'id': 26,
     'slug': 'abilities_mb_entry',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/EntryEffects.cpp', '../megab2w2/abilities/Hospitality.cpp', '../megab2w2/abilities/IntrepidSword.cpp', '../megab2w2/abilities/Neigh.cpp', '../megab2w2/abilities/ScreenCleaner.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/EntryEffects.cpp', '../megab2w2/abilities/Hospitality.cpp', '../megab2w2/abilities/IntrepidSword.cpp', '../megab2w2/abilities/Neigh.cpp', '../../mechanics/abilities/screen_cleaner.c'),
   },
   {
     'id': 27,

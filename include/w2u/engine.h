@@ -124,6 +124,7 @@ enum {
     HANDLER_CMD_MESSAGE = 0x04,         /* BattleHandlerMessageParam */
     HANDLER_CMD_ADD_CONDITION = 0x0C,   /* BattleHandlerAddConditionParam */
     HANDLER_CMD_CHANGE_STAT = 0x0E,     /* BattleHandlerStatChangeParam */
+    HANDLER_CMD_REMOVE_SIDE_EFFECT = 0x1A, /* BattleHandlerRemoveSideEffectParam */
 };
 
 /* BattleHandler_StrSetup message kinds */
@@ -195,6 +196,12 @@ typedef struct BattleHandlerAddConditionParam {
     BattleHandlerString string;
 } BattleHandlerAddConditionParam;
 
+typedef struct BattleHandlerRemoveSideEffectParam {
+    u32 header;
+    u8 effects[3];                      /* a bit set: its size in bytes (3), then the SIDE_EFFECT_* bits 0-15 */
+    u8 side;
+} BattleHandlerRemoveSideEffectParam;
+
 /* A move's parameters as the events changed them (ServerEvent_GetMoveParam) */
 typedef struct BtlFlowMoveParam {
     u16 move;
@@ -246,7 +253,17 @@ enum {
 enum {
     MOVE_FLAG_CONTACT = 0,
     MOVE_FLAG_SOUND = 8,
+};                                      /* W2U's own flags (MOVE_FLAG_WIND ...): megab2w2/mb_ids.h */
+
+/* Side effects (SideEffect_IsActive, BattleHandlerRemoveSideEffectParam) */
+enum {
+    SIDE_EFFECT_REFLECT = 0,
+    SIDE_EFFECT_LIGHT_SCREEN = 1,
+    SIDE_EFFECT_SAFEGUARD = 2,
+    SIDE_EFFECT_MIST = 3,
+    SIDE_EFFECT_TAILWIND = 4,
 };
+#define BATTLE_SIDES 2
 
 /* PML_MoveGetParam parameters and the categories it returns */
 enum {
@@ -289,6 +306,9 @@ b32 BattleEventVar_RewriteValue(u16 key, s32 value);
 
 /* btl_main.c, btl_server_flow.c, btl_pokeparam.c */
 b32 IsAllyMonID(u8 monId1, u8 monId2);
+u8 GetSideFromMonID(u8 monId);
+/* W2U's name (the decomp has none yet): the side effect is up on the side */
+b32 SideEffect_IsActive(u32 side, u32 effect);
 BattleMon *GetBattleMon(BtlServerFlow *serverFlow, u8 monId);
 u32 GetBattleMonStat(const BattleMon *mon, u32 stat);
 b32 IsFainted(const BattleMon *mon);
