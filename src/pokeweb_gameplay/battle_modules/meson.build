@@ -138,7 +138,7 @@ w2u_battle_module_definitions = [
   {
     'id': 27,
     'slug': 'abilities_mb_terrain',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Protosynthesis.cpp', '../megab2w2/abilities/TerrainAbilities.cpp', '../megab2w2/abilities/SandSpit.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/protosynthesis.c', '../../mechanics/abilities/terrain_abilities.c', '../../mechanics/abilities/sand_spit.c'),
   },
   {
     'id': 28,

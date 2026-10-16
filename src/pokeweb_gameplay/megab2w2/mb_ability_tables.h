@@ -5,12 +5,7 @@
 extern BattleEventHandlerTableEntry MB_CuriousMedicineHandlers[2];
 extern BattleEventHandlerTableEntry MB_CostarHandlers[2];
 extern BattleEventHandlerTableEntry MB_SupersweetSyrupHandlers[2];
-extern BattleEventHandlerTableEntry MB_ProtosynthesisHandlers[11];
-extern BattleEventHandlerTableEntry MB_PulseHandlers[3];
-extern BattleEventHandlerTableEntry MB_MimicryHandlers[5];
-extern BattleEventHandlerTableEntry MB_SandSpitHandlers[1];
 extern BattleEventHandlerTableEntry MB_SupremeOverlordHandlers[3];
-extern BattleEventHandlerTableEntry MB_GrassPeltHandlers[1];
 // wave C (abilities/mb_hooked)
 extern BattleEventHandlerTableEntry MB_RipenHandlers[1];
 extern BattleEventHandlerTableEntry MB_OpportunistHandlers[5];

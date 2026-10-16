@@ -49,3 +49,8 @@ extern "C" BattleEventHandlerTableEntry IntrepidSwordHandlers[1];
 extern "C" BattleEventHandlerTableEntry QuickDrawHandlers[2];
 extern "C" BattleEventHandlerTableEntry MyceliumMightHandlers[4];
 extern "C" BattleEventHandlerTableEntry MegaSolHandlers[2];
+extern "C" BattleEventHandlerTableEntry ProtosynthesisHandlers[11];
+extern "C" BattleEventHandlerTableEntry SandSpitHandlers[1];
+extern "C" BattleEventHandlerTableEntry PulseHandlers[3];
+extern "C" BattleEventHandlerTableEntry MimicryHandlers[5];
+extern "C" BattleEventHandlerTableEntry GrassPeltHandlers[1];

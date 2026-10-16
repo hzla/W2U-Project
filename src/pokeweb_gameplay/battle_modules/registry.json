@@ -762,19 +762,19 @@
       "dependency": "moves/terrain",
       "white2_only": true,
       "extra_sources": [
-        "megab2w2/abilities/Protosynthesis.cpp",
-        "megab2w2/abilities/TerrainAbilities.cpp",
-        "megab2w2/abilities/SandSpit.cpp"
+        "../mechanics/abilities/protosynthesis.c",
+        "../mechanics/abilities/terrain_abilities.c",
+        "../mechanics/abilities/sand_spit.c"
       ],
       "entries": [
-        ["ability", "ABIL_PROTOSYNTHESIS", "MB_ProtosynthesisHandlers"],
-        ["ability", "ABIL_QUARK_DRIVE", "MB_ProtosynthesisHandlers"],
-        ["ability", "ABIL_ORICHALCUM_PULSE", "MB_PulseHandlers"],
-        ["ability", "ABIL_HADRON_ENGINE", "MB_PulseHandlers"],
-        ["ability", "ABIL_MIMICRY", "MB_MimicryHandlers"],
-        ["ability", "ABIL_GRASS_PELT", "MB_GrassPeltHandlers"],
-        ["ability", "ABIL_SAND_SPIT", "MB_SandSpitHandlers"],
-        ["ability", "ABIL_SEED_SOWER", "MB_SandSpitHandlers"]
+        ["ability", "ABIL_PROTOSYNTHESIS", "ProtosynthesisHandlers"],
+        ["ability", "ABIL_QUARK_DRIVE", "ProtosynthesisHandlers"],
+        ["ability", "ABIL_ORICHALCUM_PULSE", "PulseHandlers"],
+        ["ability", "ABIL_HADRON_ENGINE", "PulseHandlers"],
+        ["ability", "ABIL_MIMICRY", "MimicryHandlers"],
+        ["ability", "ABIL_GRASS_PELT", "GrassPeltHandlers"],
+        ["ability", "ABIL_SAND_SPIT", "SandSpitHandlers"],
+        ["ability", "ABIL_SEED_SOWER", "SandSpitHandlers"]
       ]
     },
     {

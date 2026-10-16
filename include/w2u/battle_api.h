@@ -36,6 +36,14 @@ void W2U_MB_ClearPendingMove(u32 monId);
 /* Mega Sol: the Pokémon whose move is running (0xFF: none); the weather reads as sun meanwhile */
 void W2U_MB_SetMegaSolAttacker(u32 monId);
 
+/* W2U's terrain (w2u_moves.cpp): the current one (W2U_TERRAIN_*), and starting one from an ability under its popup
+ * (W2U's Surge path: the popup, then the message, with which the terrain fades in; W2U's after-terrain-change event
+ * fires). msgID: the terrain's start message, or with ...Named an ability's own message naming the holder. False if
+ * that terrain is already up. */
+u32 W2U_MoveState_GetTerrain(void);
+b32 W2U_MoveState_SetTerrainFromAbility(BtlServerFlow *flow, u32 monId, u32 terrain, u32 msgID, u32 animMove);
+b32 W2U_MoveState_SetTerrainFromAbilityNamed(BtlServerFlow *flow, u32 monId, u32 terrain, u32 msgID, u32 animMove);
+
 W2U_C_END
 
 /* Who and what the current event is about */
@@ -228,6 +236,60 @@ static inline b32 W2U_BlockMove(BtlServerFlow *flow, u8 monId)
     }
     W2U_PopupMessage(flow, monId, W2U_MSG_SET_DOESNT_AFFECT);
     return 1;
+}
+
+/* Terrain */
+enum { W2U_TERRAIN_NONE, W2U_TERRAIN_ELECTRIC, W2U_TERRAIN_GRASSY, W2U_TERRAIN_MISTY, W2U_TERRAIN_PSYCHIC };
+
+static inline u32 W2U_Terrain(void) { return W2U_MoveState_GetTerrain(); }
+
+/* The terrain's type (Mimicry): Electric, Grass, Fairy, Psychic */
+static inline u32 W2U_TerrainType(u32 terrain)
+{
+    static const u8 types[5] = { 0, 12, 11, 17, 13 };
+
+    return terrain <= W2U_TERRAIN_PSYCHIC ? types[terrain] : 0;
+}
+
+/* W2U's terrain start messages (bank 18) and the terrain moves whose animation plays (Black 2 only) */
+static inline u16 W2U_TerrainStartMessage(u32 terrain)
+{
+    static const u16 messages[5] = { 0, 1292, 1295, 1298, 1313 };
+
+    return messages[terrain];
+}
+
+static inline u16 W2U_TerrainAnimationMove(u32 terrain)
+{
+    static const u16 moves[5] = { 0, 604, 580, 581, 678 };
+
+    return moves[terrain];
+}
+
+/* Starts terrain from the holder's ability, as W2U's Surges do; nothing if it is already up */
+static inline b32 W2U_SetTerrainFromAbility(BtlServerFlow *flow, u8 monId, u32 terrain)
+{
+    return terrain && terrain <= W2U_TERRAIN_PSYCHIC
+           && W2U_MoveState_SetTerrainFromAbility(flow, monId, terrain, W2U_TerrainStartMessage(terrain),
+                                                  W2U_TerrainAnimationMove(terrain));
+}
+
+/* The same with the ability's own message naming the holder instead of the terrain's start message */
+static inline b32 W2U_SetTerrainFromAbilityNamed(BtlServerFlow *flow, u8 monId, u32 terrain, u16 message)
+{
+    return terrain && terrain <= W2U_TERRAIN_PSYCHIC
+           && W2U_MoveState_SetTerrainFromAbilityNamed(flow, monId, terrain, message, W2U_TerrainAnimationMove(terrain));
+}
+
+/* A set message about the holder, without the popup (inside one already shown, or none) */
+static inline void W2U_Message(BtlServerFlow *flow, u8 monId, u16 message)
+{
+    BattleHandlerMessageParam *param =
+        (BattleHandlerMessageParam *)BattleHandler_PushWork(flow, HANDLER_CMD_MESSAGE, monId);
+
+    BattleHandler_StrSetup(&param->string, HANDLER_STR_SET, message);
+    BattleHandler_AddArg(&param->string, monId);
+    BattleHandler_PopWork(flow, param);
 }
 
 /* The AI's damage simulation runs the damage events too (dozens a turn): handlers that log or count skip it */

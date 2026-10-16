@@ -199,6 +199,9 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/intrepid_sword.c',
   'mechanics/abilities/quick_draw.c',
   'mechanics/abilities/move_abilities.c',
+  'mechanics/abilities/protosynthesis.c',
+  'mechanics/abilities/sand_spit.c',
+  'mechanics/abilities/terrain_abilities.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',

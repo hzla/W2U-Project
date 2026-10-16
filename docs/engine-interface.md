@@ -46,7 +46,8 @@ the decomp does, with compile-time checks of the offsets the vanilla code uses. 
 Some mechanics need state the engine's events don't carry: the move a Pokémon will use this turn (Quick Draw,
 Mycelium Might), the sun during Mega Sol's moves, the Berry Cud Chew ate. W2U's resident core
 (`megab2w2/mb_resident.cpp`) keeps it through its engine call-site hooks and exposes it as plain C functions
-(`W2U_MB_*`), and the terrain module the same way (`W2U_MoveState_*`). `battle_api.h` declares them among W2U's
+(`W2U_MB_*`), and the terrain module the same way (`W2U_MoveState_*`, with C helpers in `battle_api.h`: `W2U_Terrain`,
+`W2U_SetTerrainFromAbility`, `W2U_TerrainType`). `battle_api.h` declares them among W2U's
 extensions, so a mechanic calls them like any other API function and stays portable. In a decomp build, those
 functions stay, and only the hooks that feed them become calls written into the decomp's source (the named hooks
 of the plan's step 4).
@@ -148,6 +149,9 @@ hooks will have to provide.
 | Intrepid Sword, Dauntless Shield | `abilities/intrepid_sword.c` | `megab2w2/abilities/IntrepidSword.cpp` | `INTREPID_SWORD`, `DAUNTLESS_SHIELD` (`wave_a.yml`) |
 | Quick Draw | `abilities/quick_draw.c` | `megab2w2/abilities/QuickDraw.cpp` | `QUICK_DRAW`, `QUICK_DRAW_STATUS` (`wave_c.yml`) |
 | Mycelium Might, Mega Sol | `abilities/move_abilities.c` | the rest of `megab2w2/abilities/MoveAbilities.cpp` | `MYCELIUM_MIGHT`, `MEGA_SOL`, `MEGA_SOL_FIRE` (`wave_c.yml`) |
+| Protosynthesis, Quark Drive | `abilities/protosynthesis.c` | `megab2w2/abilities/Protosynthesis.cpp` | the six `PROTOSYNTHESIS*` / `QUARK_DRIVE*` scenarios (`wave_b.yml`) |
+| Sand Spit, Seed Sower | `abilities/sand_spit.c` | `megab2w2/abilities/SandSpit.cpp` | `SAND_SPIT`, `SEED_SOWER` (`wave_b.yml`) |
+| Orichalcum Pulse, Hadron Engine, Grass Pelt, Mimicry | `abilities/terrain_abilities.c` | `megab2w2/abilities/TerrainAbilities.cpp` | `ORICHALCUM_PULSE`, `HADRON_ENGINE`, `MIMICRY` (`wave_b.yml`), `GRASS_PELT` (`wave_shared.yml`) |
 
 Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
 W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting
@@ -163,7 +167,8 @@ which needs the BattleMon layout in `engine.h` first.
 Found while converting (behaviour unchanged): `GetBattleMonStat(8 .. 0xC)` returns the stats with stat stages
 applied (`RawBattleMonStat`, IRDO.yml's `BattleMon_GetRealStat`, is the unstaged one, with Wonder Room's swap).
 MegaB2W2's `BestStat`, which Eelevate uses, therefore picks the highest *boosted* stat, unlike Beast Boost and
-Showdown; its `BestStatWithStages` applies the stages a second time.
+Showdown; its `BestStatWithStages`, which Protosynthesis and Quark Drive use (kept in `protosynthesis.c`), applies the
+stages a second time.
 
 Battery keeps W2U's effect on the attacking stat (`EVENT_ATTACKING_STAT`). Showdown (and the MegaB2W2 row that was
 never registered) boosts the move's base power, which rounds differently; switching would be a behaviour change.
