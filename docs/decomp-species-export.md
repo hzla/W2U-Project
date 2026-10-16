@@ -29,5 +29,6 @@ decomp's packer would have to change:
 - 8 evolution slots (Eevee uses the eighth, Sylveon); the decomp packs 7;
 - W2U has no baby species or egg moves of its own (the retail archives): species 1-649 take the decomp's.
 
-Data found on the way: Corsola's, Galarian Corsola's and Snorunt's 5% held items are 648 / 649 (Gen 6's Luminous
-Moss and Snowball), past the end of the item table (638).
+Data found on the way (fixed 2026-10-15): Corsola's, Galarian Corsola's and Snorunt's 5% held items were 648 / 649
+(Gen 6's Luminous Moss and Snowball), past the end of the item table (638); now retail's Hard Stone (Galarian
+Corsola's record is a copy of Corsola's) and Babiri Berry.
