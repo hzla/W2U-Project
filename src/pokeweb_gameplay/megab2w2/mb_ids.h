@@ -215,7 +215,7 @@ namespace moves { inline bool HasFlag(u16 move, MoveFlagExt flag) { return flag 
 #define BTLMSG_SET_QUICK_DRAW 1442   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
 // form abilities (abilities/mb_forms, 2026-10-06)
 #define BTLMSG_SET_ZERO_TO_HERO 1445   // W2U text bank 18 (+0 player, +1 wild, +2 foe)
-#define BTLMSG_SET_COMMANDER 1448   // W2U text bank 18 (+0 player, +1 wild, +2 foe): arg 0 Tatsugiri, 1 Dondozo
+#define BTLMSG_SET_COMMANDER 1463   // W2U text bank 18, two Pokémon (arg 0 Tatsugiri, 1 Dondozo): seven variants 1463-1469 as Red Card's 417-423 (1448-1450, three variants, unused)
 #define BTLMSG_STD_DISGUISE_DECOY 213   // W2U text bank 19
 #define BTLMSG_STD_PERISH_BODY 214   // W2U text bank 19
 #define BTL_STRTYPE_STD 1
