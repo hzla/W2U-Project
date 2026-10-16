@@ -36,6 +36,7 @@
 #define HandlerGetAlivePartyCount Battle_ExpandPos
 #define GetBattleMonHeldItem BattleMon_GetHeldItem
 #define PokeTypePair_MakeMonotype PokeTypePair_MakePure
+#define GetTurnFlag BattleMon_GetTurnFlag
 #endif
 
 #ifdef __cplusplus
@@ -76,7 +77,8 @@ enum {
     EVENT_DAMP_MOVE_CHECK = 0x1F,       /* may the move be used? VAR_FAIL_CAUSE (Damp) */
     EVENT_DAMP_FAIL_MESSAGE = 0x21,     /* the failed move's message */
     EVENT_AFTER_MOVE_USE = 0x22,        /* the attacker's move was used: the Choice items lock here */
-    EVENT_CHECK_NO_EFFECT = 0x2D,       /* per target: may the move affect it? (Volt Absorb, Soundproof) */
+    EVENT_CHECK_NO_EFFECT = 0x2D,
+    EVENT_PROTECT_BREAK_CHECK = 0x2E,   /* per target of a protected move: VAR_BREAK_PROTECT (W2U raises it too) */       /* per target: may the move affect it? (Volt Absorb, Soundproof) */
     EVENT_ACCURACY_STAGE = 0x33,        /* a hit's accuracy / evasion stages: VAR_EVASION_STAGE (6 = neutral) */
     EVENT_MOVE_POWER = 0x38,            /* VAR_MOVE_POWER_RATIO *= x (Iron Fist, Technician) */
     EVENT_ATTACKING_STAT = 0x3B,        /* the attacker's attacking stat: VAR_RATIO *= x (Huge Power, Guts) */
@@ -117,7 +119,8 @@ enum {
     VAR_TYPE_EFFECTIVENESS = 0x38,      /* EVENT_DAMAGE_RATIO: the hit's effectiveness (BtlCalc_ClassifyEffectiveness) */
     VAR_RATIO = 0x35,                   /* fixed point, 4096 = x1 */
     VAR_NO_EFFECT = 0x40,
-    VAR_FAIL_FLAG = 0x41,               /* the status, Yawn and stat change checks: 1 = blocked */
+    VAR_FAIL_FLAG = 0x41,
+    VAR_BREAK_PROTECT = 0x51,           /* EVENT_PROTECT_BREAK_CHECK: 1 broken (Feint), 2 through (W2U) */               /* the status, Yawn and stat change checks: 1 = blocked */
     VAR_SUBSTITUTE_HIT = 0x46,          /* nonzero: the hit landed on a substitute */
     VAR_NO_SECONDARY = 0x47,            /* nonzero: no secondary effects for this hit (Shield Dust) */               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
 };
@@ -140,7 +143,8 @@ enum {
     HANDLER_CMD_ADD_CONDITION = 0x0C,   /* BattleHandlerAddConditionParam */
     HANDLER_CMD_CHANGE_STAT = 0x0E,     /* BattleHandlerStatChangeParam */
     HANDLER_CMD_CHANGE_TYPE = 0x14,     /* BattleHandlerChangeTypeParam: "X transformed into the Y type!" */
-    HANDLER_CMD_REMOVE_SIDE_EFFECT = 0x1A, /* BattleHandlerRemoveSideEffectParam */
+    HANDLER_CMD_REMOVE_SIDE_EFFECT = 0x1A,
+    HANDLER_CMD_CHANGE_ABILITY = 0x1F,  /* BattleHandlerAbilityChangeParam */ /* BattleHandlerRemoveSideEffectParam */
 };
 
 /* BattleHandler_StrSetup message kinds */
@@ -182,6 +186,11 @@ typedef struct BattleHandlerStatChangeParam {
 #define BATTLE_POS_NONE 6                   /* Handler_PokeIDToPokePos: not on the field */
 /* HandlerGetAlivePartyCount's code: the range (high byte) and the position (low byte) */
 #define BATTLE_RANGE_FULL_FRIENDS 7         /* the whole side of the position */
+
+/* GetTurnFlag's flags (W2U's names) */
+enum {
+    TURN_FLAG_PROTECT = 7,              /* protected this turn (Protect, Detect...) */
+};
 
 /* CheckCondition's conditions (W2U's names) */
 enum {
@@ -236,6 +245,18 @@ typedef struct BattleHandlerChangeTypeParam {
     u8 suppressMessage;
 } BattleHandlerChangeTypeParam;
 
+typedef struct BattleHandlerAbilityChangeParam {
+    u32 header : 23;
+    u32 popup : 1;
+    u32 unk24 : 8;
+    u16 ability;
+    u8 targetIndex;
+    u8 force;
+    u8 unk08;
+    u8 unk09[3];
+    BattleHandlerString string;
+} BattleHandlerAbilityChangeParam;
+
 typedef struct BattleHandlerRemoveSideEffectParam {
     u32 header;
     u8 effects[3];                      /* a bit set: its size in bytes (3), then the SIDE_EFFECT_* bits 0-15 */
@@ -286,6 +307,7 @@ W2U_ENGINE_LAYOUT(add_condition_string, __builtin_offsetof(BattleHandlerAddCondi
 W2U_ENGINE_LAYOUT(recover_hp_string, __builtin_offsetof(BattleHandlerRecoverHPParam, string) == 0x08);
 W2U_ENGINE_LAYOUT(cure_count, __builtin_offsetof(BattleHandlerCureConditionParam, count) == 0x14);
 W2U_ENGINE_LAYOUT(add_condition_overwrite, __builtin_offsetof(BattleHandlerAddConditionParam, overwrite) == 0x10);
+W2U_ENGINE_LAYOUT(ability_change_string, __builtin_offsetof(BattleHandlerAbilityChangeParam, string) == 0x0C);
 W2U_ENGINE_LAYOUT(move_param_type, __builtin_offsetof(BtlFlowMoveParam, type) == 0x06);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 
@@ -378,6 +400,7 @@ u32 GetBattleMonStat(const BattleMon *mon, u32 stat);
 b32 IsFainted(const BattleMon *mon);
 b32 CheckCondition(const BattleMon *mon, u32 conditionId);
 u32 GetBattleMonHeldItem(BattleMon *mon);
+u32 GetTurnFlag(BattleMon *mon, u32 flag);
 PokeTypePair GetPokeType(BattleMon *mon);
 PokeTypePair PokeTypePair_MakeMonotype(u32 singleTypeId);
 b32 IsMonFullHP(BattleMon *mon);

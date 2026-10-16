@@ -35,3 +35,5 @@ extern "C" BattleEventHandlerTableEntry PurifyingSaltHandlers[7];
 extern "C" BattleEventHandlerTableEntry AngerShellHandlers[2];
 extern "C" BattleEventHandlerTableEntry BoostHandlers[2];
 extern "C" BattleEventHandlerTableEntry ChargeHandlers[5];
+extern "C" BattleEventHandlerTableEntry UnseenFistHandlers[3];
+extern "C" BattleEventHandlerTableEntry LingeringAromaHandlers[1];

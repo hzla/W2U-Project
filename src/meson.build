@@ -189,6 +189,8 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/anger_shell.c',
   'mechanics/abilities/boost.c',
   'mechanics/abilities/charge.c',
+  'mechanics/abilities/unseen_fist.c',
+  'mechanics/abilities/lingering_aroma.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',
