@@ -848,28 +848,28 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #elif W2U_BATTLE_MODULE_ID == 27
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROTOSYNTHESIS), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROTOSYNTHESIS), (u16)W2U_ARRAY_COUNT(ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ProtosynthesisHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUARK_DRIVE), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUARK_DRIVE), (u16)W2U_ARRAY_COUNT(ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ProtosynthesisHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ORICHALCUM_PULSE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ORICHALCUM_PULSE), (u16)W2U_ARRAY_COUNT(PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PulseHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HADRON_ENGINE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HADRON_ENGINE), (u16)W2U_ARRAY_COUNT(PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PulseHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIMICRY), (u16)W2U_ARRAY_COUNT(MB_MimicryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MimicryHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIMICRY), (u16)W2U_ARRAY_COUNT(MimicryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MimicryHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GRASS_PELT), (u16)W2U_ARRAY_COUNT(MB_GrassPeltHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GrassPeltHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GRASS_PELT), (u16)W2U_ARRAY_COUNT(GrassPeltHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, GrassPeltHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SAND_SPIT), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SAND_SPIT), (u16)W2U_ARRAY_COUNT(SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SandSpitHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SEED_SOWER), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SEED_SOWER), (u16)W2U_ARRAY_COUNT(SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SandSpitHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
@@ -880,42 +880,42 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_PROTOSYNTHESIS) >= 0 && (ABIL_PROTOSYNTHESIS) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ProtosynthesisHandlers)) > 0 && (W2U_ARRAY_COUNT(ProtosynthesisHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_QUARK_DRIVE) >= 0 && (ABIL_QUARK_DRIVE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ProtosynthesisHandlers)) > 0 && (W2U_ARRAY_COUNT(ProtosynthesisHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_ORICHALCUM_PULSE) >= 0 && (ABIL_ORICHALCUM_PULSE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PulseHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PulseHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PulseHandlers)) > 0 && (W2U_ARRAY_COUNT(PulseHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_HADRON_ENGINE) >= 0 && (ABIL_HADRON_ENGINE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PulseHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PulseHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PulseHandlers)) > 0 && (W2U_ARRAY_COUNT(PulseHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_MIMICRY) >= 0 && (ABIL_MIMICRY) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_MimicryHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_MimicryHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(MimicryHandlers)) > 0 && (W2U_ARRAY_COUNT(MimicryHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_GRASS_PELT) >= 0 && (ABIL_GRASS_PELT) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_GrassPeltHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_GrassPeltHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(GrassPeltHandlers)) > 0 && (W2U_ARRAY_COUNT(GrassPeltHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_SAND_SPIT) >= 0 && (ABIL_SAND_SPIT) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_SandSpitHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_SandSpitHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(SandSpitHandlers)) > 0 && (W2U_ARRAY_COUNT(SandSpitHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_SEED_SOWER) >= 0 && (ABIL_SEED_SOWER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_SandSpitHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_SandSpitHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(SandSpitHandlers)) > 0 && (W2U_ARRAY_COUNT(SandSpitHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #elif W2U_BATTLE_MODULE_ID == 28
@@ -1982,28 +1982,28 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_mb_terrainEntries[] = {
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROTOSYNTHESIS), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_PROTOSYNTHESIS), (u16)W2U_ARRAY_COUNT(ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ProtosynthesisHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUARK_DRIVE), (u16)W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ProtosynthesisHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUARK_DRIVE), (u16)W2U_ARRAY_COUNT(ProtosynthesisHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ProtosynthesisHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ORICHALCUM_PULSE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ORICHALCUM_PULSE), (u16)W2U_ARRAY_COUNT(PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PulseHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HADRON_ENGINE), (u16)W2U_ARRAY_COUNT(MB_PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_PulseHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HADRON_ENGINE), (u16)W2U_ARRAY_COUNT(PulseHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, PulseHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIMICRY), (u16)W2U_ARRAY_COUNT(MB_MimicryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_MimicryHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_MIMICRY), (u16)W2U_ARRAY_COUNT(MimicryHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MimicryHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GRASS_PELT), (u16)W2U_ARRAY_COUNT(MB_GrassPeltHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GrassPeltHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GRASS_PELT), (u16)W2U_ARRAY_COUNT(GrassPeltHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, GrassPeltHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SAND_SPIT), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SAND_SPIT), (u16)W2U_ARRAY_COUNT(SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SandSpitHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SEED_SOWER), (u16)W2U_ARRAY_COUNT(MB_SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SandSpitHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SEED_SOWER), (u16)W2U_ARRAY_COUNT(SandSpitHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SandSpitHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_terrainApi = {
@@ -2014,42 +2014,42 @@ static const W2UBattleModuleApi sBattleModule_abilities_mb_terrainApi = {
 };
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_PROTOSYNTHESIS) >= 0 && (ABIL_PROTOSYNTHESIS) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ProtosynthesisHandlers)) > 0 && (W2U_ARRAY_COUNT(ProtosynthesisHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_QUARK_DRIVE) >= 0 && (ABIL_QUARK_DRIVE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ProtosynthesisHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ProtosynthesisHandlers)) > 0 && (W2U_ARRAY_COUNT(ProtosynthesisHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_ORICHALCUM_PULSE) >= 0 && (ABIL_ORICHALCUM_PULSE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PulseHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PulseHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PulseHandlers)) > 0 && (W2U_ARRAY_COUNT(PulseHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_HADRON_ENGINE) >= 0 && (ABIL_HADRON_ENGINE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_PulseHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_PulseHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(PulseHandlers)) > 0 && (W2U_ARRAY_COUNT(PulseHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_MIMICRY) >= 0 && (ABIL_MIMICRY) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_MimicryHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_MimicryHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(MimicryHandlers)) > 0 && (W2U_ARRAY_COUNT(MimicryHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_GRASS_PELT) >= 0 && (ABIL_GRASS_PELT) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_GrassPeltHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_GrassPeltHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(GrassPeltHandlers)) > 0 && (W2U_ARRAY_COUNT(GrassPeltHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_SAND_SPIT) >= 0 && (ABIL_SAND_SPIT) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_SandSpitHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_SandSpitHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(SandSpitHandlers)) > 0 && (W2U_ARRAY_COUNT(SandSpitHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_SEED_SOWER) >= 0 && (ABIL_SEED_SOWER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_SandSpitHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_SandSpitHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(SandSpitHandlers)) > 0 && (W2U_ARRAY_COUNT(SandSpitHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_TERRAIN()

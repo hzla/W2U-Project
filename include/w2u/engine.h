@@ -75,7 +75,8 @@ enum {
     EVENT_MOVE_END = 0x04,
     EVENT_YAWN_CHECK = 0x0E,
     EVENT_SPECIAL_PRIORITY = 0x0F,      /* VAR_MON_ID's place within its priority bracket: VAR_SPECIAL_PRIORITY */            /* may VAR_MON_ID get drowsy? VAR_FAIL_FLAG blocks it (Insomnia) */
-    EVENT_CHECK_FLOATING = 0x12,        /* VAR_MON_ID floats (Levitate) */
+    EVENT_CHECK_FLOATING = 0x12,
+    EVENT_CALC_SPEED = 0x13,            /* VAR_MON_ID's Speed: VAR_RATIO *= x (Swift Swim, Quick Feet) */        /* VAR_MON_ID floats (Levitate) */
     EVENT_CHECK_NO_EFFECT_TYPE = 0x1B,  /* a move's type found no effect (Levitate's popup) */
     EVENT_DAMP_MOVE_CHECK = 0x1F,       /* may the move be used? VAR_FAIL_CAUSE (Damp) */
     EVENT_DAMP_FAIL_MESSAGE = 0x21,     /* the failed move's message */
@@ -89,6 +90,7 @@ enum {
     EVENT_CHECK_TYPE_EFFECTIVENESS = 0x3E,
     EVENT_DAMAGE_RATIO = 0x47,          /* the final damage of a hit: VAR_RATIO *= x (Filter, Multiscale) */
     EVENT_AFTER_DAMAGE_REACTION = 0x4B, /* a hit landed on the defender (Rough Skin, Weak Armor, Justified) */
+    EVENT_SWITCH_OUT_END = 0x54,
     EVENT_SWITCH_IN = 0x55,
     EVENT_BEFORE_SWITCH_IN_BATCH = 0x56, /* ServerEvent_BeforeSwitchInBatch */
     EVENT_REFRESH_ACTIVATION = 0x58,    /* ServerEvent_RefreshActivation */
@@ -102,7 +104,8 @@ enum {
     EVENT_AFTER_KO = 0x83,
     EVENT_AFTER_MOVE_HITS = 0x87,       /* a move's hits are done: the targets (HandlerTargetsContain) */              /* the attacker's move KO'd targets: VAR_TARGET_COUNT, VAR_TARGET0.. */
     EVENT_BEFORE_ABILITY_CHANGE = 0x89,
-    EVENT_FORCE_OUT_CHECK = 0x8B,       /* may VAR_MON_ID be forced out (Roar, Whirlwind)? */
+    EVENT_FORCE_OUT_CHECK = 0x8B,
+    EVENT_NOTIFY_FAINTED = 0xA3,       /* may VAR_MON_ID be forced out (Roar, Whirlwind)? */
     EVENT_AFTER_ABILITY_CHANGE = 0x8A,
 };
 
@@ -131,6 +134,16 @@ enum {
     VAR_SUBSTITUTE_HIT = 0x46,          /* nonzero: the hit landed on a substitute */
     VAR_NO_SECONDARY = 0x47,            /* nonzero: no secondary effects for this hit (Shield Dust) */               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
 };
+
+/* Weather (GetWeather: as abilities see it, so Air Lock reads as none) */
+enum {
+    WEATHER_NONE = 0,
+    WEATHER_SUN = 1,
+    WEATHER_RAIN = 2,
+    WEATHER_HAIL = 3,
+    WEATHER_SAND = 4,
+};
+#define WEATHER_TURNS_DEFAULT 0xFF          /* BattleHandlerChangeWeatherParam: 5 turns, or the item's 8 */
 
 /* VAR_TYPE_EFFECTIVENESS values */
 enum {
@@ -162,7 +175,9 @@ enum {
     HANDLER_CMD_CHANGE_TYPE = 0x14,
     HANDLER_CMD_ADD_SIDE_EFFECT = 0x19, /* BattleHandlerAddSideEffectParam */     /* BattleHandlerChangeTypeParam: "X transformed into the Y type!" */
     HANDLER_CMD_REMOVE_SIDE_EFFECT = 0x1A,
-    HANDLER_CMD_CHANGE_ABILITY = 0x1F,  /* BattleHandlerAbilityChangeParam */ /* BattleHandlerRemoveSideEffectParam */
+    HANDLER_CMD_CHANGE_WEATHER = 0x1D,  /* BattleHandlerChangeWeatherParam */
+    HANDLER_CMD_CHANGE_ABILITY = 0x1F,
+    HANDLER_CMD_CONSUME_ITEM = 0x23,    /* BattleHandlerConsumeItemParam: the item animation and message, used up */  /* BattleHandlerAbilityChangeParam */ /* BattleHandlerRemoveSideEffectParam */
 };
 
 /* BattleHandler_StrSetup message kinds */
@@ -284,6 +299,23 @@ typedef struct BattleHandlerAddSideEffectParam {
     BattleHandlerString string;
 } BattleHandlerAddSideEffectParam;
 
+typedef struct BattleHandlerChangeWeatherParam {
+    u32 header : 23;
+    u32 popup : 1;
+    u32 unk24 : 8;
+    u8 weather;                         /* WEATHER_* */
+    u8 duration;
+    u8 notifyAirLock;
+    u8 unk07;
+    BattleHandlerString string;
+} BattleHandlerChangeWeatherParam;
+
+typedef struct BattleHandlerConsumeItemParam {
+    u32 header;
+    u32 skipDisplay;                    /* 0: the item animation and the message */
+    BattleHandlerString string;
+} BattleHandlerConsumeItemParam;
+
 typedef struct BattleHandlerRemoveSideEffectParam {
     u32 header;
     u8 effects[3];                      /* a bit set: its size in bytes (3), then the SIDE_EFFECT_* bits 0-15 */
@@ -336,6 +368,8 @@ W2U_ENGINE_LAYOUT(cure_count, __builtin_offsetof(BattleHandlerCureConditionParam
 W2U_ENGINE_LAYOUT(add_condition_overwrite, __builtin_offsetof(BattleHandlerAddConditionParam, overwrite) == 0x10);
 W2U_ENGINE_LAYOUT(ability_change_string, __builtin_offsetof(BattleHandlerAbilityChangeParam, string) == 0x0C);
 W2U_ENGINE_LAYOUT(add_side_effect_string, __builtin_offsetof(BattleHandlerAddSideEffectParam, string) == 0x10);
+W2U_ENGINE_LAYOUT(change_weather_string, __builtin_offsetof(BattleHandlerChangeWeatherParam, string) == 0x08);
+W2U_ENGINE_LAYOUT(consume_item_string, __builtin_offsetof(BattleHandlerConsumeItemParam, string) == 0x08);
 W2U_ENGINE_LAYOUT(move_param_type, __builtin_offsetof(BtlFlowMoveParam, type) == 0x06);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 
@@ -470,6 +504,8 @@ BattleCondition SetConditionTurns(u8 turns);
 b32 HandlerTargetsContain(u32 monId);
 
 /* btl_server_flow.c */
+/* The weather as abilities see it (Air Lock and Cloud Nine read as none) */
+u8 GetWeather(BtlServerFlow *serverFlow);
 /* Set while the engine checks a matchup: Mummy and Flame Body skip their reactions then */
 b32 Handler_CheckMatchup(BtlServerFlow *flow);
 b32 AbilityEvent_RollEffectChance(BtlServerFlow *flow, u32 chancePercent);
