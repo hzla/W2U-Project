@@ -30,7 +30,7 @@ static void HandlerChargeHit(BattleEventItem *item, BtlServerFlow *flow, u8 monI
     if (W2U_IsFainted(flow, monId)) {
         return;
     }
-    if (W2U_HolderAbility(flow, monId) == ABIL_WIND_POWER && !W2U_MoveHasFlag(W2U_Move(), MOVE_FLAG_WIND)) {
+    if (W2U_HolderAbility(flow, monId) == ABIL_WIND_POWER && !W2U_MoveHasFlag(W2U_Move(), MOVE_FLAG_INDEX_WIND)) {
         return;
     }
     ChargeUp(flow, monId);

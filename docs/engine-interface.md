@@ -23,8 +23,18 @@ variables are still numbers in the decomp, so W2U names them (`EVENT_DAMAGE_RATI
 offsets injection needs live here only (`W2U_SERVERFLOW_SIMULATION_DEPTH`, the decomp's `simulationDepth`).
 
 It is hand-written for the mechanics converted so far and grows with them; it becomes generated from the decomp
-crosswalk later. It must not be included together with `w2u_abilities.h` or the `megab2w2` battle headers, which
-declare the same engine under older names (it `#error`s).
+crosswalk later. It must not be included together with `w2u_abilities.h`, which declares the same engine under
+older names (it `#error`s).
+
+In a decomp build (`W2U_DECOMP` defined) the decomp's own headers declare the engine: `engine.h` then includes
+`w2u/engine_decomp.h` instead of declaring the types, the handler-command work and the functions, and keeps only the
+names W2U owns (events, event variables, handler commands, flags). `engine_decomp.h` adds the few names the decomp
+lacks and checks that the constants both define agree; where the decomp has its own name for a constant, `engine.h`
+uses that name (`MOVE_TARGET_*`), and where the decomp's name means something else W2U's gets a distinct one
+(`getMoveFlag`'s bit indices are `MOVE_FLAG_INDEX_*`; the decomp's `MOVE_FLAG_*` are masks). Against the public
+pokebw2 decomp, the names only hzla's cleanup has come from a generated `w2u/decomp_names.h`. A pilot build of Damp
+into the public decomp, with W2U's harness passing on the ROM, is described in `w2u-local/decomp/pilot/README.md`
+(2026-10-16).
 
 ## Layer B: `include/w2u/battle_api.h`
 
