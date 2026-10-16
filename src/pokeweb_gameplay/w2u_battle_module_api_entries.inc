@@ -1026,19 +1026,19 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #elif W2U_BATTLE_MODULE_ID == 29
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_FACE), (u16)W2U_ARRAY_COUNT(MB_IceFaceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IceFaceHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_FACE), (u16)W2U_ARRAY_COUNT(IceFaceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, IceFaceHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GULP_MISSILE), (u16)W2U_ARRAY_COUNT(MB_GulpMissileHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GulpMissileHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GULP_MISSILE), (u16)W2U_ARRAY_COUNT(GulpMissileHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, GulpMissileHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HUNGER_SWITCH), (u16)W2U_ARRAY_COUNT(MB_HungerSwitchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_HungerSwitchHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HUNGER_SWITCH), (u16)W2U_ARRAY_COUNT(HungerSwitchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, HungerSwitchHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ZERO_TO_HERO), (u16)W2U_ARRAY_COUNT(MB_ZeroToHeroHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ZeroToHeroHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ZERO_TO_HERO), (u16)W2U_ARRAY_COUNT(ZeroToHeroHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ZeroToHeroHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COMMANDER), (u16)W2U_ARRAY_COUNT(MB_CommanderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CommanderHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COMMANDER), (u16)W2U_ARRAY_COUNT(CommanderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CommanderHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
@@ -1049,27 +1049,27 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_ICE_FACE) >= 0 && (ABIL_ICE_FACE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_IceFaceHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_IceFaceHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(IceFaceHandlers)) > 0 && (W2U_ARRAY_COUNT(IceFaceHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_GULP_MISSILE) >= 0 && (ABIL_GULP_MISSILE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_GulpMissileHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_GulpMissileHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(GulpMissileHandlers)) > 0 && (W2U_ARRAY_COUNT(GulpMissileHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_HUNGER_SWITCH) >= 0 && (ABIL_HUNGER_SWITCH) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_HungerSwitchHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_HungerSwitchHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(HungerSwitchHandlers)) > 0 && (W2U_ARRAY_COUNT(HungerSwitchHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_ZERO_TO_HERO) >= 0 && (ABIL_ZERO_TO_HERO) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ZeroToHeroHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ZeroToHeroHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ZeroToHeroHandlers)) > 0 && (W2U_ARRAY_COUNT(ZeroToHeroHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_COMMANDER) >= 0 && (ABIL_COMMANDER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_CommanderHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_CommanderHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(CommanderHandlers)) > 0 && (W2U_ARRAY_COUNT(CommanderHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #else
@@ -2170,19 +2170,19 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_mb_formsEntries[] = {
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_FACE), (u16)W2U_ARRAY_COUNT(MB_IceFaceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_IceFaceHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ICE_FACE), (u16)W2U_ARRAY_COUNT(IceFaceHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, IceFaceHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GULP_MISSILE), (u16)W2U_ARRAY_COUNT(MB_GulpMissileHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_GulpMissileHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_GULP_MISSILE), (u16)W2U_ARRAY_COUNT(GulpMissileHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, GulpMissileHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HUNGER_SWITCH), (u16)W2U_ARRAY_COUNT(MB_HungerSwitchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_HungerSwitchHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_HUNGER_SWITCH), (u16)W2U_ARRAY_COUNT(HungerSwitchHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, HungerSwitchHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ZERO_TO_HERO), (u16)W2U_ARRAY_COUNT(MB_ZeroToHeroHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ZeroToHeroHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_ZERO_TO_HERO), (u16)W2U_ARRAY_COUNT(ZeroToHeroHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ZeroToHeroHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COMMANDER), (u16)W2U_ARRAY_COUNT(MB_CommanderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CommanderHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COMMANDER), (u16)W2U_ARRAY_COUNT(CommanderHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CommanderHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_formsApi = {
@@ -2193,27 +2193,27 @@ static const W2UBattleModuleApi sBattleModule_abilities_mb_formsApi = {
 };
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_ICE_FACE) >= 0 && (ABIL_ICE_FACE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_IceFaceHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_IceFaceHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(IceFaceHandlers)) > 0 && (W2U_ARRAY_COUNT(IceFaceHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_GULP_MISSILE) >= 0 && (ABIL_GULP_MISSILE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_GulpMissileHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_GulpMissileHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(GulpMissileHandlers)) > 0 && (W2U_ARRAY_COUNT(GulpMissileHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_HUNGER_SWITCH) >= 0 && (ABIL_HUNGER_SWITCH) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_HungerSwitchHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_HungerSwitchHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(HungerSwitchHandlers)) > 0 && (W2U_ARRAY_COUNT(HungerSwitchHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_ZERO_TO_HERO) >= 0 && (ABIL_ZERO_TO_HERO) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ZeroToHeroHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ZeroToHeroHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ZeroToHeroHandlers)) > 0 && (W2U_ARRAY_COUNT(ZeroToHeroHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_COMMANDER) >= 0 && (ABIL_COMMANDER) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_CommanderHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_CommanderHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(CommanderHandlers)) > 0 && (W2U_ARRAY_COUNT(CommanderHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_FORMS()

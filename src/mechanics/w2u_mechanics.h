@@ -61,3 +61,8 @@ extern "C" BattleEventHandlerTableEntry CuriousMedicineHandlers[2];
 extern "C" BattleEventHandlerTableEntry CostarHandlers[2];
 extern "C" BattleEventHandlerTableEntry SupersweetSyrupHandlers[2];
 extern "C" BattleEventHandlerTableEntry SupremeOverlordHandlers[3];
+extern "C" BattleEventHandlerTableEntry IceFaceHandlers[4];
+extern "C" BattleEventHandlerTableEntry GulpMissileHandlers[5];
+extern "C" BattleEventHandlerTableEntry HungerSwitchHandlers[1];
+extern "C" BattleEventHandlerTableEntry ZeroToHeroHandlers[1];
+extern "C" BattleEventHandlerTableEntry CommanderHandlers[8];

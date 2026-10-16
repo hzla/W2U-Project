@@ -148,6 +148,6 @@ w2u_battle_module_definitions = [
   {
     'id': 29,
     'slug': 'abilities_mb_forms',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/FormAbilities.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/form_abilities.c'),
   },
 ]

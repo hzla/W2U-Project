@@ -47,7 +47,10 @@ Some mechanics need state the engine's events don't carry: the move a Pokémon w
 Mycelium Might), the sun during Mega Sol's moves, the Berry Cud Chew ate. W2U's resident core
 (`megab2w2/mb_resident.cpp`) keeps it through its engine call-site hooks and exposes it as plain C functions
 (`W2U_MB_*`), and the terrain module the same way (`W2U_MoveState_*`, with C helpers in `battle_api.h`: `W2U_Terrain`,
-`W2U_SetTerrainFromAbility`, `W2U_TerrainType`). `battle_api.h` declares them among W2U's
+`W2U_SetTerrainFromAbility`, `W2U_TerrainType`; Commander's `W2U_MoveState_SetCommanderForm` for Order Up). Which
+form changes survive switching out is W2U's too: its switch-out hook keeps the form for a list of abilities
+(`w2u_mega.cpp` `W2U_AbilityPreservesFormOnSwitchOut`); the form-change work's `dontResetOnSwitch` byte, which
+PW2Code-style code sets, is read by nothing. `battle_api.h` declares them among W2U's
 extensions, so a mechanic calls them like any other API function and stays portable. In a decomp build, those
 functions stay, and only the hooks that feed them become calls written into the decomp's source (the named hooks
 of the plan's step 4).
@@ -155,6 +158,7 @@ hooks will have to provide.
 | Ripen, Opportunist, Cud Chew | `abilities/effect_abilities.c` | `megab2w2/abilities/EffectAbilities.cpp` | `RIPEN`, `OPPORTUNIST`, `OPPORTUNIST_BOTH`, `CUD_CHEW` (`wave_c.yml`) |
 | Curious Medicine, Costar, Supersweet Syrup | `abilities/entry_effects.c` | `megab2w2/abilities/EntryEffects.cpp` | `CURIOUS_MEDICINE`, `COSTAR`, `SUPERSWEET_SYRUP` (`wave_a.yml`) |
 | Supreme Overlord | `abilities/supreme_overlord.c` | `megab2w2/abilities/SupremeOverlord.cpp` | `SUPREME_OVERLORD`, `SUPREME_OVERLORD_NONE` (`wave_a.yml`) |
+| Ice Face, Gulp Missile, Hunger Switch, Zero to Hero, Commander | `abilities/form_abilities.c` | `megab2w2/abilities/FormAbilities.cpp` (and the then empty `megab2w2/mb_ability_tables.h`) | the twelve `ICE_FACE*`, `GULP_MISSILE*`, `HUNGER_SWITCH`, `ZERO_TO_HERO`, `COMMANDER*` scenarios (`wave_forms.yml`), transcripts identical |
 
 Queenly Majesty and Dazzling keep W2U's own handler (`w2u_abilities.cpp`), which blocks without a popup and uses
 W2U's own priority helper; Armor Tail keeps MegaB2W2's rule (the popup and "It doesn't affect X..."). Converting

@@ -797,7 +797,8 @@ strong weathers 7/7, the Mega glyph in the same frames and place on front and ba
 MegaB2W2's logic files are compiled as they are against their own engine headers
 (`src/pokeweb_gameplay/megab2w2/`: `battle.h`, `battle_events.h`, `ability_api.h`, `mb_ids.h`); the two sides meet
 only at the handler tables (`MB_<Logic>Handlers`, same `{event, handler}` layout), declared for the generated
-module API in `megab2w2/mb_ability_tables.h`. W2U's `W2U_MoveMakesContact` and move-record flags replace MegaB2W2's
+module API in `megab2w2/mb_ability_tables.h` (gone since: the converted C tables are declared in
+`src/mechanics/w2u_mechanics.h`, docs/engine-interface.md). W2U's `W2U_MoveMakesContact` and move-record flags replace MegaB2W2's
 Long Reach wrapper and flag table. Modules (White 2 only, registry ids 23-26): `abilities/mb_power`,
 `mb_defense`, `mb_reactive`, `mb_entry`.
 
@@ -981,7 +982,7 @@ the Defense of all surrounding Pokemon!" (set 1376, player variant).
 
 MegaB2W2's registry lists these five without logic, so they were written for W2U from Showdown's rules
 (`data/abilities.ts`, `conditions.ts`, `sim/battle-actions.ts`): module `abilities/mb_forms` (registry id 29, White 2
-only), `src/pokeweb_gameplay/megab2w2/abilities/FormAbilities.cpp`.
+only), `src/pokeweb_gameplay/megab2w2/abilities/FormAbilities.cpp` (now `src/mechanics/abilities/form_abilities.c`).
 
 | Ability | How |
 |---|---|
@@ -991,7 +992,7 @@ only), `src/pokeweb_gameplay/megab2w2/abilities/FormAbilities.cpp`.
 | Zero to Hero (Palafin) | Switching out in Zero Form leaves as Hero Form (`w2u_mega.cpp` `BattleMon_ClearForSwitchOut`: form, types, stats; kept for the battle); the next entry announces it once ("X underwent a heroic transformation!", bank 18 1445-1447) |
 | Commander (Tatsugiri) | Doubles, with an ally Dondozo: "X was swallowed by Y and became its commander!" (bank 18 1448-1450), Dondozo +2 Attack / Defense / Sp. Atk / Sp. Def / Speed. Tatsugiri gets the Shadow Force hide flag (condition flag 6: every move misses it, "avoided the attack!") and its sprite is hidden (display command 0x31, the charge-move hide); whatever it is told to do is cancelled silently. Neither can switch (Mean Look's condition 0x16: the party screen refuses, "Dondozo can't be switched out!"; Tatsugiri's is linked to Dondozo, Dondozo's is permanent as Showdown's `commanded` never ends) or be forced out (Suction Cups' event: Roar fails). As in Showdown the command menu skips Tatsugiri and nothing reaches it, No Guard and Lock-On included (below). When Dondozo faints, Tatsugiri comes back out, free to act and switch |
 
-Engine details found by disassembling overlay 167 (W2U's headers did not name them; noted in `FormAbilities.cpp`):
+Engine details found by disassembling overlay 167 (W2U's headers did not name them; now named in `include/w2u/engine.h`):
 
 - The move flow clears a Pokemon's hide flags after any action it started hidden (a charge move's release,
   0x21A1DB0 -> 0x21A3944), the cancelled action included: Commander sets the flag again when Tatsugiri's action
@@ -1000,7 +1001,8 @@ Engine details found by disassembling overlay 167 (W2U's headers did not name th
   Mean Look, Bind and Ingrain conditions. Event 0x0C (Shadow Tag's) only covers fleeing; Commander answers it too.
 - Condition data: type in bits 0-2 (1 permanent, 2 turns, 3 linked to a Pokemon), the value in bits 3-8.
 - `EFFECT_SET_CONDITION_FLAG` / `RESET` (0x17 / 0x18): flag +4, pokeID +8; `EFFECT_CANCEL_SEMI_INVULN` (0x36):
-  pokeID +4, flag +8, clears the flag and shows the sprite again.
+  pokeID +4, flag +8, clears the flag and shows the sprite again. The decomp's names: `BattleHandler_SetContinueFlag`
+  / `ResetContinueFlag` (`BattleHandlerFlagParam`) and `BattleHandler_HideTurnCancel` (`BattleHandlerHideTurnParam`).
 - The command menu: the client skips a Pokemon (0x21B46B8) that has fainted, has the recharge flag (12; action kind
   7) or is locked into a move. The server clears the recharge flag once the actions are in (0x219F73C), and its kind
   7 action prints "X must recharge!" (message 0x350, 0x21A9014). Commander sets the flag when it starts and at every

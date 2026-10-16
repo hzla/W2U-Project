@@ -812,14 +812,14 @@
       "source": "abilities",
       "white2_only": true,
       "extra_sources": [
-        "megab2w2/abilities/FormAbilities.cpp"
+        "../mechanics/abilities/form_abilities.c"
       ],
       "entries": [
-        ["ability", "ABIL_ICE_FACE", "MB_IceFaceHandlers"],
-        ["ability", "ABIL_GULP_MISSILE", "MB_GulpMissileHandlers"],
-        ["ability", "ABIL_HUNGER_SWITCH", "MB_HungerSwitchHandlers"],
-        ["ability", "ABIL_ZERO_TO_HERO", "MB_ZeroToHeroHandlers"],
-        ["ability", "ABIL_COMMANDER", "MB_CommanderHandlers"]
+        ["ability", "ABIL_ICE_FACE", "IceFaceHandlers"],
+        ["ability", "ABIL_GULP_MISSILE", "GulpMissileHandlers"],
+        ["ability", "ABIL_HUNGER_SWITCH", "HungerSwitchHandlers"],
+        ["ability", "ABIL_ZERO_TO_HERO", "ZeroToHeroHandlers"],
+        ["ability", "ABIL_COMMANDER", "CommanderHandlers"]
       ]
     }
   ]
