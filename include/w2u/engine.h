@@ -175,6 +175,8 @@ enum {
     HANDLER_CMD_CURE_CONDITION = 0x0B,  /* BattleHandlerCureConditionParam */
     HANDLER_CMD_ADD_CONDITION = 0x0C,   /* BattleHandlerAddConditionParam */
     HANDLER_CMD_CHANGE_STAT = 0x0E,     /* BattleHandlerStatChangeParam */
+    HANDLER_CMD_SET_STAT_STAGES = 0x0F, /* BattleHandlerSetStatStageParam (Psych Up) */
+    HANDLER_CMD_RESET_STAT_STAGES = 0x10, /* BattleHandlerResetStatStageParam (Clear Smog, Haze) */
     HANDLER_CMD_CHANGE_TYPE = 0x14,
     HANDLER_CMD_ADD_SIDE_EFFECT = 0x19, /* BattleHandlerAddSideEffectParam */     /* BattleHandlerChangeTypeParam: "X transformed into the Y type!" */
     HANDLER_CMD_REMOVE_SIDE_EFFECT = 0x1A,
@@ -329,6 +331,19 @@ typedef struct BattleHandlerForceUseItemParam {
     u16 item;
 } BattleHandlerForceUseItemParam;
 
+/* The stages run STATSTAGE_ATTACK .. STATSTAGE_EVASION, as GetBattleMonStat's values 1-7 (6 = neutral) */
+typedef struct BattleHandlerSetStatStageParam {
+    u32 header;
+    u8 monIndex;
+    u8 stages[7];
+} BattleHandlerSetStatStageParam;
+
+typedef struct BattleHandlerResetStatStageParam {
+    u32 header;
+    u8 count;
+    u8 monIndices[6];
+} BattleHandlerResetStatStageParam;
+
 typedef struct BattleHandlerRemoveSideEffectParam {
     u32 header;
     u8 effects[3];                      /* a bit set: its size in bytes (3), then the SIDE_EFFECT_* bits 0-15 */
@@ -384,6 +399,8 @@ W2U_ENGINE_LAYOUT(add_side_effect_string, __builtin_offsetof(BattleHandlerAddSid
 W2U_ENGINE_LAYOUT(change_weather_string, __builtin_offsetof(BattleHandlerChangeWeatherParam, string) == 0x08);
 W2U_ENGINE_LAYOUT(consume_item_string, __builtin_offsetof(BattleHandlerConsumeItemParam, string) == 0x08);
 W2U_ENGINE_LAYOUT(force_use_item_item, __builtin_offsetof(BattleHandlerForceUseItemParam, item) == 0x06);
+W2U_ENGINE_LAYOUT(set_stat_stages_size, sizeof(BattleHandlerSetStatStageParam) == 0x0C);
+W2U_ENGINE_LAYOUT(reset_stat_stages_ids, __builtin_offsetof(BattleHandlerResetStatStageParam, monIndices) == 0x05);
 W2U_ENGINE_LAYOUT(move_param_type, __builtin_offsetof(BtlFlowMoveParam, type) == 0x06);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 

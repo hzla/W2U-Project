@@ -759,13 +759,13 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #elif W2U_BATTLE_MODULE_ID == 26
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_CURIOUS_MEDICINE), (u16)W2U_ARRAY_COUNT(MB_CuriousMedicineHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CuriousMedicineHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_CURIOUS_MEDICINE), (u16)W2U_ARRAY_COUNT(CuriousMedicineHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CuriousMedicineHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COSTAR), (u16)W2U_ARRAY_COUNT(MB_CostarHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CostarHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COSTAR), (u16)W2U_ARRAY_COUNT(CostarHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CostarHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SUPERSWEET_SYRUP), (u16)W2U_ARRAY_COUNT(MB_SupersweetSyrupHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SupersweetSyrupHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SUPERSWEET_SYRUP), (u16)W2U_ARRAY_COUNT(SupersweetSyrupHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SupersweetSyrupHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_HOSPITALITY), (u16)W2U_ARRAY_COUNT(HospitalityHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, HospitalityHandlers},
@@ -797,17 +797,17 @@ static const W2UBattleModuleApi sBattleModuleApi = {
 };
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_CURIOUS_MEDICINE) >= 0 && (ABIL_CURIOUS_MEDICINE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_CuriousMedicineHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_CuriousMedicineHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(CuriousMedicineHandlers)) > 0 && (W2U_ARRAY_COUNT(CuriousMedicineHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_COSTAR) >= 0 && (ABIL_COSTAR) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_CostarHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_CostarHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(CostarHandlers)) > 0 && (W2U_ARRAY_COUNT(CostarHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_SUPERSWEET_SYRUP) >= 0 && (ABIL_SUPERSWEET_SYRUP) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_SupersweetSyrupHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_SupersweetSyrupHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(SupersweetSyrupHandlers)) > 0 && (W2U_ARRAY_COUNT(SupersweetSyrupHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -1888,13 +1888,13 @@ extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_G
 #if !defined(W2U_TARGET_B2)
 static const W2UBattleHandlerExport sBattleModule_abilities_mb_entryEntries[] = {
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_CURIOUS_MEDICINE), (u16)W2U_ARRAY_COUNT(MB_CuriousMedicineHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CuriousMedicineHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_CURIOUS_MEDICINE), (u16)W2U_ARRAY_COUNT(CuriousMedicineHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CuriousMedicineHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COSTAR), (u16)W2U_ARRAY_COUNT(MB_CostarHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_CostarHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_COSTAR), (u16)W2U_ARRAY_COUNT(CostarHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, CostarHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SUPERSWEET_SYRUP), (u16)W2U_ARRAY_COUNT(MB_SupersweetSyrupHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SupersweetSyrupHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SUPERSWEET_SYRUP), (u16)W2U_ARRAY_COUNT(SupersweetSyrupHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SupersweetSyrupHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_HOSPITALITY), (u16)W2U_ARRAY_COUNT(HospitalityHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, HospitalityHandlers},
@@ -1926,17 +1926,17 @@ static const W2UBattleModuleApi sBattleModule_abilities_mb_entryApi = {
 };
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_CURIOUS_MEDICINE) >= 0 && (ABIL_CURIOUS_MEDICINE) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_CuriousMedicineHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_CuriousMedicineHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(CuriousMedicineHandlers)) > 0 && (W2U_ARRAY_COUNT(CuriousMedicineHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_COSTAR) >= 0 && (ABIL_COSTAR) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_CostarHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_CostarHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(CostarHandlers)) > 0 && (W2U_ARRAY_COUNT(CostarHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_SUPERSWEET_SYRUP) >= 0 && (ABIL_SUPERSWEET_SYRUP) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_SupersweetSyrupHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_SupersweetSyrupHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(SupersweetSyrupHandlers)) > 0 && (W2U_ARRAY_COUNT(SupersweetSyrupHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)

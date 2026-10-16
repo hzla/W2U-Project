@@ -57,3 +57,6 @@ extern "C" BattleEventHandlerTableEntry GrassPeltHandlers[1];
 extern "C" BattleEventHandlerTableEntry RipenHandlers[1];
 extern "C" BattleEventHandlerTableEntry OpportunistHandlers[5];
 extern "C" BattleEventHandlerTableEntry CudChewHandlers[1];
+extern "C" BattleEventHandlerTableEntry CuriousMedicineHandlers[2];
+extern "C" BattleEventHandlerTableEntry CostarHandlers[2];
+extern "C" BattleEventHandlerTableEntry SupersweetSyrupHandlers[2];

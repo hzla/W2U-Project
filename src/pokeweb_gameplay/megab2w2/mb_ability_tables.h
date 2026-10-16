@@ -2,9 +2,6 @@
 
 #pragma once
 
-extern BattleEventHandlerTableEntry MB_CuriousMedicineHandlers[2];
-extern BattleEventHandlerTableEntry MB_CostarHandlers[2];
-extern BattleEventHandlerTableEntry MB_SupersweetSyrupHandlers[2];
 extern BattleEventHandlerTableEntry MB_SupremeOverlordHandlers[3];
 // wave C (abilities/mb_hooked)
 // abilities/FormAbilities.cpp (module abilities/mb_forms)
