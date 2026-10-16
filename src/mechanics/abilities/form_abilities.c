@@ -15,7 +15,10 @@
  *                            Y and became its commander!"): Tatsugiri is hidden (Shadow Force's flag: no move reaches
  *                            it, its sprite vanishes), its own actions are cancelled silently, and neither Pokémon can
  *                            switch out (Mean Look's condition) or be forced out; Dondozo gets +2 Attack, Defense, Sp.
- *                            Atk, Sp. Def and Speed. Ends when Dondozo faints (Tatsugiri reappears). As in Showdown the
+ *                            Atk, Sp. Def and Speed. Ends when Dondozo faints (Tatsugiri reappears). If Tatsugiri faints
+ *                            instead (residual damage), Dondozo stays trapped, boosted and can't be forced out, as
+ *                            Showdown's `commanded` never ends (w2u_moves.cpp's field handler, on the Commander form
+ *                            Order Up reads; this ability's handlers go with the fainted Tatsugiri). As in Showdown the
  *                            command menu skips Tatsugiri (the recharge flag, set again each turn; the resident core,
  *                            megab2w2/mb_resident.cpp, drops the recharge message for it) and No Guard / Lock-On don't
  *                            reach it (also the resident core).

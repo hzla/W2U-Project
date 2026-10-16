@@ -1151,6 +1151,14 @@ static void HandlerFieldFairyLockRun(BattleEventItem*, ServerFlow* flow, u32, u3
     if (sMoveState.fairyLockTurns && mon && !HasTypeWithExtra(mon, TYPE_GHOST))
         BattleEventVar_RewriteValue(VAR_MOVE_FAIL_FLAG, 1);
 }
+
+// Commander: Showdown's `commanded` volatile (onDragOut false) lasts while Dondozo stays in, also after its Tatsugiri
+// faints and takes Commander's own handlers with it; the form Order Up reads marks it until Dondozo switches or faints.
+static void HandlerFieldCommandedNoForceOut(BattleEventItem*, ServerFlow*, u32, u32*)
+{
+    if (W2U_MoveState_GetCommanderForm((u32)BattleEventVar_GetValue(VAR_DEFENDING_MON)))
+        BattleEventVar_RewriteValue(VAR_MOVE_FAIL_FLAG, 1);
+}
 #endif
 
 static void HandlerFairyLock(BattleEventItem*, ServerFlow* flow, u32 slot, u32*)
@@ -6897,6 +6905,7 @@ static void HandlerFieldGlaiveRushDamage(BattleEventItem*, ServerFlow*, u32, u32
 static BattleEventHandlerTableEntry FieldTransientMoveStateHandlers[] = {
 #if !defined(W2U_BATTLE_CHILD)
     { (BattleEventType)0x0C, HandlerFieldFairyLockRun },
+    { (BattleEventType)0x8B, HandlerFieldCommandedNoForceOut },  // Suction Cups' event: may VAR_DEFENDING_MON be forced out?
     { EVENT_DEFENDER_GUARD, W2U_Weather_Defense },
     { EVENT_AFTER_WEATHER_CHANGE, W2U_Weather_AfterChange },
     { (BattleEventType)1, HandlerFieldGlaiveRushActionStart },
