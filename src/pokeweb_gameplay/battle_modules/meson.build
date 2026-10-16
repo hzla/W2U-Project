@@ -118,12 +118,12 @@ w2u_battle_module_definitions = [
   {
     'id': 23,
     'slug': 'abilities_mb_power',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Boost.cpp', '../megab2w2/abilities/Charge.cpp', '../megab2w2/abilities/MindsEye.cpp', '../megab2w2/abilities/Neuroforce.cpp', '../../mechanics/abilities/power_spot.c', '../megab2w2/abilities/Protean.cpp', '../../mechanics/abilities/punk_rock.c', '../megab2w2/abilities/Ruin.cpp', '../megab2w2/abilities/SupremeOverlord.cpp', '../megab2w2/abilities/ToxicChain.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Boost.cpp', '../megab2w2/abilities/Charge.cpp', '../../mechanics/abilities/minds_eye.c', '../megab2w2/abilities/Neuroforce.cpp', '../../mechanics/abilities/power_spot.c', '../megab2w2/abilities/Protean.cpp', '../../mechanics/abilities/punk_rock.c', '../megab2w2/abilities/Ruin.cpp', '../megab2w2/abilities/SupremeOverlord.cpp', '../megab2w2/abilities/ToxicChain.cpp'),
   },
   {
     'id': 24,
     'slug': 'abilities_mb_defense',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/BeastBoost.cpp', '../megab2w2/abilities/EarthEater.cpp', '../../mechanics/abilities/fluffy.c', '../megab2w2/abilities/GoodAsGold.cpp', '../megab2w2/abilities/GuardDog.cpp', '../megab2w2/abilities/MirrorArmor.cpp', '../megab2w2/abilities/PurifyingSalt.cpp', '../megab2w2/abilities/QueenlyMajesty.cpp', '../megab2w2/abilities/Shields.cpp', '../megab2w2/abilities/Veil.cpp', '../megab2w2/abilities/WellBakedBody.cpp', '../megab2w2/abilities/WindRider.cpp', '../megab2w2/abilities/Damp.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/BeastBoost.cpp', '../../mechanics/abilities/absorb.c', '../../mechanics/abilities/fluffy.c', '../megab2w2/abilities/GoodAsGold.cpp', '../megab2w2/abilities/GuardDog.cpp', '../megab2w2/abilities/MirrorArmor.cpp', '../megab2w2/abilities/PurifyingSalt.cpp', '../megab2w2/abilities/QueenlyMajesty.cpp', '../megab2w2/abilities/Shields.cpp', '../megab2w2/abilities/Veil.cpp', '../megab2w2/abilities/WindRider.cpp', '../megab2w2/abilities/Damp.cpp'),
   },
   {
     'id': 25,
@@ -143,7 +143,7 @@ w2u_battle_module_definitions = [
   {
     'id': 28,
     'slug': 'abilities_mb_hooked',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/GorillaTactics.cpp', '../megab2w2/abilities/PropellerTail.cpp', '../megab2w2/abilities/UnseenFist.cpp', '../megab2w2/abilities/QuickDraw.cpp', '../megab2w2/abilities/MoveAbilities.cpp', '../megab2w2/abilities/EffectAbilities.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/GorillaTactics.cpp', '../../mechanics/abilities/propeller_tail.c', '../megab2w2/abilities/UnseenFist.cpp', '../megab2w2/abilities/QuickDraw.cpp', '../megab2w2/abilities/MoveAbilities.cpp', '../megab2w2/abilities/EffectAbilities.cpp'),
   },
   {
     'id': 29,
