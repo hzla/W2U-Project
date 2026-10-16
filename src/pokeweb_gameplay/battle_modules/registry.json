@@ -645,7 +645,7 @@
         "../mechanics/abilities/punk_rock.c",
         "megab2w2/abilities/Ruin.cpp",
         "megab2w2/abilities/SupremeOverlord.cpp",
-        "megab2w2/abilities/ToxicChain.cpp"
+        "../mechanics/abilities/status_on_hit.c"
       ],
       "entries": [
         ["ability", "ABIL_TRANSISTOR", "MB_BoostHandlers"],
@@ -666,7 +666,7 @@
         ["ability", "ABIL_TABLETS_OF_RUIN", "MB_RuinHandlers"],
         ["ability", "ABIL_BEADS_OF_RUIN", "MB_RuinHandlers"],
         ["ability", "ABIL_SUPREME_OVERLORD", "MB_SupremeOverlordHandlers"],
-        ["ability", "ABIL_TOXIC_CHAIN", "MB_ToxicChainHandlers"]
+        ["ability", "ABIL_TOXIC_CHAIN", "ToxicChainHandlers"]
       ]
     },
     {
@@ -715,7 +715,7 @@
         "megab2w2/abilities/Berserk.cpp",
         "megab2w2/abilities/HitReactions.cpp",
         "megab2w2/abilities/LingeringAroma.cpp",
-        "megab2w2/abilities/SpicySpray.cpp",
+        "../mechanics/abilities/status_on_hit.c",
         "../mechanics/abilities/stamina.c"
       ],
       "entries": [
@@ -725,7 +725,7 @@
         ["ability", "ABIL_TOXIC_DEBRIS", "MB_ToxicDebrisHandlers"],
         ["ability", "ABIL_WANDERING_SPIRIT", "MB_LingeringAromaHandlers"],
         ["ability", "ABIL_LINGERING_AROMA", "MB_LingeringAromaHandlers"],
-        ["ability", "ABIL_SPICY_SPRAY", "MB_SpicySprayHandlers"],
+        ["ability", "ABIL_SPICY_SPRAY", "SpicySprayHandlers"],
         ["ability", "ABIL_STEAM_ENGINE", "SteamEngineHandlers"],
         ["ability", "ABIL_THERMAL_EXCHANGE", "ThermalExchangeHandlers"]
       ]

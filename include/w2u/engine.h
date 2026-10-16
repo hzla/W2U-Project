@@ -28,6 +28,10 @@
 #define HandlerDampEffective HandlerDampMessage
 #define HandlerDampStart HandlerDampMoveStart
 #define HandlerDampEnd HandlerDampNullified
+#define BtlCalc_MakeMajorStatusCondition sub_21BD56C
+#define BtlCalc_BuildMoveCondition BTL_MakeSickCont
+#define PML_MoveGetConditionParam PML_MoveGetSickCont
+#define Handler_CheckMatchup sub_21ABF54
 #endif
 
 #ifdef __cplusplus
@@ -101,7 +105,8 @@ enum {
     VAR_TYPE_EFFECTIVENESS = 0x38,      /* EVENT_DAMAGE_RATIO: the hit's effectiveness (BtlCalc_ClassifyEffectiveness) */
     VAR_RATIO = 0x35,                   /* fixed point, 4096 = x1 */
     VAR_NO_EFFECT = 0x40,
-    VAR_SUBSTITUTE_HIT = 0x46,          /* nonzero: the hit landed on a substitute */               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
+    VAR_SUBSTITUTE_HIT = 0x46,          /* nonzero: the hit landed on a substitute */
+    VAR_NO_SECONDARY = 0x47,            /* nonzero: no secondary effects for this hit (Shield Dust) */               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
 };
 
 /* BtlCalc_ClassifyEffectiveness results */
@@ -117,6 +122,7 @@ enum {
     HANDLER_CMD_POPUP_IN = 0x02,        /* PushRun: the ability popup appears */
     HANDLER_CMD_POPUP_OUT = 0x03,
     HANDLER_CMD_MESSAGE = 0x04,         /* BattleHandlerMessageParam */
+    HANDLER_CMD_ADD_CONDITION = 0x0C,   /* BattleHandlerAddConditionParam */
     HANDLER_CMD_CHANGE_STAT = 0x0E,     /* BattleHandlerStatChangeParam */
 };
 
@@ -154,6 +160,41 @@ typedef struct BattleHandlerStatChangeParam {
     BattleHandlerString string;
 } BattleHandlerStatChangeParam;
 
+/* Major statuses (BattleHandlerAddConditionParam.condition) */
+enum {
+    CONDITION_PARALYSIS = 1,
+    CONDITION_SLEEP = 2,
+    CONDITION_FREEZE = 3,
+    CONDITION_BURN = 4,
+    CONDITION_POISON = 5,               /* bad poison: poison with Toxic's turn counter */
+};
+
+/* A condition's value: its kind and turns (decomp: include/battle/btl_pokeparam.h, a union) */
+typedef struct BattleCondition {
+    u32 raw;
+} BattleCondition;
+
+/* How long the condition a move inflicts lasts (decomp: include/pml/waza.h) */
+typedef struct MoveConditionParam {
+    u16 type : 4;
+    u16 min : 6;
+    u16 max : 6;
+} MoveConditionParam;
+
+typedef struct BattleHandlerAddConditionParam {
+    u32 header : 23;
+    u32 popup : 1;
+    u32 unk24 : 8;
+    u32 condition;                      /* CONDITION_* */
+    BattleCondition value;
+    u8 showFail;
+    u8 noMessage;                       /* no message of its own when there is no string */
+    u8 skipItemReaction;
+    u8 targetIndex;                     /* the Pokémon it is for */
+    u8 overwrite;
+    BattleHandlerString string;
+} BattleHandlerAddConditionParam;
+
 /* A move's parameters as the events changed them (ServerEvent_GetMoveParam) */
 typedef struct BtlFlowMoveParam {
     u16 move;
@@ -173,6 +214,9 @@ W2U_ENGINE_LAYOUT(message_string, __builtin_offsetof(BattleHandlerMessageParam, 
 W2U_ENGINE_LAYOUT(stat_change_change, __builtin_offsetof(BattleHandlerStatChangeParam, change) == 0x0C);
 W2U_ENGINE_LAYOUT(stat_change_count, __builtin_offsetof(BattleHandlerStatChangeParam, count) == 0x0F);
 W2U_ENGINE_LAYOUT(stat_change_mons, __builtin_offsetof(BattleHandlerStatChangeParam, monIds) == 0x10);
+W2U_ENGINE_LAYOUT(condition_size, sizeof(BattleCondition) == 4);
+W2U_ENGINE_LAYOUT(add_condition_target, __builtin_offsetof(BattleHandlerAddConditionParam, targetIndex) == 0x0F);
+W2U_ENGINE_LAYOUT(add_condition_string, __builtin_offsetof(BattleHandlerAddConditionParam, string) == 0x14);
 W2U_ENGINE_LAYOUT(move_param_type, __builtin_offsetof(BtlFlowMoveParam, type) == 0x06);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
 
@@ -248,6 +292,7 @@ b32 IsAllyMonID(u8 monId1, u8 monId2);
 BattleMon *GetBattleMon(BtlServerFlow *serverFlow, u8 monId);
 u32 GetBattleMonStat(const BattleMon *mon, u32 stat);
 b32 IsFainted(const BattleMon *mon);
+u32 GetBattleMonStatus(BattleMon *mon);         /* 0: none, else CONDITION_* */
 /* The stat can still change by stageDelta (not at +6 / -6 already) */
 b32 IsStatChangeValid(BattleMon *mon, u32 statId, s32 stageDelta);
 void ServerEvent_GetMoveParam(BtlServerFlow *flow, u16 move, BattleMon *moveUser, BtlFlowMoveParam *moveParamsOut);
@@ -261,10 +306,20 @@ void BattleHandler_AddArg(BattleHandlerString *string, u32 arg);
 
 /* btl_calc.c */
 u32 BtlCalc_ClassifyEffectiveness(s32 effectivenessId);
+/* The value a major status gets by default (burn, poison: no turns) */
+BattleCondition BtlCalc_MakeMajorStatusCondition(u32 status);
+/* The value of the condition a move inflicts, for the Pokémon using it */
+void BtlCalc_BuildMoveCondition(MoveConditionParam param, BattleMon *mon, BattleCondition *out);
+
+/* btl_server_flow.c */
+/* Set while the engine checks a matchup: Mummy and Flame Body skip their reactions then */
+b32 Handler_CheckMatchup(BtlServerFlow *flow);
+b32 AbilityEvent_RollEffectChance(BtlServerFlow *flow, u32 chancePercent);
 
 /* waza_tool.c */
 s32 PML_MoveGetParam(u16 move, u32 param);
 b32 getMoveFlag(u16 move, u32 flag);
+MoveConditionParam PML_MoveGetConditionParam(u16 move);
 
 /* ability_handlers.c: the vanilla abilities' helpers and handlers, which W2U's abilities reuse */
 /* A `type` move at the holder has no effect (Volt Absorb, Sap Sipper): true if so */
