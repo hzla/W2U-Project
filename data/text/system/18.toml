@@ -8569,3 +8569,45 @@ text = ["The wild [VAR PKNICK(0)] is preparing to tell\na chillingly bad joke!$"
 
 [msg.section_0.entries.1462]
 text = ["The foe's [VAR PKNICK(0)] is preparing to tell\na chillingly bad joke!$"]
+
+[msg.section_0.entries.1463]
+text = [
+  "[VAR PKNICK(0)] was swallowed by\n",
+  "[VAR PKNICK(1)] and became its commander!$",
+]
+
+[msg.section_0.entries.1464]
+text = [
+  "[VAR PKNICK(0)] was swallowed by the wild\n",
+  "[VAR PKNICK(1)] and became its commander!$",
+]
+
+[msg.section_0.entries.1465]
+text = [
+  "[VAR PKNICK(0)] was swallowed by the foe's\n",
+  "[VAR PKNICK(1)] and became its commander!$",
+]
+
+[msg.section_0.entries.1466]
+text = [
+  "The wild [VAR PKNICK(0)] was swallowed by\n",
+  "[VAR PKNICK(1)] and became its commander!$",
+]
+
+[msg.section_0.entries.1467]
+text = [
+  "The wild [VAR PKNICK(0)] was swallowed by the\n",
+  "wild [VAR PKNICK(1)] and became its commander!$",
+]
+
+[msg.section_0.entries.1468]
+text = [
+  "The foe's [VAR PKNICK(0)] was swallowed by\n",
+  "[VAR PKNICK(1)] and became its commander!$",
+]
+
+[msg.section_0.entries.1469]
+text = [
+  "The foe's [VAR PKNICK(0)] was swallowed by the\n",
+  "foe's [VAR PKNICK(1)] and became its commander!$",
+]
