@@ -175,6 +175,7 @@ w2u_mechanics_sources = files(
   'mechanics/abilities/stamina.c',
   'mechanics/abilities/eelevate.c',
   'mechanics/abilities/damp.c',
+  'mechanics/abilities/status_on_hit.c',
 )
 w2u_mechanics_c_check = custom_target(
   'verify_w2u_mechanics_c',

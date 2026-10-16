@@ -118,7 +118,7 @@ w2u_battle_module_definitions = [
   {
     'id': 23,
     'slug': 'abilities_mb_power',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Boost.cpp', '../megab2w2/abilities/Charge.cpp', '../../mechanics/abilities/minds_eye.c', '../../mechanics/abilities/neuroforce.c', '../../mechanics/abilities/power_spot.c', '../megab2w2/abilities/Protean.cpp', '../../mechanics/abilities/punk_rock.c', '../megab2w2/abilities/Ruin.cpp', '../megab2w2/abilities/SupremeOverlord.cpp', '../megab2w2/abilities/ToxicChain.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Boost.cpp', '../megab2w2/abilities/Charge.cpp', '../../mechanics/abilities/minds_eye.c', '../../mechanics/abilities/neuroforce.c', '../../mechanics/abilities/power_spot.c', '../megab2w2/abilities/Protean.cpp', '../../mechanics/abilities/punk_rock.c', '../megab2w2/abilities/Ruin.cpp', '../megab2w2/abilities/SupremeOverlord.cpp', '../../mechanics/abilities/status_on_hit.c'),
   },
   {
     'id': 24,
@@ -128,7 +128,7 @@ w2u_battle_module_definitions = [
   {
     'id': 25,
     'slug': 'abilities_mb_reactive',
-    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Berserk.cpp', '../megab2w2/abilities/HitReactions.cpp', '../megab2w2/abilities/LingeringAroma.cpp', '../megab2w2/abilities/SpicySpray.cpp', '../../mechanics/abilities/stamina.c'),
+    'sources': files('../w2u_abilities.cpp', '../megab2w2/abilities/Berserk.cpp', '../megab2w2/abilities/HitReactions.cpp', '../megab2w2/abilities/LingeringAroma.cpp', '../../mechanics/abilities/status_on_hit.c', '../../mechanics/abilities/stamina.c'),
   },
   {
     'id': 26,

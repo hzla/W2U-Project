@@ -156,6 +156,20 @@ static inline b32 W2U_PopupStatChange(BtlServerFlow *flow, u8 monId, u32 stat, s
     return 1;
 }
 
+/* A status for target from the holder's ability, inside its popup (Poison Touch, Flame Body). The engine applies the
+ * usual immunities (types, Water Veil, an existing status) and shows the status' own text. */
+static inline void W2U_AddCondition(BtlServerFlow *flow, u8 holder, u8 target, u32 condition, BattleCondition value)
+{
+    BattleHandlerAddConditionParam *param =
+        (BattleHandlerAddConditionParam *)BattleHandler_PushWork(flow, HANDLER_CMD_ADD_CONDITION, holder);
+
+    param->popup = 1;
+    param->condition = condition;
+    param->value = value;
+    param->targetIndex = target;
+    BattleHandler_PopWork(flow, param);
+}
+
 #define W2U_MSG_SET_DOESNT_AFFECT 210   /* bank 18: "It doesn't affect {0}..." */
 
 /* From an EVENT_CHECK_NO_EFFECT handler: the move does not affect the holder, with the ability popup and "It

@@ -20,3 +20,5 @@ extern "C" BattleEventHandlerTableEntry SteamEngineHandlers[1];
 extern "C" BattleEventHandlerTableEntry ThermalExchangeHandlers[6];
 extern "C" BattleEventHandlerTableEntry EelevateHandlers[4];
 extern "C" BattleEventHandlerTableEntry DampHandlers[5];
+extern "C" BattleEventHandlerTableEntry SpicySprayHandlers[1];
+extern "C" BattleEventHandlerTableEntry ToxicChainHandlers[1];

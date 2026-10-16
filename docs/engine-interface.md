@@ -31,7 +31,7 @@ declare the same engine under older names (it `#error`s).
 What mechanics would otherwise write by hand: who the event is about (`W2U_Attacker`, `W2U_Defender`, `W2U_Move`,
 `W2U_MoveType`), moves (`W2U_MoveCategory`, `W2U_MoveHasFlag`, `W2U_MakesContact`, `W2U_TargetsPokemon`), sides
 (`W2U_IsAlly`), the holder (`W2U_HolderAbility`), ratios (`W2U_MulRatio`, `W2U_MulMovePower`), effects through the
-handler-effect queue (`W2U_PopupMessage`, `W2U_ChangeStatStage`, `W2U_PopupStatChange` (W2U's own abilities' way), `W2U_BlockMove`), `W2U_IsSimulating`. It grows from
+handler-effect queue (`W2U_PopupMessage`, `W2U_ChangeStatStage`, `W2U_PopupStatChange` (W2U's own abilities' way), `W2U_AddCondition`, `W2U_BlockMove`), `W2U_IsSimulating`. It grows from
 `megab2w2/ability_api.h` as mechanics need more.
 
 `engine.h` defines the handler-effect work it fills (`BattleHandlerMessageParam`, `BattleHandlerStatChangeParam`) as
@@ -101,6 +101,7 @@ The build checks the rest:
 | Stamina, Water Compaction, Steam Engine, Thermal Exchange | `abilities/stamina.c` | `w2u_abilities.cpp` `HandlerStamina` / `HandlerWaterCompaction`, `megab2w2/abilities/Stamina.cpp` | `STAMINA`, `WATER_COMPACTION` (`wave_shared.yml`), `STEAM_ENGINE`, `THERMAL_EXCHANGE`, `THERMAL_EXCHANGE_BURN` (`wave_a.yml`), transcripts identical |
 | Eelevate | `abilities/eelevate.c` | `megab2w2/abilities/BeastBoost.cpp` (its Beast Boost table was never registered) | `EELEVATE`, `EELEVATE_KO` (`wave_a.yml`); `BEAST_BOOST` unchanged |
 | Damp | `abilities/damp.c` | `megab2w2/abilities/Damp.cpp` | `MISTY_EXPLOSION_DAMP`, `EXPLOSION_DAMP`, `MIND_BLOWN_DAMP`, `MIND_BLOWN_CONTROL`, `SUN_CONTROL` (`wave_field.yml`) |
+| Spicy Spray, Toxic Chain | `abilities/status_on_hit.c` | `megab2w2/abilities/SpicySpray.cpp`, `ToxicChain.cpp` | `SPICY_SPRAY`, `TOXIC_CHAIN` (`wave_a.yml`): burned / badly poisoned as before |
 
 Beast Boost itself stays in `w2u_abilities.cpp` for now: it picks the highest stat from the BattleMon's fields,
 which needs the BattleMon layout in `engine.h` first.

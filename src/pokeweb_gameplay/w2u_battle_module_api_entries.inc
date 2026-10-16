@@ -442,7 +442,7 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SUPREME_OVERLORD), (u16)W2U_ARRAY_COUNT(MB_SupremeOverlordHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SupremeOverlordHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_CHAIN), (u16)W2U_ARRAY_COUNT(MB_ToxicChainHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ToxicChainHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_CHAIN), (u16)W2U_ARRAY_COUNT(ToxicChainHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ToxicChainHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
@@ -543,7 +543,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_TOXIC_CHAIN) >= 0 && (ABIL_TOXIC_CHAIN) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ToxicChainHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ToxicChainHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ToxicChainHandlers)) > 0 && (W2U_ARRAY_COUNT(ToxicChainHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #elif W2U_BATTLE_MODULE_ID == 24
@@ -696,7 +696,7 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_LINGERING_AROMA), (u16)W2U_ARRAY_COUNT(MB_LingeringAromaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_LingeringAromaHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SPICY_SPRAY), (u16)W2U_ARRAY_COUNT(MB_SpicySprayHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SpicySprayHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SPICY_SPRAY), (u16)W2U_ARRAY_COUNT(SpicySprayHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SpicySprayHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_STEAM_ENGINE), (u16)W2U_ARRAY_COUNT(SteamEngineHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SteamEngineHandlers},
@@ -743,7 +743,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_SPICY_SPRAY) >= 0 && (ABIL_SPICY_SPRAY) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_SpicySprayHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_SpicySprayHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(SpicySprayHandlers)) > 0 && (W2U_ARRAY_COUNT(SpicySprayHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
@@ -1556,7 +1556,7 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_powerEntries[] = 
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SUPREME_OVERLORD), (u16)W2U_ARRAY_COUNT(MB_SupremeOverlordHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SupremeOverlordHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_CHAIN), (u16)W2U_ARRAY_COUNT(MB_ToxicChainHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_ToxicChainHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_TOXIC_CHAIN), (u16)W2U_ARRAY_COUNT(ToxicChainHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, ToxicChainHandlers},
 #endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_mb_powerApi = {
@@ -1657,7 +1657,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_TOXIC_CHAIN) >= 0 && (ABIL_TOXIC_CHAIN) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_ToxicChainHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_ToxicChainHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(ToxicChainHandlers)) > 0 && (W2U_ARRAY_COUNT(ToxicChainHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_MB_POWER()
@@ -1820,7 +1820,7 @@ static const W2UBattleHandlerExport sBattleModule_abilities_mb_reactiveEntries[]
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_LINGERING_AROMA), (u16)W2U_ARRAY_COUNT(MB_LingeringAromaHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_LingeringAromaHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
-    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SPICY_SPRAY), (u16)W2U_ARRAY_COUNT(MB_SpicySprayHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, MB_SpicySprayHandlers},
+    {W2U_MECHANIC_ABILITY, (u16)(ABIL_SPICY_SPRAY), (u16)W2U_ARRAY_COUNT(SpicySprayHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SpicySprayHandlers},
 #endif
 #if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_STEAM_ENGINE), (u16)W2U_ARRAY_COUNT(SteamEngineHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SteamEngineHandlers},
@@ -1867,7 +1867,7 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 #endif
 #if !defined(W2U_TARGET_B2)
 static_assert((ABIL_SPICY_SPRAY) >= 0 && (ABIL_SPICY_SPRAY) <= 65535, "Mechanic ID exceeds ABI");
-static_assert((W2U_ARRAY_COUNT(MB_SpicySprayHandlers)) > 0 && (W2U_ARRAY_COUNT(MB_SpicySprayHandlers)) <= 64, "Invalid handler count");
+static_assert((W2U_ARRAY_COUNT(SpicySprayHandlers)) > 0 && (W2U_ARRAY_COUNT(SpicySprayHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
 #endif
 #if !defined(W2U_TARGET_B2)
