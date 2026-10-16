@@ -81,9 +81,13 @@ a vanilla ID that exists only as a C++ enumerator (`ABIL_DAMP`) is defined in th
 name in `engine.h` that a data header has too: the mechanics compile as C++ as well, where both are seen.
 
 State a mechanic keeps between events beyond the item's `work[]` (Libero's once-per-switch-in flag, Mirror
-Armor's reflected marks, Anger Shell's HP before a move) is a file-static array per monId, as MegaB2W2 kept it: it
-lives as long as the module, not the battle. Battle-scoped state is a later improvement. MegaB2W2 had battle-start resets for two of them
-(`Charge_ResetForBattle`, `IntrepidSword_ResetForBattle`) that nothing in W2U calls.
+Armor's reflected marks, Anger Shell's HP before a move, Electromorphosis' charge) is a file-static array per monId,
+as MegaB2W2 kept it. On White 2 that is battle-scoped already: `W2U_BattleState_OnBattleExit` and the first turn's
+setup (`W2U_BattleModules_Reset`) unload every battle module, and the next battle loads them again from their files,
+which store the zeroed arrays as zeros (`bss_bytes: 0` in the heap audit). So MegaB2W2's battle-start resets
+(`Charge_ResetForBattle`, `IntrepidSword_ResetForBattle`), which nothing in W2U calls, are not needed here. A decomp
+build links the mechanics in for good: there they need a battle-start reset, which the engine interface's battle
+hooks will have to provide.
 
 ## Rules
 
