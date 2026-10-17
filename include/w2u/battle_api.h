@@ -427,6 +427,14 @@ static inline void W2U_ChangeForm(BtlServerFlow *flow, u8 monId, u32 form, b32 p
     BattleHandler_PopWork(flow, param);
 }
 
+/* Puts a handler command inside its Pokémon's ability popup: bit 23 of the work's header, the one the vanilla
+ * abilities set. Some works' layouts name no popup field (the type change, the side effects; the decomp's
+ * BattleHandlerHeader calls the bit unk23), so this sets the bit itself, the same way for every work. */
+static inline void W2U_WorkPopup(void *work)
+{
+    *(u32 *)work |= 1u << 23;
+}
+
 /* The AI's damage simulation runs the damage events too (dozens a turn): handlers that log or count skip it */
 static inline b32 W2U_IsSimulating(BtlServerFlow *flow)
 {

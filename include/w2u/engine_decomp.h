@@ -25,6 +25,7 @@
 #include "battle/btl_server_cmd.h"
 #include "battle/btl_server_flow.h"
 #include "battle/handler_common.h"
+#include "battle/side_handlers.h"
 #include "constants/battle.h"
 #include "constants/pokemon.h"
 #include "pml/poke_party.h"

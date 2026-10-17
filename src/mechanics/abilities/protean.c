@@ -65,7 +65,7 @@ static void HandlerProteanMoveStart(BattleEventItem *item, BtlServerFlow *flow, 
     }
     sProteanUsed[monId] = 1;
     param = (BattleHandlerChangeTypeParam *)BattleHandler_PushWork(flow, HANDLER_CMD_CHANGE_TYPE, monId);
-    param->popup = 1;
+    W2U_WorkPopup(param);
     param->type = pair;
     param->monIndex = monId;
     BattleHandler_PopWork(flow, param);

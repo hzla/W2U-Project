@@ -94,7 +94,7 @@ static void HandlerToxicDebrisHit(BattleEventItem *item, BtlServerFlow *flow, u8
     }
     side = GetSideFromOpposingMonID(monId);
     param = (BattleHandlerAddSideEffectParam *)BattleHandler_PushWork(flow, HANDLER_CMD_ADD_SIDE_EFFECT, monId);
-    param->popup = 1;
+    W2U_WorkPopup(param);
     param->effect = SIDE_EFFECT_TOXIC_SPIKES;
     param->side = side;
     param->cont = MakeConditionPermanent();

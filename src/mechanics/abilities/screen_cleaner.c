@@ -6,7 +6,7 @@
 
 static b32 ScreenCleanerHasScreens(u32 side)
 {
-    return SideEffect_IsActive(side, SIDE_EFFECT_REFLECT) || SideEffect_IsActive(side, SIDE_EFFECT_LIGHT_SCREEN);
+    return IsSideEffectSet(side, SIDE_EFFECT_REFLECT) || IsSideEffectSet(side, SIDE_EFFECT_LIGHT_SCREEN);
 }
 
 static void HandlerScreenCleanerStart(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work)
