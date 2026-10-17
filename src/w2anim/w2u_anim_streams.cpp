@@ -31,6 +31,7 @@
 // working palette copies its fades start from.
 #include "swantypes.h"
 #include "util/filesystem.h"
+#include "util/main_ram.h"
 
 extern "C" {
 void LoadMCSSGraphicsData(void* sys, int slot, u32* params);
@@ -289,10 +290,10 @@ void Prepare(Stream& s, u16 u) {
 // it whose +0x20 / +0x24 are this system / sprite.
 u8* McssUploadWork(void* sys, u8* spr) {
     u32* tcb = (u32*)SprUploadTask(spr);
-    if (!tcb || (u32)tcb < 0x02000000 || (u32)tcb >= 0x02400000) return nullptr;
+    if (!tcb || !w2u::IsMainRamAddress((u32)tcb, 12 * sizeof(u32))) return nullptr;   // DSi: 16 MB of main RAM
     for (u32 i = 0; i < 12; ++i) {
         u8* w = (u8*)tcb[i];
-        if ((u32)w >= 0x02000000 && (u32)w < 0x023FFFD0 && (((u32)w) & 3) == 0 &&
+        if (w2u::IsMainRamAddress((u32)w, 0x28) && (((u32)w) & 3) == 0 &&
             *(void**)(w + 0x20) == sys && *(u8**)(w + 0x24) == spr)
             return w;
     }
@@ -472,7 +473,7 @@ constexpr u32 EVO_WORK_MORPH = 0x58, MORPH_POKE[2] = { 0x08, 0x0C };
 constexpr u32 POKE_BMP = 0x10, POKE_TEX = 0x14, POKE_PAL = 0x2C, POKE_FADE_COLOR = 0x4C, POKE_FADE_RATE = 0x56;
 constexpr u32 MORPH_SIDE = 128, MORPH_ROW_BYTES = MORPH_SIDE / 2, MORPH_ORIGIN = 16, MORPH_GROUND_ROW = 88;
 
-bool InMainRam(const void* p) { u32 a = (u32)p; return a >= 0x02000000 && a < 0x02400000; }
+bool InMainRam(const void* p) { return w2u::IsMainRamAddress((u32)p); }   // DSi: 16 MB of main RAM
 
 u16 Fade(u16 c, u16 to, s32 rate) {
     if (rate <= 0) return c;

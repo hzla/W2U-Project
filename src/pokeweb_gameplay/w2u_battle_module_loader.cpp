@@ -10,6 +10,13 @@
 #include "w2u_pmc_runtime.h"
 #include "swan/gfl/core/gfl_heap.h"
 extern "C" void W2U_AnimStreams_OnModuleUnload();
+// NitroSystem's expanded heap (NNS_FndCreateExpHeapEx, NNS_FndAllocFromExpHeapEx, NNS_FndResizeForMBlockExpHeap,
+// NNS_FndFreeToExpHeap, NNS_FndGetTotalFreeSizeForExpHeap), under IRDO's names
+extern "C" void* InitHeapBaseSafe(void* start, u32 size, u16 flags);
+extern "C" void* AllocOnHeapBase(void* heap, u32 size, int alignment);
+extern "C" u32 ExpHeap_ResizeBlock(void* heap, void* block, u32 size);
+extern "C" void FreeFromHeapBase(void* heap, void* block);
+extern "C" u32 HeapBase_GetFreeSize(void* heap);
 
 namespace {
 
@@ -113,6 +120,20 @@ constexpr u32 W2U_GAME_BLOCK_OVERHEAD = 24u;      // raw -> 8-aligned payload; {
 void** sModuleManager = 0;                          // rpm::mgr::ModuleManager, from DllMain
 u32 sGameHeapModuleMask = 0;                        // module IDs placed on the game heap
 
+// DSi mode: the game's heaps sit above its DSi module (from 0x0276DDE0), more than 4 MB from the ARM9 program and the
+// overlays, and W2U's code is built with -mno-long-calls, so a module there is out of Thumb BL range (its calls into
+// the game and the game's hooks into it wrap around: the battle crashed). The DSi mode's arena leaves the rest of the
+// DS-mode area unused instead: from the end of PMC's overlay (0x021FD0C0 + its 0x8000 reservation) up to PMC's own
+// heap, which tools/patch_pmc_sysheap.py puts at the DS addresses (0x023AE000) in DSi mode too. On a DSi the battle
+// modules go to an NNS expanded heap over that hole (about 1.6 MB, used by nothing else) instead of heap 1, at any
+// time; without the hole (an unpatched PMC heap, out of range itself) they stay on PMC's heap.
+constexpr u32 W2U_TWL_MODULE_HOLE_START = 0x02206000u;
+constexpr u32 W2U_TWL_MODULE_HOLE_LIMIT = 0x02400000u;  // the DSi mode's ARM9i program loads here
+constexpr u32 W2U_TWL_MODULE_HOLE_MINIMUM = 0x40000u;
+constexpr u32 W2U_TWL_MODULE_HOLE_RESERVE = 0x1000u;
+void* sTwlModuleHeap = 0;                           // NNSFndHeapHandle over the hole
+bool sTwlModuleHeapChecked = false;
+
 
 W2UBattleModuleRecord sModuleRecords[W2U_MAX_MODULE_RECORDS];
 W2UBattleModuleTelemetry sTelemetry;
@@ -136,9 +157,36 @@ struct W2UGameHeapAllocator {
 };
 W2UGameHeapAllocator sGameHeapAllocator;
 
+// The game-heap allocator's backing store: heap 1, or the DSi hole's heap (above) on a DSi
+u8* GameHeapRawAlloc(u32 size)
+{
+    if (sTwlModuleHeap) {
+        return static_cast<u8*>(AllocOnHeapBase(sTwlModuleHeap, size, 4));
+    }
+    return static_cast<u8*>(GFL_HeapAllocateCore(W2U_MODULE_GAME_HEAP_ID, size));
+}
+
+void GameHeapRawResize(u8* raw, u32 size)
+{
+    if (sTwlModuleHeap) {
+        ExpHeap_ResizeBlock(sTwlModuleHeap, raw, size);
+        return;
+    }
+    GFL_HeapResizeCore(raw, size);
+}
+
+void GameHeapRawFree(u8* raw)
+{
+    if (sTwlModuleHeap) {
+        FreeFromHeapBase(sTwlModuleHeap, raw);
+        return;
+    }
+    GFL_HeapFreeCore(raw);
+}
+
 void* W2UGameHeapAllocator::Alloc(u32 size)
 {
-    u8* raw = static_cast<u8*>(GFL_HeapAllocateCore(W2U_MODULE_GAME_HEAP_ID, size + W2U_GAME_BLOCK_OVERHEAD));
+    u8* raw = GameHeapRawAlloc(size + W2U_GAME_BLOCK_OVERHEAD);
     if (!raw) {
         return 0;
     }
@@ -159,7 +207,7 @@ void* W2UGameHeapAllocator::Realloc(void* block, u32 newSize)
     const u32 oldSize = payload[-3];
     if (newSize <= oldSize) {                      // FixModule's shrink: give the tail back in place
         u8* raw = reinterpret_cast<u8*>(payload[-2]);
-        GFL_HeapResizeCore(raw, static_cast<u32>(reinterpret_cast<u8*>(payload) - raw) + newSize);
+        GameHeapRawResize(raw, static_cast<u32>(reinterpret_cast<u8*>(payload) - raw) + newSize);
         payload[-3] = newSize;
         sTelemetryGameHeapAdd(-static_cast<s32>(oldSize - newSize));
         return block;
@@ -183,7 +231,7 @@ void W2UGameHeapAllocator::Free(void* block)
     }
     u32* payload = static_cast<u32*>(block);
     sTelemetryGameHeapAdd(-static_cast<s32>(payload[-3] + W2U_GAME_BLOCK_OVERHEAD));
-    GFL_HeapFreeCore(reinterpret_cast<void*>(payload[-2]));
+    GameHeapRawFree(reinterpret_cast<u8*>(payload[-2]));
 }
 
 bool GameHeapExists(u32 heapID)
@@ -509,8 +557,31 @@ u32 LargestFreePmcBlock()
     return block ? 0u : largest; // A cyclic/overlong list must not authorize an allocation.
 }
 
+#if !defined(W2U_TARGET_B2)
+// DSi mode: the hole's heap (see W2U_TWL_MODULE_HOLE_START), made once, from the hole's start up to PMC's heap. None
+// when PMC's heap is not in the hole (it is out of range then anyway).
+void EnsureTwlModuleHeap()
+{
+    if (sTwlModuleHeapChecked || !hw_isDSi()) {
+        return;
+    }
+    EnsurePmcHeap();
+    if (!sPmcHeap) {
+        return;
+    }
+    sTwlModuleHeapChecked = true;
+    const u32 end = reinterpret_cast<u32>(sPmcHeap) & ~0xFFFu;   // the HeapArea object starts PMC's heap
+    if (end > W2U_TWL_MODULE_HOLE_LIMIT || end < W2U_TWL_MODULE_HOLE_START + W2U_TWL_MODULE_HOLE_MINIMUM) {
+        return;
+    }
+    sTwlModuleHeap = InitHeapBaseSafe(reinterpret_cast<void*>(W2U_TWL_MODULE_HOLE_START),
+        end - W2U_TWL_MODULE_HOLE_START, 0);
+}
+#endif
+
 // Game heap for this module? During a battle, with the module plus the reserve fitting heap 1 in one piece, and only
-// when PMC's manager uses exactly PMC's heap (so the swap restores what was there).
+// when PMC's manager uses exactly PMC's heap (so the swap restores what was there). On a DSi: the hole's heap
+// instead, whenever the module fits it, and never heap 1 (out of BL range).
 bool PlaceOnGameHeap(u32 expandedSize)
 {
 #if defined(W2U_TARGET_B2)
@@ -518,8 +589,15 @@ bool PlaceOnGameHeap(u32 expandedSize)
     return false;
 #else
     EnsurePmcHeap();
-    if (!sModuleManager || !sPmcHeap || !IsMainRamPointer(sModuleManager) || sModuleManager[1] != sPmcHeap ||
-        !GameHeapExists(W2U_BATTLE_SYSTEM_HEAP_ID) || GameHeapExists(W2U_FIELD_MAIN_HEAP_ID)) {
+    if (!sModuleManager || !sPmcHeap || !IsMainRamPointer(sModuleManager) || sModuleManager[1] != sPmcHeap) {
+        return false;
+    }
+    if (hw_isDSi()) {
+        EnsureTwlModuleHeap();
+        return sTwlModuleHeap && HeapBase_GetFreeSize(sTwlModuleHeap) >=
+            expandedSize + W2U_GAME_BLOCK_OVERHEAD + W2U_TWL_MODULE_HOLE_RESERVE;
+    }
+    if (!GameHeapExists(W2U_BATTLE_SYSTEM_HEAP_ID) || GameHeapExists(W2U_FIELD_MAIN_HEAP_ID)) {
         return false;
     }
     return GFL_HeapGetHighestAllocatableSize(W2U_MODULE_GAME_HEAP_ID) >=

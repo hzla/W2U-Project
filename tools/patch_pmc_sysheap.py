@@ -23,6 +23,26 @@ PMC_REALLOC_SHRINK_INSTRUCTION_OFFSET = 0x804
 BROKEN_REALLOC_SHRINK_INSTRUCTION = bytes.fromhex("18 3b")  # subs r3, #24
 FIXED_REALLOC_SHRINK_INSTRUCTION = bytes.fromhex("10 3b")  # subs r3, #16
 
+# DSi mode: the bundled PMC takes its heap from the top of whatever arena the OS reports, which on a DSi is
+# 0x02F80000, about 15 MB above the ARM9 program. W2U's code is built with -mno-long-calls, and Thumb BL reaches
+# +-4 MB, so PMC's hooks into that heap wrap around (getSizeofPokedexData's BL to the resident core lands at
+# 0x01F4F63C, an ITCM mirror) and the game takes a data abort at boot. This replaces the heap setup routine
+# (overlay 0x2BA-0x2F0, the system heap cap stays its first immediate) with one that clamps the arena's top at the
+# DS one, 0x023E0000: on a DS nothing changes; on a DSi the heap is 0x023AE000-0x023E0000, inside the 0x021FD0C0-
+# 0x02700000 hole the DSi mode's arena leaves below its LTD module (in range of everything), and the OS arena is
+# not touched (the new top goes to the routine's own literal). The arena's low end is above that top on a DSi, so
+# the free size underflows and the heap takes the full cap. Newer PMC builds (Pokeweb's) do the same with
+# OS_IsRunOnTwl. The original's `bics #7` on the size is dropped for room: the size is the cap, a multiple of 1 KiB.
+PMC_HEAP_SETUP_OFFSET = 0x2BA
+PMC_HEAP_SETUP_ORIGINAL = bytes.fromhex(
+    "a0 20 09 4b 0a 4a 19 68 12 68 10 b5 8a 1a 80 02 82 42 00 d9 02 00 07 20 82 43 81 43"
+    " 89 1a 04 48 19 60 00 f0 d4 f9 10 bd c0 46 c4 fd ff 02 a0 fd ff 02 8a e8 1f 02"
+)
+PMC_HEAP_SETUP_DSI = bytes.fromhex(
+    "a0 20 08 4b 19 68 0a 4a 91 42 01 d9 11 1c 08 a3 06 4a 12 68 8a 1a 80 02 82 42 00 d9"
+    " 02 1c 89 1a 03 48 19 60 d3 e1 c4 fd ff 02 a0 fd ff 02 8a e8 1f 02 00 00 3e 02"
+)
+
 
 def parse_int(value: str) -> int:
     return int(value, 0)
@@ -102,6 +122,25 @@ def main() -> int:
             f"{current_instruction.hex(' ')}, expected "
             f"{BROKEN_REALLOC_SHRINK_INSTRUCTION.hex(' ')} or "
             f"{FIXED_REALLOC_SHRINK_INSTRUCTION.hex(' ')}."
+        )
+
+    # Compared without the first byte, the system heap cap patched above
+    setup_start = PMC_HEAP_SETUP_OFFSET
+    setup_end = setup_start + len(PMC_HEAP_SETUP_ORIGINAL)
+    current_setup = bytes(data[setup_start + 1 : setup_end])
+    if current_setup == PMC_HEAP_SETUP_DSI[1:]:
+        print(f"[+] PMC heap setup already DSi-aware at overlay 344 offset 0x{setup_start:x}.")
+    elif current_setup == PMC_HEAP_SETUP_ORIGINAL[1:]:
+        data[setup_start + 1 : setup_end] = PMC_HEAP_SETUP_DSI[1:]
+        changed = True
+        print(
+            "[+] PMC heap setup made DSi-aware (arena top clamped to 0x023E0000) "
+            f"at overlay 344 offset 0x{setup_start:x}."
+        )
+    else:
+        raise SystemExit(
+            f"Unexpected PMC heap setup at overlay 344 offset 0x{setup_start:x}: found "
+            f"{current_setup.hex(' ')}."
         )
 
     if changed:
