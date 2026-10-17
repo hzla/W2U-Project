@@ -25,7 +25,7 @@ static void HandlerWindRiderTailwindStart(BattleEventItem *item, BtlServerFlow *
 {
     (void)item;
     (void)flow;
-    work[0] = SideEffect_IsActive(GetSideFromMonID(monId), SIDE_EFFECT_TAILWIND);
+    work[0] = IsSideEffectSet(GetSideFromMonID(monId), SIDE_EFFECT_TAILWIND);
 }
 
 static void HandlerWindRiderTailwind(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work)
@@ -34,7 +34,7 @@ static void HandlerWindRiderTailwind(BattleEventItem *item, BtlServerFlow *flow,
     if (W2U_Move() != MOVE_TAILWIND || !W2U_IsAlly(monId, W2U_Attacker())) {
         return;
     }
-    if (work[0] || !SideEffect_IsActive(GetSideFromMonID(monId), SIDE_EFFECT_TAILWIND)) {
+    if (work[0] || !IsSideEffectSet(GetSideFromMonID(monId), SIDE_EFFECT_TAILWIND)) {
         return;
     }
     W2U_ChangeStatStage(flow, monId, monId, STATSTAGE_ATTACK, 1, 1);
@@ -44,7 +44,7 @@ static void HandlerWindRiderStart(BattleEventItem *item, BtlServerFlow *flow, u8
 {
     (void)item;
     (void)work;
-    if (W2U_Subject() != monId || !SideEffect_IsActive(GetSideFromMonID(monId), SIDE_EFFECT_TAILWIND)) {
+    if (W2U_Subject() != monId || !IsSideEffectSet(GetSideFromMonID(monId), SIDE_EFFECT_TAILWIND)) {
         return;
     }
     W2U_ChangeStatStage(flow, monId, monId, STATSTAGE_ATTACK, 1, 1);

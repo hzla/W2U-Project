@@ -50,6 +50,7 @@
 #define GetFieldWeather BattleField_GetWeather
 #define IsGuaranteedHit ServerControl_IsGuaranteedHit
 #define RawBattleMonStat BattleMon_GetRealStat
+#define IsSideEffectSet SideEffect_IsActive     /* IRDO.yml names ov167's branch stub to it (the decomp's is in ov169) */
 #endif
 
 #ifdef __cplusplus
@@ -368,11 +369,17 @@ typedef struct BattleHandlerForceUseItemParam {
     u16 item;
 } BattleHandlerForceUseItemParam;
 
-/* The stages run STATSTAGE_ATTACK .. STATSTAGE_EVASION, as GetBattleMonStat's values 1-7 (6 = neutral) */
+/* The stages, as GetBattleMonStat's STATSTAGE_ATTACK .. STATSTAGE_EVASION values (6 = neutral) */
 typedef struct BattleHandlerSetStatStageParam {
     u32 header;
     u8 monIndex;
-    u8 stages[7];
+    u8 attack;
+    u8 defense;
+    u8 spAttack;
+    u8 spDefense;
+    u8 speed;
+    u8 accuracy;
+    u8 evasion;
 } BattleHandlerSetStatStageParam;
 
 typedef struct BattleHandlerResetStatStageParam {
@@ -586,7 +593,7 @@ enum {
     MOVE_FLAG_INDEX_SOUND = 8,
 };                                      /* W2U's own flags (MOVE_FLAG_INDEX_WIND ...): megab2w2/mb_ids.h */
 
-/* Side effects (SideEffect_IsActive, BattleHandlerRemoveSideEffectParam) */
+/* Side effects (IsSideEffectSet, BattleHandlerRemoveSideEffectParam) */
 enum {
     SIDE_EFFECT_REFLECT = 0,
     SIDE_EFFECT_LIGHT_SCREEN = 1,
@@ -655,8 +662,8 @@ u8 MonIDToClientID(u8 monId);
 BattleParty *GetPartyData(BtlPokeCon *pokeCon, u32 clientId);
 u8 GetSideFromMonID(u8 monId);
 u8 GetSideFromOpposingMonID(u8 monId);          /* the side facing the Pokémon */
-/* W2U's name (the decomp has none yet): the side effect is up on the side */
-b32 SideEffect_IsActive(u32 side, u32 effect);
+/* The side effect (SIDE_EFFECT_*) is up on the side */
+b32 IsSideEffectSet(u8 side, u32 sideEffectId);
 BattleMon *GetBattleMon(BtlServerFlow *serverFlow, u8 monId);
 /* BMV_ATTACK .. BMV_SPEED: the stat with its stat stage applied */
 u32 GetBattleMonStat(const BattleMon *mon, u32 stat);

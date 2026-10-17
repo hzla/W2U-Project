@@ -41,7 +41,7 @@ static void HandlerChargeTailwindStart(BattleEventItem *item, BtlServerFlow *flo
 {
     (void)item;
     (void)flow;
-    work[0] = SideEffect_IsActive(GetSideFromMonID(monId), SIDE_EFFECT_TAILWIND);
+    work[0] = IsSideEffectSet(GetSideFromMonID(monId), SIDE_EFFECT_TAILWIND);
 }
 
 static void HandlerChargeTailwind(BattleEventItem *item, BtlServerFlow *flow, u8 monId, s32 *work)
@@ -53,7 +53,7 @@ static void HandlerChargeTailwind(BattleEventItem *item, BtlServerFlow *flow, u8
     if (W2U_HolderAbility(flow, monId) != ABIL_WIND_POWER || !W2U_IsAlly(monId, W2U_Attacker())) {
         return;
     }
-    if (SideEffect_IsActive(GetSideFromMonID(monId), SIDE_EFFECT_TAILWIND)) {
+    if (IsSideEffectSet(GetSideFromMonID(monId), SIDE_EFFECT_TAILWIND)) {
         ChargeUp(flow, monId);
     }
 }

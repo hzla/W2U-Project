@@ -70,7 +70,6 @@ static void HandlerCostarStart(BattleEventItem *item, BtlServerFlow *flow, u8 mo
     BattleHandlerMessageParam *message;
     BattleMon *source;
     u8 ally = ENTRY_NO_MON, id;
-    u32 i;
 
     (void)item;
     (void)work;
@@ -89,9 +88,13 @@ static void HandlerCostarStart(BattleEventItem *item, BtlServerFlow *flow, u8 mo
     BattleHandler_PushRun(flow, HANDLER_CMD_POPUP_IN, monId);
     param = (BattleHandlerSetStatStageParam *)BattleHandler_PushWork(flow, HANDLER_CMD_SET_STAT_STAGES, monId);
     param->monIndex = monId;
-    for (i = 0; i < 7; ++i) {
-        param->stages[i] = (u8)GetBattleMonStat(source, STATSTAGE_ATTACK + i);
-    }
+    param->attack = (u8)GetBattleMonStat(source, STATSTAGE_ATTACK);
+    param->defense = (u8)GetBattleMonStat(source, STATSTAGE_DEFENSE);
+    param->spAttack = (u8)GetBattleMonStat(source, STATSTAGE_SPECIAL_ATTACK);
+    param->spDefense = (u8)GetBattleMonStat(source, STATSTAGE_SPECIAL_DEFENSE);
+    param->speed = (u8)GetBattleMonStat(source, STATSTAGE_SPEED);
+    param->accuracy = (u8)GetBattleMonStat(source, STATSTAGE_ACCURACY);
+    param->evasion = (u8)GetBattleMonStat(source, STATSTAGE_EVASION);
     BattleHandler_PopWork(flow, param);
     message = (BattleHandlerMessageParam *)BattleHandler_PushWork(flow, HANDLER_CMD_MESSAGE, monId);
     BattleHandler_StrSetup(&message->string, HANDLER_STR_SET, MSG_SET_COPIED_STATS);
