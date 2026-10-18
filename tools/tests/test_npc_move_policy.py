@@ -10,16 +10,24 @@ ROOT = Path(__file__).resolve().parents[2]
 
 class NpcMovePolicy(unittest.TestCase):
     def test_resident_policy_and_native_copy_delegate(self):
+        # The predicates are resident C (move_lists.c); the hooks and the copy handler are w2u_moves.cpp's
+        lists = (ROOT / "src/mechanics/resident/move_lists.c").read_text()
         text = (ROOT / "src/pokeweb_gameplay/w2u_moves.cpp").read_text()
         parts = []
-        for pattern in (r'extern "C" bool W2U_MoveIsRestrictedNpcAttack\(.*?^\}',
-                        r'#define W2U_NPC_CALL_POLICY\(.*?^#undef W2U_NPC_CALL_POLICY',
-                        r'static void HandlerNativeCopyRestricted\(.*?^\}'):
-            match = re.search(pattern, text, re.S | re.M)
-            self.assertIsNotNone(match)
+        for source_text, pattern in (
+                (lists, r'^b32 W2U_MoveIsRestrictedNpcAttack\(.*?^\}'),
+                (lists, r'^b32 W2U_IsAssistExcludedMove\(.*?^b32 W2U_IsCopycatExcludedMove\([^\n]*'),
+                (text, r'^extern "C" b32 THUMB_BRANCH_LINK_167_0x21CC4DC\(.*?THUMB_BRANCH_LINK_167_0x21CC7D6\([^\n]*'),
+                (text, r'static void HandlerNativeCopyRestricted\(.*?^\}')):
+            match = re.search(pattern, source_text, re.S | re.M)
+            self.assertIsNotNone(match, pattern)
             parts.append(match.group())
         source = r'''
-typedef unsigned u32; typedef unsigned MOVE_ID; typedef bool b32;
+typedef unsigned u32; typedef unsigned short u16; typedef unsigned MOVE_ID; typedef bool b32;
+#define IsAssistExcludedMove BattleMove_AssistIsForbidden
+#define IsSleepTalkExcludedMove BattleMove_SleepTalkIsForbidden
+#define IsMeFirstExcludedMove BattleMove_MeFirstIsForbidden
+#define IsCopycatExcludedMove BattleMove_CopycatIsForbidden
 enum {MOVE_BLAZING_TORQUE=896,MOVE_MAGICAL_TORQUE=900,MOVE_SKETCH=166,MOVE_REVIVAL_BLESSING=863,VAR_ATTACKING_MON=3,
   VAR_TARGET_COUNT=5,VAR_TARGET_MON_ID=6,EVENT_UNCATEGORIZED_MOVE=160};
 struct BattleEventItem { unsigned move; }; struct ServerFlow {}; struct BattleMon {};
