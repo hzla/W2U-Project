@@ -464,6 +464,7 @@ typedef struct BattleHandlerHeader {
     u32 checkFainted : 1;               /* skipped when monId has fainted */
     u32 unk26 : 6;
 } BattleHandlerHeader;
+typedef BattleHandlerHeader BattleHandlerUseHeldItemParam;   /* UseHeldItem's work is the header alone (decomp name) */
 
 /* A Pokémon's chosen action (decomp: include/battle/btl_action.h) */
 typedef union BattleAction {
@@ -728,7 +729,7 @@ BattleCondition SetConditionTurns(u8 turns);
 
 /* btl_server_flow.c: the handler commands the dispatcher runs; each returns its result (nonzero: done), which the
  * dispatcher keeps for checkPrevResult and BattleHandler_Result */
-u8 BattleHandler_UseHeldItem(BtlServerFlow *flow, BattleHandlerHeader *param);
+u8 BattleHandler_UseHeldItem(BtlServerFlow *flow, BattleHandlerUseHeldItemParam *param);
 u8 BattleHandler_ForceUseItem(BtlServerFlow *flow, BattleHandlerForceUseItemParam *param);
 u8 BattleHandler_RecoverHP(BtlServerFlow *flow, const BattleHandlerRecoverHPParam *param, u16 itemId);
 u8 BattleHandler_Damage(BtlServerFlow *flow, BattleHandlerDamageParam *param);
