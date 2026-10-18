@@ -99,6 +99,14 @@ static bool W2U_BattleMonHasMoveCondition(BattleMon* battleMon, CONDITION condit
     return (W2U_GetStoredMoveCondition(battleMon, condition) & W2U_CONDITION_STATUS_MASK) != 0;
 }
 
+// The status tests (Comatose, Corrosion, Hex, the forced fail message): src/mechanics/resident/status.c (C).
+// Declared here with this file's engine types (it can't include w2u/resident.h).
+extern "C" b32 W2U_IsComatose(BattleMon* mon);
+extern "C" b32 W2U_ComatoseAsleep(BattleMon* mon, u32 condition);
+extern "C" u32 W2U_ConditionFailCause(BattleMon* target, BattleMon* attacker, u32 condition, u32 cause);
+extern "C" b32 W2U_ConditionFailForcesMessage(u32 failed);
+extern "C" b32 W2U_HasMajorStatus(BattleMon* mon);
+
 extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerControl_AddConditionCheckFail(
     ServerFlow* serverFlow,
     BattleMon* defendingMon,
@@ -115,18 +123,7 @@ extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerControl_AddConditionCheckFail(
         condData,
         overrideMode);
 
-    if (condition == CONDITION_POISON &&
-        failStatus == 2 &&
-        attackingMon &&
-        BattleMon_GetValue(attackingMon, VALUE_EFFECTIVE_ABILITY) == ABIL_CORROSION) {
-        failStatus = 0;
-    }
-
-    if ((condition < CONDITION_CONFUSION || condition == CONDITION_YAWN) &&
-        defendingMon &&
-        defendingMon->currentAbility == ABIL_COMATOSE) {
-        failStatus = 3;
-    }
+    failStatus = W2U_ConditionFailCause(defendingMon, attackingMon, condition, failStatus);   // Corrosion, Comatose
 
     if (failStatus) {
         if (almost) {
@@ -141,7 +138,7 @@ extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerControl_AddConditionCheckFail(
         attackingMon,
         defendingMon,
         condition);
-    if ((failFlag && almost) || failFlag == W2U_FORCE_FAIL_MESSAGE) {
+    if ((failFlag && almost) || W2U_ConditionFailForcesMessage(failFlag)) {
         ServerEvent_AddConditionFailed(serverFlow, defendingMon, attackingMon, condition);
         serverFlow->field_78A |= 0x10u;
     }
@@ -151,9 +148,7 @@ extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerControl_AddConditionCheckFail(
 
 extern "C" b32 THUMB_BRANCH_BattleMon_CheckIfMoveCondition(BattleMon* battleMon, CONDITION condition)
 {
-    if (battleMon &&
-        condition == CONDITION_SLEEP &&
-        BattleMon_GetValue(battleMon, VALUE_EFFECTIVE_ABILITY) == ABIL_COMATOSE) {
+    if (W2U_ComatoseAsleep(battleMon, condition)) {
         return 1;
     }
 
@@ -179,12 +174,7 @@ extern "C" void THUMB_BRANCH_HandlerHex(
         return;
     }
 
-    if (BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_PARALYSIS) ||
-        BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_SLEEP) ||
-        BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_FREEZE) ||
-        BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_BURN) ||
-        BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_POISON) ||
-        BattleMon_CheckIfMoveCondition(defendingMon, CONDITION_PARALYSIS)) {
+    if (W2U_HasMajorStatus(defendingMon)) {
         u32 power = (u32)BattleEventVar_GetValue(VAR_MOVE_POWER);
         BattleEventVar_RewriteValue(VAR_MOVE_POWER, power * 2);
     }
@@ -197,7 +187,7 @@ extern "C" void THUMB_BRANCH_CommonStatusReaction(
     CONDITION condition)
 {
     BattleMon* currentMon = Handler_GetBattleMon(serverFlow, pokemonSlot);
-    if (currentMon && currentMon->currentAbility == ABIL_COMATOSE) {
+    if (W2U_IsComatose(currentMon)) {
         return;
     }
 

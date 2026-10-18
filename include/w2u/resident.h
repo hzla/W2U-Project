@@ -66,6 +66,16 @@ b32 W2U_IsSleepTalkExcludedMove(u16 move);
 b32 W2U_IsMeFirstExcludedMove(u16 move);
 b32 W2U_IsCopycatExcludedMove(u16 move);
 
+/* Status conditions (status.c): Comatose (asleep for CheckCondition; no major status or drowsiness; its curing items
+ * don't react), Corrosion (poisons Steel and Poison types), Hex (any major status as CheckCondition sees it), a status
+ * check failed with W2U_FORCE_FAIL_MESSAGE (shows its message). W2U_ConditionFailCause adjusts
+ * AddConditionCheckFailOverwrite's cause. */
+b32 W2U_IsComatose(BattleMon *mon);
+b32 W2U_ComatoseAsleep(BattleMon *mon, u32 condition);
+u32 W2U_ConditionFailCause(BattleMon *target, BattleMon *attacker, u32 condition, u32 cause);
+b32 W2U_ConditionFailForcesMessage(u32 failed);
+b32 W2U_HasMajorStatus(BattleMon *mon);
+
 /* Clears the state above (the injection build, at battle exit; a decomp build's overlay 167 starts with it clear) */
 void W2U_Resident_ResetBattleState(void);
 void W2U_Resident_ResetPendingMoves(void);

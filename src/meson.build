@@ -173,6 +173,7 @@ w2u_mechanics_sources = files(
   'mechanics/resident/protect.c',
   'mechanics/resident/redirection.c',
   'mechanics/resident/reset.c',
+  'mechanics/resident/status.c',
   'mechanics/resident/weather.c',
   'mechanics/abilities/fluffy.c',
   'mechanics/abilities/power_spot.c',
