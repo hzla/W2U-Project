@@ -21,8 +21,10 @@ class Gen67HandlerFixes(unittest.TestCase):
             match = re.search(r'^(?:extern "C" |static )?(?:u32|void|bool) '+name+r'\(.*?^\}',text,re.M|re.S)
             self.assertIsNotNone(match,name)
             pieces.append(match.group())
-        terrain_text = (ROOT / "src/pokeweb_gameplay/megab2w2/abilities/TerrainAbilities.cpp").read_text()
-        pieces.append(re.search(r"^void HandlerGrassPeltDefense\(.*?^\}", terrain_text, re.M | re.S).group())
+        # Grass Pelt is C since the engine interface (src/mechanics; VAR_MOVE_CATEGORY is the old
+        # VAR_DAMAGE_CATEGORY, event variable 0x1A)
+        terrain_text = (ROOT / "src/mechanics/abilities/terrain_abilities.c").read_text()
+        pieces.append(re.search(r"^static void HandlerGrassPeltDefense\(.*?^\}", terrain_text, re.M | re.S).group())
         program = r'''
 #include <initializer_list>
 using u32=unsigned; using ABILITY=unsigned; using CONDITION=unsigned;
@@ -50,6 +52,9 @@ BattleMon* GetAbilityBattleMon(ServerFlow*,u32) { return &mon; }
 bool BattleMon_TransformCheck(BattleMon* p) { return p->transformed; }
 u32 BattleMon_GetValue(BattleMon* p,u32) { return p->form; }
 namespace terrain { const u32 GRASSY=2;u32 Current(){return currentTerrain;} }
+using u8=unsigned char; using s32=int; using BtlServerFlow=ServerFlow; const u32 W2U_TERRAIN_GRASSY=2;
+u32 W2U_Defender(){return vars[VAR_DEFENDING_MON];} u32 W2U_Terrain(){return currentTerrain;}
+void W2U_MulRatio(u32 r){BattleEventVar_MulValue(VAR_RATIO,r);}
 namespace ability { u32 Defender(){return vars[VAR_DEFENDING_MON];} void MulRatio(u32 r){BattleEventVar_MulValue(VAR_RATIO,r);} bool Simulating(ServerFlow*){return false;} }
 #define MLOG(...) ((void)0)
 ''' + "\n".join(pieces) + r'''
@@ -87,7 +92,7 @@ int main() {
  HandlerParentalBondDamage(0,&flow,0,0);if(vars[VAR_RATIO]!=4096) return 6;
  vars[VAR_DEFENDING_MON]=12;
  for(currentTerrain=0;currentTerrain<=4;++currentTerrain) for(u32 cat:{0u,1u,2u}) for(u32 owner:{0u,12u}) {
-  vars[VAR_DAMAGE_CATEGORY]=cat;vars[VAR_RATIO]=4096;
+  vars[VAR_MOVE_CATEGORY]=cat;vars[VAR_RATIO]=4096;
   HandlerGrassPeltDefense(0,&flow,owner,0);
   if(vars[VAR_RATIO]!=(currentTerrain==2 && cat==1 && owner==12 ? 6144u:4096u)) return 7;
  }

@@ -236,7 +236,9 @@ static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SURGE_SURFER), (u16)W2U_ARRAY_COUNT(SurgeSurferHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SurgeSurferHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUEENLY_MAJESTY), (u16)W2U_ARRAY_COUNT(QueenlyMajestyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, QueenlyMajestyHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DAZZLING), (u16)W2U_ARRAY_COUNT(QueenlyMajestyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, QueenlyMajestyHandlers},
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ARMOR_TAIL), (u16)W2U_ARRAY_COUNT(QueenlyMajestyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, QueenlyMajestyHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModuleApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -262,9 +264,11 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 static_assert((ABIL_DAZZLING) >= 0 && (ABIL_DAZZLING) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(QueenlyMajestyHandlers)) > 0 && (W2U_ARRAY_COUNT(QueenlyMajestyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
 static_assert((ABIL_ARMOR_TAIL) >= 0 && (ABIL_ARMOR_TAIL) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(QueenlyMajestyHandlers)) > 0 && (W2U_ARRAY_COUNT(QueenlyMajestyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 #elif W2U_BATTLE_MODULE_ID == 8
 static const W2UBattleHandlerExport sBattleModuleEntries[] = {
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ELECTRIC_SURGE), (u16)W2U_ARRAY_COUNT(TerrainSurgeHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, TerrainSurgeHandlers},
@@ -1328,7 +1332,9 @@ static const W2UBattleHandlerExport sBattleModule_abilities_priority_speedEntrie
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_SURGE_SURFER), (u16)W2U_ARRAY_COUNT(SurgeSurferHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, SurgeSurferHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_QUEENLY_MAJESTY), (u16)W2U_ARRAY_COUNT(QueenlyMajestyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, QueenlyMajestyHandlers},
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_DAZZLING), (u16)W2U_ARRAY_COUNT(QueenlyMajestyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, QueenlyMajestyHandlers},
+#if !defined(W2U_TARGET_B2)
     {W2U_MECHANIC_ABILITY, (u16)(ABIL_ARMOR_TAIL), (u16)W2U_ARRAY_COUNT(QueenlyMajestyHandlers), W2U_BATTLE_MODULE_DEFAULT_PRIORITY, QueenlyMajestyHandlers},
+#endif
 };
 static const W2UBattleModuleApi sBattleModule_abilities_priority_speedApi = {
     W2U_BATTLE_MODULE_MAGIC,
@@ -1354,9 +1360,11 @@ static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid han
 static_assert((ABIL_DAZZLING) >= 0 && (ABIL_DAZZLING) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(QueenlyMajestyHandlers)) > 0 && (W2U_ARRAY_COUNT(QueenlyMajestyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#if !defined(W2U_TARGET_B2)
 static_assert((ABIL_ARMOR_TAIL) >= 0 && (ABIL_ARMOR_TAIL) <= 65535, "Mechanic ID exceeds ABI");
 static_assert((W2U_ARRAY_COUNT(QueenlyMajestyHandlers)) > 0 && (W2U_ARRAY_COUNT(QueenlyMajestyHandlers)) <= 64, "Invalid handler count");
 static_assert((65535) == 65535 || ((65535) >= 0 && (65535) <= 255), "Invalid handler priority");
+#endif
 extern "C" __attribute__((visibility("hidden"))) const W2UBattleModuleApi* W2U_GetStaticBattleModuleApi_ABILITIES_PRIORITY_SPEED()
 {
     return &sBattleModule_abilities_priority_speedApi;

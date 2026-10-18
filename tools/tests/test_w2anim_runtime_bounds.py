@@ -46,15 +46,15 @@ int main(){
         unload = re.search(r'extern "C" void W2U_AnimStreams_OnModuleUnload\(.*?^\}', source, re.M | re.S).group()
         program = r'''
 using u8=unsigned char;using u32=unsigned;
-struct Stream{u8 active,pending,palettePending,indepPending,role;void* indepBmp;void* meta;void* lz;void* staging;};
+struct Stream{u8 active,still,pending,palettePending,indepPending,role;void* indepBmp;void* meta;void* lz;void* staging;};
 Stream g_streams[8];void* g_vblankTask=(void*)1;bool g_fileOpen=true;int g_fileState=1,g_file;u32 g_fileSize=100,g_evoAdds=2;
 unsigned frees,tasks,closes;
 void GFL_HeapFree(void*){++frees;}void GFL_TCBRemove(void*){++tasks;}
 namespace w2u{void CloseFile(void*){++closes;}}
 ''' + free + "\n" + unload + r'''
-int main(){for(auto& s:g_streams){s.active=1;s.pending=s.palettePending=1;s.meta=(void*)2;s.lz=(void*)3;s.staging=(void*)4;}
+int main(){for(auto& s:g_streams){s.active=s.still=1;s.pending=s.palettePending=1;s.meta=(void*)2;s.lz=(void*)3;s.staging=(void*)4;}
  W2U_AnimStreams_OnModuleUnload();if(frees!=24||tasks!=1||closes!=1||g_fileOpen||g_fileSize||g_fileState||g_evoAdds)return 1;
- for(auto& s:g_streams)if(s.active||s.pending||s.palettePending||s.meta||s.lz||s.staging)return 2;
+ for(auto& s:g_streams)if(s.active||s.still||s.pending||s.palettePending||s.meta||s.lz||s.staging)return 2;
  W2U_AnimStreams_OnModuleUnload();return frees!=24||tasks!=1||closes!=1;
 }
 '''
