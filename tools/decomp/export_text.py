@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Export W2U's system text banks to the pokebw2 decomp's text format.
 
-usage: python tools/decomp/export_text.py --decomp=PATH [--out=DIR] [--banks=18,19] [--check]
+usage: python tools/decomp/export_text.py --decomp=PATH [--out=DIR] [--banks=16,18,19] [--check]
 
 The decomp (github.com/fuddlesworth/pokebw2) keeps each message file of the system text archive (a/0/0/2) as
 data/text/system/<bank>.txt, one message per line: `ID = text`, with `\\n` for a line break, `{TTTT:a,b}` for a control
@@ -190,7 +190,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--decomp", type=Path, required=True, help="a pokebw2 checkout (only its text is read)")
     parser.add_argument("--out", type=Path, default=ROOT / "work" / "decomp_text")
-    parser.add_argument("--banks", default="18,19", help="system text banks, comma-separated (default 18,19)")
+    parser.add_argument("--banks", default="16,18,19", help="system text banks, comma-separated (default 16,18,19)")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     problems = []
