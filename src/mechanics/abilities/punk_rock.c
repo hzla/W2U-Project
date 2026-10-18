@@ -1,6 +1,6 @@
 /* Punk Rock (Gen 8): the holder's sound moves get x1.3 power, and sound moves deal it half damage (Gen 9). Sound is
  * the move record's flag (Hyper Voice, Bug Buzz, Snarl, Round...). Mold Breaker ignores the defensive half
- * (IsMoldBreakerAffectedAbility in w2u_abilities.cpp). */
+ * (W2U_IsLaterIgnorableAbility, resident/mold_breaker.c). */
 #include "w2u/battle_api.h"
 #include "megab2w2/mb_ids.h"
 

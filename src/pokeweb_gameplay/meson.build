@@ -16,6 +16,7 @@ pokeweb_gameplay = files(
     'megab2w2/mb_resident.cpp',
     '../mechanics/resident/commander.c',
     '../mechanics/resident/handler_effects.c',
+    '../mechanics/resident/mold_breaker.c',
     '../mechanics/resident/pending_move.c',
     '../mechanics/resident/redirection.c',
     '../mechanics/resident/reset.c',

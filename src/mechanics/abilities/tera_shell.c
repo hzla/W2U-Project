@@ -1,7 +1,7 @@
 /* Tera Shell (Gen 9): at full HP, every hit from another Pokémon does not-very-effective damage: the hit's
  * effectiveness is scaled to x0.5 overall ("X made its shell gleam! It's distorting type matchups!" once per move).
- * The engine's own effectiveness text is unchanged. Mold Breaker ignores it (IsMoldBreakerAffectedAbility in
- * w2u_abilities.cpp). */
+ * The engine's own effectiveness text is unchanged. Mold Breaker ignores it
+ * (W2U_IsLaterIgnorableAbility, resident/mold_breaker.c). */
 #include "w2u/battle_api.h"
 #include "megab2w2/mb_ids.h"
 

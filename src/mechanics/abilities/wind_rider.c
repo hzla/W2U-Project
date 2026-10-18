@@ -1,6 +1,6 @@
 /* Wind Rider (Gen 9): wind moves used on the holder by others don't affect it and raise its Attack by 1 instead;
  * Tailwind starting on its side raises its Attack by 1, as does entering (or gaining the ability) while Tailwind
- * blows there. Mold Breaker ignores the immunity (IsMoldBreakerAffectedAbility in w2u_abilities.cpp). */
+ * blows there. Mold Breaker ignores the immunity (W2U_IsLaterIgnorableAbility, resident/mold_breaker.c). */
 #include "w2u/battle_api.h"
 #include "megab2w2/mb_ids.h"
 

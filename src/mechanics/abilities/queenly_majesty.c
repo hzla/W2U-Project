@@ -5,7 +5,7 @@
  * target, so here each target the rule covers is not affected (EVENT_CHECK_NO_EFFECT), which ends the same way for
  * the moves it covers, moves aimed at Pokémon. The message comes once per move: a spread move's other targets are
  * stopped without one. Not covered: Prankster field moves (Haze), which have no target to check. Mold Breaker ignores
- * it (IsMoldBreakerAffectedAbility in w2u_abilities.cpp).
+ * it (W2U_IsLaterIgnorableAbility, resident/mold_breaker.c).
  * One table for all three (registry name QueenlyMajestyHandlers, one module, so the once-per-move note is shared;
  * Black 2's baseline copy keeps W2U's earlier popup-less block). */
 #include "w2u/battle_api.h"
