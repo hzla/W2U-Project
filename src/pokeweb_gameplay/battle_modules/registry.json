@@ -124,6 +124,11 @@
       "extra_sources": [
         "../mechanics/abilities/queenly_majesty.c"
       ],
+      "entry_overrides": {
+        "ability:ABIL_ARMOR_TAIL": {
+          "white2_only": true
+        }
+      },
       "entries": [
         ["ability", "ABIL_GALE_WINGS", "GaleWingsHandlers"],
         ["ability", "ABIL_SLUSH_RUSH", "SlushRushHandlers"],

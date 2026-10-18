@@ -22,19 +22,53 @@ class IntegrationIsolation(unittest.TestCase):
                     frozen = name
                 self.assertEqual((ROOT / "src/pokeweb_gameplay/b2_baseline" / frozen).read_text(), expected)
 
-    def test_white2_new_moves_never_enter_black2_api(self):
+    @staticmethod
+    def registries():
         import json
         data = json.loads((ROOT / "src/pokeweb_gameplay/battle_modules/registry.json").read_text())
         original = json.loads(subprocess.run(
             ["git", "show", BASE + ":src/pokeweb_gameplay/battle_modules/registry.json"],
             cwd=ROOT, check=True, capture_output=True, text=True).stdout)
-        keys = {(entry[0], entry[1]) for module in original["modules"] for entry in module["entries"]}
+        return data, original
+
+    @staticmethod
+    def canonical(kind, name):
+        """An entry's key with enum aliases resolved (ABIL_QUEENLY_MAJESTY = ABIL_QUEENLY_MAGESTY): a rename to an
+        alias routes the same ID, so it is not a new entry."""
+        import re
+        aliases = dict(re.findall(r"\b([A-Z][A-Z0-9_]+)\s*=\s*([A-Z][A-Z0-9_]+)\s*,",
+                                  (ROOT / "include/w2u_abilities.h").read_text()))
+        while name in aliases:
+            name = aliases[name]
+        return kind, name
+
+    @staticmethod
+    def white2_only(module, entry):
+        return bool(module.get("white2_only") or
+                    module.get("entry_overrides", {}).get(":".join(entry[:2]), {}).get("white2_only"))
+
+    def test_white2_new_moves_never_enter_black2_api(self):
+        data, original = self.registries()
+        keys = {self.canonical(*entry[:2]) for module in original["modules"] for entry in module["entries"]}
         added = [(module, entry) for module in data["modules"] for entry in module["entries"]
-                 if (entry[0], entry[1]) not in keys]
+                 if self.canonical(*entry[:2]) not in keys]
         self.assertEqual(sum(entry[0] == "move" for _, entry in added), 52)
         for module, entry in added:
-            self.assertTrue(module.get("white2_only") or
-                            module.get("entry_overrides", {}).get(":".join(entry[:2]), {}).get("white2_only"))
+            with self.subTest(entry=entry[:2]):
+                self.assertTrue(self.white2_only(module, entry))
+
+    def test_white2_only_mechanics_stay_out_of_black2_api(self):
+        """A mechanic Black 2 never had (White 2-only at the base) stays White 2-only when it moves to another module:
+        moving Armor Tail into a shared module once gave Black 2 a route to it."""
+        data, original = self.registries()
+        shared = {self.canonical(*entry[:2]) for module in original["modules"] for entry in module["entries"]
+                  if not self.white2_only(module, entry)}
+        for module in data["modules"]:
+            for entry in module["entries"]:
+                key = self.canonical(*entry[:2])
+                if key not in shared:
+                    with self.subTest(module=module["name"], entry=entry[:2]):
+                        self.assertTrue(self.white2_only(module, entry))
 
     def test_black2_address_checks_ignore_comments_only(self):
         import tempfile

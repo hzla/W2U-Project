@@ -1,6 +1,7 @@
 #include "w2u_menu_evolution_logic.h"
 
-#include <cstdint>
+// <stdint.h>, not <cstdint>: include/ holds the game's freestanding stdint.h, which the host <cstdint> can't use
+#include <stdint.h>
 
 static void WriteU16(uint8_t* data, uint16_t value)
 {

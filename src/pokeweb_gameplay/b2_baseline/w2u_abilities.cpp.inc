@@ -6,6 +6,7 @@
 #include "w2u_platform.h"
 #include "w2u_strong_weather.h"
 #if !defined(W2U_TARGET_B2)
+#include "megab2w2/mb_ability_tables.h"   // ported MegaB2W2 ability tables (White 2 only)
 #endif
 
 #define W2U_ABILITY_POWER_RATIO_1_2X 4915
