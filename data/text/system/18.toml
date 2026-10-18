@@ -7097,12 +7097,14 @@ text = [
 
 [msg.section_0.entries.1193]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)]'s disguise\\n",
+  "was busted!$",
 ]
 
 [msg.section_0.entries.1194]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)]'s disguise\\n",
+  "was busted!$",
 ]
 
 [msg.section_0.entries.1195]
@@ -7113,12 +7115,14 @@ text = [
 
 [msg.section_0.entries.1196]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] became\\n",
+  "Ash-Greninja!$",
 ]
 
 [msg.section_0.entries.1197]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] became\\n",
+  "Ash-Greninja!$",
 ]
 
 [msg.section_0.entries.1198]
@@ -7434,12 +7438,14 @@ text = [
 
 [msg.section_0.entries.1260]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] flipped up a mat\\n",
+  "to protect its team!$",
 ]
 
 [msg.section_0.entries.1261]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] flipped up a mat\\n",
+  "to protect its team!$",
 ]
 
 [msg.section_0.entries.1262]
@@ -7450,12 +7456,14 @@ text = [
 
 [msg.section_0.entries.1263]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] was caught\\n",
+  "in a sticky web!$",
 ]
 
 [msg.section_0.entries.1264]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] was caught\\n",
+  "in a sticky web!$",
 ]
 
 [msg.section_0.entries.1265]
@@ -7498,12 +7506,14 @@ text = [
 
 [msg.section_0.entries.1272]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] was protected\\n",
+  "by Crafty Shield!$",
 ]
 
 [msg.section_0.entries.1273]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] was protected\\n",
+  "by Crafty Shield!$",
 ]
 
 [msg.section_0.entries.1274]
@@ -7514,12 +7524,14 @@ text = [
 
 [msg.section_0.entries.1275]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] is\\n",
+  "electrified!$",
 ]
 
 [msg.section_0.entries.1276]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] is\\n",
+  "electrified!$",
 ]
 
 [msg.section_0.entries.1277]
@@ -7530,12 +7542,14 @@ text = [
 
 [msg.section_0.entries.1278]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] is absorbing\\n",
+  "power!$",
 ]
 
 [msg.section_0.entries.1279]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] is absorbing\\n",
+  "power!$",
 ]
 
 [msg.section_0.entries.1280]
@@ -7562,12 +7576,14 @@ text = [
 
 [msg.section_0.entries.1284]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] was covered\\n",
+  "in powder!$",
 ]
 
 [msg.section_0.entries.1285]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] was covered\\n",
+  "in powder!$",
 ]
 
 [msg.section_0.entries.1286]
@@ -7578,12 +7594,14 @@ text = [
 
 [msg.section_0.entries.1287]
 text = [
-  "$",
+  "The powder around\\n",
+  "the wild [VAR PKNICK(0)] exploded!$",
 ]
 
 [msg.section_0.entries.1288]
 text = [
-  "$",
+  "The powder around\\n",
+  "the foe's [VAR PKNICK(0)] exploded!$",
 ]
 
 [msg.section_0.entries.1289]
@@ -7594,12 +7612,14 @@ text = [
 
 [msg.section_0.entries.1290]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] was hurt\\n",
+  "by the spikes!$",
 ]
 
 [msg.section_0.entries.1291]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] was hurt\\n",
+  "by the spikes!$",
 ]
 
 [msg.section_0.entries.1292]
@@ -7674,12 +7694,14 @@ text = [
 
 [msg.section_0.entries.1305]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] changed to\\n",
+  "Blade Forme!$",
 ]
 
 [msg.section_0.entries.1306]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] changed to\\n",
+  "Blade Forme!$",
 ]
 
 [msg.section_0.entries.1307]
@@ -7690,12 +7712,14 @@ text = [
 
 [msg.section_0.entries.1308]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] changed to\\n",
+  "Shield Forme!$",
 ]
 
 [msg.section_0.entries.1309]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] changed to\\n",
+  "Shield Forme!$",
 ]
 
 [msg.section_0.entries.1310]
@@ -7768,12 +7792,14 @@ text = [
 
 [msg.section_0.entries.1323]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] started heating up\n",
+  "its beak!$",
 ]
 
 [msg.section_0.entries.1324]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] started heating up\n",
+  "its beak!$",
 ]
 
 [msg.section_0.entries.1325]
@@ -7783,12 +7809,12 @@ text = [
 
 [msg.section_0.entries.1326]
 text = [
-  "$",
+  "The wild [VAR PKNICK(0)] burned itself out!$",
 ]
 
 [msg.section_0.entries.1327]
 text = [
-  "$",
+  "The foe's [VAR PKNICK(0)] burned itself out!$",
 ]
 
 [msg.section_0.entries.1328]
