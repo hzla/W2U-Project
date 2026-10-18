@@ -86,12 +86,18 @@ name changes:
 | `W2U_GetMovePriority` (`pending_move.c`) | `ServerEvent_GetMovePriority` | `0x21A0266` (the turn's first order), `0x219FBF8` (SortActionOrderBySpeed) |
 | `W2U_HandlerUseHeldItem`, `_ForceUseItem`, `_RecoverHP`, `_Damage`, `_StatChange` (`handler_effects.c`) | `BattleHandler_UseHeldItem`, ... | `BattleHandler_Execute`'s command calls `0x21AC59E`, `0x21AC6D6`, `0x21AC5AA`, `0x21AC5C0`, `0x21AC604` |
 | `W2U_Weather` (`weather.c`) | applied to `ServerEvent_GetWeather`'s result | the injection build replaces the whole function (its thunk is too short for a hook) |
+| `W2U_MoldBreakerSkipCheck` (`mold_breaker.c`) | Mold Breaker's skip check, whole | the decomp's `func_ov167_021c09d0` returns it |
+| `W2U_ProtectBlocks`, `W2U_CheckProtectBreak` (`protect.c`) | the protect step of `flowsub_CheckNoEffect_Protect` | per target: the three-way break check (holds / broken / goes through), "X protected itself!" and W2U's protect-success / broken events; the injection build replaces the whole function (`w2u_moves.cpp`), a decomp build's `func_ov167_021a2f54` changes only its protect loop |
+| `W2U_MoveMakesContact`, `W2U_BattleMonCanUseHeldItem` (`contact.c`) | the contact flag test (`getMoveFlag(move, 0)`) | `CommonContactStatusAbility`, `HandlerRoughSkin`, `HandlerAftermath`, `HandlerPickpocket`, `HandlerPoisonTouch`, `HandlerMummy`, `HandlerStickyBarbDamageReaction`, `HandlerRockyHelmet`: the injection build replaces them whole (`w2u_abilities.cpp`), a decomp build only their contact test |
 
 The state they keep for the mechanics (`W2U_MB_PendingMove`, Cud Chew, Opportunist, Mega Sol: `battle_api.h`'s
 extensions) is in the same files. It is zero when empty, so a decomp build's overlay 167, loaded fresh for each
 battle, starts clear; the injection build clears it at battle exit (`W2U_Resident_ResetBattleState`). The functions
 are resident in both builds (`src/pokeweb_gameplay/meson.build`), since a battle module can be unloaded while the
 engine runs, and pass the strict C99 check with the mechanics. `mb_resident.cpp` keeps only the hooks.
+
+Where the injection build must replace a whole engine function to change one test in it, the C function is that
+test, and a decomp build changes the test alone in the decomp's function: the rest stays the decomp's own code.
 
 ## Writing a mechanic
 

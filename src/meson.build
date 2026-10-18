@@ -165,9 +165,11 @@ w2u_battle_registry_generator = meson.project_source_root() / 'tools' / 'generat
 # them with g++ like the rest; this keeps them C: each must also pass as strict C99.
 w2u_mechanics_sources = files(
   'mechanics/resident/commander.c',
+  'mechanics/resident/contact.c',
   'mechanics/resident/handler_effects.c',
   'mechanics/resident/mold_breaker.c',
   'mechanics/resident/pending_move.c',
+  'mechanics/resident/protect.c',
   'mechanics/resident/redirection.c',
   'mechanics/resident/reset.c',
   'mechanics/resident/weather.c',
