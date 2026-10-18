@@ -57,6 +57,15 @@ b32 W2U_IsLaterIgnorableAbility(u16 ability);
 b32 W2U_ProtectBlocks(BtlServerFlow *flow, BattleMon *attacker, BattleMon *target, u16 move);
 u32 W2U_CheckProtectBreak(BtlServerFlow *flow, u32 attacker, u32 defender, u32 category, u16 move);
 
+/* The move lists W2U extends (move_lists.c): instead of IsAffectedBySheerForce in Sheer Force's handlers, and of
+ * Is{Assist,SleepTalk,MeFirst,Copycat}ExcludedMove in those moves' handlers (the torques: NPC-only) */
+b32 W2U_IsAffectedBySheerForce(u16 move);
+b32 W2U_MoveIsRestrictedNpcAttack(u16 move);
+b32 W2U_IsAssistExcludedMove(u16 move);
+b32 W2U_IsSleepTalkExcludedMove(u16 move);
+b32 W2U_IsMeFirstExcludedMove(u16 move);
+b32 W2U_IsCopycatExcludedMove(u16 move);
+
 /* Clears the state above (the injection build, at battle exit; a decomp build's overlay 167 starts with it clear) */
 void W2U_Resident_ResetBattleState(void);
 void W2U_Resident_ResetPendingMoves(void);

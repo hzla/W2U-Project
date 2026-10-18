@@ -257,9 +257,16 @@ extern "C" MOVE_ID BattleMon_GetPreviousMoveID(BattleMon* battleMon);
 extern "C" MOVE_ID BattleMon_GetConditionAffectedMove(BattleMon* battleMon, CONDITION condition);
 extern "C" void Btlv_StringParam_Setup(Btlv_StringParam* strParam, u8 narcIdx, u16 msgIdx);
 extern "C" void Btlv_StringParam_AddArg(Btlv_StringParam* strParam, u32 value);
+// The move lists W2U extends (Sheer Force's, the calling moves' exclusions): src/mechanics/resident/move_lists.c (C)
+extern "C" bool W2U_MoveIsRestrictedNpcAttack(MOVE_ID moveID);   /* C b32 */
+extern "C" b32 W2U_IsAffectedBySheerForce(u16 move);
+extern "C" b32 W2U_IsAssistExcludedMove(u16 move);
+extern "C" b32 W2U_IsSleepTalkExcludedMove(u16 move);
+extern "C" b32 W2U_IsMeFirstExcludedMove(u16 move);
+extern "C" b32 W2U_IsCopycatExcludedMove(u16 move);
+
 namespace {
 
-b32 IsAffectedBySheerForceIncludingCustomMoves(MOVE_ID moveID);
 
 #if defined(W2U_BATTLE_CHILD)
 extern "C" BattleEventItem** W2U_MoveState_StickyWebItemStorage(u32 side);
@@ -5988,25 +5995,12 @@ extern "C" b32 W2U_CheckDamagingSubstitute(BattleMon* target, const MoveParam* m
     return BattleMon_IsSubstituteActive(target);
 }
 
-extern "C" bool W2U_MoveIsRestrictedNpcAttack(MOVE_ID moveID)
-{
-    return moveID >= MOVE_BLAZING_TORQUE && moveID <= MOVE_MAGICAL_TORQUE;
-}
 
-extern "C" b32 BattleMove_AssistIsForbidden(MOVE_ID);
-extern "C" b32 BattleMove_SleepTalkIsForbidden(MOVE_ID);
-extern "C" b32 BattleMove_MeFirstIsForbidden(MOVE_ID);
-extern "C" b32 BattleMove_CopycatIsForbidden(MOVE_ID);
-
-#define W2U_NPC_CALL_POLICY(hook, native) \
-    extern "C" b32 hook(MOVE_ID moveID) { \
-        return W2U_MoveIsRestrictedNpcAttack(moveID) || native(moveID); \
-    }
-W2U_NPC_CALL_POLICY(THUMB_BRANCH_LINK_167_0x21CC4DC, BattleMove_AssistIsForbidden)
-W2U_NPC_CALL_POLICY(THUMB_BRANCH_LINK_167_0x21CC5A2, BattleMove_SleepTalkIsForbidden)
-W2U_NPC_CALL_POLICY(THUMB_BRANCH_LINK_167_0x21CC754, BattleMove_MeFirstIsForbidden)
-W2U_NPC_CALL_POLICY(THUMB_BRANCH_LINK_167_0x21CC7D6, BattleMove_CopycatIsForbidden)
-#undef W2U_NPC_CALL_POLICY
+// Assist / Sleep Talk / Me First / Copycat: the torques can't be called either
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21CC4DC(MOVE_ID moveID) { return W2U_IsAssistExcludedMove(moveID); }
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21CC5A2(MOVE_ID moveID) { return W2U_IsSleepTalkExcludedMove(moveID); }
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21CC754(MOVE_ID moveID) { return W2U_IsMeFirstExcludedMove(moveID); }
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21CC7D6(MOVE_ID moveID) { return W2U_IsCopycatExcludedMove(moveID); }
 
 extern "C" void THUMB_BRANCH_LINK_167_0x21A5542(
     ServerFlow* flow, const MoveParam* move, BattleMon* attacker, PokeSet* targets)
@@ -6622,7 +6616,7 @@ extern "C" void HandlerFieldTransientMoveStateShellTrapHit(
         BattleMon_IsFainted(defendingMon) ||
         BattleMon_GetTurnFlag(defendingMon, TURNFLAG_ACTIONDONE) ||
         (BattleMon_GetValue(attackingMon, VALUE_EFFECTIVE_ABILITY) == ABIL_SHEER_FORCE &&
-            IsAffectedBySheerForceIncludingCustomMoves(moveID))) {
+            W2U_IsAffectedBySheerForce(moveID))) {
         return;
     }
 
@@ -8490,40 +8484,22 @@ const W2UPosEffectEventAddTable W2U_POS_EFFECT_EVENT_ADD_TABLE[] = {
 
 } // namespace
 
-namespace {
-
-b32 IsAffectedBySheerForceIncludingCustomMoves(MOVE_ID moveID)
-{
-    return moveID == MOVE_ANCHOR_SHOT ||
-        moveID == MOVE_SPIRIT_SHACKLE ||
-        moveID == MOVE_THROAT_CHOP ||
-        moveID == MOVE_CEASELESS_EDGE ||
-        moveID == MOVE_STONE_AXE ||
-        moveID == MOVE_BURNING_JEALOUSY ||
-        moveID == MOVE_ALLURING_VOICE ||
-        moveID == MOVE_EERIE_SPELL ||
-        moveID == MOVE_SALT_CURE || moveID == MOVE_SYRUP_BOMB ||
-        moveID == MOVE_ELECTRO_SHOT ||
-        IsAffectedBySheerForce(moveID);
-}
-
-} // namespace
 
 // Route every vanilla Sheer Force predicate through the expanded move list so
 // power boosts, failure checks and effect suppression remain synchronized.
 extern "C" b32 THUMB_BRANCH_LINK_HandlerSheerForcePower_0x18(MOVE_ID moveID)
 {
-    return IsAffectedBySheerForceIncludingCustomMoves(moveID);
+    return W2U_IsAffectedBySheerForce(moveID);
 }
 
 extern "C" b32 THUMB_BRANCH_LINK_HandlerSheerForceCheckFail_0x18(MOVE_ID moveID)
 {
-    return IsAffectedBySheerForceIncludingCustomMoves(moveID);
+    return W2U_IsAffectedBySheerForce(moveID);
 }
 
 extern "C" b32 THUMB_BRANCH_LINK_HandlerSheerForceHitCheck_0x18(MOVE_ID moveID)
 {
-    return IsAffectedBySheerForceIncludingCustomMoves(moveID);
+    return W2U_IsAffectedBySheerForce(moveID);
 }
 
 // The protection check's per-target step, W2U_CheckProtectBreak and the protect events: C, resident

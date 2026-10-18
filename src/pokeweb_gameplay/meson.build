@@ -18,6 +18,7 @@ pokeweb_gameplay = files(
     '../mechanics/resident/contact.c',
     '../mechanics/resident/handler_effects.c',
     '../mechanics/resident/mold_breaker.c',
+    '../mechanics/resident/move_lists.c',
     '../mechanics/resident/pending_move.c',
     '../mechanics/resident/protect.c',
     '../mechanics/resident/redirection.c',
