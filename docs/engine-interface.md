@@ -88,6 +88,7 @@ name changes:
 | `W2U_Weather` (`weather.c`) | applied to `ServerEvent_GetWeather`'s result | the injection build replaces the whole function (its thunk is too short for a hook) |
 | `W2U_MoldBreakerSkipCheck` (`mold_breaker.c`) | Mold Breaker's skip check, whole | the decomp's `func_ov167_021c09d0` returns it |
 | `W2U_ProtectBlocks`, `W2U_CheckProtectBreak` (`protect.c`) | the protect step of `flowsub_CheckNoEffect_Protect` | per target: the three-way break check (holds / broken / goes through), "X protected itself!" and W2U's protect-success / broken events; the injection build replaces the whole function (`w2u_moves.cpp`), a decomp build's `func_ov167_021a2f54` changes only its protect loop |
+| `W2U_IsAffectedBySheerForce`, `W2U_Is{Assist,SleepTalk,MeFirst,Copycat}ExcludedMove` (`move_lists.c`) | `IsAffectedBySheerForce`, `Is*ExcludedMove` | Sheer Force's power / failure / hit checks (`0x18` into each handler); the four calling moves' checks (`0x21CC4DC`, `0x21CC5A2`, `0x21CC754`, `0x21CC7D6`) |
 | `W2U_MoveMakesContact`, `W2U_BattleMonCanUseHeldItem` (`contact.c`) | the contact flag test (`getMoveFlag(move, 0)`) | `CommonContactStatusAbility`, `HandlerRoughSkin`, `HandlerAftermath`, `HandlerPickpocket`, `HandlerPoisonTouch`, `HandlerMummy`, `HandlerStickyBarbDamageReaction`, `HandlerRockyHelmet`: the injection build replaces them whole (`w2u_abilities.cpp`), a decomp build only their contact test |
 
 The state they keep for the mechanics (`W2U_MB_PendingMove`, Cud Chew, Opportunist, Mega Sol: `battle_api.h`'s

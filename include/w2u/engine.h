@@ -51,6 +51,10 @@
 #define IsGuaranteedHit ServerControl_IsGuaranteedHit
 #define IsMoldBreakerIgnoredAbility IsMoldBreakerAffectedAbility
 #define IsFieldEffectActive BattleField_CheckEffect
+#define IsAssistExcludedMove BattleMove_AssistIsForbidden
+#define IsSleepTalkExcludedMove BattleMove_SleepTalkIsForbidden
+#define IsMeFirstExcludedMove BattleMove_MeFirstIsForbidden
+#define IsCopycatExcludedMove BattleMove_CopycatIsForbidden
 #define RawBattleMonStat BattleMon_GetRealStat
 #define IsSideEffectSet SideEffect_IsActive     /* IRDO.yml names ov167's branch stub to it (the decomp's is in ov169) */
 #endif
@@ -720,6 +724,12 @@ u32 GetFieldWeather(void);
 b32 IsGuaranteedHit(BtlServerFlow *flow, BattleMon *attacker, BattleMon *defender);
 b32 IsMoldBreakerIgnoredAbility(u16 ability);  /* the native list of abilities Mold Breaker ignores (Gen 4-5) */
 b32 IsFieldEffectActive(u32 effect);            /* FIELD_CONDITION_*: Trick Room, Magic Room... */
+/* The native move lists: Sheer Force's moves, and the moves Assist / Sleep Talk / Me First / Copycat can't call */
+b32 IsAffectedBySheerForce(u16 move);
+b32 IsAssistExcludedMove(u16 move);
+b32 IsSleepTalkExcludedMove(u16 move);
+b32 IsMeFirstExcludedMove(u16 move);
+b32 IsCopycatExcludedMove(u16 move);
 /* "X must recharge!": the recharge turn's action */
 void ServerControl_RechargeAction(BtlServerFlow *flow, BattleMon *rechargingMon);
 /* Lightning Rod, Storm Drain, Follow Me, Rage Powder ask first: nonzero, the move isn't redirected */
