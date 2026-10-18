@@ -164,6 +164,7 @@ w2u_battle_registry_generator = meson.project_source_root() / 'tools' / 'generat
 # The C mechanics (src/mechanics, include/w2u/battle_api.h; docs/engine-interface.md). The battle modules compile
 # them with g++ like the rest; this keeps them C: each must also pass as strict C99.
 w2u_mechanics_sources = files(
+  'mechanics/resident/redirection.c',
   'mechanics/abilities/fluffy.c',
   'mechanics/abilities/power_spot.c',
   'mechanics/abilities/punk_rock.c',

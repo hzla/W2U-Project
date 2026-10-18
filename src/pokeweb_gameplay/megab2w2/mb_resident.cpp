@@ -6,6 +6,7 @@
 // call-site hooks are the injection build's, which a decomp build replaces with calls written into its source.
 // See docs/megab2w2-integration.md (wave C).
 #include "w2u/battle_api.h"
+#include "w2u/resident.h"
 #include "megab2w2/mb_ids.h"
 #include "mb_resident.h"
 
@@ -23,15 +24,6 @@ u8 sOppCopying;
 u8 sMegaSolAttacker = NONE;
 
 BattleMon* Mon(BtlServerFlow* flow, u32 monId) { return monId < BATTLE_MAX_MON_ID ? GetBattleMon(flow, (u8)monId) : nullptr; }
-
-// ---- Propeller Tail / Stalwart: the holder's moves are not redirected -------------------------------------------
-// Lightning Rod / Storm Drain (0x21C0D82) and Follow Me / Rage Powder (0x21C64C4) ask Battle_IsRedirectBlocked
-// first (nonzero: no redirection). W2U's Spotlight checks the abilities itself (w2u_moves.cpp).
-b32 RedirectBlocked(BtlServerFlow* flow, u8 attacker, u8 redirector, u16 move) {
-    BattleMon* mon = Mon(flow, attacker);
-    if (W2U_HasActiveAbility(mon, ABIL_PROPELLER_TAIL) || W2U_HasActiveAbility(mon, ABIL_STALWART)) return 1;
-    return Battle_IsRedirectBlocked(flow, attacker, redirector, move);
-}
 
 // ---- Ripen / Cud Chew: Berries eaten ----------------------------------------------------------------------------
 // The handler-effect dispatcher (ov167 0x21AC4F8) carries a held item's effects out inside its UseHeldItem, so a
@@ -77,8 +69,10 @@ extern "C" void THUMB_BRANCH_LINK_167_0x21A094E(BtlServerFlow* flow, BattleMon* 
     if (!Commanding(mon)) ServerControl_RechargeAction(flow, mon);
 }
 
-extern "C" b32 THUMB_BRANCH_LINK_167_0x21C0D82(BtlServerFlow* flow, u8 a, u8 r, u16 m) { return RedirectBlocked(flow, a, r, m); }
-extern "C" b32 THUMB_BRANCH_LINK_167_0x21C64C4(BtlServerFlow* flow, u8 a, u8 r, u16 m) { return RedirectBlocked(flow, a, r, m); }
+// Propeller Tail / Stalwart: Lightning Rod / Storm Drain (0x21C0D82) and Follow Me / Rage Powder (0x21C64C4) ask
+// W2U_RedirectBlocked (src/mechanics/resident/redirection.c) instead of Battle_IsRedirectBlocked
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21C0D82(BtlServerFlow* flow, u8 a, u8 r, u16 m) { return W2U_RedirectBlocked(flow, a, r, m); }
+extern "C" b32 THUMB_BRANCH_LINK_167_0x21C64C4(BtlServerFlow* flow, u8 a, u8 r, u16 m) { return W2U_RedirectBlocked(flow, a, r, m); }
 
 // The two ServerEvent_GetMovePriority calls: the turn's first action order (0x21A0266, before its event 0x0F check)
 // and SortActionOrderBySpeed (0x219FBF8). Event 0x0F follows for the same Pokemon without a move.

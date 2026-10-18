@@ -67,6 +67,25 @@ extensions, so a mechanic calls them like any other API function and stays porta
 functions stay, and only the hooks that feed them become calls written into the decomp's source (the named hooks
 of the plan's step 4).
 
+## Call sites
+
+Where W2U changes what an engine call site does (not an event handler: a call inside the engine's own code), the
+change is a resident C function on the engine interface, declared in `include/w2u/resident.h` and written in
+`src/mechanics/resident/`. It takes the original call's arguments and returns its result type, so only the called
+name changes:
+
+- the injection build keeps its call-site hook (`THUMB_BRANCH_LINK_<module>_0x<address>` in
+  `megab2w2/mb_resident.cpp`), which forwards to the function;
+- a decomp build writes the call into the decomp's source and compiles the same C file.
+
+| Function | Replaces | Call sites (White 2 address, decomp function) |
+| --- | --- | --- |
+| `W2U_RedirectBlocked` (`redirection.c`) | `Battle_IsRedirectBlocked` | `0x21C0D82` `CommonMoveTargetChangeToMe` (Lightning Rod, Storm Drain); `0x21C64C4` `HandlerFollowMeBaitTarget` (Follow Me, Rage Powder) |
+
+The functions are resident in both builds (`src/pokeweb_gameplay/meson.build`), since a battle module can be unloaded
+while the engine runs, and pass the strict C99 check with the mechanics. The rest of `mb_resident.cpp`'s call sites
+move here the same way.
+
 ## Writing a mechanic
 
 ```c
