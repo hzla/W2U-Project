@@ -101,6 +101,22 @@ engine runs, and pass the strict C99 check with the mechanics. `mb_resident.cpp`
 Where the injection build must replace a whole engine function to change one test in it, the C function is that
 test, and a decomp build changes the test alone in the decomp's function: the rest stays the decomp's own code.
 
+The Fairy type is data and constants rather than a call site. Fairy is type 17, and the typeless type (`TYPE_NULL`,
+17 in the retail game) is 18. The injection build does this with `src/type_expansion/`:
+
+- `GetTypeEffectiveness` and `GetTypeWeaknesses` read the 18x18 chart, `data/pml/types/type_chart.bin`;
+- `Fairy_BattleLimitAdjust.s` holds byte patches, each a whole Thumb instruction (CTRMap copies a `FULL_COPY` in
+  halfwords). They cover:
+  - the same-type bonus and the typeless move;
+  - Roost's typeless Flying in `splitTypeCore`;
+  - `DoesMonHaveType`, Color Change and Conversion 2;
+  - the "no move yet" type that `BattleMon_Create`, `ClearUsedMoveFlag` and `TransformSet` set;
+  - the move buttons' palettes.
+
+A decomp build defines the two numbers in its own header, gives `btl_calc.c` the same chart (taken from that file
+when the build runs), and makes the same tests use `TYPE_NULL`. The palette table is the exception: the decomp's
+`btlv_input.c` isn't complete yet.
+
 ## Writing a mechanic
 
 ```c
