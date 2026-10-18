@@ -49,6 +49,7 @@
 #define GetMonID BattleMon_GetID
 #define GetFieldWeather BattleField_GetWeather
 #define IsGuaranteedHit ServerControl_IsGuaranteedHit
+#define IsMoldBreakerIgnoredAbility IsMoldBreakerAffectedAbility
 #define RawBattleMonStat BattleMon_GetRealStat
 #define IsSideEffectSet SideEffect_IsActive     /* IRDO.yml names ov167's branch stub to it (the decomp's is in ov169) */
 #endif
@@ -697,6 +698,7 @@ u8 ServerEvent_GetWeather(BtlServerFlow *flow);
 u32 GetFieldWeather(void);
 /* No Guard, Lock-On and Mind Reader: the move hits whatever (the hide check is skipped) */
 b32 IsGuaranteedHit(BtlServerFlow *flow, BattleMon *attacker, BattleMon *defender);
+b32 IsMoldBreakerIgnoredAbility(u16 ability);  /* the native list of abilities Mold Breaker ignores (Gen 4-5) */
 /* "X must recharge!": the recharge turn's action */
 void ServerControl_RechargeAction(BtlServerFlow *flow, BattleMon *rechargingMon);
 /* Lightning Rod, Storm Drain, Follow Me, Rage Powder ask first: nonzero, the move isn't redirected */

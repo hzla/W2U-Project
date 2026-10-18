@@ -1,7 +1,7 @@
 /* Mind's Eye (Gen 9): Scrappy and Keen Eye, Gen 9 style. Its Normal and Fighting moves hit Ghost types (Scrappy's
  * vanilla handler), its accuracy can't be lowered (Keen Eye's vanilla check and message), and it ignores the
  * target's evasion stages (Gen 6+ Keen Eye: the evasion stage rewritten to neutral). Mold Breaker ignores it
- * (IsMoldBreakerAffectedAbility in w2u_abilities.cpp). */
+ * (W2U_IsLaterIgnorableAbility, resident/mold_breaker.c). */
 #include "w2u/battle_api.h"
 #include "megab2w2/mb_ids.h"
 

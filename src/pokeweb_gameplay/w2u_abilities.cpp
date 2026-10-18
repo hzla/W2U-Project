@@ -4103,56 +4103,11 @@ extern "C" void THUMB_BRANCH_ServerControl_ChangeHeldItem(
 #endif
 
 
-namespace {
-
-bool IsW2UIgnorableAbility(ABILITY ability)
-{
-    switch (ability) {
-    // Generation VI
-    case ABIL_OVERCOAT: // Its powder immunity was added after the native table.
-    case ABIL_AURA_BREAK:
-    case ABIL_AROMA_VEIL:
-    case ABIL_BULLETPROOF:
-    case ABIL_DARK_AURA:
-    case ABIL_FAIRY_AURA:
-    case ABIL_FLOWER_VEIL:
-    case ABIL_FUR_COAT:
-    case ABIL_GRASS_PELT:
-    case ABIL_SWEET_VEIL:
-    // Generation VII
-    case ABIL_DAZZLING:
-    case ABIL_DISGUISE:
-    case ABIL_FLUFFY:
-    case ABIL_QUEENLY_MAGESTY:
-    case ABIL_WATER_BUBBLE:
-    // Generation VIII / IX (ported from MegaB2W2; Showdown's `breakable` flag)
-    case ABIL_ICE_FACE:
-    case ABIL_MIRROR_ARMOR:
-    case ABIL_PUNK_ROCK:
-    case ABIL_ICE_SCALES:
-    case ABIL_PASTEL_VEIL:
-    case ABIL_THERMAL_EXCHANGE:
-    case ABIL_PURIFYING_SALT:
-    case ABIL_WELL_BAKED_BODY:
-    case ABIL_WIND_RIDER:
-    case ABIL_GUARD_DOG:
-    case ABIL_GOOD_AS_GOLD:
-    case ABIL_ARMOR_TAIL:
-    case ABIL_EARTH_EATER:
-    case ABIL_MINDS_EYE:
-    case ABIL_TERA_SHELL:
-    // MegaB2W2 custom
-    case ABIL_AURA_GUARD:
-        return true;
-    default:
-        return false;
-    }
-}
-
-} // namespace
-
-extern "C" b32 IsMoldBreakerAffectedAbility(ABILITY ability);
-
+// Mold Breaker's skip check, replaced whole: the native Gen 4-5 list plus the later abilities the games let it ignore
+// (src/mechanics/resident/mold_breaker.c). Shared by Mold Breaker, Teravolt, Turboblaze, Moongeist Beam, Mycelium
+// Might and future moves that reuse the same native window. (Declared here with this file's engine types: it can't
+// include w2u/resident.h, which declares the engine again.)
+extern "C" b32 W2U_MoldBreakerSkipCheck(BattleEventItem* item, ServerFlow* flow, u32 factorType, u32 eventType, u32 subId);
 extern "C" b32 THUMB_BRANCH_SAFESTACK_HandlerMoldBreakerSkipCheck(
     BattleEventItem* item,
     ServerFlow* serverFlow,
@@ -4160,17 +4115,7 @@ extern "C" b32 THUMB_BRANCH_SAFESTACK_HandlerMoldBreakerSkipCheck(
     u32 eventType,
     u32 subID)
 {
-    (void)item;
-    (void)serverFlow;
-    (void)eventType;
-
-    // Preserve the native Generation IV/V table and extend it with every
-    // implemented later-generation ability that the games define as
-    // ignorable. This path is shared by Mold Breaker, Teravolt, Turboblaze,
-    // Moongeist Beam, and future moves that reuse the same native window.
-    return factorType == 4u &&
-        (IsMoldBreakerAffectedAbility((ABILITY)subID) ||
-         IsW2UIgnorableAbility((ABILITY)subID));
+    return W2U_MoldBreakerSkipCheck(item, serverFlow, factorType, eventType, subID);
 }
 
 

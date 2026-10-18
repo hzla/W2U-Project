@@ -166,6 +166,7 @@ w2u_battle_registry_generator = meson.project_source_root() / 'tools' / 'generat
 w2u_mechanics_sources = files(
   'mechanics/resident/commander.c',
   'mechanics/resident/handler_effects.c',
+  'mechanics/resident/mold_breaker.c',
   'mechanics/resident/pending_move.c',
   'mechanics/resident/redirection.c',
   'mechanics/resident/reset.c',

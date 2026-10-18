@@ -2,7 +2,7 @@
  * holder (the ability popup and "It doesn't affect..."). Showdown's rule: blocked when the status move targets
  * Pokémon (one, several or all adjacent foes) and its user is not the holder. Not blocked: damaging moves and their
  * secondary effects, the holder's own moves, field and side moves (hazards, screens) and moves aimed at every Pokémon
- * at once (Haze, Perish Song). Mold Breaker ignores it (IsMoldBreakerAffectedAbility in w2u_abilities.cpp). */
+ * at once (Haze, Perish Song). Mold Breaker ignores it (W2U_IsLaterIgnorableAbility, resident/mold_breaker.c). */
 #include "w2u/battle_api.h"
 #include "megab2w2/mb_ids.h"
 

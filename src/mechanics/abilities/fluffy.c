@@ -3,7 +3,7 @@
  *   Fluffy      contact x0.5, Fire x2 (a contact Fire move: x1)
  *   Ice Scales  special x0.5
  *   Aura Guard  contact x0.5 (Legends: Z-A)
- * Mold Breaker ignores them (IsMoldBreakerAffectedAbility in w2u_abilities.cpp). One table serves all three.
+ * Mold Breaker ignores them (W2U_IsLaterIgnorableAbility, resident/mold_breaker.c). One table serves all three.
  * Black 2 keeps its baseline copy of Fluffy (b2_baseline/w2u_abilities.cpp.inc). */
 #include "w2u/battle_api.h"
 #include "megab2w2/mb_ids.h"

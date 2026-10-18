@@ -3,7 +3,7 @@
  * target, VAR_ATTACKING_MON the source, VAR_STAT, VAR_STAT_CHANGE < 0 -> VAR_FAIL_FLAG) remembers the drop; the guard
  * event pushes the popup and the reflected drop. A reflected drop is not reflected again (Showdown: the effect is
  * Mirror Armor itself): the source is marked until the next move or switch-in. Mold Breaker ignores it
- * (IsMoldBreakerAffectedAbility in w2u_abilities.cpp). */
+ * (W2U_IsLaterIgnorableAbility, resident/mold_breaker.c). */
 #include "w2u/battle_api.h"
 #include "megab2w2/mb_ids.h"
 

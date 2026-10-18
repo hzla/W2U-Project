@@ -2,7 +2,7 @@
  * the holder):
  *   Earth Eater      Ground moves heal it 1/4 instead (Volt Absorb with Ground)
  *   Well-Baked Body  Fire moves raise its Defense by 2 instead (Sap Sipper with Fire)
- * Mold Breaker ignores both (IsMoldBreakerAffectedAbility in w2u_abilities.cpp). */
+ * Mold Breaker ignores both (W2U_IsLaterIgnorableAbility, resident/mold_breaker.c). */
 #include "w2u/battle_api.h"
 #include "megab2w2/mb_ids.h"
 

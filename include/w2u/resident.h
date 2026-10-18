@@ -45,6 +45,11 @@ u8 W2U_HandlerStatChange(BtlServerFlow *flow, BattleHandlerStatChangeParam *para
  * (W2U_MB_SetMegaSolAttacker), the weather otherwise. */
 u8 W2U_Weather(BtlServerFlow *flow, u8 weather);
 
+/* Mold Breaker's skip check (mold_breaker.c), whole: the decomp's func_ov167_021c09d0 returns it. Nonzero: skip the
+ * handler (an ability's, factor type 4, that the native list or W2U's later list has) */
+b32 W2U_MoldBreakerSkipCheck(BattleEventItem *item, BtlServerFlow *flow, u32 factorType, u32 eventType, u32 subId);
+b32 W2U_IsLaterIgnorableAbility(u16 ability);
+
 /* Clears the state above (the injection build, at battle exit; a decomp build's overlay 167 starts with it clear) */
 void W2U_Resident_ResetBattleState(void);
 void W2U_Resident_ResetPendingMoves(void);

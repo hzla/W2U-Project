@@ -1,7 +1,7 @@
 /* Purifying Salt (Gen 9): the holder can't get a major status (paralysis, sleep, freeze, burn, poison) nor Yawn's
  * drowsiness, and Ghost moves against it use half the attacker's attacking stat. The statuses: Water Veil's pattern
- * for every status with the vanilla helpers, Yawn as Insomnia. Mold Breaker ignores it (IsMoldBreakerAffectedAbility
- * in w2u_abilities.cpp). */
+ * for every status with the vanilla helpers, Yawn as Insomnia. Mold Breaker ignores it
+ * (W2U_IsLaterIgnorableAbility, resident/mold_breaker.c). */
 #include "w2u/battle_api.h"
 #include "megab2w2/mb_ids.h"
 

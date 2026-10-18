@@ -2,7 +2,7 @@
  * it cures poisoned Pokémon on its side, and an ally entering poisoned. The status check is the vanilla one
  * (EVENT_ADD_CONDITION_CHECK, VAR_FAIL_FLAG; Insomnia's pattern); the message (the holder's popup and the line naming
  * the protected Pokémon) is pushed right there, since some paths never raise EVENT_ADD_CONDITION_FAILED (Toxic Orb).
- * Mold Breaker ignores it (IsMoldBreakerAffectedAbility in w2u_abilities.cpp).
+ * Mold Breaker ignores it (W2U_IsLaterIgnorableAbility, resident/mold_breaker.c).
  * MegaB2W2's Veil table also had Aroma, Flower and Sweet Veil rows, which keep W2U's own handlers: they were never
  * reached, nor were its Yawn and stat drop handlers, which only those rows used. */
 #include "w2u/battle_api.h"
