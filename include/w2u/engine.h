@@ -50,6 +50,7 @@
 #define GetFieldWeather BattleField_GetWeather
 #define IsGuaranteedHit ServerControl_IsGuaranteedHit
 #define IsMoldBreakerIgnoredAbility IsMoldBreakerAffectedAbility
+#define IsFieldEffectActive BattleField_CheckEffect
 #define RawBattleMonStat BattleMon_GetRealStat
 #define IsSideEffectSet SideEffect_IsActive     /* IRDO.yml names ov167's branch stub to it (the decomp's is in ov169) */
 #endif
@@ -104,6 +105,10 @@ enum {
     EVENT_AFTER_MOVE_USE = 0x22,        /* the attacker's move was used: the Choice items lock here */
     EVENT_CHECK_NO_EFFECT = 0x2D,       /* per target: may the move affect it? (Volt Absorb, Soundproof) */
     EVENT_PROTECT_BREAK_CHECK = 0x2E,   /* per target of a protected move: VAR_BREAK_PROTECT (W2U raises it too) */
+    /* W2U's own events reuse engine IDs as "new events": VAR_MON_ID / VAR_ATTACKING_MON / VAR_DEFENDING_MON are -1
+     * (so the engine's handlers of that ID ignore them) and NEW_VAR_* carry the Pokémon (resident/protect.c) */
+    EVENT_PROTECT_SUCCESS = 0x15,       /* new event: a protection stopped NEW_VAR_ATTACKING_MON's VAR_MOVE_ID */
+    EVENT_PROTECT_BROKEN = 0x1F,        /* new event: NEW_VAR_ATTACKING_MON's move broke the protection */
     EVENT_ACCURACY_STAGE = 0x33,        /* a hit's accuracy / evasion stages: VAR_EVASION_STAGE (6 = neutral) */
     EVENT_MOVE_POWER = 0x38,            /* VAR_MOVE_POWER_RATIO *= x (Iron Fist, Technician) */
     EVENT_ATTACKING_STAT = 0x3B,        /* the attacker's attacking stat: VAR_RATIO *= x (Huge Power, Guts) */
@@ -149,6 +154,9 @@ enum {
     VAR_MON_ID = 0x02,
     VAR_ATTACKING_MON = 0x03,
     VAR_DEFENDING_MON = 0x04,
+    NEW_VAR_MON_ID = 0x07,              /* W2U's new events: the Pokémon (VAR_MON_ID ... are -1 in them) */
+    NEW_VAR_ATTACKING_MON = 0x08,
+    NEW_VAR_DEFENDING_MON = 0x09,
     VAR_TARGET_COUNT = 0x05,            /* EVENT_AFTER_KO: the move's targets, VAR_TARGET0 + i */
     VAR_TARGET0 = 0x06,
     VAR_SPECIAL_PRIORITY = 0x11,        /* EVENT_SPECIAL_PRIORITY: 0 last, 1 normal, 2 first in the bracket */
@@ -268,6 +276,7 @@ typedef struct BattleHandlerStatChangeParam {
 /* GetTurnFlag's flags (W2U's names) */
 enum {
     TURN_FLAG_PROTECT = 7,              /* protected this turn (Protect, Detect...) */
+    TURN_FLAG_CANT_USE_ITEM = 9,        /* can't use its held item this turn */
 };
 
 #if !defined(W2U_DECOMP)   /* decomp builds: w2u/engine_decomp.h (the decomp's own declarations) */
@@ -281,8 +290,14 @@ enum {
     CONDITION_CONFUSION = 6,
     CONDITION_YAWN = 14,                /* Yawn's drowsiness, checked like the majors */
     CONDITION_GASTRO_ACID = 0x10,       /* the ability is suppressed */
+    CONDITION_EMBARGO = 0x13,           /* can't use its held item (Embargo) */
     CONDITION_PERISH_SONG = 20,
     CONDITION_CHOICE_LOCK = 0x1B,       /* locked into one move (the Choice items) */
+};
+
+/* The field's conditions (IsFieldEffectActive; decomp: include/constants/battle.h) */
+enum {
+    FIELD_CONDITION_MAGIC_ROOM = 7,     /* held items do nothing */
 };
 
 /* A condition's value: its kind and turns (decomp: include/battle/btl_pokeparam.h, a union) */
@@ -501,6 +516,7 @@ enum {
 /* Server display commands (ServerDisplay_AddCommon; W2U's names) */
 enum {
     SERVER_CMD_HIDE_SPRITE = 0x31,      /* (monId, 1) hides the Pokémon's sprite (a charge turn), (monId, 0) shows it */
+    SERVER_CMD_SET_MESSAGE = 0x5B,      /* ServerDisplay_AddMessageImpl: a set message (bank 18) and its arguments */
 };
 
 #if !defined(W2U_DECOMP)
@@ -586,12 +602,14 @@ enum {
     BMV_SPECIAL_DEFENSE = 0x0B,
     BMV_SPEED = 0x0C,
     BMV_ABILITY = 0x10,
+    BMV_EFFECTIVE_ABILITY = 0x11,       /* the ability, 0 while suppressed (Gastro Acid) */
     BMV_FORM = 0x13,
 };
 
 /* getMoveFlag's flags: bit indices into the move record's flags (the decomp's MOVE_FLAG_* are the bit masks) */
 enum {
     MOVE_FLAG_INDEX_CONTACT = 0,
+    MOVE_FLAG_INDEX_PROTECT = 3,        /* Protect blocks it */
     MOVE_FLAG_INDEX_SOUND = 8,
 };                                      /* W2U's own flags (MOVE_FLAG_INDEX_WIND ...): megab2w2/mb_ids.h */
 
@@ -654,6 +672,8 @@ void BattleEvent_CallHandlers(BtlServerFlow *flow, u32 event);
 void BattleEventVar_Push(u32 line);
 void BattleEventVar_Pop(u32 line);
 void BattleEventVar_SetRewriteOnceValue(u32 key, s32 value);
+void BattleEventVar_SetValue(u32 key, s32 value);
+void BattleEventVar_SetConstValue(u32 key, s32 value);   /* fixed for the event: handlers can't rewrite it */
 u32 BattleEventVar_GetValue(u32 key);
 void BattleEventVar_MulValue(u16 key, s32 value);
 b32 BattleEventVar_RewriteValue(u16 key, s32 value);
@@ -699,6 +719,7 @@ u32 GetFieldWeather(void);
 /* No Guard, Lock-On and Mind Reader: the move hits whatever (the hide check is skipped) */
 b32 IsGuaranteedHit(BtlServerFlow *flow, BattleMon *attacker, BattleMon *defender);
 b32 IsMoldBreakerIgnoredAbility(u16 ability);  /* the native list of abilities Mold Breaker ignores (Gen 4-5) */
+b32 IsFieldEffectActive(u32 effect);            /* FIELD_CONDITION_*: Trick Room, Magic Room... */
 /* "X must recharge!": the recharge turn's action */
 void ServerControl_RechargeAction(BtlServerFlow *flow, BattleMon *rechargingMon);
 /* Lightning Rod, Storm Drain, Follow Me, Rage Powder ask first: nonzero, the move isn't redirected */
@@ -739,6 +760,12 @@ u8 BattleHandler_StatChange(BtlServerFlow *flow, const BattleHandlerStatChangePa
 
 /* btl_server_cmd.c: a command for the clients (SERVER_CMD_*) and its arguments */
 void ServerDisplay_AddCommon(BtlServerCmdQueue *queue, u32 commandId, ...);
+/* a message command (SERVER_CMD_SET_MESSAGE: the message ID, then its arguments) */
+void ServerDisplay_AddMessageImpl(BtlServerCmdQueue *queue, u32 commandId, ...);
+/* The handler-effect state (BtlServerFlow.actionState): a new level for effects pushed by events raised now, and back
+ * (W2U_PushHandlerState / W2U_PopHandlerState in battle_api.h) */
+u32 HEManager_PushState(u32 *state);
+void HEManager_PopState(u32 *state, u32 level);
 
 /* btl_handler.c: the current event's targets contain the Pokémon (EVENT_AFTER_MOVE_HITS) */
 b32 HandlerTargetsContain(u32 monId);
@@ -805,6 +832,7 @@ W2U_C_END
 #define W2U_SERVERFLOW_MAIN_MODULE 0x04         /* BtlServerFlow.mainModule */
 #define W2U_SERVERFLOW_POKECON 0x08             /* BtlServerFlow.pokeCon */
 #define W2U_SERVERFLOW_QUEUE 0x0C               /* BtlServerFlow.queue: the commands for the clients */
+#define W2U_SERVERFLOW_HANDLER_STATE 0x1DAC     /* BtlServerFlow.actionState (W2U's ServerFlow.HEManager) */
 #define W2U_SERVERFLOW_ACTION_ORDER_COUNT 0x782  /* BtlServerFlow.actionOrderCount */
 #define W2U_SERVERFLOW_ACTION_ORDER 0x7E0       /* BtlServerFlow.actionOrder[6] */
 #define W2U_BATTLEMON_SOURCE 0x00               /* BattleMon.core.src: the party Pokémon it battles as */

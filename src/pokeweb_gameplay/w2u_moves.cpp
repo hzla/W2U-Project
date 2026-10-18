@@ -6377,10 +6377,13 @@ extern "C" void HandlerFieldTransientMoveStateNoEffect(
         return;
     }
     BattleMon* defendingMon = GetBattleMon(serverFlow, defendingSlot);
+    // Only while the protection holds: this pass runs after the protect step, which lets a move that goes through
+    // (Unseen Fist, Piercing Drill: VAR_BREAK_PROTECT 2) past a protection that stays up
     if (((sSpikyShieldFlags | sBanefulBunkerFlags) & SlotMask(defendingSlot)) &&
         defendingMon &&
         BattleMon_GetTurnFlag(defendingMon, TURNFLAG_PROTECT) &&
         getMoveFlag(moveID, MOVE_FLAG_INDEX_BLOCKED_BY_PROTECT) &&
+        W2U_CheckProtectBreak(serverFlow, attackingSlot, defendingSlot, PML_MoveGetCategory(moveID), moveID) == 0 &&
         BattleEventVar_RewriteValue(VAR_NO_EFFECT_FLAG, 1)) {
         MarkStompingProtection(attackingSlot);
         SetNoEffectMessageArg(523u, defendingSlot);
@@ -8523,55 +8526,9 @@ extern "C" b32 THUMB_BRANCH_LINK_HandlerSheerForceHitCheck_0x18(MOVE_ID moveID)
     return IsAffectedBySheerForceIncludingCustomMoves(moveID);
 }
 
-extern "C" void ServerEvent_ProtectSuccess(
-    ServerFlow* serverFlow,
-    BattleMon* attackingMon,
-    BattleMon* defendingMon,
-    MOVE_ID moveID)
-{
-    BattleEventVar_Push();
-    SetupNewEvent();
-    BattleEventVar_SetConstValue(NEW_VAR_ATTACKING_MON, BattleMon_GetID(attackingMon));
-    BattleEventVar_SetConstValue(NEW_VAR_DEFENDING_MON, BattleMon_GetID(defendingMon));
-    BattleEventVar_SetConstValue(VAR_MOVE_ID, moveID);
-    BattleEvent_CallHandlers(serverFlow, EVENT_PROTECT_SUCCESS);
-    BattleEventVar_Pop();
-}
-
-extern "C" void ServerEvent_ProtectBroken(
-    ServerFlow* serverFlow,
-    BattleMon* attackingMon,
-    BattleMon* defendingMon,
-    MOVE_ID moveID)
-{
-    BattleEventVar_Push();
-    SetupNewEvent();
-    BattleEventVar_SetConstValue(NEW_VAR_ATTACKING_MON, BattleMon_GetID(attackingMon));
-    BattleEventVar_SetConstValue(NEW_VAR_DEFENDING_MON, BattleMon_GetID(defendingMon));
-    BattleEventVar_SetConstValue(VAR_MOVE_ID, moveID);
-    BattleEvent_CallHandlers(serverFlow, EVENT_PROTECT_BROKEN);
-    BattleEventVar_Pop();
-}
-
-#if !defined(W2U_BATTLE_CHILD)
-extern "C" u32 W2U_CheckProtectBreak(
-    ServerFlow* serverFlow, u32 attackingSlot, u32 defendingSlot, u32 category, MOVE_ID moveID)
-{
-    // Native BW2 supplies only ATTACKING_MON. Damage-only shields also need
-    // the current target and damage/status category in this scoped event;
-    // Unseen Fist / Piercing Drill need the move (contact).
-    BattleEventVar_Push();
-    BattleEventVar_SetConstValue(VAR_ATTACKING_MON, attackingSlot);
-    BattleEventVar_SetConstValue(VAR_DEFENDING_MON, defendingSlot);
-    BattleEventVar_SetConstValue(VAR_MOVE_CATEGORY, category);
-    BattleEventVar_SetConstValue(VAR_MOVE_ID, moveID);
-    BattleEventVar_SetValue(VAR_GENERAL_USE_FLAG, 0);
-    BattleEvent_CallHandlers(serverFlow, EVENT_CHECK_PROTECT_BREAK);
-    u32 result = BattleEventVar_GetValue(VAR_GENERAL_USE_FLAG);
-    BattleEventVar_Pop();
-    return result;
-}
-#endif
+// The protection check's per-target step, W2U_CheckProtectBreak and the protect events: C, resident
+// (src/mechanics/resident/protect.c). Declared here with this file's engine types (it can't include w2u/resident.h).
+extern "C" b32 W2U_ProtectBlocks(ServerFlow* flow, BattleMon* attacker, BattleMon* target, u16 move);
 
 extern "C" void THUMB_BRANCH_SAFESTACK_flowsub_CheckNoEffect_Protect(
     ServerFlow* serverFlow,
@@ -8609,31 +8566,8 @@ extern "C" void THUMB_BRANCH_SAFESTACK_flowsub_CheckNoEffect_Protect(
 
     PokeSet_SeekStart(targetSet);
     for (BattleMon* targetMon = PokeSet_SeekNext(targetSet); targetMon; targetMon = PokeSet_SeekNext(targetSet)) {
-        bool targetIsProtected =
-            BattleMon_GetTurnFlag(targetMon, TURNFLAG_PROTECT) &&
-            getMoveFlag(*moveID, MOVE_FLAG_INDEX_BLOCKED_BY_PROTECT);
-        u32 breakProtect = W2U_CheckProtectBreak(serverFlow, BattleMon_GetID(attackingMon),
-            BattleMon_GetID(targetMon), PML_MoveGetCategory(*moveID), *moveID);
-        switch (breakProtect) {
-        case 0:
-            if (targetIsProtected) {
-                PokeSet_Remove(targetSet, targetMon);
-                u32 targetSlot = BattleMon_GetID(targetMon);
-                ServerDisplay_AddMessageImpl(serverFlow->serverCommandQueue, SCID_SetMessage, 523, targetSlot, 0xFFFF0000);
-
-                u32 HEID = HEManager_PushState(&serverFlow->HEManager);
-                ServerEvent_ProtectSuccess(serverFlow, attackingMon, targetMon, *moveID);
-                HEManager_PopState(&serverFlow->HEManager, HEID);
-            }
-            break;
-        case 1: {
-            u32 HEID = HEManager_PushState(&serverFlow->HEManager);
-            ServerEvent_ProtectBroken(serverFlow, attackingMon, targetMon, *moveID);
-            HEManager_PopState(&serverFlow->HEManager, HEID);
-            break;
-        }
-        default:
-            break;
+        if (W2U_ProtectBlocks(serverFlow, attackingMon, targetMon, *moveID)) {
+            PokeSet_Remove(targetSet, targetMon);
         }
     }
 

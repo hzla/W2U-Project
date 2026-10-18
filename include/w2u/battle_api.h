@@ -27,6 +27,10 @@ W2U_C_BEGIN
 /* The move makes contact as used now: its contact flag, unless the attacker's Long Reach removes it (Shell Side Arm:
  * when it hits physically). Logic reacting to contact asks this, not the move's flag. */
 b32 W2U_MoveMakesContact(BtlServerFlow *flow, u16 move, u32 attacker);
+/* The Pokémon can use its held item now: not Klutz, Embargo, Magic Room or a turn without items (resident/contact.c) */
+b32 W2U_BattleMonCanUseHeldItem(BattleMon *mon);
+/* Shell Side Arm's category as it will hit: MOVE_CATEGORY_PHYSICAL or _SPECIAL (W2U's move state, w2u_moves.cpp) */
+u32 W2U_MoveState_ShellSideArmCategory(u32 monId);
 
 /* The resident core's battle state (megab2w2/mb_resident.cpp), kept by its engine call-site hooks */
 /* The move the Pokémon's fight action will use this turn (EVENT_SPECIAL_PRIORITY carries no move); 0: none */
@@ -384,6 +388,25 @@ static inline BtlServerCmdQueue *W2U_ServerQueue(BtlServerFlow *flow)
     return flow->queue;
 #else
     return *(BtlServerCmdQueue **)((u8 *)flow + W2U_SERVERFLOW_QUEUE);
+#endif
+}
+
+/* A new handler-effect level for the effects of events raised now (around ServerEvent_* calls), and back */
+static inline u32 W2U_PushHandlerState(BtlServerFlow *flow)
+{
+#if defined(W2U_DECOMP)
+    return PushState(&flow->actionState, __LINE__);
+#else
+    return HEManager_PushState((u32 *)((u8 *)flow + W2U_SERVERFLOW_HANDLER_STATE));
+#endif
+}
+
+static inline void W2U_PopHandlerState(BtlServerFlow *flow, u32 level)
+{
+#if defined(W2U_DECOMP)
+    PopState(&flow->actionState, level, __LINE__);
+#else
+    HEManager_PopState((u32 *)((u8 *)flow + W2U_SERVERFLOW_HANDLER_STATE), level);
 #endif
 }
 

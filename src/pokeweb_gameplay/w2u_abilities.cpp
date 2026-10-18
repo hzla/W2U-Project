@@ -1873,48 +1873,7 @@ BattleEventItem* GetAbilityEvent(BattleMon* battleMon, ABILITY ability, AbilityE
 
 } // namespace
 
-extern "C" b32 W2U_BattleMonCanUseHeldItem(BattleMon* battleMon)
-{
-    constexpr FIELD_EFFECT kMagicRoom = 0x07;
-
-    if (!battleMon ||
-        BattleField_CheckEffect(kMagicRoom) ||
-        BattleMon_GetValue(battleMon, VALUE_EFFECTIVE_ABILITY) == ABIL_KLUTZ ||
-        BattleMon_CheckIfMoveCondition(battleMon, CONDITION_BLOCK_ITEM) ||
-        BattleMon_GetTurnFlag(battleMon, TURNFLAG_CANTUSEITEM)) {
-        return 0;
-    }
-
-    return 1;
-}
-
-extern "C" b32 W2U_MoveMakesContact(
-    ServerFlow* serverFlow,
-    MOVE_ID moveID,
-    u32 attackingSlot)
-{
-    if (!(moveID == MOVE_SHELL_SIDE_ARM
-          ? W2U_MoveState_ShellSideArmCategory(attackingSlot) == SPLIT_PHYSICAL
-          : getMoveFlag(moveID, MOVE_FLAG_INDEX_CONTACT))) {
-        return 0;
-    }
-
-    BattleMon* attackingMon = GetAbilityBattleMon(serverFlow, attackingSlot);
-    if (!attackingMon) {
-        return 1;
-    }
-
-    if (BattleMon_GetValue(attackingMon, VALUE_EFFECTIVE_ABILITY) == ABIL_LONG_REACH) {
-        return 0;
-    }
-
-    if (BattleMon_GetHeldItem(attackingMon) == ITEM_PROTECTIVE_PADS &&
-        W2U_BattleMonCanUseHeldItem(attackingMon)) {
-        return 0;
-    }
-
-    return 1;
-}
+// W2U_BattleMonCanUseHeldItem and W2U_MoveMakesContact: src/mechanics/resident/contact.c (C, resident)
 
 extern "C" void THUMB_BRANCH_SAFESTACK_CommonContactStatusAbility(
     ServerFlow* serverFlow,

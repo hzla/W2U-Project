@@ -50,6 +50,13 @@ u8 W2U_Weather(BtlServerFlow *flow, u8 weather);
 b32 W2U_MoldBreakerSkipCheck(BattleEventItem *item, BtlServerFlow *flow, u32 factorType, u32 eventType, u32 subId);
 b32 W2U_IsLaterIgnorableAbility(u16 ability);
 
+/* The protection check (protect.c): per target of a move, whether its protection stops it (with "X protected itself!"
+ * and W2U's EVENT_PROTECT_SUCCESS; a broken one raises EVENT_PROTECT_BROKEN). flowsub_CheckNoEffect_Protect's protect
+ * step asks it in both builds. W2U_CheckProtectBreak: EVENT_PROTECT_BREAK_CHECK with the attacker, the target, the
+ * category and the move; VAR_BREAK_PROTECT 0 holds, 1 broken (Feint), 2 the move goes through (Unseen Fist). */
+b32 W2U_ProtectBlocks(BtlServerFlow *flow, BattleMon *attacker, BattleMon *target, u16 move);
+u32 W2U_CheckProtectBreak(BtlServerFlow *flow, u32 attacker, u32 defender, u32 category, u16 move);
+
 /* Clears the state above (the injection build, at battle exit; a decomp build's overlay 167 starts with it clear) */
 void W2U_Resident_ResetBattleState(void);
 void W2U_Resident_ResetPendingMoves(void);
