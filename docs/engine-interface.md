@@ -81,10 +81,17 @@ name changes:
 | Function | Replaces | Call sites (White 2 address, decomp function) |
 | --- | --- | --- |
 | `W2U_RedirectBlocked` (`redirection.c`) | `Battle_IsRedirectBlocked` | `0x21C0D82` `CommonMoveTargetChangeToMe` (Lightning Rod, Storm Drain); `0x21C64C4` `HandlerFollowMeBaitTarget` (Follow Me, Rage Powder) |
+| `W2U_GuaranteedHit` (`commander.c`) | `IsGuaranteedHit` | `0x21A3340` (the accuracy check's hide test), `0x21A6F7C` `ServerControl_OHKO` |
+| `W2U_RechargeAction` (`commander.c`) | `ServerControl_RechargeAction` | `0x21A094E`, the action order's recharge action |
+| `W2U_GetMovePriority` (`pending_move.c`) | `ServerEvent_GetMovePriority` | `0x21A0266` (the turn's first order), `0x219FBF8` (SortActionOrderBySpeed) |
+| `W2U_HandlerUseHeldItem`, `_ForceUseItem`, `_RecoverHP`, `_Damage`, `_StatChange` (`handler_effects.c`) | `BattleHandler_UseHeldItem`, ... | `BattleHandler_Execute`'s command calls `0x21AC59E`, `0x21AC6D6`, `0x21AC5AA`, `0x21AC5C0`, `0x21AC604` |
+| `W2U_Weather` (`weather.c`) | applied to `ServerEvent_GetWeather`'s result | the injection build replaces the whole function (its thunk is too short for a hook) |
 
-The functions are resident in both builds (`src/pokeweb_gameplay/meson.build`), since a battle module can be unloaded
-while the engine runs, and pass the strict C99 check with the mechanics. The rest of `mb_resident.cpp`'s call sites
-move here the same way.
+The state they keep for the mechanics (`W2U_MB_PendingMove`, Cud Chew, Opportunist, Mega Sol: `battle_api.h`'s
+extensions) is in the same files. It is zero when empty, so a decomp build's overlay 167, loaded fresh for each
+battle, starts clear; the injection build clears it at battle exit (`W2U_Resident_ResetBattleState`). The functions
+are resident in both builds (`src/pokeweb_gameplay/meson.build`), since a battle module can be unloaded while the
+engine runs, and pass the strict C99 check with the mechanics. `mb_resident.cpp` keeps only the hooks.
 
 ## Writing a mechanic
 
