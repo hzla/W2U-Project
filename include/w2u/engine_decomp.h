@@ -21,6 +21,7 @@
 #include "battle/btl_handler.h"
 #include "battle/btl_handler_work.h"
 #include "battle/btl_main.h"
+#include "battle/btl_monset.h"
 #include "battle/btl_pokeparam.h"
 #include "battle/btl_server_cmd.h"
 #include "battle/btl_server_flow.h"

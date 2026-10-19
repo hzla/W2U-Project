@@ -14,7 +14,6 @@ class Gen67HandlerFixes(unittest.TestCase):
         text = (ROOT / "src/pokeweb_gameplay/w2u_abilities.cpp").read_text()
         names = ("KeepsOwnType", "GetNormalMoveConversionType", "BoostConvertedMove",
                  "HandlerNormalMoveConversionTypeChange", "HandlerNormalMoveConversionPower",
-                 "HandlerParentalBondPower", "HandlerParentalBondDamage",
                  "HandlerShieldsDownPreventStatus")
         pieces = []
         for name in names:
@@ -25,6 +24,10 @@ class Gen67HandlerFixes(unittest.TestCase):
         # VAR_DAMAGE_CATEGORY, event variable 0x1A)
         terrain_text = (ROOT / "src/mechanics/abilities/terrain_abilities.c").read_text()
         pieces.append(re.search(r"^static void HandlerGrassPeltDefense\(.*?^\}", terrain_text, re.M | re.S).group())
+        # Parental Bond is C since the engine interface too (its state: src/mechanics/resident/parental_bond.c)
+        parental_text = (ROOT / "src/mechanics/abilities/parental_bond.c").read_text()
+        pieces += [re.search(r"^static void " + name + r"\(.*?^\}", parental_text, re.M | re.S).group()
+                   for name in ("HandlerParentalBondPower", "HandlerParentalBondDamage")]
         program = r'''
 #include <initializer_list>
 using u32=unsigned; using ABILITY=unsigned; using CONDITION=unsigned;
@@ -54,6 +57,11 @@ u32 BattleMon_GetValue(BattleMon* p,u32) { return p->form; }
 namespace terrain { const u32 GRASSY=2;u32 Current(){return currentTerrain;} }
 using u8=unsigned char; using s32=int; using BtlServerFlow=ServerFlow; const u32 W2U_TERRAIN_GRASSY=2;
 u32 W2U_Defender(){return vars[VAR_DEFENDING_MON];} u32 W2U_Terrain(){return currentTerrain;}
+u32 W2U_Attacker(){return vars[VAR_ATTACKING_MON];}
+bool W2U_ParentalBondActive(){return sParentalBondActive;}
+u32 W2U_ParentalBondCountHit(){return sParentalBondActive ? ++sParentalBondPowerHit : 0;}
+u32 W2U_ParentalBondHit(){return sParentalBondPowerHit;}
+const u32 PARENTAL_BOND_SECOND_HIT=1024;
 void W2U_MulRatio(u32 r){BattleEventVar_MulValue(VAR_RATIO,r);}
 namespace ability { u32 Defender(){return vars[VAR_DEFENDING_MON];} void MulRatio(u32 r){BattleEventVar_MulValue(VAR_RATIO,r);} bool Simulating(ServerFlow*){return false;} }
 #define MLOG(...) ((void)0)

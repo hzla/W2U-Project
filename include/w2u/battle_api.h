@@ -391,6 +391,25 @@ static inline BtlServerCmdQueue *W2U_ServerQueue(BtlServerFlow *flow)
 #endif
 }
 
+/* A target set's Pokémon (a BtlMonSet: W2U's PokeSet), and the move's targets before redirection */
+static inline u32 W2U_TargetSetCount(void *set)
+{
+#if defined(W2U_DECOMP)
+    return BtlMonSet_GetCount(set);
+#else
+    return ((const u8 *)set)[W2U_POKESET_COUNT];
+#endif
+}
+
+static inline void *W2U_OriginalTargets(BtlServerFlow *flow)
+{
+#if defined(W2U_DECOMP)
+    return flow->unk850;
+#else
+    return *(void **)((u8 *)flow + W2U_SERVERFLOW_ORIGINAL_TARGETS);
+#endif
+}
+
 /* A new handler-effect level for the effects of events raised now (around ServerEvent_* calls), and back */
 static inline u32 W2U_PushHandlerState(BtlServerFlow *flow)
 {

@@ -8,4 +8,6 @@ void W2U_Resident_ResetBattleState(void)
     W2U_Resident_ResetHandlerEffects();
     W2U_Resident_ResetWeather();
     W2U_Resident_ResetMoveCategories();
+    W2U_Resident_ResetParentalBond();
+    W2U_Resident_ResetSimpleDamage();
 }

@@ -24,6 +24,22 @@
 #include "swantypes.h"
 #endif
 
+/* How many times a move hits and how its hits are checked (the decomp's BtlFlowHitWork, BtlServerFlow.unk4B4;
+ * W2U's HitCheckParam): ServerEvent_CheckMultihitHits fills it */
+typedef struct W2U_HitWork {
+    u8 countMax;
+    u8 count;
+    u8 checkEveryTime;                  /* each hit rolls its accuracy (Triple Kick) */
+    u8 multiHitMove;
+    u8 putAnimCmd;
+    u8 multiHitEffectiveness;
+} W2U_HitWork;
+
+#if defined(W2U_DECOMP)
+W2U_DECOMP_CHECK(hit_work, sizeof(BtlFlowHitWork) == sizeof(W2U_HitWork));
+W2U_DECOMP_CHECK(original_targets, (u32)&((BtlServerFlow *)0)->unk850 == 0x850);
+#endif
+
 /* Injection builds: names the cleanup gives that IRDO.yml spells differently (the declarations below then declare
  * the IRDO.yml symbol) */
 #if !defined(W2U_DECOMP)
@@ -110,7 +126,8 @@ enum {
     EVENT_DAMP_FAIL_MESSAGE = 0x21,     /* the failed move's message */
     EVENT_AFTER_MOVE_USE = 0x22,        /* the attacker's move was used: the Choice items lock here */
     EVENT_CHECK_NO_EFFECT = 0x2D,       /* per target: may the move affect it? (Volt Absorb, Soundproof) */
-    EVENT_PROTECT_BREAK_CHECK = 0x2E,   /* per target of a protected move: VAR_BREAK_PROTECT (W2U raises it too) */
+    EVENT_PROTECT_BREAK_CHECK = 0x2E,
+    EVENT_CHECK_DAMAGE_TO_RECOVER = 0x30, /* the move heals the defender instead (Volt Absorb): VAR_GENERAL_USE_FLAG */   /* per target of a protected move: VAR_BREAK_PROTECT (W2U raises it too) */
     /* W2U's own events reuse engine IDs as "new events": VAR_MON_ID / VAR_ATTACKING_MON / VAR_DEFENDING_MON are -1
      * (so the engine's handlers of that ID ignore them) and NEW_VAR_* carry the Pokémon (resident/protect.c) */
     EVENT_PROTECT_SUCCESS = 0x15,       /* new event: a protection stopped NEW_VAR_ATTACKING_MON's VAR_MOVE_ID */
@@ -147,6 +164,8 @@ enum {
     EVENT_BEFORE_ABILITY_CHANGE = 0x89,
     EVENT_AFTER_ABILITY_CHANGE = 0x8A,
     EVENT_FORCE_OUT_CHECK = 0x8B,       /* may VAR_DEFENDING_MON be forced out (Roar, Whirlwind)? VAR_FAIL_FLAG */
+    EVENT_SIMPLE_DAMAGE_REACTION = 0x91, /* new event (W2U's; the engine's ID is the item reaction check): damage that
+                                         * wasn't a move's hit, NEW_VAR_MON_ID, VAR_DAMAGE (resident/damage.c) */
     EVENT_CHARGE_UP_START = 0x95,       /* a two-turn move's charge turn starts (Dive, Fly) */
     EVENT_NOTIFY_FAINTED = 0xA3,        /* VAR_MON_ID fainted */
     /* W2U's events past the engine's (resident/damage.c raises them; no engine handler has these IDs) */
@@ -180,6 +199,7 @@ enum {
     VAR_FAIL_FLAG = 0x41,
     VAR_BREAK_PROTECT = 0x51,           /* EVENT_PROTECT_BREAK_CHECK: 1 broken (Feint), 2 through (W2U) */               /* the status, Yawn and stat change checks: 1 = blocked */
     VAR_WEATHER_NEGATED = 0x41,         /* EVENT_WEATHER_NEGATION: nonzero, the weather has no effect (VAR_FAIL_FLAG's slot) */
+    VAR_GENERAL_USE_FLAG = 0x51,        /* a flag events set (EVENT_CHECK_DAMAGE_TO_RECOVER: the move heals) */
     VAR_NO_DEFAULT_MESSAGE = 0x51,      /* EVENT_CHECK_NO_EFFECT: nonzero, no "It doesn't affect X..." (VAR_BREAK_PROTECT's slot) */
     VAR_DAMAGE = 0x32,                  /* EVENT_MOVE_DAMAGE_PROCESSING_END: the hit's damage */
     VAR_ATTACK_STAT_SELECTOR = 0x33,    /* EVENT_W2U_ATTACK_STAT_SELECTOR: the attacking stat (BMV_ATTACK ...) */
@@ -752,6 +772,8 @@ u32 GetBattleMonStatus(BattleMon *mon);         /* 0: none, else CONDITION_* */
 /* The stat can still change by stageDelta (not at +6 / -6 already) */
 b32 IsStatChangeValid(BattleMon *mon, u32 statId, s32 stageDelta);
 void ServerEvent_GetMoveParam(BtlServerFlow *flow, u16 move, BattleMon *moveUser, BtlFlowMoveParam *moveParamsOut);
+/* How many times the move hits (hitWork: W2U_HitWork) */
+b32 ServerEvent_CheckMultihitHits(BtlServerFlow *flow, BattleMon *mon, u16 move, void *hitWork);
 /* After a move's hits: its Fire-type hits thaw the frozen targets (targets: the hit Pokémon, a BtlMonSet) */
 void ServerControl_ThawHitTargets(BtlServerFlow *flow, BtlFlowMoveParam *param, BattleMon *attacker, void *targets);
 
@@ -856,6 +878,8 @@ W2U_C_END
 #define W2U_SERVERFLOW_MAIN_MODULE 0x04         /* BtlServerFlow.mainModule */
 #define W2U_SERVERFLOW_POKECON 0x08             /* BtlServerFlow.pokeCon */
 #define W2U_SERVERFLOW_QUEUE 0x0C               /* BtlServerFlow.queue: the commands for the clients */
+#define W2U_SERVERFLOW_ORIGINAL_TARGETS 0x850  /* the move's targets before redirection (BtlServerFlow.unk850) */
+#define W2U_POKESET_COUNT 0x42                 /* PokeSet.count, the set's Pokémon */
 #define W2U_SERVERFLOW_HANDLER_STATE 0x1DAC     /* BtlServerFlow.actionState (W2U's ServerFlow.HEManager) */
 #define W2U_SERVERFLOW_ACTION_ORDER_COUNT 0x782  /* BtlServerFlow.actionOrderCount */
 #define W2U_SERVERFLOW_ACTION_ORDER 0x7E0       /* BtlServerFlow.actionOrder[6] */
