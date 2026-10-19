@@ -64,7 +64,7 @@ redirected to a scratch copy and never writes the block.
 - Registering a Pokémon marks its form seen as retail's `getForm` does, with the forms it changes into in battle
   (Castform, Cherrim, Darmanitan in pairs, Meloetta, Aegislash, Wishiwashi, Mimikyu, Eiscue, Morpeko, Palafin).
   Before this, W2U set no seen-form bits at all, so the Pokédex's form page had nothing to list.
-- Retail's form check for the form and habitat pages (`func_0200d8d4`, `PokeDex_IsFormSeen` in `pmc/IRDO.yml`)
+- Retail's form check for the form and habitat pages (`PokeDex_HasSeenVariant`, `PokeDex_IsFormSeen` in `pmc/IRDO.yml`)
   is replaced: it read retail's 88-bit lists at retail's offsets.
 - Checked in game (2026-10-15, `w2u-local/checks/dexforms_check.yml`): a battle against Galarian Stunfisk sets
   form bit 270 seen and shown in the live save, and the area is unchanged after the battle log's first record.

@@ -86,8 +86,8 @@ name changes:
 | `W2U_GetMovePriority` (`pending_move.c`) | `ServerEvent_GetMovePriority` | `0x21A0266` (the turn's first order), `0x219FBF8` (SortActionOrderBySpeed) |
 | `W2U_HandlerUseHeldItem`, `_ForceUseItem`, `_RecoverHP`, `_Damage`, `_StatChange` (`handler_effects.c`) | `BattleHandler_UseHeldItem`, ... | `BattleHandler_Execute`'s command calls `0x21AC59E`, `0x21AC6D6`, `0x21AC5AA`, `0x21AC5C0`, `0x21AC604` |
 | `W2U_Weather` (`weather.c`) | applied to `ServerEvent_GetWeather`'s result | the injection build replaces the whole function (its thunk is too short for a hook) |
-| `W2U_MoldBreakerSkipCheck` (`mold_breaker.c`) | Mold Breaker's skip check, whole | the decomp's `func_ov167_021c09d0` returns it |
-| `W2U_ProtectBlocks`, `W2U_CheckProtectBreak` (`protect.c`) | the protect step of `flowsub_CheckNoEffect_Protect` | per target: the three-way break check (holds / broken / goes through), "X protected itself!" and W2U's protect-success / broken events; the injection build replaces the whole function (`w2u_moves.cpp`), a decomp build's `func_ov167_021a2f54` changes only its protect loop |
+| `W2U_MoldBreakerSkipCheck` (`mold_breaker.c`) | Mold Breaker's skip check, whole | the decomp's `HandlerMoldBreakerSkipCheck` returns it |
+| `W2U_ProtectBlocks`, `W2U_CheckProtectBreak` (`protect.c`) | the protect step of `flowsub_CheckNoEffect_Protect` | per target: the three-way break check (holds / broken / goes through), "X protected itself!" and W2U's protect-success / broken events; the injection build replaces the whole function (`w2u_moves.cpp`), a decomp build's `ServerControl_RemoveNoEffectTargets` changes only its protect loop |
 | `W2U_IsAffectedBySheerForce`, `W2U_Is{Assist,SleepTalk,MeFirst,Copycat}ExcludedMove` (`move_lists.c`) | `IsAffectedBySheerForce`, `Is*ExcludedMove` | Sheer Force's power / failure / hit checks (`0x18` into each handler); the four calling moves' checks (`0x21CC4DC`, `0x21CC5A2`, `0x21CC754`, `0x21CC7D6`) |
 | `W2U_ComatoseAsleep`, `W2U_ConditionFailCause`, `W2U_ConditionFailForcesMessage`, `W2U_HasMajorStatus`, `W2U_IsComatose` (`status.c`) | the tests in `CheckCondition`, `ServerControl_AddConditionCheckFail`, `HandlerHex`, `CommonStatusReaction` | Comatose (asleep; no major status or drowsiness; its curing items don't react), Corrosion, Hex, the forced fail message; the injection build replaces the four whole (`w2u_abilities.cpp`), a decomp build changes their tests (Hex keeps each build's own doubling: W2U the base power, the decomp vanilla's ratio) |
 | `W2U_MoveMakesContact`, `W2U_BattleMonCanUseHeldItem` (`contact.c`) | the contact flag test (`getMoveFlag(move, 0)`) | `CommonContactStatusAbility`, `HandlerRoughSkin`, `HandlerAftermath`, `HandlerPickpocket`, `HandlerPoisonTouch`, `HandlerMummy`, `HandlerStickyBarbDamageReaction`, `HandlerRockyHelmet`: the injection build replaces them whole (`w2u_abilities.cpp`), a decomp build only their contact test |
@@ -96,7 +96,7 @@ name changes:
 | `W2U_ThawHitTargets`, `W2U_DamagingSubstitute`, `W2U_MultiHitTargetCount`, `W2U_SpreadTargetCount` (`damage.c`) | `ServerControl_ThawHitTargets`, `IsSubstituteActive`, the target counts | `0x21A5542` (Scorching Sands, Matcha Gotcha thaw as Fire), `0x21A462A` (sound moves through a Substitute), `ServerControl_DamageRoot` `+0x5E` and `0x21A487E` (Dragon Darts) |
 | `W2U_CheckMultihitHits` (`parental_bond.c`) | `ServerEvent_CheckMultihitHits` | `ServerControl_DamageRoot` `+0x36`: a single-target move of a Parental Bond holder hits twice; the ability's handlers (`mechanics/abilities/parental_bond.c`) read `W2U_ParentalBondActive` and count the hits |
 | `W2U_SimpleDamageReaction` (`damage.c`) | added to `ServerControl_SimpleDamageCore` | W2U's `EVENT_SIMPLE_DAMAGE_REACTION` after the item reaction (damage that isn't a move's hit); `W2U_SimpleDamageBeforeHP` for Emergency Exit. The injection build replaces the function whole, a decomp build adds the call |
-| `W2U_DamageToRecoverCheck` (`damage.c`) | `ServerEvent_CheckDamageToRecover`, whole | the decomp's `func_ov167_021aa674` returns it: `EVENT_CHECK_DAMAGE_TO_RECOVER` with the move's category too |
+| `W2U_DamageToRecoverCheck` (`damage.c`) | `ServerEvent_CheckDamageToRecover`, whole | the decomp's `ServerEvent_CheckDamageToRecover` returns it: `EVENT_CHECK_DAMAGE_TO_RECOVER` with the move's category too |
 
 The state they keep for the mechanics (`W2U_MB_PendingMove`, Cud Chew, Opportunist, Mega Sol: `battle_api.h`'s
 extensions) is in the same files. It is zero when empty, so a decomp build's overlay 167, loaded fresh for each
@@ -120,8 +120,8 @@ The Fairy type is data and constants rather than a call site. Fairy is type 17, 
   - the move buttons' palettes.
 
 A decomp build defines the two numbers in its own header, gives `btl_calc.c` the same chart (taken from that file
-when the build runs), and makes the same tests use `TYPE_NULL`. The palette table is the exception: the decomp's
-`btlv_input.c` isn't complete yet.
+when the build runs), and makes the same tests use `TYPE_NULL`. Its move-button palette table gets Fairy as
+Normal's palette, because W2U's 572 is a file W2U adds to archive 11 and the decomp has no export of it yet.
 
 ## Writing a mechanic
 

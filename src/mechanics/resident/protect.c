@@ -1,4 +1,4 @@
-/* The protection check of a move's targets (the engine's flowsub_CheckNoEffect_Protect, decomp func_ov167_021a2f54):
+/* The protection check of a move's targets (the engine's flowsub_CheckNoEffect_Protect, decomp ServerControl_RemoveNoEffectTargets):
  * W2U asks every target, with the attacker, the target, the move's category and the move, whether the protection
  * holds (W2U_CheckProtectBreak, EVENT_PROTECT_BREAK_CHECK: VAR_BREAK_PROTECT 0 it holds, 1 broken as Feint does,
  * 2 the move goes through and the protection stays: Unseen Fist, Piercing Drill). The engine asked only Feint's
