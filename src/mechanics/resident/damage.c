@@ -18,7 +18,7 @@
  *   (W2U_SimpleDamageBeforeHP).
  * - W2U_DamageToRecoverCheck: whether the move heals the defender instead (EVENT_CHECK_DAMAGE_TO_RECOVER), with the
  *   move's category too (VAR_MOVE_CATEGORY). The injection build replaces ServerEvent_CheckDamageToRecover whole;
- *   the decomp's func_ov167_021aa674 returns it. */
+ *   the decomp's ServerEvent_CheckDamageToRecover returns it. */
 #include "w2u/resident.h"
 #include "megab2w2/mb_ids.h"
 

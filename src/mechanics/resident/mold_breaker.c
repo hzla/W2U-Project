@@ -1,4 +1,4 @@
-/* Mold Breaker's skip check (the decomp's func_ov167_021c09d0, W2U's HandlerMoldBreakerSkipCheck), replaced whole:
+/* Mold Breaker's skip check (the decomp's HandlerMoldBreakerSkipCheck, W2U's HandlerMoldBreakerSkipCheck), replaced whole:
  * while Mold Breaker, Teravolt, Turboblaze, Moongeist Beam or Mycelium Might work, the target's ability handlers are
  * skipped when the native Gen 4-5 list has the ability, or when it is one of the later-generation abilities the games
  * also let them ignore. */
