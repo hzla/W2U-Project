@@ -8,6 +8,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def resident_c(file, name):
+    """A function of the resident C (src/mechanics/resident/), which W2U's hooks forward to"""
+    text = (ROOT / "src/mechanics/resident" / file).read_text()
+    return re.search(r'^[A-Za-z][^\n;]*\b' + name + r'\([^;{]*\)\s*\{.*?^\}', text, re.S | re.M).group()
+
+
 class DamageWeatherHook(unittest.TestCase):
     def test_only_the_attacking_water_move_gets_the_sun_exception(self):
         text = (ROOT / "src/pokeweb_gameplay/w2u_moves.cpp").read_text()
@@ -17,9 +23,10 @@ class DamageWeatherHook(unittest.TestCase):
             match = re.search(pattern, text, re.S | re.M)
             self.assertIsNotNone(match)
             pieces.append(match.group(0))
+        pieces.insert(1, resident_c("damage.c", "W2U_DamageWeather"))
         source = r'''
-typedef unsigned u32; typedef unsigned WEATHER;
-struct BattleEventItem {}; struct ServerFlow {};
+typedef unsigned u32; typedef unsigned WEATHER; typedef unsigned char u8; typedef int s32;
+struct BattleEventItem {}; struct ServerFlow {}; typedef ServerFlow BtlServerFlow;
 enum { VAR_ATTACKING_MON=3, VAR_MOVE_ID=18, VAR_MOVE_TYPE=22, VAR_WEATHER=57,
        MOVE_HYDRO_STEAM=876, TYPE_WATER=10, WEATHER_SUN=1, WEATHER_RAIN=2,
        EVENT_W2U_DAMAGE_WEATHER=256 };

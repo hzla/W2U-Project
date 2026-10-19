@@ -145,12 +145,7 @@ struct MoveState {
     u8 laserFocusTurns[BATTLE_MAX_SLOTS];
     u8 dragonCheerBoost[BATTLE_MAX_SLOTS];
     u8 throatChopTurns[BATTLE_MAX_SLOTS];
-    u32 photonGeyserCategoryValidFlags;
-    u32 photonGeyserPhysicalFlags;
-    u32 shellSideArmCategoryValidFlags;
-    u32 shellSideArmPhysicalFlags;
-    u32 shellSideArmRecordedValidFlags;
-    u32 shellSideArmRecordedPhysicalFlags;
+    /* Photon Geyser's and Shell Side Arm's categories: src/mechanics/resident/move_category.c */
     u32 stompingFailureLastTurnFlags;
     u32 stompingFailureThisTurnFlags;
     u32 stompingProtectedThisMoveFlags;
@@ -264,6 +259,19 @@ extern "C" b32 W2U_IsAssistExcludedMove(u16 move);
 extern "C" b32 W2U_IsSleepTalkExcludedMove(u16 move);
 extern "C" b32 W2U_IsMeFirstExcludedMove(u16 move);
 extern "C" b32 W2U_IsCopycatExcludedMove(u16 move);
+// The damage path's category and call sites: src/mechanics/resident/move_category.c, damage.c (C; MoveParam is the
+// engine interface's BtlFlowMoveParam, PokeSet its BtlMonSet)
+extern "C" u32 W2U_CalcDamageCategory(u16 move, BattleMon* attacker);
+extern "C" u32 W2U_HitCategory(u16 move, BattleMon* attacker, b32 record);
+extern "C" u32 W2U_RecordedMoveCategory(u16 move, u32 attackerId);
+extern "C" void W2U_MoveState_ClearShellSideArm(u32 monId, b32 recordedToo);
+extern "C" void W2U_Resident_ResetMoveCategories(void);
+extern "C" void W2U_ThawHitTargets(ServerFlow* flow, const MoveParam* param, BattleMon* attacker, PokeSet* targets);
+extern "C" u8 W2U_DamageWeather(ServerFlow* flow);
+extern "C" u32 W2U_CriticalAttackStat(BattleMon* mon, u32 stat);
+extern "C" b32 W2U_DamagingSubstitute(BattleMon* target, u16 move);
+extern "C" u32 W2U_MultiHitTargetCount(u16 move, u32 count, u32 countMax);
+extern "C" u32 W2U_SpreadTargetCount(u16 move, u32 countMax);
 
 namespace {
 
@@ -414,6 +422,7 @@ void ClearMoveState()
 {
     W2U_Weather_Reset();
     W2U_Revival_Reset();
+    W2U_Resident_ResetMoveCategories();
     volatile u8* bytes = (volatile u8*)&sMoveState;
     for (u32 idx = 0; idx < sizeof(sMoveState); ++idx) {
         bytes[idx] = 0;
@@ -1694,21 +1703,7 @@ extern "C" bool W2U_MoveState_CourtChange(ServerFlow* flow)
     return changed;
 }
 
-extern "C" void W2U_MoveState_SetShellSideArmCategory(u32 slot, u32 category)
-{
-    const u32 mask = SlotMask(slot);
-    if (!mask) return;
-    sMoveState.shellSideArmCategoryValidFlags |= mask;
-    if (category == SPLIT_PHYSICAL) sMoveState.shellSideArmPhysicalFlags |= mask;
-    else sMoveState.shellSideArmPhysicalFlags &= ~mask;
-}
-
-extern "C" u32 W2U_MoveState_ShellSideArmCategory(u32 slot)
-{
-    const u32 mask = SlotMask(slot);
-    return (mask && (sMoveState.shellSideArmCategoryValidFlags & mask) &&
-        (sMoveState.shellSideArmPhysicalFlags & mask)) ? SPLIT_PHYSICAL : SPLIT_SPECIAL;
-}
+// W2U_MoveState_SetShellSideArmCategory, W2U_MoveState_ShellSideArmCategory: src/mechanics/resident/move_category.c
 
 extern "C" bool W2U_MoveState_ApplyTarShot(u32 slot)
 {
@@ -2350,31 +2345,13 @@ extern "C" bool W2U_MoveState_RemoveAuroraVeilSide(
 
 static u32 ResolveRuntimeMoveCategory(MOVE_ID moveID, BattleMon* attackingMon)
 {
-    if (moveID == MOVE_SHELL_SIDE_ARM && attackingMon)
-        return W2U_MoveState_ShellSideArmCategory(BattleMon_GetID(attackingMon));
-    if (moveID == MOVE_PHOTON_GEYSER && attackingMon) {
-        // These values include the stored stat stages but precede held-item
-        // and ability event modifiers. Ties are special.
-        u32 attack = BattleMon_GetValue(attackingMon, VALUE_ATTACK_STAT);
-        u32 specialAttack = BattleMon_GetValue(attackingMon, VALUE_SPECIAL_ATTACK_STAT);
-        const u32 category = attack > specialAttack ? SPLIT_PHYSICAL : SPLIT_SPECIAL;
-#if !defined(W2U_BATTLE_CHILD)
-        // Counter and Mirror Coat retain only the damaging move's ID. Keep the
-        // category chosen for the attack so their later history lookup does
-        // not fall back to Photon Geyser's database category.
-        const u32 slotMask = SlotMask(BattleMon_GetID(attackingMon));
-        if (slotMask) {
-            sMoveState.photonGeyserCategoryValidFlags |= slotMask;
-            if (category == SPLIT_PHYSICAL) {
-                sMoveState.photonGeyserPhysicalFlags |= slotMask;
-            } else {
-                sMoveState.photonGeyserPhysicalFlags &= ~slotMask;
-            }
-        }
+    // Shell Side Arm, Photon Geyser: src/mechanics/resident/move_category.c. Battle modules don't keep Photon
+    // Geyser's category for Counter (the resident core does, when the damage path asks).
+#if defined(W2U_BATTLE_CHILD)
+    return W2U_HitCategory(moveID, attackingMon, 0);
+#else
+    return W2U_HitCategory(moveID, attackingMon, 1);
 #endif
-        return category;
-    }
-    return PML_MoveGetCategory(moveID);
 }
 
 #if !defined(W2U_DYNAMIC_BATTLE_CORE)
@@ -5988,11 +5965,8 @@ extern "C" u32 MultiplyValueByRatio(u32 value, u32 ratio);
 
 extern "C" b32 W2U_CheckDamagingSubstitute(BattleMon* target, const MoveParam* move)
 {
-    // This query is scoped to the native hit-damage classifier, not a global
-    // replacement of IsSubstituteActive. The actual doll is never modified.
-    if (move && (getMoveFlag((MOVE_ID)move->moveID, MOVE_FLAG_INDEX_SOUND) ||
-                 getMoveFlag((MOVE_ID)move->moveID, 13u))) return false;
-    return BattleMon_IsSubstituteActive(target);
+    // The native hit-damage classifier's Substitute test: src/mechanics/resident/damage.c
+    return move ? W2U_DamagingSubstitute(target, move->moveID) : BattleMon_IsSubstituteActive(target);
 }
 
 
@@ -6005,16 +5979,8 @@ extern "C" b32 THUMB_BRANCH_LINK_167_0x21CC7D6(MOVE_ID moveID) { return W2U_IsCo
 extern "C" void THUMB_BRANCH_LINK_167_0x21A5542(
     ServerFlow* flow, const MoveParam* move, BattleMon* attacker, PokeSet* targets)
 {
-    // Reuse the native post-secondary thaw pass and its actual-hit target set.
-    // The fire classification is local to this pass; damage/type/STAB and the
-    // original move context remain Ground (or their already-resolved type).
-    if (move->moveID == MOVE_SCORCHING_SANDS || move->moveID == MOVE_MATCHA_GOTCHA) {
-        MoveParam thaw = *move;
-        thaw.moveType = TYPE_FIRE;
-        ServerControl_ThawHitTargets(flow, &thaw, attacker, targets);
-    } else {
-        ServerControl_ThawHitTargets(flow, move, attacker, targets);
-    }
+    // Scorching Sands, Matcha Gotcha thaw as Fire: src/mechanics/resident/damage.c
+    W2U_ThawHitTargets(flow, move, attacker, targets);
 }
 
 // Preserve the native Damp factor's five callbacks, including Mold Breaker
@@ -6056,45 +6022,13 @@ extern "C" W2UNativeMoveGetter W2U_FindNativeMoveGetter(MOVE_ID nativeMove)
     return 0;
 }
 
-extern "C" u32 W2U_DispatchAttackStatSelector(
-    ServerFlow* flow, BattleEventType nativeEvent, MoveParam* move, u32 selector)
-{
-    BattleEvent_CallHandlers(flow, nativeEvent);
-    // A nested scope preserves the native Foul Play/Unaware context and does
-    // not leave duplicate ID/value labels when native calculation continues.
-    BattleEventVar_Push();
-    BattleEventVar_SetConstValue(VAR_MOVE_ID, move->moveID);
-    BattleEventVar_SetValue(VAR_ATTACK_STAT_SELECTOR, selector);
-    BattleEvent_CallHandlers(flow, EVENT_W2U_ATTACK_STAT_SELECTOR);
-    const u32 result = BattleEventVar_GetValue(VAR_ATTACK_STAT_SELECTOR);
-    BattleEventVar_Pop();
-    return result;
-}
+// W2U_DispatchAttackStatSelector, W2U_DispatchFinalMoveDamage (w2u_damage_hooks.s): src/mechanics/resident/damage.c
 
 extern "C" u32 THUMB_BRANCH_LINK_ServerEvent_GetAttackPower_0x86(
     BattleMon* mon, BattleMonValue selector)
 {
-    if (selector != VALUE_DEFENSE_STAT) return BattleMon_GetCriticalStat(mon, selector);
-    // The native critical reader treats Defense as a defending stat and
-    // ignores positive stages. Here it is offensive: ignore negative stages,
-    // retain boosts. Unaware already takes the separate raw-stat branch.
-    return BattleMon_GetValue(mon, VALUE_DEFENSE_STAGE) < 6
-        ? BattleMon_GetRealStat(mon, selector) : BattleMon_GetValue(mon, selector);
-}
-
-extern "C" void W2U_DispatchFinalMoveDamage(
-    ServerFlow* flow, BattleEventType event, u32* damage)
-{
-    u32 existing;
-    // Normal damage already owns this free variable; fixed damage skips its
-    // creation. Never duplicate labels or introduce a separate event scope.
-    if (BattleEventVar_GetValueIfExist(VAR_DAMAGE, &existing)) {
-        BattleEventVar_RewriteValue(VAR_DAMAGE, *damage);
-    } else {
-        BattleEventVar_SetValue(VAR_DAMAGE, *damage);
-    }
-    BattleEvent_CallHandlers(flow, event);
-    *damage = (u32)BattleEventVar_GetValue(VAR_DAMAGE);
+    // Defense as an attacking stat (Body Press): src/mechanics/resident/damage.c
+    return W2U_CriticalAttackStat(mon, selector);
 }
 
 // US W2 0x021A5A36 / B2 0x021A59F6: just the damage-weather getter.
@@ -6102,14 +6036,7 @@ extern "C" void W2U_DispatchFinalMoveDamage(
 // stay in the original engine. No child function pointer is retained here.
 extern "C" WEATHER THUMB_BRANCH_LINK_ServerEvent_CalcDamage_0xDE(ServerFlow* flow)
 {
-    WEATHER weather = ServerEvent_GetWeather(flow);
-    if (weather != WEATHER_SUN) return weather;
-    // Extend the active damage scope (which already owns ID/type/attacker).
-    // Native CalcDamage pops the whole scope, including this extra variable.
-    // Weather-check events use their own nested scope and do not read this.
-    BattleEventVar_SetValue(VAR_WEATHER, weather);
-    BattleEvent_CallHandlers(flow, EVENT_W2U_DAMAGE_WEATHER);
-    return BattleEventVar_GetValue(VAR_WEATHER);
+    return (WEATHER)W2U_DamageWeather(flow);   // src/mechanics/resident/damage.c
 }
 
 // The original damage engine rereads the database category in three places
@@ -6120,16 +6047,7 @@ extern "C" u32 THUMB_BRANCH_LINK_ServerEvent_CalcDamage_0x10(
     MOVE_ID moveID,
     BattleMon* attackingMon)
 {
-    const u32 category = ResolveRuntimeMoveCategory(moveID, attackingMon);
-    if (moveID == MOVE_SHELL_SIDE_ARM && attackingMon) {
-        const u32 mask = SlotMask(BattleMon_GetID(attackingMon));
-        if (sMoveState.shellSideArmCategoryValidFlags & mask) {
-            sMoveState.shellSideArmRecordedValidFlags |= mask;
-            if (category == SPLIT_PHYSICAL) sMoveState.shellSideArmRecordedPhysicalFlags |= mask;
-            else sMoveState.shellSideArmRecordedPhysicalFlags &= ~mask;
-        }
-    }
-    return category;
+    return W2U_CalcDamageCategory(moveID, attackingMon);   // src/mechanics/resident/move_category.c
 }
 
 // RegisterTargets' +0xBA call corrects dead/replaced targets after ordinary
@@ -6194,14 +6112,14 @@ extern "C" bool W2U_DragonDartsHasPranksterOrigin(ServerFlow* flow, u32 slot)
 // Keep the original target count intact for Pressure and all other moves.
 extern "C" u32 W2U_GetFilteredMultiHitTargetCount(const PokeSet* targets, const MoveParam* params)
 {
-    return params->moveID == MOVE_DRAGON_DARTS ? targets->count : targets->countMax;
+    return W2U_MultiHitTargetCount(params->moveID, targets->count, targets->countMax);   // resident/damage.c
 }
 
 // Splitting the two darts does not make this a spread-damage move. Override
 // only the native ratio selector, before any damage rounding or modifiers.
 extern "C" u32 W2U_GetDamageSpreadTargetCount(const PokeSet* targets, const MoveParam* params)
 {
-    return params->moveID == MOVE_DRAGON_DARTS ? 1 : targets->countMax;
+    return W2U_SpreadTargetCount(params->moveID, targets->countMax);   // resident/damage.c
 }
 
 extern "C" u32 THUMB_BRANCH_LINK_ServerEvent_GetAttackPower_0xC(
@@ -6226,20 +6144,8 @@ extern "C" __attribute__((noinline)) u32 W2U_ResolveCounterRecordedMoveCategory(
     MOVE_ID moveID,
     const u8* damageRecord)
 {
-    if (moveID == MOVE_SHELL_SIDE_ARM && damageRecord) {
-        const u32 mask = SlotMask(damageRecord[5]);
-        if (mask && (sMoveState.shellSideArmRecordedValidFlags & mask))
-            return (sMoveState.shellSideArmRecordedPhysicalFlags & mask) ? SPLIT_PHYSICAL : SPLIT_SPECIAL;
-    }
-    if (moveID == MOVE_PHOTON_GEYSER && damageRecord) {
-        const u32 slotMask = SlotMask(damageRecord[5]);
-        if (slotMask && (sMoveState.photonGeyserCategoryValidFlags & slotMask)) {
-            return (sMoveState.photonGeyserPhysicalFlags & slotMask)
-                ? SPLIT_PHYSICAL
-                : SPLIT_SPECIAL;
-        }
-    }
-    return PML_MoveGetCategory(moveID);
+    // src/mechanics/resident/move_category.c
+    return damageRecord ? W2U_RecordedMoveCategory(moveID, damageRecord[5]) : PML_MoveGetCategory(moveID);
 }
 
 } // namespace
@@ -6695,8 +6601,7 @@ static void ClearSwitchedOrFaintedTransientState()
     sMoveState.tarShotFlags &= ~SlotMask(currentSlot);
     sMoveState.noRetreatFlags &= ~SlotMask(currentSlot);
     sMoveState.glaiveRushFlags &= ~SlotMask(currentSlot);
-    sMoveState.shellSideArmCategoryValidFlags &= ~SlotMask(currentSlot);
-    sMoveState.shellSideArmRecordedValidFlags &= ~SlotMask(currentSlot);
+    W2U_MoveState_ClearShellSideArm(currentSlot, true);
     sMoveState.calledDartsFlags &= ~SlotMask(currentSlot);
     if (IsValidSlot(currentSlot)) {
         sMoveState.dragonCheerBoost[currentSlot] = 0;
@@ -6752,7 +6657,7 @@ extern "C" void HandlerFieldTransientMoveStateMoveSequenceStart(
 
 #if !defined(W2U_BATTLE_CHILD)
     if (!serverFlow->simulationCounter)
-        sMoveState.shellSideArmCategoryValidFlags &= ~SlotMask((u32)BattleEventVar_GetValue(VAR_ATTACKING_MON));
+        W2U_MoveState_ClearShellSideArm((u32)BattleEventVar_GetValue(VAR_ATTACKING_MON), false);
 #endif
 
     SetSlotFlag(
@@ -6797,7 +6702,7 @@ extern "C" void HandlerFieldTransientMoveStateMoveSequenceEnd(
     }
     W2U_MoveState_ClearElectrifiedSlot(currentSlot);
 #if !defined(W2U_BATTLE_CHILD)
-    sMoveState.shellSideArmCategoryValidFlags &= ~currentMask;
+    W2U_MoveState_ClearShellSideArm(currentSlot, false);
     sMoveState.calledDartsFlags &= ~currentMask;
 #endif
     W2U_MoveState_ClearBeakBlast(currentSlot);

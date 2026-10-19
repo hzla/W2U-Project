@@ -8,6 +8,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def resident_c(file, name):
+    """A function of the resident C (src/mechanics/resident/), which W2U's hooks forward to"""
+    text = (ROOT / "src/mechanics/resident" / file).read_text()
+    return re.search(r'^[A-Za-z][^\n;]*\b' + name + r'\([^;{]*\)\s*\{.*?^\}', text, re.S | re.M).group()
+
+
 def compiled(source):
     with tempfile.TemporaryDirectory(prefix="w2u-dragon-darts-") as directory:
         executable = Path(directory) / "check"
@@ -179,10 +185,12 @@ int main(){ServerFlow flow={0};
 
     def test_filtered_count_and_unrounded_spread_selector_are_move_scoped(self):
         text = (ROOT / "src/pokeweb_gameplay/w2u_moves.cpp").read_text()
-        bodies = "\n".join(re.search(r'extern "C" u32 '+name+r'\(.*?^\}', text, re.S | re.M).group()
-                           for name in ("W2U_GetFilteredMultiHitTargetCount", "W2U_GetDamageSpreadTargetCount"))
+        bodies = "\n".join([resident_c("damage.c", "W2U_MultiHitTargetCount"),
+                            resident_c("damage.c", "W2U_SpreadTargetCount")] +
+                           [re.search(r'extern "C" u32 '+name+r'\(.*?^\}', text, re.S | re.M).group()
+                            for name in ("W2U_GetFilteredMultiHitTargetCount", "W2U_GetDamageSpreadTargetCount")])
         compiled(r'''
-typedef unsigned u32;enum{MOVE_DRAGON_DARTS=751};
+typedef unsigned u32;typedef unsigned short u16;enum{MOVE_DRAGON_DARTS=751};
 struct PokeSet{unsigned count,countMax;};struct MoveParam{unsigned moveID;};
 ''' + bodies + r'''
 int main(){for(unsigned move=0;move<920;++move)for(unsigned max=0;max<=6;++max)

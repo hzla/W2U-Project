@@ -7,4 +7,5 @@ void W2U_Resident_ResetBattleState(void)
     W2U_Resident_ResetPendingMoves();
     W2U_Resident_ResetHandlerEffects();
     W2U_Resident_ResetWeather();
+    W2U_Resident_ResetMoveCategories();
 }

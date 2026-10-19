@@ -8,6 +8,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def resident_c(file, name):
+    """A function of the resident C (src/mechanics/resident/), which W2U's hooks forward to"""
+    text = (ROOT / "src/mechanics/resident" / file).read_text()
+    return re.search(r'^[A-Za-z][^\n;]*\b' + name + r'\([^;{]*\)\s*\{.*?^\}', text, re.S | re.M).group()
+
+
 class FinalDamageHook(unittest.TestCase):
     def test_existing_and_fixed_damage_contexts_without_shared_mutation(self):
         moves = (ROOT / "src/pokeweb_gameplay/w2u_moves.cpp").read_text()
@@ -15,19 +21,21 @@ class FinalDamageHook(unittest.TestCase):
         patterns = (
             (abilities, r"static BattleMon\* DisguiseIntactTarget\(.*?^\}"),
             (abilities, r"static void HandlerDisguisePreventDamage\(.*?^\}"),
-            (moves, r'extern "C" void W2U_DispatchFinalMoveDamage\(.*?^\}'),
         )
         bodies = []
         for text, pattern in patterns:
             match = re.search(pattern, text, re.S | re.M)
             self.assertIsNotNone(match)
             bodies.append(match.group())
+        # W2U_DispatchFinalMoveDamage is resident C (the assembly hook calls it)
+        bodies.append(resident_c("damage.c", "W2U_DispatchFinalMoveDamage"))
         source = r'''
 typedef unsigned u32; typedef unsigned BattleEventType;
 enum { VAR_DAMAGE=1, VAR_DEFENDING_MON=2, VALUE_FORM=3, SPECIES_778=778 };
 struct BattleEventItem {};
 struct BattleMon { u32 species, form, hp, substitute; } mon;
-struct ServerFlow { void* pokeCon; };
+struct ServerFlow { void* pokeCon; }; typedef ServerFlow BtlServerFlow; typedef int s32;
+#define BtlEventVar_TryRead(key, value) BattleEventVar_GetValueIfExist(key, (u32*)(value))
 u32 damageValue, labels, creates, observedDamage, owner, calls;
 u32 BattleEventVar_GetValue(u32 key) { return key==VAR_DAMAGE ? damageValue : 12; }
 bool BattleEventVar_GetValueIfExist(u32, u32* out) { *out=damageValue; return labels; }
