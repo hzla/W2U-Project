@@ -100,6 +100,19 @@ u32 W2U_CriticalAttackStat(BattleMon *mon, u32 stat);
 b32 W2U_DamagingSubstitute(BattleMon *target, u16 move);
 u32 W2U_MultiHitTargetCount(u16 move, u32 count, u32 countMax);
 u32 W2U_SpreadTargetCount(u16 move, u32 countMax);
+void W2U_SimpleDamageReaction(BtlServerFlow *flow, BattleMon *mon, u32 damage, u32 beforeHP);
+u32 W2U_SimpleDamageBeforeHP(u32 monId);
+b32 W2U_DamageToRecoverCheck(BtlServerFlow *flow, BattleMon *attacker, BattleMon *defender,
+                              const BtlFlowMoveParam *param);
+
+/* Parental Bond (parental_bond.c): DamageRoot asks W2U_CheckMultihitHits instead of ServerEvent_CheckMultihitHits
+ * (hitWork: W2U_HitWork); a single-target move of the holder becomes two hits. Its handlers ask W2U_ParentalBondActive
+ * and count the hits (W2U_ParentalBondCountHit on EVENT_MOVE_POWER: 1, 2; W2U_ParentalBondHit: the count). */
+void W2U_CheckMultihitHits(BtlServerFlow *flow, BattleMon *attacker, u16 move, void *hitWork);
+b32 W2U_ParentalBondApplies(BtlServerFlow *flow, u16 move, BattleMon *attacker, void *targets);
+b32 W2U_ParentalBondActive(void);
+u32 W2U_ParentalBondCountHit(void);
+u32 W2U_ParentalBondHit(void);
 
 /* Clears the state above (the injection build, at battle exit; a decomp build's overlay 167 starts with it clear) */
 void W2U_Resident_ResetBattleState(void);
@@ -107,6 +120,8 @@ void W2U_Resident_ResetPendingMoves(void);
 void W2U_Resident_ResetHandlerEffects(void);
 void W2U_Resident_ResetWeather(void);
 void W2U_Resident_ResetMoveCategories(void);
+void W2U_Resident_ResetParentalBond(void);
+void W2U_Resident_ResetSimpleDamage(void);
 
 W2U_C_END
 

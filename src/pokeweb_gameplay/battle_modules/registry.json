@@ -69,7 +69,8 @@
       "name": "abilities/power",
       "source": "abilities",
       "extra_sources": [
-        "../mechanics/abilities/power_spot.c"
+        "../mechanics/abilities/power_spot.c",
+        "../mechanics/abilities/parental_bond.c"
       ],
       "entries": [
         ["ability", "ABIL_PARENTAL_BOND", "ParentalBondHandlers"],

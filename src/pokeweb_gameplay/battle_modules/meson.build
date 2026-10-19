@@ -23,7 +23,7 @@ w2u_battle_module_definitions = [
   {
     'id': 4,
     'slug': 'abilities_power',
-    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/power_spot.c'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/power_spot.c', '../../mechanics/abilities/parental_bond.c'),
   },
   {
     'id': 5,

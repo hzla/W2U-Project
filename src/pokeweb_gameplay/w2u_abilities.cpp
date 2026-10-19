@@ -39,7 +39,6 @@
 #define W2U_ITSTAT_USE_PARAM 2u
 #define W2U_BATTLE_BOND_ASH_FORM 2u
 #define W2U_FORCE_FAIL_MESSAGE 2
-#define W2U_SERVERFLOW_SET_TARGET_ORIGINAL_OFFSET 0x850u
 #define W2U_BATTLE_EVENT_ITEM_SUB_ID_OFFSET 0x38u
 #define W2U_ACTION_ORDER_PRIO_OFFSET 7
 #define W2U_ACTION_ORDER_SPECIAL_PRIO_OFFSET 1
@@ -225,12 +224,9 @@ struct W2UAbilitySharedState {
     u8 reserved;
     u32 emergencyExitPendingSlots;
     W2UBattleSlotWordArray emergencyExitSubstituteDamage;
-    W2UBattleSlotWordArray emergencyExitSimpleBeforeHP;
     u32 stakeoutInitialSlots;
     u32 extraActionNaturalResetSlots;
     W2USendLastSlotArray sendLastSlots;
-    bool parentalBondActive;
-    u8 parentalBondPowerHit;
 };
 #endif
 
@@ -242,12 +238,9 @@ extern "C" u8* W2U_AbilityState_InterruptActionFlagStorage();
 extern "C" u8* W2U_AbilityState_EmergencyExitEndTurnStorage();
 extern "C" u32* W2U_AbilityState_EmergencyExitPendingStorage();
 extern "C" W2UBattleSlotWordArray* W2U_AbilityState_SubstituteDamageStorage();
-extern "C" W2UBattleSlotWordArray* W2U_AbilityState_SimpleBeforeHPStorage();
 extern "C" u32* W2U_AbilityState_StakeoutInitialSlotsStorage();
 extern "C" u32* W2U_AbilityState_ExtraActionNaturalResetStorage();
 extern "C" W2USendLastSlotArray* W2U_AbilityState_SendLastSlotsStorage();
-extern "C" bool* W2U_AbilityState_ParentalBondActiveStorage();
-extern "C" u8* W2U_AbilityState_ParentalBondPowerHitStorage();
 #else
 static W2UAbilitySharedState sAbilitySharedState = {
     {},
@@ -258,12 +251,9 @@ static W2UAbilitySharedState sAbilitySharedState = {
     0,
     0,
     {},
-    {},
     0,
     0,
     {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF},
-    false,
-    0,
 };
 
 #define W2U_ABILITY_STATE_STORAGE(type, name, field) \
@@ -284,17 +274,11 @@ W2U_ABILITY_STATE_STORAGE(
 W2U_ABILITY_STATE_STORAGE(
     W2UBattleSlotWordArray, W2U_AbilityState_SubstituteDamageStorage, emergencyExitSubstituteDamage)
 W2U_ABILITY_STATE_STORAGE(
-    W2UBattleSlotWordArray, W2U_AbilityState_SimpleBeforeHPStorage, emergencyExitSimpleBeforeHP)
-W2U_ABILITY_STATE_STORAGE(
     u32, W2U_AbilityState_StakeoutInitialSlotsStorage, stakeoutInitialSlots)
 W2U_ABILITY_STATE_STORAGE(
     u32, W2U_AbilityState_ExtraActionNaturalResetStorage, extraActionNaturalResetSlots)
 W2U_ABILITY_STATE_STORAGE(
     W2USendLastSlotArray, W2U_AbilityState_SendLastSlotsStorage, sendLastSlots)
-W2U_ABILITY_STATE_STORAGE(
-    bool, W2U_AbilityState_ParentalBondActiveStorage, parentalBondActive)
-W2U_ABILITY_STATE_STORAGE(
-    u8, W2U_AbilityState_ParentalBondPowerHitStorage, parentalBondPowerHit)
 
 #undef W2U_ABILITY_STATE_STORAGE
 #endif
@@ -306,12 +290,9 @@ W2U_ABILITY_STATE_STORAGE(
 #define sEmergencyExitEndTurnSwitchFlag (*W2U_AbilityState_EmergencyExitEndTurnStorage())
 #define sEmergencyExitPendingSlots (*W2U_AbilityState_EmergencyExitPendingStorage())
 #define sEmergencyExitSubstituteDamage (*W2U_AbilityState_SubstituteDamageStorage())
-#define sEmergencyExitSimpleBeforeHP (*W2U_AbilityState_SimpleBeforeHPStorage())
 #define sStakeoutInitialSlots (*W2U_AbilityState_StakeoutInitialSlotsStorage())
 #define sExtraActionNaturalResetSlots (*W2U_AbilityState_ExtraActionNaturalResetStorage())
 #define sSendLastSlots (*W2U_AbilityState_SendLastSlotsStorage())
-#define sParentalBondActive (*W2U_AbilityState_ParentalBondActiveStorage())
-#define sParentalBondPowerHit (*W2U_AbilityState_ParentalBondPowerHitStorage())
 
 static int W2U_DecodeActionPriority(const ActionOrderWork* actionOrder)
 {
@@ -344,6 +325,12 @@ extern "C" int W2U_GetQueuedMovePriority(ServerFlow* serverFlow, BattleMon* atta
     return (int)BattleEventVar_GetValue(VAR_MOVE_PRIORITY);
 }
 
+// The simple-damage reaction event (EVENT_SIMPLE_DAMAGE_REACTION) and Emergency Exit's before-HP:
+// src/mechanics/resident/damage.c
+extern "C" void W2U_SimpleDamageReaction(ServerFlow* flow, BattleMon* mon, u32 damage, u32 beforeHP);
+extern "C" u32 W2U_SimpleDamageBeforeHP(u32 monId);
+extern "C" void W2U_Resident_ResetSimpleDamage(void);
+
 extern "C" void W2U_AbilityState_ResetBattleState()
 {
     sEmergencyExitEndTurnSwitchFlag = 0;
@@ -352,8 +339,8 @@ extern "C" void W2U_AbilityState_ResetBattleState()
     sExtraActionNaturalResetSlots = 0;
     for (u32 pokemonSlot = 0; pokemonSlot < BATTLE_MAX_SLOTS; ++pokemonSlot) {
         sEmergencyExitSubstituteDamage[pokemonSlot] = 0;
-        sEmergencyExitSimpleBeforeHP[pokemonSlot] = 0;
     }
+    W2U_Resident_ResetSimpleDamage();
 }
 
 extern "C" void W2U_AbilityState_RecordInitialMon(
@@ -387,34 +374,6 @@ bool W2U_SwitchedInThisTurn(ServerFlow* serverFlow, BattleMon* battleMon)
     return battleMon->turnCount == 0;
 }
 
-static void W2U_ServerEvent_SimpleDamageReaction(
-    ServerFlow* serverFlow,
-    BattleMon* battleMon,
-    u32 damage,
-    u32 beforeHP)
-{
-    if (!serverFlow || !battleMon) {
-        return;
-    }
-
-    u32 pokemonSlot = BattleMon_GetID(battleMon);
-    if (pokemonSlot >= BATTLE_MAX_SLOTS) {
-        return;
-    }
-
-    sEmergencyExitSimpleBeforeHP[pokemonSlot] = beforeHP;
-    u32 HEID = HEManager_PushState(&serverFlow->HEManager);
-    BattleEventVar_Push();
-    BattleEventVar_SetConstValue(VAR_MON_ID, -1);
-    BattleEventVar_SetConstValue(VAR_ATTACKING_MON, -1);
-    BattleEventVar_SetConstValue(VAR_DEFENDING_MON, -1);
-    BattleEventVar_SetConstValue(NEW_VAR_MON_ID, pokemonSlot);
-    BattleEventVar_SetConstValue(VAR_DAMAGE, damage);
-    BattleEvent_CallHandlers(serverFlow, EVENT_SIMPLE_DAMAGE_REACTION);
-    BattleEventVar_Pop();
-    HEManager_PopState(&serverFlow->HEManager, HEID);
-    sEmergencyExitSimpleBeforeHP[pokemonSlot] = 0;
-}
 
 extern "C" b32 THUMB_BRANCH_ServerControl_SimpleDamageCore(
     ServerFlow* serverFlow,
@@ -436,7 +395,7 @@ extern "C" b32 THUMB_BRANCH_ServerControl_SimpleDamageCore(
     }
 
     ServerControl_CheckItemReaction(serverFlow, battleMon, 1);
-    W2U_ServerEvent_SimpleDamageReaction(serverFlow, battleMon, (u32)damage, beforeHP);
+    W2U_SimpleDamageReaction(serverFlow, battleMon, (u32)damage, beforeHP);
     if (ServerControl_CheckFainted(serverFlow, battleMon)) {
         ServerControl_CheckMatchup(serverFlow);
     }
@@ -1767,65 +1726,7 @@ void SymbiosisChangeItem(ServerFlow* serverFlow, u32 pokemonSlot, u32 receiveSlo
     BattleHandler_PushRun(serverFlow, EFFECT_ABILITY_POPUP_REMOVE, pokemonSlot);
 }
 
-void ResetParentalBondFlag()
-{
-    sParentalBondActive = false;
-    sParentalBondPowerHit = 0;
-}
-
-void SetParentalBondFlag()
-{
-    sParentalBondActive = true;
-    sParentalBondPowerHit = 0;
-}
-
-PokeSet* GetServerFlowTargetOriginal(ServerFlow* serverFlow)
-{
-    return *(PokeSet**)((u8*)serverFlow + W2U_SERVERFLOW_SET_TARGET_ORIGINAL_OFFSET);
-}
-
-bool MoveIgnoresParentalBond(MOVE_ID moveID)
-{
-    switch (moveID) {
-    case MOVE_FLING:
-    case MOVE_SELFDESTRUCT:
-    case MOVE_EXPLOSION:
-    case MOVE_MISTY_EXPLOSION:
-    case MOVE_FINAL_GAMBIT:
-    case MOVE_UPROAR:
-    case MOVE_ROLLOUT:
-    case MOVE_ICE_BALL:
-    case MOVE_ENDEAVOR:
-        return true;
-    default:
-        return false;
-    }
-}
-
-bool ParentalBondCheck(ServerFlow* serverFlow, MOVE_ID moveID, BattleMon* attackingMon, PokeSet* targetSet)
-{
-    if (!serverFlow ||
-        !attackingMon ||
-        !targetSet ||
-        moveID == MOVE_NONE ||
-        BattleMon_GetValue(attackingMon, VALUE_EFFECTIVE_ABILITY) != ABIL_PARENTAL_BOND ||
-        targetSet->count != 1) {
-        return false;
-    }
-
-    MoveParam moveParam;
-    W2U_ServerEvent_GetMoveParam(serverFlow, moveID, attackingMon, &moveParam);
-    if (moveParam.targetType == TARGET_USER ||
-        moveParam.targetType == TARGET_FIELD ||
-        moveParam.targetType == TARGET_FIELD_SIDE_ENEMY ||
-        moveParam.targetType == TARGET_FIELD_SIDE_FRIEND ||
-        getMoveFlag(moveParam.moveID, MOVE_FLAG_INDEX_REQUIRES_CHARGE) ||
-        MoveIgnoresParentalBond(moveParam.moveID)) {
-        return false;
-    }
-
-    return true;
-}
+// Parental Bond's check and state: src/mechanics/resident/parental_bond.c
 
 BattleEventItem* AddAbilityEvent(
     BattleMon* battleMon,
@@ -2223,28 +2124,19 @@ extern "C" void W2U_ServerEvent_GetMoveParam(
 }
 #endif
 
+extern "C" b32 W2U_DamageToRecoverCheck(ServerFlow* flow, BattleMon* attacker, BattleMon* defender,
+    const MoveParam* param);   // src/mechanics/resident/damage.c
+
 extern "C" u32 THUMB_BRANCH_ServerEvent_CheckDamageToRecover(
     ServerFlow* serverFlow,
     BattleMon* attackingMon,
     BattleMon* defendingMon,
     MoveParam* moveParam)
 {
-    BattleEventVar_Push();
-
-    u32 attackingSlot = BattleMon_GetID(attackingMon);
-    u32 defendingSlot = BattleMon_GetID(defendingMon);
-    BattleEventVar_SetConstValue(VAR_ATTACKING_MON, attackingSlot);
-    BattleEventVar_SetConstValue(VAR_DEFENDING_MON, defendingSlot);
-    BattleEventVar_SetConstValue(VAR_MOVE_TYPE, moveParam->moveType);
-    BattleEventVar_SetConstValue(VAR_MOVE_CATEGORY, moveParam->category);
-    BattleEventVar_SetRewriteOnceValue(VAR_GENERAL_USE_FLAG, 0);
-
-    BattleEvent_CallHandlers(serverFlow, EVENT_CHECK_DAMAGE_TO_RECOVER);
-    u32 generalFlag = BattleEventVar_GetValue(VAR_GENERAL_USE_FLAG);
-
-    BattleEventVar_Pop();
-    return generalFlag;
+    return W2U_DamageToRecoverCheck(serverFlow, attackingMon, defendingMon, moveParam);
 }
+
+extern "C" void W2U_CheckMultihitHits(ServerFlow* flow, BattleMon* attacker, u16 move, HitCheckParam* hitWork);
 
 extern "C" void THUMB_BRANCH_LINK_ServerControl_DamageRoot_0x36(
     ServerFlow* serverFlow,
@@ -2252,19 +2144,8 @@ extern "C" void THUMB_BRANCH_LINK_ServerControl_DamageRoot_0x36(
     MOVE_ID moveID,
     HitCheckParam* hitCheckParam)
 {
-    ServerEvent_CheckMultihitHits(serverFlow, attackingMon, moveID, hitCheckParam);
-    ResetParentalBondFlag();
-
-    if (!serverFlow || !hitCheckParam || hitCheckParam->multiHitMove) {
-        return;
-    }
-
-    if (ParentalBondCheck(serverFlow, moveID, attackingMon, GetServerFlowTargetOriginal(serverFlow))) {
-        hitCheckParam->countMax = 2;
-        hitCheckParam->checkEveryTime = 0;
-        hitCheckParam->multiHitMove = 1;
-        SetParentalBondFlag();
-    }
+    // Parental Bond's second hit: src/mechanics/resident/parental_bond.c
+    W2U_CheckMultihitHits(serverFlow, attackingMon, moveID, hitCheckParam);
 }
 
 #if !defined(W2U_DYNAMIC_BATTLE_CORE)
@@ -3528,7 +3409,7 @@ extern "C" void HandlerEmergencyExitSimpleDamageCheck(
 
     if (DamageCrossedBelowHalfHPFromBefore(
             currentMon,
-            sEmergencyExitSimpleBeforeHP[pokemonSlot])) {
+            W2U_SimpleDamageBeforeHP(pokemonSlot))) {
         sEmergencyExitPendingSlots |= 1u << pokemonSlot;
     }
 }
@@ -3629,36 +3510,7 @@ BattleEventHandlerTableEntry GooeyHandlers[] = {
 };
 
 
-extern "C" void HandlerParentalBondPower(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)serverFlow;
-    (void)work;
-    if (!sParentalBondActive || pokemonSlot != (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) {
-        return;
-    }
-
-    ++sParentalBondPowerHit;
-}
-
-static void HandlerParentalBondDamage(
-    BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
-{
-    (void)item;
-    (void)serverFlow;
-    (void)work;
-    if (sParentalBondActive && sParentalBondPowerHit == 2 &&
-        pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) {
-        // Reduce final ordinary damage, not power. Native fixed-damage moves
-        // bypass these power/damage events and retain their own semantics.
-        BattleEventVar_MulValue(VAR_RATIO, 1024u);
-    }
-}
-
-BattleEventHandlerTableEntry ParentalBondHandlers[] = {
-    {EVENT_MOVE_POWER, HandlerParentalBondPower},
-    {EVENT_MOVE_DAMAGE_PROCESSING_2, HandlerParentalBondDamage},
-};
+// Parental Bond: src/mechanics/abilities/parental_bond.c
 
 
 extern "C" void HandlerMegaLauncherHealBoost(BattleEventItem* item, ServerFlow* serverFlow, u32 pokemonSlot, u32* work)
