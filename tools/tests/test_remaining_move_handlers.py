@@ -189,6 +189,7 @@ void W2U_MoveState_ClearLaserFocus(u32){}
 void W2U_MoveState_ClearThroatChop(u32){}
 bool HasTransientMoveState(){return true;}
 void RemoveTransientMoveStateEvent(){}
+void W2U_MoveState_ClearShellSideArm(u32,bool){}
 ''' + bodies("W2U_MoveState_SetCommanderForm", "W2U_MoveState_GetCommanderForm",
              "ClearSwitchedOrFaintedTransientState") + r'''
 int main(){

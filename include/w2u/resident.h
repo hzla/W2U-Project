@@ -76,11 +76,37 @@ u32 W2U_ConditionFailCause(BattleMon *target, BattleMon *attacker, u32 condition
 b32 W2U_ConditionFailForcesMessage(u32 failed);
 b32 W2U_HasMajorStatus(BattleMon *mon);
 
+/* The category a move hits with (move_category.c): Shell Side Arm (its handler's pick), Photon Geyser (Attack against
+ * Special Attack), the record's otherwise. The damage path asks it instead of PML_MoveGetCategory: W2U_CalcDamageCategory
+ * (CalcDamage, which records Shell Side Arm's for Counter), W2U_HitCategory (GetAttackPower, GetTargetDefenses;
+ * record: keep Photon Geyser's). W2U_RecordedMoveCategory: the category of the attacker's last such hit (Counter,
+ * Mirror Coat). */
+u32 W2U_CalcDamageCategory(u16 move, BattleMon *attacker);
+u32 W2U_HitCategory(u16 move, BattleMon *attacker, b32 record);
+u32 W2U_RecordedMoveCategory(u16 move, u32 attackerId);
+void W2U_MoveState_SetShellSideArmCategory(u32 monId, u32 category);
+void W2U_MoveState_ClearShellSideArm(u32 monId, b32 recordedToo);
+
+/* The damage path's other call sites (damage.c): the thaw after the hits (Scorching Sands, Matcha Gotcha thaw as
+ * Fire), CalcDamage's weather (W2U's EVENT_W2U_DAMAGE_WEATHER in sun) and its last event (VAR_DAMAGE for fixed damage
+ * too), GetAttackPower's stat (EVENT_W2U_ATTACK_STAT_SELECTOR: Body Press) and a critical hit's (Defense as an
+ * attacking stat), the per-hit Substitute test (sound moves and bypassing moves hit the Pokémon), and the target
+ * counts of DamageRoot and the spread ratio (Dragon Darts). */
+void W2U_ThawHitTargets(BtlServerFlow *flow, BtlFlowMoveParam *param, BattleMon *attacker, void *targets);
+u8 W2U_DamageWeather(BtlServerFlow *flow);
+void W2U_DispatchFinalMoveDamage(BtlServerFlow *flow, u32 event, u32 *damage);
+u32 W2U_DispatchAttackStatSelector(BtlServerFlow *flow, u32 event, const BtlFlowMoveParam *param, u32 stat);
+u32 W2U_CriticalAttackStat(BattleMon *mon, u32 stat);
+b32 W2U_DamagingSubstitute(BattleMon *target, u16 move);
+u32 W2U_MultiHitTargetCount(u16 move, u32 count, u32 countMax);
+u32 W2U_SpreadTargetCount(u16 move, u32 countMax);
+
 /* Clears the state above (the injection build, at battle exit; a decomp build's overlay 167 starts with it clear) */
 void W2U_Resident_ResetBattleState(void);
 void W2U_Resident_ResetPendingMoves(void);
 void W2U_Resident_ResetHandlerEffects(void);
 void W2U_Resident_ResetWeather(void);
+void W2U_Resident_ResetMoveCategories(void);
 
 W2U_C_END
 

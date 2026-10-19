@@ -8,10 +8,20 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def resident_c(file, name):
+    """A function of the resident C (src/mechanics/resident/), which W2U's hooks forward to"""
+    text = (ROOT / "src/mechanics/resident" / file).read_text()
+    return re.search(r'^[A-Za-z][^\n;]*\b' + name + r'\([^;{]*\)\s*\{.*?^\}', text, re.S | re.M).group()
+
+
 class NativeMoveContext(unittest.TestCase):
     def test_hit_classifier_and_native_thaw_preserve_context(self):
         text = (ROOT / "src/pokeweb_gameplay/w2u_moves.cpp").read_text()
-        bodies = []
+        # the resident C they forward to, on the stubs' MoveParam (the engine interface's BtlFlowMoveParam)
+        bodies = [resident_c("damage.c", "W2U_DamagingSubstitute"),
+                  resident_c("damage.c", "W2U_ThawHitTargets").replace("BtlFlowMoveParam *param", "const MoveParam *param")
+                  .replace("BtlFlowMoveParam thaw", "MoveParam thaw").replace("void *targets", "PokeSet *targets")
+                  .replace("param->move ", "param->moveID ").replace("thaw.type", "thaw.moveType")]
         for name, result in (("W2U_CheckDamagingSubstitute", "b32"),
                              ("THUMB_BRANCH_LINK_167_0x21A5542", "void")):
             match = re.search(r'extern "C" ' + result + " " + name + r'\(.*?^\}', text, re.S | re.M)
@@ -19,8 +29,11 @@ class NativeMoveContext(unittest.TestCase):
             bodies.append(match.group())
         source = r'''
 typedef unsigned u32; typedef unsigned MOVE_ID; typedef bool b32;
-enum { MOVE_SCORCHING_SANDS=815, MOVE_MATCHA_GOTCHA=902, TYPE_FIRE=9, MOVE_FLAG_INDEX_SOUND=8 };
-struct ServerFlow {}; struct PokeSet {}; struct BattleMon { unsigned doll; };
+typedef unsigned short u16;
+enum { MOVE_SCORCHING_SANDS=815, MOVE_MATCHA_GOTCHA=902, TYPE_FIRE=9, MOVE_FLAG_INDEX_SOUND=8,
+       MOVE_FLAG_INDEX_BYPASS_SUBSTITUTE=13 };
+struct ServerFlow {}; struct PokeSet {}; struct BattleMon { unsigned doll; }; typedef ServerFlow BtlServerFlow;
+#define IsSubstituteActive BattleMon_IsSubstituteActive
 struct MoveParam { unsigned moveID,moveType,flags; };
 unsigned nativeCalls,thawCalls; const MoveParam* forwarded;
 MoveParam observed;
@@ -31,6 +44,7 @@ bool BattleMon_IsSubstituteActive(BattleMon* mon) { ++nativeCalls; return mon->d
 void ServerControl_ThawHitTargets(ServerFlow*, const MoveParam* move, BattleMon*, PokeSet*) {
   ++thawCalls; forwarded=move; observed=*move;
 }
+bool BattleMon_IsSubstituteActive(BattleMon* mon);
 ''' + "\n".join(bodies) + r'''
 int main() {
   ServerFlow flow; PokeSet targets;

@@ -8,6 +8,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def resident_c(file, name):
+    """A function of the resident C (src/mechanics/resident/), which W2U's hooks forward to"""
+    text = (ROOT / "src/mechanics/resident" / file).read_text()
+    return re.search(r'^[A-Za-z][^\n;]*\b' + name + r'\([^;{]*\)\s*\{.*?^\}', text, re.S | re.M).group()
+
+
 class BodyPressStatAdapter(unittest.TestCase):
     def test_defense_boosts_retained_and_drops_ignored_only_for_critical(self):
         text = (ROOT / "src/pokeweb_gameplay/w2u_moves.cpp").read_text()
@@ -21,7 +27,11 @@ unsigned nativeCalls;
 u32 BattleMon_GetCriticalStat(BattleMon*, unsigned selector) { ++nativeCalls; return 1000+selector; }
 u32 BattleMon_GetRealStat(BattleMon* m,unsigned) { return m->raw; }
 u32 BattleMon_GetValue(BattleMon* m,unsigned selector) { return selector==19 ? m->rank : m->staged; }
-''' + match.group() + r'''
+#define CritAtkDefLevel BattleMon_GetCriticalStat
+#define GetBattleMonStat BattleMon_GetValue
+#define RawBattleMonStat BattleMon_GetRealStat
+enum { BMV_DEFENSE=9, STATSTAGE_DEFENSE=19, STATSTAGE_NEUTRAL=6 };
+''' + resident_c("damage.c", "W2U_CriticalAttackStat") + "\n" + match.group() + r'''
 int main() {
   for(unsigned rank=0;rank<=12;++rank) {
     BattleMon m={rank,60, rank>=6 ? 60*(2+rank-6)/2 : 60*2/(2+6-rank)};

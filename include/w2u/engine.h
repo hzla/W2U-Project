@@ -56,6 +56,8 @@
 #define IsMeFirstExcludedMove BattleMove_MeFirstIsForbidden
 #define IsCopycatExcludedMove BattleMove_CopycatIsForbidden
 #define RawBattleMonStat BattleMon_GetRealStat
+#define CritAtkDefLevel BattleMon_GetCriticalStat
+#define BtlEventVar_TryRead BattleEventVar_GetValueIfExist
 #define IsSideEffectSet SideEffect_IsActive     /* IRDO.yml names ov167's branch stub to it (the decomp's is in ov169) */
 #endif
 
@@ -147,6 +149,9 @@ enum {
     EVENT_FORCE_OUT_CHECK = 0x8B,       /* may VAR_DEFENDING_MON be forced out (Roar, Whirlwind)? VAR_FAIL_FLAG */
     EVENT_CHARGE_UP_START = 0x95,       /* a two-turn move's charge turn starts (Dive, Fly) */
     EVENT_NOTIFY_FAINTED = 0xA3,        /* VAR_MON_ID fainted */
+    /* W2U's events past the engine's (resident/damage.c raises them; no engine handler has these IDs) */
+    EVENT_W2U_DAMAGE_WEATHER = 0x100,   /* in sun, the weather CalcDamage's weather modifier uses: VAR_WEATHER */
+    EVENT_W2U_ATTACK_STAT_SELECTOR = 0x102, /* the attacking stat: VAR_ATTACK_STAT_SELECTOR (BMV_*: Body Press) */
 };
 
 /* Event variables (W2U's names) */
@@ -177,6 +182,8 @@ enum {
     VAR_WEATHER_NEGATED = 0x41,         /* EVENT_WEATHER_NEGATION: nonzero, the weather has no effect (VAR_FAIL_FLAG's slot) */
     VAR_NO_DEFAULT_MESSAGE = 0x51,      /* EVENT_CHECK_NO_EFFECT: nonzero, no "It doesn't affect X..." (VAR_BREAK_PROTECT's slot) */
     VAR_DAMAGE = 0x32,                  /* EVENT_MOVE_DAMAGE_PROCESSING_END: the hit's damage */
+    VAR_ATTACK_STAT_SELECTOR = 0x33,    /* EVENT_W2U_ATTACK_STAT_SELECTOR: the attacking stat (BMV_ATTACK ...) */
+    VAR_WEATHER = 0x39,                 /* EVENT_W2U_DAMAGE_WEATHER: the weather */
     VAR_SUBSTITUTE_HIT = 0x46,          /* nonzero: the hit landed on a substitute */
     VAR_NO_SECONDARY = 0x47,            /* nonzero: no secondary effects for this hit (Shield Dust) */               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
 };
@@ -615,6 +622,7 @@ enum {
     MOVE_FLAG_INDEX_CONTACT = 0,
     MOVE_FLAG_INDEX_PROTECT = 3,        /* Protect blocks it */
     MOVE_FLAG_INDEX_SOUND = 8,
+    MOVE_FLAG_INDEX_BYPASS_SUBSTITUTE = 13, /* hits through a Substitute (Roar, Perish Song) */
 };                                      /* W2U's own flags (MOVE_FLAG_INDEX_WIND ...): megab2w2/mb_ids.h */
 
 /* Side effects (IsSideEffectSet, BattleHandlerRemoveSideEffectParam) */
@@ -679,6 +687,8 @@ void BattleEventVar_SetRewriteOnceValue(u32 key, s32 value);
 void BattleEventVar_SetValue(u32 key, s32 value);
 void BattleEventVar_SetConstValue(u32 key, s32 value);   /* fixed for the event: handlers can't rewrite it */
 u32 BattleEventVar_GetValue(u32 key);
+/* The variable's value, if the frame has it: nonzero then */
+b32 BtlEventVar_TryRead(u16 key, s32 *value);
 void BattleEventVar_MulValue(u16 key, s32 value);
 b32 BattleEventVar_RewriteValue(u16 key, s32 value);
 
@@ -695,6 +705,8 @@ BattleMon *GetBattleMon(BtlServerFlow *serverFlow, u8 monId);
 u32 GetBattleMonStat(const BattleMon *mon, u32 stat);
 /* BMV_ATTACK .. BMV_SPEED: the stat without stages (Wonder Room swaps the defenses) */
 s32 RawBattleMonStat(const BattleMon *mon, u32 stat);
+/* A critical hit's stat: the attacker's drops and the defender's boosts are ignored */
+u16 CritAtkDefLevel(BattleMon *mon, u32 stat);
 b32 IsFainted(const BattleMon *mon);
 b32 CheckCondition(const BattleMon *mon, u32 conditionId);
 u32 GetBattleMonHeldItem(BattleMon *mon);
@@ -740,6 +752,8 @@ u32 GetBattleMonStatus(BattleMon *mon);         /* 0: none, else CONDITION_* */
 /* The stat can still change by stageDelta (not at +6 / -6 already) */
 b32 IsStatChangeValid(BattleMon *mon, u32 statId, s32 stageDelta);
 void ServerEvent_GetMoveParam(BtlServerFlow *flow, u16 move, BattleMon *moveUser, BtlFlowMoveParam *moveParamsOut);
+/* After a move's hits: its Fire-type hits thaw the frozen targets (targets: the hit Pokémon, a BtlMonSet) */
+void ServerControl_ThawHitTargets(BtlServerFlow *flow, BtlFlowMoveParam *param, BattleMon *attacker, void *targets);
 
 /* btl_handler_work.c: the handler-effect queue */
 void *BattleHandler_PushWork(BtlServerFlow *flow, u32 command, u32 monId);
