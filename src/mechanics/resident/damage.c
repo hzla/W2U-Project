@@ -18,13 +18,18 @@
  *   (W2U_SimpleDamageBeforeHP).
  * - W2U_DamageToRecoverCheck: whether the move heals the defender instead (EVENT_CHECK_DAMAGE_TO_RECOVER), with the
  *   move's category too (VAR_MOVE_CATEGORY). The injection build replaces ServerEvent_CheckDamageToRecover whole;
- *   the decomp's ServerEvent_CheckDamageToRecover returns it. */
+ *   the decomp's ServerEvent_CheckDamageToRecover returns it.
+ * - W2U_CalcMoveHealAmount: a healing move's amount (EVENT_RECOVER_HP), with VAR_MOVE_ID so a move's handler can pick
+ *   its move (Shore Up); Shore Up floors its exact share (2/3 in a sandstorm, else 1/2) where the engine rounds to
+ *   nearest. The injection build replaces ServerEvent_CalcMoveHealAmount whole; the decomp's returns it. */
 #include "w2u/resident.h"
 #include "megab2w2/mb_ids.h"
 
 #define MOVE_DRAGON_DARTS 751           /* W2U's (Moves.h) */
 #define MOVE_SCORCHING_SANDS 815
 #define MOVE_MATCHA_GOTCHA 902
+#define MOVE_SHORE_UP 659
+#define RECOVER_RATIO_TWO_THIRDS 2732   /* VAR_RATIO Shore Up's handler sets in a sandstorm (w2u_moves.cpp) */
 
 void W2U_ThawHitTargets(BtlServerFlow *flow, BtlFlowMoveParam *param, BattleMon *attacker, void *targets)
 {
@@ -154,4 +159,31 @@ void W2U_Resident_ResetSimpleDamage(void)
     for (i = 0; i < BATTLE_MAX_MON_ID; i++) {
         sSimpleBeforeHP[i] = 0;
     }
+}
+
+u32 W2U_CalcMoveHealAmount(BtlServerFlow *flow, u16 move, BattleMon *mon)
+{
+    u32 share = (u32)PML_MoveGetParam(move, MOVE_PARAM_HEAL), ratio, maxHP, amount;
+
+    BattleEventVar_Push(__LINE__);
+    BattleEventVar_SetConstValue(VAR_MON_ID, GetMonID(mon));
+    BattleEventVar_SetValue(VAR_RATIO, 0);
+    BattleEventVar_SetConstValue(VAR_MOVE_ID, move);
+    BattleEvent_CallHandlers(flow, EVENT_RECOVER_HP);
+    ratio = (u32)BattleEventVar_GetValue(VAR_RATIO);
+    BattleEventVar_Pop(__LINE__);
+
+    maxHP = GetBattleMonStat(mon, BMV_MAX_HP);
+    if (move == MOVE_SHORE_UP) {
+        /* the exact share, floored: no fixed-point 2/3 */
+        amount = ratio == RECOVER_RATIO_TWO_THIRDS ? (u32)((u64)maxHP * 2u / 3u) : maxHP / 2u;
+    } else if (ratio != 0) {
+        amount = fixed_round(maxHP, ratio);
+    } else {
+        amount = MultiplyValueByRatio(maxHP, share);
+    }
+    if (amount == 0) {
+        return 1;
+    }
+    return amount > maxHP ? maxHP : amount;
 }

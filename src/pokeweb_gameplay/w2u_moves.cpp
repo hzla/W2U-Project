@@ -283,6 +283,7 @@ extern "C" void W2U_EffectivenessMessageMulti(ServerFlow* flow, u32 count, u32* 
     b32 multipleTargets);
 extern "C" u32 W2U_CheckTypeEffectiveness(ServerFlow* flow, BattleMon* attacker, BattleMon* target, u32 moveType,
     u32 defenseType);
+extern "C" u32 W2U_CalcMoveHealAmount(ServerFlow* flow, u16 move, BattleMon* mon);
 extern "C" u32 W2U_CheckMoveEffectiveness(ServerFlow* flow, BattleMon* attacker, BattleMon* target,
     const MoveParam* param, b32 message);
 extern "C" u32 W2U_AIMoveEffectiveness(ServerFlow* flow, BattleMon* attacker, BattleMon* target,
@@ -6139,36 +6140,11 @@ extern "C" void THUMB_BRANCH_LINK_167_0x21AEE28(ServerFlow* flow, BattleEventTyp
     }
 }
 
-// White 2's original recovery calculation does not expose EVENT_RECOVER_HP.
-// Keep this general dispatch in the resident core so dynamically loaded move
-// and ability modules can adjust healing without the core knowing mechanics.
-extern "C" u32 THUMB_BRANCH_ServerEvent_CalcMoveHealAmount(
-    ServerFlow* serverFlow,
-    MOVE_ID moveID,
-    BattleMon* currentMon)
+// White 2's original recovery calculation does not expose EVENT_RECOVER_HP's move; Shore Up floors its exact share:
+// src/mechanics/resident/damage.c (W2U_CalcMoveHealAmount)
+extern "C" u32 THUMB_BRANCH_ServerEvent_CalcMoveHealAmount(ServerFlow* serverFlow, MOVE_ID moveID, BattleMon* currentMon)
 {
-    const u32 healParam = PML_MoveGetParam(moveID, MVDATA_HEAL);
-    const u32 currentSlot = BattleMon_GetID(currentMon);
-
-    BattleEventVar_Push();
-    BattleEventVar_SetConstValue(VAR_MON_ID, currentSlot);
-    BattleEventVar_SetValue(VAR_RATIO, 0);
-    BattleEventVar_SetConstValue(VAR_MOVE_ID, moveID);
-    BattleEvent_CallHandlers(serverFlow, EVENT_RECOVER_HP);
-    const u32 ratio = (u32)BattleEventVar_GetValue(VAR_RATIO);
-    BattleEventVar_Pop();
-
-    const u32 maxHP = BattleMon_GetValue(currentMon, VALUE_MAX_HP);
-    // Shore Up floors its exact fraction, unlike the native recovery helper's
-    // nearest-integer rounding. Avoid a Q12 approximation of 2/3 here too.
-    const u32 finalHeal = moveID == MOVE_SHORE_UP
-        ? (ratio == W2U_RECOVER_RATIO_TWO_THIRDS ? (u32)((u64)maxHP * 2u / 3u) : maxHP / 2u)
-        : (ratio ? fixed_round(maxHP, ratio) : MultiplyValueByRatio(maxHP, healParam));
-
-    if (finalHeal == 0) {
-        return 1;
-    }
-    return finalHeal > maxHP ? maxHP : finalHeal;
+    return W2U_CalcMoveHealAmount(serverFlow, (u16)moveID, currentMon);
 }
 
 extern "C" void HandlerFieldTransientMoveStateNoEffect(
