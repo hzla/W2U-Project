@@ -167,6 +167,8 @@ enum {
     EVENT_BEFORE_ABILITY_CHANGE = 0x89,
     EVENT_AFTER_ABILITY_CHANGE = 0x8A,
     EVENT_FORCE_OUT_CHECK = 0x8B,       /* may VAR_DEFENDING_MON be forced out (Roar, Whirlwind)? VAR_FAIL_FLAG */
+    EVENT_RECOVER_HP = 0x8F,            /* a healing move's amount: VAR_MON_ID; VAR_RATIO (0: the move's own share),
+                                         * VAR_MOVE_ID (W2U's: the engine doesn't set it) */
     EVENT_SIMPLE_DAMAGE_REACTION = 0x91, /* new event (W2U's; the engine's ID is the item reaction check): damage that
                                          * wasn't a move's hit, NEW_VAR_MON_ID, VAR_DAMAGE (resident/damage.c) */
     EVENT_CHARGE_UP_START = 0x95,       /* a two-turn move's charge turn starts (Dive, Fly) */
@@ -691,6 +693,7 @@ enum {
 enum {
     MOVE_PARAM_TYPE = 0x00,
     MOVE_PARAM_CATEGORY = 0x02,
+    MOVE_PARAM_HEAL = 0x1A,             /* the share of its HP a healing move restores (Recover) */
     MOVE_PARAM_TARGET = 0x1B,
 };
 
@@ -869,6 +872,10 @@ b32 AbilityEvent_RollEffectChance(BtlServerFlow *flow, u32 chancePercent);
 
 /* poke_tool.c */
 u32 PokeParty_GetParam(const PartyPkm *pkm, u32 param, void *buffer);
+
+/* btl_calc.c: value x ratio (fixed point, 4096 = x1), rounded to nearest / as the move data's shares are */
+u32 fixed_round(u32 value, u32 ratio);
+u32 MultiplyValueByRatio(u32 value, u32 ratio);
 
 /* waza_tool.c */
 s32 PML_MoveGetParam(u16 move, u32 param);

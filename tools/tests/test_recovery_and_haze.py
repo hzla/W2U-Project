@@ -18,19 +18,24 @@ class RecoveryAndHaze(unittest.TestCase):
             subprocess.run([str(executable)], check=True)
 
     def test_shore_up_floors_exact_fractions_without_changing_native_recovery(self):
+        # The amount is resident C (src/mechanics/resident/damage.c); the hook forwards to it
+        resident = (ROOT / "src/mechanics/resident/damage.c").read_text()
+        function = re.search(r'^u32 W2U_CalcMoveHealAmount\(.*?^\}', resident, re.M | re.S).group()
+        defines = "\n".join(l for l in resident.splitlines()
+                            if re.match(r"#define (MOVE_SHORE_UP|RECOVER_RATIO_TWO_THIRDS) ", l))
         callback = re.search(r'extern "C" u32 THUMB_BRANCH_ServerEvent_CalcMoveHealAmount\(.*?^\}', SOURCE.read_text(), re.M | re.S).group()
         program = r'''
-using u32=unsigned;using u64=unsigned long long;using MOVE_ID=unsigned;struct ServerFlow{};struct BattleMon{};
-enum {MVDATA_HEAL,VAR_MON_ID,VAR_RATIO,VAR_MOVE_ID,EVENT_RECOVER_HP,VALUE_MAX_HP,MOVE_SHORE_UP=659};
-constexpr unsigned W2U_RECOVER_RATIO_TWO_THIRDS=2732;
-unsigned hp,ratio;unsigned PML_MoveGetParam(unsigned,unsigned){return 50;}
-unsigned BattleMon_GetID(BattleMon*){return 0;}void BattleEventVar_Push(){}void BattleEventVar_Pop(){}
+using u16=unsigned short;using u32=unsigned;using u64=unsigned long long;using s32=int;using MOVE_ID=unsigned;
+struct ServerFlow{};typedef ServerFlow BtlServerFlow;struct BattleMon{};
+enum {MOVE_PARAM_HEAL,VAR_MON_ID,VAR_RATIO,VAR_MOVE_ID,EVENT_RECOVER_HP,BMV_MAX_HP};
+unsigned hp,ratio;s32 PML_MoveGetParam(u16,u32){return 50;}
+unsigned GetMonID(BattleMon*){return 0;}void BattleEventVar_Push(unsigned){}void BattleEventVar_Pop(unsigned){}
 void BattleEventVar_SetConstValue(unsigned,unsigned){}void BattleEventVar_SetValue(unsigned,unsigned){}
 unsigned BattleEventVar_GetValue(unsigned){return ratio;}void BattleEvent_CallHandlers(ServerFlow*,unsigned){}
-unsigned BattleMon_GetValue(BattleMon*,unsigned){return hp;}
+unsigned GetBattleMonStat(BattleMon*,unsigned){return hp;}
 unsigned fixed_round(unsigned x,unsigned q){return (x*q+2048)/4096;}
 unsigned MultiplyValueByRatio(unsigned x,unsigned q){return (x*q+50)/100;}
-''' + callback + r'''
+''' + defines + "\n" + function + "\n" + callback + r'''
 int main(){ServerFlow sf;BattleMon mon;for(hp=1;hp<=2048;++hp){
  for(unsigned q:{2048u,2732u}){ratio=q;unsigned exact=q==2048?hp/2:hp*2/3;if(!exact)exact=1;
  if(THUMB_BRANCH_ServerEvent_CalcMoveHealAmount(&sf,659,&mon)!=exact)return 1;}

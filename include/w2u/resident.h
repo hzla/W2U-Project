@@ -111,6 +111,9 @@ u32 W2U_MultiHitTargetCount(u16 move, u32 count, u32 countMax);
 u32 W2U_SpreadTargetCount(u16 move, u32 countMax);
 void W2U_SimpleDamageReaction(BtlServerFlow *flow, BattleMon *mon, u32 damage, u32 beforeHP);
 u32 W2U_SimpleDamageBeforeHP(u32 monId);
+/* A healing move's amount (damage.c), ServerEvent_CalcMoveHealAmount whole: EVENT_RECOVER_HP gets VAR_MOVE_ID too, and
+ * Shore Up floors its exact share (2/3 in a sandstorm, else 1/2) */
+u32 W2U_CalcMoveHealAmount(BtlServerFlow *flow, u16 move, BattleMon *mon);
 b32 W2U_DamageToRecoverCheck(BtlServerFlow *flow, BattleMon *attacker, BattleMon *defender,
                               const BtlFlowMoveParam *param);
 
