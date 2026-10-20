@@ -7,11 +7,12 @@
  * Cloud Nine negate its effects, not its presence.
  *  - strong winds: no engine weather; a super-effective hit's Flying weakness becomes x1;
  *  - heavy rain / harsh sun: the engine weather is rain / sun with permanent turns (every native rain / sun rule
- *    applies); damaging Fire moves in heavy rain / Water moves in harsh sun fail after "X used Y!", and the AI's
- *    damage estimate for them is 0.
+ *    applies); damaging Fire moves in heavy rain / Water moves in harsh sun fail after "X used Y!", and the trainer
+ *    AI treats them as moves that don't affect the target.
  * The abilities' handlers: src/mechanics/abilities/strong_weather.c. The view (display commands 0x3F / 0x40 with the
- * view weathers of w2u/strong_weather_ids.h, a/0/6/5 effects) is the injection build's (src/pokeweb_gameplay/w2u_strong_weather.cpp); a
- * decomp build's client is retail, so there the start and end are their texts alone. */
+ * view weathers of w2u/strong_weather_ids.h, a/0/6/5 effects) is the injection build's
+ * (src/pokeweb_gameplay/w2u_strong_weather.cpp); a decomp build's client is retail, so there the start and end are
+ * their texts alone. */
 #ifndef W2U_STRONG_WEATHER_H
 #define W2U_STRONG_WEATHER_H
 
