@@ -74,6 +74,7 @@ W2U_DECOMP_CHECK(original_targets, (u32)&((BtlServerFlow *)0)->unk850 == 0x850);
 #define RawBattleMonStat BattleMon_GetRealStat
 #define CritAtkDefLevel BattleMon_GetCriticalStat
 #define BtlEventVar_TryRead BattleEventVar_GetValueIfExist
+#define Condition_CheckTypeImmunity Condition_CheckUnaffectedByType   /* ov167's veneer to overlay 169's */
 #define IsSideEffectSet SideEffect_IsActive     /* IRDO.yml names ov167's branch stub to it (the decomp's is in ov169) */
 #endif
 
@@ -189,7 +190,11 @@ enum {
     VAR_TARGET0 = 0x06,
     VAR_SPECIAL_PRIORITY = 0x11,        /* EVENT_SPECIAL_PRIORITY: 0 last, 1 normal, 2 first in the bracket */
     VAR_MOVE_ID = 0x12,
+    VAR_POKE_TYPE = 0x15,               /* EVENT_CHECK_TYPE_EFFECTIVENESS: the defending type checked */
     VAR_MOVE_TYPE = 0x16,
+    VAR_NO_TYPE_EFFECTIVENESS = 0x4B,   /* EVENT_CHECK_TYPE_EFFECTIVENESS: nonzero, an immunity counts as x1 */
+    VAR_SET_TYPE_EFFECTIVENESS = 0x4C,  /* EVENT_CHECK_TYPE_EFFECTIVENESS: W2U_OVERRIDE_EFFECTIVENESS_* (the engine's
+                                         * "force x1" flag before W2U) */
     VAR_MOVE_CATEGORY = 0x1A,           /* EVENT_DEFENDING_STAT: 1 = the defending stat is Defense (Psyshock too) */
     VAR_EVASION_STAGE = 0x28,           /* 6 = neutral */
     VAR_MOVE_POWER_RATIO = 0x31,        /* fixed point, 4096 = x1 */
@@ -206,6 +211,28 @@ enum {
     VAR_WEATHER = 0x39,                 /* EVENT_W2U_DAMAGE_WEATHER: the weather */
     VAR_SUBSTITUTE_HIT = 0x46,          /* nonzero: the hit landed on a substitute */
     VAR_NO_SECONDARY = 0x47,            /* nonzero: no secondary effects for this hit (Shield Dust) */               /* EVENT_CHECK_NO_EFFECT: rewritten to 1, the move does not affect the target */
+};
+
+/* Type effectiveness grades: the engine's (immune, x1/4, x1/2, x1, x2, x4) and W2U's beyond them (resident/
+ * effectiveness.c: added types, Tar Shot) */
+enum {
+    W2U_EFF_IMMUNE = 0,
+    W2U_EFF_1_4 = 1,
+    W2U_EFF_1_2 = 2,
+    W2U_EFF_1 = 3,
+    W2U_EFF_2 = 4,
+    W2U_EFF_4 = 5,
+    W2U_EFF_1_8 = 6,
+    W2U_EFF_8 = 7,
+    W2U_EFF_16 = 8,
+};
+/* VAR_SET_TYPE_EFFECTIVENESS: keep, x1/2, x1, x2, or W2U_COMPOUND_EFFECTIVENESS + a grade to multiply by */
+enum {
+    W2U_DONT_OVERRIDE_EFFECTIVENESS = 0,
+    W2U_OVERRIDE_EFFECTIVENESS_1_2 = 1,
+    W2U_OVERRIDE_EFFECTIVENESS_1 = 2,
+    W2U_OVERRIDE_EFFECTIVENESS_2 = 3,
+    W2U_COMPOUND_EFFECTIVENESS = 4,
 };
 
 /* Weather (GetWeather: as abilities see it, so Air Lock reads as none) */
@@ -547,6 +574,7 @@ enum {
 /* Server display commands (ServerDisplay_AddCommon; W2U's names) */
 enum {
     SERVER_CMD_HIDE_SPRITE = 0x31,      /* (monId, 1) hides the Pokémon's sprite (a charge turn), (monId, 0) shows it */
+    SERVER_CMD_STD_MESSAGE = 0x5A,      /* ServerDisplay_AddMessageImpl: a standard message (bank 19) */
     SERVER_CMD_SET_MESSAGE = 0x5B,      /* ServerDisplay_AddMessageImpl: a set message (bank 18) and its arguments */
 };
 
@@ -772,6 +800,12 @@ u32 GetBattleMonStatus(BattleMon *mon);         /* 0: none, else CONDITION_* */
 /* The stat can still change by stageDelta (not at +6 / -6 already) */
 b32 IsStatChangeValid(BattleMon *mon, u32 statId, s32 stageDelta);
 void ServerEvent_GetMoveParam(BtlServerFlow *flow, u16 move, BattleMon *moveUser, BtlFlowMoveParam *moveParamsOut);
+/* btl_calc.c: one type against one type (W2U: its chart file), W2U_EFF_* */
+u32 GetTypeEffectiveness(u8 attackType, u8 defenseType);
+/* The Pokémon floats (Flying type, Levitate, Magnet Rise...); checkSkyDrop: Sky Drop counts too */
+b32 ServerControl_CheckFloating(BtlServerFlow *flow, BattleMon *mon, u32 checkSkyDrop);
+/* overlay 169: the conditions that change a type check (Foresight, Miracle Eye, Ingrain, Smack Down...) */
+void Condition_CheckTypeImmunity(BtlServerFlow *flow, BattleMon *target);
 /* How many times the move hits (hitWork: W2U_HitWork) */
 b32 ServerEvent_CheckMultihitHits(BtlServerFlow *flow, BattleMon *mon, u16 move, void *hitWork);
 /* After a move's hits: its Fire-type hits thaw the frozen targets (targets: the hit Pokémon, a BtlMonSet) */
@@ -880,6 +914,9 @@ W2U_C_END
 #define W2U_SERVERFLOW_QUEUE 0x0C               /* BtlServerFlow.queue: the commands for the clients */
 #define W2U_SERVERFLOW_ORIGINAL_TARGETS 0x850  /* the move's targets before redirection (BtlServerFlow.unk850) */
 #define W2U_POKESET_COUNT 0x42                 /* PokeSet.count, the set's Pokémon */
+#define W2U_BATTLEMON_TYPE1 0xF8               /* BattleMon.type1, type2 after it */
+#define W2U_ADDR_ANNOUNCE_NO_EFFECT 0x021A92A9u /* ov167 ServerDisplay_DoesntAffect (Thumb), White 2 */
+#define W2U_ADDR_ANNOUNCE_FLOATING 0x021AAB19u  /* ov167 ServerControl_FloatingImmune (Thumb), White 2 */
 #define W2U_SERVERFLOW_HANDLER_STATE 0x1DAC     /* BtlServerFlow.actionState (W2U's ServerFlow.HEManager) */
 #define W2U_SERVERFLOW_ACTION_ORDER_COUNT 0x782  /* BtlServerFlow.actionOrderCount */
 #define W2U_SERVERFLOW_ACTION_ORDER 0x7E0       /* BtlServerFlow.actionOrder[6] */

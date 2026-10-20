@@ -141,7 +141,6 @@ struct MoveState {
     bool craftyShieldActive[W2U_SIDE_COUNT];
     u8 matBlockOwner[W2U_SIDE_COUNT];
     u8 craftyShieldOwner[W2U_SIDE_COUNT];
-    u8 extraTypes[BATTLE_MAX_SLOTS];
     u8 laserFocusTurns[BATTLE_MAX_SLOTS];
     u8 dragonCheerBoost[BATTLE_MAX_SLOTS];
     u8 throatChopTurns[BATTLE_MAX_SLOTS];
@@ -151,7 +150,6 @@ struct MoveState {
     u32 stompingProtectedThisMoveFlags;
     u32 statsRaisedThisTurnFlags;
     u32 statsLoweredThisTurnFlags;
-    u32 tarShotFlags;
     u32 noRetreatFlags;
     u32 glaiveRushFlags;
     u32 shedTailTransferFlags;
@@ -272,6 +270,17 @@ extern "C" u32 W2U_CriticalAttackStat(BattleMon* mon, u32 stat);
 extern "C" b32 W2U_DamagingSubstitute(BattleMon* target, u16 move);
 extern "C" u32 W2U_MultiHitTargetCount(u16 move, u32 count, u32 countMax);
 extern "C" u32 W2U_SpreadTargetCount(u16 move, u32 countMax);
+extern "C" void W2U_MoveState_ClearTarShot(u32 monId);
+extern "C" void W2U_Resident_ResetEffectiveness(void);
+extern "C" bool W2U_HasType(BattleMon* mon, u32 type);   /* C b32 */
+extern "C" u32 W2U_EffectivenessMultiplier(u32 effectiveness1, u32 effectiveness2);
+extern "C" u32 W2U_EffectivenessPowerMod(u32 damage, u32 effectiveness);
+extern "C" u32 W2U_ClassifyEffectiveness(s32 effectiveness);
+extern "C" void W2U_EffectivenessMessage(ServerFlow* flow, s32 effectiveness);
+extern "C" u32 W2U_CheckTypeEffectiveness(ServerFlow* flow, BattleMon* attacker, BattleMon* target, u32 moveType,
+    u32 defenseType);
+extern "C" u32 W2U_CheckMoveEffectiveness(ServerFlow* flow, BattleMon* attacker, BattleMon* target,
+    const MoveParam* param, b32 message);
 
 namespace {
 
@@ -305,7 +314,6 @@ extern "C" bool* W2U_MoveState_MatBlockActiveStorage(u32 side);
 extern "C" bool* W2U_MoveState_CraftyShieldActiveStorage(u32 side);
 extern "C" u8* W2U_MoveState_MatBlockOwnerStorage(u32 side);
 extern "C" u8* W2U_MoveState_CraftyShieldOwnerStorage(u32 side);
-extern "C" u8* W2U_MoveState_ExtraTypeStorage(u32 pokemonSlot);
 extern "C" u32* W2U_MoveState_StompingFailureLastTurnStorage();
 extern "C" u32* W2U_MoveState_StompingFailureThisTurnStorage();
 extern "C" u32* W2U_MoveState_StompingProtectedThisMoveStorage();
@@ -370,8 +378,6 @@ W2U_MOVE_STATE_INDEXED_STORAGE(
     u8, W2U_MoveState_MatBlockOwnerStorage, sMoveState.matBlockOwner[index])
 W2U_MOVE_STATE_INDEXED_STORAGE(
     u8, W2U_MoveState_CraftyShieldOwnerStorage, sMoveState.craftyShieldOwner[index])
-W2U_MOVE_STATE_INDEXED_STORAGE(
-    u8, W2U_MoveState_ExtraTypeStorage, sMoveState.extraTypes[index])
 W2U_MOVE_STATE_SCALAR_STORAGE(
     u32, W2U_MoveState_StompingFailureLastTurnStorage, sMoveState.stompingFailureLastTurnFlags)
 W2U_MOVE_STATE_SCALAR_STORAGE(
@@ -411,7 +417,6 @@ W2U_MOVE_STATE_SCALAR_STORAGE(
 #define sCraftyShieldActive(side) (*W2U_MoveState_CraftyShieldActiveStorage(side))
 #define sMatBlockOwner(side) (*W2U_MoveState_MatBlockOwnerStorage(side))
 #define sCraftyShieldOwner(side) (*W2U_MoveState_CraftyShieldOwnerStorage(side))
-#define sExtraType(slot) (*W2U_MoveState_ExtraTypeStorage(slot))
 #define sStompingFailureLastTurnFlags (*W2U_MoveState_StompingFailureLastTurnStorage())
 #define sStompingFailureThisTurnFlags (*W2U_MoveState_StompingFailureThisTurnStorage())
 #define sStompingProtectedThisMoveFlags (*W2U_MoveState_StompingProtectedThisMoveStorage())
@@ -429,16 +434,9 @@ void ClearMoveState()
     }
 }
 
-void InitExtraTypes()
-{
-    for (u32 idx = 0; idx < BATTLE_MAX_SLOTS; ++idx) {
-        sExtraType(idx) = TYPE_NULL;
-    }
-}
-
 void InitLocalMoveState()
 {
-    InitExtraTypes();
+    W2U_Resident_ResetEffectiveness();   // added types, Tar Shot: src/mechanics/resident/effectiveness.c
     sMatBlockFreshFlags = W2U_ALL_BATTLE_SLOT_FLAGS;
     sMoveState.spotlightTargetSlot = BATTLE_MAX_SLOTS;
     for (u32 side = 0; side < W2U_SIDE_COUNT; ++side) {
@@ -519,13 +517,7 @@ bool IsGrounded(ServerFlow* serverFlow, BattleMon* battleMon)
 
 bool HasTypeWithExtra(BattleMon* battleMon, u32 pokeType)
 {
-    if (!battleMon || pokeType == TYPE_NULL) {
-        return false;
-    }
-
-    return battleMon->Type1 == pokeType ||
-        battleMon->Type2 == pokeType ||
-        W2U_MoveState_GetExtraType(battleMon->battleSlot) == pokeType;
+    return W2U_HasType(battleMon, pokeType);   // src/mechanics/resident/effectiveness.c
 }
 
 bool IsDamagingMove(MOVE_ID moveID)
@@ -832,63 +824,8 @@ bool RemoveAuroraVeilSide(
     return true;
 }
 
-u32 EffectivenessPowerMod(u32 damage, u32 effectiveness)
-{
-    volatile u32 checkedEffectiveness = effectiveness;
-    if (checkedEffectiveness == RESULT_NOT_EFFECTIVE) {
-        return 0;
-    }
-    if (checkedEffectiveness == W2U_EFFECTIVENESS_1_8) {
-        return damage >> 3;
-    }
-    if (checkedEffectiveness == W2U_EFFECTIVENESS_1_4) {
-        return damage >> 2;
-    }
-    if (checkedEffectiveness == RESULT_NOT_VERY_EFFECTIVE) {
-        return damage >> 1;
-    }
-    if (checkedEffectiveness == RESULT_SUPER_EFFECTIVE) {
-        return damage * 2;
-    }
-    if (checkedEffectiveness == W2U_EFFECTIVENESS_4) {
-        return damage * 4;
-    }
-    if (checkedEffectiveness == W2U_EFFECTIVENESS_8) {
-        return damage * 8;
-    }
-    if (checkedEffectiveness == W2U_EFFECTIVENESS_16) return damage * 16;
-    return damage;
-}
 
-u32 EffectivenessScaledMultiplier(u32 effectiveness)
-{
-    if (effectiveness == RESULT_NOT_EFFECTIVE) {
-        return 0;
-    }
-    if (effectiveness == W2U_EFFECTIVENESS_1_8) {
-        return 1;
-    }
-    if (effectiveness == W2U_EFFECTIVENESS_1_4) {
-        return 2;
-    }
-    if (effectiveness == RESULT_NOT_VERY_EFFECTIVE) {
-        return 4;
-    }
-    if (effectiveness == RESULT_EFFECTIVE) {
-        return 8;
-    }
-    if (effectiveness == RESULT_SUPER_EFFECTIVE) {
-        return 16;
-    }
-    if (effectiveness == W2U_EFFECTIVENESS_4) {
-        return 32;
-    }
-    if (effectiveness == W2U_EFFECTIVENESS_8) {
-        return 64;
-    }
-    if (effectiveness == W2U_EFFECTIVENESS_16) return 128;
-    return 0xFFFFFFFFu;
-}
+// The effectiveness grades (EffectivenessPowerMod, EffectivenessScaledMultiplier): resident/effectiveness.c
 
 BattleEventItem* AddTransientMoveStateEvent(u32 pokemonSlot);
 BattleEventItem* AddTerrainEvent(u32 pokemonSlot);
@@ -1705,18 +1642,8 @@ extern "C" bool W2U_MoveState_CourtChange(ServerFlow* flow)
 
 // W2U_MoveState_SetShellSideArmCategory, W2U_MoveState_ShellSideArmCategory: src/mechanics/resident/move_category.c
 
-extern "C" bool W2U_MoveState_ApplyTarShot(u32 slot)
-{
-    if (!IsValidSlot(slot)) return false;
-    const bool changed = !(sMoveState.tarShotFlags & SlotMask(slot));
-    sMoveState.tarShotFlags |= SlotMask(slot);
-    return changed;
-}
 
-extern "C" bool W2U_MoveState_HasTarShot(u32 slot)
-{
-    return IsValidSlot(slot) && (sMoveState.tarShotFlags & SlotMask(slot));
-}
+// W2U_MoveState_ApplyTarShot, W2U_MoveState_HasTarShot: src/mechanics/resident/effectiveness.c
 
 extern "C" bool W2U_MoveState_HasNoRetreat(u32 slot)
 {
@@ -1806,27 +1733,9 @@ extern "C" bool W2U_MoveState_HasConsumedBerryFlag(u32 pokemonSlot)
     return mask && (sConsumedBerryFlags & mask);
 }
 
-extern "C" void W2U_MoveState_SetExtraType(u32 pokemonSlot, u32 pokeType)
-{
-    if (IsValidSlot(pokemonSlot)) {
-        sExtraType(pokemonSlot) = (u8)pokeType;
-    }
-}
 
-extern "C" void W2U_MoveState_ClearExtraType(u32 pokemonSlot)
-{
-    if (IsValidSlot(pokemonSlot)) {
-        sExtraType(pokemonSlot) = TYPE_NULL;
-    }
-}
 
-extern "C" u32 W2U_MoveState_GetExtraType(u32 pokemonSlot)
-{
-    if (!IsValidSlot(pokemonSlot)) {
-        return TYPE_NULL;
-    }
-    return sExtraType(pokemonSlot);
-}
+// W2U_MoveState_SetExtraType, ClearExtraType, GetExtraType: src/mechanics/resident/effectiveness.c
 
 extern "C" u32 W2U_ResolveRevelationDanceType(BattleMon* battleMon)
 {
@@ -6598,7 +6507,7 @@ static void ClearSwitchedOrFaintedTransientState()
     W2U_MoveState_SetCommanderForm(currentSlot, 0);
     sMoveState.statsRaisedThisTurnFlags &= ~SlotMask(currentSlot);
     sMoveState.statsLoweredThisTurnFlags &= ~SlotMask(currentSlot);
-    sMoveState.tarShotFlags &= ~SlotMask(currentSlot);
+    W2U_MoveState_ClearTarShot(currentSlot);
     sMoveState.noRetreatFlags &= ~SlotMask(currentSlot);
     sMoveState.glaiveRushFlags &= ~SlotMask(currentSlot);
     W2U_MoveState_ClearShellSideArm(currentSlot, true);
@@ -8673,6 +8582,8 @@ extern "C" BattleEventItem* THUMB_BRANCH_SAFESTACK_PosEffectEvent_AddItem(
 #include "w2u_battle_module_api_entries.inc"
 #undef W2U_BATTLE_API_SOURCE_MOVES
 
+// Type effectiveness: src/mechanics/resident/effectiveness.c (the grades past x4, the added type, Tar Shot,
+// Thousand Arrows, W2U's overrides in VAR_SET_TYPE_EFFECTIVENESS)
 extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerEvent_CheckDamageEffectiveness(
     ServerFlow* serverFlow,
     BattleMon* attackingMon,
@@ -8680,148 +8591,35 @@ extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerEvent_CheckDamageEffectiveness(
     u32 moveType,
     u8 pokemonType)
 {
-    BattleEventVar_Push();
-    u32 attackingSlot = BattleMon_GetID(attackingMon);
-    u32 defendingSlot = BattleMon_GetID(defendingMon);
-    BattleEventVar_SetConstValue(VAR_ATTACKING_MON, attackingSlot);
-    BattleEventVar_SetConstValue(VAR_DEFENDING_MON, defendingSlot);
-    BattleEventVar_SetConstValue(VAR_POKE_TYPE, pokemonType);
-    BattleEventVar_SetConstValue(VAR_MOVE_TYPE, moveType);
-    BattleEventVar_SetRewriteOnceValue(VAR_NO_TYPE_EFFECTIVENESS, 0);
-    BattleEventVar_SetRewriteOnceValue(VAR_SET_TYPE_EFFECTIVENESS, DONT_OVERRIDE_EFFECTIVENESS);
-    Condition_CheckUnaffectedByType(serverFlow, defendingMon);
-    BattleEvent_CallHandlers(serverFlow, EVENT_CHECK_TYPE_EFFECTIVENESS);
-    b32 overrideImmunity = BattleEventVar_GetValue(VAR_NO_TYPE_EFFECTIVENESS);
-    u32 overrideEffectiveness = (u32)BattleEventVar_GetValue(VAR_SET_TYPE_EFFECTIVENESS);
-    BattleEventVar_Pop();
+    return W2U_CheckTypeEffectiveness(serverFlow, attackingMon, defendingMon, moveType, pokemonType);
+}
 
-    u32 effectiveness = GetTypeEffectiveness(moveType, pokemonType);
-    if (effectiveness == RESULT_NOT_EFFECTIVE && overrideImmunity) {
-        effectiveness = RESULT_EFFECTIVE;
-    }
+// The effectiveness classes (messages, Expert Belt, Filter, Neuroforce) with W2U's grades: x1/8 is resisted
+extern "C" u32 THUMB_BRANCH_TypeEffectivenessClass(s32 effectiveness)
+{
+    return W2U_ClassifyEffectiveness(effectiveness);
+}
 
-    if (effectiveness != RESULT_NOT_EFFECTIVE) {
-        if (overrideEffectiveness == OVERRIDE_EFFECTIVENESS_1_2) {
-            return RESULT_NOT_VERY_EFFECTIVE;
-        }
-        if (overrideEffectiveness == OVERRIDE_EFFECTIVENESS_1) {
-            return RESULT_EFFECTIVE;
-        }
-        if (overrideEffectiveness == OVERRIDE_EFFECTIVENESS_2) {
-            return RESULT_SUPER_EFFECTIVE;
-        }
-        if (overrideEffectiveness >= COMPOUND_EFFECTIVENESS) {
-            effectiveness = GetTypeEffectivenessMultiplier(effectiveness, overrideEffectiveness - COMPOUND_EFFECTIVENESS);
-        }
-    }
-
-    return effectiveness;
+// The hit's "super effective" / "not very effective" message through the classes above (no IRDO.yml name)
+extern "C" void THUMB_BRANCH_167_0x21A508C(ServerFlow* flow, s32 effectiveness)
+{
+    W2U_EffectivenessMessage(flow, effectiveness);
 }
 
 extern "C" u32 THUMB_BRANCH_GetTypeEffectivenessMultiplier(u32 effectiveness1, u32 effectiveness2)
 {
-    u32 multiplier1 = EffectivenessScaledMultiplier(effectiveness1);
-    u32 multiplier2 = EffectivenessScaledMultiplier(effectiveness2);
-    if (multiplier1 == 0xFFFFFFFFu || multiplier2 == 0xFFFFFFFFu) {
-        return RESULT_EFFECTIVE;
-    }
-
-    volatile u32 multiplier = (multiplier1 * multiplier2) / 4;
-    if (multiplier == 0) {
-        return RESULT_NOT_EFFECTIVE;
-    }
-    if (multiplier == 2) {
-        return W2U_EFFECTIVENESS_1_8;
-    }
-    if (multiplier == 4) {
-        return W2U_EFFECTIVENESS_1_4;
-    }
-    if (multiplier == 8) {
-        return RESULT_NOT_VERY_EFFECTIVE;
-    }
-    if (multiplier == 32) {
-        return RESULT_SUPER_EFFECTIVE;
-    }
-    if (multiplier == 64) {
-        return W2U_EFFECTIVENESS_4;
-    }
-    if (multiplier == 128) {
-        return W2U_EFFECTIVENESS_8;
-    }
-    if (multiplier == 256) return W2U_EFFECTIVENESS_16;
-    return RESULT_EFFECTIVE;
+    return W2U_EffectivenessMultiplier(effectiveness1, effectiveness2);
 }
 
-static u32 CheckFirstTypeEffectiveness(
-    ServerFlow* serverFlow,
-    BattleMon* attackingMon,
-    BattleMon* defendingMon,
-    u32 moveType,
-    u8 pokemonType)
-{
-    u32 effectiveness = THUMB_BRANCH_SAFESTACK_ServerEvent_CheckDamageEffectiveness(
-        serverFlow,
-        attackingMon,
-        defendingMon,
-        moveType,
-        pokemonType);
-
-    u32 extraType = W2U_MoveState_GetExtraType(defendingMon->battleSlot);
-    if (extraType != TYPE_NULL) {
-        u32 extraEffectiveness = THUMB_BRANCH_SAFESTACK_ServerEvent_CheckDamageEffectiveness(
-            serverFlow,
-            attackingMon,
-            defendingMon,
-            moveType,
-            (u8)extraType);
-        effectiveness = THUMB_BRANCH_GetTypeEffectivenessMultiplier(effectiveness, extraEffectiveness);
-    }
-
-    // This adapter runs once on the first native type, before the engine
-    // combines the second type and checks Wonder Guard/ability immunity.
-    // Added types are included above. Never apply the factor once per type.
-    if (moveType == TYPE_FIRE && W2U_MoveState_HasTarShot(defendingMon->battleSlot))
-        effectiveness = THUMB_BRANCH_GetTypeEffectivenessMultiplier(effectiveness, RESULT_SUPER_EFFECTIVE);
-
-    return effectiveness;
-}
-
-// Native aggregate affinity, including its floating check and notification.
-// Arrows overrides aggregate Flying immunity, not just the Flying component:
-// otherwise Fire/Flying would incorrectly take 2x damage on the first hit.
 extern "C" u32 THUMB_BRANCH_SAFESTACK_ServerEvent_CheckMoveDamageEffectiveness(
     ServerFlow* flow, BattleMon* user, BattleMon* target, const MoveParam* move, b32 message)
 {
-    if (move->moveType == TYPE_NULL) return RESULT_EFFECTIVE;
-    const bool arrows = move->moveID == MOVE_THOUSAND_ARROWS && move->moveType == TYPE_GROUND;
-    if (arrows && HasTypeWithExtra(target, TYPE_FLYING) && ServerControl_CheckFloating(flow, target, 1))
-        return RESULT_EFFECTIVE;
-    const u16 types = BattleMon_GetPokeType(target);
-    const u8 first = types >> 8, second = types & 0xFF;
-    u32 result = CheckFirstTypeEffectiveness(flow, user, target, move->moveType, first);
-    if (first != second)
-        result = THUMB_BRANCH_GetTypeEffectivenessMultiplier(result,
-            THUMB_BRANCH_SAFESTACK_ServerEvent_CheckDamageEffectiveness(flow, user, target, move->moveType, second));
-    bool floating = false;
-    if (!arrows && move->moveType == TYPE_GROUND) {
-        if (result) {
-            floating = ServerControl_CheckFloating(flow, target, 0);
-            if (floating) result = RESULT_NOT_EFFECTIVE;
-        } else if (!ServerControl_CheckFloating(flow, target, 1)) {
-            result = RESULT_EFFECTIVE;
-        }
-    }
-    if (!result && message) {
-        // Pinned US W2 native announcement services; no child pointers.
-        typedef void (*Notify)(ServerFlow*, BattleMon*);
-        ((Notify)(floating ? 0x021AAB19u : 0x021A92A9u))(flow, target);
-    }
-    return result;
+    return W2U_CheckMoveEffectiveness(flow, user, target, move, message);
 }
 
 extern "C" u32 THUMB_BRANCH_TypeEffectivenessPowerMod(u32 damage, u32 effectiveness)
 {
-    return EffectivenessPowerMod(damage, effectiveness);
+    return W2U_EffectivenessPowerMod(damage, effectiveness);
 }
 
 extern "C" b32 THUMB_BRANCH_BattleMon_HasType(BattleMon* battleMon, u32 pokeType)

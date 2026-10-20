@@ -8,6 +8,13 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 TEXT = (ROOT / "src/pokeweb_gameplay/w2u_moves.cpp").read_text()
+EFFECTIVENESS = (ROOT / "src/mechanics/resident/effectiveness.c").read_text()
+
+
+def resident_bodies(*names):
+    """Functions of resident/effectiveness.c, which W2U's effectiveness hooks forward to"""
+    return "\n".join(re.search(r'^(?:static )?[A-Za-z][^\n;]*\b' + name + r'\([^;{]*\)\s*\{.*?^\}', EFFECTIVENESS,
+                                re.S | re.M).group() for name in names)
 
 
 def bodies(*names):
@@ -109,34 +116,37 @@ int main() {
 
     def test_aggregate_ground_affinity_preserves_native_and_extra_types(self):
         compiled(r'''
-typedef unsigned u32; typedef unsigned short u16; typedef unsigned char u8; typedef int b32;
-enum {TYPE_NULL=18,TYPE_FLYING=2,TYPE_GROUND=4,TYPE_FIRE=9,TYPE_GRASS=11,
- MOVE_THOUSAND_ARROWS=614,RESULT_EFFECTIVE=3,RESULT_NOT_EFFECTIVE=0,RESULT_SUPER_EFFECTIVE=4};
-struct ServerFlow {}; struct BattleMon {unsigned battleSlot;u16 types;bool floating;};
-struct MoveParam {unsigned moveID,moveType;}; unsigned extra=18;bool tar=false;
-bool HasTypeWithExtra(BattleMon* mon,unsigned type) {return mon->types>>8==type||(mon->types&255)==type||extra==type;}
+typedef unsigned u32; typedef unsigned short u16; typedef unsigned char u8; typedef int b32; typedef int s32;
+enum {W2U_TYPE_NONE=18,TYPE_FLYING=2,TYPE_GROUND=4,TYPE_FIRE=9,TYPE_GRASS=11,
+ MOVE_THOUSAND_ARROWS=614,W2U_EFF_1=3,W2U_EFF_IMMUNE=0,W2U_EFF_2=4};
+struct BtlServerFlow {}; struct BattleMon {unsigned battleSlot;u16 types;bool floating;};
+struct BtlFlowMoveParam {unsigned move,type;}; unsigned extra=18;bool tar=false;
+unsigned GetMonID(BattleMon* mon) {return mon->battleSlot;}
+bool W2U_HasType(BattleMon* mon,unsigned type) {return mon->types>>8==type||(mon->types&255)==type||extra==type;}
 unsigned W2U_MoveState_GetExtraType(unsigned) {return extra;}
 bool W2U_MoveState_HasTarShot(unsigned) {return tar;}
-unsigned THUMB_BRANCH_SAFESTACK_ServerEvent_CheckDamageEffectiveness(ServerFlow*,BattleMon*,BattleMon* target,unsigned move,unsigned type) {
+unsigned W2U_CheckTypeEffectiveness(BtlServerFlow*,BattleMon*,BattleMon* target,unsigned move,unsigned type) {
  if(move==4 && type==2) return target->floating?0:3;
  if(move==4 && type==9) return 4;
  if(move==9 && type==11) return 4;
  return 3;
 }
-unsigned THUMB_BRANCH_GetTypeEffectivenessMultiplier(unsigned a,unsigned b) {if(!a||!b)return 0;return a+b-3;}
-u16 BattleMon_GetPokeType(BattleMon* mon) {return mon->types;}
-bool ServerControl_CheckFloating(ServerFlow*,BattleMon* mon,unsigned) {return mon->floating;}
-''' + bodies("CheckFirstTypeEffectiveness", "THUMB_BRANCH_SAFESTACK_ServerEvent_CheckMoveDamageEffectiveness") + r'''
+unsigned W2U_EffectivenessMultiplier(unsigned a,unsigned b) {if(!a||!b)return 0;return a+b-3;}
+unsigned W2U_PokeTypes(BattleMon* mon) {return mon->types;}
+bool ServerControl_CheckFloating(BtlServerFlow*,BattleMon* mon,unsigned) {return mon->floating;}
+void ServerControl_FloatingImmune(BtlServerFlow*,BattleMon*) {}
+void ServerDisplay_DoesntAffect(BtlServerFlow*,BattleMon*) {}
+''' + resident_bodies("FirstTypeEffectiveness", "W2U_CheckMoveEffectiveness") + r'''
 int main() {
- ServerFlow flow; BattleMon user={0,0,false},target={12,u16(9*256+2),true};MoveParam move={614,4};
- if(THUMB_BRANCH_SAFESTACK_ServerEvent_CheckMoveDamageEffectiveness(&flow,&user,&target,&move,0)!=3) return 1;
- move.moveID=89;if(THUMB_BRANCH_SAFESTACK_ServerEvent_CheckMoveDamageEffectiveness(&flow,&user,&target,&move,0)!=0) return 2;
- target.floating=false;if(THUMB_BRANCH_SAFESTACK_ServerEvent_CheckMoveDamageEffectiveness(&flow,&user,&target,&move,0)!=4) return 3;
- target={12,0,true};if(THUMB_BRANCH_SAFESTACK_ServerEvent_CheckMoveDamageEffectiveness(&flow,&user,&target,&move,0)!=0) return 4;
- move.moveID=614;if(THUMB_BRANCH_SAFESTACK_ServerEvent_CheckMoveDamageEffectiveness(&flow,&user,&target,&move,0)!=3) return 5;
+ BtlServerFlow flow; BattleMon user={0,0,false},target={12,u16(9*256+2),true};BtlFlowMoveParam move={614,4};
+ if(W2U_CheckMoveEffectiveness(&flow,&user,&target,&move,0)!=3) return 1;
+ move.move=89;if(W2U_CheckMoveEffectiveness(&flow,&user,&target,&move,0)!=0) return 2;
+ target.floating=false;if(W2U_CheckMoveEffectiveness(&flow,&user,&target,&move,0)!=4) return 3;
+ target={12,0,true};if(W2U_CheckMoveEffectiveness(&flow,&user,&target,&move,0)!=0) return 4;
+ move.move=614;if(W2U_CheckMoveEffectiveness(&flow,&user,&target,&move,0)!=3) return 5;
  target.floating=false;move={53,9};extra=11;tar=true;
- if(THUMB_BRANCH_SAFESTACK_ServerEvent_CheckMoveDamageEffectiveness(&flow,&user,&target,&move,0)!=5) return 6;
- move.moveType=18;if(THUMB_BRANCH_SAFESTACK_ServerEvent_CheckMoveDamageEffectiveness(&flow,&user,&target,&move,0)!=3) return 7;
+ if(W2U_CheckMoveEffectiveness(&flow,&user,&target,&move,0)!=5) return 6;
+ move.type=18;if(W2U_CheckMoveEffectiveness(&flow,&user,&target,&move,0)!=3) return 7;
  return 0;
 }
 ''')
@@ -190,6 +200,7 @@ void W2U_MoveState_ClearThroatChop(u32){}
 bool HasTransientMoveState(){return true;}
 void RemoveTransientMoveStateEvent(){}
 void W2U_MoveState_ClearShellSideArm(u32,bool){}
+void W2U_MoveState_ClearTarShot(u32){}
 ''' + bodies("W2U_MoveState_SetCommanderForm", "W2U_MoveState_GetCommanderForm",
              "ClearSwitchedOrFaintedTransientState") + r'''
 int main(){
