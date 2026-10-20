@@ -64,6 +64,8 @@ W2U_DECOMP_CHECK(original_targets, (u32)&((BtlServerFlow *)0)->unk850 == 0x850);
 #define TransformCheck BattleMon_TransformCheck
 #define GetMonID BattleMon_GetID
 #define GetFieldWeather BattleField_GetWeather
+#define FieldStatusGetWeatherTurns BattleField_GetWeatherTurn
+#define FieldStatusSetWeather BattleField_SetWeather
 #define IsGuaranteedHit ServerControl_IsGuaranteedHit
 #define IsMoldBreakerIgnoredAbility IsMoldBreakerAffectedAbility
 #define IsFieldEffectActive BattleField_CheckEffect
@@ -780,6 +782,14 @@ u32 BtlSetup_GetBattleStyle(BtlMainModule *mainModule);
 u8 ServerEvent_GetWeather(BtlServerFlow *flow);
 /* The field's weather, before Air Lock and Cloud Nine */
 u32 GetFieldWeather(void);
+/* Its turns left (0xFF: permanent), and setting both (no message or effect) */
+u32 FieldStatusGetWeatherTurns(void);
+void FieldStatusSetWeather(u32 weather, u32 turns);
+/* After the weather changed: EVENT_AFTER_WEATHER_CHANGE (Forecast, Flower Gift) */
+void ServerControl_ChangeWeatherAfter(BtlServerFlow *flow, u32 weather);
+/* A move's damage to the defender (*damage); the AI's estimate (AICalcDamage) calls it too */
+b32 ServerEvent_CalcDamage(BtlServerFlow *flow, BattleMon *attacker, BattleMon *defender, const BtlFlowMoveParam *param,
+                           u32 effectiveness, u32 ratio, b32 critical, b32 fixedRoll, u16 *damage);
 /* No Guard, Lock-On and Mind Reader: the move hits whatever (the hide check is skipped) */
 b32 IsGuaranteedHit(BtlServerFlow *flow, BattleMon *attacker, BattleMon *defender);
 b32 IsMoldBreakerIgnoredAbility(u16 ability);  /* the native list of abilities Mold Breaker ignores (Gen 4-5) */

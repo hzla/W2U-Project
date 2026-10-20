@@ -285,6 +285,8 @@ extern "C" u32 W2U_CheckTypeEffectiveness(ServerFlow* flow, BattleMon* attacker,
     u32 defenseType);
 extern "C" u32 W2U_CheckMoveEffectiveness(ServerFlow* flow, BattleMon* attacker, BattleMon* target,
     const MoveParam* param, b32 message);
+extern "C" u32 W2U_AIMoveEffectiveness(ServerFlow* flow, BattleMon* attacker, BattleMon* target,
+    const MoveParam* param, b32 message);
 
 namespace {
 
@@ -8630,6 +8632,14 @@ extern "C" void THUMB_BRANCH_LINK_167_0x21A7C34(
     ServerFlow* flow, u32 count, u32* effectiveness, BattleMon** mons, b32 multipleTargets)
 {
     W2U_EffectivenessMessageMulti(flow, count, effectiveness, mons, multipleTargets);
+}
+
+// The trainer AI's grade: CalcMoveEffectiveness (ov167 0x21AB92C) calls ServerControl_CheckMoveEffectiveness at
+// 0x21AB97E; its scripts test the engine's grades only, so x1/8 reads as x1/4, x8 / x16 as x4 (W2U_AIEffectiveness)
+extern "C" u32 THUMB_BRANCH_LINK_167_0x21AB97E(
+    ServerFlow* flow, BattleMon* attacker, BattleMon* target, const MoveParam* param, b32 message)
+{
+    return W2U_AIMoveEffectiveness(flow, attacker, target, param, message);
 }
 
 extern "C" u32 THUMB_BRANCH_GetTypeEffectivenessMultiplier(u32 effectiveness1, u32 effectiveness2)

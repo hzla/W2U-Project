@@ -113,7 +113,7 @@ w2u_battle_module_definitions = [
   {
     'id': 22,
     'slug': 'abilities_strong_weather',
-    'sources': files('../w2u_abilities.cpp', '../w2u_strong_weather.cpp'),
+    'sources': files('../w2u_abilities.cpp', '../../mechanics/abilities/strong_weather.c'),
   },
   {
     'id': 23,

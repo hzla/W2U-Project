@@ -10,7 +10,7 @@ from a clean extracted White 2 VFS and writes:
 The scripts live in a/0/6/5 above the move range and are started as effect ID member + 115
 (src/pokeweb_gameplay/w2u_move_animation_hooks.s routes IDs >= 676 back into a/0/6/5), so the fixed
 battle-animation archive a/0/6/6 keeps its 115 retail members. The IDs here must match
-include/w2u_strong_weather.h.
+include/w2u/strong_weather_ids.h.
 
 Effect script format: u32 variant count (1), 14 u32 offsets (all 0x3C), then u16 opcode + u32 arguments.
 Retail weather-start scripts (a/0/6/6): rain 55, sun 58. They use 06 load particles, 3A, 34 play SE (9 args),
@@ -24,7 +24,7 @@ from pathlib import Path
 
 import ndspy.narc
 
-# Must match include/w2u_strong_weather.h
+# Must match include/w2u/strong_weather_ids.h
 SPA_WINDS, SPA_RAIN, SPA_SUN = 1031, 1032, 1033
 MEMBER_WINDS, MEMBER_RAIN, MEMBER_RAIN_TURN, MEMBER_SUN, MEMBER_SUN_TURN = 960, 961, 962, 963, 964
 

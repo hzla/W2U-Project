@@ -28,6 +28,7 @@ pokeweb_gameplay = files(
     '../mechanics/resident/redirection.c',
     '../mechanics/resident/reset.c',
     '../mechanics/resident/status.c',
+    '../mechanics/resident/strong_weather.c',
     '../mechanics/resident/weather.c',
     'megab2w2/mb_mega_extras.cpp',
     'w2u_mega_hooks.s',

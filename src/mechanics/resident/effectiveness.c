@@ -17,6 +17,10 @@
  *   (VAR_TYPE_EFFECTIVENESS, for the handlers: Expert Belt, Wonder Guard, Weakness Policy, Prism Armor...),
  *   W2U_CountEffectiveness (the battle records) and W2U_EffectivenessMessageMulti (the usual message) pass it on; the
  *   damage keeps the true grade.
+ * - W2U_AIMoveEffectiveness: the trainer AI's grade (CalcMoveEffectiveness). Its scripts test the engine's grades
+ *   for equality (AIIfTypeEffectiveness, AIIfHasSuperEffectiveMove), so a x8 / x16 hit wasn't super effective to it
+ *   and a x1/8 one not resisted: W2U_AIEffectiveness gives the nearest engine grade (the AI's damage estimate takes
+ *   the true one back, strong_weather.c's W2U_AICalcDamage). A damaging move a strong weather stops has no effect.
  * The injection build replaces those engine functions whole; a decomp build's functions return these. */
 #include "w2u/resident.h"
 #include "megab2w2/mb_ids.h"
@@ -104,6 +108,14 @@ void W2U_EffectivenessMessage(BtlServerFlow *flow, s32 effectiveness)
 u32 W2U_DisplayEffectiveness(u32 effectiveness)
 {
     return effectiveness == W2U_EFF_1_8 ? (u32)W2U_EFF_1_4 : effectiveness;
+}
+
+u32 W2U_AIEffectiveness(u32 effectiveness)
+{
+    if (effectiveness == W2U_EFF_8 || effectiveness == W2U_EFF_16) {
+        return W2U_EFF_4;
+    }
+    return W2U_DisplayEffectiveness(effectiveness);
 }
 
 void W2U_SetEffectivenessVar(u32 key, s32 effectiveness)
@@ -270,4 +282,13 @@ u32 W2U_CheckMoveEffectiveness(BtlServerFlow *flow, BattleMon *attacker, BattleM
         }
     }
     return result;
+}
+
+u32 W2U_AIMoveEffectiveness(BtlServerFlow *flow, BattleMon *attacker, BattleMon *target, const BtlFlowMoveParam *param,
+                            b32 message)
+{
+    if (W2U_StrongWeatherStopsMove(flow, param)) {
+        return W2U_EFF_IMMUNE;   /* heavy rain's Fire, harsh sun's Water: it fizzles */
+    }
+    return W2U_AIEffectiveness(W2U_CheckMoveEffectiveness(flow, attacker, target, param, message));
 }
