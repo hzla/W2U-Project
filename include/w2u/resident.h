@@ -128,6 +128,11 @@ void W2U_MoveState_ClearTarShot(u32 monId);
 b32 W2U_HasType(BattleMon *mon, u32 type);
 u32 W2U_ClassifyEffectiveness(s32 effectiveness);
 void W2U_EffectivenessMessage(BtlServerFlow *flow, s32 effectiveness);
+u32 W2U_DisplayEffectiveness(u32 effectiveness);
+void W2U_SetEffectivenessVar(u32 key, s32 effectiveness);
+void W2U_CountEffectiveness(u16 *counts, BtlServerFlow *flow, BattleMon *mon, BattleMon *target, s32 effectiveness);
+void W2U_EffectivenessMessageMulti(BtlServerFlow *flow, u32 count, u32 *effectiveness, BattleMon **mons,
+                                   b32 multipleTargets);
 u32 W2U_EffectivenessMultiplier(u32 effectiveness1, u32 effectiveness2);
 u32 W2U_EffectivenessPowerMod(u32 damage, u32 effectiveness);
 u32 W2U_CheckTypeEffectiveness(BtlServerFlow *flow, BattleMon *attacker, BattleMon *target, u32 moveType,

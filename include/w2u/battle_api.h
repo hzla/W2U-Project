@@ -423,6 +423,21 @@ static inline void ServerControl_FloatingImmune(BtlServerFlow *flow, BattleMon *
 {
     ((void (*)(BtlServerFlow *, BattleMon *))W2U_ADDR_ANNOUNCE_FLOATING)(flow, target);
 }
+
+/* The battle records' effectiveness counts, and the hits' effectiveness message: no IRDO.yml names either */
+static inline void BtlServerFlow_CountEffectiveness(u16 *counts, BtlServerFlow *flow, BattleMon *mon, BattleMon *target,
+                                                    s32 effectiveness)
+{
+    ((void (*)(u16 *, BtlServerFlow *, BattleMon *, BattleMon *, s32))W2U_ADDR_COUNT_EFFECTIVENESS)(counts, flow, mon,
+                                                                                                 target, effectiveness);
+}
+
+static inline void ServerDisplay_EffectivenessMessageMulti(BtlServerFlow *flow, u32 count, u32 *effectiveness,
+                                                           BattleMon **mons, b32 multipleTargets)
+{
+    ((void (*)(BtlServerFlow *, u32, u32 *, BattleMon **, b32))W2U_ADDR_EFFECTIVENESS_MESSAGE_MULTI)(
+        flow, count, effectiveness, mons, multipleTargets);
+}
 #endif
 
 /* A target set's Pokémon (a BtlMonSet: W2U's PokeSet), and the move's targets before redirection */

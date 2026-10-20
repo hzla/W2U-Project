@@ -277,6 +277,10 @@ extern "C" u32 W2U_EffectivenessMultiplier(u32 effectiveness1, u32 effectiveness
 extern "C" u32 W2U_EffectivenessPowerMod(u32 damage, u32 effectiveness);
 extern "C" u32 W2U_ClassifyEffectiveness(s32 effectiveness);
 extern "C" void W2U_EffectivenessMessage(ServerFlow* flow, s32 effectiveness);
+extern "C" void W2U_SetEffectivenessVar(u32 key, s32 effectiveness);
+extern "C" void W2U_CountEffectiveness(u16* counts, ServerFlow* flow, BattleMon* mon, BattleMon* target, s32 effectiveness);
+extern "C" void W2U_EffectivenessMessageMulti(ServerFlow* flow, u32 count, u32* effectiveness, BattleMon** mons,
+    b32 multipleTargets);
 extern "C" u32 W2U_CheckTypeEffectiveness(ServerFlow* flow, BattleMon* attacker, BattleMon* target, u32 moveType,
     u32 defenseType);
 extern "C" u32 W2U_CheckMoveEffectiveness(ServerFlow* flow, BattleMon* attacker, BattleMon* target,
@@ -8604,6 +8608,28 @@ extern "C" u32 THUMB_BRANCH_TypeEffectivenessClass(s32 effectiveness)
 extern "C" void THUMB_BRANCH_167_0x21A508C(ServerFlow* flow, s32 effectiveness)
 {
     W2U_EffectivenessMessage(flow, effectiveness);
+}
+
+// Where the engine only compares a hit's effectiveness with x1, x1/8 goes in as x1/4 (W2U_DisplayEffectiveness):
+// VAR_TYPE_EFFECTIVENESS in ServerEvent_CheckNoEffect, ServerEvent_CalcDamage and ServerEvent_DamageReaction (Wonder
+// Guard, Expert Belt, Weakness Policy, Prism Armor...), the battle records' counts, the effectiveness message
+extern "C" void THUMB_BRANCH_LINK_167_0x21A32DE(u32 key, s32 effectiveness) { W2U_SetEffectivenessVar(key, effectiveness); }
+extern "C" void THUMB_BRANCH_LINK_167_0x21A597C(u32 key, s32 effectiveness) { W2U_SetEffectivenessVar(key, effectiveness); }
+extern "C" void THUMB_BRANCH_LINK_167_0x21A7D9A(u32 key, s32 effectiveness) { W2U_SetEffectivenessVar(key, effectiveness); }
+extern "C" void THUMB_BRANCH_LINK_167_0x21A46B6(
+    u16* counts, ServerFlow* flow, BattleMon* mon, BattleMon* target, s32 effectiveness)
+{
+    W2U_CountEffectiveness(counts, flow, mon, target, effectiveness);
+}
+extern "C" void THUMB_BRANCH_LINK_167_0x21A4E2E(
+    ServerFlow* flow, u32 count, u32* effectiveness, BattleMon** mons, b32 multipleTargets)
+{
+    W2U_EffectivenessMessageMulti(flow, count, effectiveness, mons, multipleTargets);
+}
+extern "C" void THUMB_BRANCH_LINK_167_0x21A7C34(
+    ServerFlow* flow, u32 count, u32* effectiveness, BattleMon** mons, b32 multipleTargets)
+{
+    W2U_EffectivenessMessageMulti(flow, count, effectiveness, mons, multipleTargets);
 }
 
 extern "C" u32 THUMB_BRANCH_GetTypeEffectivenessMultiplier(u32 effectiveness1, u32 effectiveness2)
