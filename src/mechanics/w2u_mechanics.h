@@ -7,6 +7,9 @@
 extern "C" BattleEventHandlerTableEntry FluffyHandlers[1];   // abilities/fluffy.c: Fluffy, Ice Scales, Aura Guard
 extern "C" BattleEventHandlerTableEntry PowerSpotHandlers[1];  // abilities/power_spot.c: Power Spot, Steely Spirit
 extern "C" BattleEventHandlerTableEntry ParentalBondHandlers[2]; // abilities/parental_bond.c
+extern "C" BattleEventHandlerTableEntry DeltaStreamHandlers[7];   // abilities/strong_weather.c
+extern "C" BattleEventHandlerTableEntry PrimordialSeaHandlers[8]; // abilities/strong_weather.c
+extern "C" BattleEventHandlerTableEntry DesolateLandHandlers[8];  // abilities/strong_weather.c
 extern "C" BattleEventHandlerTableEntry BatteryHandlers[1];    // abilities/power_spot.c
 extern "C" BattleEventHandlerTableEntry PunkRockHandlers[2];   // abilities/punk_rock.c
 extern "C" BattleEventHandlerTableEntry EarthEaterHandlers[1];    // abilities/absorb.c

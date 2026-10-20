@@ -636,8 +636,11 @@
     {
       "id": 22,
       "name": "abilities/strong_weather",
-      "source": "abilities+strong_weather",
+      "source": "abilities",
       "white2_only": true,
+      "extra_sources": [
+        "../mechanics/abilities/strong_weather.c"
+      ],
       "entries": [
         ["ability", "ABIL_DELTA_STREAM", "DeltaStreamHandlers"],
         ["ability", "ABIL_PRIMORDIAL_SEA", "PrimordialSeaHandlers"],

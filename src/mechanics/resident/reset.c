@@ -11,4 +11,5 @@ void W2U_Resident_ResetBattleState(void)
     W2U_Resident_ResetParentalBond();
     W2U_Resident_ResetSimpleDamage();
     W2U_Resident_ResetEffectiveness();
+    W2U_StrongWeather_Reset();
 }

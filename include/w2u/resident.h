@@ -45,6 +45,15 @@ u8 W2U_HandlerStatChange(BtlServerFlow *flow, BattleHandlerStatChangeParam *para
  * (W2U_MB_SetMegaSolAttacker), the weather otherwise. */
 u8 W2U_Weather(BtlServerFlow *flow, u8 weather);
 
+/* Strong weathers (strong_weather.c; their state: w2u/strong_weather.h). ServerControl_ChangeWeatherCheck asks
+ * W2U_StrongWeatherBlocksChange first (nonzero: another weather fails, with the kind's message). AICalcDamage calls
+ * W2U_AICalcDamage instead of ServerEvent_CalcDamage: a move the strong weather would make fizzle is estimated as one
+ * that doesn't affect the target (W2U_StrongWeatherStopsMove). */
+b32 W2U_StrongWeatherBlocksChange(BtlServerFlow *flow, u32 weather);
+b32 W2U_StrongWeatherStopsMove(BtlServerFlow *flow, const BtlFlowMoveParam *param);   /* it would fizzle */
+b32 W2U_AICalcDamage(BtlServerFlow *flow, BattleMon *attacker, BattleMon *defender, const BtlFlowMoveParam *param,
+                     u32 effectiveness, u32 ratio, b32 critical, b32 fixedRoll, u16 *damage);
+
 /* Mold Breaker's skip check (mold_breaker.c), whole: the decomp's HandlerMoldBreakerSkipCheck returns it. Nonzero: skip the
  * handler (an ability's, factor type 4, that the native list or W2U's later list has) */
 b32 W2U_MoldBreakerSkipCheck(BattleEventItem *item, BtlServerFlow *flow, u32 factorType, u32 eventType, u32 subId);
@@ -139,6 +148,11 @@ u32 W2U_CheckTypeEffectiveness(BtlServerFlow *flow, BattleMon *attacker, BattleM
                                u32 defenseType);
 u32 W2U_CheckMoveEffectiveness(BtlServerFlow *flow, BattleMon *attacker, BattleMon *target,
                                const BtlFlowMoveParam *param, b32 message);
+/* The trainer AI's grade (CalcMoveEffectiveness, instead of ServerControl_CheckMoveEffectiveness): its scripts test
+ * the engine's grades only, so x1/8 reads as x1/4, x8 and x16 as x4. W2U_AIEffectiveness maps a grade so. */
+u32 W2U_AIEffectiveness(u32 effectiveness);
+u32 W2U_AIMoveEffectiveness(BtlServerFlow *flow, BattleMon *attacker, BattleMon *target, const BtlFlowMoveParam *param,
+                            b32 message);
 
 /* Clears the state above (the injection build, at battle exit; a decomp build's overlay 167 starts with it clear) */
 void W2U_Resident_ResetBattleState(void);
@@ -149,6 +163,7 @@ void W2U_Resident_ResetMoveCategories(void);
 void W2U_Resident_ResetParentalBond(void);
 void W2U_Resident_ResetSimpleDamage(void);
 void W2U_Resident_ResetEffectiveness(void);
+void W2U_StrongWeather_Reset(void);
 
 W2U_C_END
 

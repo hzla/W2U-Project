@@ -415,10 +415,6 @@ def render_meson(registry: dict) -> str:
             "../w2u_abilities.cpp",
             "../w2u_field_effects.cpp",
         ],
-        "abilities+strong_weather": [
-            "../w2u_abilities.cpp",
-            "../w2u_strong_weather.cpp",
-        ],
         "items": ["../w2u_items.cpp"],
         "moves": ["../w2u_moves.cpp"],
     }
