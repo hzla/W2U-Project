@@ -11,9 +11,12 @@
  * - W2U_HasType: the Pokémon's types and its added one (BattleMon_HasType / DoesMonHaveType; not Roost-aware, as W2U's);
  * - W2U_ClassifyEffectiveness: BtlCalc_ClassifyEffectiveness with W2U's grades. The engine's counts every grade above
  *   x1 as super effective, so a x1/8 hit (grade 6) got Filter's and Tinted Lens' modifiers the wrong way;
- *   W2U_EffectivenessMessage: ServerDisplay_EffectivenessMessage (a multi-hit move's message) through it. Still on
- *   the raw "above x1" test: ServerDisplay_EffectivenessMessageMulti (the usual message: a x1/8 hit still says
- *   "It's super effective!"), Expert Belt, the battle records' counts, the AI's switch logic.
+ *   W2U_EffectivenessMessage: ServerDisplay_EffectivenessMessage (a multi-hit move's message) through it;
+ * - W2U_DisplayEffectiveness: the grade where the engine only compares it with x1, x1/8 as x1/4 (both resisted). The
+ *   x1/8 grade is 6, above x1 (3), so the engine's "> 3" tests took a x1/8 hit for super effective. W2U_SetEffectivenessVar
+ *   (VAR_TYPE_EFFECTIVENESS, for the handlers: Expert Belt, Wonder Guard, Weakness Policy, Prism Armor...),
+ *   W2U_CountEffectiveness (the battle records) and W2U_EffectivenessMessageMulti (the usual message) pass it on; the
+ *   damage keeps the true grade.
  * The injection build replaces those engine functions whole; a decomp build's functions return these. */
 #include "w2u/resident.h"
 #include "megab2w2/mb_ids.h"
@@ -96,6 +99,31 @@ void W2U_EffectivenessMessage(BtlServerFlow *flow, s32 effectiveness)
         ServerDisplay_AddMessageImpl(W2U_ServerQueue(flow), SERVER_CMD_STD_MESSAGE, W2U_MSG_NOT_VERY_EFFECTIVE,
                                      0xFFFF0000);
     }
+}
+
+u32 W2U_DisplayEffectiveness(u32 effectiveness)
+{
+    return effectiveness == W2U_EFF_1_8 ? (u32)W2U_EFF_1_4 : effectiveness;
+}
+
+void W2U_SetEffectivenessVar(u32 key, s32 effectiveness)
+{
+    BattleEventVar_SetConstValue(key, (s32)W2U_DisplayEffectiveness((u32)effectiveness));
+}
+
+void W2U_CountEffectiveness(u16 *counts, BtlServerFlow *flow, BattleMon *mon, BattleMon *target, s32 effectiveness)
+{
+    BtlServerFlow_CountEffectiveness(counts, flow, mon, target, (s32)W2U_DisplayEffectiveness((u32)effectiveness));
+}
+
+void W2U_EffectivenessMessageMulti(BtlServerFlow *flow, u32 count, u32 *effectiveness, BattleMon **mons,
+                                   b32 multipleTargets)
+{
+    u32 shown[3], i;
+    for (i = 0; i < count && i < 3; i++) {
+        shown[i] = W2U_DisplayEffectiveness(effectiveness[i]);
+    }
+    ServerDisplay_EffectivenessMessageMulti(flow, count, shown, mons, multipleTargets);
 }
 
 b32 W2U_HasType(BattleMon *mon, u32 type)

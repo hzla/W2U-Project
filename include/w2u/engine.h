@@ -917,6 +917,8 @@ W2U_C_END
 #define W2U_BATTLEMON_TYPE1 0xF8               /* BattleMon.type1, type2 after it */
 #define W2U_ADDR_ANNOUNCE_NO_EFFECT 0x021A92A9u /* ov167 ServerDisplay_DoesntAffect (Thumb), White 2 */
 #define W2U_ADDR_ANNOUNCE_FLOATING 0x021AAB19u  /* ov167 ServerControl_FloatingImmune (Thumb), White 2 */
+#define W2U_ADDR_COUNT_EFFECTIVENESS 0x021AB77Du /* ov167 BtlServerFlow_CountEffectiveness (Thumb), White 2 */
+#define W2U_ADDR_EFFECTIVENESS_MESSAGE_MULTI 0x021A9399u /* ov167 ServerDisplay_EffectivenessMessageMulti (Thumb) */
 #define W2U_SERVERFLOW_HANDLER_STATE 0x1DAC     /* BtlServerFlow.actionState (W2U's ServerFlow.HEManager) */
 #define W2U_SERVERFLOW_ACTION_ORDER_COUNT 0x782  /* BtlServerFlow.actionOrderCount */
 #define W2U_SERVERFLOW_ACTION_ORDER 0x7E0       /* BtlServerFlow.actionOrder[6] */
