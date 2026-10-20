@@ -10,4 +10,5 @@ void W2U_Resident_ResetBattleState(void)
     W2U_Resident_ResetMoveCategories();
     W2U_Resident_ResetParentalBond();
     W2U_Resident_ResetSimpleDamage();
+    W2U_Resident_ResetEffectiveness();
 }

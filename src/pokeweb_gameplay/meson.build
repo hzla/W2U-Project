@@ -17,6 +17,7 @@ pokeweb_gameplay = files(
     '../mechanics/resident/commander.c',
     '../mechanics/resident/contact.c',
     '../mechanics/resident/damage.c',
+    '../mechanics/resident/effectiveness.c',
     '../mechanics/resident/handler_effects.c',
     '../mechanics/resident/mold_breaker.c',
     '../mechanics/resident/move_category.c',

@@ -391,6 +391,40 @@ static inline BtlServerCmdQueue *W2U_ServerQueue(BtlServerFlow *flow)
 #endif
 }
 
+/* A Pokémon's own types (BattleMon.type1 / type2, not Roost's view), and its type pair as the engine sees it */
+static inline u32 W2U_MonType1(BattleMon *mon)
+{
+#if defined(W2U_DECOMP)
+    return mon->type1;
+#else
+    return ((const u8 *)mon)[W2U_BATTLEMON_TYPE1];
+#endif
+}
+
+static inline u32 W2U_MonType2(BattleMon *mon)
+{
+#if defined(W2U_DECOMP)
+    return mon->type2;
+#else
+    return ((const u8 *)mon)[W2U_BATTLEMON_TYPE1 + 1];
+#endif
+}
+
+static inline u32 W2U_PokeTypes(BattleMon *mon) { return (u32)GetPokeType(mon); }
+
+#if !defined(W2U_DECOMP)
+/* "It doesn't affect X..." and the floating immunity's announcement: no IRDO.yml names (White 2 addresses) */
+static inline void ServerDisplay_DoesntAffect(BtlServerFlow *flow, BattleMon *target)
+{
+    ((void (*)(BtlServerFlow *, BattleMon *))W2U_ADDR_ANNOUNCE_NO_EFFECT)(flow, target);
+}
+
+static inline void ServerControl_FloatingImmune(BtlServerFlow *flow, BattleMon *target)
+{
+    ((void (*)(BtlServerFlow *, BattleMon *))W2U_ADDR_ANNOUNCE_FLOATING)(flow, target);
+}
+#endif
+
 /* A target set's Pokémon (a BtlMonSet: W2U's PokeSet), and the move's targets before redirection */
 static inline u32 W2U_TargetSetCount(void *set)
 {

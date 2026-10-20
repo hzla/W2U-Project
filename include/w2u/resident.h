@@ -114,6 +114,27 @@ b32 W2U_ParentalBondActive(void);
 u32 W2U_ParentalBondCountHit(void);
 u32 W2U_ParentalBondHit(void);
 
+/* Type effectiveness (effectiveness.c): a Pokémon's added type (Forest's Curse, Trick-or-Treat) and Tar Shot, W2U's
+ * grades beyond vanilla's (W2U_EFF_*), the per-type check with W2U's overrides, the per-move check (added type, Tar
+ * Shot, Thousand Arrows), and the type check with the added type. GetTypeEffectivenessMultiplier,
+ * TypeEffectivenessPowerMod, ServerEvent_CheckTypeEffectiveness, ServerControl_CheckMoveEffectiveness and
+ * DoesMonHaveType (BattleMon_HasType) return these. */
+void W2U_MoveState_SetExtraType(u32 monId, u32 type);
+void W2U_MoveState_ClearExtraType(u32 monId);
+u32 W2U_MoveState_GetExtraType(u32 monId);
+b32 W2U_MoveState_ApplyTarShot(u32 monId);
+b32 W2U_MoveState_HasTarShot(u32 monId);
+void W2U_MoveState_ClearTarShot(u32 monId);
+b32 W2U_HasType(BattleMon *mon, u32 type);
+u32 W2U_ClassifyEffectiveness(s32 effectiveness);
+void W2U_EffectivenessMessage(BtlServerFlow *flow, s32 effectiveness);
+u32 W2U_EffectivenessMultiplier(u32 effectiveness1, u32 effectiveness2);
+u32 W2U_EffectivenessPowerMod(u32 damage, u32 effectiveness);
+u32 W2U_CheckTypeEffectiveness(BtlServerFlow *flow, BattleMon *attacker, BattleMon *target, u32 moveType,
+                               u32 defenseType);
+u32 W2U_CheckMoveEffectiveness(BtlServerFlow *flow, BattleMon *attacker, BattleMon *target,
+                               const BtlFlowMoveParam *param, b32 message);
+
 /* Clears the state above (the injection build, at battle exit; a decomp build's overlay 167 starts with it clear) */
 void W2U_Resident_ResetBattleState(void);
 void W2U_Resident_ResetPendingMoves(void);
@@ -122,6 +143,7 @@ void W2U_Resident_ResetWeather(void);
 void W2U_Resident_ResetMoveCategories(void);
 void W2U_Resident_ResetParentalBond(void);
 void W2U_Resident_ResetSimpleDamage(void);
+void W2U_Resident_ResetEffectiveness(void);
 
 W2U_C_END
 
