@@ -56,6 +56,8 @@ extern "C" void W2U_MoveState_TickPersistentEffect(MOVE_ID move, u32 target);
 // Child handlers may query it before native immunity filtering removes targets.
 extern "C" u32 W2U_CheckProtectBreak(
     ServerFlow* serverFlow, u32 attackingSlot, u32 defendingSlot, u32 category, MOVE_ID moveID);
+extern "C" u32 W2U_IsProtectCounterMove(u16 move);
+extern "C" void W2U_StartProtectCounterMove(ServerFlow* serverFlow, u32 pokemonSlot);
 
 extern "C" void W2U_MoveState_SetConsumedBerryFlag(u32 pokemonSlot);
 extern "C" bool W2U_MoveState_HasConsumedBerryFlag(u32 pokemonSlot);

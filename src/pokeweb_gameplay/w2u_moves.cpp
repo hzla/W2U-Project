@@ -606,48 +606,9 @@ bool HasPlusMinusAbility(BattleMon* battleMon)
     return ability == ABIL_PLUS || ability == ABIL_MINUS;
 }
 
-bool IsProtectCounterMove(MOVE_ID moveID)
-{
-    switch (moveID) {
-    case MOVE_PROTECT:
-    case MOVE_DETECT:
-    case MOVE_ENDURE:
-    case MOVE_WIDE_GUARD:
-    case MOVE_QUICK_GUARD:
-    case MOVE_BANEFUL_BUNKER:
-    case MOVE_KINGS_SHIELD:
-    case MOVE_SPIKY_SHIELD:
-    case MOVE_OBSTRUCT:
-    case MOVE_SILK_TRAP:
-    case MOVE_BURNING_BULWARK:
-        return true;
-    default:
-        return false;
-    }
-}
-
-void ResetProtectCounter(ServerFlow* serverFlow, u32 pokemonSlot)
-{
-    HandlerParam_SetCounter* setCounter =
-        (HandlerParam_SetCounter*)BattleHandler_PushWork(serverFlow, W2U_EFFECT_COUNTER, pokemonSlot);
-    setCounter->pokeID = (u8)pokemonSlot;
-    setCounter->counterID = W2U_COUNTER_PROTECT;
-    setCounter->value = 0;
-    BattleHandler_PopWork(serverFlow, setCounter);
-}
-
 void StartProtectCounterMove(ServerFlow* serverFlow, u32 pokemonSlot)
 {
-    BattleMon* currentMon = GetBattleMon(serverFlow, pokemonSlot);
-    // Protect-family chaining follows the last move that actually executed,
-    // rather than the last selected/original move.  This matches native
-    // Protect and PW2Code's expanded Protect handler, including forced-move
-    // cases where those two histories can differ.
-    if (!currentMon || IsProtectCounterMove(BattleMon_GetPreviousMoveID(currentMon))) {
-        return;
-    }
-
-    ResetProtectCounter(serverFlow, pokemonSlot);
+    W2U_StartProtectCounterMove(serverFlow, pokemonSlot);
 }
 
 // Native Protect/Detect/Endure/Wide Guard/Quick Guard share this start
@@ -658,7 +619,7 @@ extern "C" void THUMB_BRANCH_HandlerProtectStart(
     BattleEventItem*, ServerFlow* serverFlow, u32 pokemonSlot, u32*)
 {
     if (pokemonSlot == (u32)BattleEventVar_GetValue(VAR_ATTACKING_MON)) {
-        StartProtectCounterMove(serverFlow, pokemonSlot);
+        W2U_StartProtectCounterMove(serverFlow, pokemonSlot);
     }
 }
 #endif

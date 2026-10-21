@@ -65,12 +65,16 @@ b32 W2U_AICalcDamage(BtlServerFlow *flow, BattleMon *attacker, BattleMon *defend
 b32 W2U_MoldBreakerSkipCheck(BattleEventItem *item, BtlServerFlow *flow, u32 factorType, u32 eventType, u32 subId);
 b32 W2U_IsLaterIgnorableAbility(u16 ability);
 
-/* The protection check (protect.c): per target of a move, whether its protection stops it (with "X protected itself!"
- * and W2U's EVENT_PROTECT_SUCCESS; a broken one raises EVENT_PROTECT_BROKEN). flowsub_CheckNoEffect_Protect's protect
- * step asks it in both builds. W2U_CheckProtectBreak: EVENT_PROTECT_BREAK_CHECK with the attacker, the target, the
- * category and the move; VAR_BREAK_PROTECT 0 holds, 1 broken (Feint), 2 the move goes through (Unseen Fist). */
+/* The protection check and Protect's counter (protect.c): per target of a move, whether its protection stops it (with
+ * "X protected itself!" and W2U's EVENT_PROTECT_SUCCESS; a broken one raises EVENT_PROTECT_BROKEN).
+ * flowsub_CheckNoEffect_Protect's protect step asks it in both builds. W2U_CheckProtectBreak:
+ * EVENT_PROTECT_BREAK_CHECK with the attacker, the target, the category and the move; VAR_BREAK_PROTECT 0 holds,
+ * 1 broken (Feint), 2 the move goes through (Unseen Fist). W2U_StartProtectCounterMove (HandlerProtectStart): resets
+ * COUNTER_PROTECT unless the Pokémon's previous executed move is in W2U_IsProtectCounterMove (the damage shields too). */
 b32 W2U_ProtectBlocks(BtlServerFlow *flow, BattleMon *attacker, BattleMon *target, u16 move);
 u32 W2U_CheckProtectBreak(BtlServerFlow *flow, u32 attacker, u32 defender, u32 category, u16 move);
+b32 W2U_IsProtectCounterMove(u16 move);
+void W2U_StartProtectCounterMove(BtlServerFlow *flow, u32 monId);
 
 /* The move lists W2U extends (move_lists.c): instead of IsAffectedBySheerForce in Sheer Force's handlers, and of
  * Is{Assist,SleepTalk,MeFirst,Copycat}ExcludedMove in those moves' handlers (the torques: NPC-only) */

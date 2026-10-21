@@ -78,6 +78,7 @@ W2U_DECOMP_CHECK(original_targets, (u32)&((BtlServerFlow *)0)->unk850 == 0x850);
 #define BtlEventVar_TryRead BattleEventVar_GetValueIfExist
 #define Condition_CheckTypeImmunity Condition_CheckUnaffectedByType   /* ov167's veneer to overlay 169's */
 #define IsSideEffectSet SideEffect_IsActive     /* IRDO.yml names ov167's branch stub to it (the decomp's is in ov169) */
+#define GetPreviousMoveID BattleMon_GetPreviousMoveID
 #endif
 
 #ifdef __cplusplus
@@ -295,8 +296,14 @@ enum {
     HANDLER_CMD_CHANGE_ABILITY = 0x1F,  /* BattleHandlerAbilityChangeParam */
     HANDLER_CMD_FORCE_USE_ITEM = 0x22,  /* BattleHandlerForceUseItemParam: eat or use an item now (Bug Bite) */
     HANDLER_CMD_CONSUME_ITEM = 0x23,    /* BattleHandlerConsumeItemParam: the item animation and message, used up */
+    HANDLER_CMD_SET_COUNTER = 0x26,     /* BattleHandlerSetCounterParam: COUNTER_* */
     HANDLER_CMD_HIDE_TURN_CANCEL = 0x36, /* BattleHandlerHideTurnParam: a hidden Pokémon (Fly, Dig) comes back */
     HANDLER_CMD_CHANGE_FORM = 0x39,     /* BattleHandlerChangeFormParam */
+};
+
+/* BattleMon counters (BattleHandlerSetCounterParam, GetConditionCount) */
+enum {
+    COUNTER_PROTECT = 3,                /* consecutive Protect-family moves */
 };
 
 /* BattleHandler_StrSetup message kinds */
@@ -551,6 +558,13 @@ typedef struct BattleHandlerHeader {
 } BattleHandlerHeader;
 typedef BattleHandlerHeader BattleHandlerUseHeldItemParam;   /* UseHeldItem's work is the header alone (decomp name) */
 
+typedef struct BattleHandlerSetCounterParam {
+    BattleHandlerHeader header;
+    u8 monIndex;
+    u8 counter;                         /* COUNTER_* */
+    u8 value;
+} BattleHandlerSetCounterParam;
+
 /* A Pokémon's chosen action (decomp: include/battle/btl_action.h) */
 typedef union BattleAction {
     u32 raw;
@@ -647,6 +661,7 @@ W2U_ENGINE_LAYOUT(hide_turn_flag, __builtin_offsetof(BattleHandlerHideTurnParam,
 W2U_ENGINE_LAYOUT(hide_turn_string, __builtin_offsetof(BattleHandlerHideTurnParam, string) == 0x0C);
 W2U_ENGINE_LAYOUT(change_form_string, __builtin_offsetof(BattleHandlerChangeFormParam, string) == 0x08);
 W2U_ENGINE_LAYOUT(handler_header_size, sizeof(BattleHandlerHeader) == 4);
+W2U_ENGINE_LAYOUT(set_counter_value, __builtin_offsetof(BattleHandlerSetCounterParam, value) == 0x06);
 W2U_ENGINE_LAYOUT(action_order_size, sizeof(ActionOrderEntry) == 0x10);
 W2U_ENGINE_LAYOUT(action_order_done, __builtin_offsetof(ActionOrderEntry, done) == 0x0D);
 W2U_ENGINE_LAYOUT(stat_change_string, __builtin_offsetof(BattleHandlerStatChangeParam, string) == 0x18);
@@ -776,6 +791,7 @@ b32 IsSubstituteActive(BattleMon *mon);
 b32 TransformCheck(BattleMon *mon);             /* transformed (Transform, Imposter) */
 u8 GetMonID(BattleMon *mon);
 u32 GetAdditionalConditionFlag(BattleMon *mon, u32 flag);   /* CONT_FLAG_* */
+u16 GetPreviousMoveID(BattleMon *mon);
 u16 GetBattleMonSpecies(const BattleMon *mon);  /* decomp builds (W2U_Species): not in IRDO.yml */
 u32 GetTurnFlag(BattleMon *mon, u32 flag);
 PokeTypePair GetPokeType(BattleMon *mon);

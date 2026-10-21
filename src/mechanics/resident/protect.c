@@ -66,3 +66,46 @@ b32 W2U_ProtectBlocks(BtlServerFlow *flow, BattleMon *attacker, BattleMon *targe
         return 0;
     }
 }
+
+/* Moves that share Protect's consecutive-use counter: vanilla's five (Protect, Detect, Endure, Wide Guard, Quick Guard)
+ * and W2U's damage shields (King's Shield, Spiky Shield, Baneful Bunker, Obstruct, Silk Trap, Burning Bulwark) */
+static const u16 sProtectCounterMoves[] = {
+    182,                                /* Protect */
+    197,                                /* Detect */
+    203,                                /* Endure */
+    469,                                /* Wide Guard */
+    501,                                /* Quick Guard */
+    588,                                /* King's Shield */
+    596,                                /* Spiky Shield */
+    661,                                /* Baneful Bunker */
+    792,                                /* Obstruct */
+    852,                                /* Silk Trap */
+    908,                                /* Burning Bulwark */
+};
+
+b32 W2U_IsProtectCounterMove(u16 move)
+{
+    u32 i;
+
+    for (i = 0; i < NELEMS(sProtectCounterMoves); ++i) {
+        if (sProtectCounterMoves[i] == move) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void W2U_StartProtectCounterMove(BtlServerFlow *flow, u32 monId)
+{
+    BattleMon *mon = GetBattleMon(flow, (u8)monId);
+    BattleHandlerSetCounterParam *param;
+
+    if (!mon || W2U_IsProtectCounterMove(GetPreviousMoveID(mon))) {
+        return;
+    }
+    param = (BattleHandlerSetCounterParam *)BattleHandler_PushWork(flow, HANDLER_CMD_SET_COUNTER, monId);
+    param->monIndex = (u8)monId;
+    param->counter = COUNTER_PROTECT;
+    param->value = 0;
+    BattleHandler_PopWork(flow, param);
+}
