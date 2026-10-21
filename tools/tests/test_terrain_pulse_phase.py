@@ -12,11 +12,13 @@ class TerrainPulsePhase(unittest.TestCase):
     def test_final_type_does_not_change_native_context_or_power_rules(self):
         moves = (ROOT / "src/pokeweb_gameplay/w2u_moves.cpp").read_text()
         abilities = (ROOT / "src/pokeweb_gameplay/w2u_abilities.cpp").read_text()
+        resident = (ROOT / "src/mechanics/resident/damage.c").read_text()
         pieces = []
         for text, pattern in (
             (moves, r"static u32 TerrainPulseType\(.*?^\}"),
             (moves, r"static void HandlerTerrainPulseType\(.*?^\}"),
             (moves, r"static void HandlerTerrainPulsePower\(.*?^\}"),
+            (resident, r"^void W2U_GetMoveParam\(.*?^\}"),
             (abilities, r'extern "C" void THUMB_BRANCH_ServerEvent_GetMoveParam\([^;]*?^\{.*?^\}'),
         ):
             match = re.search(pattern, text, re.S | re.M)
@@ -26,17 +28,19 @@ class TerrainPulsePhase(unittest.TestCase):
 #include <initializer_list>
 typedef unsigned u32; typedef unsigned short u16; typedef unsigned char u8;
 typedef unsigned MOVE_ID;
-struct BattleEventItem {}; struct ServerFlow {}; struct BattleMon {};
-struct MoveParam { u16 moveID, originalMoveID, userType; u8 moveType, damageType;
-                   u32 category, targetType, flags; };
+struct BattleEventItem {}; struct ServerFlow {}; typedef ServerFlow BtlServerFlow; struct BattleMon {};
+struct MoveParam { union { u16 moveID, move; }; union { u16 originalMoveID, originalMove; }; u16 userType;
+                   union { u8 moveType, type; }; union { u8 damageType, unk07; };
+                   u32 category, targetType; union { u32 raw; operator u32() const { return raw; } } flags; };
+typedef MoveParam BtlFlowMoveParam;
 enum { VAR_MON_ID=2, VAR_ATTACKING_MON=3, VAR_MOVE_ID=18, VAR_MOVE_TYPE=22,
        VAR_USER_TYPE=23, VAR_MOVE_CATEGORY=26, VAR_TARGET_TYPE=27,
        VAR_MOVE_POWER=48, VAR_NO_TYPE_EFFECTIVENESS=56,
        MOVE_TERRAIN_PULSE=805, TYPE_NORMAL=0, TYPE_ELECTRIC=12,
-       TYPE_GRASS=11, TYPE_FAIRY=17, TYPE_PSYCHIC=13, TYPE_NULL=18,
+       TYPE_GRASS=11, TYPE_FAIRY=17, TYPE_PSYCHIC=13, TYPE_NULL=18, W2U_TYPE_NONE=18,
        TERRAIN_ELECTRIC=1, TERRAIN_GRASSY=2, TERRAIN_MISTY=3, TERRAIN_PSYCHIC=4,
        EVENT_MOVE_PARAM=40, EVENT_W2U_MOVE_PARAM_FINAL=257,
-       EVENT_W2U_MOVE_PARAM_BASE=259, MVDATA_TARGET=20 };
+       EVENT_W2U_MOVE_PARAM_BASE=259, MVDATA_TARGET=20, MOVE_PARAM_TARGET=20 };
 static u32 vars[64], terrain, abilityType, owner, calls, depth;
 static bool floating, electrified, ion, loaded;
 static BattleMon mon;
@@ -46,7 +50,9 @@ u32 W2U_MoveState_GetTerrain() { return terrain; }
 bool W2U_MoveState_IsElectrified(u32 slot) { return slot==0 && electrified; }
 bool W2U_MoveState_IsIonDelugeActive() { return ion; }
 u32 BattleMon_GetID(BattleMon*) { return 0; }
+u32 GetMonID(BattleMon* m) { return BattleMon_GetID(m); }
 u32 BattleMon_GetPokeType(BattleMon*) { return 0x0d0d; }
+u32 GetPokeType(BattleMon* m) { return BattleMon_GetPokeType(m); }
 u32 PML_MoveGetType(u32) { return TYPE_NORMAL; }
 u32 PML_MoveGetCategory(u32) { return 2; }
 u32 PML_MoveGetParam(u32, u32) { return 0; }
@@ -55,8 +61,8 @@ void BattleEventVar_SetValue(u32 key, u32 value) { vars[key]=value; }
 void BattleEventVar_SetConstValue(u32 key, u32 value) { vars[key]=value; }
 void BattleEventVar_SetRewriteOnceValue(u32 key, u32 value) { vars[key]=value; }
 void BattleEventVar_RewriteValue(u32 key, u32 value) { vars[key]=value; }
-void BattleEventVar_Push() { ++depth; }
-void BattleEventVar_Pop() { --depth; }
+void BattleEventVar_Push(u32 = 0) { ++depth; }
+void BattleEventVar_Pop(u32 = 0) { --depth; }
 static void HandlerTerrainPulseType(BattleEventItem*,ServerFlow*,u32,u32*);
 void BattleEvent_CallHandlers(ServerFlow* flow, u32 event) {
   if (event==EVENT_W2U_MOVE_PARAM_BASE) {

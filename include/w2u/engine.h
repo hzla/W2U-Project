@@ -128,6 +128,7 @@ enum {
     EVENT_DAMP_MOVE_CHECK = 0x1F,       /* may the move be used? VAR_FAIL_CAUSE (Damp) */
     EVENT_DAMP_FAIL_MESSAGE = 0x21,     /* the failed move's message */
     EVENT_AFTER_MOVE_USE = 0x22,        /* the attacker's move was used: the Choice items lock here */
+    EVENT_MOVE_PARAM = 0x28,            /* a move's parameters (ServerEvent_GetMoveParam): VAR_MOVE_TYPE, VAR_MOVE_CATEGORY... */
     EVENT_CHECK_NO_EFFECT = 0x2D,       /* per target: may the move affect it? (Volt Absorb, Soundproof) */
     EVENT_PROTECT_BREAK_CHECK = 0x2E,
     EVENT_CHECK_DAMAGE_TO_RECOVER = 0x30, /* the move heals the defender instead (Volt Absorb): VAR_GENERAL_USE_FLAG */   /* per target of a protected move: VAR_BREAK_PROTECT (W2U raises it too) */
@@ -155,6 +156,7 @@ enum {
     EVENT_ADD_CONDITION_FAILED = 0x67,  /* the blocked status' message */
     EVENT_STATUS_INFLICTED = 0x68,      /* a status was inflicted: VAR_CONDITION, the attacker and the defender */
     EVENT_ABILITY_NULLIFIED = 0x6A,
+    EVENT_CONSUME_ITEM = 0x6F,          /* new event (W2U's): NEW_VAR_MON_ID consumed VAR_ITEM (Cheek Pouch, Symbiosis) */
     EVENT_USE_ITEM = 0x72,              /* VAR_MON_ID uses its held item */
     EVENT_TURN_CHECK = 0x76,            /* the end of the turn */
     EVENT_TURN_CHECK_END = 0x77,        /* after the end-of-turn checks */
@@ -175,7 +177,9 @@ enum {
     EVENT_NOTIFY_FAINTED = 0xA3,        /* VAR_MON_ID fainted */
     /* W2U's events past the engine's (resident/damage.c raises them; no engine handler has these IDs) */
     EVENT_W2U_DAMAGE_WEATHER = 0x100,   /* in sun, the weather CalcDamage's weather modifier uses: VAR_WEATHER */
+    EVENT_W2U_MOVE_PARAM_FINAL = 0x101, /* after EVENT_MOVE_PARAM: final move-type phase (Terrain Pulse) */
     EVENT_W2U_ATTACK_STAT_SELECTOR = 0x102, /* the attacking stat: VAR_ATTACK_STAT_SELECTOR (BMV_*: Body Press) */
+    EVENT_W2U_MOVE_PARAM_BASE = 0x103,  /* before EVENT_MOVE_PARAM */
 };
 
 /* Event variables (W2U's names) */
@@ -200,7 +204,10 @@ enum {
     VAR_SET_TYPE_EFFECTIVENESS = 0x4C,  /* EVENT_CHECK_TYPE_EFFECTIVENESS: W2U_OVERRIDE_EFFECTIVENESS_* (the engine's
                                          * "force x1" flag before W2U) */
     VAR_MOVE_CATEGORY = 0x1A,           /* EVENT_DEFENDING_STAT: 1 = the defending stat is Defense (Psyshock too) */
+    VAR_TARGET_TYPE = 0x1B,             /* ServerEvent_GetMoveParam: MOVE_TARGET_* */
+    VAR_USER_TYPE = 0x1C,               /* ServerEvent_GetMoveParam: the user's PokeTypePair */
     VAR_EVASION_STAGE = 0x28,           /* 6 = neutral */
+    VAR_ITEM = 0x2D,                    /* the item ID (EVENT_CONSUME_ITEM...) */
     VAR_MOVE_POWER_RATIO = 0x31,        /* fixed point, 4096 = x1 */
     VAR_TYPE_EFFECTIVENESS = 0x38,      /* EVENT_DAMAGE_RATIO: the hit's effectiveness (BtlCalc_ClassifyEffectiveness) */
     VAR_RATIO = 0x35,                   /* fixed point, 4096 = x1 */
@@ -606,7 +613,9 @@ typedef struct BtlFlowMoveParam {
     u8 unk07;
     u32 category;
     u32 targetType;
-    u32 flags;
+    union {
+        u32 raw;
+    } flags;
 } BtlFlowMoveParam;
 
 /* The layouts the vanilla code uses (C99 has no static_assert: a negative array size fails the build) */
@@ -880,6 +889,7 @@ u32 MultiplyValueByRatio(u32 value, u32 ratio);
 /* waza_tool.c */
 s32 PML_MoveGetParam(u16 move, u32 param);
 s32 PML_MoveGetCategory(u16 move);             /* MOVE_CATEGORY_* */
+u8 PML_MoveGetType(u16 move);
 b32 getMoveFlag(u16 move, u32 flag);
 MoveConditionParam PML_MoveGetConditionParam(u16 move);
 

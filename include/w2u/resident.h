@@ -32,14 +32,20 @@ void W2U_RechargeAction(BtlServerFlow *flow, BattleMon *mon);
  * where the action order is sorted (the turn's first order and SortActionOrderBySpeed), noting the move. */
 u8 W2U_GetMovePriority(BtlServerFlow *flow, u16 move, BattleMon *mon);
 
-/* Ripen, Cud Chew, Opportunist (handler_effects.c): the handler-effect dispatcher's commands (BattleHandler_Execute)
- * run through these instead of BattleHandler_UseHeldItem, _ForceUseItem, _RecoverHP, _Damage and _StatChange: a
- * Ripen holder's Berries work twice, Cud Chew notes the Berry eaten, Opportunist's copies are flagged. */
+/* Ripen, Cud Chew, Opportunist, consumed items (handler_effects.c): the handler-effect dispatcher's commands
+ * (BattleHandler_Execute) run through these instead of BattleHandler_UseHeldItem, _ForceUseItem, _RecoverHP, _Damage
+ * and _StatChange: a Ripen holder's Berries work twice, Cud Chew notes the Berry eaten, Opportunist's copies are
+ * flagged. ServerControl_ChangeHeldItem's consume branch calls W2U_ItemConsumed (BattleHandler_ConsumeItem passes
+ * 1 + skipDisplay: 1 eaten, 2 consumed without eating): notes a Berry eaten (Belch) and raises EVENT_CONSUME_ITEM
+ * (Cheek Pouch, Symbiosis). */
 u8 W2U_HandlerUseHeldItem(BtlServerFlow *flow, BattleHandlerUseHeldItemParam *param);
 u8 W2U_HandlerForceUseItem(BtlServerFlow *flow, BattleHandlerForceUseItemParam *param);
 u8 W2U_HandlerRecoverHP(BtlServerFlow *flow, BattleHandlerRecoverHPParam *param, u16 itemId);
 u8 W2U_HandlerDamage(BtlServerFlow *flow, BattleHandlerDamageParam *param);
 u8 W2U_HandlerStatChange(BtlServerFlow *flow, BattleHandlerStatChangeParam *param, u16 context);
+void W2U_ItemConsumed(BtlServerFlow *flow, u32 monId, u16 item, b32 consume);
+void W2U_MoveState_SetConsumedBerryFlag(u32 monId);
+b32 W2U_MoveState_HasConsumedBerryFlag(u32 monId);
 
 /* Mega Sol (weather.c): ServerEvent_GetWeather's result goes through this: sun while a Mega Sol holder's move runs
  * (W2U_MB_SetMegaSolAttacker), the weather otherwise. */
@@ -116,6 +122,9 @@ u32 W2U_SimpleDamageBeforeHP(u32 monId);
 u32 W2U_CalcMoveHealAmount(BtlServerFlow *flow, u16 move, BattleMon *mon);
 b32 W2U_DamageToRecoverCheck(BtlServerFlow *flow, BattleMon *attacker, BattleMon *defender,
                               const BtlFlowMoveParam *param);
+/* A move's parameters (damage.c), ServerEvent_GetMoveParam whole: VAR_MOVE_ID in the frame, mutable VAR_MOVE_TYPE, and
+ * W2U's base / final parameter phases around EVENT_MOVE_PARAM (Terrain Pulse) */
+void W2U_GetMoveParam(BtlServerFlow *flow, u16 move, BattleMon *mon, BtlFlowMoveParam *param);
 
 /* Parental Bond (parental_bond.c): DamageRoot asks W2U_CheckMultihitHits instead of ServerEvent_CheckMultihitHits
  * (hitWork: W2U_HitWork); a single-target move of the holder becomes two hits. Its handlers ask W2U_ParentalBondActive

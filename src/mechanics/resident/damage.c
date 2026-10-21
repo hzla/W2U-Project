@@ -21,7 +21,10 @@
  *   the decomp's ServerEvent_CheckDamageToRecover returns it.
  * - W2U_CalcMoveHealAmount: a healing move's amount (EVENT_RECOVER_HP), with VAR_MOVE_ID so a move's handler can pick
  *   its move (Shore Up); Shore Up floors its exact share (2/3 in a sandstorm, else 1/2) where the engine rounds to
- *   nearest. The injection build replaces ServerEvent_CalcMoveHealAmount whole; the decomp's returns it. */
+ *   nearest. The injection build replaces ServerEvent_CalcMoveHealAmount whole; the decomp's returns it.
+ * - W2U_GetMoveParam: a move's parameters (ServerEvent_GetMoveParam whole), with VAR_MOVE_ID in the frame, mutable
+ *   VAR_MOVE_TYPE (so Normalize can convert a move whose handler changed its type first), and W2U's base / final
+ *   phases around EVENT_MOVE_PARAM (Terrain Pulse). */
 #include "w2u/resident.h"
 #include "megab2w2/mb_ids.h"
 
@@ -30,6 +33,7 @@
 #define MOVE_MATCHA_GOTCHA 902
 #define MOVE_SHORE_UP 659
 #define RECOVER_RATIO_TWO_THIRDS 2732   /* VAR_RATIO Shore Up's handler sets in a sandstorm (w2u_moves.cpp) */
+#define W2U_TYPE_NONE 18                /* TYPE_NULL with Fairy (type_constants.h) */
 
 void W2U_ThawHitTargets(BtlServerFlow *flow, BtlFlowMoveParam *param, BattleMon *attacker, void *targets)
 {
@@ -186,4 +190,42 @@ u32 W2U_CalcMoveHealAmount(BtlServerFlow *flow, u16 move, BattleMon *mon)
         return 1;
     }
     return amount > maxHP ? maxHP : amount;
+}
+
+void W2U_GetMoveParam(BtlServerFlow *flow, u16 move, BattleMon *mon, BtlFlowMoveParam *param)
+{
+    u32 moveType, category;
+
+    BattleEventVar_Push(__LINE__);
+    BattleEventVar_SetConstValue(VAR_MON_ID, GetMonID(mon));
+    BattleEventVar_SetConstValue(VAR_MOVE_ID, move);
+    BattleEventVar_SetValue(VAR_MOVE_TYPE, PML_MoveGetType(move));
+    BattleEventVar_SetValue(VAR_USER_TYPE, GetPokeType(mon));
+    BattleEventVar_SetValue(VAR_MOVE_CATEGORY, PML_MoveGetCategory(move));
+    BattleEventVar_SetValue(VAR_TARGET_TYPE, PML_MoveGetParam(move, MOVE_PARAM_TARGET));
+    BattleEventVar_SetRewriteOnceValue(VAR_NO_TYPE_EFFECTIVENESS, 0);
+
+    BattleEvent_CallHandlers(flow, EVENT_W2U_MOVE_PARAM_BASE);
+    BattleEvent_CallHandlers(flow, EVENT_MOVE_PARAM);
+    /* Native type-conversion abilities can run after ordinary move entries: give exceptional move types a final
+     * phase in the same live context with no native conversion afterward (Terrain Pulse). */
+    BattleEvent_CallHandlers(flow, EVENT_W2U_MOVE_PARAM_FINAL);
+
+    moveType = BattleEventVar_GetValue(VAR_MOVE_TYPE);
+    category = BattleEventVar_GetValue(VAR_MOVE_CATEGORY);
+
+    param->move = move;
+    param->originalMove = move;
+    param->userType = (u16)BattleEventVar_GetValue(VAR_USER_TYPE);
+    param->type = (u8)moveType;
+    param->unk07 = (u8)moveType;
+    param->category = category;
+    param->targetType = BattleEventVar_GetValue(VAR_TARGET_TYPE);
+    param->flags.raw = 0;
+
+    if (BattleEventVar_GetValue(VAR_NO_TYPE_EFFECTIVENESS)) {
+        param->type = W2U_TYPE_NONE;
+    }
+
+    BattleEventVar_Pop(__LINE__);
 }

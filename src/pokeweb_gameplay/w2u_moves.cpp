@@ -122,7 +122,7 @@ struct MoveState {
     AuroraVeilSideState auroraVeil[W2U_SIDE_COUNT];
     TerrainState terrain;
     BattleEventItem* transientItem;
-    u32 consumedBerryFlags;
+    /* Consumed-Berry flags: src/mechanics/resident/handler_effects.c */
     u32 electrifiedFlags;
     u32 beakBlastChargingFlags;
     u32 beakBlastChargeCueFlags;
@@ -272,6 +272,7 @@ extern "C" u32 W2U_MultiHitTargetCount(u16 move, u32 count, u32 countMax);
 extern "C" u32 W2U_SpreadTargetCount(u16 move, u32 countMax);
 extern "C" void W2U_MoveState_ClearTarShot(u32 monId);
 extern "C" void W2U_Resident_ResetEffectiveness(void);
+extern "C" void W2U_Resident_ResetHandlerEffects(void);
 extern "C" bool W2U_HasType(BattleMon* mon, u32 type);   /* C b32 */
 extern "C" u32 W2U_EffectivenessMultiplier(u32 effectiveness1, u32 effectiveness2);
 extern "C" u32 W2U_EffectivenessPowerMod(u32 damage, u32 effectiveness);
@@ -303,7 +304,6 @@ extern "C" TERRAIN* W2U_MoveState_TerrainTypeStorage();
 extern "C" u8* W2U_MoveState_TerrainTurnsStorage();
 extern "C" bool* W2U_MoveState_TerrainActiveStorage();
 extern "C" BattleEventItem** W2U_MoveState_TransientItemStorage();
-extern "C" u32* W2U_MoveState_ConsumedBerryFlagsStorage();
 extern "C" u32* W2U_MoveState_ElectrifiedFlagsStorage();
 extern "C" u32* W2U_MoveState_BeakBlastChargeCueFlagsStorage();
 extern "C" u32* W2U_MoveState_MatBlockProtectedFlagsStorage();
@@ -353,8 +353,6 @@ W2U_MOVE_STATE_SCALAR_STORAGE(
     bool, W2U_MoveState_TerrainActiveStorage, sMoveState.terrain.active)
 W2U_MOVE_STATE_SCALAR_STORAGE(
     BattleEventItem*, W2U_MoveState_TransientItemStorage, sMoveState.transientItem)
-W2U_MOVE_STATE_SCALAR_STORAGE(
-    u32, W2U_MoveState_ConsumedBerryFlagsStorage, sMoveState.consumedBerryFlags)
 W2U_MOVE_STATE_SCALAR_STORAGE(
     u32, W2U_MoveState_ElectrifiedFlagsStorage, sMoveState.electrifiedFlags)
 W2U_MOVE_STATE_SCALAR_STORAGE(
@@ -408,7 +406,6 @@ W2U_MOVE_STATE_SCALAR_STORAGE(
 #define sTerrainTurns (*W2U_MoveState_TerrainTurnsStorage())
 #define sTerrainActive (*W2U_MoveState_TerrainActiveStorage())
 #define sTransientItem (*W2U_MoveState_TransientItemStorage())
-#define sConsumedBerryFlags (*W2U_MoveState_ConsumedBerryFlagsStorage())
 #define sElectrifiedFlags (*W2U_MoveState_ElectrifiedFlagsStorage())
 #define sBeakBlastChargeCueFlags (*W2U_MoveState_BeakBlastChargeCueFlagsStorage())
 #define sMatBlockProtectedFlags (*W2U_MoveState_MatBlockProtectedFlagsStorage())
@@ -435,6 +432,7 @@ void ClearMoveState()
     W2U_Weather_Reset();
     W2U_Revival_Reset();
     W2U_Resident_ResetMoveCategories();
+    W2U_Resident_ResetHandlerEffects();   // consumed-Berry flags: src/mechanics/resident/handler_effects.c
     volatile u8* bytes = (volatile u8*)&sMoveState;
     for (u32 idx = 0; idx < sizeof(sMoveState); ++idx) {
         bytes[idx] = 0;
@@ -1726,22 +1724,7 @@ extern "C" void W2U_MoveState_TickPersistentEffect(MOVE_ID move, u32 target)
         sMoveState.persistentFlags[index] &= ~SlotMask(target);
 }
 
-extern "C" void W2U_MoveState_SetConsumedBerryFlag(u32 pokemonSlot)
-{
-    u32 mask = SlotMask(pokemonSlot);
-    if (mask) {
-        sConsumedBerryFlags |= mask;
-    }
-}
-
-extern "C" bool W2U_MoveState_HasConsumedBerryFlag(u32 pokemonSlot)
-{
-    u32 mask = SlotMask(pokemonSlot);
-    return mask && (sConsumedBerryFlags & mask);
-}
-
-
-
+// W2U_MoveState_SetConsumedBerryFlag, W2U_MoveState_HasConsumedBerryFlag: src/mechanics/resident/handler_effects.c
 // W2U_MoveState_SetExtraType, ClearExtraType, GetExtraType: src/mechanics/resident/effectiveness.c
 
 extern "C" u32 W2U_ResolveRevelationDanceType(BattleMon* battleMon)
