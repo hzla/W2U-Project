@@ -1,8 +1,10 @@
-/* Ripen, Cud Chew, Opportunist: around the handler-effect dispatcher's commands (BattleHandler_Execute). A held
- * item's effects run inside its UseHeldItem / ForceUseItem, so a "this Ripen holder is eating a Berry" flag around
- * that call sees the Berry's own heal, damage and stat effects. Each function returns the command's result. The
- * mechanics read the state through W2U_MB_CudChew* and W2U_MB_Opportunist* (abilities/effect_abilities.c,
- * move_abilities.c). The state is zero when empty: monIds are kept + 1. */
+/* Ripen, Cud Chew, Opportunist, consumed items: around the handler-effect dispatcher's commands (BattleHandler_Execute)
+ * and ServerControl_ChangeHeldItem. A held item's effects run inside its UseHeldItem / ForceUseItem, so a "this Ripen
+ * holder is eating a Berry" flag around that call sees the Berry's own heal, damage and stat effects. Each function
+ * returns the command's result. The mechanics read the state through W2U_MB_CudChew* and W2U_MB_Opportunist*
+ * (abilities/effect_abilities.c, move_abilities.c). W2U_ItemConsumed notes a Berry eaten (consume != 2, from
+ * BattleHandler_ConsumeItem's 1 + skipDisplay: Belch) and raises EVENT_CONSUME_ITEM (Cheek Pouch, Symbiosis). The state
+ * is zero when empty: monIds are kept + 1. */
 #include "w2u/resident.h"
 #include "megab2w2/mb_ids.h"
 
@@ -12,6 +14,7 @@ static u16 sCudBerry[BATTLE_MAX_MON_ID];
 static u8 sCudCounter[BATTLE_MAX_MON_ID];
 static u8 sOppPendingCopies[BATTLE_MAX_MON_ID];
 static u8 sOppCopying;
+static u32 sConsumedBerryFlags;             /* bit per Pokémon ID: ate a Berry this battle (Belch) */
 
 /* The Pokémon a command was pushed for: bits 8-12 of its work's first word (BattleHandlerHeader's monId) */
 static u32 CommandMonId(const void *work)
@@ -129,11 +132,46 @@ u8 W2U_MB_OpportunistCopying(void)
     return sOppCopying;
 }
 
+void W2U_MoveState_SetConsumedBerryFlag(u32 monId)
+{
+    if (monId < BATTLE_MAX_MON_ID) {
+        sConsumedBerryFlags |= 1u << monId;
+    }
+}
+
+b32 W2U_MoveState_HasConsumedBerryFlag(u32 monId)
+{
+    return monId < BATTLE_MAX_MON_ID && (sConsumedBerryFlags & (1u << monId));
+}
+
+void W2U_ItemConsumed(BtlServerFlow *flow, u32 monId, u16 item, b32 consume)
+{
+    u32 level;
+
+    if (!flow || monId >= BATTLE_MAX_MON_ID) {
+        return;
+    }
+    if (consume != 2 && W2U_IsBerry(item)) {
+        W2U_MoveState_SetConsumedBerryFlag(monId);
+    }
+    level = W2U_PushHandlerState(flow);
+    BattleEventVar_Push(__LINE__);
+    BattleEventVar_SetConstValue(VAR_MON_ID, -1);
+    BattleEventVar_SetConstValue(VAR_ATTACKING_MON, -1);
+    BattleEventVar_SetConstValue(VAR_DEFENDING_MON, -1);
+    BattleEventVar_SetConstValue(NEW_VAR_MON_ID, (s32)monId);
+    BattleEventVar_SetConstValue(VAR_ITEM, item);
+    BattleEvent_CallHandlers(flow, EVENT_CONSUME_ITEM);
+    BattleEventVar_Pop(__LINE__);
+    W2U_PopHandlerState(flow, level);
+}
+
 void W2U_Resident_ResetHandlerEffects(void)
 {
     u32 i;
 
     sRipenEater = sCudChewer = sOppCopying = 0;
+    sConsumedBerryFlags = 0;
     for (i = 0; i < BATTLE_MAX_MON_ID; ++i) {
         sCudBerry[i] = 0;
         sCudCounter[i] = 0;

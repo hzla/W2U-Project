@@ -2070,47 +2070,15 @@ extern "C" void THUMB_BRANCH_HandlerRockyHelmet(
     BattleHandler_PopWork(serverFlow, damage);
 }
 
+extern "C" void W2U_GetMoveParam(ServerFlow* flow, u16 move, BattleMon* mon, MoveParam* param);   // src/mechanics/resident/damage.c
+
 extern "C" void THUMB_BRANCH_ServerEvent_GetMoveParam(
     ServerFlow* serverFlow,
     MOVE_ID moveID,
     BattleMon* battleMon,
     MoveParam* moveParam)
 {
-    BattleEventVar_Push();
-
-    u32 currentSlot = BattleMon_GetID(battleMon);
-    BattleEventVar_SetConstValue(VAR_MON_ID, currentSlot);
-    BattleEventVar_SetConstValue(VAR_MOVE_ID, moveID);
-    BattleEventVar_SetValue(VAR_MOVE_TYPE, PML_MoveGetType(moveID));
-    BattleEventVar_SetValue(VAR_USER_TYPE, BattleMon_GetPokeType(battleMon));
-    BattleEventVar_SetValue(VAR_MOVE_CATEGORY, PML_MoveGetCategory(moveID));
-    BattleEventVar_SetValue(VAR_TARGET_TYPE, PML_MoveGetParam(moveID, MVDATA_TARGET));
-    BattleEventVar_SetRewriteOnceValue(VAR_NO_TYPE_EFFECTIVENESS, 0);
-
-    BattleEvent_CallHandlers(serverFlow, EVENT_W2U_MOVE_PARAM_BASE);
-    BattleEvent_CallHandlers(serverFlow, EVENT_MOVE_PARAM);
-    // Native type-conversion abilities can run after ordinary move entries.
-    // Give exceptional move types a final, module-owned parameter phase;
-    // keep the same live context and allow no native conversion afterward.
-    BattleEvent_CallHandlers(serverFlow, EVENT_W2U_MOVE_PARAM_FINAL);
-
-    u32 moveType = BattleEventVar_GetValue(VAR_MOVE_TYPE);
-    u32 category = BattleEventVar_GetValue(VAR_MOVE_CATEGORY);
-
-    moveParam->moveID = (u16)moveID;
-    moveParam->originalMoveID = (u16)moveID;
-    moveParam->userType = (u16)BattleEventVar_GetValue(VAR_USER_TYPE);
-    moveParam->moveType = (u8)moveType;
-    moveParam->damageType = (u8)moveType;
-    moveParam->category = category;
-    moveParam->targetType = BattleEventVar_GetValue(VAR_TARGET_TYPE);
-    moveParam->flags = 0;
-
-    if (BattleEventVar_GetValue(VAR_NO_TYPE_EFFECTIVENESS)) {
-        moveParam->moveType = TYPE_NULL;
-    }
-
-    BattleEventVar_Pop();
+    W2U_GetMoveParam(serverFlow, (u16)moveID, battleMon, moveParam);
 }
 
 #if !defined(W2U_BATTLE_CHILD)
@@ -3856,6 +3824,8 @@ extern "C" int THUMB_BRANCH_BattleHandler_ConsumeItem(
     return 1;
 }
 
+extern "C" void W2U_ItemConsumed(ServerFlow* flow, u32 monId, u16 item, b32 consume);   // src/mechanics/resident/handler_effects.c
+
 extern "C" void THUMB_BRANCH_ServerControl_ChangeHeldItem(
     ServerFlow* serverFlow,
     BattleMon* battleMon,
@@ -3885,20 +3855,10 @@ extern "C" void THUMB_BRANCH_ServerControl_ChangeHeldItem(
     HEManager_PopState(&serverFlow->HEManager, HEID);
 
     if (consumeItem) {
-        if (consumeItem != 2 && PML_ItemIsBerry(usedItem)) {
-            W2U_MoveState_SetConsumedBerryFlag(pokemonSlot);
-        }
-
         BattleMon_ConsumeItem(battleMon, usedItem);
         ServerDisplay_AddCommon(serverFlow->serverCommandQueue, SCID_ConsumeItem, pokemonSlot, usedItem);
         ServerDisplay_SetTurnFlag(serverFlow, battleMon, TURNFLAG_ITEMCONSUMED);
-
-        HEID = HEManager_PushState(&serverFlow->HEManager);
-        BattleEventVar_Push();
-        SetupNewEventMonAndItem(pokemonSlot, usedItem);
-        BattleEvent_CallHandlers(serverFlow, EVENT_CONSUME_ITEM);
-        BattleEventVar_Pop();
-        HEManager_PopState(&serverFlow->HEManager, HEID);
+        W2U_ItemConsumed(serverFlow, pokemonSlot, usedItem, consumeItem);
     }
 }
 #endif
