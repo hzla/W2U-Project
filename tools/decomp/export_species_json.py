@@ -75,7 +75,8 @@ def parse_list(path: Path) -> dict[str, int]:
 def decomp_constants(decomp: Path) -> dict[str, dict[int, str]]:
     """By prefix, value -> the decomp's first name for it."""
     values = {}
-    for path in sorted((decomp / "data" / "constants").glob("*.txt")):
+    lists = decomp / "generated"                     # since pokebw2 c1e21df84 (data/constants before)
+    for path in sorted((lists if lists.is_dir() else decomp / "data" / "constants").glob("*.txt")):
         values.update(parse_list(path))
     header = (decomp / "include" / "constants" / "pokemon.h").read_text(encoding="utf-8")
     values.update({m[1]: int(m[2], 0) for m in re.finditer(r"#define (\w+) (0x[0-9a-fA-F]+|\d+)\b", header)})
